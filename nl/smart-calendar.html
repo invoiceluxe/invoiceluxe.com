@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="nl" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Gratis Slimme Kalender & Herinneringstool | Invoice Luxe</title>
+    <meta name="description" content="Gratis online slimme kalender met dagelijkse notities en browsermeldingen. Plan uw maand, sla herinneringen op en ontvang directe meldingen. Geen account nodig.">
+    <meta name="keywords" content="gratis online kalender, slimme kalender, dagplanner, herinneringstool, online agenda">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Gratis Slimme Kalender & Herinneringstool | Invoice Luxe">
+    <meta property="og:description" content="Gratis online slimme kalender met dagelijkse notities en browsermeldingen. Plan uw maand, sla herinneringen op en ontvang directe meldingen. Geen account nodig.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/nl/smart-calendar.html">
+    <meta property="og:locale" content="nl">
+
+    <link rel="canonical" href="https://invoiceluxe.com/nl/smart-calendar.html" />
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/en/smart-calendar.html" />
+    <link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/smart-calendar.html" />
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/smart-calendar.html" />
+    <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/en/smart-calendar.html" />
+    <link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/smart-calendar.html" />
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/smart-calendar.html" />
+    <link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/smart-calendar.html" />
+    <link rel="alternate" hreflang="in" href="https://invoiceluxe.com/in/smart-calendar.html" />
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/smart-calendar.html" />
+    <link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/smart-calendar.html" />
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/smart-calendar.html" />
+    <link rel="alternate" hreflang="pt" href="https://invoiceluxe.com/pt/smart-calendar.html" />
+    <link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/smart-calendar.html" />
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tr/smart-calendar.html" />
+    <link rel="alternate" hreflang="zh" href="https://invoiceluxe.com/zh/smart-calendar.html" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Invoice Luxe Slimme Kalender",
+      "url": "https://invoiceluxe.com/nl/smart-calendar.html",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+      },
+      "description": "Gratis online slimme kalender met dagelijkse notities en browsermeldingen. Plan uw maand, sla herinneringen op en ontvang directe meldingen. Geen account nodig.",
+      "inLanguage": "nl",
+      "featureList": [
+            "Daily Notes",
+            "Browser Notifications",
+            "Multilingual",
+            "Offline Storage",
+            "No Account Required"
+      ]
+}
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold-main: #FFD700; --m-black: #121212; --card-bg: #1a1510; }
+        * { box-sizing: border-box; }
+        body { background: var(--bg-oak); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .top-bar { width: 100%; padding: 15px 20px; background: var(--m-black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold-main); margin-bottom: 20px; }
+        .top-bar h1 { margin: 0; color: var(--gold-main); font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn { background: var(--gold-main); color: var(--m-black); padding: 8px 15px; border-radius: 10px; text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 5px; font-size: 13px; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.95); }
+        .wrapper { width: 100%; max-width: 450px; padding: 0 15px 40px 15px; }
+        .calendar-card { background: var(--card-bg); border: 2px solid var(--gold-main); border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .month-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .month-header button { background: none; border: none; color: var(--gold-main); font-size: 24px; cursor: pointer; padding: 0 10px; outline: none; }
+        .month-title { font-size: 18px; font-weight: bold; text-transform: uppercase; color: #fff; }
+        .day-grid { display: grid; grid-template-columns: 34px repeat(7, 1fr); gap: 5px; }
+        .day-name { text-align: center; font-size: 11px; color: var(--gold-main); font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+        .wk-corner { font-size: 9px; opacity: 0.75; }
+        .week-num { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: var(--m-black); background: var(--gold-main); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.35); }
+        .day { padding: 12px 5px; background: #222; border-radius: 8px; text-align: center; cursor: pointer; font-size: 14px; border: 2px solid transparent; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+        .day:hover { border-color: var(--gold-main); }
+        .day.selected { border-color: var(--gold-main); background: #333; }
+        .day.has-note { background: #0056b3; color: white; font-weight: bold; }
+        .day.today { border: 2px solid #fff; }
+        .note-section { margin-top: 20px; border-top: 1px dashed #444; padding-top: 15px; }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 10px; border: 1px solid #444; background: #000; color: #fff; font-size: 14px; outline: none; resize: none; margin-bottom: 10px; }
+        textarea:focus { border-color: var(--gold-main); }
+        .btn-group { display: flex; gap: 8px; margin-bottom: 10px; }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 14px; font-weight: 900; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 10px; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+        .btn:active { transform: scale(0.98); }
+        .btn-save { background: var(--gold-main); color: var(--m-black); }
+        .btn-delete { background: #dc2626; color: #fff; }
+        .btn-notify { background: #1a1510; border: 1px solid var(--gold-main); color: var(--gold-main); }
+        .btn-notify.active { background: #16a34a; border-color: #16a34a; color: #fff; }
+
+        .guide-section { margin-top: 30px; background: rgba(0,0,0,0.3); border-radius: 20px; padding: 20px; border: 1px solid rgba(255,215,0,0.2); }
+        .guide-section h2 { color: var(--gold-main); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; text-align: center; }
+        .guide-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+        .guide-step .step-num { background: var(--gold-main); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+        .guide-step p { margin: 0; font-size: 12px; color: #d9c8b5; line-height: 1.6; font-weight: normal; }
+        .guide-step p strong { color: #fff; }
+        .guide-divider { border: none; border-top: 1px dashed rgba(255,215,0,0.2); margin: 15px 0; }
+        .feature-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        .feature-tag { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); border-radius: 20px; padding: 5px 12px; font-size: 10px; color: var(--gold-main); font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <h1 id="L_TITLE">INVOICE LUXE SLIMME KALENDER</h1>
+        <a href="../nl/index.html" class="back-btn">
+            <i class="material-symbols-rounded" style="font-size: 18px;">home</i>
+            <span id="L_BACK">HOOFDMENU</span>
+        </a>
+    </header>
+
+    <main class="wrapper">
+        <article class="calendar-card">
+            <section class="month-header">
+                <button onclick="changeMonth(-1)" aria-label="Previous Month">&#10094;</button>
+                <div class="month-title" id="month-display">---</div>
+                <button onclick="changeMonth(1)" aria-label="Next Month">&#10095;</button>
+            </section>
+
+            <section class="day-grid" id="calendar-grid"></section>
+
+            <section class="note-section">
+                <div id="selected-date-label" style="font-size: 12px; color: var(--gold-main); margin-bottom: 8px; font-weight: bold; text-align: center;"></div>
+                <textarea id="note-input"></textarea>
+                <div class="btn-group">
+                    <button class="btn btn-save" onclick="saveNote()">
+                        <i class="material-symbols-rounded">save</i> <span id="L_SAVE">NOTITIE OPSLAAN</span>
+                    </button>
+                    <button id="btn-delete-container" class="btn btn-delete" onclick="deleteNote()" style="display: none;">
+                        <i class="material-symbols-rounded">delete</i> <span id="L_DELETE">VERWIJDEREN</span>
+                    </button>
+                </div>
+                <button id="notify-btn" class="btn btn-notify" onclick="enableNotifications()">
+                    <i class="material-symbols-rounded">notifications_active</i> <span id="L_NOTIFY">MELDINGEN AAN</span>
+                </button>
+            </section>
+        </article>
+
+        <section class="guide-section" id="guide-section" aria-label="How to use Smart Calendar">
+            <h2 id="guide-title">HOE TE GEBRUIKEN</h2>
+
+            <div class="guide-step"><div class="step-num">1</div><p id="guide-step1"><strong>Selecteer een dag</strong> — Tik op een dag in de kalender. De geselecteerde dag wordt gemarkeerd met een gouden rand.</p></div>
+            <div class="guide-step"><div class="step-num">2</div><p id="guide-step2"><strong>Schrijf uw notitie</strong> — Typ uw taak, herinnering of afspraak in het tekstvak onder de kalender.</p></div>
+            <div class="guide-step"><div class="step-num">3</div><p id="guide-step3"><strong>Opslaan</strong> — Tik op Opslaan. Dagen met notities worden blauw zodat u ze snel kunt herkennen.</p></div>
+            <div class="guide-step"><div class="step-num">4</div><p id="guide-step4"><strong>Meldingen inschakelen</strong> — Tik op de knop Meldingen om browsermeldingen toe te staan. U ontvangt een herinnering op de dag van uw notitie.</p></div>
+            <div class="guide-step"><div class="step-num">5</div><p id="guide-step5"><strong>Een notitie verwijderen</strong> — Selecteer de dag en tik op Verwijderen om de notitie permanent te wissen.</p></div>
+
+            <hr class="guide-divider">
+
+            <div class="feature-tags" id="feature-tags">
+                <span class="feature-tag">✓ Gratis</span><span class="feature-tag">✓ Geen Account</span><span class="feature-tag">✓ Offline Opslag</span><span class="feature-tag">✓ 6 Talen</span><span class="feature-tag">✓ Browsermeldingen</span><span class="feature-tag">✓ Mobiel Vriendelijk</span>
+            </div>
+        </section>
+    </main>
+
+<script>
+    const dict = {
+        "en": {
+                "title": "SMART CALENDAR",
+                "back": "MAIN MENU",
+                "save": "SAVE NOTE",
+                "delete": "DELETE",
+                "notify": "ENABLE ALERTS",
+                "placeholder": "Write a note for this day...",
+                "selectAlert": "Please select a day first!",
+                "weekLabel": "Wk",
+                "days": [
+                        "SU",
+                        "MO",
+                        "TU",
+                        "WE",
+                        "TH",
+                        "FR",
+                        "SA"
+                ],
+                "guideTitle": "HOW TO USE",
+                "step1": "<strong>Select a day</strong> — Tap any day on the calendar to select it. The selected day will be highlighted with a gold border.",
+                "step2": "<strong>Write your note</strong> — Type your task, reminder or appointment in the text area below the calendar.",
+                "step3": "<strong>Save</strong> — Tap the Save button. Days with saved notes will turn blue so you can spot them at a glance.",
+                "step4": "<strong>Enable notifications</strong> — Tap the Alerts button to allow browser notifications. You will receive a reminder on the day of your note.",
+                "step5": "<strong>Delete a note</strong> — Select the day and tap Delete to remove the note permanently.",
+                "tags": [
+                        "✓ Free",
+                        "✓ No Account",
+                        "✓ Offline Storage",
+                        "✓ 6 Languages",
+                        "✓ Browser Alerts",
+                        "✓ Mobile Friendly"
+                ],
+                "notifyOn": "ALERTS ON",
+                "notifyDenied": "Notifications are blocked. Please enable them in your browser settings."
+        },
+        "tr": {
+                "title": "AKILLI TAKVİM",
+                "back": "ANA MENÜ",
+                "save": "NOTU KAYDET",
+                "delete": "SİL",
+                "notify": "BİLDİRİMLERİ AÇ",
+                "placeholder": "Bu gün için bir not yazın...",
+                "selectAlert": "Lütfen önce bir gün seçin!",
+                "weekLabel": "Hf",
+                "days": [
+                        "PZ",
+                        "PT",
+                        "SA",
+                        "ÇA",
+                        "PE",
+                        "CU",
+                        "CT"
+                ],
+                "guideTitle": "NASIL KULLANILIR",
+                "step1": "<strong>Bir gün seçin</strong> — Takvimden istediğiniz güne dokunun. Seçili gün altın çerçeve ile vurgulanır.",
+                "step2": "<strong>Notunuzu yazın</strong> — Takvimin altındaki metin alanına görevinizi, hatırlatıcınızı veya randevunuzu yazın.",
+                "step3": "<strong>Kaydedin</strong> — Kaydet butonuna basın. Notu olan günler mavi renge döner, böylece kolayca fark edilir.",
+                "step4": "<strong>Bildirimleri açın</strong> — Uyarı butonuna basarak tarayıcı bildirimlerine izin verin. Notunuzun olduğu gün hatırlatıcı alırsınız.",
+                "step5": "<strong>Notu silin</strong> — Günü seçip Sil butonuna basarak notu kalıcı olarak kaldırabilirsiniz.",
+                "tags": [
+                        "✓ Ücretsiz",
+                        "✓ Hesap Gerekmez",
+                        "✓ Çevrimdışı Kayıt",
+                        "✓ 6 Dil",
+                        "✓ Tarayıcı Uyarıları",
+                        "✓ Mobil Uyumlu"
+                ],
+                "notifyOn": "BİLDİRİMLER AÇIK",
+                "notifyDenied": "Bildirimler engellenmiş. Lütfen tarayıcı ayarlarından izin verin."
+        },
+        "nl": {
+                "title": "SLIMME KALENDER",
+                "back": "HOOFDMENU",
+                "save": "NOTITIE OPSLAAN",
+                "delete": "VERWIJDEREN",
+                "notify": "MELDINGEN AAN",
+                "placeholder": "Schrijf een notitie voor deze dag...",
+                "selectAlert": "Selecteer eerst een dag!",
+                "weekLabel": "Wk",
+                "days": [
+                        "ZO",
+                        "MA",
+                        "DI",
+                        "WO",
+                        "DO",
+                        "VR",
+                        "ZA"
+                ],
+                "guideTitle": "HOE TE GEBRUIKEN",
+                "step1": "<strong>Selecteer een dag</strong> — Tik op een dag in de kalender. De geselecteerde dag wordt gemarkeerd met een gouden rand.",
+                "step2": "<strong>Schrijf uw notitie</strong> — Typ uw taak, herinnering of afspraak in het tekstvak onder de kalender.",
+                "step3": "<strong>Opslaan</strong> — Tik op Opslaan. Dagen met notities worden blauw zodat u ze snel kunt herkennen.",
+                "step4": "<strong>Meldingen inschakelen</strong> — Tik op de knop Meldingen om browsermeldingen toe te staan. U ontvangt een herinnering op de dag van uw notitie.",
+                "step5": "<strong>Een notitie verwijderen</strong> — Selecteer de dag en tik op Verwijderen om de notitie permanent te wissen.",
+                "tags": [
+                        "✓ Gratis",
+                        "✓ Geen Account",
+                        "✓ Offline Opslag",
+                        "✓ 6 Talen",
+                        "✓ Browsermeldingen",
+                        "✓ Mobiel Vriendelijk"
+                ],
+                "notifyOn": "MELDINGEN ACTIEF",
+                "notifyDenied": "Meldingen zijn geblokkeerd. Schakel ze in via uw browserinstellingen."
+        },
+        "de": {
+                "title": "SMARTER KALENDER",
+                "back": "HAUPTMENÜ",
+                "save": "NOTIZ SPEICHERN",
+                "delete": "LÖSCHEN",
+                "notify": "BENACHRICHTIGUNGEN",
+                "placeholder": "Notiz für diesen Tag schreiben...",
+                "selectAlert": "Bitte wählen Sie zuerst einen Tag aus!",
+                "weekLabel": "KW",
+                "days": [
+                        "SO",
+                        "MO",
+                        "DI",
+                        "MI",
+                        "DO",
+                        "FR",
+                        "SA"
+                ],
+                "guideTitle": "WIE BENUTZEN",
+                "step1": "<strong>Tag auswählen</strong> — Tippen Sie auf einen Tag im Kalender. Der ausgewählte Tag wird mit einem goldenen Rahmen hervorgehoben.",
+                "step2": "<strong>Notiz schreiben</strong> — Geben Sie Ihre Aufgabe, Erinnerung oder Ihren Termin in das Textfeld unter dem Kalender ein.",
+                "step3": "<strong>Speichern</strong> — Tippen Sie auf Speichern. Tage mit Notizen werden blau markiert.",
+                "step4": "<strong>Benachrichtigungen aktivieren</strong> — Tippen Sie auf die Schaltfläche Benachrichtigungen, um Browserbenachrichtigungen zuzulassen.",
+                "step5": "<strong>Notiz löschen</strong> — Wählen Sie den Tag und tippen Sie auf Löschen, um die Notiz dauerhaft zu entfernen.",
+                "tags": [
+                        "✓ Kostenlos",
+                        "✓ Kein Konto",
+                        "✓ Offline-Speicher",
+                        "✓ 6 Sprachen",
+                        "✓ Browser-Benachrichtigungen",
+                        "✓ Mobilfreundlich"
+                ],
+                "notifyOn": "BENACHRICHTIGUNGEN AKTIV",
+                "notifyDenied": "Benachrichtigungen sind blockiert. Bitte aktivieren Sie sie in den Browsereinstellungen."
+        },
+        "fr": {
+                "title": "CALENDRIER INTELLIGENT",
+                "back": "MENU PRINCIPAL",
+                "save": "ENREGISTRER",
+                "delete": "SUPPRIMER",
+                "notify": "ACTIVER ALERTES",
+                "placeholder": "Écrire une note pour ce jour...",
+                "selectAlert": "Veuillez d'abord sélectionner un jour!",
+                "weekLabel": "Sem",
+                "days": [
+                        "DI",
+                        "LU",
+                        "MA",
+                        "ME",
+                        "JE",
+                        "VE",
+                        "SA"
+                ],
+                "guideTitle": "COMMENT UTILISER",
+                "step1": "<strong>Sélectionner un jour</strong> — Appuyez sur un jour du calendrier. Le jour sélectionné sera mis en évidence avec une bordure dorée.",
+                "step2": "<strong>Écrire votre note</strong> — Saisissez votre tâche, rappel ou rendez-vous dans la zone de texte sous le calendrier.",
+                "step3": "<strong>Enregistrer</strong> — Appuyez sur Enregistrer. Les jours avec des notes deviendront bleus pour les repérer facilement.",
+                "step4": "<strong>Activer les notifications</strong> — Appuyez sur le bouton Alertes pour autoriser les notifications du navigateur.",
+                "step5": "<strong>Supprimer une note</strong> — Sélectionnez le jour et appuyez sur Supprimer pour effacer la note définitivement.",
+                "tags": [
+                        "✓ Gratuit",
+                        "✓ Sans Compte",
+                        "✓ Stockage Hors Ligne",
+                        "✓ 6 Langues",
+                        "✓ Alertes Navigateur",
+                        "✓ Compatible Mobile"
+                ],
+                "notifyOn": "ALERTES ACTIVÉES",
+                "notifyDenied": "Les notifications sont bloquées. Veuillez les activer dans les paramètres du navigateur."
+        },
+        "it": {
+                "title": "CALENDARIO INTELLIGENTE",
+                "back": "MENU PRINCIPALE",
+                "save": "SALVA NOTA",
+                "delete": "ELIMINA",
+                "notify": "ATTIVA AVVISI",
+                "placeholder": "Scrivi una nota per questo giorno...",
+                "selectAlert": "Seleziona prima un giorno!",
+                "weekLabel": "Sett",
+                "days": [
+                        "DO",
+                        "LU",
+                        "MA",
+                        "ME",
+                        "GI",
+                        "VE",
+                        "SA"
+                ],
+                "guideTitle": "COME USARE",
+                "step1": "<strong>Seleziona un giorno</strong> — Tocca qualsiasi giorno nel calendario. Il giorno selezionato sarà evidenziato con un bordo dorato.",
+                "step2": "<strong>Scrivi la tua nota</strong> — Digita il tuo compito, promemoria o appuntamento nell'area di testo sotto il calendario.",
+                "step3": "<strong>Salva</strong> — Tocca il pulsante Salva. I giorni con note salvate diventano blu per essere facilmente individuati.",
+                "step4": "<strong>Attiva notifiche</strong> — Tocca il pulsante Avvisi per consentire le notifiche del browser.",
+                "step5": "<strong>Elimina una nota</strong> — Seleziona il giorno e tocca Elimina per rimuovere la nota in modo permanente.",
+                "tags": [
+                        "✓ Gratuito",
+                        "✓ Senza Account",
+                        "✓ Archiviazione Offline",
+                        "✓ 6 Lingue",
+                        "✓ Avvisi Browser",
+                        "✓ Mobile Friendly"
+                ],
+                "notifyOn": "AVVISI ATTIVI",
+                "notifyDenied": "Le notifiche sono bloccate. Abilitale nelle impostazioni del browser."
+        },
+        "es": {
+                "title": "CALENDARIO INTELIGENTE",
+                "back": "MENÚ PRINCIPAL",
+                "save": "GUARDAR NOTA",
+                "delete": "ELIMINAR",
+                "notify": "ACTIVAR ALERTAS",
+                "placeholder": "Escribe una nota para este día...",
+                "selectAlert": "¡Por favor selecciona un día primero!",
+                "weekLabel": "Sem",
+                "days": [
+                        "DO",
+                        "LU",
+                        "MA",
+                        "MI",
+                        "JU",
+                        "VI",
+                        "SA"
+                ],
+                "guideTitle": "CÓMO USAR",
+                "step1": "<strong>Selecciona un día</strong> — Toca cualquier día del calendario. El día seleccionado se resaltará con un borde dorado.",
+                "step2": "<strong>Escribe tu nota</strong> — Escribe tu tarea, recordatorio o cita en el área de texto debajo del calendario.",
+                "step3": "<strong>Guardar</strong> — Toca el botón Guardar. Los días con notas guardadas se volverán azules para identificarlos fácilmente.",
+                "step4": "<strong>Activa las notificaciones</strong> — Toca el botón Alertas para permitir las notificaciones del navegador. Recibirás un recordatorio el día de tu nota.",
+                "step5": "<strong>Elimina una nota</strong> — Selecciona el día y toca Eliminar para quitar la nota de forma permanente.",
+                "tags": [
+                        "✓ Gratis",
+                        "✓ Sin Cuenta",
+                        "✓ Almacenamiento Sin Conexión",
+                        "✓ 6 Idiomas",
+                        "✓ Alertas del Navegador",
+                        "✓ Compatible con Móviles"
+                ],
+                "notifyOn": "ALERTAS ACTIVADAS",
+                "notifyDenied": "Las notificaciones están bloqueadas. Actívalas en la configuración del navegador."
+        },
+        "pt": {
+                "title": "CALENDÁRIO INTELIGENTE",
+                "back": "MENU PRINCIPAL",
+                "save": "SALVAR NOTA",
+                "delete": "EXCLUIR",
+                "notify": "ATIVAR ALERTAS",
+                "placeholder": "Escreva uma nota para este dia...",
+                "selectAlert": "Por favor, selecione um dia primeiro!",
+                "weekLabel": "Sem",
+                "days": [
+                        "DOM",
+                        "SEG",
+                        "TER",
+                        "QUA",
+                        "QUI",
+                        "SEX",
+                        "SAB"
+                ],
+                "guideTitle": "COMO USAR",
+                "step1": "<strong>Selecione um dia</strong> — Toque em qualquer dia do calendário. O dia selecionado será destacado com uma borda dourada.",
+                "step2": "<strong>Escreva sua nota</strong> — Digite sua tarefa, lembrete ou compromisso na área de texto abaixo do calendário.",
+                "step3": "<strong>Salvar</strong> — Toque no botão Salvar. Os dias com notas salvas ficarão azuis para fácil identificação.",
+                "step4": "<strong>Ative as notificações</strong> — Toque no botão Alertas para permitir notificações do navegador. Você receberá um lembrete no dia da sua nota.",
+                "step5": "<strong>Exclua uma nota</strong> — Selecione o dia e toque em Excluir para remover a nota permanentemente.",
+                "tags": [
+                        "✓ Grátis",
+                        "✓ Sem Conta",
+                        "✓ Armazenamento Offline",
+                        "✓ 6 Idiomas",
+                        "✓ Alertas do Navegador",
+                        "✓ Compatível com Celular"
+                ],
+                "notifyOn": "ALERTAS ATIVOS",
+                "notifyDenied": "As notificações estão bloqueadas. Ative-as nas configurações do navegador."
+        },
+        "ru": {
+                "title": "УМНЫЙ КАЛЕНДАРЬ",
+                "back": "ГЛАВНОЕ МЕНЮ",
+                "save": "СОХРАНИТЬ",
+                "delete": "УДАЛИТЬ",
+                "notify": "ВКЛ. УВЕДОМЛЕНИЯ",
+                "placeholder": "Напишите заметку на этот день...",
+                "selectAlert": "Сначала выберите день!",
+                "weekLabel": "Нед",
+                "days": [
+                        "ВС",
+                        "ПН",
+                        "ВТ",
+                        "СР",
+                        "ЧТ",
+                        "ПТ",
+                        "СБ"
+                ],
+                "guideTitle": "КАК ИСПОЛЬЗОВАТЬ",
+                "step1": "<strong>Выберите день</strong> — Нажмите на любой день в календаре. Выбранный день будет выделен золотой рамкой.",
+                "step2": "<strong>Напишите заметку</strong> — Введите задачу, напоминание или встречу в текстовом поле под календарем.",
+                "step3": "<strong>Сохраните</strong> — Нажмите кнопку Сохранить. Дни с заметками станут синими для удобного отслеживания.",
+                "step4": "<strong>Включите уведомления</strong> — Нажмите кнопку Оповещения, чтобы разрешить уведомления браузера. Вы получите напоминание в день заметки.",
+                "step5": "<strong>Удалите заметку</strong> — Выберите день и нажмите Удалить, чтобы окончательно убрать заметку.",
+                "tags": [
+                        "✓ Бесплатно",
+                        "✓ Без Регистрации",
+                        "✓ Офлайн-Хранение",
+                        "✓ 6 Языков",
+                        "✓ Уведомления Браузера",
+                        "✓ Мобильная Версия"
+                ],
+                "notifyOn": "УВЕДОМЛЕНИЯ ВКЛ",
+                "notifyDenied": "Уведомления заблокированы. Включите их в настройках браузера."
+        },
+        "ar": {
+                "title": "التقويم الذكي",
+                "back": "القائمة الرئيسية",
+                "save": "حفظ الملاحظة",
+                "delete": "حذف",
+                "notify": "تفعيل التنبيهات",
+                "placeholder": "اكتب ملاحظة لهذا اليوم...",
+                "selectAlert": "الرجاء تحديد يوم أولاً!",
+                "weekLabel": "أسبوع",
+                "days": [
+                        "أحد",
+                        "إثن",
+                        "ثلا",
+                        "أرب",
+                        "خمي",
+                        "جمع",
+                        "سبت"
+                ],
+                "guideTitle": "كيفية الاستخدام",
+                "step1": "<strong>اختر يومًا</strong> — اضغط على أي يوم في التقويم لتحديده. سيتم تمييز اليوم المحدد بإطار ذهبي.",
+                "step2": "<strong>اكتب ملاحظتك</strong> — اكتب مهمتك أو تذكيرك أو موعدك في مربع النص أسفل التقويم.",
+                "step3": "<strong>احفظ</strong> — اضغط على زر الحفظ. ستتحول الأيام التي تحتوي على ملاحظات إلى اللون الأزرق لتسهيل ملاحظتها.",
+                "step4": "<strong>فعّل الإشعارات</strong> — اضغط على زر التنبيهات للسماح بإشعارات المتصفح. ستتلقى تذكيرًا في يوم ملاحظتك.",
+                "step5": "<strong>احذف ملاحظة</strong> — حدد اليوم واضغط على حذف لإزالة الملاحظة نهائيًا.",
+                "tags": [
+                        "✓ مجاني",
+                        "✓ بدون حساب",
+                        "✓ تخزين دون اتصال",
+                        "✓ 6 لغات",
+                        "✓ تنبيهات المتصفح",
+                        "✓ متوافق مع الجوال"
+                ],
+                "notifyOn": "التنبيهات مفعّلة",
+                "notifyDenied": "الإشعارات محظورة. يرجى تفعيلها من إعدادات المتصفح."
+        },
+        "hi": {
+                "title": "स्मार्ट कैलेंडर",
+                "back": "मुख्य मेनू",
+                "save": "नोट सहेजें",
+                "delete": "हटाएं",
+                "notify": "अलर्ट सक्षम करें",
+                "placeholder": "इस दिन के लिए एक नोट लिखें...",
+                "selectAlert": "कृपया पहले एक दिन चुनें!",
+                "weekLabel": "सप्ताह",
+                "days": [
+                        "रवि",
+                        "सोम",
+                        "मंगल",
+                        "बुध",
+                        "गुरु",
+                        "शुक्र",
+                        "शनि"
+                ],
+                "guideTitle": "उपयोग कैसे करें",
+                "step1": "<strong>एक दिन चुनें</strong> — कैलेंडर पर किसी भी दिन को टैप करें। चयनित दिन सुनहरे बॉर्डर के साथ हाइलाइट होगा।",
+                "step2": "<strong>अपना नोट लिखें</strong> — कैलेंडर के नीचे टेक्स्ट क्षेत्र में अपना कार्य, रिमाइंडर या अपॉइंटमेंट टाइप करें।",
+                "step3": "<strong>सहेजें</strong> — सेव बटन टैप करें। सहेजे गए नोट्स वाले दिन नीले हो जाएंगे ताकि आप उन्हें आसानी से पहचान सकें।",
+                "step4": "<strong>सूचनाएं सक्षम करें</strong> — ब्राउज़र सूचनाओं की अनुमति देने के लिए अलर्ट बटन टैप करें। आपको अपने नोट के दिन एक रिमाइंडर मिलेगा।",
+                "step5": "<strong>नोट हटाएं</strong> — दिन चुनें और नोट को स्थायी रूप से हटाने के लिए हटाएं टैप करें।",
+                "tags": [
+                        "✓ मुफ्त",
+                        "✓ खाते की आवश्यकता नहीं",
+                        "✓ ऑफलाइन स्टोरेज",
+                        "✓ 6 भाषाएं",
+                        "✓ ब्राउज़र अलर्ट",
+                        "✓ मोबाइल फ्रेंडली"
+                ],
+                "notifyOn": "अलर्ट सक्रिय",
+                "notifyDenied": "सूचनाएं अवरुद्ध हैं। कृपया ब्राउज़र सेटिंग्स में सक्षम करें।"
+        },
+        "in": {
+                "title": "KALENDER PINTAR",
+                "back": "MENU UTAMA",
+                "save": "SIMPAN CATATAN",
+                "delete": "HAPUS",
+                "notify": "AKTIFKAN NOTIFIKASI",
+                "placeholder": "Tulis catatan untuk hari ini...",
+                "selectAlert": "Silakan pilih hari terlebih dahulu!",
+                "weekLabel": "Mg",
+                "days": [
+                        "MIN",
+                        "SEN",
+                        "SEL",
+                        "RAB",
+                        "KAM",
+                        "JUM",
+                        "SAB"
+                ],
+                "guideTitle": "CARA MENGGUNAKAN",
+                "step1": "<strong>Pilih hari</strong> — Ketuk hari mana pun di kalender untuk memilihnya. Hari yang dipilih akan disorot dengan bingkai emas.",
+                "step2": "<strong>Tulis catatan Anda</strong> — Ketik tugas, pengingat, atau janji temu di area teks di bawah kalender.",
+                "step3": "<strong>Simpan</strong> — Ketuk tombol Simpan. Hari dengan catatan tersimpan akan berubah biru agar mudah dikenali.",
+                "step4": "<strong>Aktifkan notifikasi</strong> — Ketuk tombol Notifikasi untuk mengizinkan notifikasi browser. Anda akan menerima pengingat pada hari catatan Anda.",
+                "step5": "<strong>Hapus catatan</strong> — Pilih hari dan ketuk Hapus untuk menghapus catatan secara permanen.",
+                "tags": [
+                        "✓ Gratis",
+                        "✓ Tanpa Akun",
+                        "✓ Penyimpanan Offline",
+                        "✓ 6 Bahasa",
+                        "✓ Notifikasi Browser",
+                        "✓ Ramah Seluler"
+                ],
+                "notifyOn": "NOTIFIKASI AKTIF",
+                "notifyDenied": "Notifikasi diblokir. Aktifkan melalui pengaturan browser Anda."
+        },
+        "ja": {
+                "title": "スマートカレンダー",
+                "back": "メインメニュー",
+                "save": "メモを保存",
+                "delete": "削除",
+                "notify": "通知を有効にする",
+                "placeholder": "この日のメモを書く...",
+                "selectAlert": "まず日付を選択してください！",
+                "weekLabel": "週",
+                "days": [
+                        "日",
+                        "月",
+                        "火",
+                        "水",
+                        "木",
+                        "金",
+                        "土"
+                ],
+                "guideTitle": "使い方",
+                "step1": "<strong>日付を選択</strong> — カレンダーの任意の日をタップして選択します。選択した日はゴールドの枠線でハイライトされます。",
+                "step2": "<strong>メモを書く</strong> — カレンダーの下のテキストエリアにタスク、リマインダー、予定を入力します。",
+                "step3": "<strong>保存</strong> — 保存ボタンをタップします。メモが保存された日は青色になり、一目で確認できます。",
+                "step4": "<strong>通知を有効にする</strong> — アラートボタンをタップしてブラウザ通知を許可します。メモの日にリマインダーが届きます。",
+                "step5": "<strong>メモを削除</strong> — 日付を選択し、削除ボタンをタップしてメモを完全に削除します。",
+                "tags": [
+                        "✓ 無料",
+                        "✓ アカウント不要",
+                        "✓ オフライン保存",
+                        "✓ 6言語対応",
+                        "✓ ブラウザ通知",
+                        "✓ モバイル対応"
+                ],
+                "notifyOn": "通知オン",
+                "notifyDenied": "通知がブロックされています。ブラウザの設定で有効にしてください。"
+        },
+        "zh": {
+                "title": "智能日历",
+                "back": "主菜单",
+                "save": "保存笔记",
+                "delete": "删除",
+                "notify": "启用提醒",
+                "placeholder": "为这一天写一条笔记...",
+                "selectAlert": "请先选择一天！",
+                "weekLabel": "周",
+                "days": [
+                        "日",
+                        "一",
+                        "二",
+                        "三",
+                        "四",
+                        "五",
+                        "六"
+                ],
+                "guideTitle": "使用方法",
+                "step1": "<strong>选择日期</strong> — 点击日历上的任意一天进行选择。所选日期将以金色边框高亮显示。",
+                "step2": "<strong>写下笔记</strong> — 在日历下方的文本框中输入您的任务、提醒或约会。",
+                "step3": "<strong>保存</strong> — 点击保存按钮。已保存笔记的日期将变为蓝色，方便一目了然。",
+                "step4": "<strong>启用通知</strong> — 点击提醒按钮以允许浏览器通知。您将在笔记当天收到提醒。",
+                "step5": "<strong>删除笔记</strong> — 选择日期并点击删除，永久移除该笔记。",
+                "tags": [
+                        "✓ 免费",
+                        "✓ 无需账户",
+                        "✓ 离线存储",
+                        "✓ 6种语言",
+                        "✓ 浏览器提醒",
+                        "✓ 移动端友好"
+                ],
+                "notifyOn": "通知已开启",
+                "notifyDenied": "通知已被屏蔽。请在浏览器设置中启用。"
+        }
+};
+
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let selectedDateStr = null;
+    let notes = JSON.parse(localStorage.getItem('smart_calendar_notes')) || {};
+    const PAGE_LANG = "nl";
+    let langData = dict[PAGE_LANG];
+
+    function initLang() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const forceLang = urlParams.get('lang');
+        if (forceLang) localStorage.setItem('global_lang', forceLang);
+        const lang = forceLang || localStorage.getItem('global_lang') || PAGE_LANG;
+        langData = dict[lang] || dict[PAGE_LANG];
+        document.documentElement.lang = lang;
+
+        document.getElementById('L_TITLE').innerText = langData.title;
+        document.getElementById('L_BACK').innerText = langData.back;
+        document.getElementById('L_SAVE').innerText = langData.save;
+        document.getElementById('L_DELETE').innerText = langData.delete;
+        document.getElementById('L_NOTIFY').innerText = langData.notify;
+        document.getElementById('note-input').placeholder = langData.placeholder;
+
+        document.getElementById('guide-title').innerText = langData.guideTitle;
+        document.getElementById('guide-step1').innerHTML = langData.step1;
+        document.getElementById('guide-step2').innerHTML = langData.step2;
+        document.getElementById('guide-step3').innerHTML = langData.step3;
+        document.getElementById('guide-step4').innerHTML = langData.step4;
+        document.getElementById('guide-step5').innerHTML = langData.step5;
+
+        const tagContainer = document.getElementById('feature-tags');
+        tagContainer.innerHTML = langData.tags.map(t => `<span class="feature-tag">${t}</span>`).join('');
+    }
+    function getISOWeek(y, m, d) {
+        const date = new Date(Date.UTC(y, m, d));
+        const day = date.getUTCDay() || 7;
+        date.setUTCDate(date.getUTCDate() + 4 - day);
+        const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+        return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        const corner = document.createElement('div');
+        corner.className = 'day-name wk-corner';
+        corner.innerText = langData.weekLabel || 'Wk';
+        grid.appendChild(corner);
+
+        langData.days.forEach(d => {
+            const el = document.createElement('div');
+            el.className = 'day-name';
+            el.innerText = d;
+            grid.appendChild(el);
+        });
+
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const today = new Date();
+        document.getElementById('month-display').innerText = new Date(currentYear, currentMonth).toLocaleDateString(document.documentElement.lang || 'en', { month: 'long', year: 'numeric' });
+
+        const totalCells = firstDay + daysInMonth;
+        const totalRows = Math.ceil(totalCells / 7);
+
+        for (let row = 0; row < totalRows; row++) {
+            const rowStartDayNum = 1 - firstDay + row * 7;
+            const anchor = new Date(currentYear, currentMonth, rowStartDayNum + 3);
+            const wk = getISOWeek(anchor.getFullYear(), anchor.getMonth(), anchor.getDate());
+            const wkEl = document.createElement('div');
+            wkEl.className = 'week-num';
+            wkEl.innerText = wk;
+            grid.appendChild(wkEl);
+
+            for (let col = 0; col < 7; col++) {
+                const dayNum = rowStartDayNum + col;
+                if (dayNum < 1 || dayNum > daysInMonth) {
+                    grid.appendChild(document.createElement('div'));
+                    continue;
+                }
+                const dayEl = document.createElement('div');
+                dayEl.className = 'day';
+                dayEl.innerText = dayNum;
+                const dateKey = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(dayNum).padStart(2,'0')}`;
+                if(notes[dateKey]) dayEl.classList.add('has-note');
+                if(today.getFullYear()===currentYear && today.getMonth()===currentMonth && today.getDate()===dayNum) dayEl.classList.add('today');
+                if(selectedDateStr === dateKey) dayEl.classList.add('selected');
+                dayEl.onclick = () => selectDay(dayEl, dateKey);
+                grid.appendChild(dayEl);
+            }
+        }
+    }
+
+    function selectDay(element, dateKey) {
+        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedDateStr = dateKey;
+        document.getElementById('selected-date-label').innerText = dateKey;
+        const currentNote = notes[dateKey] || '';
+        document.getElementById('note-input').value = currentNote;
+        document.getElementById('btn-delete-container').style.display = currentNote !== '' ? 'flex' : 'none';
+    }
+
+    function changeMonth(n) {
+        currentMonth += n;
+        if(currentMonth > 11) { currentMonth = 0; currentYear++; }
+        else if(currentMonth < 0) { currentMonth = 11; currentYear--; }
+        renderCalendar();
+    }
+
+    function saveNote() {
+        if(!selectedDateStr) return alert(langData.selectAlert);
+        const text = document.getElementById('note-input').value.trim();
+        if(text === "") {
+            delete notes[selectedDateStr];
+            document.getElementById('btn-delete-container').style.display = 'none';
+        } else {
+            notes[selectedDateStr] = text;
+            document.getElementById('btn-delete-container').style.display = 'flex';
+        }
+        localStorage.setItem('smart_calendar_notes', JSON.stringify(notes));
+        renderCalendar();
+    }
+
+    function deleteNote() {
+        if(!selectedDateStr) return alert(langData.selectAlert);
+        if(notes[selectedDateStr]) {
+            delete notes[selectedDateStr];
+            localStorage.setItem('smart_calendar_notes', JSON.stringify(notes));
+            document.getElementById('note-input').value = '';
+            document.getElementById('btn-delete-container').style.display = 'none';
+            renderCalendar();
+        }
+    }
+
+    function updateNotifyStatus() {
+        const btn = document.getElementById('notify-btn');
+        const label = document.getElementById('L_NOTIFY');
+        if (!("Notification" in window)) {
+            label.innerText = langData.notify;
+            btn.classList.remove('active');
+            return;
+        }
+        if (Notification.permission === "granted") {
+            label.innerText = langData.notifyOn || langData.notify;
+            btn.classList.add('active');
+        } else {
+            label.innerText = langData.notify;
+            btn.classList.remove('active');
+        }
+    }
+
+    function enableNotifications() {
+        if (!("Notification" in window)) { alert("This browser does not support desktop notifications."); return; }
+        if (Notification.permission === "granted") {
+            updateNotifyStatus();
+            alert("Notifications are already enabled!");
+            return;
+        }
+        if (Notification.permission === "denied") {
+            alert(langData.notifyDenied || "Notifications are blocked. Please enable them in your browser settings.");
+            return;
+        }
+        Notification.requestPermission().then(permission => {
+            updateNotifyStatus();
+            if (permission === "granted") new Notification("Invoice Luxe", { body: "Notifications enabled successfully!" });
+            else if (permission === "denied") alert(langData.notifyDenied || "Notifications are blocked. Please enable them in your browser settings.");
+        });
+    }
+
+    function checkTodayReminders() {
+        if (Notification.permission !== "granted") return;
+        const today = new Date();
+        const dateKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+        if (notes[dateKey]) {
+            const lastNotified = localStorage.getItem('last_notified_date');
+            if (lastNotified !== dateKey) {
+                new Notification("Today's Task Reminder", { body: notes[dateKey] });
+                localStorage.setItem('last_notified_date', dateKey);
+            }
+        }
+    }
+
+    window.onload = () => {
+        initLang();
+        renderCalendar();
+        updateNotifyStatus();
+        setTimeout(checkTodayReminders, 2000);
+    };
+</script>
+</body>
+</html>

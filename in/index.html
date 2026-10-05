@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- SEO Meta Tags (Hindi) -->
+    <title>Pocket Invoice - Professional & Up to Date</title>
+    <meta name="description" content="A free, professional mobile invoice-making app. Easily create PDF invoices, manage customers, and handle billing right from your phone.">
+    <meta name="keywords" content="invoice app, pdf invoice, mobile billing, invoiceluxe, gst invoice india, free invoice generator, working hours tracker">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pocket Invoice",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "description": "Free professional online Invoice generator. Create free PDF invoices and receipts."
+}
+</script>
+    
+    <!-- PWA / Add to Home Screen Icons -->
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Pocket Invoice">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --accent: #c4783a; 
+            --wood-border: #b86b2e; 
+            --bg-main: #faf6f1; 
+            --card-bg: #ffffff; 
+            --text-dark: #2c1810;
+            --text-muted: #9a7b6a;
+            --soft-orange: #e8a05c;
+            --deep-brown: #5c3d2e;
+        }
+        * { touch-action: manipulation; }
+        body { 
+            background: var(--bg-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            color: var(--text-dark); 
+            margin: 0; 
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 120px; box-sizing: border-box; }
+        .glass-card { background: var(--card-bg); border: none; border-radius: 22px; padding: 18px; box-shadow: 0 4px 20px rgba(92, 61, 46, 0.06); }
+        .input-pro { background: #fff !important; color: var(--text-dark) !important; border-radius: 14px; padding: 12px 16px; width: 100%; border: 1.5px solid #e8d9cc; font-size: 15px; transition: all 0.2s ease; outline: none; box-sizing: border-box; }
+        .input-pro:focus { background: #fffaf5 !important; box-shadow: 0 0 0 4px rgba(196, 120, 58, 0.15); border-color: var(--accent); }
+        label { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; display: block; margin-left: 4px; letter-spacing: 0.4px; }
+        .dock-nav { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 420px; background: #fff; border: none; display: flex; flex-direction: column; padding: 8px 10px; z-index: 999; border-radius: 28px; box-shadow: 0 8px 32px rgba(92, 61, 46, 0.12); gap: 6px; }
+        .dock-nav-buttons { display: flex; justify-content: space-around; align-items: center; }
+        .nav-btn { color: #c4b0a0; font-size: 18px; padding: 8px 10px; border-radius: 16px; transition: 0.25s; background: transparent; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .nav-btn span { font-size: 9px; font-weight: 700; }
+        .nav-btn.active { color: #fff; background: var(--accent); border-radius: 18px; padding: 10px 14px; box-shadow: 0 4px 14px rgba(196,120,58,0.35); }
+        .nav-btn.active span { color: #fff; }
+        .btn-wood { background: linear-gradient(135deg, #c4783a, #a05e28); color: white; border-radius: 18px; padding: 15px; font-weight: 800; text-transform: none; border: none; box-shadow: 0 6px 18px rgba(196,120,58,0.3); transition: all 0.2s; cursor: pointer; width: 100%; }
+        .btn-wood:active { transform: translateY(2px); box-shadow: 0 2px 8px rgba(196,120,58,0.25); }
+        .badge-select { padding: 10px; border-radius: 12px; background: #faf6f1; font-size: 11px; font-weight: 800; cursor: pointer; text-align: center; color: var(--accent); border: 1.5px solid #e8d9cc; transition: 0.2s; }
+        .badge-select.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .item-row { background: #fff; border: 1.5px solid #e8d9cc; border-radius: 16px; padding: 16px; margin-bottom: 12px; position: relative; }
+        #p-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; display: none; flex-direction: column; backdrop-filter: blur(4px); }
+        .preview-container { flex: 1; display: flex; align-items: start; justify-content: center; overflow: auto; padding: 20px; background: #2c2c2c; }
+        .a4-preview { background: #ffffff; color: #1e293b; width: 794px; min-height: 1123px; transform-origin: top center; box-shadow: 0 10px 50px rgba(0,0,0,0.6); font-family: 'Inter', sans-serif; margin-bottom: 50px; }
+        .s2-header { background: #f0f7ff; padding: 45px; border-bottom: 8px solid #2563eb; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
+        .s2-logo-side { text-align: right; border-right: 5px solid #2563eb; padding-right: 20px; }
+        .s2-logo-title { font-weight: 800; font-size: 28px; color: #1e293b; text-transform: uppercase; line-height: 1; }
+        .s2-inv-label { color: #2563eb; font-weight: 900; font-size: 12px; letter-spacing: 1.5px; }
+        .s2-inv-no { font-size: 34px; font-weight: 900; color: #1e293b; margin-top: -5px; }
+        .info-box { background: #f8fafc; border-radius: 15px; padding: 20px; border-left: 8px solid #2563eb; font-size: 12px; }
+        .info-box b { display: block; border-bottom: 1px solid #e2e8f0; margin-bottom: 8px; padding-bottom: 4px; color: #2563eb; font-size: 13px; }
+        .info-line { display: flex; margin-bottom: 3px; }
+        .info-label { width: 85px; font-weight: 800; color: #64748b; flex-shrink: 0; }
+        .info-content { color: #1e293b; font-weight: 600; word-break: break-word; }
+
+        /* Lang Dropdown */
+        .lang-dropdown { position: absolute; top: 44px; right: 0; background: #fff; border: none; border-radius: 16px; box-shadow: 0 8px 28px rgba(92,61,46,0.12); z-index: 9999; min-width: 220px; padding: 8px; display: none; }
+        .lang-dropdown.open { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+        .lang-item { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-dark); transition: background 0.2s; white-space: nowrap; }
+        .lang-item:hover { background: #faf6f1; }
+        .lang-item.active-lang { background: var(--accent); color: #fff; }
+        .lang-item .flag { font-size: 18px; }
+
+        /* PWA install bar inside dock */
+        .pwa-install-bar { display: none; background: var(--deep-brown); border-radius: 14px; padding: 10px 14px; align-items: center; gap: 10px; cursor: pointer; border: none; width: 100%; transition: 0.2s; }
+        .pwa-install-bar:not(.hidden-bar) { display: flex; }
+        .pwa-install-bar .pwa-icons { display: flex; gap: 6px; align-items: center; }
+        .pwa-install-bar .pwa-text { flex: 1; text-align: left; }
+        .pwa-install-bar .pwa-text span { display: block; color: white; font-size: 12px; font-weight: 800; }
+        .pwa-install-bar .pwa-text small { display: block; color: rgba(255,255,255,0.65); font-size: 10px; font-weight: 600; margin-top: 1px; }
+
+        /* SEO Blog section */
+        .seo-blog { background: #fff; border: none; border-radius: 22px; padding: 28px 24px 40px; box-shadow: 0 4px 20px rgba(92,61,46,0.06); }
+        .seo-blog h2 { font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; line-height: 1.3; }
+        .seo-blog p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 12px; }
+        .seo-blog h3 { font-size: 15px; font-weight: 800; color: var(--accent); margin: 18px 0 6px; }
+        .seo-blog ul { list-style: none; padding: 0; margin: 0 0 12px; }
+        .seo-blog ul li { font-size: 13px; color: var(--text-muted); padding: 5px 0 5px 20px; position: relative; line-height: 1.6; }
+        .seo-blog ul li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+        .seo-faq { background: #faf6f1; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid var(--accent); }
+        .seo-faq dt { font-size: 13px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .seo-faq dd { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+        /* ══════════════════════════════════════════
+           YAN MENÜ (SIDE MENU)
+           ══════════════════════════════════════════ */
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 285px;
+            height: 100vh;
+            background: #fdfaf5;
+            border-right: 3px solid var(--wood-border);
+            box-shadow: 8px 0 30px rgba(139,69,19,0.15);
+            z-index: 30000;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        #side-menu.open { left: 0; }
+
+        .side-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(62,39,35,0.5);
+            backdrop-filter: blur(3px);
+            z-index: 29999;
+            display: none;
+        }
+        .side-overlay.open { display: block; }
+
+        .tool-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 2px solid #e8d5c4;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: 0.2s;
+            background: #fff;
+            box-shadow: 3px 3px 0 rgba(139,69,19,0.08);
+        }
+        .tool-link:hover,
+        .tool-link:active {
+            border-color: var(--wood-border);
+            background: #fdf5f0;
+            transform: translateX(4px);
+            box-shadow: 3px 3px 0 rgba(139,69,19,0.2);
+        }
+        .tool-link .tl-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 2px solid;
+        }
+        .tool-link .tl-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+        .tool-link .tl-sub {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .hours-card {
+            background: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 16px rgba(92,61,46,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .hours-card::before { display: none; }
+        .hours-card:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(92,61,46,0.08);
+        }
+    </style>
+</head>
+<body class="flex justify-center">
+
+<!-- ══════════════════════════════════════════
+     YAN MENÜ OVERLAY + MENÜ
+     ══════════════════════════════════════════ -->
+<div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+
+<div id="side-menu">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid #e8d5c4;">
+        <div>
+            <div style="font-size:16px;font-weight:800;color:var(--text-dark);">Elite <span style="color:var(--wood-border);">Tools</span></div>
+            <div style="font-size:9px;color:var(--text-muted);font-weight:700;margin-top:2px;text-transform:uppercase;letter-spacing:1px;">🛠️ Tools Menu</div>
+        </div>
+        <button onclick="closeSideMenu()" aria-label="Close" style="width:34px;height:34px;border-radius:50%;background:#fdf5f0;border:2px solid var(--wood-border);color:var(--wood-border);font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;">
+        <a href="discount.html" class="tool-link">
+            <div class="tl-icon" style="background:#ecfdf5;border-color:#86efac;">
+                <i class="fa-solid fa-tags" style="color:#16a34a;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">Discount Engine</div>
+                <div class="tl-sub">Quick Discount Calculator</div>
+            </div>
+        </a>
+
+        <a href="pdf-engine.html" class="tool-link">
+            <div class="tl-icon" style="background:#fef2f2;border-color:#fca5a5;">
+                <i class="fa-solid fa-file-pdf" style="color:#dc2626;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">PDF Engine</div>
+                <div class="tl-sub">Document Creation</div>
+            </div>
+        </a>
+
+        <a href="html-editor.html" class="tool-link">
+            <div class="tl-icon" style="background:#eff6ff;border-color:#93c5fd;">
+                <i class="fa-solid fa-code" style="color:#2563eb;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">HTML Editor</div>
+                <div class="tl-sub">Live Code Editing</div>
+            </div>
+        </a>
+
+        <a href="weekly-calendar.html" class="tool-link">
+            <div class="tl-icon" style="background:#f5f3ff;border-color:#c4b5fd;">
+                <i class="fa-solid fa-calendar-days" style="color:#7c3aed;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">Calendar</div>
+                <div class="tl-sub">Schedule Management</div>
+            </div>
+        </a>
+
+        <a href="working-hours.html" class="tool-link" style="border-color:#c4956a;background:#fdf5f0;">
+            <div class="tl-icon" style="background:#fdf5f0;border-color:#c4956a;">
+                <i class="fa-solid fa-clock" style="color:var(--wood-border);font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title" style="color:var(--wood-border);">Working Hours ⏱️</div>
+                <div class="tl-sub">Time Logging & Management</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    <div class="w-full max-w-[480px] relative overflow-hidden">
+        <div class="slider-wrapper" id="main-slider">
+            <!-- PAGE 0: HOME -->
+            <div class="page px-5 pt-6">
+                <!-- Header -->
+                <div class="flex items-start justify-between mb-5">
+                    <div>
+                        <p class="text-[13px] font-semibold text-[#9a7b6a] mb-0.5" id="greeting-text">Good Morning 👋</p>
+                        <h1 class="text-[26px] font-black tracking-tight leading-tight" style="color:var(--text-dark);">Pocket <span style="color:var(--accent);">Invoice</span></h1>
+                        <p class="text-[11px] font-semibold text-[#9a7b6a] mt-0.5">Your professional workshop partner</p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-1">
+                        <div class="relative">
+                            <button id="lang-toggle-btn" onclick="toggleLangDropdown()" class="flex items-center gap-1.5 bg-white px-3 py-2 rounded-full shadow-sm text-xs font-black text-[#5c3d2e] whitespace-nowrap" style="border:1.5px solid #e8d9cc;">
+                                <span class="text-sm">🇮🇳</span> IN <i class="fa-solid fa-chevron-down text-[9px] ml-0.5 opacity-60"></i>
+                            </button>
+                            <div id="lang-dropdown" class="lang-dropdown">
+                                <div class="lang-item" onclick="changeLang('en')"><span class="flag">🇬🇧</span> EN</div>
+                                <div class="lang-item" onclick="changeLang('tr')"><span class="flag">🇹🇷</span> TR</div>
+                                <div class="lang-item" onclick="changeLang('nl')"><span class="flag">🇳🇱</span> NL</div>
+                                <div class="lang-item" onclick="changeLang('de')"><span class="flag">🇩🇪</span> DE</div>
+                                <div class="lang-item" onclick="changeLang('fr')"><span class="flag">🇫🇷</span> FR</div>
+                                <div class="lang-item" onclick="changeLang('it')"><span class="flag">🇮🇹</span> IT</div>
+                                <div class="lang-item" onclick="changeLang('es')"><span class="flag">🇪🇸</span> ES</div>
+                                <div class="lang-item" onclick="changeLang('pt')"><span class="flag">🇵🇹</span> PT</div>
+                                <div class="lang-item" onclick="changeLang('zh')"><span class="flag">🇨🇳</span> ZH</div>
+                                <div class="lang-item" onclick="changeLang('ru')"><span class="flag">🇷🇺</span> RU</div>
+                                <div class="lang-item" onclick="changeLang('hi')"><span class="flag">🇮🇳</span> HI</div>
+                                <div class="lang-item active-lang" onclick="changeLang('in')"><span class="flag">🇮🇳</span> IN</div>
+                                <div class="lang-item" onclick="changeLang('ja')"><span class="flag">🇯🇵</span> JA</div>
+                                <div class="lang-item" onclick="changeLang('ar')"><span class="flag">🇸🇦</span> AR</div>
+                                <div class="lang-item" onclick="changeLang('br')"><span class="flag">🇧🇷</span> BR</div>
+                                <div class="lang-item" onclick="changeLang('ca')"><span class="flag">🇨🇦</span> CA</div>
+                                <div class="lang-item" onclick="changeLang('da')"><span class="flag">🇩🇰</span> DA</div>
+                                <div class="lang-item" onclick="changeLang('fi')"><span class="flag">🇫🇮</span> FI</div>
+                                <div class="lang-item" onclick="changeLang('gb')"><span class="flag">🇬🇧</span> GB</div>
+                                <div class="lang-item" onclick="changeLang('ko')"><span class="flag">🇰🇷</span> KO</div>
+                                <div class="lang-item" onclick="changeLang('no')"><span class="flag">🇳🇴</span> NO</div>
+                                <div class="lang-item" onclick="changeLang('sv')"><span class="flag">🇸🇪</span> SV</div>
+                                <div class="lang-item" onclick="changeLang('us')"><span class="flag">🇺🇸</span> US</div>
+                            </div>
+                        </div>
+                        <button onclick="openSideMenu()" aria-label="Menu" class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm" style="border:1.5px solid #e8d9cc;">
+                            <i class="fa-solid fa-bars" style="color:var(--deep-brown);font-size:14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REVENUE CARD -->
+                <div class="mb-4" id="revenue-dashboard" style="background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 6px 24px rgba(92,61,46,0.08);">
+                    <!-- Header band -->
+                    <div style="background:linear-gradient(135deg,#8B5A2B 0%,#c4783a 55%,#d4925a 100%);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;">
+                        <div style="position:absolute;right:0;top:0;bottom:0;width:45%;opacity:0.15;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 40%22><path d=%22M0 30 Q25 10 50 25 T100 15 V40 H0Z%22 fill=%22white%22/></svg>') no-repeat bottom right;background-size:cover;"></div>
+                        <div class="flex items-center gap-3" style="position:relative;z-index:1;">
+                            <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;">
+                                <i class="fa-solid fa-chart-column" style="color:#fff;font-size:16px;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.2;">Revenue Overview</div>
+                                <div style="font-size:10px;color:rgba(255,255,255,0.75);font-weight:600;margin-top:2px;">Live from invoices & wallet</div>
+                            </div>
+                        </div>
+                        <div onclick="showPage(2)" style="position:relative;z-index:1;background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);border-radius:16px;padding:8px 14px;text-align:center;cursor:pointer;min-width:64px;">
+                            <div style="font-size:18px;font-weight:900;color:#fff;line-height:1;" id="stat-count">0</div>
+                            <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.5px;">Invoices</div>
+                        </div>
+                    </div>
+
+                    <div style="padding:16px 16px 18px;">
+                        <!-- Mini bar Net / GST / Wallet -->
+                        <div style="height:10px;border-radius:6px;overflow:hidden;background:#f0e6dc;display:flex;margin-bottom:8px;" title="Net · GST · Wallet net">
+                            <div id="bar-net" style="width:70%;background:linear-gradient(90deg,#c4783a,#d4925a);transition:width 0.5s ease;"></div>
+                            <div id="bar-gst" style="width:20%;background:linear-gradient(90deg,#e8b87a,#f0d0a0);transition:width 0.5s ease;"></div>
+                            <div id="bar-wallet" style="width:10%;background:linear-gradient(90deg,#5c3d2e,#8B5A2B);transition:width 0.5s ease;"></div>
+                        </div>
+                        <div class="flex justify-between mb-3" style="font-size:9px;font-weight:700;color:var(--text-muted);">
+                            <span><span style="display:inline-block;width:7px;height:7px;border-radius:2px;background:#c4783a;margin-right:3px;"></span>Net</span>
+                            <span><span style="display:inline-block;width:7px;height:7px;border-radius:2px;background:#e8b87a;margin-right:3px;"></span>GST</span>
+                            <span><span style="display:inline-block;width:7px;height:7px;border-radius:2px;background:#5c3d2e;margin-right:3px;"></span>Wallet</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 mb-3">
+                            <div style="background:#faf6f1;border-radius:16px;padding:12px 8px;text-align:center;">
+                                <div style="width:28px;height:28px;border-radius:10px;background:#fff;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                    <i class="fa-solid fa-wallet" style="color:var(--accent);font-size:12px;"></i>
+                                </div>
+                                <div style="font-size:8px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px;">Net</div>
+                                <div style="font-size:13px;font-weight:900;color:var(--text-dark);word-break:break-all;" id="stat-net">₹0</div>
+                            </div>
+                            <div style="background:#faf6f1;border-radius:16px;padding:12px 8px;text-align:center;">
+                                <div style="width:28px;height:28px;border-radius:10px;background:#fff;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                                    <i class="fa-solid fa-percent" style="color:var(--accent);font-size:12px;"></i>
+                                </div>
+                                <div style="font-size:8px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px;">GST</div>
+                                <div style="font-size:13px;font-weight:900;color:var(--text-dark);word-break:break-all;" id="stat-gst">₹0</div>
+                            </div>
+                            <div style="background:linear-gradient(145deg,#5c3d2e,#8B5A2B);border-radius:16px;padding:12px 8px;text-align:center;">
+                                <div style="width:28px;height:28px;border-radius:10px;background:rgba(255,255,255,0.15);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa-solid fa-coins" style="color:#fff;font-size:12px;"></i>
+                                </div>
+                                <div style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:3px;">Gross</div>
+                                <div style="font-size:13px;font-weight:900;color:#fff;word-break:break-all;" id="stat-gross">₹0</div>
+                            </div>
+                        </div>
+
+                        <!-- Wallet strip -->
+                        <div style="display:flex;gap:8px;margin-bottom:14px;">
+                            <div style="flex:1;background:#f0faf4;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:8px;">
+                                <i class="fa-solid fa-arrow-trend-up" style="color:#16a34a;font-size:12px;"></i>
+                                <div>
+                                    <div style="font-size:8px;font-weight:700;color:#6b8f7a;text-transform:uppercase;">Income</div>
+                                    <div style="font-size:12px;font-weight:900;color:#166534;" id="stat-income">₹0</div>
+                                </div>
+                            </div>
+                            <div style="flex:1;background:#fef5f3;border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:8px;">
+                                <i class="fa-solid fa-arrow-trend-down" style="color:#dc2626;font-size:12px;"></i>
+                                <div>
+                                    <div style="font-size:8px;font-weight:700;color:#a87a72;text-transform:uppercase;">Expense</div>
+                                    <div style="font-size:12px;font-weight:900;color:#991b1b;" id="stat-expense">₹0</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="resetAndNew()" class="btn-wood flex items-center justify-between" style="padding:14px 18px;font-size:14px;border-radius:16px;">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-plus"></i> Create Invoice ✨</span>
+                            <i class="fa-solid fa-chevron-right opacity-70 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Archive + Customers -->
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div onclick="showPage(2)" class="glass-card flex flex-col gap-2 cursor-pointer" style="padding:16px;">
+                        <div style="width:36px;height:36px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;">
+                            <i class="fa-solid fa-box-archive" style="color:var(--accent);font-size:15px;"></i>
+                        </div>
+                        <div>
+                            <div class="font-black text-sm" style="color:var(--text-dark);">Archive</div>
+                            <div style="font-size:10px;color:var(--text-muted);font-weight:600;">Your past records</div>
+                        </div>
+                    </div>
+                    <div onclick="showPage(3)" class="glass-card flex flex-col gap-2 cursor-pointer" style="padding:16px;">
+                        <div style="width:36px;height:36px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;">
+                            <i class="fa-solid fa-user-group" style="color:var(--accent);font-size:15px;"></i>
+                        </div>
+                        <div>
+                            <div class="font-black text-sm" style="color:var(--text-dark);">Customers</div>
+                            <div style="font-size:10px;color:var(--text-muted);font-weight:600;">Manage your clients</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="showPage(4)" class="glass-card flex items-center gap-3 cursor-pointer mb-3" style="padding:14px 16px;border:1.5px dashed #e8d9cc;">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-gear" style="color:var(--accent);font-size:15px;"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-black text-sm" style="color:var(--text-dark);">Workshop ID</h4>
+                        <p style="font-size:10px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.3px;">Profile & Payment Info</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);font-size:12px;"></i>
+                </div>
+
+                <div onclick="window.location.href='working-hours.html'" class="hours-card mb-3">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-clock" style="color:var(--accent);font-size:15px;"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--accent);letter-spacing:0.4px;">Working Hours ⏱️</div>
+                        <div style="font-size:10px;color:var(--text-muted);font-weight:600;margin-top:2px;">Work Log & Time Tracker</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);font-size:12px;flex-shrink:0;"></i>
+                </div>
+
+                <div onclick="window.location.href='tools.html'" class="hours-card mb-3">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-toolbox" style="color:var(--accent);font-size:15px;"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--accent);letter-spacing:0.4px;">All Tools 🛠️</div>
+                        <div style="font-size:10px;color:var(--text-muted);font-weight:600;margin-top:2px;">See all other useful tools</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);font-size:12px;flex-shrink:0;"></i>
+                </div>
+
+                <!-- Add to Home Screen (hidden when already installed) -->
+                <div id="a2hs-card" class="hours-card mb-3" style="display:none;" onclick="handlePwaInstall()">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#faf6f1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-mobile-screen-button" style="color:var(--accent);font-size:15px;"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--accent);letter-spacing:0.4px;">Add to Home Screen</div>
+                        <div style="font-size:10px;color:var(--text-muted);font-weight:600;margin-top:2px;">Install app · faster access</div>
+                    </div>
+                    <i class="fa-solid fa-plus" style="color:var(--accent);font-size:14px;flex-shrink:0;"></i>
+                </div>
+
+                <div class="seo-blog mt-8 rounded-2xl">
+                    <h2>📄 How to Create a Professional Invoice in India</h2>
+                    <p>Invoice Luxe is a free, easy mobile app that lets you create professional PDF invoices in seconds — no account or subscription required. Track your working hours and run your business the smart way.</p>
+
+                    <h3>✅ Invoice Luxe Highlights</h3>
+                    <ul>
+                        <li>Create and download PDF invoices directly from your phone</li>
+                        <li>Save customer details and reuse them anytime</li>
+                        <li>Set GST rates easily (0%, 5%, 12%, 18%, 28%)</li>
+                        <li>Include bank details, IBAN and tax number</li>
+                        <li>Available in 22+ languages, including English (India)</li>
+                        <li>All data stays on your phone — no cloud, full privacy</li>
+                        <li>⏱️ Track working hours — perfect for hourly billing</li>
+                        <li>🏷️ Discount calculator, PDF generator and HTML editor also included</li>
+                    </ul>
+
+                    <h3>⏱️ Why a Working Hours Tracker Matters</h3>
+                    <p>If you're a freelancer, contractor, or service provider, logging your working hours is essential. Our <strong>Work Hours Tracker</strong> tool helps you note the time spent on every project and build accurate invoices.</p>
+
+                    <h3>🛠️ Other Useful Tools</h3>
+                    <ul>
+                        <li><strong>Discount Engine</strong> — calculate discounts instantly</li>
+                        <li><strong>PDF Engine</strong> — turn any document into a PDF</li>
+                        <li><strong>HTML Editor</strong> — edit code live</li>
+                        <li><strong>Calendar</strong> — manage your schedule and meetings</li>
+                    </ul>
+
+                    <h3>🙋 Frequently Asked Questions</h3>
+                    <dl>
+                        <div class="seo-faq">
+                            <dt>Is Invoice Luxe completely free?</dt>
+                            <dd>Yes, Invoice Luxe is 100% free. There are no hidden fees or subscriptions.</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>Can I create an invoice with GST?</dt>
+                            <dd>Absolutely! You can set any custom GST rate (like 18% or 28%) to prepare a GST-inclusive invoice.</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>How does the working hours tracker work?</dt>
+                            <dd>Just start the timer when you begin work and stop it when you're done. All hours are logged and you can add them straight to an invoice.</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>Is my data safe?</dt>
+                            <dd>Yes. All information is saved only on your device — no server, no cloud.</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>Does this app work on Android and iOS?</dt>
+                            <dd>Yes, it's a PWA (Progressive Web App) that runs in any smartphone browser and can be installed to your home screen.</dd>
+                        </div>
+                    </dl>
+
+                    <p class="text-[11px] text-[#a1887f] mt-4 leading-relaxed">Invoice Luxe is a <strong>invoiceluxe.com</strong> product — the simplest invoicing and time-management solution built for freelancers, shop owners and small businesses.</p>
+                </div>
+            </div>
+
+            <!-- PAGE 1: EDITOR -->
+            <div class="page px-6 pt-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <button onclick="showPage(0)" class="text-[#8b4513] bg-white border-2 border-[#8b4513] w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-arrow-left"></i></button>
+                    <h2 class="text-xl font-black uppercase text-[#3e2723]">Invoice Editor ✍️</h2>
+                </div>
+                <div class="glass-card mb-6">
+                    <label for="inv-cust-select">Bill To Customer 👤</label>
+                    <select id="inv-cust-select" class="input-pro mb-4" onchange="calcTotal()"></select>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div><label for="inv-no">Invoice Number</label><input type="text" id="inv-no" class="input-pro"></div>
+                        <div><label for="inv-date">Document Date</label><input type="date" id="inv-date" class="input-pro"></div>
+                    </div>
+                    <label>Payment Due Date 🗓️</label>
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <div class="badge-select" id="due-0" onclick="setDue(0)">Cash</div>
+                        <div class="badge-select active" id="due-14" onclick="setDue(14)">14 Days</div>
+                        <div class="badge-select" id="due-30" onclick="setDue(30)">30 Days</div>
+                        <div class="badge-select" id="due-60" onclick="setDue(60)">60 Days</div>
+                    </div>
+                    <input type="hidden" id="inv-due-days" value="14">
+                    <label>GST Rate (%)</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div class="badge-select active" id="vat-20" onclick="setVat(20, this)">20</div>
+                        <div class="badge-select" id="vat-10" onclick="setVat(10, this)">10</div>
+                        <div class="badge-select" id="vat-0" onclick="setVat(0, this)">0</div>
+                        <div class="badge-select" id="custom-vat-btn" onclick="promptVat(this)">...</div>
+                    </div>
+                    <input type="hidden" id="selected-vat" value="20">
+                </div>
+                <div id="items-list" class="space-y-4"></div>
+                <button onclick="addRow()" class="w-full bg-[#fdf5f0] border-2 border-[#8b4513] border-dashed p-4 rounded-xl text-[11px] font-black text-[#8b4513] my-6 cursor-pointer">+ Add New Line</button>
+                <div class="p-6 bg-white border-4 border-[#8b4513] rounded-3xl shadow-lg flex justify-between items-center mb-8">
+                    <span class="text-[#8d6e63] text-[11px] font-black uppercase">Grand Total</span>
+                    <span id="grand-total" class="text-2xl font-black text-[#3e2723]">0.00</span>
+                </div>
+                <button onclick="generatePreviewFromCurrent()" class="w-full btn-wood mb-10">Preview 🚀</button>
+            </div>
+
+            <!-- PAGE 2: ARCHIVE -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">Invoice Archive 📂</h2>
+                <div id="archiv-list" class="space-y-3"></div>
+            </div>
+
+            <!-- PAGE 3: CUSTOMERS -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">Customer Directory 👥</h2>
+                <div class="glass-card mb-6">
+                    <input type="hidden" id="edit-cust-idx" value="-1">
+                    <label for="c-name">Company Name</label><input type="text" id="c-name" class="input-pro mb-3">
+                    <label for="c-adr">Address</label><input type="text" id="c-adr" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="c-pc">PIN Code</label><input type="text" id="c-pc" class="input-pro"></div>
+                        <div><label for="c-city">City</label><input type="text" id="c-city" class="input-pro"></div>
+                    </div>
+                    <label for="c-mob">Phone</label><input type="text" id="c-mob" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div><label for="c-tax">Tax Number</label><input type="text" id="c-tax" class="input-pro"></div>
+                        <div><label for="c-vat">GST Number</label><input type="text" id="c-vat" class="input-pro"></div>
+                    </div>
+                    <button onclick="saveCustomer()" class="w-full btn-wood py-3 text-sm">Save Customer ✅</button>
+                </div>
+                <div id="customer-list" class="space-y-3"></div>
+            </div>
+
+            <!-- PAGE 4: PROFILE -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">Business Info 🛠️</h2>
+                <div class="glass-card">
+                    <label for="p-name">Company Name</label><input type="text" id="p-name" class="input-pro mb-3">
+                    <label for="p-adr">Address</label><input type="text" id="p-adr" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="p-pc">PIN Code</label><input type="text" id="p-pc" class="input-pro"></div>
+                        <div><label for="p-city">City</label><input type="text" id="p-city" class="input-pro"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="p-mail">Email</label><input type="text" id="p-mail" class="input-pro"></div>
+                        <div><label for="p-mob">Phone</label><input type="text" id="p-mob" class="input-pro"></div>
+                    </div>
+                    <div class="h-[2px] bg-[#fdf5f0] border-t-2 border-[#8b4513] my-4"></div>
+                    <label for="p-bank">Bank Name</label><input type="text" id="p-bank" class="input-pro mb-3">
+                    <label for="p-iban">IBAN</label><input type="text" id="p-iban" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div><label for="p-tax">Tax Number</label><input type="text" id="p-tax" class="input-pro"></div>
+                        <div><label for="p-vat">GST Number</label><input type="text" id="p-vat" class="input-pro"></div>
+                    </div>
+
+                    <div class="h-[2px] bg-[#fdf5f0] border-t-2 border-[#e8d9cc] my-4"></div>
+                    <label>Company Logo</label>
+                    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:#faf6f1;border-radius:16px;border:1.5px dashed #e8d9cc;">
+                        <div id="logo-preview-wrap" style="width:64px;height:64px;border-radius:14px;background:#fff;border:1.5px solid #e8d9cc;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                            <img id="logo-preview" alt="Logo" style="max-width:100%;max-height:100%;object-fit:contain;display:none;">
+                            <i id="logo-placeholder" class="fa-solid fa-image" style="color:#c4b0a0;font-size:22px;"></i>
+                        </div>
+                        <div style="flex:1;min-width:0;">
+                            <input type="file" id="p-logo" accept="image/*" style="display:none;" onchange="handleLogoSelect(event)">
+                            <button type="button" onclick="document.getElementById('p-logo').click()" class="btn-wood" style="padding:10px 14px;font-size:12px;margin-bottom:6px;">Upload Logo</button>
+                            <button type="button" id="logo-remove-btn" onclick="removeLogo()" style="display:none;width:100%;padding:8px;font-size:11px;font-weight:700;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;cursor:pointer;">Remove logo</button>
+                            <p style="font-size:10px;color:var(--text-muted);margin:6px 0 0;font-weight:600;">Shown on your PDF invoices. If empty, system logo is used.</p>
+                        </div>
+                    </div>
+
+                    <button onclick="saveProfile()" class="w-full btn-wood py-3 text-sm">Update Profile 💾</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCK NAV with PWA install bar -->
+        <nav class="dock-nav">
+            <button id="pwa-install-btn" class="pwa-install-bar" style="display:none;" onclick="handlePwaInstall()">
+                <div class="pwa-icons">
+                    <img src="logo.png" onerror="this.style.display='none'" style="width:28px; height:28px; border-radius:8px; object-fit:cover;" alt="Logo">
+                    <i class="fa-brands fa-android text-green-400 text-lg"></i>
+                    <i class="fa-brands fa-apple text-gray-300 text-lg"></i>
+                </div>
+                <div class="pwa-text">
+                    <span>Add to Home Screen</span>
+                    <small id="pwa-sub-text">Use it like an app · iOS: Share → Add to Home</small>
+                </div>
+                <i class="fa-solid fa-plus text-white text-sm bg-[#8b4513] w-7 h-7 rounded-full flex items-center justify-center" style="display:flex; align-items:center; justify-content:center;"></i>
+            </button>
+            <div class="dock-nav-buttons">
+                <button class="nav-btn active" onclick="showPage(0)" aria-label="Home">
+                    <i class="fa-solid fa-house"></i><span>Home</span>
+                </button>
+                <button class="nav-btn" onclick="showPage(1)" aria-label="Invoices">
+                    <i class="fa-solid fa-file-invoice"></i><span>Invoices</span>
+                </button>
+                <button class="nav-btn" onclick="window.location.href='wallet.html'" aria-label="Reports">
+                    <i class="fa-solid fa-chart-pie"></i><span>Reports</span>
+                </button>
+                <button class="nav-btn" onclick="showPage(3)" aria-label="Customers">
+                    <i class="fa-solid fa-users"></i><span>Customers</span>
+                </button>
+                <button class="nav-btn" onclick="showPage(4)" aria-label="Tools">
+                    <i class="fa-solid fa-briefcase"></i><span>Tools</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="p-modal">
+        <div class="p-4 flex gap-3 bg-white border-b-4 border-[#8b4513]">
+            <button onclick="closePreview()" class="flex-1 bg-stone-100 text-[#8b4513] border-2 border-[#8b4513] p-3 rounded-xl font-black uppercase text-[10px]">Cancel</button>
+            <button id="modal-confirm-btn" onclick="confirmAndArchive()" class="flex-[2] btn-wood p-3 text-[10px]">Confirm & Generate PDF 🔥</button>
+        </div>
+        <div class="preview-container" id="zoom-area">
+            <div class="a4-preview" id="p-page">
+                <div class="s2-header">
+                    <div class="s2-logo-side" style="display:flex;align-items:center;gap:14px;justify-content:flex-end;">
+                        <div>
+                            <div class="s2-logo-title" id="pv-title">Company Name</div>
+                            <div style="font-size:10px; color:#64748b; margin-top:4px; font-weight:600;">Professional Document System</div>
+                        </div>
+                        <img id="pv-logo" alt="Logo" style="width:64px;height:64px;object-fit:contain;border-radius:10px;display:none;background:#fff;border:1px solid #e2e8f0;">
+                    </div>
+                    <div style="text-align:left;">
+                        <div class="s2-inv-label">Invoice Number</div>
+                        <div id="pv-no" class="s2-inv-no">#000</div>
+                    </div>
+                </div>
+                <div style="padding: 50px 60px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:35px; border-bottom:2px solid #f0f4f8; padding-bottom:20px;">
+                        <div><small style="color:#64748b; font-weight:800; font-size:11px;">Document Date</small><div id="pv-date" style="font-weight:800; font-size:15px; margin-top:3px;"></div></div>
+                        <div style="text-align:right;"><small style="color:#ef4444; font-weight:800; font-size:11px;">Amount Due</small><div id="pv-due" style="font-weight:800; color:#ef4444; font-size:15px; margin-top:3px;"></div></div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:35px;">
+                        <div class="info-box"><b>From</b><div id="pv-sender"></div></div>
+                        <div class="info-box"><b>Bill To (Customer)</b><div id="pv-receiver"></div></div>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse; margin-top:50px; font-size:13px;">
+                        <thead><tr style="background:#f1f5f9; text-align:left; color:#475569;"><th style="padding:15px; border-radius:10px 0 0 10px;">Description / Service</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Unit Price</th><th style="text-align:right; padding-right:15px; border-radius:0 10px 10px 0;">Total</th></tr></thead>
+                        <tbody id="pv-items"></tbody>
+                    </table>
+                    <div style="margin-top:80px; border-top:3px solid #f1f5f9; padding-top:30px; display:flex; justify-content:space-between; align-items: flex-start;">
+                        <div style="font-size:12px; color:#1e3a8a; background:#f0f9ff; padding:20px; border-radius:15px; width:350px; border:1px solid #dbeafe;"><b>Payment / Bank Details</b><div id="pv-bank" style="margin-top:8px; font-weight:700; line-height:1.6; white-space:pre-line;"></div></div>
+                        <div style="width:250px;">
+                            <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:8px; color:#64748b;"><span>Subtotal:</span><span id="pv-sub">0.00</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:14px; color:#2563eb; margin-bottom:15px;"><span>GST Amount:</span><span id="pv-tax">0.00</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:28px; font-weight:900; color:#1e293b; border-top:4px solid #1e293b; margin-top:15px; padding-top:15px;"><span>Total:</span><span id="pv-total">0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Edit Modal -->
+    <div id="text-modal" style="position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 10001; display: none; flex-direction: column;">
+        <div class="p-8 h-full flex flex-col">
+            <h3 class="text-[#8b4513] font-black mb-4">Edit Work Details</h3>
+            <textarea id="modal-textarea" class="flex-1 w-full bg-white text-[#3e2723] p-6 rounded-3xl text-lg font-bold outline-none border-4 border-[#8b4513]"></textarea>
+            <div class="flex gap-4 mt-6">
+                <button onclick="closeTextModal()" class="flex-1 bg-stone-100 p-5 rounded-2xl font-bold border-2 border-[#8b4513]">Cancel</button>
+                <button id="save-text-btn" class="flex-[2] btn-wood">Save ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS PWA Instructions Modal -->
+    <div id="ios-pwa-modal" style="display:none; position:fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: white; border:3px solid #8b4513; border-radius: 20px; padding: 18px; z-index: 10000; width: 90%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        <div class="flex items-center gap-3 mb-3">
+            <img src="logo.png" onerror="this.style.display='none'" style="width:40px; height:40px; border-radius:10px; object-fit:cover;" alt="Invoice Luxe Logo">
+            <div>
+                <p class="text-sm font-black text-[#3e2723]">Install on iPhone / iPad</p>
+                <p class="text-[10px] text-[#8d6e63] font-bold">Run it like a home-screen app</p>
+            </div>
+        </div>
+        <div class="bg-[#fdf5f0] rounded-xl p-3 mb-3">
+            <p class="text-xs text-[#6d4c41] leading-relaxed">
+                <strong>1.</strong> In Safari below, press the <i class="fa-solid fa-arrow-up-from-bracket text-[#8b4513]"></i> <strong>Share</strong> button<br>
+                <strong>2.</strong> "<strong>Add to Home Screen</strong>" select Add to Home Screen<br>
+                <strong>3.</strong> top right, <strong>Add</strong> and tap Add
+            </p>
+        </div>
+        <button onclick="document.getElementById('ios-pwa-modal').style.display='none'" class="w-full bg-[#3e2723] text-white py-2 rounded-xl text-xs font-bold">Got it, close ✓</button>
+    </div>
+
+    <script>
+        function openSideMenu() {
+            document.getElementById('side-menu').classList.add('open');
+            document.getElementById('side-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSideMenu() {
+            document.getElementById('side-menu').classList.remove('open');
+            document.getElementById('side-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        let currentIdx = 0; 
+        let activeTextId = null;
+        const slider = document.getElementById('main-slider');
+        
+        function toggleLangDropdown() {
+            const dd = document.getElementById('lang-dropdown');
+            if (dd) dd.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const btn = document.getElementById('lang-toggle-btn');
+            const dd = document.getElementById('lang-dropdown');
+            if (btn && dd && !btn.contains(e.target) && !dd.contains(e.target)) {
+                dd.classList.remove('open');
+            }
+        });
+
+        function changeLang(code) {
+            window.location.href = '../' + code + '/index.html';
+        }
+
+        let touchstartX = 0; 
+        let touchendX = 0;
+        slider.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, {passive: true});
+        slider.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); }, {passive: true});
+        function handleSwipe() {
+            const diff = touchstartX - touchendX;
+            if (diff > 50) { if (currentIdx < 4) showPage(currentIdx + 1); }
+            else if (diff < -50) { if (currentIdx > 0) showPage(currentIdx - 1); }
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('pwa-install-btn');
+        const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        function handlePwaInstall() {
+            if (isIos()) {
+                document.getElementById('ios-pwa-modal').style.display = 'block';
+            } else if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; if (installBtn) installBtn.style.display = 'none'; });
+            } else {
+                alert('Please use the "Add to Home Screen" option from your browser menu.');
+            }
+        }
+
+        if (!isStandalone && installBtn) {
+            if (isIos()) {
+                installBtn.style.display = 'flex';
+                const subText = document.getElementById('pwa-sub-text');
+                if (subText) subText.textContent = 'iOS: Share button → Add to Home Screen';
+            } else {
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    installBtn.style.display = 'flex';
+                    const subText = document.getElementById('pwa-sub-text');
+                    if (subText) subText.textContent = 'Install like an app on Android';
+                });
+            }
+        }
+
+        function formatINR(n) {
+            try {
+                return '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+            } catch(e) {
+                return '₹' + (Number(n || 0).toFixed(2));
+            }
+        }
+
+        // Wallet localStorage contract (used by wallet.html too):
+        // key: 'pocket_wallet'
+        // value: [{ id, type: 'income'|'expense', amount: number, note, date }]
+        function getWalletTotals() {
+            const list = JSON.parse(localStorage.getItem('pocket_wallet')) || [];
+            let income = 0, expense = 0;
+            list.forEach(t => {
+                const amt = parseFloat(t.amount) || 0;
+                if (t.type === 'income') income += amt;
+                else if (t.type === 'expense') expense += amt;
+            });
+            return { income, expense, net: income - expense };
+        }
+
+        function updateDashboard() {
+            const arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            let net = 0, gst = 0;
+            arch.forEach(a => {
+                let sub = 0;
+                if (a.items && Array.isArray(a.items)) {
+                    a.items.forEach(it => {
+                        sub += (parseFloat(it.q) || 0) * (parseFloat(it.p) || 0);
+                    });
+                }
+                const rate = parseFloat(a.vrate) || 0;
+                net += sub;
+                gst += sub * (rate / 100);
+            });
+            const wallet = getWalletTotals();
+            const invGross = net + gst;
+            // Gross = invoice gross + wallet net income contribution
+            const gross = invGross + Math.max(0, wallet.net);
+            const elCount = document.getElementById('stat-count');
+            const elNet = document.getElementById('stat-net');
+            const elGst = document.getElementById('stat-gst');
+            const elGross = document.getElementById('stat-gross');
+            const elIncome = document.getElementById('stat-income');
+            const elExpense = document.getElementById('stat-expense');
+            const barNet = document.getElementById('bar-net');
+            const barGst = document.getElementById('bar-gst');
+            const barWallet = document.getElementById('bar-wallet');
+            if (elCount) elCount.textContent = arch.length;
+            if (elNet) elNet.textContent = formatINR(net);
+            if (elGst) elGst.textContent = formatINR(gst);
+            if (elGross) elGross.textContent = formatINR(invGross);
+            if (elIncome) elIncome.textContent = formatINR(wallet.income);
+            if (elExpense) elExpense.textContent = formatINR(wallet.expense);
+            if (barNet && barGst) {
+                const wAbs = Math.abs(wallet.net);
+                const total = net + gst + wAbs;
+                if (total > 0) {
+                    barNet.style.width = ((net / total) * 100) + '%';
+                    barGst.style.width = ((gst / total) * 100) + '%';
+                    if (barWallet) barWallet.style.width = ((wAbs / total) * 100) + '%';
+                } else {
+                    barNet.style.width = '100%';
+                    barGst.style.width = '0%';
+                    if (barWallet) barWallet.style.width = '0%';
+                }
+            }
+        }
+
+        function showPage(idx) {
+            currentIdx = idx; 
+            slider.style.transform = `translateX(-${idx * 20}%)`;
+            // Map page idx -> nav button index (Reports is external at nav index 2)
+            const navMap = {0: 0, 1: 1, 2: -1, 3: 3, 4: 4};
+            const activeNav = navMap[idx] !== undefined ? navMap[idx] : -1;
+            document.querySelectorAll('.nav-btn').forEach((n, i) => n.classList.toggle('active', i === activeNav));
+            if(idx === 0) updateDashboard();
+            if(idx === 2) renderArchiv(); 
+            if(idx === 3) renderCustomers(); 
+            if(idx === 1) updateCustSelect();
+        }
+
+        function hasCompanyProfile() {
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            return !!(prof.name && String(prof.name).trim());
+        }
+
+        function resetAndNew() {
+            // New user → company profile first; existing user → invoice editor
+            if (!hasCompanyProfile()) {
+                alert('Please set up your company profile first.');
+                showPage(4);
+                return;
+            }
+            document.getElementById('items-list').innerHTML = ""; 
+            addRow();
+            setVat(20, document.getElementById('vat-20')); 
+            setDue(14);
+            const archive = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            document.getElementById('inv-no').value = (1000 + archive.length + 1);
+            document.getElementById('inv-date').valueAsDate = new Date(); 
+            showPage(1);
+        }
+
+        function addRow(data = null) {
+            const id = "r-" + Math.random().toString(36).substr(2, 5);
+            const div = document.createElement('div'); 
+            div.className = "item-row"; 
+            div.id = id;
+            div.innerHTML = `
+                <button aria-label="Remove row" class="absolute -top-3 -right-3 bg-red-600 text-white w-8 h-8 rounded-full border-2 border-[#8b4513] cursor-pointer" onclick="document.getElementById('${id}').remove(); calcTotal();">✕</button>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" class="input-pro d flex-1" placeholder="Description / Service..." value="${data?data.d:''}">
+                    <button onclick="openTextModal('${id}')" class="bg-white border-2 border-[#8b4513] text-[#8b4513] px-3 rounded-xl cursor-pointer"><i class="fa-solid fa-expand"></i></button>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div><label>Qty</label><input type="number" class="input-pro qty" value="${data?data.q:'1'}" oninput="calcTotal()"></div>
+                    <div><label>Unit</label>
+                        <select class="input-pro u" onchange="calcTotal()">
+                            <option value="pcs" ${data?.u=='pcs'?'selected':''}>pcs</option>
+                            <option value="m" ${data?.u=='m'?'selected':''}>m</option>
+                            <option value="cm" ${data?.u=='cm'?'selected':''}>cm</option>
+                            <option value="kg" ${data?.u=='kg'?'selected':''}>kg</option>
+                            <option value="km" ${data?.u=='km'?'selected':''}>km</option>
+                            <option value="hour" ${data?.u=='hour'?'selected':''}>hour</option>
+                            <option value="day" ${data?.u=='day'?'selected':''}>day</option>
+                            <option value="week" ${data?.u=='week'?'selected':''}>week</option>
+                            <option value="month" ${data?.u=='month'?'selected':''}>month</option>
+                        </select>
+                    </div>
+                    <div><label>Price</label><input type="number" class="input-pro p" placeholder="0.00" value="${data?data.p:''}" oninput="calcTotal()"></div>
+                </div>`;
+            document.getElementById('items-list').appendChild(div); 
+            calcTotal();
+        }
+
+        function setVat(val, el) { 
+            document.getElementById('selected-vat').value = val; 
+            document.querySelectorAll('[id^="vat-"], #custom-vat-btn').forEach(b => b.classList.remove('active')); 
+            if(el) el.classList.add('active'); 
+            calcTotal(); 
+        }
+
+        function promptVat(el) { 
+            let v = prompt("Enter custom GST rate:", "18"); 
+            if(v !== null && v.trim() !== "") { 
+                el.innerText = "%" + v; 
+                setVat(parseFloat(v) || 0, el); 
+            } 
+        }
+
+        function setDue(val) { 
+            document.getElementById('inv-due-days').value = val; 
+            document.querySelectorAll('[id^="due-"]').forEach(b => b.classList.remove('active')); 
+            const target = document.getElementById('due-'+val); 
+            if(target) target.classList.add('active'); 
+        }
+
+        function calcTotal() { 
+            let sub = 0; 
+            document.querySelectorAll('.item-row').forEach(r => { 
+                const q = parseFloat(r.querySelector('.qty').value) || 0;
+                const p = parseFloat(r.querySelector('.p').value) || 0;
+                sub += q * p; 
+            }); 
+            let v = parseFloat(document.getElementById('selected-vat').value) || 0; 
+            document.getElementById('grand-total').innerText = (sub * (1 + v/100)).toFixed(2); 
+        }
+
+        function formatInfo(label, text) {
+            if(!text) return "";
+            return `<div class="info-line"><span class="info-label">${label}:</span><span class="info-content">${text}</span></div>`;
+        }
+
+        function generatePreview(prof, cust, invNo, date, items, vRate, dueDays) {
+            document.getElementById('pv-no').innerText = "#" + invNo;
+            document.getElementById('pv-title').innerText = (prof.name || 'Company Name').toUpperCase();
+            // Logo on preview card
+            (function() {
+                const pvLogo = document.getElementById('pv-logo');
+                if (!pvLogo) return;
+                const logoData = localStorage.getItem('fatura_logo');
+                if (logoData && logoData.indexOf('data:image') === 0) {
+                    pvLogo.src = logoData;
+                    pvLogo.style.display = 'block';
+                } else {
+                    pvLogo.removeAttribute('src');
+                    pvLogo.style.display = 'none';
+                }
+            })();
+            
+            if(date) {
+                const p = date.split('-'); 
+                document.getElementById('pv-date').innerText = p.length === 3 ? `${p[2]}.${p[1]}.${p[0]}` : date;
+                const dt = new Date(date); 
+                dt.setDate(dt.getDate() + parseInt(dueDays || 0));
+                document.getElementById('pv-due').innerText = dt.toLocaleDateString('en-IN');
+            }
+
+            document.getElementById('pv-sender').innerHTML = `
+                ${formatInfo('Company', prof.name)}
+                ${formatInfo('Address', (prof.adr || '') + " " + (prof.pc||"") + " " + (prof.city||""))}
+                ${formatInfo('Phone', prof.mob)}
+                ${formatInfo('Email', prof.mail)}
+                ${formatInfo('Tax Number', prof.tax)}
+                ${formatInfo('GST Number', prof.vat)}`;
+
+            document.getElementById('pv-receiver').innerHTML = `
+                ${formatInfo('Company', cust.name)}
+                ${formatInfo('Address', (cust.adr || '') + " " + (cust.pc||"") + " " + (cust.city||""))}
+                ${formatInfo('Phone', cust.mob)}
+                ${formatInfo('Tax Number', cust.tax)}
+                ${formatInfo('GST Number', cust.vat)}`;
+
+            document.getElementById('pv-bank').innerText = `${prof.bank || ''}\nIBAN: ${prof.iban || ''}`;
+            
+            let sub = 0;
+            document.getElementById('pv-items').innerHTML = items.map(it => {
+                let q = parseFloat(it.q) || 0;
+                let p = parseFloat(it.p) || 0;
+                let t = q * p; 
+                sub += t;
+                return `<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:15px; font-weight:600;">${it.d}</td><td style="text-align:center;">${it.q} ${it.u}</td><td style="text-align:right;">${p.toFixed(2)}</td><td style="text-align:right; padding-right:15px; font-weight:800;">${t.toFixed(2)}</td></tr>`;
+            }).join('');
+
+            let tax = sub * ((parseFloat(vRate) || 0) / 100);
+            document.getElementById('pv-sub').innerText = sub.toFixed(2);
+            document.getElementById('pv-tax').innerText = tax.toFixed(2) + " (%" + vRate + ")";
+            document.getElementById('pv-total').innerText = (sub + tax).toFixed(2);
+            document.getElementById('p-modal').style.display = 'flex';
+            
+            const container = document.getElementById('zoom-area');
+            if (container) {
+                const scale = Math.min((container.offsetWidth - 40) / 794, (container.offsetHeight - 40) / 1123);
+                document.getElementById('p-page').style.transform = `scale(${scale})`;
+            }
+        }
+
+        function generatePreviewFromCurrent() {
+            const cIdx = document.getElementById('inv-cust-select').value; 
+            if(cIdx === "") return alert("Please select a customer!");
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const customers = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const cust = customers[cIdx];
+            if(!cust) return alert("Invalid customer selected!");
+
+            let items = [];
+            document.querySelectorAll('.item-row').forEach(r => { 
+                items.push({ 
+                    d: r.querySelector('.d').value, 
+                    q: r.querySelector('.qty').value, 
+                    p: r.querySelector('.p').value, 
+                    u: r.querySelector('.u').value 
+                }); 
+            });
+            document.getElementById('modal-confirm-btn').style.display = 'block';
+            generatePreview(prof, cust, document.getElementById('inv-no').value, document.getElementById('inv-date').value, items, document.getElementById('selected-vat').value, document.getElementById('inv-due-days').value);
+        }
+
+        function confirmAndArchive() {
+            const cIdx = document.getElementById('inv-cust-select').value;
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const customers = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const cust = customers[cIdx] || {};
+
+            let items = [];
+            document.querySelectorAll('.item-row').forEach(r => { 
+                items.push({ 
+                    d: r.querySelector('.d').value, 
+                    q: r.querySelector('.qty').value, 
+                    p: r.querySelector('.p').value, 
+                    u: r.querySelector('.u').value 
+                }); 
+            });
+
+            const params = new URLSearchParams();
+            // CRITICAL flags first (visible in address bar, PDF engine depends on these)
+            params.set('l', 'in');
+            params.set('sym', '₹');
+            params.set('lk', 'in');
+            params.set('ls', 'round');
+
+            params.set('n', prof.name || ''); 
+            params.set('adr', prof.adr || ''); 
+            params.set('pc', prof.pc || ''); 
+            params.set('ct', prof.city || ''); 
+            params.set('mob', prof.mob || ''); 
+            params.set('mail', prof.mail || ''); 
+            params.set('k', prof.tax || ''); 
+            params.set('vat', prof.vat || ''); 
+            params.set('bnk', prof.bank || ''); 
+            params.set('i', prof.iban || '');
+            
+            params.set('c', cust.name || ''); 
+            params.set('cadr', cust.adr || ''); 
+            params.set('cpc', cust.pc || ''); 
+            params.set('cct', cust.city || ''); 
+            params.set('cmob', cust.mob || ''); 
+            params.set('cx', cust.tax || ''); 
+            params.set('cv', cust.vat || '');
+            
+            params.set('inv', document.getElementById('inv-no').value); 
+
+            const dateVal = document.getElementById('inv-date').value;
+            if(dateVal) {
+                const [y,m,d] = dateVal.split('-'); 
+                params.set('d', `${d}-${m}-${y}`);
+            }
+
+            params.set('vrate', document.getElementById('selected-vat').value); 
+            params.set('due', document.getElementById('inv-due-days').value);
+            params.set('items', items.map(it => `${encodeURIComponent(it.d)}|${it.q}|${it.p}|${it.u}`).join('!!'));
+
+            let arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            arch.unshift({ 
+                no: document.getElementById('inv-no').value, 
+                date: document.getElementById('inv-date').value, 
+                custName: cust.name || 'Unknown', 
+                items, 
+                vrate: document.getElementById('selected-vat').value, 
+                due: document.getElementById('inv-due-days').value, 
+                cIdx 
+            });
+            localStorage.setItem('fatura_arsiv', JSON.stringify(arch));
+            
+            // Same-origin logo transfer (www vs non-www breaks localStorage!)
+            try {
+                const logoData = localStorage.getItem('fatura_logo') || localStorage.getItem('print_logo_in');
+                if (logoData) {
+                    localStorage.setItem('fatura_logo', logoData);
+                    localStorage.setItem('print_logo_in', logoData);
+                    sessionStorage.setItem('fatura_logo', logoData);
+                }
+                localStorage.setItem('global_lang', 'in');
+            } catch (e) {}
+
+            // MUST same host as this page so localStorage logo is visible.
+            // IMPORTANT: opening a NEW TAB/WINDOW (window.open) breaks logo visibility
+            // on iOS "Add to Home Screen" (standalone PWA) and many in-app browsers,
+            // because a new tab there can run in a separate storage context than the
+            // installed app. Navigating in the SAME window keeps localStorage/
+            // sessionStorage in the same context, so the logo is reliably visible.
+            const invBase = window.location.origin + '/invoice.html';
+            const invUrl = invBase + '?' + params.toString();
+            const isStandalonePwa = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            if (isStandalonePwa) {
+                window.location.href = "https://invoiceluxe.com/invoice.html?" + params.toString();
+            } else {
+                // Matches the same pattern used by the other 12 language files:
+                // invoice.html only lives at the non-www root, so we always target
+                // that fixed address instead of window.location.origin.
+                const w = window.open("https://invoiceluxe.com/invoice.html?" + params.toString(), '_blank');
+                // Fallback: if popup was blocked, still navigate so the user isn't stuck.
+                if (!w) window.location.href = "https://invoiceluxe.com/invoice.html?" + params.toString();
+            }
+            closePreview(); 
+            updateDashboard();
+            showPage(2);
+        }
+
+        function saveCustomer() {
+            let l = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const c = { 
+                name: document.getElementById('c-name').value, 
+                adr: document.getElementById('c-adr').value, 
+                pc: document.getElementById('c-pc').value, 
+                city: document.getElementById('c-city').value, 
+                mob: document.getElementById('c-mob').value, 
+                tax: document.getElementById('c-tax').value, 
+                vat: document.getElementById('c-vat').value 
+            };
+            let idx = document.getElementById('edit-cust-idx').value;
+            if(idx !== "-1") l[idx] = c; else l.unshift(c);
+            
+            localStorage.setItem('fatura_musteriler', JSON.stringify(l));
+            document.getElementById('edit-cust-idx').value = "-1";
+            ['c-name','c-adr','c-pc','c-city','c-mob','c-tax','c-vat'].forEach(id => document.getElementById(id).value = ""); 
+            renderCustomers();
+        }
+
+        function renderCustomers() {
+            const l = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            document.getElementById('customer-list').innerHTML = l.map((c, i) => `
+                <div class="p-4 glass-card flex justify-between items-center border-l-[8px] border-l-[#8b4513]">
+                    <div>
+                        <div class="text-[14px] font-black uppercase">${c.name}</div>
+                        <div class="text-[10px] text-[#8b4513] font-bold">${c.city || ''} ${c.mob || ''}</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editCust(${i})" aria-label="Edit" class="w-9 h-9 bg-white border-2 border-[#8b4513] text-[#8b4513] rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteCust(${i})" aria-label="Delete" class="w-9 h-9 bg-white border-2 border-red-600 text-red-600 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`).join('');
+            updateCustSelect();
+        }
+
+        function editCust(i) { 
+            const list = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const c = list[i]; 
+            if(!c) return;
+            document.getElementById('c-name').value = c.name || ''; 
+            document.getElementById('c-adr').value = c.adr || ''; 
+            document.getElementById('c-pc').value = c.pc || ''; 
+            document.getElementById('c-city').value = c.city || ''; 
+            document.getElementById('c-mob').value = c.mob || ''; 
+            document.getElementById('c-tax').value = c.tax || ''; 
+            document.getElementById('c-vat').value = c.vat || ''; 
+            document.getElementById('edit-cust-idx').value = i; 
+            showPage(3); 
+        }
+
+        function deleteCust(i) { 
+            if(confirm("Do you want to delete this customer?")) { 
+                let l = JSON.parse(localStorage.getItem('fatura_musteriler')) || []; 
+                l.splice(i,1); 
+                localStorage.setItem('fatura_musteriler', JSON.stringify(l)); 
+                renderCustomers(); 
+            } 
+        }
+
+        function renderArchiv() {
+            const l = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            document.getElementById('archiv-list').innerHTML = l.map((a, i) => `
+                <div class="p-4 glass-card flex justify-between items-center border-l-[8px] border-l-[#8b4513]">
+                    <div>
+                        <div class="font-black text-sm text-[#8b4513]">Invoice #${a.no}</div>
+                        <div class="text-[10px] text-[#3e2723] uppercase font-black">${a.custName}</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="previewArchiv(${i})" aria-label="View" class="w-10 h-10 bg-white border-2 border-blue-500 text-blue-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-eye"></i></button>
+                        <button onclick="loadEditArchiv(${i})" aria-label="Reload" class="w-10 h-10 bg-white border-2 border-emerald-500 text-emerald-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-rotate"></i></button>
+                        <button onclick="deleteArchiv(${i})" aria-label="Delete" class="w-10 h-10 bg-white border-2 border-red-500 text-red-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`).join('');
+        }
+
+        function previewArchiv(i) {
+            const arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            const a = arch[i];
+            if(!a) return;
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const custs = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            document.getElementById('modal-confirm-btn').style.display = 'none';
+            const currentCust = custs[a.cIdx] || { name: a.custName };
+            generatePreview(prof, currentCust, a.no, a.date, a.items, a.vrate, a.due);
+        }
+
+        function loadEditArchiv(i) { 
+            const arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            const a = arch[i]; 
+            if(!a) return;
+            document.getElementById('inv-no').value = a.no; 
+            document.getElementById('inv-date').value = a.date; 
+            document.getElementById('inv-cust-select').value = a.cIdx; 
+            setVat(a.vrate, null); 
+            setDue(a.due); 
+            document.getElementById('items-list').innerHTML = ""; 
+            if(a.items && Array.isArray(a.items)) {
+                a.items.forEach(it => addRow(it)); 
+            }
+            showPage(1); 
+        }
+
+        function deleteArchiv(i) { 
+            if(confirm("Do you want to delete this record?")) { 
+                let l = JSON.parse(localStorage.getItem('fatura_arsiv')) || []; 
+                l.splice(i,1); 
+                localStorage.setItem('fatura_arsiv', JSON.stringify(l)); 
+                renderArchiv(); 
+                updateDashboard();
+            } 
+        }
+
+        const LOGO_KEY = 'fatura_logo';
+
+        function showLogoPreview(dataUrl) {
+            const img = document.getElementById('logo-preview');
+            const ph = document.getElementById('logo-placeholder');
+            const rm = document.getElementById('logo-remove-btn');
+            if (dataUrl) {
+                img.src = dataUrl;
+                img.style.display = 'block';
+                if (ph) ph.style.display = 'none';
+                if (rm) rm.style.display = 'block';
+            } else {
+                img.removeAttribute('src');
+                img.style.display = 'none';
+                if (ph) ph.style.display = 'block';
+                if (rm) rm.style.display = 'none';
+            }
+        }
+
+        function handleLogoSelect(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Please choose an image file.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const img = new Image();
+                img.onload = function() {
+                    const max = 400;
+                    let w = img.width, h = img.height;
+                    if (w > max || h > max) {
+                        if (w > h) { h = Math.round(h * max / w); w = max; }
+                        else { w = Math.round(w * max / h); h = max; }
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    const dataUrl = canvas.toDataURL('image/png', 0.85);
+                    localStorage.setItem(LOGO_KEY, dataUrl);
+                    localStorage.setItem('print_logo_in', dataUrl);
+                    try { sessionStorage.setItem('fatura_logo', dataUrl); } catch(e) {}
+                    showLogoPreview(dataUrl);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeLogo() {
+            localStorage.removeItem(LOGO_KEY);
+            localStorage.removeItem('print_logo_in');
+            try { sessionStorage.removeItem('fatura_logo'); } catch(e) {}
+            const input = document.getElementById('p-logo');
+            if (input) input.value = '';
+            showLogoPreview(null);
+        }
+
+        function saveProfile() {
+            const p = { 
+                name: document.getElementById('p-name').value, 
+                adr: document.getElementById('p-adr').value, 
+                pc: document.getElementById('p-pc').value, 
+                city: document.getElementById('p-city').value, 
+                mail: document.getElementById('p-mail').value, 
+                mob: document.getElementById('p-mob').value, 
+                bank: document.getElementById('p-bank').value, 
+                iban: document.getElementById('p-iban').value, 
+                tax: document.getElementById('p-tax').value, 
+                vat: document.getElementById('p-vat').value 
+            };
+            localStorage.setItem('fatura_profil', JSON.stringify(p));
+            // logo already saved on select into fatura_logo
+            alert("Profile updated 🛠️"); 
+            showPage(0);
+        }
+
+        function updateCustSelect() { 
+            const l = JSON.parse(localStorage.getItem('fatura_musteriler')) || []; 
+            document.getElementById('inv-cust-select').innerHTML = '<option value="">Select customer...</option>' + l.map((c, i) => `<option value="${i}">${c.name}</option>`).join(''); 
+        }
+
+        function openTextModal(rowId) { 
+            activeTextId = rowId; 
+            const rowElem = document.querySelector(`#${rowId} .d`);
+            if(rowElem) document.getElementById('modal-textarea').value = rowElem.value; 
+            document.getElementById('text-modal').style.display = 'flex'; 
+        }
+
+        function closeTextModal() { 
+            document.getElementById('text-modal').style.display = 'none'; 
+        }
+
+        function closePreview() { 
+            document.getElementById('p-modal').style.display = 'none'; 
+        }
+
+        document.getElementById('save-text-btn').onclick = () => { 
+            if(activeTextId) {
+                const rowElem = document.querySelector(`#${activeTextId} .d`);
+                if(rowElem) rowElem.value = document.getElementById('modal-textarea').value; 
+            }
+            closeTextModal(); 
+        };
+
+        function setGreeting() {
+            const h = new Date().getHours();
+            let g = 'Good Evening';
+            if (h < 12) g = 'Good Morning';
+            else if (h < 17) g = 'Good Afternoon';
+            const el = document.getElementById('greeting-text');
+            if (el) el.textContent = g + ' 👋';
+        }
+
+        window.onload = () => { 
+            const p = JSON.parse(localStorage.getItem('fatura_profil')) || {}; 
+            if(p.name) {
+                Object.keys(p).forEach(k => { 
+                    const elem = document.getElementById('p-'+k);
+                    if(elem) elem.value = p[k]; 
+                }); 
+            }
+            renderCustomers(); 
+            document.getElementById('inv-date').valueAsDate = new Date(); 
+            setVat(20, document.getElementById('vat-20'));
+            addRow(); 
+            setGreeting();
+            updateDashboard();
+            showLogoPreview(localStorage.getItem(LOGO_KEY));
+            // Add to Home card: only if not already installed
+            (function() {
+                const a2hs = document.getElementById('a2hs-card');
+                const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+                if (a2hs && !standalone) a2hs.style.display = 'flex';
+                else if (a2hs) a2hs.style.display = 'none';
+            })();
+            // Refresh when returning from wallet.html (same origin storage)
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'pocket_wallet' || e.key === 'fatura_arsiv') updateDashboard();
+            });
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) updateDashboard();
+            });
+        };
+    </script>
+</body>
+</html>

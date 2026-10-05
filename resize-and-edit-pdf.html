@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>PDF & Image Editor and Archive Suite</title>
+<meta name="description" content="This is a free browser-based web application for editing, cropping, and signing PDF documents and images.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF & Image Editor and Archive Suite",
+  "description": "This is a free browser-based web application for editing, cropping, and signing PDF documents and images.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "All"
+}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  const PDF_SOURCES=["https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js","https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js","https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"];
+  window.ensurePdfJs=async function(){
+    if(window.pdfjsLib){
+      pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      return window.pdfjsLib;
+    }
+    for(const src of PDF_SOURCES){
+      try{
+        await new Promise((resolve,reject)=>{
+          const s=document.createElement("script"); s.src=src; s.onload=resolve; s.onerror=reject;
+          document.head.appendChild(s);
+        });
+        if(window.pdfjsLib){
+          pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+          return window.pdfjsLib;
+        }
+      }catch(e){}
+    }
+    throw new Error("PDF engine failed");
+  };
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+*{box-sizing:border-box}
+html,body,#root{margin:0;min-height:100%;background:#020617}
+body{overflow-x:hidden}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#0f172a}
+::-webkit-scrollbar-thumb{background:#2dd4bf;border-radius:6px;border:2px solid #0f172a;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:#5eead4}
+button{transition:transform .12s ease, box-shadow .12s ease, filter .12s ease, background-color .15s ease, border-color .15s ease;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+button:not(:disabled):active{transform:translateY(2px) scale(.97);filter:brightness(1.16);box-shadow:0 2px 5px rgba(0,0,0,.38), inset 0 2px 5px rgba(0,0,0,.22)!important;}
+button:not(:disabled):focus-visible{outline:2px solid rgba(94,234,212,.85);outline-offset:2px;}
+.sig-object{position:absolute!important; user-select:none!important; touch-action:none!important;z-index:20; border:0!important; outline:0!important; box-shadow:none!important;}
+.sig-object::after{content:""; position:absolute; inset:0; border:1px dashed rgba(94,234,212,.0);pointer-events:none; border-radius:3px; transition:border-color .15s;}
+.sig-object:hover::after,.sig-object.editing::after{border-color:rgba(94,234,212,.85)}
+.sig-handle{position:absolute!important; width:24px!important;height:24px!important;margin:-12px 0 0 -12px!important; background:#5eead4!important;border:3px solid #020617!important; border-radius:50%!important; z-index:100!important;touch-action:none!important; box-shadow:0 2px 8px rgba(0,0,0,.55);}
+.sig-handle.n{left:50%;top:0;cursor:ns-resize}.sig-handle.s{left:50%;top:100%;cursor:ns-resize}
+.sig-handle.w{left:0;top:50%;cursor:ew-resize}.sig-handle.e{left:100%;top:50%;cursor:ew-resize}
+.sig-handle.nw{left:0;top:0;cursor:nwse-resize}.sig-handle.ne{left:100%;top:0;cursor:nesw-resize}
+.sig-handle.sw{left:0;top:100%;cursor:nesw-resize}.sig-handle.se{left:100%;top:100%;cursor:nwse-resize}
+.sig-delete{position:absolute;right:-15px;top:-15px;z-index:120;width:30px;height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;background:#dc2626;color:white;border:2px solid #020617;box-shadow:0 2px 8px rgba(0,0,0,.5);}
+.sig-finish{position:absolute;right:20px;top:-15px;z-index:125;width:30px;height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:14px;background:#334155;color:white;border:2px solid #020617;box-shadow:0 2px 8px rgba(0,0,0,.55);touch-action:manipulation;cursor:pointer;}
+.sig-finish:active{transform:scale(.94);background:#0f766e}
+.crop-box{position:absolute;inset:0;z-index:10;pointer-events:none;overflow:visible}
+.crop-shade-svg,.crop-outline-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
+.crop-handle,.crop-edge{position:absolute;z-index:200;touch-action:none;pointer-events:auto}
+.crop-handle{width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#5eead4;border:3px solid #020617;box-shadow:0 2px 10px rgba(0,0,0,.65),0 0 0 1px rgba(94,234,212,.18);cursor:move;transition:transform .1s ease,filter .1s ease;}
+.crop-handle.nw{cursor:nwse-resize}.crop-handle.ne{cursor:nesw-resize}.crop-handle.se{cursor:nwse-resize}.crop-handle.sw{cursor:nesw-resize}
+.crop-edge{width:44px;height:30px;margin:-15px 0 0 -22px;border-radius:999px;background:#5eead4;border:3px solid #020617;box-shadow:0 2px 10px rgba(0,0,0,.65),0 0 0 1px rgba(94,234,212,.18);}
+.crop-edge.n,.crop-edge.s{cursor:ns-resize}.crop-edge.e,.crop-edge.w{width:30px;height:44px;margin:-22px 0 0 -15px;cursor:ew-resize}
+.crop-edge.e{cursor:ew-resize}.crop-edge.w{cursor:ew-resize}
+.crop-handle:active,.crop-edge:active{transform:scale(.92);filter:brightness(1.12)}
+.crop-box>.absolute.inset-0{z-index:5;pointer-events:auto;cursor:move}
+.document-stage{position:relative;display:inline-block;line-height:0;user-select:none;touch-action:none}
+.document-stage>img{display:block;max-width:100%;height:auto}
+</style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-teal-500 selection:text-black">
+<div id="root"></div>
+
+<script type="text/babel">
+const i18n = {"TITLE":"PDF & Image Editor and Archive Suite","SEO_DESC":"This is a free browser-based web application for editing, cropping, and signing PDF documents and images.","APP_TITLE":"PDF & Image Studio","FILE_LBL":"File: ","DESC_S1":"Import and edit your documents","DESC_S2":"Your saved documents and backups","BTN_UPLOAD":"📁 Upload","BTN_REMOVE":"❌ Remove","BTN_CROP":"✂️ Crop","BTN_SIGN":"🖊️ Sign","BTN_SHARE":"📤 Share PDF","BTN_ARCHIVE":"🗄️ Archive","BTN_BACK":"◀ Back to Editor","DROP_TITLE":"Upload PDF or Image","DROP_DESC":"Select a file from your device to edit.","BTN_SELECT":"Select File","BTN_PREV":"◀ Prev","LBL_PAGE":"Page","BTN_NEXT":"Next ▶","ARCHIVE_TITLE":"Document Archive","ARCHIVE_EMPTY_TITLE":"Archive is Empty","ARCHIVE_EMPTY_DESC":"Your processed documents are automatically saved here.","BTN_EDIT":"✏️ Edit","CROP_TITLE":"✂️ Free Perspective Crop","CROP_DESC":"8 handles: 4 corners move independently, 4 edges stretch their respective sides.","BTN_FULL":"Full Page","BTN_CANCEL":"Cancel","BTN_APPLYING":"Applying...","BTN_APPLY_CROP":"Apply Crop","SIGN_TITLE":"🖋️ Add Signature","SIGN_SAVED":"Saved Signatures","BTN_PASTE":"📌 Paste","SIGN_DRAW":"Draw your signature below","BTN_CLEAR":"Clear","BTN_IMG_UPLOAD":"Upload Image","BTN_SAVE_SIGN":"Save and Add","MSG_LOADING_ARCHIVE":"Loading archive...","MSG_ERR_ARCHIVE":"Error loading archive.","MSG_READING_PDF":"Reading PDF Document...","MSG_CONVERTING_PAGE":"Converting page {i} / {n}...","MSG_PROCESSING_IMG":"Processing image...","MSG_ERR_IMG":"Could not read image.","MSG_ERR_FILE":"File error: ","MSG_CONFIRM_CLEAR":"Are you sure you want to remove the document? Changes will be lost.","MSG_CONFIRM_DEL":"Do you want to permanently delete this?","MSG_DELETING":"Deleting...","MSG_ERR_DEL":"Delete error: ","MSG_ERR_RENDER":"Could not process page.","MSG_PREP_PDF":"Preparing PDF...","MSG_PROC_PAGE":"Processing page {i} / {n}...","MSG_ERR_SHARE":"Share error: ","MSG_SAVING_PDF":"Saving to archive...","MSG_ERR_PDF":"PDF processing error: ","UNKNOWN_DOC":"Untitled_Doc","DOC_EDITED":"_edited.pdf"};
+const {useState,useRef,useEffect}=React;
+
+const DB_NAME="InvoiceLuxePdfArchive";
+const STORE_NAME="documents";
+
+function openDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(DB_NAME,1);
+    req.onupgradeneeded=e=>{
+      if(!e.target.result.objectStoreNames.contains(STORE_NAME))
+        e.target.result.createObjectStore(STORE_NAME,{keyPath:"id"});
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function saveDocToDB(doc){
+  const db=await openDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE_NAME,"readwrite");
+    tx.objectStore(STORE_NAME).put(doc);
+    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
+  });
+}
+async function getDocsFromDB(){
+  const db=await openDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE_NAME,"readonly");
+    const req=tx.objectStore(STORE_NAME).getAll();
+    req.onsuccess=()=>resolve(req.result.sort((a,b)=>b.id-a.id));
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function deleteDocFromDB(id){
+  const db=await openDB();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE_NAME,"readwrite");
+    tx.objectStore(STORE_NAME).delete(id);
+    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
+  });
+}
+
+function normalizeSignature(sig,page){
+  if(sig.unit==="pct") return sig;
+  return {...sig,unit:"pct",x:(Number(sig.x)||0)/(page.width||1)*100,y:(Number(sig.y)||0)/(page.height||1)*100,width:(Number(sig.width)||20)/(page.width||1)*100,height:(Number(sig.height)||10)/(page.height||1)*100};
+}
+
+function App(){
+  const [currentView,setCurrentView]=useState("s1");
+  const [pages,setPages]=useState([]);
+  const [currentPageIndex,setCurrentPageIndex]=useState(0);
+  const [fileName,setFileName]=useState("");
+  const [isLoading,setIsLoading]=useState(false);
+  const [loadingMsg,setLoadingMsg]=useState("");
+  const [isCropOpen,setIsCropOpen]=useState(false);
+  const [isSigModalOpen,setIsSigModalOpen]=useState(false);
+  const [savedSignatures,setSavedSignatures]=useState([]);
+  const [archivedDocs,setArchivedDocs]=useState([]);
+  const fileInputRef=useRef(null);
+
+  useEffect(()=>{if(currentView==="s2")loadArchives()},[currentView]);
+
+  async function loadArchives(){
+    setIsLoading(true);setLoadingMsg(i18n.MSG_LOADING_ARCHIVE);
+    try{setArchivedDocs(await getDocsFromDB())}
+    catch(e){alert(i18n.MSG_ERR_ARCHIVE)}
+    finally{setIsLoading(false)}
+  }
+
+  async function handleFileChange(e){
+    const file=e.target.files&&e.target.files[0];if(!file)return;
+    setFileName(file.name);
+    const isPdf=file.type==="application/pdf"||file.name.toLowerCase().endsWith(".pdf");
+    setIsLoading(true);
+    try{
+      if(isPdf){
+        setLoadingMsg(i18n.MSG_READING_PDF);
+        const pdfjs=await window.ensurePdfJs();
+        const buf=await file.arrayBuffer();
+        const pdf=await pdfjs.getDocument({data:buf}).promise;
+        const out=[];
+        for(let i=1;i<=pdf.numPages;i++){
+          setLoadingMsg(i18n.MSG_CONVERTING_PAGE.replace("{i}", i).replace("{n}", pdf.numPages));
+          const p=await pdf.getPage(i);
+          const baseVp=p.getViewport({scale:1});
+          const MAX_DIM=2200;
+          const naturalMax=Math.max(baseVp.width,baseVp.height);
+          const scale=naturalMax*2>MAX_DIM?MAX_DIM/naturalMax:2;
+          const vp=p.getViewport({scale});
+          const c=document.createElement("canvas");
+          c.width=vp.width;c.height=vp.height;
+          await p.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+          out.push({id:i,dataUrl:c.toDataURL("image/jpeg",0.92),width:vp.width,height:vp.height,signatures:[]});
+        }
+        setPages(out);setCurrentPageIndex(0);
+      }else{
+        setLoadingMsg(i18n.MSG_PROCESSING_IMG);
+        const reader=new FileReader();
+        reader.onload=ev=>{
+          const img=new Image();
+          img.onload=()=>{
+            setPages([{id:1,dataUrl:ev.target.result,width:img.naturalWidth,height:img.naturalHeight,signatures:[]}]);
+            setCurrentPageIndex(0);setIsLoading(false);
+          };
+          img.onerror=()=>{setIsLoading(false);alert(i18n.MSG_ERR_IMG)};
+          img.src=ev.target.result;
+        };
+        reader.readAsDataURL(file);return;
+      }
+    }catch(err){alert(i18n.MSG_ERR_FILE+err.message)}
+    finally{setIsLoading(false)}
+    if(fileInputRef.current)fileInputRef.current.value="";
+  }
+
+  function handleClearDocument(){
+    if(pages.length&&!confirm(i18n.MSG_CONFIRM_CLEAR))return;
+    setPages([]);setFileName("");setCurrentPageIndex(0);
+  }
+
+  async function saveCurrentToArchive(pdfDataUrl="",generatedFileName=""){
+    if(!pages.length)return;
+    const doc={id:Date.now(),fileName:generatedFileName||fileName||i18n.UNKNOWN_DOC,originalFileName:fileName||i18n.UNKNOWN_DOC,date:new Date().toLocaleString(),thumbnail:pages[0].dataUrl,pages,pdfDataUrl:pdfDataUrl||""};
+    await saveDocToDB(doc);
+  }
+
+  function handleEditArchived(doc){
+    const fixedPages=doc.pages.map(p=>({...p,signatures:(p.signatures||[]).map(s=>normalizeSignature(s,p))}));
+    setPages(fixedPages);setFileName(doc.fileName);setCurrentPageIndex(0);setCurrentView("s1");
+  }
+
+  async function handleDeleteArchived(id){
+    if(!confirm(i18n.MSG_CONFIRM_DEL))return;
+    setIsLoading(true);setLoadingMsg(i18n.MSG_DELETING);
+    try{await deleteDocFromDB(id);await loadArchives()}catch(e){alert(i18n.MSG_ERR_DEL+e.message)}
+    finally{setIsLoading(false)}
+  }
+
+  function placeSignatureOnPage(dataUrl){
+    setPages(prev=>prev.map((p,i)=>{
+      if(i!==currentPageIndex)return p;
+      return {...p,signatures:[...(p.signatures||[]),{id:Date.now()+Math.random(),imageSrc:dataUrl,x:5,y:5,width:30,height:14,unit:"pct"}]};
+    }));
+  }
+  function handleCreateSignature(dataUrl){
+    setSavedSignatures(prev=>[{id:Date.now(),dataUrl},...prev]);
+    placeSignatureOnPage(dataUrl);setIsSigModalOpen(false);
+  }
+  function updateSignature(id,props){
+    setPages(prev=>prev.map((p,i)=>i!==currentPageIndex?p:{...p,signatures:(p.signatures||[]).map(s=>s.id===id?{...s,...props}:s)}));
+  }
+  function deleteSignature(id){
+    setPages(prev=>prev.map((p,i)=>i===currentPageIndex?{...p,signatures:(p.signatures||[]).filter(s=>s.id!==id)}:p));
+  }
+  function handleApplyCrop(dataUrl,w,h){
+    setPages(prev=>prev.map((p,i)=>i===currentPageIndex?{...p,dataUrl,width:w,height:h,signatures:[]}:p));
+    setIsCropOpen(false);
+  }
+
+  async function flattenPage(p){
+    return new Promise((resolve,reject)=>{
+      const c=document.createElement("canvas");c.width=p.width;c.height=p.height;
+      const ctx=c.getContext("2d"),base=new Image();
+      base.onload=()=>{
+        ctx.drawImage(base,0,0,p.width,p.height);
+        const sigs=p.signatures||[];
+        if(!sigs.length){resolve(c.toDataURL("image/jpeg",0.92));return}
+        let count=0;
+        sigs.forEach(s=>{
+          const img=new Image();
+          img.onload=()=>{
+            const x=s.unit==="pct"?s.x*p.width/100:s.x,y=s.unit==="pct"?s.y*p.height/100:s.y;
+            const w=s.unit==="pct"?s.width*p.width/100:s.width,h=s.unit==="pct"?s.height*p.height/100:s.height;
+            ctx.drawImage(img,x,y,w,h);
+            if(++count===sigs.length)resolve(c.toDataURL("image/jpeg",0.92));
+          };
+          img.onerror=()=>{if(++count===sigs.length)resolve(c.toDataURL("image/jpeg",0.92))};
+          img.src=s.imageSrc;
+        });
+      };
+      base.onerror=()=>reject(new Error(i18n.MSG_ERR_RENDER));
+      base.src=p.dataUrl;
+    });
+  }
+
+  async function handleShareOrDownloadPdf(){
+    if(!pages.length)return;
+    setIsLoading(true);setLoadingMsg(i18n.MSG_PREP_PDF);
+    try{
+      const {jsPDF}=window.jspdf; let pdf=null;
+      for(let i=0;i<pages.length;i++){
+        setLoadingMsg(i18n.MSG_PROC_PAGE.replace("{i}", i+1).replace("{n}", pages.length));
+        const data=await flattenPage(pages[i]);
+        const w=pages[i].width,h=pages[i].height,o=w>h?"l":"p";
+        if(i===0)pdf=new jsPDF({orientation:o,unit:"px",format:[w,h]}); else pdf.addPage([w,h],o);
+        pdf.addImage(data,"JPEG",0,0,w,h);
+      }
+      const name=fileName?fileName.replace(/\.[^/.]+$/,"")+i18n.DOC_EDITED:"belge"+i18n.DOC_EDITED;
+      const blob=pdf.output("blob");
+      const pdfFile=new File([blob],name,{type:"application/pdf"});
+      const pdfDataUrl=await new Promise((resolve,reject)=>{
+        const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(blob);
+      });
+      if(navigator.share&&navigator.canShare&&navigator.canShare({files:[pdfFile]})){
+        setIsLoading(false);
+        try{await navigator.share({files:[pdfFile],title:i18n.TITLE,text:i18n.SEO_DESC})}
+        catch(e){if(e.name==="AbortError")return;alert(i18n.MSG_ERR_SHARE+e.message);return;}
+        setIsLoading(true);
+      }else{pdf.save(name)}
+      setLoadingMsg(i18n.MSG_SAVING_PDF);
+      await saveCurrentToArchive(pdfDataUrl,name);
+      setPages([]);setFileName("");setCurrentPageIndex(0);if(fileInputRef.current)fileInputRef.current.value="";
+    }catch(e){alert(i18n.MSG_ERR_PDF+e.message)}finally{setIsLoading(false)}
+  }
+
+  const activePage=pages[currentPageIndex];
+
+  return <div className="flex flex-col min-h-screen">
+    <header className="bg-slate-900 border-b border-slate-800 px-4 py-3 flex flex-wrap items-center justify-between gap-3 sticky top-0 z-40 shadow-lg">
+      <div className="flex items-center gap-3">
+        <div className="bg-teal-500 text-slate-950 p-2 rounded-xl font-bold text-lg shadow-md shadow-teal-500/20">✍️</div>
+        <div>
+          <h1 className="font-bold text-white text-base md:text-lg leading-snug">{i18n.APP_TITLE}</h1>
+          <p className="text-xs text-slate-400">{currentView==="s1"?(fileName?i18n.FILE_LBL+fileName:i18n.DESC_S1):i18n.DESC_S2}</p>
+        </div>
+      </div>
+      <div className="flex items-center gap-2 flex-wrap">
+        {currentView==="s1"?<>
+          <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.pdf" onChange={handleFileChange} className="hidden"/>
+          <button onClick={()=>fileInputRef.current?.click()} className="bg-slate-800 hover:bg-slate-700 text-teal-400 font-semibold px-4 py-2 rounded-xl text-xs md:text-sm transition">{i18n.BTN_UPLOAD}</button>
+          {pages.length>0&&<>
+            <button onClick={handleClearDocument} className="bg-slate-800 hover:bg-red-500/20 text-red-400 border border-slate-700 px-3 py-2 rounded-xl text-xs md:text-sm">{i18n.BTN_REMOVE}</button>
+            <button onClick={()=>setIsCropOpen(true)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-2 rounded-xl text-xs md:text-sm">{i18n.BTN_CROP}</button>
+            <button onClick={()=>setIsSigModalOpen(true)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-2 rounded-xl text-xs md:text-sm">{i18n.BTN_SIGN} {savedSignatures.length?`(${savedSignatures.length})`:""}</button>
+            <button onClick={handleShareOrDownloadPdf} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs md:text-sm shadow-md">{i18n.BTN_SHARE}</button>
+          </>}
+          <button onClick={()=>setCurrentView("s2")} className="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-xl text-xs md:text-sm shadow-md">{i18n.BTN_ARCHIVE}</button>
+        </>:<button onClick={()=>setCurrentView("s1")} className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs md:text-sm">{i18n.BTN_BACK}</button>}
+      </div>
+    </header>
+
+    {currentView==="s1"?<main className="flex-1 p-4 md:p-6 flex flex-col items-center relative overflow-auto">
+      {!pages.length?<div onClick={()=>fileInputRef.current?.click()} className="border-2 border-dashed border-slate-800 hover:border-teal-500/50 bg-slate-900/50 rounded-3xl p-8 md:p-16 text-center max-w-lg w-full cursor-pointer shadow-2xl">
+        <div className="w-16 h-16 bg-slate-800 text-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">📄</div>
+        <h3 className="text-lg font-bold text-white mb-1">{i18n.DROP_TITLE}</h3>
+        <p className="text-sm text-slate-400 mb-4">{i18n.DROP_DESC}</p>
+        <span className="inline-block bg-slate-800 text-slate-200 text-xs px-4 py-2 rounded-xl border border-slate-700">{i18n.BTN_SELECT}</span>
+      </div>:
+      <div className="flex flex-col items-center gap-4 max-w-full m-auto">
+        {pages.length>1&&<div className="bg-slate-900 border border-slate-800 rounded-2xl px-4 py-2 flex items-center gap-4 text-sm font-medium shadow-md">
+          <button disabled={!currentPageIndex} onClick={()=>setCurrentPageIndex(v=>v-1)} className="px-3 py-1 bg-slate-800 disabled:opacity-40 rounded-lg">{i18n.BTN_PREV}</button>
+          <span className="text-slate-300">{i18n.LBL_PAGE} <strong className="text-teal-400">{currentPageIndex+1}</strong> / {pages.length}</span>
+          <button disabled={currentPageIndex===pages.length-1} onClick={()=>setCurrentPageIndex(v=>v+1)} className="px-3 py-1 bg-slate-800 disabled:opacity-40 rounded-lg">{i18n.BTN_NEXT}</button>
+        </div>}
+        <div className="relative bg-slate-900/80 p-2 md:p-4 rounded-2xl border border-slate-800 shadow-2xl max-w-full overflow-auto flex items-center justify-center min-h-[400px]">
+          <DocumentViewer page={activePage} onUpdateSignature={updateSignature} onDeleteSignature={deleteSignature}/>
+        </div>
+      </div>}
+    </main>:
+    <main className="flex-1 p-4 md:p-8 w-full max-w-6xl mx-auto">
+      <div className="flex items-center gap-3 mb-6"><div className="w-10 h-10 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-xl border border-amber-500/20">🗄️</div><h2 className="text-2xl font-bold text-white">{i18n.ARCHIVE_TITLE}</h2></div>
+      {!archivedDocs.length?<div className="w-full bg-slate-900 border border-slate-800 rounded-3xl p-12 text-center"><div className="text-4xl mb-4">📭</div><h3 className="text-xl font-bold text-slate-300 mb-2">{i18n.ARCHIVE_EMPTY_TITLE}</h3><p className="text-slate-500">{i18n.ARCHIVE_EMPTY_DESC}</p></div>:
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
+        {archivedDocs.map(doc=><div key={doc.id} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col">
+          <div className="h-40 w-full bg-slate-950 p-2 flex items-center justify-center border-b border-slate-800"><img src={doc.thumbnail} className="max-h-full max-w-full object-contain rounded"/></div>
+          <div className="p-4 flex-1 flex flex-col"><h4 className="text-white font-semibold text-sm truncate mb-1">{doc.fileName}</h4><p className="text-slate-400 text-[11px] mb-4">{doc.date}</p>
+          <div className="mt-auto flex gap-2"><button onClick={()=>handleEditArchived(doc)} className="flex-1 bg-slate-800 hover:bg-teal-500/20 text-slate-300 border border-slate-700 py-1.5 rounded-lg text-xs">{i18n.BTN_EDIT}</button>{doc.pdfDataUrl&&<a href={doc.pdfDataUrl} download={doc.fileName} className="w-10 bg-blue-600/20 hover:bg-blue-600 text-blue-300 border border-blue-500/30 py-1.5 rounded-lg text-xs text-center">📄</a>}<button onClick={()=>handleDeleteArchived(doc.id)} className="w-10 bg-slate-800 hover:bg-red-500/20 text-slate-400 border border-slate-700 py-1.5 rounded-lg text-xs">🗑️</button></div></div>
+        </div>)}
+      </div>}
+    </main>}
+    {isCropOpen&&activePage&&<CropModal imageSrc={activePage.dataUrl} onApplyCrop={handleApplyCrop} onClose={()=>setIsCropOpen(false)}/>}
+    {isSigModalOpen&&<SignatureModal savedSignatures={savedSignatures} onCreate={handleCreateSignature} onUseSaved={d=>{placeSignatureOnPage(d);setIsSigModalOpen(false)}} onDeleteSaved={id=>setSavedSignatures(v=>v.filter(s=>s.id!==id))} onClose={()=>setIsSigModalOpen(false)}/>}
+    {isLoading&&<div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4"><div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mb-4"></div><p className="text-white font-semibold text-center text-sm">{loadingMsg}</p></div>}
+  </div>
+}
+
+function DocumentViewer({page,onUpdateSignature,onDeleteSignature}){
+  return <div className="document-stage"><img src={page.dataUrl} alt={i18n.APP_TITLE} className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-md pointer-events-none" draggable="false"/>
+    {(page.signatures||[]).map(sig=><InteractiveSignature key={sig.id} sig={normalizeSignature(sig,page)} page={page} onUpdate={p=>onUpdateSignature(sig.id,p)} onDelete={()=>onDeleteSignature(sig.id)}/>)}
+  </div>
+}
+
+function InteractiveSignature({sig,onUpdate,onDelete}){
+  const action=useRef(null); const [editing,setEditing]=useState(false);
+  useEffect(()=>{
+    const move=e=>{
+      const a=action.current;if(!a)return;e.preventDefault();
+      const dx=(e.clientX-a.startX)/a.rect.width*100,dy=(e.clientY-a.startY)/a.rect.height*100;
+      let x=a.x,y=a.y,w=a.w,h=a.h;
+      if(a.type==='move'){x=Math.max(-w+1,Math.min(99,a.x+dx));y=Math.max(-h+1,Math.min(99,a.y+dy));}
+      else{if(a.type.includes('e'))w=Math.max(3,Math.min(120-a.x,a.w+dx));if(a.type.includes('s'))h=Math.max(2,Math.min(120-a.y,a.h+dy));if(a.type.includes('w')){const right=a.x+a.w;x=Math.max(-120,Math.min(right-3,a.x+dx));w=right-x;}if(a.type.includes('n')){const bottom=a.y+a.h;y=Math.max(-120,Math.min(bottom-2,a.y+dy));h=bottom-y;}}
+      onUpdate({x,y,width:w,height:h,unit:'pct'});
+    };
+    const end=()=>{action.current=null};
+    window.addEventListener('pointermove',move,{passive:false});window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
+    return()=>{window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',end);};
+  },[onUpdate]);
+  const hideFrame=()=>{action.current=null;setEditing(false);};
+  const begin=(e,type)=>{e.preventDefault();e.stopPropagation();setEditing(true);const r=e.currentTarget.closest('.document-stage').getBoundingClientRect();action.current={type,startX:e.clientX,startY:e.clientY,rect:r,x:sig.x,y:sig.y,w:sig.width,h:sig.height};try{e.currentTarget.setPointerCapture?.(e.pointerId)}catch(_){}};
+  return <div className={'sig-object '+(editing?'editing':'')} style={{left:sig.x+'%',top:sig.y+'%',width:sig.width+'%',height:sig.height+'%'}} onPointerDown={e=>begin(e,'move')} onDoubleClick={()=>setEditing(true)}>
+    <img src={sig.imageSrc} alt={i18n.BTN_SIGN} className="w-full h-full object-contain pointer-events-none" draggable="false"/>
+    {editing&&<>{['nw','n','ne','e','se','s','sw','w'].map(m=><div key={m} className={'sig-handle '+m} onPointerDown={e=>begin(e,m)}/>)}<button className="sig-delete" onPointerDown={e=>e.stopPropagation()} onClick={onDelete}>✕</button><button className="sig-finish" onPointerDown={e=>{e.preventDefault();e.stopPropagation();hideFrame()}} onClick={e=>{e.stopPropagation();hideFrame()}}>✏️</button></>}
+  </div>
+}
+
+function solveHomography(src,dst){
+  const A=[], b=[];
+  for(let i=0;i<4;i++){const x=src[i].x,y=src[i].y,X=dst[i].x,Y=dst[i].y;A.push([x,y,1,0,0,0,-X*x,-X*y]);b.push(X);A.push([0,0,0,x,y,1,-Y*x,-Y*y]);b.push(Y);}
+  for(let i=0;i<8;i++){let pivot=i;for(let r=i+1;r<8;r++)if(Math.abs(A[r][i])>Math.abs(A[pivot][i]))pivot=r;[A[i],A[pivot]]=[A[pivot],A[i]];[b[i],b[pivot]]=[b[pivot],b[i]];const d=A[i][i];if(Math.abs(d)<1e-12)return null;for(let c=i;c<8;c++)A[i][c]/=d;b[i]/=d;for(let r=0;r<8;r++)if(r!==i){const f=A[r][i];if(!f)continue;for(let c=i;c<8;c++)A[r][c]-=f*A[i][c];b[r]-=f*b[i];}}return [...b,1];
+}
+function warpPerspective(img,srcPoints){
+  return new Promise(resolve=>{
+    const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+    const outW=Math.max(1,Math.round((dist(srcPoints[0],srcPoints[1])+dist(srcPoints[3],srcPoints[2]))/2)),outH=Math.max(1,Math.round((dist(srcPoints[0],srcPoints[3])+dist(srcPoints[1],srcPoints[2]))/2));
+    const scale=Math.min(1,2200/Math.max(outW,outH)),W=Math.max(1,Math.round(outW*scale)),H=Math.max(1,Math.round(outH*scale));
+    const sc=document.createElement('canvas');sc.width=img.naturalWidth;sc.height=img.naturalHeight;
+    const sctx=sc.getContext('2d',{willReadFrequently:true});sctx.drawImage(img,0,0);
+    const sd=sctx.getImageData(0,0,sc.width,sc.height).data;
+    const dst=[{x:0,y:0},{x:W,y:0},{x:W,y:H},{x:0,y:H}], h=solveHomography(dst,srcPoints);
+    if(!h){resolve(img.src);return;}
+    const out=document.createElement('canvas');out.width=W;out.height=H;
+    const octx=out.getContext('2d');octx.fillStyle='#ffffff';octx.fillRect(0,0,W,H);
+    const od=octx.createImageData(W,H), d=od.data;
+    for(let y=0;y<H;y++){for(let x=0;x<W;x++){
+      const den=h[6]*x+h[7]*y+1,sx=(h[0]*x+h[1]*y+h[2])/den,sy=(h[3]*x+h[4]*y+h[5])/den,ix=Math.round(sx),iy=Math.round(sy),di=(y*W+x)*4;
+      if(ix>=0&&ix<sc.width&&iy>=0&&iy<sc.height){const si=(iy*sc.width+ix)*4;d[di]=sd[si];d[di+1]=sd[si+1];d[di+2]=sd[si+2];d[di+3]=sd[si+3];}else d[di+3]=0;
+    }}
+    const tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;tmp.getContext('2d').putImageData(od,0,0);octx.drawImage(tmp,0,0);resolve(out.toDataURL('image/jpeg',0.92));
+  });
+}
+
+function CropModal({imageSrc,onApplyCrop,onClose}){
+  const imgRef=useRef(null),wrapRef=useRef(null),action=useRef(null);
+  const [points,setPoints]=useState({nw:{x:7,y:7},ne:{x:93,y:7},se:{x:93,y:93},sw:{x:7,y:93}});
+  const [working,setWorking]=useState(false);
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  useEffect(()=>{
+    const move=e=>{
+      const a=action.current;if(!a||!wrapRef.current)return;e.preventDefault();
+      const r=wrapRef.current.getBoundingClientRect(),dx=(e.clientX-a.startX)/r.width*100,dy=(e.clientY-a.startY)/r.height*100,s=a.startPoints;
+      setPoints(prev=>{
+        const n={nw:{...prev.nw},ne:{...prev.ne},se:{...prev.se},sw:{...prev.sw}};
+        if(a.type==='move'){
+          const minX=Math.min(...Object.values(s).map(p=>p.x)),maxX=Math.max(...Object.values(s).map(p=>p.x)),minY=Math.min(...Object.values(s).map(p=>p.y)),maxY=Math.max(...Object.values(s).map(p=>p.y)),mx=clamp(dx,-minX,100-maxX),my=clamp(dy,-minY,100-maxY);
+          for(const k of Object.keys(n)) n[k]={x:s[k].x+mx,y:s[k].y+my}; return n;
+        }
+        const k=a.type;
+        if(k==='n'){n.nw.y=clamp(s.nw.y+dy,0,s.sw.y-2);n.ne.y=clamp(s.ne.y+dy,0,s.se.y-2)}else if(k==='s'){n.sw.y=clamp(s.sw.y+dy,s.nw.y+2,100);n.se.y=clamp(s.se.y+dy,s.ne.y+2,100)}else if(k==='w'){n.nw.x=clamp(s.nw.x+dx,0,s.ne.x-2);n.sw.x=clamp(s.sw.x+dx,0,s.se.x-2)}else if(k==='e'){n.ne.x=clamp(s.ne.x+dx,s.nw.x+2,100);n.se.x=clamp(s.se.x+dx,s.sw.x+2,100)}else{
+          let minX=0,maxX=100,minY=0,maxY=100;
+          if(k==='nw'){maxX=Math.min(s.ne.x,s.sw.x)-2;maxY=Math.min(s.ne.y,s.sw.y)-2}if(k==='ne'){minX=Math.max(s.nw.x,s.se.x)+2;maxY=Math.min(s.nw.y,s.se.y)-2}if(k==='se'){minX=Math.max(s.ne.x,s.sw.x)+2;minY=Math.max(s.ne.y,s.sw.y)+2}if(k==='sw'){maxX=Math.min(s.nw.x,s.se.x)-2;minY=Math.max(s.nw.y,s.se.y)+2}
+          n[k]={x:clamp(s[k].x+dx,minX,maxX),y:clamp(s[k].y+dy,minY,maxY)};
+        } return n;
+      });
+    };
+    const end=()=>{action.current=null};
+    window.addEventListener('pointermove',move,{passive:false});window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
+    return()=>{window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',end)};
+  },[]);
+  const begin=(e,type)=>{e.preventDefault();e.stopPropagation();action.current={type,startX:e.clientX,startY:e.clientY,startPoints:{nw:{...points.nw},ne:{...points.ne},se:{...points.se},sw:{...points.sw}}};try{e.currentTarget.setPointerCapture?.(e.pointerId)}catch(_){}};
+  async function apply(){
+    const img=imgRef.current;if(!img||working)return;setWorking(true);
+    try{
+      const src=[points.nw,points.ne,points.se,points.sw].map(p=>({x:img.naturalWidth*p.x/100,y:img.naturalHeight*p.y/100}));
+      const data=await warpPerspective(img,src); const a=new Image();a.onload=()=>{onApplyCrop(data,a.naturalWidth,a.naturalHeight)};a.src=data;
+    }catch(e){alert(i18n.MSG_ERR_RENDER)}finally{setWorking(false)}
+  }
+  const poly=`${points.nw.x},${points.nw.y} ${points.ne.x},${points.ne.y} ${points.se.x},${points.se.y} ${points.sw.x},${points.sw.y}`, shade=`M0 0 H100 V100 H0 Z M${points.nw.x} ${points.nw.y} L${points.ne.x} ${points.ne.y} L${points.se.x} ${points.se.y} L${points.sw.x} ${points.sw.y} Z`, edge={n:{x:(points.nw.x+points.ne.x)/2,y:(points.nw.y+points.ne.y)/2},e:{x:(points.ne.x+points.se.x)/2,y:(points.ne.y+points.se.y)/2},s:{x:(points.sw.x+points.se.x)/2,y:(points.sw.y+points.se.y)/2},w:{x:(points.nw.x+points.sw.x)/2,y:(points.nw.y+points.sw.y)/2}};
+  return <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-3">
+    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 md:p-6 max-w-5xl w-full flex flex-col gap-4 shadow-2xl">
+      <div className="flex items-center justify-between border-b border-slate-800 pb-3"><div><h3 className="font-bold text-white text-base md:text-lg">{i18n.CROP_TITLE}</h3><p className="text-[11px] text-slate-500 mt-1">{i18n.CROP_DESC}</p></div><button onClick={onClose} className="text-slate-400 hover:text-white font-bold text-lg">✕</button></div>
+      <div className="relative overflow-auto bg-slate-950 rounded-2xl p-5 md:p-6 max-h-[70vh] flex items-center justify-center">
+        <div ref={wrapRef} className="relative inline-block leading-none select-none" style={{lineHeight:0}}>
+          <img ref={imgRef} src={imageSrc} alt={i18n.BTN_CROP} className="block max-w-full max-h-[64vh] w-auto object-contain" draggable="false"/>
+          <div className="crop-box">
+            <svg className="crop-shade-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d={shade} fill="rgba(2,6,23,.68)" fillRule="evenodd"/></svg>
+            <svg className="crop-outline-svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points={poly} fill="rgba(94,234,212,.08)" stroke="#5eead4" strokeWidth="0.8" strokeDasharray="3 2"/></svg>
+            {['nw','ne','se','sw'].map(k=><div key={k} className={'crop-handle '+k} style={{left:points[k].x+'%',top:points[k].y+'%'}} onPointerDown={e=>begin(e,k)}/>)}
+            {['n','e','s','w'].map(k=><div key={k} className={'crop-edge '+k} style={{left:edge[k].x+'%',top:edge[k].y+'%'}} onPointerDown={e=>begin(e,k)}/>)}
+            <div className="absolute inset-0 z-10" onPointerDown={e=>begin(e,'move')}/>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-between gap-2 pt-2 border-t border-slate-800"><button onClick={()=>setPoints({nw:{x:0,y:0},ne:{x:100,y:0},se:{x:100,y:100},sw:{x:0,y:100}})} className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-xl">{i18n.BTN_FULL}</button><div className="flex gap-2"><button onClick={onClose} className="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold">{i18n.BTN_CANCEL}</button><button onClick={apply} disabled={working} className="px-4 py-2 bg-teal-500 hover:bg-teal-400 disabled:opacity-50 text-slate-950 rounded-xl text-xs font-bold">{working?i18n.BTN_APPLYING:i18n.BTN_APPLY_CROP}</button></div></div>
+    </div>
+  </div>
+}
+
+function SignatureModal({savedSignatures,onCreate,onUseSaved,onDeleteSaved,onClose}){
+  const canvasRef=useRef(null),drawing=useRef(false); const [penColor,setPenColor]=useState("#000000");
+  const point=e=>{const c=canvasRef.current,r=c.getBoundingClientRect();return {x:(e.clientX-r.left)*c.width/r.width,y:(e.clientY-r.top)*c.height/r.height};};
+  const start=e=>{e.preventDefault();const c=canvasRef.current,p=point(e),ctx=c.getContext("2d");drawing.current=true;ctx.strokeStyle=penColor;ctx.lineWidth=7;ctx.lineCap="round";ctx.lineJoin="round";ctx.beginPath();ctx.moveTo(p.x,p.y);c.setPointerCapture?.(e.pointerId);};
+  const draw=e=>{if(!drawing.current)return;e.preventDefault();const p=point(e),ctx=canvasRef.current.getContext("2d");ctx.lineTo(p.x,p.y);ctx.stroke();};
+  const stop=()=>{drawing.current=false};
+  return <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-3">
+    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 md:p-6 max-w-xl w-full shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4"><h3 className="font-bold text-white">{i18n.SIGN_TITLE}</h3><button onClick={onClose} className="text-slate-400 text-lg">✕</button></div>
+      {savedSignatures.length>0&&<div className="mb-4"><p className="text-xs font-semibold text-slate-400 mb-2">{i18n.SIGN_SAVED}</p><div className="flex flex-wrap gap-2">
+        {savedSignatures.map(s=><div key={s.id} className="relative bg-white rounded-xl p-1.5 border-2 border-slate-700"><img src={s.dataUrl} className="h-14 w-24 object-contain"/><button onClick={()=>onUseSaved(s.dataUrl)} className="absolute inset-0 rounded-xl bg-teal-500/80 text-slate-950 font-bold text-xs">{i18n.BTN_PASTE}</button><button onClick={()=>onDeleteSaved(s.id)} className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 text-white rounded-full text-[10px]">✕</button></div>)}
+      </div></div>}
+      <p className="text-xs font-semibold text-slate-400 mb-2">{i18n.SIGN_DRAW}</p>
+      <div className="bg-white rounded-2xl p-1 shadow-inner"><canvas ref={canvasRef} width="900" height="400" className="block w-full h-auto aspect-[9/4] rounded-xl touch-none cursor-crosshair" onPointerDown={start} onPointerMove={draw} onPointerUp={stop} onPointerCancel={stop} onPointerLeave={stop}/></div>
+      <div className="flex items-center justify-between flex-wrap gap-2 mt-3">
+        <div className="flex gap-2">{["#000000","#0f172a","#1d4ed8","#dc2626"].map(c=><button key={c} onClick={()=>setPenColor(c)} style={{background:c}} className={"w-8 h-8 rounded-full border-2 "+(penColor===c?"border-teal-400 scale-110":"border-transparent")}/>)}</div>
+        <div className="flex gap-2"><button onClick={()=>canvasRef.current.getContext("2d").clearRect(0,0,900,400)} className="px-3 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs">{i18n.BTN_CLEAR}</button><label className="px-3 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs cursor-pointer">{i18n.BTN_IMG_UPLOAD}<input type="file" accept="image/*" onChange={e=>{const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=ev=>onCreate(ev.target.result);r.readAsDataURL(f);}} className="hidden"/></label></div>
+      </div>
+      <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-slate-800"><button onClick={onClose} className="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold">{i18n.BTN_CANCEL}</button><button onClick={()=>onCreate(canvasRef.current.toDataURL("image/png"))} className="px-5 py-2 bg-teal-500 text-slate-950 rounded-xl text-xs font-bold">{i18n.BTN_SAVE_SIGN}</button></div>
+    </div>
+  </div>
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

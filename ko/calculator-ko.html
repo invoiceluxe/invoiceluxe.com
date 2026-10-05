@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>무료 부가세 계산기 – Easy Mode & 키패드 | InvoiceLuxe 웹앱</title>
+<meta name="keywords" content="부가세 계산기, 무료 부가세, VAT 계산기, 부가세 제거">
+<meta name="robots" content="index, follow">
+<meta name="application-name" content="InvoiceLuxe PRO">
+<meta name="description" content="무료 한국 부가세 계산기. Easy Mode와 클래식 계산기. 10% 부가세 추가/제거. InvoiceLuxe 무료 웹앱.">
+<link rel="canonical" href="https://invoiceluxe.com/calculator-ko.html">
+<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/calculator-en-us.html">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/calculator-en-ca.html">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/calculator-da.html">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/calculator-fi.html">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/calculator-ko.html">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/calculator-no.html">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/calculator-pt-br.html">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/calculator-se.html">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/calculator-en-us.html">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="InvoiceLuxe">
+<meta property="og:title" content="무료 부가세 계산기 – Easy Mode & 키패드 | InvoiceLuxe 웹앱">
+<meta property="og:description" content="무료 한국 부가세 계산기. Easy Mode와 클래식 계산기. 10% 부가세 추가/제거. InvoiceLuxe 무료 웹앱.">
+<meta property="og:url" content="https://invoiceluxe.com/calculator-ko.html">
+<meta name="twitter:card" content="summary">
+
+<!-- Structured data: web app -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "InvoiceLuxe 무료 부가세 계산기",
+  "url": "https://invoiceluxe.com/calculator-ko.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "browserRequirements": "Requires JavaScript",
+  "description": "Easy Mode와 키패드가 있는 무료 부가세 계산 웹앱.",
+  "inLanguage": "ko",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Easy Mode",
+    "Classic calculator",
+    "Add tax",
+    "Remove tax",
+    "Custom rates"
+  ]
+}
+</script>
+
+<!-- Structured data: FAQ (matches the visible FAQ section) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "10% 부가세 제거 방법?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1.10으로 나눕니다. 예: 110,000 ÷ 1.10 = 100,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "한국 표준 세율?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "일반 부가세 10%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Easy Mode와 계산기 차이?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Easy Mode는 단계별, 계산기는 전체 키패드."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "무료인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 브라우저 웹앱, 가입 불필요."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    :root {
+        --paper: #F4F6F9;
+        --panel: #FFFFFF;
+        --ink: #0B1F3A;
+        --ink-2: #14294A;
+        --text: #1E293B;
+        --muted: #64748B;
+        --line: #E1E6EE;
+        --primary: #1D4ED8;
+        --primary-dark: #1739A6;
+        --gold: #B98A2E;
+        --add: #1D4ED8;
+        --remove: #7C5A12;
+        --chip-bg: #EEF1F6;
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    [hidden] { display: none !important; }
+
+    body {
+        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background-color: var(--paper);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; }
+    }
+
+    .app-view {
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .topbar {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: clamp(6px, 1.6vh, 10px) 16px;
+        background: rgba(255,255,255,0.94);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        flex-shrink: 0;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 13.5px;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        min-width: 0;
+        white-space: nowrap;
+    }
+    .brand .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        flex-shrink: 0;
+    }
+    .back-btn {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 15px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top-actions { display: flex; align-items: center; gap: 6px; }
+
+    #lang-pill {
+        display: flex; align-items: center; gap: 5px;
+        background: #fff; border: 1px solid var(--line);
+        border-radius: 20px; padding: 3px 9px; cursor: pointer;
+        font-family: inherit;
+    }
+
+    .mode-pill {
+        display: flex; align-items: center; gap: 5px;
+        background: #fff; border: 1px solid var(--line);
+        border-radius: 20px; padding: 4px 10px; cursor: pointer;
+        font-family: inherit; font-size: 11px; font-weight: 600;
+        color: var(--primary);
+    }
+    .mode-pill i { font-size: 11px; }
+
+    .main {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(4px, 1vh, 10px) 14px env(safe-area-inset-bottom, 4px) 14px;
+        overflow: hidden;
+    }
+
+    /* ---------- Shared pane layout (chooser / easy mode) ---------- */
+    .pane {
+        width: 100%;
+        max-width: 460px;
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        scrollbar-width: none;
+    }
+    .pane::-webkit-scrollbar { display: none; }
+    .pane-inner {
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 0;
+    }
+    .pane-title {
+        font-size: 24px;
+        line-height: 1.2;
+        margin: 0 0 6px;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+    }
+    .pane-title.sm { font-size: 20px; margin-bottom: 4px; }
+    .pane-sub { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    /* ---------- Chooser ---------- */
+    .region-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .region-label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+    .seg {
+        display: inline-grid; grid-auto-flow: column;
+        background: var(--chip-bg); border-radius: 8px; padding: 2px;
+    }
+    .seg button {
+        border: none; background: transparent;
+        font-family: inherit; font-size: 12px; font-weight: 600;
+        color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+    .choice-card {
+        display: flex; align-items: center; gap: 14px;
+        width: 100%; text-align: left;
+        background: var(--panel);
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        cursor: pointer;
+        font-family: inherit; color: var(--text);
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .choice-card:hover { border-color: var(--primary); box-shadow: 0 4px 14px rgba(29,78,216,0.10); }
+    .choice-icon {
+        flex: 0 0 44px; height: 44px; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 18px; background: var(--ink); color: #fff;
+    }
+    .choice-card.calc .choice-icon { background: var(--chip-bg); color: var(--primary); }
+    .choice-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .choice-text strong { font-size: 16px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+    .choice-text > span { font-size: 13px; color: var(--muted); line-height: 1.45; }
+    .choice-go { color: var(--muted); font-size: 13px; }
+    .badge {
+        font-size: 10.5px; font-weight: 600; color: var(--gold);
+        background: rgba(185,138,46,0.12); border-radius: 20px; padding: 2px 8px;
+    }
+    .guide-link {
+        align-self: center; display: inline-flex; align-items: center; gap: 6px;
+        font-size: 13px; font-weight: 600; color: var(--primary);
+        text-decoration: none; padding: 6px;
+    }
+
+    /* ---------- Easy mode ---------- */
+    .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 12px 14px;
+        display: flex; flex-direction: column; gap: 10px;
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+    }
+    .step-head { display: flex; align-items: center; gap: 10px; }
+    .step-head h3 { margin: 0; font-size: 14.5px; color: var(--ink); }
+    .step-num {
+        width: 22px; height: 22px; border-radius: 50%;
+        background: var(--ink); color: #fff; font-size: 12px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .seg-big { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .seg-big button {
+        border: 1.5px solid var(--line); background: var(--chip-bg);
+        border-radius: var(--radius-sm); padding: 10px 8px;
+        font-family: inherit; font-size: 13.5px; font-weight: 600;
+        color: var(--muted); cursor: pointer;
+    }
+    .seg-big button[aria-checked="true"] { color: #fff; border-color: transparent; }
+    .seg-big button[data-e="add"][aria-checked="true"] { background: var(--add); }
+    .seg-big button[data-e="remove"][aria-checked="true"] { background: var(--remove); }
+    .desc { margin: 0; font-size: 13.5px; color: var(--text); line-height: 1.5; }
+    .hint { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+    .field-label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+
+    .amount-row { display: flex; gap: 8px; }
+    .amount-row select {
+        font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+        background: var(--chip-bg); border: 1.5px solid var(--line);
+        border-radius: var(--radius-sm); padding: 0 8px;
+    }
+    .amount-row input {
+        flex: 1; min-width: 0;
+        font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600;
+        color: var(--ink); background: #fff;
+        border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+        padding: 10px 12px; outline: none;
+    }
+    .amount-row input:focus { border-color: var(--primary); }
+
+    .rchips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rchip {
+        flex: 1 1 0; min-width: 56px;
+        display: flex; flex-direction: column; align-items: center; gap: 1px;
+        border: 1.5px solid var(--line); background: var(--chip-bg);
+        border-radius: var(--radius-sm); padding: 8px 6px;
+        font-family: 'IBM Plex Mono', monospace; color: var(--ink); cursor: pointer;
+    }
+    .rchip b { font-size: 15px; }
+    .rchip small { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; color: var(--muted); }
+    .rchip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .rchip.active small { color: #B9C6DD; }
+
+    .other-rate { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+    .other-rate input {
+        width: 76px; text-align: center;
+        font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 16px;
+        padding: 6px; border: 1.5px solid var(--line); border-radius: 6px;
+        background: var(--chip-bg); color: var(--ink); outline: none;
+    }
+    .other-rate input:focus { border-color: var(--primary); }
+
+    .result {
+        background: var(--ink); color: #F4F6F9;
+        border-radius: var(--radius-md); padding: 16px 18px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+    }
+    .result-empty { font-size: 13.5px; color: #B9C6DD; line-height: 1.5; }
+    .res-key { display: flex; flex-direction: column; gap: 2px; }
+    .res-key span { font-size: 12.5px; color: #93A2BD; font-weight: 600; }
+    .res-key strong {
+        font-family: 'IBM Plex Mono', monospace; font-weight: 600;
+        font-size: clamp(28px, 9vw, 36px); letter-spacing: -0.01em; word-break: break-all;
+    }
+    .res-sentence { margin: 10px 0 0; font-size: 13.5px; line-height: 1.55; color: #DCE3EE; }
+    .res-rows {
+        margin-top: 12px; padding-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.12);
+        display: flex; flex-direction: column; gap: 5px;
+    }
+    .res-rows > div { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: #B9C6DD; }
+    .res-rows b { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #DCE3EE; }
+    .res-rows .tax b { color: #7DA3F5; }
+    .result.is-remove .res-rows .tax b { color: #D8B25E; }
+    .res-rows .is-key, .res-rows .is-key b { color: #fff; font-weight: 700; }
+    .res-warn {
+        margin-top: 12px; padding: 10px 12px; border-radius: var(--radius-sm);
+        background: rgba(216,178,94,0.14); color: #F1DFAE;
+        font-size: 12.5px; line-height: 1.5;
+    }
+    .link-btn {
+        align-self: center; background: none; border: none;
+        font-family: inherit; font-size: 13px; font-weight: 600;
+        color: var(--primary); cursor: pointer; padding: 6px;
+    }
+
+    /* ---------- Classic calculator (unchanged) ---------- */
+    .console {
+        width: 100%;
+        max-width: 460px;
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(6px, 1.6vh, 10px);
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+    .console::-webkit-scrollbar { display: none; }
+
+    .settings-bar {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: clamp(6px, 1.4vh, 9px) 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+        flex-shrink: 0;
+    }
+
+    .settings-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .rate-box {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    input#vatRate {
+        width: 46px;
+        text-align: center;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 600;
+        font-size: 13.5px;
+        padding: 3px;
+        border: 1.5px solid var(--line);
+        border-radius: 6px;
+        outline: none;
+        color: var(--ink);
+        background: var(--chip-bg);
+    }
+    input#vatRate:focus { border-color: var(--primary); }
+    .rate-box span { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+    .quick-rates { display: flex; gap: 5px; }
+    .chip {
+        border: 1.5px solid var(--line);
+        background: var(--chip-bg);
+        color: var(--muted);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+    .chip:hover { border-color: var(--primary); color: var(--primary); }
+    .chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+    .mode-toggle {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--chip-bg);
+        border-radius: 6px;
+        padding: 2px;
+    }
+    .mode-toggle .slider {
+        position: absolute;
+        top: 2px; bottom: 2px; left: 2px;
+        width: calc(50% - 2px);
+        border-radius: 4px;
+        background: var(--add);
+        transition: transform 0.2s cubic-bezier(.4,0,.2,1);
+        z-index: 0;
+    }
+    .mode-toggle.mode-remove .slider { transform: translateX(100%); background: var(--remove); }
+    .mode-toggle button {
+        position: relative; z-index: 1;
+        border: none; background: transparent;
+        padding: 5px 4px;
+        font-family: inherit; font-size: 11px; font-weight: 600;
+        color: var(--muted); cursor: pointer; border-radius: 4px;
+        transition: color 0.2s ease;
+    }
+    .mode-toggle.mode-add button[data-mode="add"],
+    .mode-toggle.mode-remove button[data-mode="remove"] { color: #fff; }
+
+    .display {
+        background: var(--ink);
+        color: #F4F6F9;
+        padding: clamp(16px, 3.4vh, 22px) 18px;
+        border-radius: var(--radius-md);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-shrink: 0;
+        min-height: clamp(96px, 20vh, 130px);
+        justify-content: center;
+    }
+
+    #mainDisplay {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: clamp(28px, 9.5vw, 38px);
+        font-weight: 600;
+        text-align: right;
+        word-break: break-all;
+        min-height: 42px;
+        letter-spacing: -0.01em;
+    }
+
+    #breakdown {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding-top: 6px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .breakdown-row {
+        display: flex; justify-content: space-between; align-items: baseline;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12.5px;
+    }
+    .breakdown-row .b-label {
+        color: #93A2BD; font-weight: 600;
+        text-transform: uppercase; font-size: 10.5px;
+        letter-spacing: 0.03em;
+    }
+    .breakdown-row.total .b-label,
+    .breakdown-row.total .b-val { color: #F4F6F9; font-weight: 700; font-size: 14.5px; }
+    .breakdown-row .b-val { color: #DCE3EE; }
+    .breakdown-row.vat-line .b-val { color: #7DA3F5; }
+    .mode-remove ~ .display .breakdown-row.vat-line .b-val { color: #D8B25E; }
+
+    .apply-btn {
+        border: none; color: #fff;
+        font-family: inherit; font-size: 12px; font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: clamp(7px, 1.8vh, 9px); border-radius: var(--radius-sm);
+        cursor: pointer; transition: all 0.15s ease;
+        background: var(--ink);
+        box-shadow: 0 2px 8px rgba(11,31,58,0.18);
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .apply-btn.remove-style { background: var(--remove); box-shadow: 0 2px 8px rgba(124,90,18,0.2); }
+    .apply-btn:active { transform: scale(0.98); }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    button.calc-btn {
+        padding: clamp(16px, 3.6vh, 20px) 4px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: clamp(17px, 5vw, 20px);
+        font-weight: 600;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.10s ease;
+    }
+    button.calc-btn:active { background: var(--chip-bg); transform: scale(0.96); }
+    button.calc-btn.operator { background: var(--chip-bg); color: var(--primary); font-weight: 700; }
+    button.calc-btn.action { color: var(--muted); font-size: 14.5px; font-weight: 600; font-family: inherit; }
+    button.calc-btn.equal { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
+    button.calc-btn.equal:hover { background: var(--primary-dark); }
+
+    /* ---------- SEO article ---------- */
+    .seo-section {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px 20px 60px 20px;
+    }
+    .seo-section h1 { font-size: 24px; color: var(--ink); margin-bottom: 12px; }
+    .seo-section h2 { font-size: 18px; color: var(--ink-2); margin-top: 34px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+    .seo-section h3 { font-size: 16px; color: var(--ink-2); margin: 22px 0 8px; }
+    .seo-section p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .seo-section ol, .seo-section ul { color: var(--muted); padding-left: 20px; line-height: 1.6; }
+    .seo-section li { margin-bottom: 10px; font-size: 15px; }
+    .seo-section strong { color: var(--ink); }
+    .seo-section .note { font-size: 13px; margin-top: 28px; padding: 12px 14px; background: var(--chip-bg); border-radius: var(--radius-sm); }
+    .seo-section .to-top { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none; }
+
+    .table-wrap {
+        overflow-x: auto;
+        margin: 14px 0 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--panel);
+    }
+    .seo-section table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+    .seo-section th, .seo-section td {
+        text-align: left; vertical-align: top;
+        padding: 9px 12px; border-bottom: 1px solid var(--line);
+        color: var(--text);
+    }
+    .seo-section th { background: var(--chip-bg); color: var(--ink); font-weight: 600; }
+    .seo-section tbody tr:last-child td { border-bottom: none; }
+
+    [dir="rtl"] .seo-section ol, [dir="rtl"] .seo-section ul { padding-left: 0; padding-right: 20px; }
+
+    @media (max-height: 640px) {
+        .buttons { gap: 6px; }
+        button.calc-btn { padding: 12px 4px; }
+        .console { gap: 5px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="app-view" id="top">
+    <div class="topbar">
+        <a href="index.html" class="back-btn" id="backBtn" aria-label="Back" onclick="onBack(event)"><i class="fa-solid fa-chevron-left"></i></a>
+        <div class="brand">
+            <span class="dot"></span>
+            <span id="brandTitle">VAT Analysis</span>
+        </div>
+        <div class="top-actions">
+            <button type="button" class="mode-pill" id="modeSwitch" hidden onclick="switchMode()">
+                <i class="fa-solid fa-wand-magic-sparkles" id="modeSwitchIcon"></i>
+                <span id="modeSwitchLabel">Easy Mode</span>
+            </button>
+            <button type="button" id="lang-pill" onclick="openLangModal()" aria-label="Change language">
+                <span class="flag" id="pill-flag" style="font-size:13px;">🇬🇧</span>
+                <span class="code" id="pill-code" style="font-size:10px; font-weight:700; text-transform:uppercase; color:#334155;">EN</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <!-- ============ CHOOSER (English only) ============ -->
+        <section class="pane" id="paneChooser" aria-labelledby="chooserTitle">
+            <div class="pane-inner">
+                <div>
+                    <h1 class="pane-title" id="chooserTitle">VAT & Sales Tax Calculator</h1>
+                    <p class="pane-sub">Pick the way you’d like to work. You can switch at any time.</p>
+                </div>
+
+                <div class="region-row" role="group" aria-label="English version">
+                    <span class="region-label">English version</span>
+                    <div class="seg">
+                        <button type="button" data-region="us" aria-pressed="false" aria-label="US English" onclick="setRegion('us')">🇺🇸 US</button>
+                        <button type="button" data-region="uk" aria-pressed="false" aria-label="UK English" onclick="setRegion('uk')">🇬🇧 UK</button>
+                    </div>
+                </div>
+
+                <button type="button" class="choice-card easy" onclick="startMode('easy')">
+                    <span class="choice-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <span class="choice-text">
+                        <strong>Easy Mode <span class="badge" id="badgeEasy" hidden>Last used</span></strong>
+                        <span>We ask, you answer. Plain English, no tax know-how needed.</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-right choice-go"></i>
+                </button>
+
+                <button type="button" class="choice-card calc" onclick="startMode('calc')">
+                    <span class="choice-icon"><i class="fa-solid fa-calculator"></i></span>
+                    <span class="choice-text">
+                        <strong>Calculator <span class="badge" id="badgeCalc" hidden>Last used</span></strong>
+                        <span>Classic keypad with a live net, tax and total breakdown.</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-right choice-go"></i>
+                </button>
+
+                <a href="#guide" class="guide-link">Read the VAT & sales tax guide <i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <!-- ============ EASY MODE (English only) ============ -->
+        <section class="pane" id="paneEasy" hidden aria-label="Easy Mode">
+            <div class="pane-inner">
+                <div>
+                    <h2 class="pane-title sm">Easy Mode</h2>
+                    <p class="pane-sub" id="easyIntro">Answer three quick questions and we’ll do the maths.</p>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">1</span><h3 id="q1">What do you want to do?</h3></div>
+                    <div class="seg-big" role="radiogroup" aria-labelledby="q1">
+                        <button type="button" role="radio" data-e="add" aria-checked="true" id="optAdd" onclick="setEasyMode('add')">Add VAT</button>
+                        <button type="button" role="radio" data-e="remove" aria-checked="false" id="optRemove" onclick="setEasyMode('remove')">Remove VAT</button>
+                    </div>
+                    <p class="desc" id="easyDesc"></p>
+                    <p class="hint" id="easyHint"></p>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">2</span><h3>How much is it?</h3></div>
+                    <label class="field-label" for="easyAmount" id="easyAmountLabel">Price before VAT</label>
+                    <div class="amount-row">
+                        <select id="easyCurrency" aria-label="Currency" onchange="onEasyCurrency()">
+                            <option value="USD">$ USD</option>
+                            <option value="GBP">£ GBP</option>
+                            <option value="EUR">€ EUR</option>
+                        </select>
+                        <input id="easyAmount" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0.00" oninput="onEasyInput()">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">3</span><h3>Which rate applies?</h3></div>
+                    <div class="rchips" id="easyChips" role="group" aria-label="Tax rate"></div>
+                    <div class="other-rate">
+                        <label for="easyRate">Or type your own rate</label>
+                        <input id="easyRate" type="text" inputmode="decimal" autocomplete="off" oninput="onEasyRateInput()">
+                        <span>%</span>
+                    </div>
+                    <p class="hint" id="rateHint"></p>
+                </div>
+
+                <div class="result" id="easyResult" aria-live="polite">
+                    <div class="result-empty" id="resEmpty">Type an amount above and your answer will appear here.</div>
+                    <div id="resBody" hidden>
+                        <div class="res-key"><span id="resKeyLabel">Total including VAT</span><strong id="resKeyVal">0.00</strong></div>
+                        <p class="res-sentence" id="resSentence"></p>
+                        <div class="res-rows">
+                            <div id="rowNet"><span id="r1l">Price before VAT</span><b id="r1v">0.00</b></div>
+                            <div id="rowTax" class="tax"><span id="r2l">VAT</span><b id="r2v">0.00</b></div>
+                            <div id="rowGross"><span id="r3l">Total including VAT</span><b id="r3v">0.00</b></div>
+                        </div>
+                        <div class="res-warn" id="resWarn" hidden></div>
+                    </div>
+                </div>
+
+                <button type="button" class="link-btn" onclick="resetEasy()">Start over</button>
+            </div>
+        </section>
+
+        <!-- ============ CLASSIC CALCULATOR ============ -->
+        <div class="console" id="paneCalc" hidden>
+            <div class="settings-bar">
+                <div class="settings-top">
+                    <div class="rate-box">
+                        <input type="number" id="vatRate" value="20" min="0" max="100" step="any" oninput="onRateInput()" aria-label="Tax rate in percent">
+                        <span>%</span>
+                    </div>
+                    <div class="quick-rates" id="quickRates"></div>
+                </div>
+
+                <div class="mode-toggle mode-add" id="modeToggle">
+                    <div class="slider"></div>
+                    <button type="button" data-mode="add" onclick="setMode('add')" id="btnModeAdd">Add VAT</button>
+                    <button type="button" data-mode="remove" onclick="setMode('remove')" id="btnModeRemove">Remove VAT</button>
+                </div>
+            </div>
+
+            <div class="display">
+                <div id="mainDisplay">0</div>
+                <div id="breakdown">
+                    <div class="breakdown-row">
+                        <span class="b-label" id="lblRow1">Net</span>
+                        <span class="b-val" id="valRow1">0.00</span>
+                    </div>
+                    <div class="breakdown-row vat-line">
+                        <span class="b-label" id="lblRow2">VAT</span>
+                        <span class="b-val" id="valRow2">0.00</span>
+                    </div>
+                    <div class="breakdown-row total">
+                        <span class="b-label" id="lblRow3">Total</span>
+                        <span class="b-val" id="valRow3">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="apply-btn" id="applyBtn" onclick="applyVat()">Use result</button>
+
+            <div class="buttons">
+                <button class="calc-btn action" onclick="clearDisplay()">C</button>
+                <button class="calc-btn action" onclick="backspace()">⌫</button>
+                <button class="calc-btn action" onclick="calculatePercentage()">%</button>
+                <button class="calc-btn operator" onclick="appendOperator('/')">÷</button>
+
+                <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                <button class="calc-btn operator" onclick="appendOperator('*')">×</button>
+
+                <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                <button class="calc-btn operator" onclick="appendOperator('-')">-</button>
+
+                <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+
+                <button class="calc-btn" onclick="appendNumber('00')">00</button>
+                <button class="calc-btn" onclick="appendNumber('0')">0</button>
+                <button class="calc-btn" onclick="appendNumber('.')">.</button>
+                <button class="calc-btn equal" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============ SEO CONTENT ============ -->
+<article class="seo-section" id="guide">
+
+    <!-- English: full VAT & sales tax guide (US default text; UK spelling swapped in by script) -->
+    <div id="seoEn">
+        <h2>Online VAT & Sales Tax Calculator Overview</h2>
+        <p>Welcome to the InvoiceLuxe Online VAT Calculator. Designed for global freelancers, US businesses trading internationally, contractors, and corporate finance teams, this tool delivers instant, single-step calculations for Value Added Tax (VAT) and Goods & Services Tax (GST) across UK, EU, and global markets. New to VAT? Choose <strong>Easy Mode</strong> at the top of the page and we’ll guide you step by step.</p>
+
+        <h3>How to calculate VAT and US dollar (USD) equivalent amounts</h3>
+        <ul>
+            <li><strong>Add VAT:</strong> Enter any net price in USD ($), GBP (£), or EUR (€) and press “Add VAT” to calculate the VAT-inclusive gross amount.</li>
+            <li><strong>Remove VAT:</strong> Enter a gross price and press “Remove VAT” to reverse-calculate the pre-tax net amount and exact tax portion.</li>
+            <li><strong>Standard & custom rates:</strong> Preset to the UK standard rate of 20%, but easily <span class="rv" data-us="customizable" data-uk="customisable">customizable</span> for reduced rates (5%) or international rates ranging from 0% to 27%.</li>
+        </ul>
+
+        <h3>Important tax <span class="rv" data-us="math" data-uk="maths">math</span> rule</h3>
+        <p>To strip VAT from a gross price at 20%, divide the gross price by 1.20.</p>
+        <ul>
+            <li><strong>Correct calculation:</strong> <span class="cur">$</span>600 gross ÷ 1.20 = <span class="cur">$</span>500 net (<span class="cur">$</span>100 VAT).</li>
+            <li><strong>Common error:</strong> subtracting 20% from <span class="cur">$</span>600 gives <span class="cur">$</span>480, which is mathematically incorrect.</li>
+        </ul>
+
+        <h2>13 Expert VAT & Business Tax <span class="rv" data-us="Optimization" data-uk="Optimisation">Optimization</span> Tips</h2>
+        <p>Applying these 13 proven tax strategies can save cross-border and UK/US businesses thousands annually:</p>
+        <ol>
+            <li><strong><span class="rv" data-us="Cell" data-uk="Mobile">Cell</span> phone bills:</strong> Reclaim VAT on the business-use percentage of <span class="rv" data-us="cell" data-uk="mobile">cell</span> phone bills.</li>
+            <li><strong>Home office costs:</strong> Reclaim VAT on electricity, heating, broadband, and rent (where VAT is charged) proportional to business usage.</li>
+            <li><strong>Business mileage:</strong> Reclaim VAT on the fuel portion of business travel with proper mileage logs and fuel receipts.</li>
+            <li><strong>Professional subscriptions:</strong> Reclaim VAT on trade publication subscriptions, professional insurance, and industry body memberships.</li>
+            <li><strong>Car lease 50% VAT rule:</strong> While car purchases are non-reclaimable unless 100% for business, leasing permits a flat 50% VAT reclaim even with private use—effectively making 1 out of 12 lease payments free.</li>
+            <li><strong>Dedicated VAT bank account:</strong> Transfer collected VAT directly into a separate account to protect working capital and streamline quarterly filings.</li>
+            <li><strong>Pre-registration VAT claims:</strong> Newly registered entities can claim VAT on physical goods purchased in the last 4 years and service invoices from the last 6 months.</li>
+            <li><strong>Flat Rate Scheme annual review:</strong> Review flat rate suitability annually. Watch for the 16.5% limited cost trader rate, which triggers if goods cost less than 2% of total turnover.</li>
+            <li><strong>Commercial solar panel write-offs:</strong> Businesses can write off 100% of commercial solar panel costs under First Year Capital Allowances (AIA up to £1m / ~$1.31m USD) against corporate tax while earning Smart Export Guarantee (SEG) revenue for 25 years.</li>
+            <li><strong>Strategic purchase timing:</strong> Time major capital purchases strategically. A $50,000 (£50k) capital equipment spend carries $10,000 (£10k) in reclaimable VAT—missing a return deadline delays cash refunds by up to 3 months.</li>
+            <li><strong>Cash Accounting Scheme:</strong> Switching to cash accounting defers VAT liability until customer payment is received, essential for slow-cycle industries.</li>
+            <li><strong>Postponed VAT Accounting (PVA):</strong> Select PVA on customs declarations for imports to account for and reclaim import VAT on the same return, creating a net zero cash outflow at the border.</li>
+            <li><strong>Bad debt VAT reclaims:</strong> Reclaim VAT on unpaid debts after 6 months. Under Flat Rate Scheme cash basis, businesses can still claim the difference between the 20% standard rate and their flat rate percentage.</li>
+        </ol>
+
+        <h2>12 Costly Tax & VAT Mistakes to Avoid</h2>
+        <ol>
+            <li><strong>Invalid invoice claims:</strong> Card machine slips, proforma invoices, and bank statements are invalid. Valid invoices require supplier address, VAT number, date, description, net amount, tax rate, and total tax. (Simplified invoices are allowed under £250 / ~$325 inclusive.)</li>
+            <li><strong>Commingling personal & business use:</strong> Mixing personal and business expenses without applying proportional business-use ratios.</li>
+            <li><strong>Incorrect Flat Rate classifications:</strong> Applying the wrong flat rate percentage when business activities span multiple sectors.</li>
+            <li><strong>Personal use of company stock:</strong> Failing to account for output VAT when business stock or goods (e.g., building materials, baked goods) are used personally.</li>
+            <li><strong>Tax point misunderstandings:</strong> Services tax points occur on completion, invoice, or payment date. Issuing an invoice within 14 days of service completion establishes the invoice date as the tax point.</li>
+            <li><strong>Capital asset documentation gaps:</strong> Failing to keep pristine paper trails for major equipment and capital reclaims.</li>
+            <li><strong>Missing bad debt relief deadlines:</strong> Bad debt relief can be claimed after 6 months, but expires permanently after 4 years and 6 months.</li>
+            <li><strong>Unclaimed personal account purchases:</strong> Paying for business expenses out of personal accounts without retaining a valid business-named VAT invoice.</li>
+            <li><strong>Improper refund credit notes:</strong> Refunding clients without issuing a formal VAT credit note overstates total VAT liability.</li>
+            <li><strong>Staff vs. client entertainment:</strong> VAT is reclaimable on staff entertainment, but strictly non-reclaimable on client entertainment.</li>
+            <li><strong>Inadequate record retention:</strong> Failing to retain complete transactional and tax records for the required 6-year minimum.</li>
+            <li><strong>Late returns due to shortfalls:</strong> Filing late due to short-term cash flow issues triggers double penalties. Businesses should file on time and apply for a Time to Pay (TTP) arrangement.</li>
+        </ol>
+
+        <h2>Registration Rules: UK/Global VAT Thresholds vs. US Sales Tax Nexus</h2>
+        <p>Understanding mandatory registration triggers is critical for both domestic entities and international businesses expanding into US/UK/EU markets:</p>
+        <ul>
+            <li><strong>£90,000 (~$118,000 USD) rolling threshold:</strong> Mandatory UK VAT registration applies if turnover exceeds £90,000 in any rolling 12-month period (not calendar or tax year). HMRC must be notified within 30 days.</li>
+            <li><strong>The 30-day forward-looking rule:</strong> If turnover is expected to exceed £90,000 in the next 30 days alone (e.g., closing a $100k contract), immediate registration is legally required.</li>
+            <li><strong>VAT1 one-off exception form:</strong> Temporary, non-recurring sales spikes above £90,000 can be submitted for exemption using HMRC Form VAT1.</li>
+            <li><strong>US sales tax vs. global VAT structure:</strong> Unlike the UK and EU, the United States does not operate a national VAT system. Instead, US states enforce state and local sales tax (0% to 10.25%) based on economic nexus thresholds (typically $100,000 USD in sales or 200 transactions).</li>
+            <li><strong>Voluntary B2B registration:</strong> Registering voluntarily below threshold levels benefits B2B providers as input tax on equipment and operating costs can be fully reclaimed without burdening corporate clients.</li>
+        </ul>
+
+        <h2>Zero-Rated vs. Exempt Supplies: Worked Example</h2>
+        <ul>
+            <li><strong>Zero-rated (0% VAT):</strong> Food staples, books, children’s clothes, public transport, and exports. Input VAT on business expenses can be fully reclaimed.</li>
+            <li><strong>Exempt (no VAT):</strong> Financial services, insurance, health, and education. Input VAT on expenses cannot be reclaimed.</li>
+        </ul>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Metric / scenario</th><th scope="col">Company A (zero-rated / food)</th><th scope="col">Company B (exempt / finance)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th scope="row">Annual operating expenses</th><td><span class="cur">$</span>50,000 + 20% VAT (<span class="cur">$</span>10,000)</td><td><span class="cur">$</span>50,000 + 20% VAT (<span class="cur">$</span>10,000)</td></tr>
+                    <tr><th scope="row">Output tax charged to clients</th><td>0% (<span class="cur">$</span>0)</td><td>Exempt (<span class="cur">$</span>0)</td></tr>
+                    <tr><th scope="row">Input VAT reclaimable</th><td>+<span class="cur">$</span>10,000 (full reclaim)</td><td><span class="cur">$</span>0 (dead cost)</td></tr>
+                    <tr><th scope="row">Net cash advantage</th><td>+<span class="cur">$</span>10,000 reclaimed</td><td><span class="cur">$</span>0 reclaimed</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Global VAT & Sales Tax Comparison Table (USD Context)</h2>
+        <p>Comparison of standard tax rates and registration thresholds across major worldwide markets:</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th scope="col">Country & currency</th><th scope="col">Standard tax rate</th><th scope="col">Registration threshold (local & USD approx.)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>🇬🇧 United Kingdom (GBP)</td><td>20%</td><td>£90,000 (~$118,000 USD / €105k)</td></tr>
+                    <tr><td>🇺🇸 United States (USD)</td><td>No VAT (sales tax 0–10.25%)</td><td>State economic nexus (typically $100k USD)</td></tr>
+                    <tr><td>🇩🇪 Germany (EUR)</td><td>19%</td><td>€22,000 (~$24,000 USD)</td></tr>
+                    <tr><td>🇫🇷 France (EUR)</td><td>20%</td><td>€37,500 / €85,000 (~$41k – $93k USD)</td></tr>
+                    <tr><td>🇮🇪 Ireland (EUR)</td><td>23%</td><td>€40,000 / €80,000 (~$44k – $88k USD)</td></tr>
+                    <tr><td>🇳🇱 Netherlands (EUR)</td><td>21%</td><td>€20,000 (~$22,000 USD)</td></tr>
+                    <tr><td>🇪🇸 Spain (EUR)</td><td>21%</td><td>None (immediate registration)</td></tr>
+                    <tr><td>🇮🇹 Italy (EUR)</td><td>22%</td><td>€85,000 (~$93,000 USD)</td></tr>
+                    <tr><td>🇸🇪 Sweden (SEK)</td><td>25%</td><td>SEK 80,000 (~$7,800 USD)</td></tr>
+                    <tr><td>🇭🇺 Hungary (HUF)</td><td>27% (highest in the EU)</td><td>None</td></tr>
+                    <tr><td>🇱🇺 Luxembourg (EUR)</td><td>17% (lowest in the EU)</td><td>€35,000 (~$38,500 USD)</td></tr>
+                    <tr><td>🇨🇭 Switzerland (CHF)</td><td>8.1%</td><td>CHF 100,000 (~$118,000 USD)</td></tr>
+                    <tr><td>🇦🇺 Australia (AUD)</td><td>10% GST</td><td>AUD 75,000 (~$50,000 USD)</td></tr>
+                    <tr><td>🇨🇦 Canada (CAD)</td><td>5% GST (+ provincial)</td><td>CAD 30,000 (~$22,000 USD)</td></tr>
+                    <tr><td>🇦🇪 United Arab Emirates (AED)</td><td>5%</td><td>AED 375,000 (~$102,000 USD)</td></tr>
+                    <tr><td>🇸🇬 Singapore (SGD)</td><td>9% GST</td><td>SGD 1,000,000 (~$770,000 USD)</td></tr>
+                    <tr><td>🇯🇵 Japan (JPY)</td><td>10%</td><td>¥10,000,000 (~$68,000 USD)</td></tr>
+                    <tr><td>🇮🇳 India (INR)</td><td>18% GST</td><td>₹4,000,000 (~$48,000 USD)</td></tr>
+                    <tr><td>🇿🇦 South Africa (ZAR)</td><td>15%</td><td>ZAR 1,000,000 (~$56,000 USD)</td></tr>
+                    <tr><td>🇧🇷 Brazil (BRL)</td><td>~34% (combined)</td><td>Varies by jurisdiction</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Frequently Asked Questions & MTD Software Compliance</h2>
+        <h3>How do I remove 20% VAT from a price?</h3>
+        <p>Divide the VAT-inclusive price by 1.20. For example, 600 ÷ 1.20 = 500, so 100 of the total is VAT. Subtracting 20% from 600 gives 480, which is incorrect.</p>
+        <h3>Can US businesses reclaim VAT on UK/EU expenses?</h3>
+        <p>Yes. Foreign entities can reclaim VAT incurred on eligible business expenses (e.g., trade shows, travel, software) using 13th Directive or cross-border refund mechanisms.</p>
+        <h3>How are digital exports to the EU handled?</h3>
+        <p>B2C sales of digital services to EU consumers require charging local VAT rates via the One Stop Shop (OSS) scheme. Exports of physical goods outside the UK are 0% rated.</p>
+        <h3>What software is MTD-compatible?</h3>
+        <p>Making Tax Digital (MTD) compliance requires API-compatible accounting software such as Xero, QuickBooks, FreeAgent, or Sage ($15–$50/mo).</p>
+        <h3>A short history of UK VAT</h3>
+        <p>Introduced in 1973 to replace Purchase Tax, UK VAT generates over £170 billion annually ($220b+ USD). The standard rate increased from 17.5% to 20% on <span class="rv" data-us="January 4, 2011" data-uk="4 January 2011">January 4, 2011</span>.</p>
+
+        <p class="note">This page gives general information only and is not tax, legal or financial advice. Tax rates and registration thresholds change, so check current figures with your tax authority or a qualified <span class="rv" data-us="advisor" data-uk="adviser">advisor</span> before you file or register.</p>
+        <a class="to-top" href="#top">↑ Back to the calculator</a>
+    </div>
+
+    <!-- Other languages: original short SEO block -->
+    <div id="seoBasic" hidden>
+        <h1 id="seoH1"></h1>
+        <p id="seoP1"></p>
+        <p id="seoP2"></p>
+        <h2 id="guideH2"></h2>
+        <ol id="guideList"></ol>
+    </div>
+</article>
+
+<!-- LANGUAGE MODAL -->
+<div id="language-modal" style="position:fixed; inset:0; background:rgba(11,31,58,0.45); backdrop-filter:blur(4px); z-index:20000; display:none; flex-direction:column; justify-content:flex-end;">
+  <div style="background:#fff; border-radius:22px 22px 0 0; display:flex; flex-direction:column; max-height:85vh;">
+    <div style="border-bottom:1px solid #E1E6EE; padding:18px 20px; display:flex; align-items:center; justify-content:space-between;">
+      <div style="font-size:14px; font-weight:700; color:#0B1F3A; text-transform:uppercase; letter-spacing:0.03em;" id="lm-title">Select Language</div>
+      <button onclick="closeLangModal()" aria-label="Close" style="width:32px; height:32px; border-radius:50%; background:#EEF1F6; border:none; color:#0B1F3A; font-size:14px; cursor:pointer;">✕</button>
+    </div>
+    <div style="flex:1; overflow-y:auto; padding:16px 20px;"><div id="language-list"></div></div>
+  </div>
+</div>
+
+<script>
+const LANGS = [
+  { code:'es', flag:'🇪🇸', name:'Español', dir:'ltr' },
+  { code:'en', flag:'🇬🇧', name:'English', dir:'ltr' },
+  { code:'tr', flag:'🇹🇷', name:'Türkçe', dir:'ltr' },
+  { code:'de', flag:'🇩🇪', name:'Deutsch', dir:'ltr' },
+  { code:'fr', flag:'🇫🇷', name:'Français', dir:'ltr' },
+  { code:'it', flag:'🇮🇹', name:'Italiano', dir:'ltr' },
+  { code:'pt', flag:'🇵🇹', name:'Português', dir:'ltr' },
+  { code:'nl', flag:'🇳🇱', name:'Nederlands', dir:'ltr' },
+  { code:'hi', flag:'🇮🇳', name:'हिन्दी', dir:'ltr' },
+  { code:'ru', flag:'🇷🇺', name:'Русский', dir:'ltr' },
+  { code:'ar', flag:'🇸🇦', name:'العربية', dir:'rtl' },
+  { code:'zh', flag:'🇨🇳', name:'简体中文', dir:'ltr' },
+  { code:'ja', flag:'🇯🇵', name:'日本語', dir:'ltr' }
+];
+
+const T = {
+  es:{
+    title:'Análisis IVA', modeAdd:'Añadir IVA', modeRemove:'Quitar IVA', net:'Base neta', vat:'Importe IVA', total:'Total', apply:'Usar resultado', lmTitle:'Seleccionar Idioma',
+    seoH1:'Calculadora de IVA Online Multilingüe',
+    seoP1:'Nuestra aplicación web de calculadora de IVA facilita el cálculo rápido de importes netos, brutos y tasas de IVA para empresas y autónomos.',
+    seoP2:'Es compatible con 13 idiomas y permite cambiar las tasas de IVA de forma totalmente personalizada.',
+    guideH2:'Guía de Uso',
+    s1Title:'Seleccionar Tasa', s1Desc:'Elija un porcentaje predeterminado (1%, 10%, 20%) o introduzca un valor personal.',
+    s2Title:'Modo de Trabajo', s2Desc:'Seleccione "Añadir IVA" para calcular el total o "Quitar IVA" para extraer la base neta.',
+    s3Title:'Introducir Importe', s3Desc:'Use el teclado numérico interactivo para escribir la cifra requerida.',
+    s4Title:'Ver Desglose', s4Desc:'Obtenga el desglose instantáneo del importe neto, cuota de IVA y total.',
+    s5Title:'Cambio de Idioma', s5Desc:'Haga clic en la bandera superior para elegir entre 13 idiomas disponibles.'
+  },
+  en:{
+    title:'VAT Analysis', modeAdd:'Add VAT', modeRemove:'Remove VAT', net:'Net amount', vat:'VAT amount', total:'Total', apply:'Use result', lmTitle:'Select Language',
+    seoH1:'Multilingual Online VAT Calculator',
+    seoP1:'Our VAT Calculator web app simplifies tax calculations for businesses and freelancers by calculating net, gross, and VAT amounts instantly.',
+    seoP2:'It features multi-language support across 13 global languages with customizable tax rates.',
+    guideH2:'User Guide',
+    s1Title:'Select Rate', s1Desc:'Choose a quick preset (1%, 10%, 20%) or enter a custom percentage.',
+    s2Title:'Select Mode', s2Desc:'Choose "Add VAT" for net-to-gross calculations or "Remove VAT" to extract net amounts.',
+    s3Title:'Enter Amount', s3Desc:'Use the built-in numeric keypad to enter values and perform arithmetic operations.',
+    s4Title:'Review Breakdown', s4Desc:'Instantly view Net, VAT, and Total amounts in real-time.',
+    s5Title:'Language Selection', s5Desc:'Click the top right pill button to switch between 13 languages.'
+  },
+  tr:{
+    title:'KDV Analizi', modeAdd:'KDV Ekle', modeRemove:'KDV Çıkar', net:'Net Tutar', vat:'KDV Tutarı', total:'Toplam', apply:'Sonucu Kullan', lmTitle:'Dil Seçin',
+    seoH1:'Çok Dilli Online KDV Hesap Makinesi',
+    seoP1:'KDV Hesap Makinesi web uygulamamız fatura ve muhasebe süreçlerinizi hızlandırarak KDV dahil ve hariç tutarları anında hesaplar.',
+    seoP2:'13 farklı dil desteği ile küresel standartlarda hızlı ve güvenilir hesaplama imkanı sunar.',
+    guideH2:'Kullanım Kılavuzu',
+    s1Title:'Oran Seçimi', s1Desc:'Hazır %1, %10, %20 butonlarını kullanabilir veya özel bir oran girebilirsiniz.',
+    s2Title:'Mod Seçimi', s2Desc:'KDV eklemek için "KDV Ekle", net tutarı bulmak için "KDV Çıkar" modunu seçin.',
+    s3Title:'Tutar Girişi', s3Desc:'Tuş takımını kullanarak hesaplamak istediğiniz rakamı ve işlemleri yazın.',
+    s4Title:'Detaylı Döküm', s4Desc:'Siyah ekran panelinde Net, KDV ve Toplam dökümünü anlık izleyin.',
+    s5Title:'Dil Değişimi', s5Desc:'Sağ üstteki bayrak butonundan 13 dilden birini seçin.'
+  },
+  de:{
+    title:'MwSt-Analyse', modeAdd:'MwSt hinzufügen', modeRemove:'MwSt entfernen', net:'Netto', vat:'MwSt', total:'Gesamt', apply:'Übernehmen', lmTitle:'Sprache wählen',
+    seoH1:'Mehrsprachiger Online-MwSt-Rechner',
+    seoP1:'Unsere MwSt-Rechner-Web-App vereinfacht Steuerberechnungen für Unternehmen und Freiberufler durch sofortige Berechnung von Netto-, Brutto- und MwSt-Beträgen.',
+    seoP2:'Sie unterstützt 13 Sprachen mit anpassbaren Steuersätzen.',
+    guideH2:'Bedienungsanleitung',
+    s1Title:'Steuersatz wählen', s1Desc:'Wählen Sie eine Voreinstellung (1%, 10%, 20%) oder geben Sie einen eigenen Wert ein.',
+    s2Title:'Modus wählen', s2Desc:'Nutzen Sie "MwSt hinzufügen" für Bruttowerte oder "MwSt entfernen" für Nettowerte.',
+    s3Title:'Betrag eingeben', s3Desc:'Geben Sie den Betrag über das Tastenfeld ein.',
+    s4Title:'Aufschlüsselung anzeigen', s4Desc:'Erhalten Sie eine sofortige Anzeige von Netto, MwSt und Gesamtbetrag.',
+    s5Title:'Sprachauswahl', s5Desc:'Wählen Sie eine der 13 verfügbaren Sprachen oben rechts.'
+  },
+  fr:{
+    title:'Analyse TVA', modeAdd:'Ajouter TVA', modeRemove:'Retirer TVA', net:'Montant HT', vat:'Montant TVA', total:'Total TTC', apply:'Utiliser', lmTitle:'Choisir la Langue',
+    seoH1:'Calculateur de TVA en Ligne Multilingue',
+    seoP1:'Notre application web de calcul de TVA simplifie la gestion fiscale en calculant instantanément les montants HT, TVA et TTC.',
+    seoP2:'Elle prend en charge 13 langues avec des taux de TVA ajustables.',
+    guideH2:'Guide d\'utilisation',
+    s1Title:'Choisir le Taux', s1Desc:'Sélectionnez un taux rapide (1%, 10%, 20%) ou saisissez un taux personnalisé.',
+    s2Title:'Mode de Calcul', s2Desc:'Choisissez "Ajouter TVA" pour obtenir le TTC ou "Retirer TVA" pour isoler le HT.',
+    s3Title:'Saisir le Montant', s3Desc:'Utilisez le pavé numérique pour composer vos chiffres.',
+    s4Title:'Consulter le Détail', s4Desc:'Visualisez en direct le détail HT, TVA et Total TTC.',
+    s5Title:'Changer de Langue', s5Desc:'Cliquez sur le bouton en haut à droite pour choisir parmi 13 langues.'
+  },
+  it:{
+    title:'Analisi IVA', modeAdd:'Aggiungi IVA', modeRemove:'Rimuovi IVA', net:'Netto', vat:'IVA', total:'Totale', apply:'Usa risultato', lmTitle:'Seleziona Lingua',
+    seoH1:'Calcolatore IVA Online Multilingue',
+    seoP1:'La nostra app calcola istantaneamente importi netti, lordi e quota IVA per aziende e liberi professionisti.',
+    seoP2:'Supporta 13 lingue e consente l\'impostazione personalizzata delle aliquote IVA.',
+    guideH2:'Guida all\'uso',
+    s1Title:'Aliquota IVA', s1Desc:'Scegli un\'aliquota rapida (1%, 10%, 20%) o inserisci una percentuale personalizzata.',
+    s2Title:'Modalità', s2Desc:'Seleziona "Aggiungi IVA" per il lordo o "Rimuovi IVA" per il netto.',
+    s3Title:'Inserimento', s3Desc:'Usa il tastierino numerico per digitare le cifre.',
+    s4Title:'Dettaglio', s4Desc:'Visualizza subito il dettaglio di Netto, IVA e Totale.',
+    s5Title:'Cambio Lingua', s5Desc:'Tocca il pulsante in alto a destra per scegliere tra 13 lingue.'
+  },
+  pt:{
+    title:'Análise IVA', modeAdd:'Adicionar IVA', modeRemove:'Remover IVA', net:'Líquido', vat:'IVA', total:'Total', apply:'Usar resultado', lmTitle:'Selecionar Idioma',
+    seoH1:'Calculadora de IVA Online Multilíngue',
+    seoP1:'Nossa aplicação web calcula instantaneamente valores líquidos, brutos e IVA para empresas e autônomos.',
+    seoP2:'Compatível com 13 idiomas e taxas de imposto personalizáveis.',
+    guideH2:'Guia de Uso',
+    s1Title:'Taxa de IVA', s1Desc:'Escolha uma taxa rápida (1%, 10%, 20%) ou insira uma porcentagem customizada.',
+    s2Title:'Modo', s2Desc:'Use "Adicionar IVA" para calcular o total ou "Remover IVA" para obter o líquido.',
+    s3Title:'Digitar Valor', s3Desc:'Utilize o teclado numérico para inserir os números.',
+    s4Title:'Detalhamento', s4Desc:'Acompanhe o detalhamento do valor líquido, imposto e total em tempo real.',
+    s5Title:'Idioma', s5Desc:'Alterne facilmente entre 13 idiomas no menu superior.'
+  },
+  nl:{
+    title:'BTW-Analyse', modeAdd:'BTW toevoegen', modeRemove:'BTW aftrekken', net:'Netto', vat:'BTW', total:'Totaal', apply:'Gebruiken', lmTitle:'Taal Selecteren',
+    seoH1:'Meertalige Online BTW Rekenmachine',
+    seoP1:'Onze BTW-calculator web-app berekent direct netto, bruto en BTW-bedragen voor ondernemers en freelancers.',
+    seoP2:'Ondersteunt 13 talen met aanpasbare BTW-tarieven.',
+    guideH2:'Handleiding',
+    s1Title:'Tarief Kizen', s1Desc:'Kies een sneltarief (1%, 10%, 20%) of voer een eigen getal in.',
+    s2Title:'Modus', s2Desc:'Kies "BTW toevoegen" voor inclusief BTW of "BTW aftrekken" voor exclusief BTW.',
+    s3Title:'Invoeren', s3Desc:'Gebruik het numerieke toetsenbord om uw bedrag in te voeren.',
+    s4Title:'Overzicht', s4Desc:'Bekijk direct het netto bedrag, BTW-bedrag en totaal.',
+    s5Title:'Taal Wijzigen', s5Desc:'Schakel over tussen 13 talen via de knop rechtsboven.'
+  },
+  hi:{
+    title:'जीएसटी विश्लेषण', modeAdd:'वैट जोड़ें', modeRemove:'वैट हटाएं', net:'शुद्ध राशि', vat:'वैट राशि', total:'कुल', apply:'परिणाम उपयोग करें', lmTitle:'भाषा चुनें',
+    seoH1:'बहुभाषी ऑनलाइन वैट/जीएसटी कैलकुलेटर',
+    seoP1:'हमारा वेब ऐप व्यवसायों के लिए शुद्ध राशि, कर और कुल मूल्य की तुरंत गणना करता है।',
+    seoP2:'यह ऐप 13 वैश्विक भाषाओं और अनुकूलन योग्य कर दरों का समर्थन करता है।',
+    guideH2:'उपयोगकर्ता गाइड',
+    s1Title:'दर चुनें', s1Desc:'त्वरित दर (1%, 10%, 20%) चुनें या अपनी दर दर्ज करें।',
+    s2Title:'मोड चुनें', s2Desc:'कर जोड़ने के लिए "वैट जोड़ें" या शुद्ध मूल्य के लिए "वैट हटाएं" चुनें।',
+    s3Title:'राशि दर्ज करें', s3Desc:'नंबर पैड का उपयोग करके राशि दर्ज करें।',
+    s4Title:'विवरण देखें', s4Desc:'शुद्ध, कर और कुल राशि का विवरण तुरंत देखें।',
+    s5Title:'भाषा बदलें', s5Desc:'13 भाषाओं में से चुनने के लिए शीर्ष बटन पर क्लिक करें।'
+  },
+  ru:{
+    title:'Анализ НДС', modeAdd:'Добавить НДС', modeRemove:'Вычесть НДС', net:'Нетто', vat:'НДС', total:'Итого', apply:'Использовать', lmTitle:'Выбрать Язык',
+    seoH1:'Многоязычный онлайн-калькулятор НДС',
+    seoP1:'Веб-приложение мгновенно рассчитывает суммы с НДС и без НДС, чистую стоимость и размер налога.',
+    seoP2:'Поддерживает 13 языков и произвольные налоговые ставки.',
+    guideH2:'Руководство пользователя',
+    s1Title:'Ставка НДС', s1Desc:'Выберите пресет (1%, 10%, 20%) или введите свою ставку.',
+    s2Title:'Режим', s2Desc:'Используйте "Добавить НДС" для расчета итого или "Вычесть НДС" для выделения нетто.',
+    s3Title:'Ввод суммы', s3Desc:'Введите сумму с помощью клавиатуры.',
+    s4Title:'Детализация', s4Desc:'Мгновенный вывод Нетто, НДС и Итоговой суммы.',
+    s5Title:'Выбор языка', s5Desc:'Переключайтесь между 13 языками в верхней панели.'
+  },
+  ar:{
+    title:'تحليل الضريبة', modeAdd:'إضافة الضريبة', modeRemove:'خصم الضريبة', net:'المبلغ الصافي', vat:'قيمة الضريبة', total:'الإجمالي', apply:'استخدام', lmTitle:'اختر اللغة',
+    seoH1:'حاسبة ضريبة القيمة المضافة متعددة اللغات',
+    seoP1:'تطبيق حاسبة الضريبة يسهل حساب المبالغ الصافية والإجمالية وقيمة الضريبة فورياً للشركات والأفراد.',
+    seoP2:'يدعم 13 لغة عالمية مع إمكانية تعديل نسبة الضريبة بحرية.',
+    guideH2:'دليل الاستخدام',
+    s1Title:'تحديد النسبة', s1Desc:'اختر نسبة سريعة (1%، 10%، 20%) أو أدخل نسبة مخصصة.',
+    s2Title:'وضع الحساب', s2Desc:'اختر "إضافة الضريبة" لحساب الإجمالي أو "خصم الضريبة" للصافي.',
+    s3Title:'إدخال المبلغ', s3Desc:'استخدم لوحة الأرقام لإدخال المبالغ والعمليات.',
+    s4Title:'عرض التفاصيل', s4Desc:'شاهد تفاصيل المبلغ الصافي، الضريبة، والإجمالي مباشرة.',
+    s5Title:'تغيير اللغة', s5Desc:'اضغط على زر اللغة أعلى الشاشة للاختيار بين 13 لغة.'
+  },
+  zh:{
+    title:'增值税分析', modeAdd:'金额加税', modeRemove:'金额去税', net:'净额', vat:'税额', total:'总计', apply:'使用结果', lmTitle:'选择语言',
+    seoH1:'多语言在线增值税计算器',
+    seoP1:'我们的增值税计算器网页应用为企业和自由职业者提供快速的含税与不含税金额计算。',
+    seoP2:'支持 13 种全球语言，并允许自定义税率。',
+    guideH2:'使用指南',
+    s1Title:'选择税率', s1Desc:'选择快捷税率（1%、10%、20%）或手动输入任意百分比。',
+    s2Title:'选择模式', s2Desc:'选择“金额加税”计算总价，或“金额去税”提取不含税净额。',
+    s3Title:'输入金额', s3Desc:'使用数字键盘输入想要计算的金额。',
+    s4Title:'查看明细', s4Desc:'实时查看净额、税额和总计金额的详细拆分。',
+    s5Title:'切换语言', s5Desc:'点击右上角按钮即可在 13 种语言之间轻松切换。'
+  },
+  ja:{
+    title:'VAT分析', modeAdd:'税を加算', modeRemove:'税を除外', net:'税抜金額', vat:'税額', total:'税込合計', apply:'結果を使用', lmTitle:'言語を選択',
+    seoH1:'多言語対応 オンラインVAT/消費税計算機',
+    seoP1:'このWebアプリは、税抜・税込金額および消費税額を瞬時に計算します。',
+    seoP2:'13の言語に対応し、税率の自由なカスタマイズが可能です。',
+    guideH2:'取扱説明書',
+    s1Title:'税率選択', s1Desc:'プリセット（1%, 10%, 20%）を選ぶか、任意の税率を入力します。',
+    s2Title:'モード選択', s2Desc:'税込を計算する場合は「税を加算」、税抜を求める場合は「税を除外」を選択。',
+    s3Title:'金額入力', s3Desc:'テンキーを使用して金額を入力します。',
+    s4Title:'内訳の確認', s4Desc:'税抜金額、税額、税込合計の内訳をリアルタイムで確認できます。',
+    s5Title:'言語切り替え', s5Desc:'右上ボタンから13言語を切り替えることができます。'
+  }
+};
+
+/* ============================================================
+   Storage helpers (safe when storage is blocked)
+   ============================================================ */
+const LS_KEY = 'elite_lang_v1';
+const LS_REGION = 'il_region_v1';
+const LS_MODE = 'il_mode_v1';
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e) { return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e) {} }
+function el(id){ return document.getElementById(id); }
+
+/* ============================================================
+   English: US / UK variants
+   ============================================================ */
+const EN_TITLE = 'Online VAT & Sales Tax Calculator – Easy Mode | InvoiceLuxe';
+
+const REGION_RATE = { uk: 20, us: 7 };
+const REGION_CURRENCY = { uk: 'GBP', us: 'USD' };
+const CALC_CHIPS = { uk: [0, 5, 20], us: [5, 7, 8.25, 10] };
+const EASY_CHIPS = {
+  uk: [ { v:20, cap:'Standard' }, { v:5, cap:'Reduced' }, { v:0, cap:'Zero-rated' } ],
+  us: [ { v:0 }, { v:5 }, { v:7 }, { v:8.25 }, { v:10 } ]
+};
+
+// Classic calculator labels per region
+const EN_REGION = {
+  uk: { title:'VAT Analysis',       modeAdd:'Add VAT',       modeRemove:'Remove VAT',       net:'Net amount',     vat:'VAT amount', total:'Total' },
+  us: { title:'Sales Tax Analysis', modeAdd:'Add sales tax', modeRemove:'Remove sales tax', net:'Pre-tax amount', vat:'Sales tax',  total:'Total' }
+};
+
+// Easy Mode wording per region
+const TERMS = {
+  uk: {
+    locale: 'en-GB', name: 'VAT',
+    add: 'Add VAT', remove: 'Remove VAT',
+    addDesc: 'You know the price before VAT. We’ll work out the total.',
+    removeDesc: 'The price already includes VAT. We’ll work out the price before VAT.',
+    hint: 'Not sure? If a receipt or quote says “inc. VAT”, the VAT is already in the price, so choose Remove VAT.',
+    amtAdd: 'Price before VAT', amtRemove: 'Total including VAT',
+    rateHint: 'The UK standard rate is 20%. Reduced-rate goods and services are charged at 5%, and zero-rated items at 0%.',
+    pre: 'Price before VAT', taxLbl: 'VAT', inc: 'Total including VAT',
+    intro: 'Answer three quick questions and we’ll do the maths.'
+  },
+  us: {
+    locale: 'en-US', name: 'sales tax',
+    add: 'Add sales tax', remove: 'Remove sales tax',
+    addDesc: 'You know the price before tax. We’ll work out the total.',
+    removeDesc: 'The price already includes tax. We’ll work out the price before tax.',
+    hint: 'Not sure? If a receipt or quote says “tax included”, the tax is already in the price, so choose Remove sales tax.',
+    amtAdd: 'Price before tax', amtRemove: 'Total including tax',
+    rateHint: 'Sales tax varies by state and city, from 0% to 10.25%. Enter your local rate if it isn’t listed.',
+    pre: 'Price before tax', taxLbl: 'Sales tax', inc: 'Total with tax',
+    intro: 'Answer three quick questions and we’ll do the math.'
+  }
+};
+
+function detectRegion(){
+  const saved = lsGet(LS_REGION);
+  if (saved === 'us' || saved === 'uk') return saved;
+  const loc = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+  return loc.indexOf('en-us') === 0 ? 'us' : 'uk';
+}
+
+let region = detectRegion();
+let activeLang = null;
+let uiMode = 'chooser';     // 'chooser' | 'easy' | 'calc'
+let prevIsEn = null;
+
+/* ============================================================
+   Language handling
+   ============================================================ */
+// Languages that have their own localized page (de/calculator.html, nl/calculator.html, ...)
+const DEDICATED = ['de', 'nl', 'it', 'fr', 'es'];
+function goDedicated(code){ location.replace(code + '/calculator.html'); }
+
+function resolveInitialLang(){
+  let code = null;
+  try { code = new URLSearchParams(location.search).get('lang'); } catch(e) {}
+  code = code ? code.toLowerCase() : null;
+  if (!LANGS.some(l => l.code === code)) code = lsGet(LS_KEY);
+  /* no dedicated redirect */
+  return LANGS.find(l => l.code === code) || LANGS.find(l => l.code === 'en');
+}
+
+function getCurrentLang(){ return activeLang || LANGS.find(l => l.code === 'en'); }
+
+function getT(code){
+  const base = T[code] || T.en;
+  return code === 'en' ? Object.assign({}, base, EN_REGION[region]) : base;
+}
+
+function syncUrl(code){
+  try {
+    const u = new URL(location.href);
+    u.searchParams.set('lang', code);
+    history.replaceState(null, '', u);
+  } catch(e) {}
+}
+
+function applyLang(lang){
+  activeLang = lang;
+  const isEn = lang.code === 'en';
+  const t = getT(lang.code);
+
+  document.documentElement.setAttribute('dir', lang.dir);
+  document.documentElement.setAttribute('lang', lang.code);
+
+  el('pill-flag').textContent = lang.flag;
+  el('pill-code').textContent = lang.code.toUpperCase();
+
+  el('brandTitle').textContent = t.title;
+  el('btnModeAdd').textContent = t.modeAdd;
+  el('btnModeRemove').textContent = t.modeRemove;
+  el('applyBtn').textContent = t.apply;
+  el('lm-title').textContent = t.lmTitle;
+
+  // SEO blocks: full guide for English, short guide for the other languages
+  el('seoEn').hidden = !isEn;
+  el('seoBasic').hidden = isEn;
+  if (isEn) {
+    document.title = EN_TITLE;
+  } else {
+    document.title = `${t.seoH1} | InvoiceLuxe`;
+    el('seoH1').textContent = t.seoH1;
+    el('seoP1').textContent = t.seoP1;
+    el('seoP2').textContent = t.seoP2;
+    el('guideH2').textContent = t.guideH2;
+    el('guideList').innerHTML = `
+      <li><strong>${t.s1Title}:</strong> ${t.s1Desc}</li>
+      <li><strong>${t.s2Title}:</strong> ${t.s2Desc}</li>
+      <li><strong>${t.s3Title}:</strong> ${t.s3Desc}</li>
+      <li><strong>${t.s4Title}:</strong> ${t.s4Desc}</li>
+      <li><strong>${t.s5Title}:</strong> ${t.s5Desc}</li>
+    `;
+  }
+
+  // Reset the classic calculator rate when switching between English and other languages
+  if (prevIsEn !== isEn) {
+    el('vatRate').value = isEn ? REGION_RATE[region] : 20;
+    prevIsEn = isEn;
+  }
+
+  renderCalcChips();
+  if (isEn) renderRegionUI();
+  showPane(uiMode || 'chooser');
+  refreshBreakdown();
+}
+
+function selectLang(code) {
+  /* no dedicated redirect */
+  const wasEn = getCurrentLang().code === 'en';
+  lsSet(LS_KEY, code);
+  syncUrl(code);
+  const lang = LANGS.find(l => l.code === code) || LANGS[0];
+  if (code === 'en' && !wasEn) uiMode = 'chooser';
+  applyLang(lang);
+  renderLangList();
+  closeLangModal();
+}
+
+function renderLangList() {
+  const current = getCurrentLang();
+  const list = el('language-list');
+  if(!list) return;
+  list.innerHTML = LANGS.map(l => `
+    <div class="language-item ${l.code === current.code ? 'selected' : ''}" onclick="selectLang('${l.code}')" style="display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:12px; border:1.5px solid #E1E6EE; margin-bottom:6px; cursor:pointer; ${l.code === current.code ? 'border-color:#1D4ED8; background:rgba(29,78,216,0.05);' : ''}">
+      <span class="flag" style="font-size:18px;">${l.flag}</span>
+      <span class="name" style="flex:1; font-size:13px; font-weight:600; color:#0B1F3A;">${l.name}</span>
+      <span class="code2" style="font-size:11.5px; font-weight:700; color:#1D4ED8; text-transform:uppercase;">${l.code.toUpperCase()}</span>
+      ${l.code === current.code ? '<i class="fa-solid fa-check" style="color:#1D4ED8; font-size:12px;"></i>' : ''}
+    </div>`).join('');
+}
+
+function openLangModal(){ renderLangList(); el('language-modal').style.display='flex'; }
+function closeLangModal(){ el('language-modal').style.display='none'; }
+
+/* ============================================================
+   Panes: chooser / easy / calculator
+   ============================================================ */
+function showPane(mode){
+  const isEn = getCurrentLang().code === 'en';
+  /* InvoiceLuxe: chooser available in all locales */
+  uiMode = mode;
+
+  el('paneChooser').hidden = mode !== 'chooser';
+  el('paneEasy').hidden = mode !== 'easy';
+  el('paneCalc').hidden = mode !== 'calc';
+
+  const sw = el('modeSwitch');
+  sw.hidden = (mode === 'chooser');
+  if (!sw.hidden) {
+    const toEasy = mode === 'calc';
+    el('modeSwitchLabel').textContent = toEasy ? 'Easy Mode' : 'Calculator';
+    el('modeSwitchIcon').className = toEasy ? 'fa-solid fa-wand-magic-sparkles' : 'fa-solid fa-calculator';
+  }
+
+  if (mode === 'chooser') refreshBadges();
+  if (mode === 'easy') refreshEasy();
+  const pane = mode === 'chooser' ? el('paneChooser') : mode === 'easy' ? el('paneEasy') : el('paneCalc');
+  pane.scrollTop = 0;
+}
+
+function startMode(mode){
+  lsSet(LS_MODE, mode);
+  showPane(mode);
+}
+
+function switchMode(){
+  startMode(uiMode === 'easy' ? 'calc' : 'easy');
+}
+
+function onBack(e){
+  if (uiMode !== 'chooser') {
+    e.preventDefault();
+    showPane('chooser');
+  } else {
+    location.href = 'index.html';
+  }
+}
+
+function refreshBadges(){
+  const last = lsGet(LS_MODE);
+  el('badgeEasy').hidden = last !== 'easy';
+  el('badgeCalc').hidden = last !== 'calc';
+}
+
+/* ============================================================
+   Region (US / UK English)
+   ============================================================ */
+function setRegion(r){
+  region = r;
+  lsSet(LS_REGION, r);
+  easy.rate = REGION_RATE[r];
+  easy.currency = REGION_CURRENCY[r];
+  el('vatRate').value = REGION_RATE[r];
+  applyLang(getCurrentLang());
+}
+
+function renderRegionUI(){
+  const tm = TERMS[region];
+
+  // Region switch
+  document.querySelectorAll('[data-region]').forEach(b => {
+    b.setAttribute('aria-pressed', b.dataset.region === region ? 'true' : 'false');
+  });
+
+  // Spelling / currency variants inside the SEO article
+  document.querySelectorAll('.rv').forEach(n => {
+    n.textContent = region === 'us' ? n.dataset.us : n.dataset.uk;
+  });
+  document.querySelectorAll('.cur').forEach(n => {
+    n.textContent = region === 'us' ? '$' : '£';
+  });
+
+  // Easy Mode wording
+  el('easyIntro').textContent = tm.intro;
+  el('optAdd').textContent = tm.add;
+  el('optRemove').textContent = tm.remove;
+  el('easyHint').textContent = tm.hint;
+  el('rateHint').textContent = tm.rateHint;
+  el('easyCurrency').value = easy.currency;
+  el('easyRate').value = isNaN(easy.rate) ? '' : fmtRate(easy.rate);
+  renderEasyChips();
+  syncEasyModeUI();
+}
+
+/* ============================================================
+   Easy Mode
+   ============================================================ */
+const easy = { mode: 'add', rate: REGION_RATE[region], currency: REGION_CURRENCY[region] };
+
+function fmtRate(r){ return String(parseFloat(Number(r).toFixed(4))); }
+function fmtDivisor(r){ return (1 + r / 100).toFixed(4).replace(/0{1,2}$/, ''); }
+
+function renderEasyChips(){
+  const list = EASY_CHIPS[region];
+  el('easyChips').innerHTML = list.map(c => `
+    <button type="button" class="rchip" data-rate="${c.v}" aria-pressed="false" onclick="setEasyRate(${c.v})">
+      <b>${c.v}%</b>${c.cap ? `<small>${c.cap}</small>` : ''}
+    </button>`).join('');
+  syncEasyChips();
+}
+
+function syncEasyChips(){
+  document.querySelectorAll('#easyChips .rchip').forEach(c => {
+    const on = parseFloat(c.dataset.rate) === easy.rate;
+    c.classList.toggle('active', on);
+    c.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+
+function syncEasyModeUI(){
+  const tm = TERMS[region];
+  const isAdd = easy.mode === 'add';
+  el('optAdd').setAttribute('aria-checked', isAdd ? 'true' : 'false');
+  el('optRemove').setAttribute('aria-checked', isAdd ? 'false' : 'true');
+  el('easyDesc').textContent = isAdd ? tm.addDesc : tm.removeDesc;
+  el('easyAmountLabel').textContent = isAdd ? tm.amtAdd : tm.amtRemove;
+}
+
+function setEasyMode(m){
+  easy.mode = m;
+  syncEasyModeUI();
+  refreshEasy();
+}
+
+function setEasyRate(v){
+  easy.rate = v;
+  el('easyRate').value = fmtRate(v);
+  syncEasyChips();
+  refreshEasy();
+}
+
+function onEasyRateInput(){
+  const inp = el('easyRate');
+  let v = inp.value.replace(',', '.').replace(/[^\d.]/g, '');
+  const i = v.indexOf('.');
+  if (i !== -1) v = v.slice(0, i + 1) + v.slice(i + 1).replace(/\./g, '').slice(0, 2);
+  v = v.slice(0, 6);
+  if (v !== inp.value) inp.value = v;
+  easy.rate = v === '' || v === '.' ? NaN : parseFloat(v);
+  syncEasyChips();
+  refreshEasy();
+}
+
+function onEasyCurrency(){
+  easy.currency = el('easyCurrency').value;
+  refreshEasy();
+}
+
+function onEasyInput(){
+  const inp = el('easyAmount');
+  let v = inp.value.trim();
+  // Accept a decimal comma ("1250,50") but treat other commas as thousands separators ("1,250.50")
+  if (v.indexOf('.') === -1 && (v.match(/,/g) || []).length === 1 && /,\d{1,2}$/.test(v)) v = v.replace(',', '.');
+  v = v.replace(/[^\d.]/g, '');
+  const i = v.indexOf('.');
+  let intPart = i === -1 ? v : v.slice(0, i);
+  let decPart = i === -1 ? '' : v.slice(i + 1).replace(/\./g, '').slice(0, 2);
+  intPart = intPart.slice(0, 12);
+  v = i === -1 ? intPart : intPart + '.' + decPart;
+  if (v !== inp.value) inp.value = v;
+  refreshEasy();
+}
+
+function refreshEasy(){
+  const tm = TERMS[region];
+  const amount = parseFloat(el('easyAmount').value);
+  const rate = easy.rate;
+  const box = el('easyResult');
+  const empty = el('resEmpty');
+  const body = el('resBody');
+
+  if (isNaN(rate) || rate < 0 || rate > 100) {
+    empty.textContent = 'Enter a rate between 0% and 100% to see your answer.';
+    empty.hidden = false; body.hidden = true; return;
+  }
+  if (isNaN(amount) || amount <= 0) {
+    empty.textContent = 'Type an amount above and your answer will appear here.';
+    empty.hidden = false; body.hidden = true; return;
+  }
+
+  // Work in whole cents so the parts always add up exactly
+  const cents = Math.round(amount * 100);
+  let net, tax, gross;
+  if (easy.mode === 'add') {
+    net = cents;
+    tax = Math.round(net * rate / 100);
+    gross = net + tax;
+  } else {
+    gross = cents;
+    net = Math.round(gross / (1 + rate / 100));
+    tax = gross - net;
+  }
+
+  const nf = new Intl.NumberFormat(tm.locale, { style: 'currency', currency: easy.currency });
+  const fmt = c => nf.format(c / 100);
+  const rs = fmtRate(rate);
+  const isAdd = easy.mode === 'add';
+
+  el('resKeyLabel').textContent = isAdd ? tm.inc : tm.pre;
+  el('resKeyVal').textContent = fmt(isAdd ? gross : net);
+
+  let sentence;
+  if (rate === 0) {
+    sentence = isAdd
+      ? `At 0% there is no ${tm.name} to add, so the total stays ${fmt(gross)}.`
+      : `At 0% there is no ${tm.name} to remove, so the price stays ${fmt(net)}.`;
+  } else if (isAdd) {
+    sentence = `${fmt(net)} + ${fmt(tax)} ${tm.name} (${rs}%) = ${fmt(gross)}`;
+  } else {
+    sentence = `${fmt(gross)} ÷ ${fmtDivisor(rate)} = ${fmt(net)}. That means ${fmt(tax)} of the total is ${tm.name}.`;
+  }
+  el('resSentence').textContent = sentence;
+
+  el('r1l').textContent = tm.pre;
+  el('r2l').textContent = `${tm.taxLbl} (${rs}%)`;
+  el('r3l').textContent = tm.inc;
+  el('r1v').textContent = fmt(net);
+  el('r2v').textContent = fmt(tax);
+  el('r3v').textContent = fmt(gross);
+  el('rowNet').classList.toggle('is-key', !isAdd);
+  el('rowGross').classList.toggle('is-key', isAdd);
+
+  const warn = el('resWarn');
+  if (!isAdd && rate > 0) {
+    const wrong = Math.round(gross * (1 - rate / 100));
+    warn.textContent = `Why divide? ${tm.name.charAt(0).toUpperCase() + tm.name.slice(1)} is worked out on the price before ${tm.name}, so simply taking ${rs}% off the total gives the wrong answer: ${fmt(gross)} minus ${rs}% is ${fmt(wrong)}, not ${fmt(net)}.`;
+    warn.hidden = false;
+  } else {
+    warn.hidden = true;
+  }
+
+  box.classList.toggle('is-remove', !isAdd);
+  empty.hidden = true;
+  body.hidden = false;
+}
+
+function resetEasy(){
+  el('easyAmount').value = '';
+  easy.mode = 'add';
+  easy.rate = REGION_RATE[region];
+  el('easyRate').value = fmtRate(easy.rate);
+  syncEasyModeUI();
+  syncEasyChips();
+  refreshEasy();
+  el('paneEasy').scrollTop = 0;
+}
+
+/* ============================================================
+   Classic calculator
+   ============================================================ */
+const mainDisplay = el('mainDisplay');
+const breakdown = el('breakdown');
+const modeToggle = el('modeToggle');
+let currentExpression = '';
+let vatMode = 'add';
+
+function renderCalcChips(){
+  const isEn = getCurrentLang().code === 'en';
+  const list = isEn ? CALC_CHIPS[region] : [1, 10, 20];
+  el('quickRates').innerHTML = list.map(v =>
+    `<button type="button" class="chip" data-rate="${v}" onclick="selectRate(${v})">${v}%</button>`
+  ).join('');
+  onRateInput();
+}
+
+function updateDisplay(value) { mainDisplay.innerText = value || '0'; }
+
+function isPlainNumber(str) {
+    return /^\d+(\.\d*)?$/.test(str) || /^\.\d*$/.test(str);
+}
+
+function formatCurrency(num) { return num.toFixed(2); }
+
+function refreshBreakdown() {
+    const lang = getCurrentLang();
+    const t = getT(lang.code);
+
+    if (!isPlainNumber(currentExpression) || currentExpression === '' || currentExpression === '.') {
+        breakdown.style.display = 'none';
+        return;
+    }
+    const value = parseFloat(currentExpression);
+    const vatRate = parseFloat(el('vatRate').value) || 0;
+    if (isNaN(value)) { breakdown.style.display = 'none'; return; }
+
+    let base, vatAmt, total;
+    if (vatMode === 'add') {
+        base = value;
+        vatAmt = base * (vatRate / 100);
+        total = base + vatAmt;
+        el('lblRow1').innerText = t.net;
+        el('lblRow2').innerText = `${t.vat} (+${vatRate}%)`;
+        el('lblRow3').innerText = t.total;
+    } else {
+        total = value;
+        base = total / (1 + (vatRate / 100));
+        vatAmt = total - base;
+        el('lblRow1').innerText = t.total;
+        el('lblRow2').innerText = `${t.vat} (-${vatRate}%)`;
+        el('lblRow3').innerText = t.net;
+    }
+
+    el('valRow1').innerText = formatCurrency(vatMode === 'add' ? base : total);
+    el('valRow2').innerText = formatCurrency(vatAmt);
+    el('valRow3').innerText = formatCurrency(vatMode === 'add' ? total : base);
+
+    breakdown.style.display = 'flex';
+}
+
+function appendNumber(num) {
+    if (currentExpression === '0') {
+        if (num === '0' || num === '00') return;
+        if (num !== '.') currentExpression = '';
+    }
+    if (num === '.') {
+        const lastBlock = currentExpression.split(/[+\-*/]/).pop();
+        if (lastBlock.includes('.')) return;
+    }
+    currentExpression += num;
+    updateDisplay(currentExpression);
+    refreshBreakdown();
+}
+
+function appendOperator(operator) {
+    if (currentExpression === '') return;
+    const lastChar = currentExpression.slice(-1);
+    if (['+', '-', '*', '/'].includes(lastChar)) {
+        currentExpression = currentExpression.slice(0, -1);
+    }
+    currentExpression += operator;
+    updateDisplay(currentExpression);
+    refreshBreakdown();
+}
+
+function clearDisplay() {
+    currentExpression = '';
+    updateDisplay('0');
+    breakdown.style.display = 'none';
+}
+
+function backspace() {
+    currentExpression = currentExpression.slice(0, -1);
+    updateDisplay(currentExpression);
+    refreshBreakdown();
+}
+
+function safeEval(expr) {
+    if (!/^[0-9+\-*/.]+$/.test(expr)) throw new Error('invalid');
+    return Function(`"use strict"; return (${expr})`)();
+}
+
+function calculatePercentage() {
+    if (currentExpression === '') return;
+    try {
+        let result = safeEval(currentExpression) / 100;
+        result = Math.round(result * 100000000) / 100000000;
+        currentExpression = result.toString();
+        updateDisplay(currentExpression);
+        refreshBreakdown();
+    } catch (e) {
+        updateDisplay('Error');
+        setTimeout(clearDisplay, 1200);
+    }
+}
+
+function calculate() {
+    if (currentExpression === '') return;
+    try {
+        let result = safeEval(currentExpression);
+        if (!isFinite(result)) throw new Error('inf');
+        result = Math.round(result * 100000000) / 100000000;
+        currentExpression = result.toString();
+        updateDisplay(currentExpression);
+        refreshBreakdown();
+    } catch (e) {
+        updateDisplay('Error');
+        setTimeout(clearDisplay, 1200);
+    }
+}
+
+function setMode(mode) {
+    vatMode = mode;
+    modeToggle.classList.toggle('mode-add', mode === 'add');
+    modeToggle.classList.toggle('mode-remove', mode === 'remove');
+    const applyBtn = el('applyBtn');
+    applyBtn.classList.toggle('remove-style', mode === 'remove');
+    refreshBreakdown();
+}
+
+function selectRate(rate) {
+    el('vatRate').value = rate;
+    document.querySelectorAll('#quickRates .chip').forEach(c => {
+        c.classList.toggle('active', parseFloat(c.dataset.rate) === rate);
+    });
+    refreshBreakdown();
+}
+
+function onRateInput() {
+    const val = parseFloat(el('vatRate').value);
+    document.querySelectorAll('#quickRates .chip').forEach(c => {
+        c.classList.toggle('active', parseFloat(c.dataset.rate) === val);
+    });
+    refreshBreakdown();
+}
+
+function applyVat() {
+    if (currentExpression === '') return;
+    calculate();
+    const value = parseFloat(currentExpression);
+    const vatRate = parseFloat(el('vatRate').value) || 0;
+    if (isNaN(value)) return;
+
+    let result;
+    if (vatMode === 'add') {
+        result = value + value * (vatRate / 100);
+    } else {
+        result = value / (1 + (vatRate / 100));
+    }
+    currentExpression = parseFloat(result.toFixed(2)).toString();
+    updateDisplay(formatCurrency(result));
+    refreshBreakdown();
+}
+
+/* ============================================================
+   Init
+   ============================================================ */
+el('easyAmount').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
+el('easyAmount').addEventListener('change', () => {
+  if (!el('resBody').hidden) el('easyResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+
+/* InvoiceLuxe dual-mode locale: ko */
+
+T['ko'] = {"title": "부가세 분석", "modeAdd": "부가세 추가", "modeRemove": "부가세 제거", "net": "공급가액", "vat": "부가세", "total": "합계", "apply": "결과 사용", "lmTitle": "언어 선택", "seoH1": "무료 온라인 부가세 계산기", "seoP1": "InvoiceLuxe 부가세 계산기는 Easy Mode와 클래식 계산기가 있는 무료 웹앱입니다.", "seoP2": "부가세 추가 또는 제거. 한국 표준 세율 10%.", "guideH2": "사용 가이드", "s1Title": "모드 선택", "s1Desc": "Easy Mode(수동) 또는 클래식 계산기.", "s2Title": "세율 선택", "s2Desc": "기본값 또는 직접 입력.", "s3Title": "금액 입력", "s3Desc": "금액을 입력하면 결과가 바로 표시됩니다.", "s4Title": "추가/제거", "s4Desc": "부가세 포함 또는 제외를 선택하세요.", "s5Title": "인보이스", "s5Desc": "PDF 인보이스는 인보이스 엔진에서 작성."};
+if (!LANGS.some(l => l.code === 'ko')) LANGS.push({code:'ko',flag:'🇰🇷',name:'ko',dir:'ltr'});
+
+(function(){
+  try { localStorage.setItem('ilx_calc_lang', 'ko'); } catch(e){}
+  try { localStorage.setItem('global_lang', 'ko'); } catch(e){}
+})();
+const __ILX_LANG = 'ko';
+const __ILX_REGION = 'uk';
+const __ILX_RATE = 10;
+region = __ILX_REGION;
+uiMode = 'chooser';
+resolveInitialLang = function() {
+  return LANGS.find(l => l.code === __ILX_LANG) || LANGS.find(l => l.code === 'en') || LANGS[0];
+};
+const _applyLang = applyLang;
+applyLang = function(lang) {
+  _applyLang(lang);
+  try {
+    const vr = document.getElementById('vatRate');
+    if (vr) vr.value = __ILX_RATE;
+    if (typeof easy !== 'undefined') {
+      easy.rate = __ILX_RATE;
+      easy.currency = 'KRW';
+      const er = document.getElementById('easyRate');
+      if (er) er.value = String(__ILX_RATE);
+      const ec = document.getElementById('easyCurrency');
+      if (ec) {
+        // ensure option exists
+        let ok = false;
+        for (let o of ec.options) if (o.value === 'KRW') ok = true;
+        if (!ok) { const o=document.createElement('option'); o.value='KRW'; o.textContent='KRW'; ec.appendChild(o); }
+        ec.value = 'KRW';
+      }
+      if (typeof renderEasyChips === 'function') renderEasyChips();
+      if (typeof syncEasyChips === 'function') syncEasyChips();
+    }
+    if (typeof onRateInput === 'function') onRateInput();
+    if (typeof renderCalcChips === 'function') renderCalcChips();
+    // Always land on chooser (two buttons) for this locale pack
+    if (typeof showPane === 'function') showPane('chooser');
+  } catch(e) { console.warn(e); }
+};
+
+applyLang(resolveInitialLang());
+</script>
+</body>
+</html>

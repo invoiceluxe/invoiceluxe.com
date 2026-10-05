@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="it" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Calendario Intelligente & Promemoria | Invoice Luxe Tools</title>
+    <meta name="description" content="Pianifica il tuo mese, aggiungi note giornaliere e ricevi notifiche istantanee per i tuoi impegni. Calendario intelligente multilingue con archiviazione locale.">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+    
+    <!-- SEO Manifest & WebApp Tags for iOS/Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Calendario Luxe">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/FFD700/000000?text=Calendar">
+    
+    <link rel="alternate" hreflang="x-default" href="https://example.com/calendar" />
+    <link rel="alternate" hreflang="tr" href="https://example.com/calendar?lang=tr" />
+    <link rel="alternate" hreflang="en" href="https://example.com/calendar?lang=en" />
+    <link rel="alternate" hreflang="nl" href="https://example.com/calendar?lang=nl" />
+    <link rel="alternate" hreflang="de" href="https://example.com/calendar?lang=de" />
+    <link rel="alternate" hreflang="fr" href="https://example.com/calendar?lang=fr" />
+    <link rel="alternate" hreflang="it" href="https://example.com/calendar?lang=it" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    
+    <!-- Google Bot Rich Snippets (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calendario Intelligente & Promemoria",
+      "description": "Strumento calendario intelligente multilingue con archiviazione locale e notifiche.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires HTML5, LocalStorage, Notification API"
+    }
+    </script>
+
+    <style>
+        :root { 
+            --bg-oak: #1e1b18; 
+            --gold-main: #FFD700; 
+            --m-black: #121212; 
+            --card-bg: #2a241f; 
+            --card-border: #42372e;
+        }
+        * { box-sizing: border-box; }
+        body { 
+            background: var(--bg-oak); 
+            color: #fff; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            margin: 0; padding: 0; 
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; 
+        }
+        
+        /* Üst Bar */
+        .top-bar { width: 100%; padding: 15px 20px; background: var(--m-black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold-main); }
+        h1 { margin: 0; color: var(--gold-main); font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn { background: var(--gold-main); color: var(--m-black); padding: 8px 15px; border-radius: 10px; text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 5px; font-size: 13px; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.95); }
+        
+        /* Dijital Saat Alanı */
+        .clock-container {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            border: 1px solid var(--gold-main);
+            border-radius: 15px;
+            padding: 10px 25px;
+            margin: 20px 0 10px 0;
+            font-family: monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--gold-main);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            letter-spacing: 2px;
+        }
+
+        /* İçerik Alanı */
+        .wrapper { width: 100%; max-width: 900px; padding: 0 15px 20px 15px; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Kare Kare Ay Seçim Grid Yapısı */
+        .months-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 10px; 
+            margin-bottom: 15px;
+        }
+        @media (max-width: 600px) {
+            .months-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .month-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            color: #ccc;
+        }
+        .month-card:hover { border-color: var(--gold-main); color: #fff; }
+        .month-card.active {
+            background: var(--gold-main);
+            color: var(--m-black);
+            border-color: var(--gold-main);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Ana Takvim Kartı */
+        .calendar-card { background: var(--card-bg); border: 2px solid var(--gold-main); border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        
+        .current-month-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--gold-main);
+            letter-spacing: 1px;
+        }
+
+        /* Günler Alanı */
+        .day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .day-name { text-align: center; font-size: 11px; color: var(--gold-main); font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+        .day { padding: 12px 5px; background: #121212; border-radius: 8px; text-align: center; cursor: pointer; font-size: 14px; border: 2px solid transparent; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+        .day:hover { border-color: var(--gold-main); }
+        .day.selected { border-color: var(--gold-main); background: #333; }
+        .day.has-note { background: #0056b3; color: white; font-weight: bold; }
+        .day.today { border: 2px solid #fff; }
+        
+        /* Not Alanı */
+        .note-section { margin-top: 20px; border-top: 1px dashed #444; padding-top: 15px; }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 10px; border: 1px solid #444; background: #000; color: #fff; font-size: 14px; outline: none; resize: none; margin-bottom: 10px; }
+        textarea:focus { border-color: var(--gold-main); }
+        
+        /* Butonlar Grubu */
+        .btn-group { display: flex; gap: 8px; margin-bottom: 10px; }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 14px; font-weight: 900; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+        .btn:active { transform: scale(0.98); }
+        .btn-save { background: var(--gold-main); color: var(--m-black); }
+        .btn-delete { background: #dc2626; color: #fff; }
+        .btn-notify { background: #1a1510; border: 1px solid var(--gold-main); color: var(--gold-main); margin-bottom: 10px;}
+
+        /* PWA Ana Ekrana Ekleme Butonu */
+        .btn-pwa {
+            background: linear-gradient(135deg, #FFD700, #ffa500);
+            color: #000;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+        }
+
+        /* SEO Dostu Kullanım Kılavuzu */
+        .guide-section {
+            background: #1a1510;
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .guide-title {
+            font-size: 14px;
+            color: var(--gold-main);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .guide-content {
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-top: 10px;
+            display: block;
+        }
+        .guide-content ul { margin: 5px 0; padding-left: 20px; }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <h1 id="L_TITLE">SMART CALENDAR</h1>
+        <a href="index.html" class="back-btn">
+            <i class="material-symbols-rounded" style="font-size: 18px;">home</i>
+            <span id="L_BACK">MAIN MENU</span>
+        </a>
+    </header>
+
+    <!-- Canlı Dijital Saat -->
+    <div class="clock-container" id="digital-clock">00:00:00</div>
+
+    <main class="wrapper">
+        
+        <!-- Kare Kare Dizili Ay Seçim Alanı -->
+        <section class="months-grid" id="months-shortcut-grid"></section>
+
+        <!-- Ana Takvim Kartı -->
+        <article class="calendar-card">
+            <div class="current-month-title" id="month-display">---</div>
+            <section class="day-grid" id="calendar-grid"></section>
+            
+            <section class="note-section">
+                <div id="selected-date-label" style="font-size: 12px; color: var(--gold-main); margin-bottom: 8px; font-weight: bold; text-align: center;"></div>
+                <textarea id="note-input"></textarea>
+                
+                <div class="btn-group">
+                    <button class="btn btn-save" onclick="saveNote()">
+                        <i class="material-symbols-rounded">save</i> <span id="L_SAVE">SAVE NOTE</span>
+                    </button>
+                    <button id="btn-delete-container" class="btn btn-delete" onclick="deleteNote()" style="display: none;">
+                        <i class="material-symbols-rounded">delete</i> <span id="L_DELETE">DELETE</span>
+                    </button>
+                </div>
+                
+                <button class="btn btn-notify" onclick="enableNotifications()">
+                    <i class="material-symbols-rounded">notifications_active</i> <span id="L_NOTIFY">ENABLE ALERTS</span>
+                </button>
+
+                <!-- Ana Ekrana Ekle Butonu (Logolu PWA) -->
+                <button class="btn btn-pwa" onclick="addToHomeScreen()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;">
+                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                    </svg>
+                    <span id="L_ADD_HOME">ADD TO HOME SCREEN</span>
+                </button>
+            </section>
+        </article>
+
+        <!-- SEO için Arama Motoru Dostu Kullanım Kılavuzu -->
+        <section class="guide-section" aria-label="User Manual">
+            <div class="guide-title" onclick="toggleGuide()">
+                <i class="material-symbols-rounded">help</i> <span id="L_GUIDE_TITLE">HOW TO USE?</span>
+            </div>
+            <div class="guide-content" id="guide-content">
+                <p id="L_GUIDE_P1">Welcome to the smart notification calendar tool. You can plan your workflow easily using this panel.</p>
+                <ul id="L_GUIDE_LIST">
+                    <li>Select a month from the top square grid layouts.</li>
+                    <li>Click on a day, write your schedule, and hit save note.</li>
+                    <li>Enable system web alerts to receive desktop and phone notification updates.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+<script>
+    // 6 Dilli Gelişmiş Sözlük (PWA ve Kılavuz Terimleri Eklendi)
+    const dict = {
+        tr: { 
+            title: "AKILLI TAKVİM", back: "ANA MENÜ", save: "NOTU KAYDET", delete: "SİL", notify: "BİLDİRİMLERİ AÇ", 
+            placeholder: "Bu gün için bir not yazın...", selectAlert: "Lütfen önce takvimden bir gün seçin!", 
+            addHome: "ANA EKRANA EKLE", guideTitle: "KULLANIM KILAVUZU",
+            guideP1: "Akıllı hatırlatıcı takvim paneline hoş geldiniz. Bu aracı kullanarak iş planlarınızı kolayca yönetebilirsiniz:",
+            guideList: "<li>Üstteki kare menüden dilediğiniz ayı hızlıca seçebilirsiniz.</li><li>Takvimden bir güne tıklayıp notunuzu yazıp kaydedebilirsiniz.</li><li>Bildirimleri açarak günlük hatırlatıcıları canlı uyarı olarak alabilirsiniz.</li>",
+            pwaAlert: "Android için tarayıcı menüsünden 'Ana ekrana ekle' seçeneğini kullanın. iOS için 'Paylaş' butonuna basıp 'Ana Ekrana Ekle' deyin.",
+            days: ["PZ", "PT", "SA", "ÇA", "PE", "CU", "CT"],
+            months: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+        },
+        en: { 
+            title: "SMART CALENDAR", back: "MAIN MENU", save: "SAVE NOTE", delete: "DELETE", notify: "ENABLE ALERTS", 
+            placeholder: "Write a note for this day...", selectAlert: "Please select a day first!", 
+            addHome: "ADD TO HOME SCREEN", guideTitle: "USER MANUAL",
+            guideP1: "Welcome to the smart calendar panel. You can easily manage your schedules and business tasks:",
+            guideList: "<li>Quickly select any month using the square layouts at the top.</li><li>Click on a specific day, type your note, and save.</li><li>Turn on alerts to receive automatic daily push notifications.</li>",
+            pwaAlert: "For Android, use the browser menu 'Add to Home screen'. For iOS, tap 'Share' and then 'Add to Home Screen'.",
+            days: ["SU", "MO", "TU", "WE", "TH", "FR", "SA"],
+            months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        },
+        nl: { 
+            title: "SLIMME KALENDER", back: "HOOFDMENU", save: "NOTITIE OPSLAAN", delete: "VERWIJDEREN", notify: "MELDINGEN AAN", 
+            placeholder: "Schrijf een notitie voor deze dag...", selectAlert: "Selecteer eerst een dag!", 
+            addHome: "TOEVOEGEN AAN STARTSCHERM", guideTitle: "HANDLEIDING",
+            guideP1: "Welkom bij het slimme kalenderpaneel. Beheer eenvoudig uw planning en taken:",
+            guideList: "<li>Selecteer snel een maand via de vierkante lay-outs bovenaan.</li><li>Klik op een dag, schrijf uw notitie en sla deze op.</li><li>Schakel meldingen in om dagelijkse herinneringen te ontvangen.</li>",
+            pwaAlert: "Voor Android, gebruik het browsermenu 'Toevoegen aan startscherm'. Voor iOS, tik op 'Deel' en kies 'Zet op beginscherm'.",
+            days: ["ZO", "MA", "DI", "WO", "DO", "VR", "ZA"],
+            months: ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"]
+        },
+        de: { 
+            title: "SMARTER KALENDER", back: "HAUPTMENÜ", save: "NOTIZ SPEICHERN", delete: "LÖSCHEN", notify: "BENACHRICHTIGUNGEN", 
+            placeholder: "Notiz für diesen Tag schreiben...", selectAlert: "Bitte wählen Sie zuerst einen Tag aus!", 
+            addHome: "ZUM STARTBILDSCHIRM", guideTitle: "BEDIENUNGSANLEITUNG",
+            guideP1: "Willkommen beim smarten Kalenderpanel. Verwalten Sie Ihre Termine ganz einfach:",
+            guideList: "<li>Wählen Sie oben über die quadratischen Kacheln schnell den Monat aus.</li><li>Klicken Sie auf einen Tag, schreiben Sie Ihre Notiz und speichern Sie diese.</li><li>Aktivieren Sie Benachrichtigungen, um tägliche Erinnerungen zu erhalten.</li>",
+            pwaAlert: "Für Android nutzen Sie das Browsermenü 'Zum Startbildschirm hinzufügen'. Für iOS tippen Sie auf 'Teilen' und dann 'Zum Home-Bildschirm'.",
+            days: ["SO", "MO", "DI", "MI", "DO", "FR", "SA"],
+            months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+        },
+        fr: { 
+            title: "CALENDRIER INTELLIGENT", back: "MENU PRINCIPAL", save: "ENREGISTRER", delete: "SUPPRIMER", notify: "ACTIVER ALERTES", 
+            placeholder: "Écrire une note pour ce jour...", selectAlert: "Veuillez d'abord sélectionner un jour !", 
+            addHome: "AJOUTER À L'ÉCRAN D'ACCUEIL", guideTitle: "MODE D'EMPLOI",
+            guideP1: "Bienvenue sur le panneau de calendrier intelligent. Gérez facilement vos tâches et plannings :",
+            guideList: "<li>Sélectionnez rapidement un mois via les tuiles carrées en haut.</li><li>Cliquez sur un jour, écrivez votre note et enregistrez.</li><li>Activez les alertes pour recevoir des rappels quotidiens.</li>",
+            pwaAlert: "Pour Android, utilisez le menu du navigateur 'Ajouter à l'écran d'accueil'. Pour iOS, appuyez sur 'Partager' puis 'Sur l'écran d'accueil'.",
+            days: ["DI", "LU", "MA", "ME", "JE", "VE", "SA"],
+            months: ["Jan", "Fév", "Mar", "Avr", "Mai", "Jui", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"]
+        },
+        it: { 
+            title: "CALENDARIO INTELLIGENT", back: "MENU PRINCIPALE", save: "SALVA NOTA", delete: "ELIMINA", notify: "ATTIVA AVVISI", 
+            placeholder: "Scrivi una nota per questo giorno...", selectAlert: "Seleziona prima un giorno!", 
+            addHome: "AGGIUNGI A SCHERMATA HOME", guideTitle: "GUIDA UTENTE",
+            guideP1: "Benvenuto nel pannello del calendario intelligente. Gestisci facilmente i tuoi impegni:",
+            guideList: "<li>Seleziona rapidamente un mese utilizzando la griglia quadrata in alto.</li><li>Clicca su un giorno, scrivi la nota e premi salva.</li><li>Abilita gli avvisi per ricevere notifiche push quotidiane.</li>",
+            pwaAlert: "Per Android, usa il menu del browser 'Aggiungi a schermata Home'. Per iOS, tocca 'Condividi' e poi 'Aggiungi alla schermata Home'.",
+            days: ["DO", "LU", "MA", "ME", "GI", "VE", "SA"],
+            months: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"]
+        }
+    };
+
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let selectedDateStr = null;
+    let notes = JSON.parse(localStorage.getItem('smart_calendar_notes')) || {};
+    let langData = dict['it'];
+
+    // Canlı Saat Motoru
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('digital-clock').innerText = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+
+    // Dil ve Arayüz Ayarlarını Yükle
+    function initLang() {
+        const lang = localStorage.getItem('global_lang') || 'it';
+        langData = dict[lang] || dict['en'];
+        
+        document.documentElement.lang = lang;
+        
+        document.getElementById('L_TITLE').innerText = langData.title;
+        document.getElementById('L_BACK').innerText = langData.back;
+        document.getElementById('L_SAVE').innerText = langData.save;
+        document.getElementById('L_DELETE').innerText = langData.delete;
+        document.getElementById('L_NOTIFY').innerText = langData.notify;
+        document.getElementById('L_ADD_HOME').innerText = langData.addHome;
+        document.getElementById('L_GUIDE_TITLE').innerText = langData.guideTitle;
+        document.getElementById('L_GUIDE_P1').innerText = langData.guideP1;
+        document.getElementById('L_GUIDE_LIST').innerHTML = langData.guideList;
+        document.getElementById('note-input').placeholder = langData.placeholder;
+
+        renderMonthShortcuts();
+    }
+
+    // Üstteki Kare Kare Ay Seçim Butonlarını Oluşturma
+    function renderMonthShortcuts() {
+        const shortcutGrid = document.getElementById('months-shortcut-grid');
+        shortcutGrid.innerHTML = '';
+
+        langData.months.forEach((monthName, index) => {
+            const card = document.createElement('div');
+            card.className = 'month-card';
+            if(index === currentMonth) card.classList.add('active');
+            card.innerText = monthName;
+            card.onclick = () => {
+                currentMonth = index;
+                renderMonthShortcuts();
+                renderCalendar();
+            };
+            shortcutGrid.appendChild(card);
+        });
+    }
+
+    // Takvimi Ekrana Basan Ana Motor
+    function renderCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+        
+        // Gün İsimleri
+        langData.days.forEach(d => {
+            const el = document.createElement('div');
+            el.className = 'day-name';
+            el.innerText = d;
+            grid.appendChild(el);
+        });
+
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const today = new Date();
+        
+        // Ay Başlığı Bilgisi
+        document.getElementById('month-display').innerText = new Date(currentYear, currentMonth).toLocaleDateString(localStorage.getItem('global_lang') || 'en', { month: 'long', year: 'numeric' });
+
+        // Boş gün alanları doldurma
+        for(let i=0; i<firstDay; i++) grid.appendChild(document.createElement('div'));
+        
+        // Günleri dizme
+        for(let i=1; i<=daysInMonth; i++) {
+            const dayEl = document.createElement('div');
+            dayEl.className = 'day';
+            dayEl.innerText = i;
+            
+            const dateKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+            
+            if(notes[dateKey]) dayEl.classList.add('has-note');
+            if(today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === i) {
+                dayEl.classList.add('today');
+            }
+            if (selectedDateStr === dateKey) {
+                dayEl.classList.add('selected');
+            }
+
+            dayEl.onclick = () => selectDay(dayEl, dateKey);
+            grid.appendChild(dayEl);
+        }
+    }
+
+    function selectDay(element, dateKey) {
+        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedDateStr = dateKey;
+        
+        document.getElementById('selected-date-label').innerText = dateKey;
+        
+        const currentNote = notes[dateKey] || '';
+        document.getElementById('note-input').value = currentNote;
+
+        const deleteBtn = document.getElementById('btn-delete-container');
+        if (currentNote !== '') {
+            deleteBtn.style.display = 'flex';
+        } else {
+            deleteBtn.style.display = 'none';
+        }
+    }
+
+    function saveNote() {
+        if(!selectedDateStr) return alert(langData.selectAlert);
+        const text = document.getElementById('note-input').value.trim();
+        
+        if(text === "") {
+            delete notes[selectedDateStr];
+            document.getElementById('btn-delete-container').style.display = 'none';
+        } else {
+            notes[selectedDateStr] = text;
+            document.getElementById('btn-delete-container').style.display = 'flex';
+        }
+        
+        localStorage.setItem('smart_calendar_notes', JSON.stringify(notes));
+        renderCalendar();
+    }
+
+    function deleteNote() {
+        if(!selectedDateStr) return alert(langData.selectAlert);
+        if(notes[selectedDateStr]) {
+            delete notes[selectedDateStr];
+            localStorage.setItem('smart_calendar_notes', JSON.stringify(notes));
+            document.getElementById('note-input').value = '';
+            document.getElementById('btn-delete-container').style.display = 'none';
+            renderCalendar();
+        }
+    }
+
+    // Bildirim Entegrasyonu
+    function enableNotifications() {
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notifications.");
+        } else if (Notification.permission === "granted") {
+            alert("Notifications are already enabled!");
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    new Notification("Invoice Luxe", { body: "Notifications enabled successfully!" });
+                }
+            });
+        }
+    }
+
+    // Android / iOS Ana Ekrana Ekleme Tetikleyicisi
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    function addToHomeScreen() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            alert(langData.pwaAlert);
+        }
+    }
+
+    // Kılavuz Aç/Kapat Fonksiyonu
+    function toggleGuide() {
+        const content = document.getElementById('guide-content');
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+
+    window.onload = () => {
+        updateClock();
+        initLang();
+        renderCalendar();
+    };
+</script>
+</body>
+</html>

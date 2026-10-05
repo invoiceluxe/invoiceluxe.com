@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>СчётПро — Профессиональные Счета</title>
+    <meta name="description" content="Создавайте профессиональные счета бесплатно. PDF счета, управление клиентами, НДС онлайн.">
+    <meta name="theme-color" content="#CC0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="СчётПро">
+    <link rel="manifest" href="#" id="pwa-manifest">
+    <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ru-red: #CC0000;
+            --ru-dark: #1A1A2E;
+            --bg-main: #F4F7FA;
+            --card-bg: #ffffff;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --gold: #e6b980;
+        }
+        body { background: var(--bg-main); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); margin: 0; overflow: hidden; }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 225px; box-sizing: border-box; }
+        .glass-card { background: var(--card-bg); border-radius: 24px; padding: 24px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .hero-gradient { background: linear-gradient(135deg, var(--ru-dark) 0%, #16213E 60%, #0F3460 100%); border-radius: 32px; position: relative; overflow: hidden; }
+        .stat-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); border-radius: 16px; padding: 12px; border: 1px solid rgba(255,255,255,0.15); }
+        .input-pro { background: #F8FAFC !important; color: var(--text-dark) !important; border-radius: 14px; padding: 14px 18px; width: 100%; border: 2px solid #E2E8F0; font-size: 15px; transition: 0.3s; outline: none; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .input-pro:focus { border-color: var(--ru-red); background: #fff !important; box-shadow: 0 0 0 4px rgba(204,0,0,0.08); }
+        label { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; display: block; margin-left: 4px; letter-spacing: 0.5px; }
+        .dock-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom, 12px); z-index: 999; border-radius: 28px 28px 0 0; box-shadow: 0 -4px 30px rgba(0,0,0,0.08); border-top: 1px solid rgba(255,255,255,0.6); }
+        .nav-btn { color: #CBD5E1; font-size: 22px; padding: 10px 14px; border-radius: 18px; transition: 0.3s; background: none; border: none; cursor: pointer; }
+        .nav-btn.active { color: var(--ru-red); background: #FFF0F0; transform: translateY(-5px); }
+        .btn-main { background: var(--ru-red); color: white; border-radius: 18px; padding: 18px; font-weight: 800; text-transform: uppercase; border: none; box-shadow: 0 10px 20px rgba(204,0,0,0.18); transition: all 0.2s; cursor: pointer; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.5px; }
+        .btn-main:active { transform: scale(0.98); }
+        .badge-select { padding: 10px; border-radius: 14px; background: #F1F5F9; font-size: 11px; font-weight: 800; cursor: pointer; text-align: center; color: var(--text-muted); border: 2px solid transparent; transition: 0.2s; }
+        .badge-select.active { background: #FFF0F0; color: var(--ru-red); border-color: var(--ru-red); }
+        .item-row { background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 20px; margin-bottom: 16px; position: relative; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+
+        /* TOP BAR */
+        #top-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(255,255,255,0.97); border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 100; flex-shrink: 0; }
+        #top-bar .logo-text { font-size: 15px; font-weight: 900; color: var(--ru-dark); letter-spacing: 0.5px; }
+        #top-bar .logo-text span { color: var(--ru-red); }
+        #currency-pill, #language-pill { display: flex; align-items: center; gap: 5px; background: #F1F5F9; border: 1.5px solid #E2E8F0; border-radius: 20px; padding: 5px 10px; cursor: pointer; transition: 0.2s; }
+        #currency-pill:active, #language-pill:active { opacity: 0.7; }
+        #currency-pill .sym { font-size: 11px; font-weight: 900; color: var(--ru-red); text-transform: uppercase; }
+        #language-pill .lang-code { font-size: 11px; font-weight: 900; color: var(--ru-dark); text-transform: uppercase; }
+
+        /* MODALS */
+        #p-modal { position: fixed; inset: 0; background: rgba(15,23,42,0.95); z-index: 10000; display: none; flex-direction: column; }
+        .preview-container { flex: 1; display: flex; align-items: start; justify-content: center; overflow: auto; padding: 20px; }
+        .a4-preview { background: #ffffff; color: #1e293b; width: 794px; min-height: 1123px; transform-origin: top center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); font-family: 'Plus Jakarta Sans', sans-serif; }
+        .preview-header { background: #fff; padding: 40px 60px; border-bottom: 5px solid var(--ru-red); display: flex; justify-content: space-between; align-items: center; }
+        .info-box-modern { background: #F8FAFC; border-radius: 16px; padding: 20px; border: 1px solid #E2E8F0; width: 100%; min-height: 140px; }
+        .total-box-modern { background: #FFF5F5; border: 2px solid var(--ru-red); border-radius: 16px; padding: 25px; }
+
+        /* CURRENCY & LANGUAGE MODAL */
+        #currency-modal, #language-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 20001; display: none; flex-direction: column; }
+        .modal-header { background: #fff; border-bottom: 1px solid #E2E8F0; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .modal-inner { flex: 1; overflow-y: auto; padding: 20px 16px; background: #F4F7FA; }
+        .currency-item, .language-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; border: 1.5px solid #E2E8F0; margin-bottom: 8px; cursor: pointer; transition: 0.2s; background: #fff; }
+        .currency-item.selected, .language-item.selected { border-color: var(--ru-red); background: #FFF0F0; }
+        .currency-item .c-flag, .language-item .l-flag { font-size: 22px; flex-shrink: 0; }
+        .currency-item .c-country, .language-item .l-name { font-size: 13px; font-weight: 800; color: #1E293B; }
+        .currency-item .c-name { font-size: 10px; color: #94A3B8; margin-top: 1px; }
+        .currency-item .c-sym, .language-item .l-code { font-size: 16px; font-weight: 900; color: var(--ru-red); margin-left: auto; }
+
+        /* INSTALL BUTTON */
+        #install-bar { margin: 0 16px 16px; background: linear-gradient(135deg, #1A1A2E, #0F3460); border: 1.5px solid var(--ru-red); border-radius: 20px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        #install-bar:active { transform: scale(0.97); }
+        #install-bar .i-icon { width: 36px; height: 36px; background: var(--ru-red); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        #install-bar .i-text div:first-child { font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        #install-bar .i-text div:last-child { font-size: 9px; color: #64748B; margin-top: 1px; }
+
+        /* YAN MENÜ (SIDE MENU) */
+        #side-menu {
+            position: fixed; top: 0; left: -100%; width: 280px; height: 100vh;
+            background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+            border-right: 2px solid var(--ru-red); z-index: 30000;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 20px;
+            display: flex; flex-direction: column;
+        }
+        #side-menu.open { left: 0; }
+        .side-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            z-index: 29999; display: none; backdrop-filter: blur(3px);
+        }
+        .side-overlay.open { display: block; }
+        .tool-link {
+            display: flex; align-items: center; gap: 14px; padding: 16px;
+            border-radius: 20px; border: 1px solid #E2E8F0; margin-bottom: 12px;
+            color: var(--text-dark); text-decoration: none; transition: 0.2s; background: #F8FAFC;
+        }
+        .tool-link:hover, .tool-link:active { border-color: var(--ru-red); background: #FFF0F0; transform: translateX(5px); }
+
+        /* iOS MODAL */
+        #ios-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 30000; display: none; align-items: flex-end; justify-content: center; padding: 0 0 24px; }
+        #ios-modal.open { display: flex; }
+        .ios-box { background: #fff; border-radius: 28px; padding: 28px 24px 32px; width: 100%; max-width: 430px; }
+        .ios-step { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .ios-step-num { width: 30px; height: 30px; background: var(--ru-red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; flex-shrink: 0; }
+    </style>
+</head>
+<body class="flex justify-center">
+
+<div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+<div id="side-menu">
+    <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-100">
+        <span style="font-size:16px; font-weight:900; color:var(--ru-dark);">Elite <span style="color:var(--ru-red);">Tools</span></span>
+        <button onclick="closeSideMenu()" style="color:#94A3B8; font-size:24px; font-weight:900; background:none; border:none; cursor:pointer;">×</button>
+    </div>
+    <div class="flex-1 overflow-y-auto">
+        <a href="../discount.html" class="tool-link">
+            <div style="width:40px;height:40px;background:#F0FDF4;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#22C55E;flex-shrink:0;"><i class="fa-solid fa-tags text-lg"></i></div>
+            <div><div style="font-weight:900;font-size:13px;text-transform:uppercase;">Скидки</div><div style="font-size:10px;color:#94A3B8;font-weight:700;">Калькулятор скидок</div></div>
+        </a>
+        <a href="pdf-engine.html" class="tool-link">
+            <div style="width:40px;height:40px;background:#FFF5F5;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ru-red);flex-shrink:0;"><i class="fa-solid fa-file-pdf text-lg"></i></div>
+            <div><div style="font-weight:900;font-size:13px;text-transform:uppercase;">PDF Motor</div><div style="font-size:10px;color:#94A3B8;font-weight:700;">Генератор документов</div></div>
+        </a>
+        <a href="html-editor.html" class="tool-link">
+            <div style="width:40px;height:40px;background:#EFF6FF;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#3B82F6;flex-shrink:0;"><i class="fa-solid fa-code text-lg"></i></div>
+            <div><div style="font-weight:900;font-size:13px;text-transform:uppercase;">HTML Редактор</div><div style="font-size:10px;color:#94A3B8;font-weight:700;">Редактирование кода</div></div>
+        </a>
+        <a href="weekly-calendar.html" class="tool-link">
+            <div style="width:40px;height:40px;background:#F5F3FF;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#8B5CF6;flex-shrink:0;"><i class="fa-solid fa-calendar-days text-lg"></i></div>
+            <div><div style="font-weight:900;font-size:13px;text-transform:uppercase;">Календарь</div><div style="font-size:10px;color:#94A3B8;font-weight:700;">Управление событиями</div></div>
+        </a>
+        <a href="working-hours.html" class="tool-link" style="border-color:#FECACA;">
+            <div style="width:40px;height:40px;background:#FFF0F0;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ru-red);flex-shrink:0;"><i class="fa-solid fa-clock text-lg"></i></div>
+            <div><div style="font-weight:900;font-size:13px;text-transform:uppercase;color:var(--ru-red);">Рабочие Часы</div><div style="font-size:10px;color:#94A3B8;font-weight:700;">Учёт рабочего времени</div></div>
+        </a>
+    </div>
+</div>
+
+<div class="w-full max-w-[480px] relative overflow-hidden flex flex-col h-screen">
+
+    <!-- TOP BAR (fixed to wrapper) -->
+    <div id="top-bar">
+        <div class="flex items-center gap-3">
+            <button onclick="openSideMenu()" style="color:var(--ru-red); background:none; border:none; cursor:pointer; font-size:20px; padding:4px;"><i class="fa-solid fa-bars-staggered"></i></button>
+            <span class="logo-text">Счёт<span>Про</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div id="language-pill" onclick="openLanguageModal()">
+                <span class="flag">🇷🇺</span>
+                <span class="lang-code">RU</span>
+                <i class="fa-solid fa-chevron-down text-[8px] text-slate-400"></i>
+            </div>
+            <div id="currency-pill" onclick="openCurrencyModal()">
+                <span class="flag" id="top-flag">🇷🇺</span>
+                <span class="sym" id="top-sym">₽</span>
+                <i class="fa-solid fa-chevron-down text-[8px] text-slate-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-wrapper flex-1" id="main-slider">
+
+        <!-- СТРАНИЦА 0: ГЛАВНАЯ -->
+        <div class="page px-6 pt-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <p class="text-[var(--ru-red)] text-[11px] font-extrabold uppercase tracking-[3px] mb-1">Добро пожаловать</p>
+                    <h1 class="text-3xl font-black tracking-tight text-slate-900">Ваши <span class="text-[var(--ru-dark)]">счета</span><span class="text-[var(--ru-red)]"> PRO</span></h1>
+                </div>
+                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg text-[var(--ru-red)] border border-slate-100">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+            </div>
+
+            <div class="hero-gradient p-7 text-white mb-6 shadow-2xl shadow-blue-900/20">
+                <div class="flex flex-col gap-5">
+                    <div>
+                        <h2 class="text-sm font-bold opacity-70 uppercase tracking-widest mb-1">Простое выставление счетов</h2>
+                        <p class="text-2xl font-black leading-tight">Создайте счёт за секунды.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="stat-badge flex-1 text-center">
+                            <div id="stat-schety" class="text-xl font-black">0</div>
+                            <div class="text-[9px] uppercase font-bold opacity-60">Счетов</div>
+                        </div>
+                        <div class="stat-badge flex-1 text-center">
+                            <div id="stat-klienty" class="text-xl font-black">0</div>
+                            <div class="text-[9px] uppercase font-bold opacity-60">Клиентов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+                <button type="button" onclick="resetAndNew()" class="btn-main flex items-center justify-between h-20 px-7">
+                    <div class="text-left">
+                        <span class="text-lg font-black tracking-tight">НОВЫЙ СЧЁТ</span>
+                        <span class="block text-white/60 text-[10px] font-bold uppercase mt-1">Быстро и профессионально</span>
+                    </div>
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-plus text-xl"></i>
+                    </div>
+                </button>
+                <div class="grid grid-cols-2 gap-4">
+                    <div onclick="showPage(2)" class="glass-card flex flex-col items-start gap-3 cursor-pointer">
+                        <div class="w-10 h-10 bg-red-50 text-[var(--ru-red)] rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-box-archive text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="font-black text-xs uppercase tracking-tight text-slate-700">Архив</span>
+                            <p class="text-[9px] text-slate-400 font-bold">ВСЕ СЧЕТА</p>
+                        </div>
+                    </div>
+                    <div onclick="showPage(3)" class="glass-card flex flex-col items-start gap-3 cursor-pointer">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-user-group text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="font-black text-xs uppercase tracking-tight text-slate-700">Клиенты</span>
+                            <p class="text-[9px] text-slate-400 font-bold">УПРАВЛЕНИЕ</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage(4)" class="glass-card flex items-center gap-4 cursor-pointer bg-slate-50 border-none">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-slate-500 border border-slate-100">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-slate-800">Настройки компании</h4>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Профиль и банк</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 mr-2"></i>
+                </div>
+                <div onclick="window.location.href='working-hours.html'" class="glass-card flex items-center gap-4 cursor-pointer" style="background:linear-gradient(145deg,#fff5f5,#fff);border-color:#FECACA;">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#FFF0F0;color:var(--ru-red);">
+                        <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm" style="color:var(--ru-red);">Рабочие Часы</h4>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Учёт и контроль времени</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs" style="color:var(--ru-red);"></i>
+                </div>
+
+                <!-- YENİ EKLENEN TÜM ARAÇLAR BUTONU -->
+                <div onclick="window.location.href='herramientas.html'" class="glass-card flex items-center gap-4 cursor-pointer" style="background:linear-gradient(145deg,#EFF6FF,#fff);border-color:#BFDBFE;">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#DBEAFE;color:#2563EB;">
+                        <i class="fa-solid fa-layer-group text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm" style="color:#1E40AF;">Все инструменты</h4>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Главное меню (Tüm Araçlar)</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs" style="color:#2563EB;"></i>
+                </div>
+
+                <div class="glass-card flex items-center gap-4 mt-2">
+                    <span id="home-flag" class="text-2xl">🇷🇺</span>
+                    <div class="flex-1">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Активная валюта</div>
+                        <div class="text-sm font-black" id="home-currency-name">Российский рубль (₽)</div>
+                    </div>
+                    <button onclick="openCurrencyModal()" class="text-[9px] font-black text-[var(--ru-red)] uppercase border border-[var(--ru-red)] rounded-full px-3 py-1">Изменить</button>
+                </div>
+            </div>
+
+            <!-- SEO -->
+            <div style="padding:32px 0 80px;">
+                <div style="border-top:1px solid #E2E8F0; padding-top:24px;">
+
+                    <h2 style="font-size:16px;font-weight:900;color:var(--ru-red);margin-bottom:12px;">Как создать профессиональный счёт-фактуру на хинди?</h2>
+                    <p style="font-size:12px;color:#64748B;line-height:1.7;margin-bottom:24px;">
+                        <b style="color:#1E293B;">Invoice Luxe</b> — бесплатное и простое мобильное приложение, которое позволяет за считанные секунды создавать профессиональные PDF-счета — без регистрации и подписки. Кроме того, вы можете отслеживать рабочие часы и более эффективно управлять своим бизнесом.
+                    </p>
+
+                    <h3 style="font-size:13px;font-weight:900;color:#1E293B;margin-bottom:12px;">✅ Основные возможности Invoice Luxe</h3>
+                    <ul style="font-size:12px;color:#64748B;line-height:1.8;margin-bottom:24px;padding-left:20px;list-style-type:disc;">
+                        <li>Создание и скачивание PDF-счетов прямо с телефона</li>
+                        <li>Сохранение данных клиентов для повторного использования</li>
+                        <li>Простая настройка ставок GST / VAT (0%, 5%, 12%, 18%, 28%)</li>
+                        <li>Добавление банковских реквизитов, IBAN и налогового номера</li>
+                        <li>Поддержка хинди и более 13 других языков</li>
+                        <li>Все данные хранятся только на вашем телефоне — без облака, с полной конфиденциальностью</li>
+                    </ul>
+
+                    <h3 style="font-size:13px;font-weight:900;color:#1E293B;margin-bottom:12px;">⏱️ Почему важно отслеживать рабочие часы?</h3>
+                    <p style="font-size:12px;color:#64748B;line-height:1.7;margin-bottom:24px;">
+                        Если вы фрилансер, рабочий или поставщик услуг, очень важно вести учёт рабочего времени. <b>Work Hours Tracker</b> позволяет записывать время, затраченное на каждый проект, и создавать точные счета.
+                    </p>
+
+                    <h3 style="font-size:13px;font-weight:900;color:#1E293B;margin-bottom:12px;">🛠️ Другие полезные инструменты</h3>
+                    <ul style="font-size:12px;color:#64748B;line-height:1.8;margin-bottom:28px;padding-left:20px;list-style-type:disc;">
+                        <li><b>Движок скидок</b> — быстро рассчитывайте скидки</li>
+                        <li><b>PDF-движок</b> — преобразуйте любой документ в PDF</li>
+                        <li><b>HTML-редактор</b> — редактируйте код в режиме реального времени</li>
+                        <li><b>Календарь</b> — управляйте расписанием и встречами</li>
+                    </ul>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "InvoiceLuxe - Генератор счетов",
+  "url": "https://invoiceluxe.com",
+  "inLanguage": "ru",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "description": "Бесплатный и профессиональный генератор электронных счетов. Создавайте PDF-счета, квитанции, коммерческие предложения, добавляйте подписи, отслеживайте рабочее время и используйте HTML-редактор бесплатно.",
+  "featureList": [
+    "Создание электронных счетов",
+    "Экспорт и печать PDF-файлов",
+    "Создание квитанций и предложений",
+    "Функция цифровой подписи",
+    "Учет и отслеживание рабочего времени",
+    "Встроенный HTML-редактор для настройки"
+  ]
+}
+</script>
+
+                    <h3 style="font-size:14px;font-weight:900;color:var(--ru-red);margin-bottom:16px;">🙋 Часто задаваемые вопросы</h3>
+
+                    <div style="margin-bottom:16px; background:#fff; border:1px solid #E2E8F0; padding:16px; border-radius:16px; box-shadow:0 2px 4px rgba(0,0,0,0.01);">
+                        <b style="font-size:12px;color:#1E293B;display:block;margin-bottom:6px;">Invoice Luxe действительно бесплатный?</b>
+                        <p style="font-size:11px;color:#64748B;margin:0;line-height:1.6;">Да, Invoice Luxe полностью бесплатен. Никаких скрытых платежей или подписок.</p>
+                    </div>
+
+                    <div style="margin-bottom:16px; background:#fff; border:1px solid #E2E8F0; padding:16px; border-radius:16px; box-shadow:0 2px 4px rgba(0,0,0,0.01);">
+                        <b style="font-size:12px;color:#1E293B;display:block;margin-bottom:6px;">Можно ли создавать счета с GST?</b>
+                        <p style="font-size:11px;color:#64748B;margin:0;line-height:1.6;">Конечно! Вы можете установить пользовательскую ставку VAT/GST, например 18% или 28%, и создавать счета с учётом GST.</p>
+                    </div>
+
+                    <div style="margin-bottom:16px; background:#fff; border:1px solid #E2E8F0; padding:16px; border-radius:16px; box-shadow:0 2px 4px rgba(0,0,0,0.01);">
+                        <b style="font-size:12px;color:#1E293B;display:block;margin-bottom:6px;">Как работает трекер рабочих часов?</b>
+                        <p style="font-size:11px;color:#64748B;margin:0;line-height:1.6;">Просто запустите таймер, когда начинаете работу, и остановите его после завершения. Все часы будут сохранены, и вы сможете напрямую добавить их в счёт.</p>
+                    </div>
+
+                    <div style="margin-bottom:16px; background:#fff; border:1px solid #E2E8F0; padding:16px; border-radius:16px; box-shadow:0 2px 4px rgba(0,0,0,0.01);">
+                        <b style="font-size:12px;color:#1E293B;display:block;margin-bottom:6px;">Безопасны ли мои данные?</b>
+                        <p style="font-size:11px;color:#64748B;margin:0;line-height:1.6;">Да. Вся информация сохраняется только на вашем устройстве — никаких серверов или облачного хранения.</p>
+                    </div>
+
+                    <div style="margin-bottom:24px; background:#fff; border:1px solid #E2E8F0; padding:16px; border-radius:16px; box-shadow:0 2px 4px rgba(0,0,0,0.01);">
+                        <b style="font-size:12px;color:#1E293B;display:block;margin-bottom:6px;">Работает ли приложение на Android и iOS?</b>
+                        <p style="font-size:11px;color:#64748B;margin:0;line-height:1.6;">Да. Это PWA (Progressive Web App), которое работает в браузере любого смартфона и может быть установлено на главный экран.</p>
+                    </div>
+
+                    <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:16px; padding:16px; text-align:center;">
+                        <p style="font-size:11px;color:#94A3B8;line-height:1.6;margin:0;">
+                            <b>Invoice Luxe</b> — продукт <a href="https://invoiceluxe.com" style="color:var(--ru-red);text-decoration:none;font-weight:800;">invoiceluxe.com</a>, созданный для фрилансеров, владельцев магазинов и малого бизнеса как простое решение для выставления счетов и управления рабочим временем.
+                        </p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <!-- СТРАНИЦА 1: РЕДАКТОР СЧЁТА -->
+        <div class="page px-6 pt-8">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showPage(0)" class="text-slate-400"><i class="fa-solid fa-arrow-left text-2xl"></i></button>
+                <h2 class="text-2xl font-black text-slate-900">Редактор</h2>
+            </div>
+            <div class="glass-card mb-6">
+                <label>Выбрать клиента</label>
+                <select id="inv-cust-select" class="input-pro mb-5"></select>
+                <div class="grid grid-cols-2 gap-4 mb-5">
+                    <div><label>Номер счёта</label><input type="text" id="inv-no" class="input-pro"></div>
+                    <div><label>Дата</label><input type="date" id="inv-date" class="input-pro"></div>
+                </div>
+                <label>Срок оплаты</label>
+                <div class="grid grid-cols-4 gap-2 mb-5">
+                    <div class="badge-select" id="due-0" onclick="setDue(0)">Сразу</div>
+                    <div class="badge-select active" id="due-14" onclick="setDue(14)">14 дн.</div>
+                    <div class="badge-select" id="due-30" onclick="setDue(30)">30 дн.</div>
+                    <div class="badge-select" id="due-60" onclick="setDue(60)">60 дн.</div>
+                </div>
+                <input type="hidden" id="inv-due-days" value="14">
+                <label id="tax-input-label">НДС (%)</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="badge-select active" id="vat-20" onclick="setVat(20, this)">20%</div>
+                    <div class="badge-select" id="vat-10" onclick="setVat(10, this)">10%</div>
+                    <div class="badge-select" id="vat-0" onclick="setVat(0, this)">0%</div>
+                    <div class="badge-select" id="custom-vat-btn" onclick="promptVat(this)">...</div>
+                </div>
+                <input type="hidden" id="selected-vat" value="20">
+            </div>
+            <div id="items-list"></div>
+            <button onclick="addRow()" class="w-full bg-white border-2 border-dashed border-slate-200 p-5 rounded-2xl text-[11px] font-black text-slate-400 my-6 uppercase tracking-widest">+ Добавить позицию</button>
+            <div class="p-6 bg-[var(--ru-dark)] rounded-3xl shadow-xl flex justify-between items-center mb-8">
+                <span class="text-white/50 text-[10px] font-black uppercase tracking-widest">Итого</span>
+                <span id="grand-total" class="text-3xl font-black text-white tracking-tighter">0.00 <span id="gt-sym">₽</span></span>
+            </div>
+            <button onclick="generatePreviewFromCurrent()" class="btn-main mb-12">ПРЕДПРОСМОТР И PDF <i class="fa-solid fa-paper-plane ml-2"></i></button>
+        </div>
+
+        <!-- СТРАНИЦА 2: АРХИВ -->
+        <div class="page px-6 pt-8">
+            <h2 class="text-2xl font-black mb-8 uppercase tracking-tight">Мой <span class="text-[var(--ru-red)]">Архив</span></h2>
+            <div id="archiv-list" class="space-y-4"></div>
+        </div>
+
+        <!-- СТРАНИЦА 3: КЛИЕНТЫ -->
+        <div class="page px-6 pt-8">
+            <h2 class="text-2xl font-black mb-6 uppercase tracking-tight">Управление <span class="text-[var(--ru-dark)]">клиентами</span></h2>
+            <div class="glass-card mb-6">
+                <input type="hidden" id="edit-cust-idx" value="-1">
+                <label>Компания / Имя</label><input type="text" id="c-name" class="input-pro mb-4">
+                <label>Адрес</label><input type="text" id="c-adr" class="input-pro mb-4">
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div><label>Индекс</label><input type="text" id="c-pc" class="input-pro"></div>
+                    <div><label>Город</label><input type="text" id="c-city" class="input-pro"></div>
+                </div>
+                <label>Телефон</label><input type="text" id="c-mob" class="input-pro mb-4">
+                <label>E-mail</label><input type="email" id="c-mail" class="input-pro mb-4">
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div><label>ИНН</label><input type="text" id="c-tax" class="input-pro"></div>
+                    <div><label>КПП / НДС</label><input type="text" id="c-vat" class="input-pro"></div>
+                </div>
+                <button onclick="saveCustomer()" class="btn-main py-4 text-sm">СОХРАНИТЬ КЛИЕНТА <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+            <div id="customer-list" class="space-y-3"></div>
+        </div>
+
+        <!-- СТРАНИЦА 4: ПРОФИЛЬ -->
+        <div class="page px-6 pt-8">
+            <h2 class="text-2xl font-black mb-6 uppercase tracking-tight">Мои <span class="text-[var(--ru-red)]">Данные</span></h2>
+            <div class="glass-card shadow-lg">
+                <label>Название компании</label><input type="text" id="p-name" class="input-pro mb-4">
+                <label>Адрес</label><input type="text" id="p-adr" class="input-pro mb-4">
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div><label>Индекс</label><input type="text" id="p-pc" class="input-pro"></div>
+                    <div><label>Город</label><input type="text" id="p-city" class="input-pro"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <div><label>Телефон</label><input type="text" id="p-mob" class="input-pro"></div>
+                    <div><label>E-mail</label><input type="text" id="p-mail" class="input-pro"></div>
+                </div>
+                <div class="h-px bg-slate-100 my-5"></div>
+                <label>Банк</label><input type="text" id="p-bank" class="input-pro mb-4">
+                <label>Расчётный счёт / IBAN</label><input type="text" id="p-iban" class="input-pro mb-4">
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                    <div><label>ИНН</label><input type="text" id="p-tax" class="input-pro"></div>
+                    <div><label>КПП / НДС №</label><input type="text" id="p-vat" class="input-pro"></div>
+                </div>
+                <button onclick="saveProfile()" class="btn-main py-4 text-sm">СОХРАНИТЬ <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+        </div>
+
+    </div><!-- /slider-wrapper -->
+
+    <!-- НИЖНЯЯ НАВИГАЦИЯ -->
+    <nav class="dock-nav" style="flex-direction:column; padding-bottom: env(safe-area-inset-bottom, 16px);">
+        <div id="install-bar" onclick="handleInstall()">
+            <div class="i-icon"><i class="fa-solid fa-mobile-screen-button text-white text-lg"></i></div>
+            <div class="i-text flex-1">
+                <div>📲 Добавить на главный экран</div>
+                <div id="install-sub-text">Установить приложение · Бесплатно</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+        </div>
+        <div style="display:flex; justify-content:space-around; padding: 8px 0 4px;">
+            <button class="nav-btn active" onclick="showPage(0)"><i class="fa-solid fa-house"></i></button>
+            <button class="nav-btn" onclick="showPage(1)"><i class="fa-solid fa-plus-circle"></i></button>
+            <button class="nav-btn" onclick="showPage(2)"><i class="fa-solid fa-clock-rotate-left"></i></button>
+            <button class="nav-btn" onclick="showPage(3)"><i class="fa-solid fa-address-book"></i></button>
+            <button class="nav-btn" onclick="showPage(4)"><i class="fa-solid fa-gear"></i></button>
+        </div>
+    </nav>
+</div><!-- /wrapper -->
+
+<!-- ПРЕДПРОСМОТР СЧЁТА -->
+<div id="p-modal">
+    <div class="p-4 flex gap-4 bg-white border-b shadow-lg" style="flex-shrink:0;">
+        <button onclick="closePreview()" class="flex-1 bg-slate-100 text-slate-500 p-4 rounded-2xl font-black uppercase text-[10px] tracking-widest">Закрыть</button>
+        <button id="modal-confirm-btn" onclick="confirmAndArchive()" class="flex-[2] btn-main p-4 text-[10px] tracking-widest">ПОДТВЕРДИТЬ И PDF <i class="fa-solid fa-check ml-1"></i></button>
+    </div>
+    <div class="preview-container" id="zoom-area">
+        <div class="a4-preview" id="p-page">
+            <div class="preview-header">
+                <div>
+                    <div style="font-size:10px; color:#94A3B8; font-weight:800; letter-spacing:1px;">СЧЁТ №</div>
+                    <div id="pv-no" style="font-size:24px; font-weight:900; color:#1e293b;">#000</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="pv-title" style="font-weight:900; font-size:22px; color:var(--ru-dark);">КОМПАНИЯ</div>
+                    <div style="width:2px; height:24px; background:var(--ru-red);"></div>
+                </div>
+            </div>
+            <div style="padding: 40px 60px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:30px; border-bottom:1px solid #F1F5F9; padding-bottom:20px;">
+                    <div><small style="color:#94A3B8; font-weight:800; font-size:10px;">ДАТА</small><div id="pv-date" style="font-weight:700; font-size:14px;"></div></div>
+                    <div style="text-align:right;"><small style="color:var(--ru-red); font-weight:800; font-size:10px;">СРОК ОПЛАТЫ</small><div id="pv-due" style="font-weight:700; font-size:14px; color:var(--ru-red);"></div></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px;">
+                    <div class="info-box-modern"><b style="color:var(--ru-red); font-size:10px; letter-spacing:1px; display:block; margin-bottom:10px;">ОТПРАВИТЕЛЬ</b><div id="pv-sender" style="font-size:11px; line-height:1.6; color:#475569;"></div></div>
+                    <div class="info-box-modern"><b style="color:var(--ru-red); font-size:10px; letter-spacing:1px; display:block; margin-bottom:10px;">ПОЛУЧАТЕЛЬ</b><div id="pv-receiver" style="font-size:11px; line-height:1.6; color:#475569;"></div></div>
+                </div>
+                <table style="width:100%; border-collapse:collapse; font-size:11px;">
+                    <thead>
+                        <tr style="text-align:left; color:#94A3B8; border-bottom:2px solid #F1F5F9;">
+                            <th style="padding:10px 0; font-weight:800; width:44%;">НАИМЕНОВАНИЕ</th>
+                            <th style="text-align:center; font-weight:800;">КОЛ-ВО</th>
+                            <th style="text-align:center; font-weight:800;">ЕД.</th>
+                            <th style="text-align:right; font-weight:800;">ЦЕНА</th>
+                            <th style="text-align:right; font-weight:800;">СУММА</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pv-items"></tbody>
+                </table>
+                <div style="margin-top:80px; display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div style="width:330px; padding:20px; border:1px solid #CBD5E1; border-radius:12px; font-size:11px;">
+                        <b style="color:#94A3B8; display:block; margin-bottom:6px; font-size:10px; letter-spacing:1px;">БАНКОВСКИЕ РЕКВИЗИТЫ</b>
+                        <div id="pv-bank" style="font-weight:800; color:#1E293B; line-height:1.6;"></div>
+                    </div>
+                    <div class="total-box-modern" style="width:280px;">
+                        <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#64748B;"><span>СУММА БЕЗ НДС</span><span id="pv-sub" style="font-weight:700; color:#1E293B;"></span></div>
+                        <div style="display:flex; justify-content:space-between; font-size:12px; color:#64748B; padding-bottom:10px; border-bottom:1px solid #FECACA;"><span id="pv-tax-label">НДС (20%)</span><span id="pv-tax" style="font-weight:700;"></span></div>
+                        <div style="display:flex; justify-content:space-between; font-size:22px; font-weight:900; color:#1E293B; margin-top:14px;"><span>ИТОГО</span><span id="pv-total"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ВЫБОР ВАЛЮТЫ -->
+<div id="currency-modal">
+    <div class="modal-header">
+        <div>
+            <div style="font-size:16px; font-weight:900; color:var(--ru-red); text-transform:uppercase;">Выбор валюты</div>
+            <div style="font-size:10px; color:#94A3B8; margin-top:2px;">Сохраняется автоматически</div>
+        </div>
+        <button onclick="closeCurrencyModal()" style="width:36px; height:36px; border-radius:50%; background:#F1F5F9; border:none; color:#64748B; font-size:16px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-inner">
+        <div id="currency-list"></div>
+    </div>
+</div>
+
+<!-- ВЫБОР ЯЗЫКА -->
+<div id="language-modal">
+    <div class="modal-header">
+        <div>
+            <div style="font-size:16px; font-weight:900; color:var(--ru-red); text-transform:uppercase;">Выбор языка</div>
+            <div style="font-size:10px; color:#94A3B8; margin-top:2px;">Select language</div>
+        </div>
+        <button onclick="closeLanguageModal()" style="width:36px; height:36px; border-radius:50%; background:#F1F5F9; border:none; color:#64748B; font-size:16px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-inner">
+        <div id="language-list"></div>
+    </div>
+</div>
+
+<!-- iOS УСТАНОВКА -->
+<div id="ios-modal" onclick="closeIosModal()">
+    <div class="ios-box" onclick="event.stopPropagation()">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+            <div>
+                <div style="font-size:16px; font-weight:900; color:var(--ru-red);">Добавить на экран</div>
+                <div style="font-size:11px; color:#94A3B8; margin-top:2px;">iPhone / iPad — Safari</div>
+            </div>
+            <button onclick="closeIosModal()" style="width:34px;height:34px;border-radius:50%;background:#F1F5F9;border:none;color:#64748B;font-size:16px;cursor:pointer;">✕</button>
+        </div>
+        <div class="ios-step">
+            <div class="ios-step-num">1</div>
+            <div>
+                <div style="font-size:13px;font-weight:800;color:#1E293B;">Нажмите кнопку «Поделиться»</div>
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px;">Иконка <span style="color:var(--ru-red);font-size:16px;">⬆</span> внизу Safari</div>
+            </div>
+        </div>
+        <div class="ios-step">
+            <div class="ios-step-num">2</div>
+            <div>
+                <div style="font-size:13px;font-weight:800;color:#1E293B;">«На экран "Домой"»</div>
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px;">Прокрутите меню вниз</div>
+            </div>
+        </div>
+        <div class="ios-step" style="margin-bottom:0;">
+            <div class="ios-step-num">3</div>
+            <div>
+                <div style="font-size:13px;font-weight:800;color:#1E293B;">Нажмите «Добавить»</div>
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px;">Готово! Значок появится на экране</div>
+            </div>
+        </div>
+        <div style="margin-top:20px;padding:12px;background:#FFF5F5;border-radius:14px;text-align:center;">
+            <div style="font-size:11px;color:#94A3B8;">⚠️ Работает только в <b style="color:#1E293B;">Safari</b></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// YAN MENÜ (SIDE MENU)
+// ══════════════════════════════════════════
+function openSideMenu() {
+    document.getElementById('side-menu').classList.add('open');
+    document.getElementById('side-overlay').classList.add('open');
+}
+function closeSideMenu() {
+    document.getElementById('side-menu').classList.remove('open');
+    document.getElementById('side-overlay').classList.remove('open');
+}
+
+// ══════════════════════════════════════════
+// DİL SİSTEMİ — 13 DİL YÖNLENDİRME
+// ══════════════════════════════════════════
+const LANGUAGES = [
+    { code: 'es', flag: '🇪🇸', name: 'Español' },
+    { code: 'en', flag: '🇬🇧', name: 'English' },
+    { code: 'ru', flag: '🇷🇺', name: 'Русский' },
+    { code: 'de', flag: '🇩🇪', name: 'Deutsch' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' },
+    { code: 'it', flag: '🇮🇹', name: 'Italiano' },
+    { code: 'pt', flag: '🇵🇹', name: 'Português' },
+    { code: 'nl', flag: '🇳🇱', name: 'Nederlands' },
+    { code: 'in', flag: '🇳🇪', name: 'India' },
+    { code: 'tr', flag: '🇹🇷', name: 'Türkçe' },
+    { code: 'ar', flag: '🇸🇦', name: 'العربية' },
+    { code: 'zh', flag: '🇨🇳', name: '简体中文' },
+    { code: 'ja', flag: '🇯🇵', name: '日本語' },
+    { code: 'hi', flag: '🇮🇳', name: 'हिन्दी' },
+    { code: 'br', flag: '🇧🇷', name: 'Português (Brasil)' },
+    { code: 'ca', flag: '🇨🇦', name: 'English (Canada)' },
+    { code: 'da', flag: '🇩🇰', name: 'Dansk' },
+    { code: 'fi', flag: '🇫🇮', name: 'Suomi' },
+    { code: 'gb', flag: '🇬🇧', name: 'English (UK)' },
+    { code: 'ko', flag: '🇰🇷', name: '한국어' },
+    { code: 'no', flag: '🇳🇴', name: 'Norsk' },
+    { code: 'sv', flag: '🇸🇪', name: 'Svenska' },
+    { code: 'us', flag: '🇺🇸', name: 'English (US)' }
+];
+
+function openLanguageModal() {
+    const list = document.getElementById('language-list');
+    list.innerHTML = LANGUAGES.map(l => `
+        <div class="language-item ${l.code === 'ru' ? 'selected' : ''}" onclick="goToLanguage('${l.code}')">
+            <span class="l-flag">${l.flag}</span>
+            <div style="flex:1;">
+                <div class="l-name">${l.name}</div>
+            </div>
+            <span class="l-code" style="font-size:12px; font-weight:900; color:var(--ru-red);">${l.code.toUpperCase()}</span>
+            ${l.code === 'ru' ? '<i class="fa-solid fa-check text-[var(--ru-red)] ml-2 text-xs"></i>' : ''}
+        </div>`).join('');
+    document.getElementById('language-modal').style.display = 'flex';
+}
+
+function closeLanguageModal() {
+    document.getElementById('language-modal').style.display = 'none';
+}
+
+function goToLanguage(code) {
+    if (code === 'ru') { closeLanguageModal(); return; }
+    localStorage.setItem('elite_lang_v1', code);
+    window.location.href = '../' + code + '/index.html';
+}
+
+// ══════════════════════════════════════════
+// PWA — MANIFEST + INSTALL
+// ══════════════════════════════════════════
+let deferredPrompt = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+function injectManifest() {
+    const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="#CC0000"></rect><rect x="28" y="28" width="456" height="456" rx="60" fill="none" stroke="#fff" stroke-width="16" stroke-opacity="0.3"></rect><text x="256" y="200" font-size="110" text-anchor="middle" fill="#fff" font-family="Arial" font-weight="900">СЧЁТ</text><text x="256" y="330" font-size="120" text-anchor="middle" fill="#fff" font-family="Arial" font-weight="900">ПРО</text></svg>`;
+    const iconUrl = 'data:image/svg+xml,' + encodeURIComponent(iconSvg);
+    document.getElementById('pwa-apple-icon').href = iconUrl;
+    const manifest = {
+        name: "СчётПро — Счета онлайн",
+        short_name: "СчётПро",
+        description: "Профессиональные счета бесплатно",
+        start_url: "./",
+        display: "standalone",
+        background_color: "#F4F7FA",
+        theme_color: "#CC0000",
+        icons: [
+            { src: iconUrl, sizes: "192x192", type: "image/svg+xml" },
+            { src: iconUrl, sizes: "512x512", type: "image/svg+xml" }
+        ]
+    };
+    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+    document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+}
+
+function updateInstallBar() {
+    const bar = document.getElementById('install-bar');
+    const sub = document.getElementById('install-sub-text');
+    if (isStandalone) { bar.style.display = 'none'; return; }
+    if (isIOS) {
+        sub.textContent = 'iPhone/iPad: Нажмите ⬆ → На экран "Домой"';
+    } else {
+        sub.textContent = 'Android/Chrome: Нажмите для установки';
+    }
+}
+
+function handleInstall() {
+    if (isIOS) {
+        document.getElementById('ios-modal').classList.add('open');
+    } else if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+            document.getElementById('install-bar').style.display = 'none';
+            deferredPrompt = null;
+        });
+    } else {
+        alert('Откройте в Chrome и нажмите ⋮ → "Добавить на главный экран"');
+    }
+}
+
+function closeIosModal() { document.getElementById('ios-modal').classList.remove('open'); }
+
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; updateInstallBar(); });
+window.addEventListener('load', () => { injectManifest(); updateInstallBar(); });
+
+// ══════════════════════════════════════════
+// CURRENCY SYSTEM
+// ══════════════════════════════════════════
+const CURRENCIES = [
+    { code: 'RUB', sym: '₽', name: 'Российский рубль', flag: '🇷🇺' },
+    { code: 'KZT', sym: '₸', name: 'Казахстанский тенге', flag: '🇰🇿' },
+    { code: 'BYN', sym: 'Br', name: 'Белорусский рубль', flag: '🇧🇾' },
+    { code: 'UAH', sym: '₴', name: 'Украинская гривна', flag: '🇺🇦' },
+    { code: 'UZS', sym: 'UZS', name: 'Узбекский сум', flag: '🇺🇿' },
+    { code: 'AZN', sym: '₼', name: 'Азербайджанский манат', flag: '🇦🇿' },
+    { code: 'GEL', sym: '₾', name: 'Грузинский лари', flag: '🇬🇪' },
+    { code: 'AMD', sym: '֏', name: 'Армянский драм', flag: '🇦🇲' },
+    { code: 'AED', sym: 'د.إ', name: 'Дирхам ОАЭ', flag: '🇦🇪' },
+    { code: 'TRY', sym: '₺', name: 'Турецкая лира', flag: '🇹🇷' },
+    { code: 'USD', sym: '$', name: 'Доллар США', flag: '🇺🇸' },
+    { code: 'EUR', sym: '€', name: 'Евро', flag: '🇪🇺' },
+    { code: 'GBP', sym: '£', name: 'Британский фунт', flag: '🇬🇧' }
+];
+
+let activeCurrency = 'RUB';
+
+function initCurrency() {
+    let saved = localStorage.getItem('ru_inv_currency');
+    if (saved && CURRENCIES.find(c => c.code === saved)) activeCurrency = saved;
+    updateCurrencyUI();
+}
+
+function updateCurrencyUI() {
+    const c = CURRENCIES.find(x => x.code === activeCurrency);
+    document.getElementById('top-flag').textContent = c.flag;
+    document.getElementById('top-sym').textContent = c.sym;
+
+    document.getElementById('home-flag').textContent = c.flag;
+    document.getElementById('home-currency-name').textContent = `${c.name} (${c.sym})`;
+
+    document.getElementById('gt-sym').textContent = c.sym;
+    renderItems();
+}
+
+function openCurrencyModal() {
+    const list = document.getElementById('currency-list');
+    list.innerHTML = CURRENCIES.map(c => `
+        <div class="currency-item ${c.code === activeCurrency ? 'selected' : ''}" onclick="selectCurrency('${c.code}')">
+            <span class="c-flag">${c.flag}</span>
+            <div style="flex:1;">
+                <div class="c-country">${c.name}</div>
+                <div class="c-name">${c.code}</div>
+            </div>
+            <span class="c-sym">${c.sym}</span>
+            ${c.code === activeCurrency ? '<i class="fa-solid fa-check text-[var(--ru-red)] ml-2 text-xs"></i>' : ''}
+        </div>`).join('');
+    document.getElementById('currency-modal').style.display = 'flex';
+}
+
+function closeCurrencyModal() { document.getElementById('currency-modal').style.display = 'none'; }
+function selectCurrency(code) { activeCurrency = code; localStorage.setItem('ru_inv_currency', code); updateCurrencyUI(); closeCurrencyModal(); }
+
+function fmt(n) { return new Intl.NumberFormat('ru-RU', { minimumFractionDigits:2, maximumFractionDigits:2 }).format(n); }
+
+// ══════════════════════════════════════════
+// РЕДАКТОР СЧЁТА + НАВИГАЦИЯ
+// ══════════════════════════════════════════
+let curPage = 0;
+let items = [];
+let currentInvoiceData = null;
+
+function showPage(p) {
+    curPage = p;
+    document.getElementById('main-slider').style.transform = `translateX(-${p * 20}%)`;
+    document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === p));
+}
+
+function resetAndNew() {
+    document.getElementById('inv-no').value = 'PRO-' + Date.now().toString().slice(-4);
+    document.getElementById('inv-date').value = new Date().toISOString().split('T')[0];
+    setDue(14); setVat(20, document.getElementById('vat-20'));
+    items = [{ n: 'Услуга/Товар 1', q: 1, p: 0, u: 'шт' }];
+    renderItems();
+    showPage(1);
+}
+
+function setDue(d) {
+    document.getElementById('inv-due-days').value = d;
+    document.querySelectorAll('[id^="due-"]').forEach(el => el.classList.remove('active'));
+    document.getElementById(`due-${d}`).classList.add('active');
+}
+
+function setVat(v, el) {
+    document.getElementById('selected-vat').value = v;
+    document.querySelectorAll('[id^="vat-"]').forEach(x => x.classList.remove('active'));
+    document.getElementById('custom-vat-btn').classList.remove('active');
+    document.getElementById('custom-vat-btn').innerText = '...';
+    if (el) el.classList.add('active');
+    calculateTotal();
+}
+
+function promptVat(btn) {
+    let v = prompt("Введите % НДС (например, 12):", "12");
+    if (v !== null && !isNaN(v) && v !== "") {
+        document.getElementById('selected-vat').value = v;
+        document.querySelectorAll('.badge-select').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        btn.innerText = v + '%';
+        calculateTotal();
+    }
+}
+
+function renderItems() {
+    const sym = CURRENCIES.find(c => c.code === activeCurrency).sym;
+    const c = document.getElementById('items-list');
+    
+    // Sabit birim listemiz
+    const units = ['шт.', 'час', 'день', 'нед.', 'мес.', 'км', 'л', 'кг', 'м', 'усл.', 'упак.'];
+
+    c.innerHTML = items.map((it, i) => `
+        <div class="item-row">
+            <button onclick="delRow(${i})" class="absolute -top-3 -right-3 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"><i class="fa-solid fa-times"></i></button>
+            <label>Наименование</label>
+            <textarea class="input-pro mb-3" rows="2" placeholder="Описание..." oninput="uRowText(${i}, this.value)">${it.n || ''}</textarea>
+            <div class="grid grid-cols-3 gap-3 mb-2">
+                <div><label>Кол-во</label><input type="number" class="input-pro" value="${it.q}" oninput="uRow(${i},'q',this.value)"></div>
+                
+                <!-- DÜZELTİLEN KISIM: Input yerine Select (Açılır Menü) kullanıldı -->
+                <div>
+                    <label>Ед.</label>
+                    <select class="input-pro" onchange="uRowUnit(${i}, this.value)" style="appearance: auto; cursor: pointer; padding: 14px 8px;">
+                        ${units.map(u => `<option value="${u}" ${(it.u === u || (it.u === 'шт' && u === 'шт.')) ? 'selected' : ''}>${u}</option>`).join('')}
+                    </select>
+                </div>
+                
+                <div><label>Цена</label><input type="number" class="input-pro" value="${it.p}" oninput="uRow(${i},'p',this.value)"></div>
+            </div>
+            <div class="text-right text-[10px] font-black text-slate-400 mt-3 uppercase tracking-wider">Сумма: <span id="row-sum-${i}" class="text-sm text-slate-800 ml-1">${fmt(it.q*it.p)} ${sym}</span></div>
+        </div>
+    `).join('');
+    calculateTotal();
+}
+
+
+function addRow() { items.push({ n: '', q: 1, p: 0, u: 'шт' }); renderItems(); }
+function delRow(i) { items.splice(i, 1); renderItems(); }
+
+function uRow(i, k, v) {
+    items[i][k] = parseFloat(v) || 0;
+    const sym = CURRENCIES.find(c => c.code === activeCurrency).sym;
+    const rowSumEl = document.getElementById(`row-sum-${i}`);
+    if (rowSumEl) rowSumEl.textContent = `${fmt(items[i].q * items[i].p)} ${sym}`;
+    calculateTotal();
+}
+
+function uRowText(i, v) { items[i]['n'] = v; }
+function uRowUnit(i, v) { items[i]['u'] = v; }
+
+function calculateTotal() {
+    let sub = items.reduce((s, it) => s + (it.q * it.p), 0);
+    let vatP = parseFloat(document.getElementById('selected-vat').value) || 0;
+    let t = sub + (sub * (vatP/100));
+    
+    // Aktif para birimi sembolünü güvenli şekilde alıyoruz
+    const symObj = CURRENCIES.find(c => c.code === activeCurrency);
+    const sym = symObj ? symObj.sym : '₽';
+    
+    // ÇÖZÜM: id="gt-sym" etiketini kaybetmeden içeriği güncelliyoruz.
+    document.getElementById('grand-total').innerHTML = `${fmt(t)} <span id="gt-sym" class="text-lg opacity-50">${sym}</span>`;
+    
+    return { sub, tax: t - sub, total: t, vatP };
+}
+
+// ══════════════════════════════════════════
+// КЛИЕНТЫ И ПРОФИЛЬ (LocalStorage)
+// ══════════════════════════════════════════
+let cl = JSON.parse(localStorage.getItem('ru_inv_cust')) || [];
+let pData = JSON.parse(localStorage.getItem('ru_inv_prof')) || { name:'', adr:'', pc:'', city:'', mob:'', mail:'', bank:'', iban:'', tax:'', vat:'' };
+
+function loadCustAndProf() {
+    ['name','adr','pc','city','mob','mail','bank','iban','tax','vat'].forEach(k => document.getElementById(`p-${k}`).value = pData[k] || '');
+    rCust(); rCustSelect();
+}
+
+function saveProfile() {
+    ['name','adr','pc','city','mob','mail','bank','iban','tax','vat'].forEach(k => pData[k] = document.getElementById(`p-${k}`).value);
+    localStorage.setItem('ru_inv_prof', JSON.stringify(pData));
+    alert('Профиль сохранён!');
+    showPage(3);
+}
+
+function saveCustomer() {
+    let ix = parseInt(document.getElementById('edit-cust-idx').value);
+    let c = {}; ['name','adr','pc','city','mob','mail','tax','vat'].forEach(k => { c[k] = document.getElementById(`c-${k}`).value; document.getElementById(`c-${k}`).value = ''; });
+    if(ix >= 0) cl[ix] = c; else cl.push(c);
+    localStorage.setItem('ru_inv_cust', JSON.stringify(cl));
+    document.getElementById('edit-cust-idx').value = '-1';
+    rCust(); rCustSelect();
+    showPage(1);
+}
+
+function edCust(i) {
+    let c = cl[i]; document.getElementById('edit-cust-idx').value = i;
+    ['name','adr','pc','city','mob','mail','tax','vat'].forEach(k => document.getElementById(`c-${k}`).value = c[k]);
+    showPage(3);
+}
+function rmCust(i) { if(confirm('Удалить клиента?')) { cl.splice(i,1); localStorage.setItem('ru_inv_cust', JSON.stringify(cl)); rCust(); rCustSelect(); } }
+
+function rCust() {
+    document.getElementById('customer-list').innerHTML = cl.map((c, i) => `
+        <div class="glass-card flex justify-between items-center p-4">
+            <div><div class="font-bold text-sm">${c.name}</div><div class="text-[10px] text-slate-400 mt-1">${c.city}</div></div>
+            <div class="flex gap-2">
+                <button onclick="edCust(${i})" class="w-8 h-8 bg-slate-100 rounded-lg text-slate-500"><i class="fa-solid fa-pen text-xs"></i></button>
+                <button onclick="rmCust(${i})" class="w-8 h-8 bg-red-50 rounded-lg text-red-500"><i class="fa-solid fa-trash text-xs"></i></button>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('stat-klienty').innerText = cl.length;
+}
+
+function rCustSelect() {
+    const s = document.getElementById('inv-cust-select');
+    s.innerHTML = `<option value="">-- Новый / Без клиента --</option>` + cl.map((c, i) => `<option value="${i}">${c.name}</option>`).join('');
+}
+
+// ══════════════════════════════════════════
+// ПРЕДПРОСМОТР И PDF
+// ══════════════════════════════════════════
+function generatePreviewFromCurrent() {
+    let ci = document.getElementById('inv-cust-select').value;
+    let cd = ci !== "" ? cl[parseInt(ci)] : { name:'Клиент', adr:'Адрес', pc:'Индекс', city:'Город', tax:'ИНН', vat:'НДС №' };
+
+    let dt = document.getElementById('inv-date').value;
+    let dArr = dt.split('-'); dt = dt ? `${dArr[2]}.${dArr[1]}.${dArr[0]}` : '';
+
+    let dueD = parseInt(document.getElementById('inv-due-days').value) || 0;
+    let dueDateObj = new Date(document.getElementById('inv-date').value);
+    dueDateObj.setDate(dueDateObj.getDate() + dueD);
+    let dueStr = dueD === 0 ? "Сразу" : dueDateObj.toLocaleDateString('ru-RU');
+
+    currentInvoiceData = {
+        no: document.getElementById('inv-no').value,
+        dt: dt,
+        due: dueStr,
+        dueDays: dueD,
+        vatP: document.getElementById('selected-vat').value,
+        custIdx: ci,
+        c: cd, p: pData, i: items,
+        cur: activeCurrency, sym: CURRENCIES.find(x => x.code === activeCurrency).sym
+    };
+
+    renderA4(currentInvoiceData);
+    document.getElementById('modal-confirm-btn').style.display = 'block';
+    document.getElementById('p-modal').style.display = 'flex';
+}
+
+function renderA4(data) {
+    document.getElementById('pv-no').innerText = data.no || '#000';
+    document.getElementById('pv-title').innerText = data.p.name ? data.p.name.toUpperCase() : 'КОМПАНИЯ';
+    document.getElementById('pv-date').innerText = data.dt;
+    document.getElementById('pv-due').innerText = data.due;
+
+    document.getElementById('pv-sender').innerHTML = `
+        <b style="color:#1E293B;">${data.p.name||'Название'}</b><br>
+        ${data.p.adr||'Адрес'}<br>${data.p.pc||''} ${data.p.city||''}<br><br>
+        ИНН: ${data.p.tax||'-'}<br>НДС №: ${data.p.vat||'-'}<br>${data.p.mail||''}
+    `;
+    document.getElementById('pv-receiver').innerHTML = `
+        <b style="color:#1E293B;">${data.c.name||'Клиент'}</b><br>
+        ${data.c.adr||'Адрес'}<br>${data.c.pc||''} ${data.c.city||''}<br><br>
+        ИНН: ${data.c.tax||'-'}<br>НДС №: ${data.c.vat||'-'}
+    `;
+
+    document.getElementById('pv-bank').innerHTML = `БАНК: ${data.p.bank||'-'}<br>Р/С (IBAN): ${data.p.iban||'-'}`;
+
+    let sub = 0;
+    document.getElementById('pv-items').innerHTML = data.i.map(it => {
+        let l = it.q * it.p; sub += l;
+        return `
+        <tr style="border-bottom:1px solid #F1F5F9;">
+            <td style="padding:15px 0; font-weight:700; color:#1E293B;">${(it.n||'').replace(/\n/g, '<br>')}</td>
+            <td style="text-align:center;">${it.q}</td>
+            <td style="text-align:center;">${it.u || ''}</td>
+            <td style="text-align:right;">${fmt(it.p)}</td>
+            <td style="text-align:right; font-weight:700;">${fmt(l)}</td>
+        </tr>`;
+    }).join('');
+
+    let vatP = parseFloat(document.getElementById('selected-vat').value) || 0;
+    let tax = sub * (vatP / 100);
+    let tot = sub + tax;
+
+    document.getElementById('pv-sub').innerText = fmt(sub) + ' ' + data.sym;
+    document.getElementById('pv-tax-label').innerText = `НДС (${vatP}%)`;
+    document.getElementById('pv-tax').innerText = fmt(tax) + ' ' + data.sym;
+    document.getElementById('pv-total').innerText = fmt(tot) + ' ' + data.sym;
+}
+
+function closePreview() { document.getElementById('p-modal').style.display = 'none'; }
+
+function confirmAndArchive() {
+    let a = JSON.parse(localStorage.getItem('ru_inv_arch')) || [];
+    currentInvoiceData.totalStr = document.getElementById('pv-total').innerText;
+    a.unshift(currentInvoiceData);
+    localStorage.setItem('ru_inv_arch', JSON.stringify(a));
+    renderArch();
+    downloadPDF();
+}
+
+function downloadPDF() {
+    const prof = pData;
+    const cust = currentInvoiceData.c;
+    const baseUrl = "https://invoiceluxe.com/invoice.html?";
+    const params = new URLSearchParams();
+    const addParam = (key, val) => { if(val && val.toString().trim() !== "") params.append(key, val); };
+
+    addParam('l', 'ru');
+    addParam('n', prof.name); addParam('inv', currentInvoiceData.no);
+    addParam('d', currentInvoiceData.dt);
+    addParam('due', currentInvoiceData.due);
+    addParam('sym', currentInvoiceData.sym);
+    addParam('vrate', document.getElementById('selected-vat').value);
+    addParam('adr', prof.adr); addParam('pc', prof.pc); addParam('ct', prof.city);
+    addParam('vat', prof.vat); addParam('k', prof.tax); addParam('mob', prof.mob);
+    addParam('mail', prof.mail); addParam('bnk', prof.bank); addParam('i', prof.iban);
+    addParam('c', cust.name); addParam('cadr', cust.adr); addParam('cpc', cust.pc);
+    addParam('cct', cust.city); addParam('cv', cust.vat); addParam('cx', cust.tax);
+    addParam('cmob', cust.mob); addParam('cmail', cust.mail);
+    addParam('items', currentInvoiceData.i.map(it => `${it.n}|${it.q}|${it.p}|${it.u||''}`).join('!!'));
+
+    window.open(baseUrl + params.toString(), '_blank');
+    closePreview();
+}
+
+// ══════════════════════════════════════════
+// АРХИВ
+// ══════════════════════════════════════════
+function renderArch() {
+    let a = JSON.parse(localStorage.getItem('ru_inv_arch')) || [];
+    document.getElementById('stat-schety').innerText = a.length;
+    document.getElementById('archiv-list').innerHTML = a.map((x, i) => `
+        <div class="glass-card mb-4 border-l-4 border-l-[var(--ru-red)]">
+            <div class="flex justify-between items-start mb-3">
+                <div><div class="font-black text-slate-800">${x.no}</div><div class="text-[10px] font-bold text-slate-400 mt-1">${x.dt}</div></div>
+                <div class="text-right"><div class="font-black text-[var(--ru-red)] text-lg tracking-tighter">${x.totalStr}</div><div class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">${x.c.name}</div></div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="viewArch(${i})" class="flex-1 bg-slate-100 py-3 rounded-xl text-[10px] font-black uppercase text-slate-500 tracking-widest"><i class="fa-solid fa-eye mr-1"></i> Просмотр</button>
+                <button onclick="edArch(${i})" class="w-12 bg-blue-50 text-blue-500 rounded-xl"><i class="fa-solid fa-pen"></i></button>
+                <button onclick="delArch(${i})" class="w-12 bg-red-50 text-red-500 rounded-xl"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function viewArch(i) {
+    let a = JSON.parse(localStorage.getItem('ru_inv_arch')) || [];
+    currentInvoiceData = a[i];
+    renderA4(currentInvoiceData);
+    document.getElementById('modal-confirm-btn').style.display = 'none';
+    document.getElementById('p-modal').style.display = 'flex';
+}
+    function edArch(i) {
+    let a = JSON.parse(localStorage.getItem('ru_inv_arch')) || [];
+    let d = a[i];
+    if (!d) return;
+
+    document.getElementById('inv-no').value = d.no || '';
+
+    if (d.dt) {
+        let parts = d.dt.split('.');
+        if (parts.length === 3) document.getElementById('inv-date').value = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+
+    // Vade (Süre) mantığını düzeltildi (0 gün hatası giderildi)
+    let dueVal = 14;
+    if (d.dueDays !== undefined && d.dueDays !== null) {
+        dueVal = parseInt(d.dueDays);
+    }
+    setDue(dueVal);
+
+    let vatVal = parseFloat(d.vatP);
+    let vatBtn = document.getElementById(`vat-${vatVal}`);
+    if (vatBtn) {
+        setVat(vatVal, vatBtn);
+    } else {
+        document.getElementById('selected-vat').value = d.vatP || 0;
+        document.querySelectorAll('.badge-select').forEach(x => x.classList.remove('active'));
+        document.getElementById('custom-vat-btn').classList.add('active');
+        document.getElementById('custom-vat-btn').innerText = (d.vatP || 0) + '%';
+    }
+
+    if (d.custIdx !== undefined && d.custIdx !== "") {
+        document.getElementById('inv-cust-select').value = d.custIdx;
+    }
+
+    // Eklenen özel birimlerin (km, litre vb.) sorunsuz yüklenmesini sağlar
+    items = JSON.parse(JSON.stringify(d.i || [])).map(it => ({ n: it.n||'', q: it.q||0, p: it.p||0, u: it.u||'шт' }));
+    if (items.length === 0) items = [{ n:'', q:1, p:0, u:'шт' }];
+
+    renderItems();
+    showPage(1); // Düzenleme ekranına başarıyla kaydırır
+}
+
+
+function delArch(i) {
+    if(confirm('Удалить навсегда?')) {
+        let a = JSON.parse(localStorage.getItem('ru_inv_arch')) || [];
+        a.splice(i, 1);
+        localStorage.setItem('ru_inv_arch', JSON.stringify(a));
+        renderArch();
+    }
+}
+
+// INITIALIZE
+window.onload = () => {
+    initCurrency();
+    loadCustAndProf();
+    renderArch();
+    resetAndNew();
+    showPage(0);
+};
+
+// ЗУМ ПРЕДПРОСМОТРА
+const za = document.getElementById('zoom-area');
+const pp = document.getElementById('p-page');
+function setScale() {
+    if (window.innerWidth <= 820) {
+        let s = (window.innerWidth - 40) / 794;
+        pp.style.transform = `scale(${s})`;
+    } else { pp.style.transform = 'scale(1)'; }
+}
+window.addEventListener('resize', setScale);
+setScale();
+</script>
+  
+  <!-- BİRİM SEÇENEKLERİ (DATALIST) -->
+<datalist id="unit-options">
+    <option value="шт."> <!-- Adet (Штука) -->
+    <option value="час"> <!-- Saat -->
+    <option value="день"> <!-- Gün -->
+    <option value="нед."> <!-- Hafta (Неделя) -->
+    <option value="мес."> <!-- Ay (Месяц) -->
+    <option value="км"> <!-- Kilometre -->
+    <option value="л"> <!-- Litre -->
+    <option value="кг"> <!-- Kilogram -->
+    <option value="м"> <!-- Metre -->
+    <option value="усл."> <!-- Hizmet/Servis (Услуга) -->
+    <option value="упак."> <!-- Paket (Упаковка) -->
+</datalist>
+</body>
+</html>

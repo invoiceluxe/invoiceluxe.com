@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-IN" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="google" content="notranslate">
+
+    <!-- Dinamik SEO Meta Etiketleri -->
+    <title id="meta-title">VAT Calculator & Tax Analyser – Income Expense Tracker | Invoice Luxe</title>
+    <meta id="meta-desc" name="description" content="Free VAT calculator with income and expense tracking. Calculate net, tax and gross amounts instantly. Read our guide to master tax analysis.">
+    <meta name="keywords" content="VAT calculator, tax calculator, income expense tracker, BTW calculator, KDV hesaplama, net gross calculator, financial report, Invoice Luxe">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/calculator">
+
+    <!-- Çok Dilli SEO Hreflang Yapısı -->
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/calculator" />
+    <link rel="alternate" hreflang="en-IN" href="https://invoiceluxe.com/calculator?lang=en" />
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/calculator?lang=tr" />
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/calculator?lang=nl" />
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/calculator?lang=de" />
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/calculator?lang=fr" />
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/calculator?lang=it" />
+
+    <meta id="og-title" property="og:title" content="VAT Calculator & Tax Analyser | Invoice Luxe">
+    <meta id="og-desc" property="og:description" content="Calculate VAT, net and gross instantly. Track income and expenses with automatic tax separation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/calculator">
+
+    <style>
+        :root {
+            --wood-dark: #0f0b08; --gold: #c5a059; --border: #2d241c;
+            --income-green: #2ecc71; --expense-red: #e74c3c;
+            --key-op: #ff9800; --key-fn: #ef5350;
+            --neon-green: #39FF14; --neon-blue: #00d2ff;
+        }
+        /* Kaydırma kilidi kaldırıldı (overflow: hidden iptal edildi) */
+        * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; margin:0; padding:0; }
+        body { background: var(--wood-dark); display: flex; flex-direction: column; min-height: 100dvh; overflow-x: hidden; color: #ccc; }
+
+        .nav-header { width: 100%; background: rgba(15,11,8,0.95); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 50; }
+        .btn-back { background: #1c1c1e; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid var(--border); transition: 0.2s; }
+        .btn-back:hover { background: #2d241c; border-color: var(--gold); }
+
+        .wrapper-main { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 20px 12px; gap: 40px; }
+        
+        #app { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 8px; border: 1.5px solid var(--gold); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); padding: 15px; background: rgba(0,0,0,0.2); }
+
+        .top-section { display: flex; flex-direction: column; gap: 8px; }
+        .lang-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .lang-btn { background: rgba(0,0,0,0.4); border: 1px solid var(--border); color: #777; padding: 8px 0; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; }
+        .lang-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(197,160,89,0.15); }
+
+        .header { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 5px; }
+        h1.app-title { margin: 0; font-size: 16px; font-weight: 900; background: linear-gradient(to bottom, #fff7e6 0%, var(--gold) 60%, #8e7341 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+
+        @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 5px rgba(197,160,89,0.2); transform: scale(1); } 50% { box-shadow: 0 0 15px rgba(197,160,89,0.4); transform: scale(1.01); } }
+        .btn-analise { width: 100%; background: linear-gradient(135deg, #d4af37, #8e7341); color: #000; border: none; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 900; cursor: pointer; text-transform: uppercase; animation: pulse-glow 3s infinite ease-in-out; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        .glass-screen { background: linear-gradient(160deg, #0a0a0a 0%, #151515 100%); border-radius: 18px; padding: 15px 20px; border: 2px solid #222; text-align: right; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; box-shadow: inset 0 4px 20px rgba(0,0,0,0.9); }
+        #history { font-size: 22px; color: var(--neon-green); min-height: 28px; font-family: 'Courier New', monospace; opacity: 0.8; margin-bottom: 5px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; direction: ltr; text-align: right; }
+        #history::-webkit-scrollbar { display: none; }
+        #main-val { font-size: 42px; font-weight: 300; color: #fff; line-height: 1; }
+
+        .info-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .i-box { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 10px; padding: 8px; text-align: center; }
+        .i-label { font-size: 9px; color: #777; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
+        #v-net { color: var(--neon-blue); font-size: 14px; font-weight: 800; }
+        #v-tax { color: var(--gold); font-size: 14px; font-weight: 800; }
+        #v-tot { color: var(--neon-green); font-size: 14px; font-weight: 800; }
+
+        .tax-strip { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 8px; }
+        .inp-main { background: rgba(0,0,0,0.5); border: 1px solid var(--gold); color: var(--gold); border-radius: 8px; height: 45px; text-align: center; font-size: 18px; font-weight: bold; outline: none; }
+        .btn-v { border: none; border-radius: 8px; font-weight: 800; font-size: 10px; cursor: pointer; text-transform: uppercase; color: #fff; }
+        .btn-inc { background: linear-gradient(135deg, #27ae60, #1e8449); box-shadow: 0 3px 0 #145a32; }
+        .btn-exc { background: linear-gradient(135deg, #2980b9, #21618c); box-shadow: 0 3px 0 #1a5276; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 5px; }
+        .key { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; font-size: 20px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 500; min-height: 52px; }
+        .key-op { color: var(--key-op) !important; font-size: 24px; font-weight: bold; }
+        .key-fn { color: var(--key-fn) !important; font-weight: bold; }
+        .key-eq { background: var(--gold) !important; color: #000 !important; font-weight: 900; border: none; font-size: 28px; }
+
+        /* SEO BLOG BÖLÜMÜ */
+        .seo-article { max-width: 800px; width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 15px; padding: 25px; line-height: 1.6; }
+        .seo-article h2 { color: var(--gold); font-size: 20px; margin-bottom: 15px; font-weight: 800; letter-spacing: 0.5px; }
+        .seo-article h3 { color: #fff; font-size: 16px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .seo-article p { font-size: 14px; color: #aaa; margin-bottom: 15px; }
+        .seo-article ul { margin-left: 20px; margin-bottom: 15px; }
+        .seo-article li { font-size: 14px; color: #aaa; margin-bottom: 8px; }
+        .seo-article strong { color: var(--gold); }
+
+        /* MODAL */
+        #modal { position: fixed; inset: 0; background: #0e0a07; display: none; flex-direction: column; padding: 20px; z-index: 100; overflow-y: auto; }
+        .mod-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
+        .welcome-note { background: rgba(197,160,89,0.1); border: 1px solid var(--gold); color: #ccc; padding: 12px; border-radius: 10px; font-size: 11px; text-align: center; margin-bottom: 15px; }
+        .list { flex: 1; overflow-y: auto; margin-bottom: 15px; max-height: 35vh; }
+        .row { background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(197,160,89,0.1); }
+        .wa-btn { background: #25d366; color: #fff; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="tools.html" class="btn-back" id="b-back">⬅ BACK TO MAIN MENU</a>
+        <div style="color:#666; font-weight:800; font-size:12px; letter-spacing:1px;" id="l-top-tag">MAIN MENU</div>
+    </header>
+
+    <main class="wrapper-main">
+        <!-- HESAP MAKİNESİ -->
+        <section id="app">
+            <div class="top-section">
+                <nav class="lang-bar" id="lang-bar">
+                    <button class="lang-btn" id="btn-tr" onclick="setLang('tr',this)">TR</button>
+                    <button class="lang-btn" id="btn-en" onclick="setLang('en',this)">EN</button>
+                    <button class="lang-btn" id="btn-nl" onclick="setLang('nl',this)">NL</button>
+                    <button class="lang-btn" id="btn-de" onclick="setLang('de',this)">DE</button>
+                    <button class="lang-btn" id="btn-fr" onclick="setLang('fr',this)">FR</button>
+                    <button class="lang-btn" id="btn-it" onclick="setLang('it',this)">IT</button>
+                </nav>
+                <div class="header">
+                    <h1 class="app-title" id="h1-title">Tax Calculator Global</h1>
+                    <button class="btn-analise" onclick="openM()" id="t-analiz">
+                        <span>📊</span><span id="t-analiz-txt">VAT ANALYSE</span>
+                    </button>
+                </div>
+                <div class="glass-screen">
+                    <div id="history"></div>
+                    <div id="main-val">0,00</div>
+                </div>
+                <div class="info-bar">
+                    <div class="i-box"><div class="i-label" id="t-net">NET</div><div id="v-net">0,00</div></div>
+                    <div class="i-box"><div class="i-label" id="t-tax">VAT</div><div id="v-tax">0,00</div></div>
+                    <div class="i-box"><div class="i-label" id="t-tot">TOTAL</div><div id="v-tot">0,00</div></div>
+                </div>
+                <div class="tax-strip">
+                    <input type="number" id="q-rate" class="inp-main" value="21">
+                    <button class="btn-v btn-inc" onclick="calc(true)" id="t-inc">VAT INCL</button>
+                    <button class="btn-v btn-exc" onclick="calc(false)" id="t-exc">VAT EXCL</button>
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <button class="key key-fn" onclick="cls()">AC</button>
+                <button class="key key-fn" onclick="toggleSign()">+/-</button>
+                <button class="key key-fn" onclick="percent()">%</button>
+                <button class="key key-op" onclick="p('/')">÷</button>
+                <button class="key" onclick="p('7')">7</button><button class="key" onclick="p('8')">8</button><button class="key" onclick="p('9')">9</button>
+                <button class="key key-op" onclick="p('*')">×</button>
+                <button class="key" onclick="p('4')">4</button><button class="key" onclick="p('5')">5</button><button class="key" onclick="p('6')">6</button>
+                <button class="key key-op" onclick="p('-')">-</button>
+                <button class="key" onclick="p('1')">1</button><button class="key" onclick="p('2')">2</button><button class="key" onclick="p('3')">3</button>
+                <button class="key key-op" onclick="p('+')">+</button>
+                <button class="key" onclick="p('0')">0</button>
+                <button class="key" onclick="p('.')">,</button>
+                <button class="key key-fn" onclick="del()">⌫</button>
+                <button class="key key-eq" onclick="solve()">=</button>
+            </div>
+        </section>
+
+        <!-- SEO VE KULLANIM KILAVUZU BLOĞU -->
+        <article class="seo-article">
+            <h2 id="seo-h2">Advanced VAT Calculator & Income Tracker</h2>
+            <p id="seo-p1">Whether you are a freelancer, a small business owner, or just doing personal accounting, calculating taxes shouldn't be complicated. This free and dynamic tool helps you instantly calculate Net, Gross, and VAT amounts with a single click.</p>
+            
+            <h3 id="seo-h3-1">What is the "VAT ANALYSE" Feature?</h3>
+            <p id="seo-p2">Clicking the gold <strong>VAT ANALYSE</strong> button at the top of the calculator opens a dedicated financial dashboard in a new window within the page. In this special screen, you can:</p>
+            <ul>
+                <li id="seo-li-1">List your multiple <strong>Incomes</strong> (Green) and <strong>Expenses</strong> (Red).</li>
+                <li id="seo-li-2">Apply different VAT rates to different entries.</li>
+                <li id="seo-li-3">Automatically see your total payable or receivable tax balance.</li>
+                <li id="seo-li-4">Export the entire detailed financial report instantly via <strong>WhatsApp</strong>.</li>
+            </ul>
+
+            <h3 id="seo-h3-2">Step-by-Step User Guide</h3>
+            <ul>
+                <li id="seo-g-1"><strong>Basic Calculation:</strong> Use the keypad just like a standard calculator. The result appears on the green display.</li>
+                <li id="seo-g-2"><strong>Set Tax Rate:</strong> Enter your country's or product's VAT percentage into the small gold input box (default is 21%).</li>
+                <li id="seo-g-3"><strong>VAT INCL (Included):</strong> Click this if the amount you entered already contains tax. It will extract the pure net price and tax amount.</li>
+                <li id="seo-g-4"><strong>VAT EXCL (Excluded):</strong> Click this if you want to add tax on top of your pure net amount.</li>
+                <li id="seo-g-5"><strong>Data Safety:</strong> All your calculations and lists are saved locally on your browser. Even if you close the page, your data remains intact!</li>
+            </ul>
+        </article>
+    </main>
+
+    <!-- MODAL (KDV ANALİZ PENCERESİ) -->
+    <div id="modal">
+        <div class="mod-head">
+            <b style="color:var(--gold)" id="t-m-head">VAT ANALYSIS</b>
+            <button onclick="closeM()" style="background:none;border:none;color:#fff;font-size:24px;opacity:0.3;cursor:pointer;">✕</button>
+        </div>
+        <div class="welcome-note">
+            <b style="color:var(--gold);display:block;margin-bottom:3px;" id="t-wel-tit">IMPORTANT NOTICE</b>
+            <span id="t-welcome">Please enter amounts Including VAT.</span>
+        </div>
+        <div class="mode-pick" style="display:flex;gap:8px;margin-bottom:10px;">
+            <button id="mi" class="pick" onclick="setM('IN')" style="flex:1;height:40px;border-radius:8px;border:none;font-weight:800;cursor:pointer;">INCOME</button>
+            <button id="mo" class="pick" onclick="setM('OUT')" style="flex:1;height:40px;border-radius:8px;border:none;font-weight:800;cursor:pointer;">EXPENSE</button>
+        </div>
+        <div class="add-row" style="display:grid;grid-template-columns:60px 1fr 50px;gap:8px;margin-bottom:15px;">
+            <input type="number" id="r-rate" class="inp-main" value="21" style="font-size:14px;height:45px;">
+            <input type="number" id="amt" class="inp-main" style="text-align:left;padding-left:12px;font-size:16px;height:45px;" placeholder="€">
+            <button onclick="addItem()" style="background:var(--gold);border:none;border-radius:8px;font-size:24px;color:#000;cursor:pointer;">+</button>
+        </div>
+        <div class="list" id="list"></div>
+        <div class="summary">
+            <div id="res" style="font-size:22px;font-weight:900;margin-bottom:10px;text-align:center;">0,00 €</div>
+            <button class="wa-btn" onclick="share()" id="t-wa">SHARE WHATSAPP</button>
+            <div style="color:#444;font-size:10px;margin-top:10px;cursor:pointer;text-align:center;" onclick="resetData()" id="t-res">RESET</div>
+        </div>
+    </div>
+
+<script>
+    const i18n = {
+        en: { 
+          metaTitle: "VAT Calculator & Tax Analyser | Invoice Luxe", metaDesc: "Free VAT calculator with income and expense tracking.", h1: "Tax Calculator Global",
+          anal:"VAT ANALYSE", net:"NET", tax:"VAT", tot:"TOTAL", brüt:"GROSS", inc:"VAT INCL", exc:"VAT EXCL", gel:"INCOME", gid:"EXPENSE", head:"VAT ANALYSIS", wa:"SHARE WHATSAPP", res:"RESET", pay:"PAYABLE", rec:"RECEIVABLE", wel_tit:"IMPORTANT NOTICE", wel:"Please enter amounts Including VAT.", rep:"REPORT", back:"⬅ BACK TO MAIN MENU", toptag:"MAIN MENU",
+          seo_h2: "Advanced VAT Calculator & Income Tracker",
+          seo_p1: "Whether you are a freelancer, a small business owner, or just doing personal accounting, calculating taxes shouldn't be complicated. This free and dynamic tool helps you instantly calculate Net, Gross, and VAT amounts with a single click.",
+          seo_h3_1: "What is the \"VAT ANALYSE\" Feature?",
+          seo_p2: "Clicking the gold <strong>VAT ANALYSE</strong> button at the top of the calculator opens a dedicated financial dashboard in a new window within the page. In this special screen, you can:",
+          seo_li_1: "List your multiple <strong>Incomes</strong> (Green) and <strong>Expenses</strong> (Red).",
+          seo_li_2: "Apply different VAT rates to different entries.",
+          seo_li_3: "Automatically see your total payable or receivable tax balance.",
+          seo_li_4: "Export the entire detailed financial report instantly via <strong>WhatsApp</strong>.",
+          seo_h3_2: "Step-by-Step User Guide",
+          seo_g_1: "<strong>Basic Calculation:</strong> Use the keypad just like a standard calculator. The result appears on the green display.",
+          seo_g_2: "<strong>Set Tax Rate:</strong> Enter your country's or product's VAT percentage into the small gold input box (default is 21%).",
+          seo_g_3: "<strong>VAT INCL (Included):</strong> Click this if the amount you entered already contains tax. It will extract the pure net price and tax amount.",
+          seo_g_4: "<strong>VAT EXCL (Excluded):</strong> Click this if you want to add tax on top of your pure net amount.",
+          seo_g_5: "<strong>Data Safety:</strong> All your calculations and lists are saved locally on your browser. Even if you close the page, your data remains intact!"
+        },
+        tr: { 
+          metaTitle: "KDV Hesaplama Makinesi ve Analiz Aracı | Invoice Luxe", metaDesc: "Ücretsiz KDV hesaplama, gelir gider aracı ve rehberi.", h1: "Global KDV Hesaplayıcı",
+          anal:"KDV ANALİZ", net:"NET", tax:"KDV", tot:"TOPLAM", brüt:"BRÜT", inc:"KDV DAHİL", exc:"KDV HARİÇ", gel:"GELİR", gid:"GİDER", head:"KDV ANALİZİ", wa:"WHATSAPP PAYLAŞ", res:"TEMİZLE", pay:"ÖDENECEK", rec:"ALACAK", wel_tit:"ÖNEMLİ HATIRLATMA", wel:"Lütfen tutarları KDV Dahil girin.", rep:"RAPORU", back:"⬅ ANA MENÜYE DÖN", toptag:"ANA MENÜ",
+          seo_h2: "Gelişmiş KDV Hesaplama ve Gelir Gider Aracı",
+          seo_p1: "Serbest çalışanlar, işletme sahipleri veya kişisel muhasebe yapanlar için vergi hesaplamak artık çok kolay. Bu ücretsiz araç ile Net, Brüt ve KDV tutarlarını tek tıkla anında hesaplayabilirsiniz.",
+          seo_h3_1: "\"KDV ANALİZ\" Özelliği Nedir?",
+          seo_p2: "Hesap makinesinin üstündeki altın renkli <strong>KDV ANALİZ</strong> butonuna tıkladığınızda, sayfa içinde yeni ve özel bir finansal panel açılır. Bu ekranda şunları yapabilirsiniz:",
+          seo_li_1: "Birden fazla <strong>Gelir</strong> (Yeşil) ve <strong>Giderinizi</strong> (Kırmızı) listeleyebilirsiniz.",
+          seo_li_2: "Farklı tutarlar için farklı KDV oranları uygulayabilirsiniz.",
+          seo_li_3: "Ödenecek veya iade alınacak toplam verginizi otomatik görebilirsiniz.",
+          seo_li_4: "Hazırladığınız bu detaylı finansal raporu tek tıkla <strong>WhatsApp</strong> üzerinden paylaşabilirsiniz.",
+          seo_h3_2: "Adım Adım Kullanım Kılavuzu",
+          seo_g_1: "<strong>Temel Hesaplama:</strong> Tuş takımını standart bir hesap makinesi gibi kullanın. Sonuç yeşil ekranda görünür.",
+          seo_g_2: "<strong>Oran Belirleme:</strong> Küçük altın renkli kutucuğa KDV oranınızı yazın (Örn: 20%).",
+          seo_g_3: "<strong>KDV DAHİL:</strong> Girdiğiniz tutar zaten vergi içeriyorsa buna tıklayın. İçinden net tutarı ve vergiyi ayıklar.",
+          seo_g_4: "<strong>KDV HARİÇ:</strong> Saf net tutarın üzerine KDV eklemek istiyorsanız buna tıklayın.",
+          seo_g_5: "<strong>Veri Güvenliği:</strong> Tüm işlemleriniz tarayıcınıza kaydedilir. Sayfayı kapatsanız bile verileriniz silinmez!"
+        },
+        nl: { 
+          metaTitle: "BTW Calculator & Tracker | Invoice Luxe", metaDesc: "Bereken BTW en lees de gids voor belastinganalyse.", h1: "BTW Rekenmachine Global",
+          anal:"BTW ANALYSE", net:"NETTO", tax:"BTW", tot:"TOTAAL", brüt:"BRUTO", inc:"BTW INCL", exc:"BTW EXCL", gel:"INKOMSTEN", gid:"UITGAVEN", head:"BTW ANALYSE", wa:"DELEN VIA WA", res:"RESETTEN", pay:"TE BETALEN", rec:"TE ONTVANGEN", wel_tit:"BELANGRIJK", wel:"Voer bedragen in Inclusief BTW.", rep:"RAPPORT", back:"⬅ TERUG", toptag:"HOOFDMENU",
+          seo_h2: "Geavanceerde BTW Calculator & Tracker",
+          seo_p1: "Of u nu freelancer of ondernemer bent, belasting berekenen hoeft niet ingewikkeld te zijn. Bereken direct Netto, Bruto en BTW.",
+          seo_h3_1: "Wat is de \"BTW ANALYSE\" functie?",
+          seo_p2: "Door op de gouden <strong>BTW ANALYSE</strong> knop te klikken, opent een speciaal dashboard in de pagina. Hier kunt u:",
+          seo_li_1: "Uw <strong>Inkomsten</strong> (Groen) en <strong>Uitgaven</strong> (Rood) opsommen.",
+          seo_li_2: "Verschillende BTW-tarieven toepassen op verschillende posten.",
+          seo_li_3: "Automatisch uw te betalen of te ontvangen belasting zien.",
+          seo_li_4: "Het financiële rapport direct via <strong>WhatsApp</strong> exporteren.",
+          seo_h3_2: "Stapsgewijze Handleiding",
+          seo_g_1: "<strong>Basisberekening:</strong> Gebruik het toetsenbord. Het resultaat verschijnt op het groene scherm.",
+          seo_g_2: "<strong>BTW-tarief:</strong> Voer uw percentage in het gouden vakje in (standaard 21%).",
+          seo_g_3: "<strong>BTW INCL:</strong> Klik hier als de prijs al belasting bevat.",
+          seo_g_4: "<strong>BTW EXCL:</strong> Klik hier om belasting toe te voegen aan uw nettobedrag.",
+          seo_g_5: "<strong>Data Veiligheid:</strong> Uw gegevens worden lokaal opgeslagen en blijven bewaard na het sluiten."
+        },
+        de: { 
+          metaTitle: "MwSt.-Rechner & Analysator | Invoice Luxe", metaDesc: "Kostenloser MwSt.-Rechner. Lesen Sie unsere Anleitung.", h1: "MwSt Rechner Global",
+          anal:"MWST ANALYSE", net:"NETTO", tax:"MWST", tot:"GESAMT", brüt:"BRUTTO", inc:"MWST INKL", exc:"MWST EXKL", gel:"EINNAHMEN", gid:"AUSGABEN", head:"MWST ANALYSE", wa:"WA TEILEN", res:"LÖSCHEN", pay:"ZAHLBAR", rec:"GUTHABEN", wel_tit:"WICHTIG", wel:"Bitte Beträge Inklusive MwSt. eingeben.", rep:"BERICHT", back:"⬅ ZURÜCK", toptag:"HAUPTMENÜ",
+          seo_h2: "Erweiterter MwSt-Rechner & Einnahmen-Tracker",
+          seo_p1: "Egal ob Freiberufler oder Unternehmer, Steuern berechnen muss nicht kompliziert sein. Berechnen Sie sofort Netto, Brutto und MwSt.",
+          seo_h3_1: "Was ist die Funktion \"MWST ANALYSE\"?",
+          seo_p2: "Ein Klick auf die goldene Schaltfläche <strong>MWST ANALYSE</strong> öffnet ein spezielles Finanz-Dashboard. Hier können Sie:",
+          seo_li_1: "Ihre <strong>Einnahmen</strong> (Grün) und <strong>Ausgaben</strong> (Rot) auflisten.",
+          seo_li_2: "Verschiedene Steuersätze auf Einträge anwenden.",
+          seo_li_3: "Ihre zu zahlende oder zu erhaltende Steuer automatisch sehen.",
+          seo_li_4: "Den Finanzbericht sofort über <strong>WhatsApp</strong> exportieren.",
+          seo_h3_2: "Schritt-für-Schritt-Anleitung",
+          seo_g_1: "<strong>Basisberechnung:</strong> Nutzen Sie die Tastatur. Das Ergebnis erscheint auf dem grünen Display.",
+          seo_g_2: "<strong>Steuersatz:</strong> Geben Sie Ihre % in das kleine goldene Feld ein.",
+          seo_g_3: "<strong>MWST INKL:</strong> Klicken Sie hier, wenn der Betrag bereits Steuern enthält.",
+          seo_g_4: "<strong>MWST EXKL:</strong> Klicken Sie hier, um Steuern zum Nettobetrag hinzuzufügen.",
+          seo_g_5: "<strong>Datensicherheit:</strong> Alle Eingaben werden lokal in Ihrem Browser gespeichert!"
+        },
+        fr: { 
+          metaTitle: "Calculatrice de TVA & Guide | Invoice Luxe", metaDesc: "Calculatrice de TVA gratuite avec suivi des revenus.", h1: "Calculatrice TVA Globale",
+          anal:"ANALYSE TVA", net:"NET", tax:"TVA", tot:"TOTAL", brüt:"BRUT", inc:"TVA TTC", exc:"TVA HT", gel:"REVENU", gid:"DÉPENSE", head:"ANALYSE TVA", wa:"PARTAGER WA", res:"EFFACER", pay:"À PAYER", rec:"À RECEVOIR", wel_tit:"AVIS IMPORTANT", wel:"Saisir montants TVA TTC.", rep:"RAPPORT", back:"⬅ RETOUR", toptag:"MENU PRINCIPAL",
+          seo_h2: "Calculatrice de TVA et Suivi des Revenus",
+          seo_p1: "Que vous soyez freelance ou chef d'entreprise, calculer les impôts est désormais facile. Calculez instantanément Net, Brut et TVA.",
+          seo_h3_1: "Qu'est-ce que la fonction \"ANALYSE TVA\" ?",
+          seo_p2: "Cliquer sur le bouton doré <strong>ANALYSE TVA</strong> ouvre un tableau de bord financier. Dans cet écran, vous pouvez :",
+          seo_li_1: "Lister vos <strong>Revenus</strong> (Vert) et <strong>Dépenses</strong> (Rouge).",
+          seo_li_2: "Appliquer différents taux de TVA.",
+          seo_li_3: "Voir automatiquement votre solde d'impôt à payer ou à recevoir.",
+          seo_li_4: "Exporter le rapport via <strong>WhatsApp</strong>.",
+          seo_h3_2: "Guide d'Utilisation",
+          seo_g_1: "<strong>Calcul de base :</strong> Utilisez le pavé numérique. Le résultat s'affiche en vert.",
+          seo_g_2: "<strong>Taux de TVA :</strong> Entrez votre % de TVA dans la case dorée.",
+          seo_g_3: "<strong>TVA TTC :</strong> Cliquez si le montant contient déjà la taxe.",
+          seo_g_4: "<strong>TVA HT :</strong> Cliquez pour ajouter la taxe à votre montant net.",
+          seo_g_5: "<strong>Sécurité :</strong> Vos données sont sauvegardées localement dans votre navigateur !"
+        },
+        it: { 
+          metaTitle: "Calcolatore IVA & Guida | Invoice Luxe", metaDesc: "Calcola IVA e leggi la guida all'analisi delle tasse.", h1: "Calcolatore IVA Globale",
+          anal:"ANALISI IVA", net:"NETTO", tax:"IVA", tot:"TOTALE", brüt:"LORDO", inc:"IVA INCL", exc:"IVA ESCL", gel:"ENTRATE", gid:"USCITE", head:"ANALISI IVA", wa:"CONDIVIDI WA", res:"RESET", pay:"DA PAGARE", rec:"CREDITO", wel_tit:"AVVISO", wel:"Inserire importi IVA Inclusa.", rep:"RAPPORTO", back:"⬅ INDIETRO", toptag:"MENU PRINCIPALE",
+          seo_h2: "Calcolatore IVA Avanzato e Tracciamento",
+          seo_p1: "Che tu sia un libero professionista o un imprenditore, calcolare le tasse è facile. Calcola istantaneamente Netto, Lordo e IVA.",
+          seo_h3_1: "Cos'è la funzione \"ANALISI IVA\"?",
+          seo_p2: "Cliccando sul pulsante dorato <strong>ANALISI IVA</strong> si apre una dashboard finanziaria. In questa schermata puoi:",
+          seo_li_1: "Elencare le tue <strong>Entrate</strong> (Verde) e <strong>Uscite</strong> (Rosso).",
+          seo_li_2: "Applicare diverse aliquote IVA.",
+          seo_li_3: "Vedere automaticamente il saldo delle tasse da pagare o ricevere.",
+          seo_li_4: "Esportare il rapporto finanziario tramite <strong>WhatsApp</strong>.",
+          seo_h3_2: "Guida all'Uso",
+          seo_g_1: "<strong>Calcolo Base:</strong> Usa il tastierino. Il risultato appare sul display verde.",
+          seo_g_2: "<strong>Aliquota IVA:</strong> Inserisci il % IVA nel riquadro dorato.",
+          seo_g_3: "<strong>IVA INCL:</strong> Clicca se l'importo contiene già la tassa.",
+          seo_g_4: "<strong>IVA ESCL:</strong> Clicca per aggiungere la tassa all'importo netto.",
+          seo_g_5: "<strong>Sicurezza:</strong> I tuoi dati sono salvati localmente sul browser!"
+        }
+    };
+
+    let curL = localStorage.getItem('global_lang') || 'en';
+    let sym = localStorage.getItem('invoice_symbol') || '€';
+    let exp = "", data = JSON.parse(localStorage.getItem('vMaster_L_Final_v2')) || [], mode = 'IN', lastVal = 0;
+
+    const f = (n) => new Intl.NumberFormat(curL === 'en' ? 'en-US' : 'tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
+
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang') || curL;
+        document.getElementById('amt').placeholder = sym;
+        setLang(lang, document.getElementById('btn-' + lang) || document.getElementById('btn-en'));
+    };
+
+    function setLang(lang, btn) {
+        curL = lang;
+        localStorage.setItem('global_lang', lang);
+        
+        const newUrl = window.location.pathname + '?lang=' + lang;
+        window.history.replaceState({}, '', newUrl);
+        document.documentElement.lang = lang;
+        
+        const t = i18n[lang] || i18n.en;
+        
+        document.title = t.metaTitle;
+        document.getElementById('meta-desc').setAttribute('content', t.metaDesc);
+        document.getElementById('og-title').setAttribute('content', t.metaTitle);
+        document.getElementById('og-desc').setAttribute('content', t.metaDesc);
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        
+        document.getElementById('h1-title').innerText = t.h1;
+        document.getElementById('t-analiz-txt').innerText = t.anal;
+        document.getElementById('t-net').innerText = t.net;
+        document.getElementById('t-tax').innerText = t.tax;
+        document.getElementById('t-tot').innerText = t.tot;
+        document.getElementById('t-inc').innerText = t.inc;
+        document.getElementById('t-exc').innerText = t.exc;
+        document.getElementById('mi').innerText = t.gel;
+        document.getElementById('mo').innerText = t.gid;
+        document.getElementById('t-m-head').innerText = t.head;
+        document.getElementById('t-wa').innerText = t.wa;
+        document.getElementById('t-res').innerText = t.res;
+        document.getElementById('t-welcome').innerText = t.wel;
+        document.getElementById('t-wel-tit').innerText = t.wel_tit;
+        document.getElementById('b-back').innerText = t.back;
+        document.getElementById('l-top-tag').innerText = t.toptag;
+
+        // SEO Blog Çevirileri
+        document.getElementById('seo-h2').innerHTML = t.seo_h2;
+        document.getElementById('seo-p1').innerHTML = t.seo_p1;
+        document.getElementById('seo-h3-1').innerHTML = t.seo_h3_1;
+        document.getElementById('seo-p2').innerHTML = t.seo_p2;
+        document.getElementById('seo-li-1').innerHTML = t.seo_li_1;
+        document.getElementById('seo-li-2').innerHTML = t.seo_li_2;
+        document.getElementById('seo-li-3').innerHTML = t.seo_li_3;
+        document.getElementById('seo-li-4').innerHTML = t.seo_li_4;
+        document.getElementById('seo-h3-2').innerHTML = t.seo_h3_2;
+        document.getElementById('seo-g-1').innerHTML = t.seo_g_1;
+        document.getElementById('seo-g-2').innerHTML = t.seo_g_2;
+        document.getElementById('seo-g-3').innerHTML = t.seo_g_3;
+        document.getElementById('seo-g-4').innerHTML = t.seo_g_4;
+        document.getElementById('seo-g-5').innerHTML = t.seo_g_5;
+        
+        setM(mode);
+        updateUI();
+    }
+
+    function p(v) { exp += v; const h = document.getElementById('history'); h.innerText = exp; h.scrollLeft = h.scrollWidth; }
+    function cls() { exp = ""; lastVal = 0; document.getElementById('history').innerText = ""; document.getElementById('main-val').innerText = "0,00"; }
+    function del() { exp = exp.slice(0, -1); document.getElementById('history').innerText = exp; }
+    function toggleSign() { if (exp) { exp = exp.startsWith('-') ? exp.substring(1) : '-' + exp; document.getElementById('history').innerText = exp; } }
+    function percent() { if (exp) { try { let r = eval(exp.replace(/,/g, '.')) / 100; exp = r.toString(); document.getElementById('history').innerText = exp; solve(); } catch(e) {} } }
+
+    function solve() {
+        try { let r = eval(exp.replace(/×/g,'*').replace(/÷/g,'/').replace(/,/g,'.')); lastVal = r; document.getElementById('main-val').innerText = f(r); exp = r.toString(); return r; } catch { return 0; }
+    }
+
+    function calc(isInc) {
+        let v = solve(); if (!v && v !== 0) return;
+        let r = parseFloat(document.getElementById('q-rate').value) || 0;
+        let net = isInc ? v / (1 + r / 100) : v;
+        let tax = isInc ? v - net : v * (r / 100);
+        let tot = isInc ? v : v + tax;
+        document.getElementById('v-net').innerText = f(net);
+        document.getElementById('v-tax').innerText = f(tax);
+        document.getElementById('v-tot').innerText = f(tot);
+    }
+
+    function openM() { if (lastVal > 0) document.getElementById('amt').value = lastVal.toFixed(2); document.getElementById('modal').style.display = 'flex'; updateUI(); }
+    function closeM() { document.getElementById('modal').style.display = 'none'; }
+
+    function setM(m) {
+        mode = m;
+        document.getElementById('mi').style.background = m === 'IN' ? 'var(--income-green)' : '#333';
+        document.getElementById('mi').style.color = m === 'IN' ? '#000' : '#666';
+        document.getElementById('mo').style.background = m === 'OUT' ? 'var(--expense-red)' : '#333';
+        document.getElementById('mo').style.color = m === 'OUT' ? '#fff' : '#666';
+    }
+
+    function addItem() {
+        let v = parseFloat(document.getElementById('amt').value);
+        let r = parseFloat(document.getElementById('r-rate').value) || 0;
+        if (!v) return;
+        let net = v / (1 + r / 100), tax = v - net;
+        data.push({ mode, total: v, tax, net, rate: r });
+        document.getElementById('amt').value = "";
+        updateUI();
+    }
+
+    function updateUI() {
+        const l = document.getElementById('list'); l.innerHTML = "";
+        let ti = 0, to = 0;
+        const t = i18n[curL] || i18n.en;
+        data.forEach((item, i) => {
+            if (item.mode === 'IN') ti += item.tax; else to += item.tax;
+            const isInc = item.mode === 'IN';
+            l.innerHTML += `<div class="row"><div><div style="color:${isInc?'var(--income-green)':'var(--expense-red)'};font-size:18px;font-weight:800;">${f(item.total)} ${sym}</div><div style="color:#888;font-size:11px;">${t.net}: ${f(item.net)}${sym} | ${t.tax}: ${f(item.tax)}${sym} (%${item.rate})</div></div><button onclick="data.splice(${i},1);updateUI()" style="background:none;border:none;color:#555;font-size:22px;padding:5px;cursor:pointer;">✕</button></div>`;
+        });
+        let diff = ti - to;
+        const res = document.getElementById('res');
+        res.innerText = `${diff > 0 ? t.pay : t.rec}: ${f(Math.abs(diff))} ${sym}`;
+        res.style.color = diff > 0 ? '#e74c3c' : '#2ecc71';
+        localStorage.setItem('vMaster_L_Final_v2', JSON.stringify(data));
+    }
+
+    function resetData() { if (confirm("Clear?")) { data = []; updateUI(); } }
+
+    function share() {
+        let inT=0,outT=0,inN=0,outN=0,inG=0,outG=0;
+        data.forEach(i => { if(i.mode==='IN'){inT+=i.tax;inN+=i.net;inG+=i.total;}else{outT+=i.tax;outN+=i.net;outG+=i.total;} });
+        let diff = inT - outT;
+        const t = i18n[curL] || i18n.en;
+        let txt = `*📊 ${t.head} ${t.rep}*\n──────────────────\n*➕ ${t.gel}*\n${t.net}: ${f(inN)}${sym}\n${t.tax}: ${f(inT)}${sym}\n${t.brüt}: ${f(inG)}${sym}\n\n*➖ ${t.gid}*\n${t.net}: ${f(outN)}${sym}\n${t.tax}: ${f(outT)}${sym}\n${t.brüt}: ${f(outG)}${sym}\n──────────────────\n*🎯 ${diff>0?t.pay:t.rec}: ${f(Math.abs(diff))} ${sym}*`;
+        window.open('https://wa.me/?text=' + encodeURIComponent(txt));
+    }
+</script>
+</body>
+</html>

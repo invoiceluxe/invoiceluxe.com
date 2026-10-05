@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="google" content="notranslate">
+<title>Rastreador de Receitas e Despesas — InvoiceLuxe Wallet Brasil | Impostos</title>
+<meta name="description" content="Rastreador gratuito de receitas e despesas com impostos para empresas brasileiras. Renda de faturas automática, despesas manuais, sincronização de gráfico, PDF e WhatsApp.">
+<meta name="keywords" content="rastreador receita despesa Brasil, calculadora imposto, app contabilidade grátis, InvoiceLuxe Wallet, carteira empresarial BRL">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://invoiceluxe.com/wallet">
+<meta name="theme-color" content="#FFFBF5">
+<meta name="application-name" content="InvoiceLuxe Wallet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta property="og:title" content="InvoiceLuxe Wallet — Rastreador gratuito de receitas e despesas">
+<meta property="og:description" content="Acompanhe receitas de faturas, despesas e impostos. Sincroniza com o painel. Compartilhe PDF ou WhatsApp.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"InvoiceLuxe Wallet","url":"https://invoiceluxe.com/wallet","description":"Rastreador gratuito de receitas e despesas com impostos para o Brasil.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFFBF5;--bg:#f5f1e8;--navy:#0f2238;--gold:#f5d27a;--ink:#102a4a;--sub:#6b7a90;--line:#e8dfc8;--green:#10b981;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:430px;margin:0 auto;min-height:100vh;background:var(--cream);box-shadow:0 0 60px rgba(15,45,77,.06);padding:10px 14px 40px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.back-home{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:var(--navy);color:var(--gold);border-radius:14px;text-decoration:none;font-size:12px;font-weight:800;box-shadow:0 4px 14px rgba(15,34,56,.2)}
+.back-home svg{width:16px;height:16px}
+.brand-mini{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--sub)}
+.mark{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:#2a1f0f;background:linear-gradient(135deg,#fff9eb,#e9d3a3 40%,#b89b6a 80%,#f0ddae);box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(0,0,0,.12)}
+h1{font-family:"Instrument Serif",serif;font-size:24px;font-weight:400;letter-spacing:-.02em;margin-bottom:4px}
+.sub{font-size:12px;color:var(--sub);margin-bottom:14px;line-height:1.4}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:#fff;border-radius:16px;padding:12px 10px;box-shadow:0 4px 16px rgba(15,45,77,.06);border:1px solid rgba(15,45,77,.04)}
+.stat.dark{background:var(--navy);border-color:#d4b896}
+.stat .lbl{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sub)}
+.stat.dark .lbl{color:var(--gold)}
+.stat .val{font-family:"Instrument Serif",serif;font-size:16px;margin-top:6px;color:var(--ink)}
+.stat.dark .val{color:#fff}
+.chart-card{background:#fff;border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(15,45,77,.05)}
+.chart-card .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.chart-card .hd .t{font-size:12px;font-weight:800}
+.chart-card .legend{display:flex;gap:10px;font-size:9px;font-weight:700;color:var(--sub)}
+.chart-card .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.bars{display:flex;align-items:flex-end;justify-content:space-between;gap:6px;height:120px;padding-top:8px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.bar-col .track{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:3px}
+.bar-col .b{width:42%;max-width:18px;border-radius:6px 6px 0 0;min-height:4px;transition:height .6s cubic-bezier(.34,1.2,.64,1)}
+.bar-col .b.in{background:linear-gradient(180deg,#1e4a7a,#0f2238)}
+.bar-col .b.ex{background:linear-gradient(180deg,#f5c4c4,#ef4444)}
+.bar-col .lbl{font-size:8px;font-weight:700;color:var(--sub)}
+.taxbox{background:linear-gradient(135deg,#fffaf0,#fff);border-radius:14px;padding:12px 14px;margin-bottom:12px;border:1px solid #f5e6c8}
+.taxbox .row{display:flex;justify-content:space-between;align-items:center}
+.taxbox .t{font-size:11px;font-weight:800}
+.taxbox .n{font-family:"Instrument Serif",serif;font-size:18px}
+.taxbox .hint{font-size:10px;color:#9a7a3d;margin-top:6px;line-height:1.35}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.actions button{height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:11px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.actions .btn-pdf{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.actions .btn-wa{background:#25D366;color:#fff;border-color:#25D366}
+.card{background:#fff;border-radius:18px;border:1px solid var(--line);overflow:hidden;margin-bottom:12px}
+.card .hd{padding:12px 14px;background:#fdfcfa;border-bottom:1px solid #f1eee6;font-size:12px;font-weight:800}
+.card .bd{padding:14px}
+.types{display:flex;gap:8px;margin-bottom:12px}
+.types button{flex:1;height:42px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit;transition:.15s}
+.types button.on-in{background:#ecfdf5;border-color:#10b981;color:#047857}
+.types button.on-ex{background:#fef2f2;border-color:#ef4444;color:#b91c1c}
+input,select{width:100%;height:44px;border-radius:12px;border:1px solid var(--line);padding:0 12px;margin-bottom:8px;font-family:inherit;font-size:13px;font-weight:600;background:#fff}
+.btn{width:100%;height:48px;border-radius:14px;border:0;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+.btn.save{background:var(--navy);color:var(--gold);margin-top:4px}
+.item{background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:8px;border:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;border-left:5px solid var(--line)}
+.item.in{border-left-color:var(--green)}
+.item.ex{border-left-color:var(--red)}
+.item b{display:block;font-size:13px}
+.item span{display:block;font-size:11px;color:var(--sub);margin-top:2px}
+.item small{display:block;font-size:9px;color:#9a7a3d;margin-top:3px}
+.amt{font-weight:800;font-size:14px;white-space:nowrap}
+.del{margin-top:6px;background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;border-radius:8px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer}
+.empty{text-align:center;padding:28px 16px;color:var(--sub);font-size:12px;line-height:1.5}
+.guide{margin-top:8px;padding:14px;border-radius:14px;border:1px solid var(--line);background:#fff;margin-bottom:12px}
+.guide h2{font-size:13px;margin-bottom:8px;font-weight:800}
+.guide ol{padding-left:18px;font-size:11px;line-height:1.55;color:#3a4a62}
+.guide li{margin-bottom:4px}
+.seo{margin-top:8px;padding:14px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.seo h2{font-size:12px;margin-bottom:6px}
+.seo p{font-size:11px;line-height:1.45;color:#3a4a62}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--gold);padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.modal-bg{position:fixed;inset:0;background:rgba(15,34,56,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg.show{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:400px;width:100%;max-height:80vh;overflow:auto;padding:18px}
+.modal h3{font-size:16px;margin-bottom:12px;font-family:"Instrument Serif",serif}
+.modal .close{float:right;background:none;border:0;font-size:20px;cursor:pointer;color:var(--sub)}
+.modal .row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid var(--line)}
+.modal .row b{font-weight:800}
+
+.tax-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.tax-row input{flex:1;margin-bottom:0}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.presets .preset{height:32px;padding:0 10px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:800;font-size:11px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.presets .preset:active{background:#f5f1e8}
+.taxbox .detail{margin-top:10px;padding-top:10px;border-top:1px dashed #f5e6c8}
+.taxbox .detail .drow{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#5a4a2a}
+.taxbox .detail .drow b{font-weight:800}
+.bar-col .b.tax{background:linear-gradient(180deg,#f5d27a,#e0a82e);width:28%;max-width:12px}
+.bar-col .b.net{background:linear-gradient(180deg,#1e4a7a,#0f2238);width:28%;max-width:12px}
+.bar-col .b.ex{width:28%;max-width:12px}
+.chart-card .legend{flex-wrap:wrap;gap:6px 10px}
+
+
+.bars.summary{justify-content:space-around;gap:12px;padding:8px 4px 0}
+.bars.summary .bar-col{flex:1;max-width:90px}
+.bars.summary .bar-col .track{justify-content:center}
+.bars.summary .bar-col .b{width:70%;max-width:36px;border-radius:8px 8px 0 0;min-height:4px}
+.bars.summary .bar-col .b.total{background:linear-gradient(180deg,#1e4a7a,#0f2238)}
+.bars.summary .bar-col .b.tax{background:linear-gradient(180deg,#f5d27a,#e0a82e)}
+.bars.summary .bar-col .b.net{background:linear-gradient(180deg,#34d399,#10b981)}
+.bars.summary .bar-col .val{font-size:9px;font-weight:800;color:var(--ink);margin-top:2px;text-align:center;line-height:1.2}
+.bars.summary .bar-col .lbl{font-size:9px;font-weight:800;color:var(--sub);margin-top:2px}
+
+@media print{body{background:#fff}.wrap{box-shadow:none;max-width:100%}.topbar,.card,.actions,.guide,.seo,.del,.types{display:none!important}}
+</style>
+</head>
+<body>
+<span class="sr">rastreador receita despesa Brasil imposto aplicativo web InvoiceLuxe Wallet</span>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back-home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> Menu principal</a>
+    <div class="brand-mini"><span class="mark">IL</span> Wallet</div>
+  </div>
+  <h1>Relatórios & Carteira</h1>
+  <p class="sub">A renda das faturas é adicionada automaticamente. Insira despesas abaixo — os totais atualizam o gráfico inicial.</p>
+  <div class="stats">
+    <div class="stat"><div class="lbl">Receita</div><div class="val" id="val-in">R$ 0,00</div></div>
+    <div class="stat"><div class="lbl">Despesa</div><div class="val" id="val-ex">R$ 0,00</div></div>
+    <div class="stat dark"><div class="lbl">Lucro</div><div class="val" id="val-pr">R$ 0,00</div></div>
+  </div>
+  <div class="chart-card">
+    <div class="hd"><div class="t">Total · Imposto · Líquido</div><div class="legend"><span><i style="background:#0f2238"></i>Total</span><span><i style="background:#e0a82e"></i>Imposto</span><span><i style="background:#10b981"></i>Líquido restante</span></div></div>
+    <div class="bars summary" id="chart-bars"></div>
+  </div>
+  <div class="taxbox">
+    <div class="row"><div class="t" id="tax-label">Imposto a pagar</div><div class="n" id="val-tax">R$ 0,00</div></div>
+    <div class="hint">Faturas → receita auto. Despesas → manual. Sincroniza com o gráfico do menu principal.</div>
+    <div class="detail" id="tax-detail">
+      <div class="drow"><span>Imposto arrecadado (vendas)</span><b id="val-tax-in">—</b></div>
+      <div class="drow"><span>Imposto recuperável (despesas)</span><b id="val-tax-out">—</b></div>
+      <div class="drow"><span id="tax-net-lbl">Imposto líquido a pagar</span><b id="val-tax-net">—</b></div>
+    </div>
+  </div>
+  <div class="actions">
+    <button type="button" class="btn-pdf" onclick="exportPDF()">📄 PDF</button>
+    <button type="button" class="btn-wa" onclick="shareWhatsApp()">WhatsApp</button>
+    <button type="button" onclick="showPreview()">👁 Prévia</button>
+  </div>
+  <div class="card">
+    <div class="hd">Adicionar despesa ou receita</div>
+    <div class="bd">
+      <div class="types">
+        <button type="button" id="btn-in" class="on-in" onclick="setType('in')">Receita</button>
+        <button type="button" id="btn-ex" onclick="setType('ex')">Despesa</button>
+      </div>
+      <input id="inp-desc" placeholder="Descrição" autocomplete="off">
+      <input id="inp-client" placeholder="Cliente / fornecedor" autocomplete="off">
+      <input id="inp-amt" type="number" step="0.01" inputmode="decimal" placeholder="0,00">
+      <div class="tax-row">
+        <input id="inp-tax" type="number" step="0.01" min="0" max="100" inputmode="decimal" placeholder="Alíquota % (digite qualquer)" value="">
+      </div>
+      <div class="presets"><button type="button" class="preset" onclick="setTaxRate('0')">0%</button><button type="button" class="preset" onclick="setTaxRate('7')">7%</button><button type="button" class="preset" onclick="setTaxRate('12')">12%</button><button type="button" class="preset" onclick="setTaxRate('18')">18%</button><button type="button" class="preset" onclick="setTaxRate('25')">25%</button></div>
+      <div style="font-size:10px;color:var(--sub);margin-bottom:8px">Digite qualquer alíquota ou toque em um preset · Valor inclui imposto</div>
+      <button type="button" class="btn save" onclick="saveTx()">Salvar</button>
+    </div>
+  </div>
+  <div id="list"></div>
+  <div class="guide">
+    <h2>Como usar (Guia de uso)</h2>
+    <ol>
+      <li>Faturas pagas do aplicativo principal aparecem aqui automaticamente como receita.</li>
+      <li>Selecione Receita ou Despesa, preencha descrição, valor e alíquota, depois toque em Salvar.</li>
+      <li>Totais e lucro atualizam instantaneamente e sincronizam com o painel inicial.</li>
+      <li>Use Prévia para ver o resumo, PDF para imprimir/salvar, ou WhatsApp para compartilhar.</li>
+      <li>Exclua uma linha com o botão Excluir. Entradas manuais ficam apenas neste dispositivo.</li>
+    </ol>
+  </div>
+  <div class="seo">
+    <h2>Rastreador gratuito de receitas e despesas — Brasil</h2>
+    <p>InvoiceLuxe Wallet é um aplicativo web gratuito para acompanhar receitas de faturas, despesas manuais e impostos no Brasil. Os totais sincronizam com o painel inicial. Exporte PDF ou compartilhe via WhatsApp. Não é necessária conta — os dados ficam no seu navegador.</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal-bg" id="modal" onclick="if(event.target===this)hidePreview()">
+  <div class="modal"><button class="close" onclick="hidePreview()">×</button><h3>Prévia do resumo</h3><div id="preview-body"></div></div>
+</div>
+<script>
+const LOC="pt-BR", CUR="R$ ", TAXNAME="Imposto";
+const KEY_MAN="il_manual_tx_pt-br";
+const KEY_HIDE="il_hidden_inv_pt-br";
+const KEY_STATS='il_dashboard_stats';
+let type='in';
+function money(n){return CUR+(Number(n)||0).toLocaleString(LOC,{minimumFractionDigits:2,maximumFractionDigits:2})}
+
+function setType(t){
+  type=t;
+  document.getElementById('btn-in').className=t==='in'?'on-in':'';
+  document.getElementById('btn-ex').className=t==='ex'?'on-ex':'';
+}
+function setTaxRate(v){
+  var el=document.getElementById('inp-tax');
+  if(el) el.value=v;
+}
+function toast(msg){
+  var el=document.getElementById('toast');
+  if(!el) return;
+  el.textContent=msg;
+  el.classList.add('show');
+  setTimeout(function(){ el.classList.remove('show'); }, 2200);
+}
+
+
+function loadInvoices(){
+  try{
+    var name=localStorage.getItem('active_company_name')||'default';
+    var hist=JSON.parse(localStorage.getItem('history_'+name)||'[]');
+    var hidden=JSON.parse(localStorage.getItem(KEY_HIDE)||'[]');
+    return hist.filter(function(f){ return hidden.indexOf(String(f.no))===-1; }).map(function(f){
+      return {
+        id:'inv_'+f.no,
+        desc:String(f.no||"Fatura"),
+        client:f.customer||'',
+        amt:parseFloat(f.amount)||0,
+        tax:parseFloat(f.vrate||f.tax)||0,
+        type:'in',
+        date:f.date||'',
+        manual:false
+      };
+    });
+  }catch(e){ return []; }
+}
+function loadManual(){
+  try{ return JSON.parse(localStorage.getItem(KEY_MAN)||'[]'); }catch(e){ return []; }
+}
+function saveStats(income,expense,profit,tax){
+  try{
+    localStorage.setItem(KEY_STATS, JSON.stringify({income:income,expense:expense,profit:profit,tax:tax,currency:CUR,updated:Date.now()}));
+  }catch(e){}
+}
+
+
+function drawChart(total, tax, net){
+  var el=document.getElementById('chart-bars');
+  if(!el) return;
+  var max=Math.max(total, tax, net, 1);
+  function h(v){ return Math.max(6, (Number(v)/max)*100); }
+  function fmt(n){
+    try{ return (Number(n)||0).toLocaleString(LOC,{maximumFractionDigits:0}); }
+    catch(e){ return String(Math.round(Number(n)||0)); }
+  }
+  var Ltot="Total";
+  var Ltax="Imposto";
+  var Lnet="Líquido";
+  el.innerHTML=
+    '<div class="bar-col"><div class="track"><div class="b total" style="height:'+h(total)+'%"></div></div>'+
+    '<div class="val">'+fmt(total)+'</div><div class="lbl">'+Ltot+'</div></div>'+
+    '<div class="bar-col"><div class="track"><div class="b tax" style="height:'+h(tax)+'%"></div></div>'+
+    '<div class="val">'+fmt(tax)+'</div><div class="lbl">'+Ltax+'</div></div>'+
+    '<div class="bar-col"><div class="track"><div class="b net" style="height:'+h(net)+'%"></div></div>'+
+    '<div class="val">'+fmt(net)+'</div><div class="lbl">'+Lnet+'</div></div>';
+}
+function getItems(){
+  return loadInvoices().concat(loadManual()).sort(function(a,b){
+    return String(b.date).localeCompare(String(a.date));
+  });
+}
+function calcTotals(items){
+  var inc=0, exp=0, vatIn=0, vatOut=0;
+  items.forEach(function(i){
+    var val=parseFloat(i.amt)||0;
+    var rate=parseFloat(i.tax)||0;
+    var vat=rate>0 ? (val - val/(1+rate/100)) : 0;
+    if(i.type==='in'){ inc+=val; vatIn+=vat; } else { exp+=val; vatOut+=vat; }
+  });
+  return {inc:inc, exp:exp, profit:inc-exp, vatIn:vatIn, vatOut:vatOut, vatDiff:vatIn-vatOut};
+}
+function escapeHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+
+function render(){
+  var list=document.getElementById('list');
+  var items=getItems();
+  if(!items.length){
+    list.innerHTML='<div class="empty">Nenhuma transação ainda.<br>Faturas pagas aparecem automaticamente como receita.<br>Adicione uma despesa abaixo.</div>';
+  } else {
+    list.innerHTML=items.map(function(i){
+      var val=parseFloat(i.amt)||0;
+      var rate=parseFloat(i.tax)||0;
+      var sign=i.type==='in'?'+':'−';
+      var color=i.type==='in'?'var(--green)':'var(--red)';
+      var idSafe=String(i.id).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return '<div class="item '+i.type+'">'+
+        '<div><b>'+escapeHtml(i.desc||'—')+'</b><span>'+escapeHtml(i.client||'—')+'</span>'+
+        '<small>'+escapeHtml(i.date||'')+' · '+rate+'% '+TAXNAME+'</small>'+
+        '<button type="button" class="del" onclick="removeTx(\''+idSafe+'\', '+!!i.manual+')">Excluir</button></div>'+
+        '<div class="amt" style="color:'+color+'">'+sign+' '+money(val)+'</div></div>';
+    }).join('');
+  }
+  var t=calcTotals(items);
+  document.getElementById('val-in').textContent=money(t.inc);
+  document.getElementById('val-ex').textContent=money(t.exp);
+  document.getElementById('val-pr').textContent=money(t.profit);
+  document.getElementById('tax-label').textContent=t.vatDiff>=0?"Imposto a pagar":"Imposto a recuperar";
+  document.getElementById('val-tax').textContent=money(Math.abs(t.vatDiff));
+  document.getElementById('val-tax').style.color=t.vatDiff>=0?'var(--red)':'var(--green)';
+  var elIn=document.getElementById('val-tax-in'); if(elIn) elIn.textContent=money(t.vatIn);
+  var elOut=document.getElementById('val-tax-out'); if(elOut) elOut.textContent=money(t.vatOut);
+  var elNet=document.getElementById('val-tax-net'); if(elNet) elNet.textContent=money(Math.abs(t.vatDiff));
+  var elLbl=document.getElementById('tax-net-lbl');
+  if(elLbl) elLbl.textContent=t.vatDiff>=0?"Imposto líquido a pagar":"Imposto líquido a recuperar";
+  drawChart(t.inc, t.vatIn, Math.max(0, t.inc - t.vatIn));
+  saveStats(t.inc, t.exp, t.profit, t.vatDiff);
+}
+
+
+function saveTx(){
+  var desc=(document.getElementById('inp-desc').value||'').trim();
+  var amtRaw=document.getElementById('inp-amt').value;
+  var client=(document.getElementById('inp-client').value||'').trim();
+  var taxRaw=document.getElementById('inp-tax').value;
+  var amt=parseFloat(amtRaw);
+  var tax=(taxRaw===''||taxRaw===null||taxRaw===undefined) ? 0 : parseFloat(taxRaw);
+  if(!desc || amtRaw==='' || isNaN(amt)){
+    document.getElementById('inp-desc').focus();
+    toast("Informe descrição e valor");
+    return;
+  }
+  if(isNaN(tax) || tax<0 || tax>100){
+    document.getElementById('inp-tax').focus();
+    toast("Informe descrição e valor");
+    return;
+  }
+  var today=new Date();
+  var date=String(today.getDate()).padStart(2,'0')+'/'+String(today.getMonth()+1).padStart(2,'0')+'/'+today.getFullYear();
+  var list=loadManual();
+  list.unshift({
+    id:'man_'+Date.now(),
+    desc:desc,
+    client:client||'—',
+    amt:amt,
+    tax:tax,
+    type:type,
+    date:date,
+    manual:true
+  });
+  try{
+    localStorage.setItem(KEY_MAN, JSON.stringify(list.slice(0,100)));
+  }catch(e){
+    toast("Armazenamento cheio");
+    return;
+  }
+  document.getElementById('inp-desc').value='';
+  document.getElementById('inp-amt').value='';
+  document.getElementById('inp-client').value='';
+  render();
+  toast("Salvo com sucesso");
+}
+function removeTx(id, manual){
+  if(!confirm("Excluir esta transação?")) return;
+  try{
+    if(manual){
+      localStorage.setItem(KEY_MAN, JSON.stringify(loadManual().filter(function(x){ return String(x.id)!==String(id); })));
+    } else {
+      var hidden=JSON.parse(localStorage.getItem(KEY_HIDE)||'[]');
+      hidden.push(String(id).replace('inv_',''));
+      localStorage.setItem(KEY_HIDE, JSON.stringify(hidden));
+    }
+  }catch(e){}
+  render();
+  toast("Excluído");
+}
+function showPreview(){
+  var items=getItems();
+  var t=calcTotals(items);
+  var html='<div class="row"><span>Total</span><b>'+money(t.inc)+'</b></div>'+
+    '<div class="row"><span>Expense</span><b>'+money(t.exp)+'</b></div>'+
+    '<div class="row"><span>Profit</span><b>'+money(t.profit)+'</b></div>'+
+    '<div class="row"><span>'+(t.vatDiff>=0?"Imposto a pagar":"Imposto a recuperar")+'</span><b>'+money(Math.abs(t.vatDiff))+'</b></div>';
+  items.slice(0,30).forEach(function(i){
+    html+='<div class="row"><span>'+escapeHtml(i.desc)+' ('+i.type+')</span><b>'+money(i.amt)+'</b></div>';
+  });
+  document.getElementById('preview-body').innerHTML=html;
+  document.getElementById('modal').classList.add('show');
+}
+function hidePreview(){ document.getElementById('modal').classList.remove('show'); }
+function exportPDF(){ window.print(); }
+function shareWhatsApp(){
+  var items=getItems();
+  var t=calcTotals(items);
+  var text='*InvoiceLuxe Wallet*\n'+money(t.inc)+' / '+money(t.exp)+' / '+money(t.profit)+'\n'+
+    (t.vatDiff>=0?"Imposto a pagar":"Imposto a recuperar")+': '+money(Math.abs(t.vatDiff));
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+render();
+
+// Başka bir sekmede (örn. fatura motoru / arşiv) veri değiştiğinde bu sayfayı otomatik yenile
+window.addEventListener('storage', function(e){
+  if (!e.key) { render(); return; }
+  if (e.key.indexOf('history_') === 0 || e.key === KEY_MAN || e.key === KEY_HIDE || e.key === 'active_company_name') {
+    render();
+  }
+});
+// Sekmeye geri dönüldüğünde de yenile (aynı sekmede navigasyon yoksa storage eventi tetiklenmez)
+document.addEventListener('visibilitychange', function(){
+  if (!document.hidden) render();
+});
+window.addEventListener('focus', function(){ render(); });
+
+</script>
+</body>
+</html>

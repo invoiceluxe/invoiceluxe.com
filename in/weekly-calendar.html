@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Week Tracker | Invoice Luxe</title>
+    <meta name="description" content="Calculate and track accurate business week numbers and date ranges effortlessly.">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    
+    <!-- PDF Üretimi için HTML2PDF kütüphanesi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root { 
+            --bg-main: #f4f7f6; 
+            --card-bg: #ffffff; 
+            --text-dark: #2d3748; 
+            --text-muted: #718096;
+            --green-primary: #2e7d32; 
+            --green-hover: #1b5e20;
+            --border-light: #e2e8f0;
+            
+            /* Siyah/Neon Renkler */
+            --black-bg: #0a0a0a;
+            --cell-bg: #1a1a1a;
+            --neon-green: #00e676;
+            --neon-blue: #3399ff;
+        }
+        
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            background-color: var(--bg-main); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+            color: var(--text-dark); 
+            padding: 30px 15px; 
+        }
+        
+        .main-wrapper { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* CARDS */
+        .card { 
+            background: var(--card-bg); 
+            border: 2px solid var(--green-primary); 
+            padding: 25px; 
+            border-radius: 25px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1); 
+        }
+        
+        /* HEADER & LANG SELECTOR */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h1 { color: var(--green-primary); margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .lang-select {
+            background: var(--bg-main);
+            border: 2px solid var(--green-primary);
+            color: var(--text-dark);
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+        }
+        .lang-select:hover { background: #e8f5e9; }
+
+        /* NAVIGATION */
+        .nav-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .btn-nav { background: var(--green-primary); color: #fff; border: none; padding: 10px 15px; border-radius: 12px; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 11px; transition: 0.2s; box-shadow: 0 4px 10px rgba(46,125,50,0.2); }
+        .btn-nav:hover { background: var(--green-hover); transform: translateY(-2px); }
+        .btn-nav:active { transform: scale(0.95); }
+        
+        .stat-box { margin: 10px 0; padding: 12px; background: #fafafa; border-radius: 18px; border: 1px solid var(--border-light); }
+        .big-number { font-size: 38px; font-weight: 900; color: var(--green-primary); font-family: monospace; }
+        .sub-text { font-size: 11px; color: var(--text-muted); font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+        .date-range { font-size: 15px; font-weight: bold; margin-top: 5px; color: var(--text-dark); }
+        
+        /* SİYAH TARİH ARALIĞI KUTUSU */
+        #date-range-box {
+            background: var(--black-bg);
+            border: 2px solid var(--green-primary);
+        }
+        #date-range-box .sub-text { color: #888; }
+        #date-range-box .date-range { color: #fff; }
+
+        /* HAFTALIK TOPLU İŞLEM BUTONLARI */
+        .batch-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 15px; }
+        .btn-batch { padding: 10px 4px; border-radius: 12px; border: none; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; text-transform: uppercase; color: #fff; transition: 0.2s; text-align: center; }
+        .btn-batch-wa { background: #25D366; } .btn-batch-wa:hover { background: #1da851; }
+        .btn-batch-pdf { background: #E53935; } .btn-batch-pdf:hover { background: #c62828; }
+        .btn-batch-share { background: #FF9800; } .btn-batch-share:hover { background: #F57C00; }
+
+        /* SİYAH TAKVİM STİLLERİ */
+        .calendar-card {
+            background: var(--black-bg);
+            border: 2px solid var(--green-primary);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+        .cal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--neon-green); font-weight: bold; font-size: 15px; margin-bottom: 15px; text-transform: uppercase;
+        }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+        .day-name { font-size: 11px; color: #888; font-weight: bold; margin-bottom: 6px; }
+        .day-cell {
+            aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border-radius: 10px; font-size: 13px; font-weight: bold;
+            background: var(--cell-bg); border: 1px solid #333; cursor: pointer; transition: all 0.2s ease; position: relative; color: #fff;
+        }
+        .day-cell:hover { border-color: var(--neon-green); background: #2a2a2a; }
+        
+        .day-cell.active-week {
+            background: rgba(0, 230, 118, 0.15); border: 2px solid var(--neon-green); color: var(--neon-green); font-weight: 900;
+        }
+        .day-cell.has-note {
+            background: rgba(51, 153, 255, 0.2) !important;
+            border: 2px solid var(--neon-blue) !important;
+            color: var(--neon-blue) !important;
+            box-shadow: 0 0 12px rgba(51, 153, 255, 0.4);
+            animation: pop 0.3s ease;
+        }
+        @keyframes pop { 50% { transform: scale(1.1); } }
+        .day-cell.other-month { opacity: 0.2; pointer-events: none; }
+
+        /* BACK BUTTON */
+        .back-btn { 
+            margin-top: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+            padding: 12px 20px; background: #fff; color: var(--green-primary); border: 2px solid var(--green-primary); 
+            border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 12px; text-transform: uppercase; transition: 0.2s; width: 100%;
+        }
+        .back-btn:hover { background: var(--green-primary); color: #fff; }
+
+        /* INFO CARD */
+        .info-card {
+            background: var(--card-bg);
+            border: 2px dashed var(--green-primary);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: left;
+        }
+        .info-card h3 { color: var(--green-primary); margin-top: 0; font-size: 14px; text-transform: uppercase; margin-bottom: 8px;}
+        .info-card p { font-size: 13px; line-height: 1.5; color: var(--text-muted); margin: 0; }
+
+        /* MODAL POPUP */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: #fff; border: 2px solid var(--green-primary); border-radius: 20px;
+            width: 100%; max-width: 400px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 12px; margin-bottom: 15px; }
+        .modal-title { font-weight: bold; color: var(--green-primary); font-size: 15px; text-transform: uppercase; }
+        .close-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px; font-weight: bold; }
+        .close-btn:hover { color: #f44336; }
+        
+        .note-textarea {
+            width: 100%; height: 110px; background: #f8fafc; border: 2px solid var(--border-light); border-radius: 12px;
+            color: var(--text-dark); padding: 12px; font-family: inherit; font-size: 14px; resize: none; margin-bottom: 15px; outline: none; transition: 0.2s;
+        }
+        .note-textarea:focus { border-color: var(--neon-blue); background: #fff; }
+        
+        .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .btn-action { padding: 10px; border-radius: 10px; border: none; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; text-transform: uppercase; transition: 0.2s; color: #fff; }
+        .btn-save { background: #1976d2; grid-column: span 2; font-size: 13px; padding: 12px; }
+        .btn-save:hover { background: #1565c0; }
+        .btn-wa { background: #25D366; } .btn-wa:hover { background: #1da851; }
+        .btn-preview { background: var(--text-muted); } .btn-preview:hover { background: var(--text-dark); }
+        .btn-pdf { background: #E53935; } .btn-pdf:hover { background: #c62828; }
+        .btn-share-pdf { background: #FF9800; } .btn-share-pdf:hover { background: #F57C00; }
+        
+        .preview-box { display: none; background: #f0f4f8; border-left: 4px solid var(--neon-blue); padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 15px; font-size: 13px; color: var(--text-dark); white-space: pre-wrap; word-break: break-word; text-align: left; }
+
+        .legend { display: flex; gap: 15px; justify-content: center; margin-top: 15px; font-size: 11px; font-weight: bold; color: #888; }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot { width: 12px; height: 12px; border-radius: 4px; }
+        .dot.green { background: rgba(0, 230, 118, 0.15); border: 2px solid var(--neon-green); }
+        .dot.blue { background: rgba(51, 153, 255, 0.2); border: 2px solid var(--neon-blue); }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <!-- TOP CARD -->
+        <div class="card">
+            
+            <div class="top-bar">
+                <h1 id="L_TITLE">WEEK TRACKER</h1>
+                <select class="lang-select" id="langSelect" onchange="changeLanguage()">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="tr">🇹🇷 TR</option>
+                    <option value="de">🇩🇪 DE</option>
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="nl">🇳🇱 NL</option>
+                    <option value="it">🇮🇹 IT</option>
+                    <option value="es">🇪🇸 ES</option>
+                    <option value="pt">🇵🇹 PT</option>
+                    <option value="ru">🇷🇺 RU</option>
+                    <option value="ja">🇯🇵 JA</option>
+                    <option value="zh">🇨🇳 ZH</option>
+                    <option value="hi">🇮🇳 HI</option>
+                    <option value="ar">🇸🇦 AR</option>
+                </select>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="btn-nav" onclick="changeWeek(-1)" id="L_PREV">« PREV</button>
+                <span id="L_NOW" style="font-weight:900; font-size: 13px; text-transform: uppercase; cursor: pointer; color: var(--green-primary);">CURRENT WEEK</span>
+                <button class="btn-nav" onclick="changeWeek(1)" id="L_NEXT">NEXT »</button>
+            </div>
+
+            <div class="stat-box">
+                <span class="sub-text" id="L_WEEK_LABEL">WEEK NUMBER</span>
+                <div class="big-number" id="week-number">--</div>
+            </div>
+
+            <div class="stat-box" id="date-range-box">
+                <span class="sub-text" id="L_DATE_LABEL">DATE RANGE</span>
+                <div class="date-range" id="date-range">--</div>
+            </div>
+
+            <!-- Haftalık Toplu İşlem Butonları -->
+            <div class="batch-actions">
+                <button class="btn-batch btn-batch-wa" onclick="shareBatchWhatsApp()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">share</span> <span id="L_BATCH_WA">Share</span>
+                </button>
+                <button class="btn-batch btn-batch-pdf" onclick="downloadBatchPDF()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">download</span> <span id="L_BATCH_PDF">PDF</span>
+                </button>
+                <button class="btn-batch btn-batch-share" onclick="shareBatchPDFNative()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">ios_share</span> <span id="L_BATCH_SHARE_PDF">PDF Share</span>
+                </button>
+            </div>
+
+            <a href="tools.html" class="back-btn">
+                <span class="material-symbols-rounded" style="font-size: 18px;">home</span>
+                <span id="L_BACK">BACK TO MENU</span>
+            </a>
+        </div>
+
+        <!-- BLACK CALENDAR -->
+        <div class="calendar-card">
+            <div class="cal-header">
+                <span id="cal-month-year">--</span>
+                <span class="material-symbols-rounded" style="color: var(--neon-green);">calendar_month</span>
+            </div>
+            
+            <div class="cal-grid" id="cal-days-header"></div>
+            <div class="cal-grid" id="cal-grid" style="margin-top: 8px;"></div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="dot green"></div> <span id="L_LEGEND_ACTIVE">Active Week</span></div>
+                <div class="legend-item"><div class="dot blue"></div> <span id="L_LEGEND_NOTE">Saved Note</span></div>
+            </div>
+        </div>
+
+        <!-- INFO/DESCRIPTION CARD -->
+        <div class="info-card">
+            <h3 id="L_DESC_TITLE">How to Use?</h3>
+            <p id="L_DESC_TEXT">Calculate your weeks, save daily notes, and track your business easily. Select a day on the calendar to add a note.</p>
+        </div>
+    </div>
+
+    <!-- NOTE MODAL -->
+    <div class="modal-overlay" id="noteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalDateStr">--</div>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+
+            <textarea class="note-textarea" id="noteInput" placeholder="Write your note here..."></textarea>
+            
+            <div class="preview-box" id="previewBox"></div>
+
+            <div class="modal-actions">
+                <button class="btn-action btn-save" onclick="saveNote()">
+                    <span class="material-symbols-rounded" style="font-size: 18px;">save</span>
+                    <span id="L_BTN_SAVE">Save Note</span>
+                </button>
+                <button class="btn-action btn-wa" onclick="shareWhatsApp()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">share</span> WhatsApp
+                </button>
+                <button class="btn-action btn-preview" onclick="togglePreview()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">visibility</span> <span id="L_BTN_PREVIEW">Preview</span>
+                </button>
+                <button class="btn-action btn-pdf" onclick="downloadPDF()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">download</span> <span id="L_BTN_PDF">PDF</span>
+                </button>
+                <button class="btn-action btn-share-pdf" onclick="shareSinglePDFNative()">
+                    <span class="material-symbols-rounded" style="font-size: 16px;">ios_share</span> <span id="L_BTN_SHARE_PDF">Share PDF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dict = {
+            ru: {
+                title: "ТРЕКЕР НЕДЕЛЬ", now: "ТЕКУЩАЯ НЕДЕЛЯ", prev: "« НАЗАД", next: "ВПЕРЕД »", week: "НОМЕР НЕДЕЛИ", dates: "ДИАПАЗОН ДАТ", back: "ВЕРНУТЬСЯ В МЕНЮ", wks: " НЕД.",
+                days: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"], btnSave: "Сохранить", btnPreview: "Превью", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Введите заметку...",
+                legActive: "Текущая неделя", legNote: "Есть заметка", batchWa: "Отправить", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "На эту неделю нет сохраненных заметок.", batchTitle: "Отчет по еженедельным заметкам", batchWeek: "Номер недели:", batchDate: "Диапазон дат:", errNoShare: "Ваше устройство не поддерживает прямой обмен PDF. Загрузка...",
+                descTitle: "Как использовать трекер недель?", descText: "Рассчитывайте свои рабочие недели, сохраняйте ежедневные заметки и следите за расписанием. Нажмите на любой день в календаре, чтобы добавить заметку, и легко экспортируйте итоги недели в формате PDF или делитесь ими через WhatsApp."
+            },
+            en: { 
+                title: "WEEK TRACKER", now: "CURRENT WEEK", prev: "« PREV", next: "NEXT »", week: "WEEK NUMBER", dates: "DATE RANGE", back: "BACK TO MENU", wks: " WEEKS",
+                days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], btnSave: "Save Note", btnPreview: "Preview", btnPdf: "DL PDF", btnSharePdf: "Share PDF", notePlaceholder: "Type your note...",
+                legActive: "Active Week", legNote: "Saved Note", batchWa: "Share Text", batchPdf: "DL PDF", batchSharePdf: "Share PDF",
+                noNote: "No notes saved for this week.", batchTitle: "Weekly Notes Report", batchWeek: "Week Number:", batchDate: "Date Range:", errNoShare: "Your device does not support direct PDF sharing. Downloading instead...",
+                descTitle: "How to Use Week Tracker?", descText: "Calculate your business weeks, save daily notes, and stay on top of your schedule. Click any day on the calendar to add a note, and easily export your weekly summary as a PDF or share it via WhatsApp."
+            },
+            tr: { 
+                title: "HAFTA TAKİPÇİSİ", now: "ŞU ANKİ HAFTA", prev: "« GERİ", next: "İLERİ »", week: "HAFTA NUMARASI", dates: "TARİH ARALIĞI", back: "ANA MENÜ", wks: " HAFTA",
+                days: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Pzr"], btnSave: "Kaydet", btnPreview: "Önizleme", btnPdf: "İndir", btnSharePdf: "Paylaş", notePlaceholder: "Notunuzu yazın...",
+                legActive: "Aktif Hafta", legNote: "Not Kaydedildi", batchWa: "Metin", batchPdf: "İndir", batchSharePdf: "Paylaş",
+                noNote: "Bu hafta için kaydedilmiş not bulunmuyor.", batchTitle: "Haftalık Notlar Raporu", batchWeek: "Hafta Numarası:", batchDate: "Tarih Aralığı:", errNoShare: "Cihazınız doğrudan PDF paylaşımını desteklemiyor. Bunun yerine indiriliyor...",
+                descTitle: "Hafta Takipçisi Nasıl Kullanılır?", descText: "İş haftalarınızı hesaplayın, günlük notlarınızı kaydedin ve planlarınızı yakından takip edin. Takvimden bir güne tıklayarak not ekleyebilir, tüm haftanın özetini tek tıkla PDF olarak indirebilir veya WhatsApp'tan paylaşabilirsiniz."
+            },
+            ja: {
+                title: "週間トラッカー", now: "現在の週", prev: "« 前へ", next: "次へ »", week: "週番号", dates: "日付範囲", back: "メニューに戻る", wks: " 週間",
+                days: ["月", "火", "水", "木", "金", "土", "日"], btnSave: "保存", btnPreview: "プレビュー", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "ここにメモを入力...",
+                legActive: "アクティブな週", legNote: "保存されたメモ", batchWa: "共有", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "今週のメモはありません。", batchTitle: "週次メモレポート", batchWeek: "週番号:", batchDate: "日付範囲:", errNoShare: "Downloading instead...",
+                descTitle: "週間トラッカーの使い方", descText: "ビジネスの週を計算し、毎日のメモを保存してスケジュールを管理します。カレンダーの日付をクリックしてメモを追加し、週のまとめをPDFでエクスポートしたり、WhatsAppで共有したりできます。"
+            },
+            pt: { 
+                title: "RASTREADOR DE SEMANAS", now: "SEMANA ATUAL", prev: "« ANT", next: "PRÓX »", week: "NÚM. DA SEMANA", dates: "INTERVALO DE DATAS", back: "VOLTAR AO MENU", wks: " SEMANAS",
+                days: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"], btnSave: "Salvar", btnPreview: "Visualizar", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Digite sua nota...",
+                legActive: "Semana Ativa", legNote: "Nota Salva", batchWa: "Texto", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "Nenhuma nota salva para esta semana.", batchTitle: "Relatório Semanal de Notas", batchWeek: "Número da Semana:", batchDate: "Intervalo de Datas:", errNoShare: "Downloading instead...",
+                descTitle: "Como Usar o Rastreador de Semanas?", descText: "Calcule suas semanas de negócios, salve notas diárias e acompanhe sua programação. Clique em qualquer dia no calendário para adicionar uma nota e exporte facilmente o resumo semanal em PDF ou compartilhe via WhatsApp."
+            },
+            es: { 
+                title: "RASTREADOR DE SEMANAS", now: "SEMANA ACTUAL", prev: "« ANT", next: "SIG »", week: "NÚMERO DE SEMANA", dates: "RANGO DE FECHAS", back: "VOLVER AL MENÚ", wks: " SEMANAS",
+                days: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"], btnSave: "Guardar", btnPreview: "Vista Previa", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Escribe tu nota...",
+                legActive: "Semana Activa", legNote: "Nota Guardada", batchWa: "Texto", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "No hay notas guardadas para esta semana.", batchTitle: "Informe Semanal de Notas", batchWeek: "Número de Semana:", batchDate: "Rango de Fechas:", errNoShare: "Downloading instead...",
+                descTitle: "¿Cómo Usar el Rastreador de Semanas?", descText: "Calcula tus semanas laborales, guarda notas diarias y mantente al tanto de tu horario. Haz clic en cualquier día del calendario para agregar una nota y exporta fácilmente tu resumen semanal en PDF o compártelo por WhatsApp."
+            },
+            nl: { 
+                title: "WEEK TRACKER", now: "HUIDIGE WEEK", prev: "« VORIGE", next: "VOLGENDE »", week: "WEEKNUMMER", dates: "DATUMBEREIK", back: "TERUG NAAR MENU", wks: " WEKEN",
+                days: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"], btnSave: "Opslaan", btnPreview: "Voorbeeld", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Typ uw notitie...",
+                legActive: "Actieve Week", legNote: "Opgeslagen Notitie", batchWa: "Tekst", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "Geen notities opgeslagen voor deze week.", batchTitle: "Wekelijks Notitierapport", batchWeek: "Weeknummer:", batchDate: "Datumbereik:", errNoShare: "Downloading instead...",
+                descTitle: "Hoe de Week Tracker te gebruiken?", descText: "Bereken uw zakelijke weken, sla dagelijkse notities op en blijf op schema. Klik op een dag in de kalender om een notitie toe te voegen, en exporteer uw wekelijkse samenvatting eenvoudig als PDF of deel deze via WhatsApp."
+            },
+            de: { 
+                title: "WOCHEN-TRACKER", now: "AKTUELLE WOCHE", prev: "« ZURÜCK", next: "VOR »", week: "WOCHENNUMMER", dates: "DATUMSBEREICH", back: "ZURÜCK ZUM MENU", wks: " WOCHEN",
+                days: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"], btnSave: "Speichern", btnPreview: "Vorschau", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Geben Sie Ihre Notiz ein...",
+                legActive: "Aktive Woche", legNote: "Gespeicherte Notiz", batchWa: "Text", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "Keine Notizen für diese Woche gespeichert.", batchTitle: "Wöchentlicher Notizbericht", batchWeek: "Wochennummer:", batchDate: "Datumsbereich:", errNoShare: "Downloading instead...",
+                descTitle: "Wie benutzt man den Wochen-Tracker?", descText: "Berechnen Sie Ihre Geschäftswochen, speichern Sie tägliche Notizen und behalten Sie Ihren Zeitplan im Auge. Klicken Sie auf einen beliebigen Tag im Kalender, um eine Notiz hinzuzufügen, und exportieren Sie Ihre Wochenübersicht ganz einfach als PDF oder teilen Sie sie über WhatsApp."
+            },
+            fr: { 
+                title: "SUIVI HEBDO", now: "SEMAINE ACTUELLE", prev: "« PRÉC", next: "SUIV »", week: "NUMÉRO DE SEMAINE", dates: "PLAGE DE DATES", back: "RETOUR AU MENU", wks: " SEMAINE",
+                days: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"], btnSave: "Enregistrer", btnPreview: "Aperçu", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Tapez votre note...",
+                legActive: "Semaine Active", legNote: "Note Enregistrée", batchWa: "Texte", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "Aucune note enregistrée pour cette semaine.", batchTitle: "Rapport Hebdomadaire des Notes", batchWeek: "Numéro de Semaine :", batchDate: "Plage de Dates :", errNoShare: "Downloading instead...",
+                descTitle: "Comment utiliser le Suivi Hebdo ?", descText: "Calculez vos semaines de travail, enregistrez des notes quotidiennes et gérez votre emploi du temps. Cliquez sur n'importe quel jour du calendrier pour ajouter une note, exportez facilement votre résumé hebdomadaire en PDF ou partagez-le via WhatsApp."
+            },
+            it: { 
+                title: "TRACKER SETTIMANALE", now: "SETTIMANA CORRENTE", prev: "« PREC", next: "SUCC »", week: "NUMERO SETTIMANA", dates: "INTERVALLO DATE", back: "TORNA AL MENU", wks: " SETTIMANE",
+                days: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"], btnSave: "Salva", btnPreview: "Anteprima", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "Scrivi la tua nota...",
+                legActive: "Settimana Attiva", legNote: "Nota Salvata", batchWa: "Testo", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "Nessuna nota salvata per questa settimana.", batchTitle: "Report Settimanale delle Note", batchWeek: "Numero Settimana:", batchDate: "Intervallo Date:", errNoShare: "Downloading instead...",
+                descTitle: "Come usare il Tracker Settimanale?", descText: "Calcola le tue settimane lavorative, salva le note giornaliere e tieni sotto controllo il tuo programma. Clicca su qualsiasi giorno del calendario per aggiungere una nota, esporta facilmente il riepilogo settimanale in PDF o condividilo tramite WhatsApp."
+            },
+            ar: {
+                title: "متتبع الأسابيع", now: "الأسبوع الحالي", prev: "« السابق", next: "التالي »", week: "رقم الأسبوع", dates: "نطاق التاريخ", back: "العودة للقائمة", wks: " أسابيع",
+                days: ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"], btnSave: "حفظ", btnPreview: "معاينة", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "اكتب ملاحظتك...",
+                legActive: "الأسبوع النشط", legNote: "ملاحظة محفوظة", batchWa: "نص", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "لا توجد ملاحظات محفوظة لهذا الأسبوع.", batchTitle: "تقرير الملاحظات الأسبوعي", batchWeek: "رقم الأسبوع:", batchDate: "نطاق التاريخ:", errNoShare: "Downloading instead...",
+                descTitle: "كيفية استخدام متتبع الأسابيع؟", descText: "احسب أسابيع عملك، واحفظ ملاحظاتك اليومية، وابق على اطلاع بجدولك الزمني. انقر على أي يوم في التقويم لإضافة ملاحظة، وقم بتصدير ملخصك الأسبوعي بسهولة كملف PDF أو شاركه عبر WhatsApp."
+            },
+            zh: {
+                title: "周数追踪器", now: "当前周", prev: "« 上一页", next: "下一页 »", week: "周数", dates: "日期范围", back: "返回菜单", wks: " 周",
+                days: ["一", "二", "三", "四", "五", "六", "日"], btnSave: "保存", btnPreview: "预览", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "输入您的笔记...",
+                legActive: "活动周", legNote: "已保存的笔记", batchWa: "分享", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "本周没有保存的笔记。", batchTitle: "每周笔记报告", batchWeek: "周数:", batchDate: "日期范围:", errNoShare: "Downloading instead...",
+                descTitle: "如何使用周数追踪器？", descText: "计算您的业务周，保存每日笔记，并随时掌握您的日程安排。单击日历上的任何一天添加笔记，即可轻松将每周摘要导出为 PDF 或通过 WhatsApp 分享。"
+            },
+            hi: {
+                title: "सप्ताह ट्रैकर", now: "वर्तमान सप्ताह", prev: "« पिछला", next: "अगला »", week: "सप्ताह संख्या", dates: "तिथि सीमा", back: "मेनू पर वापस", wks: " सप्ताह",
+                days: ["सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि", "रवि"], btnSave: "सहेजें", btnPreview: "पूर्वावलोकन", btnPdf: "PDF", btnSharePdf: "Share PDF", notePlaceholder: "अपना नोट लिखें...",
+                legActive: "सक्रिय सप्ताह", legNote: "सहेजा गया नोट", batchWa: "पाठ", batchPdf: "PDF", batchSharePdf: "Share PDF",
+                noNote: "इस सप्ताह के लिए कोई नोट सहेजा नहीं गया है.", batchTitle: "साप्ताहिक नोट रिपोर्ट", batchWeek: "सप्ताह संख्या:", batchDate: "तिथि सीमा:", errNoShare: "Downloading instead...",
+                descTitle: "सप्ताह ट्रैकर का उपयोग कैसे करें?", descText: "अपने व्यावसायिक सप्ताहों की गणना करें, दैनिक नोट्स सहेजें और अपने शेड्यूल पर नज़र रखें. नोट जोड़ने के लिए Calendar पर किसी भी दिन क्लिक करें, और आसानी से अपने साप्ताहिक सारांश को PDF के रूप में निर्यात करें या WhatsApp के माध्यम से साझा करें."
+            }
+        };
+
+        const LS_KEY = 'elite_lang_v1';
+        let currentOffset = 0;
+        let selectedDateKey = '';
+        let currentWeekDaysData = []; 
+        let t = dict['en']; 
+
+        // Seçim kutusundan dili değiştirdiğinde çalışacak fonksiyon
+        function changeLanguage() {
+            const selLang = document.getElementById('langSelect').value;
+            localStorage.setItem(LS_KEY, selLang);
+            updateDisplay();
+        }
+
+        function getISOWeekDetails(date) {
+            const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        function getMonday(d) {
+            const date = new Date(d);
+            const day = date.getDay();
+            const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+            return new Date(date.setDate(diff));
+        }
+
+        function updateDisplay() {
+            let rawLang = (localStorage.getItem(LS_KEY) || 'en').trim().toLowerCase();
+            const lang = dict[rawLang] ? rawLang : 'en'; 
+            
+            t = dict[lang]; 
+            document.documentElement.lang = lang;
+            
+            // Açılır menüdeki seçimi eşitle
+            document.getElementById('langSelect').value = lang;
+            
+            if(lang === 'ar') document.body.style.direction = 'rtl';
+            else document.body.style.direction = 'ltr';
+
+            document.getElementById('L_TITLE').innerText = t.title;
+            document.getElementById('L_PREV').innerText = t.prev;
+            document.getElementById('L_NEXT').innerText = t.next;
+            document.getElementById('L_WEEK_LABEL').innerText = t.week;
+            document.getElementById('L_DATE_LABEL').innerText = t.dates;
+            document.getElementById('L_BACK').innerText = t.back;
+            document.getElementById('L_BTN_SAVE').innerText = t.btnSave;
+            document.getElementById('L_BTN_PREVIEW').innerText = t.btnPreview;
+            document.getElementById('L_BTN_PDF').innerText = t.btnPdf;
+            document.getElementById('L_BTN_SHARE_PDF').innerText = t.btnSharePdf;
+            document.getElementById('noteInput').placeholder = t.notePlaceholder;
+            document.getElementById('L_LEGEND_ACTIVE').innerText = t.legActive;
+            document.getElementById('L_LEGEND_NOTE').innerText = t.legNote;
+            
+            document.getElementById('L_BATCH_WA').innerText = t.batchWa;
+            document.getElementById('L_BATCH_PDF').innerText = t.batchPdf;
+            document.getElementById('L_BATCH_SHARE_PDF').innerText = t.batchSharePdf;
+            
+            document.getElementById('L_DESC_TITLE').innerText = t.descTitle;
+            document.getElementById('L_DESC_TEXT').innerText = t.descText;
+
+            if (currentOffset === 0) {
+                document.getElementById('L_NOW').innerText = t.now;
+            } else {
+                document.getElementById('L_NOW').innerText = currentOffset > 0 ? `+${currentOffset}${t.wks}` : `${currentOffset}${t.wks}`;
+            }
+
+            const now = new Date();
+            const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (currentOffset * 7));
+            
+            document.getElementById('week-number').innerText = getISOWeekDetails(targetDate);
+
+            const monday = getMonday(targetDate);
+            const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6);
+            document.getElementById('date-range').innerText = `${monday.toLocaleDateString(lang, {month:'short', day:'numeric'})} - ${sunday.toLocaleDateString(lang, {month:'short', day:'numeric'})}`;
+
+            renderCalendar(targetDate, monday, sunday, t, lang);
+        }
+
+        function renderCalendar(targetDate, monday, sunday, t, lang) {
+            document.getElementById('cal-month-year').innerText = targetDate.toLocaleDateString(lang, { month: 'long', year: 'numeric' });
+            document.getElementById('cal-days-header').innerHTML = t.days.map(d => `<div class="day-name">${d}</div>`).join('');
+            
+            const calGrid = document.getElementById('cal-grid');
+            calGrid.innerHTML = '';
+            currentWeekDaysData = []; 
+            
+            const firstDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 1);
+            const lastDay = new Date(targetDate.getFullYear(), targetDate.getMonth() + 1, 0);
+            let startDay = firstDay.getDay() || 7; 
+            
+            const prevMonthLastDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
+            for (let i = startDay - 1; i > 0; i--) {
+                calGrid.innerHTML += `<div class="day-cell other-month">${prevMonthLastDay - i + 1}</div>`;
+            }
+
+            const startActiveTime = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate()).getTime();
+            const endActiveTime = new Date(sunday.getFullYear(), sunday.getMonth(), sunday.getDate()).getTime();
+
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const currentDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), day);
+                const currentTime = currentDate.getTime();
+                const dateStrKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+                
+                const cell = document.createElement('div');
+                cell.className = 'day-cell';
+                cell.innerText = day;
+
+                const isActiveWeek = currentTime >= startActiveTime && currentTime <= endActiveTime;
+                if (isActiveWeek) {
+                    cell.classList.add('active-week');
+                }
+                
+                const noteVal = localStorage.getItem('note_' + dateStrKey);
+                if (noteVal) {
+                    cell.classList.add('has-note');
+                }
+
+                if (isActiveWeek && noteVal) {
+                    currentWeekDaysData.push({
+                        dateFormatted: currentDate.toLocaleDateString(lang, { weekday:'short', month:'short', day:'numeric', year:'numeric' }),
+                        note: noteVal
+                    });
+                }
+
+                cell.addEventListener('click', () => openNoteModal(dateStrKey, currentDate.toLocaleDateString(lang, { weekday:'short', month:'short', day:'numeric', year:'numeric' })));
+                calGrid.appendChild(cell);
+            }
+        }
+
+        function changeWeek(n) { currentOffset += n; updateDisplay(); }
+        document.getElementById('L_NOW').addEventListener('click', () => { currentOffset = 0; updateDisplay(); });
+
+        function openNoteModal(dateKey, formattedDate) {
+            selectedDateKey = dateKey;
+            document.getElementById('modalDateStr').innerText = formattedDate;
+            document.getElementById('noteInput').value = localStorage.getItem('note_' + dateKey) || '';
+            document.getElementById('previewBox').style.display = 'none';
+            document.getElementById('noteModal').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('noteModal').classList.remove('active'); }
+
+        function saveNote() {
+            const val = document.getElementById('noteInput').value.trim();
+            if (val) localStorage.setItem('note_' + selectedDateKey, val);
+            else localStorage.removeItem('note_' + selectedDateKey);
+            closeModal(); updateDisplay();
+        }
+
+        function togglePreview() {
+            const pBox = document.getElementById('previewBox');
+            const val = document.getElementById('noteInput').value.trim();
+            if (pBox.style.display === 'block') { pBox.style.display = 'none'; } 
+            else { pBox.style.display = 'block'; pBox.innerText = val ? val : "---"; }
+        }
+
+        function shareWhatsApp() {
+            const val = document.getElementById('noteInput').value.trim();
+            const dateStr = document.getElementById('modalDateStr').innerText;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`📅 *${dateStr}*\n\n📝 *Note:* ${val}`)}`, '_blank');
+        }
+
+        function downloadPDF() {
+            const val = document.getElementById('noteInput').value.trim();
+            const dateStr = document.getElementById('modalDateStr').innerText;
+            const printWin = window.open('', '_blank');
+            printWin.document.write(`
+                <html><head><title>Note - ${dateStr}</title><style>
+                body { font-family: sans-serif; padding: 40px; color: #333; direction: ${document.body.style.direction}; }
+                .card { border: 2px solid #2e7d32; padding: 30px; border-radius: 15px; background: #f8fafc; }
+                h2 { color: #2e7d32; margin-top: 0; } p { font-size: 15px; line-height: 1.6; white-space: pre-wrap; }
+                </style></head><body><div class="card"><h2>Week Tracker</h2><hr><h3>📅 ${dateStr}</h3><p>${val || '---'}</p></div>
+                <script>window.print();<\/script></body></html>`);
+            printWin.document.close();
+        }
+
+        function shareBatchWhatsApp() {
+            if (currentWeekDaysData.length === 0) {
+                alert(t.noNote); 
+                return;
+            }
+            let text = `📅 *${t.batchTitle}* (${t.batchWeek} ${document.getElementById('week-number').innerText})\n\n`;
+            currentWeekDaysData.forEach(item => {
+                text += `📌 *${item.dateFormatted}*\n${item.note}\n\n-------------------\n`;
+            });
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function downloadBatchPDF() {
+            if (currentWeekDaysData.length === 0) {
+                alert(t.noNote);
+                return;
+            }
+            const weekNum = document.getElementById('week-number').innerText;
+            const dateRangeText = document.getElementById('date-range').innerText;
+            
+            const printWin = window.open('', '_blank');
+            let contentHTML = `<html><head><title>${t.batchTitle} - ${weekNum}</title><style>
+                body { font-family: sans-serif; padding: 40px; color: #333; direction: ${document.body.style.direction}; }
+                .card { border: 2px solid #2e7d32; padding: 30px; border-radius: 15px; background: #f8fafc; }
+                h2 { color: #2e7d32; margin-top: 0; } 
+                .note-block { margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+                .date-title { font-weight: bold; color: #1976d2; }
+                p { font-size: 14px; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; }
+                </style></head><body><div class="card">
+                <h2>${t.batchTitle}</h2>
+                <p><strong>${t.batchWeek}</strong> ${weekNum} | <strong>${t.batchDate}</strong> ${dateRangeText}</p><hr>`;
+            
+            currentWeekDaysData.forEach(item => {
+                contentHTML += `<div class="note-block"><div class="date-title">📅 ${item.dateFormatted}</div><p>${item.note}</p></div>`;
+            });
+
+            contentHTML += `</div><script>window.print();<\/script></body></html>`;
+            printWin.document.write(contentHTML);
+            printWin.document.close();
+        }
+
+        async function shareSinglePDFNative() {
+            const val = document.getElementById('noteInput').value.trim();
+            const dateStr = document.getElementById('modalDateStr').innerText;
+            
+            if (!val) { alert(t.noNote); return; }
+            if (!window.html2pdf) { alert("PDF library error."); return; }
+
+            const element = document.createElement('div');
+            element.innerHTML = `
+                <div style="font-family: sans-serif; padding: 40px; color: #333; direction: ${document.body.style.direction};">
+                    <h2 style="color: #2e7d32; margin-top: 0;">Week Tracker</h2><hr>
+                    <h3 style="color: #1976d2;">📅 ${dateStr}</h3>
+                    <p style="font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${val}</p>
+                </div>
+            `;
+
+            const opt = {
+                margin:       0.5,
+                filename:     `Note_${dateStr}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            try {
+                const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+                const file = new File([pdfBlob], `Note_${dateStr}.pdf`, { type: 'application/pdf' });
+                
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: `Note - ${dateStr}`,
+                        files: [file]
+                    });
+                } else {
+                    alert(t.errNoShare);
+                    html2pdf().set(opt).from(element).save();
+                }
+            } catch (error) {
+                console.error("PDF Share Error:", error);
+            }
+        }
+
+        async function shareBatchPDFNative() {
+            if (currentWeekDaysData.length === 0) {
+                alert(t.noNote);
+                return;
+            }
+            if (!window.html2pdf) { alert("PDF library error."); return; }
+            
+            const weekNum = document.getElementById('week-number').innerText;
+            const dateRangeText = document.getElementById('date-range').innerText;
+            
+            const element = document.createElement('div');
+            element.innerHTML = `
+                <div style="font-family: sans-serif; padding: 40px; color: #333; direction: ${document.body.style.direction};">
+                    <h2 style="color: #2e7d32; margin-top: 0;">${t.batchTitle}</h2>
+                    <p><strong>${t.batchWeek}</strong> ${weekNum} | <strong>${t.batchDate}</strong> ${dateRangeText}</p><hr>
+                    ${currentWeekDaysData.map(item => `
+                        <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                            <div style="font-weight: bold; color: #1976d2;">📅 ${item.dateFormatted}</div>
+                            <p style="font-size: 14px; line-height: 1.5; white-space: pre-wrap; margin-top: 5px;">${item.note}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            const opt = {
+                margin:       0.5,
+                filename:     `Week_${weekNum}_Notes.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            try {
+                const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+                const file = new File([pdfBlob], `Week_${weekNum}_Notes.pdf`, { type: 'application/pdf' });
+                
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: `${t.batchTitle} - ${weekNum}`,
+                        files: [file]
+                    });
+                } else {
+                    alert(t.errNoShare);
+                    html2pdf().set(opt).from(element).save();
+                }
+            } catch (error) {
+                console.error("PDF Share Error:", error);
+            }
+        }
+
+        // Uygulama Başlatma ve Tarayıcı Dili Algılama
+        function initApp() {
+            // Eğer daha önce dil seçilmemişse tarayıcı dilini al
+            if (!localStorage.getItem(LS_KEY)) {
+                const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
+                // Desteklediğimiz dillerden biriyse onu yap, değilse ingilizce kalsın
+                if (dict[browserLang]) {
+                    localStorage.setItem(LS_KEY, browserLang);
+                } else {
+                    localStorage.setItem(LS_KEY, 'en');
+                }
+            }
+            updateDisplay();
+        }
+
+        window.onload = initApp;
+        window.addEventListener('focus', updateDisplay); 
+    </script>
+</body>
+</html>

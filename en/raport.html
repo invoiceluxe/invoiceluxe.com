@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>PREMIUM SECURE REPORT</title>
+<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=no" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html, body { overflow-x: hidden; width: 100%; background: #121212; margin: 0; padding: 0; }
+body { display: flex; flex-direction: column; align-items: center; padding: 20px 0; font-family: 'Montserrat', sans-serif; }
+
+#invoice-card {
+    background: #ffffff; color: #000000;
+    width: 95vw; max-width: 800px;
+    min-height: 1100px;
+    padding: 50px; border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    margin-bottom: 25px; border-top: 20px solid #d4af37;
+    box-sizing: border-box; position: relative;
+}
+
+.inv-header { text-align: center; margin-bottom: 40px; border-bottom: 3px solid #f2f2f2; padding-bottom: 20px; }
+.inv-header h1 { font-family: 'Orbitron', sans-serif; font-size: 32px; color: #d4af37; margin: 0; letter-spacing: 5px; }
+
+.acc-info { background: #000; color: #fff; padding: 30px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; }
+.acc-info b { font-size: 22px; color: #d4af37; text-transform: uppercase; font-family: 'Orbitron'; }
+
+table { width: 100%; border-collapse: collapse; }
+th { font-size: 11px; text-align: left; padding: 15px 10px; color: #999; border-bottom: 2px solid #eee; text-transform: uppercase; letter-spacing: 1px; }
+td { font-size: 14px; padding: 20px 10px; border-bottom: 1px solid #f5f5f5; font-weight: 600; vertical-align: middle; }
+
+/* Arapça RTL Tablo Başlık Desteği */
+html[dir="rtl"] th { text-align: right; }
+html[dir="rtl"] td:last-child { text-align: left !important; }
+
+/* Badges */
+.badge { padding: 4px 8px; border-radius: 4px; font-size: 9px; font-weight: 800; color: #fff; margin-bottom: 8px; display: inline-block; text-transform: uppercase; }
+.badge-income { background: #0984e3; }
+.badge-expense { background: #d63031; }
+
+.row-main { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 16px; }
+.row-sub { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; display: block; }
+
+.summary-wrap { margin-top: 50px; padding: 30px; background: #fcfcfc; border: 1px solid #eee; border-radius: 8px; }
+.sum-line { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; font-weight: 700; color: #555; }
+
+.status-box { margin: 20px 0; padding: 15px; border-radius: 8px; text-align: center; font-family: 'Orbitron'; font-size: 12px; font-weight: 800; }
+
+.total-line { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding: 25px; background: #000; color: #d4af37; font-family: 'Orbitron', sans-serif; font-size: 24px; border-radius: 4px; }
+
+.btn-group { width: 95vw; max-width: 800px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.btn { padding: 20px; border: none; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 12px; cursor: pointer; text-transform: uppercase; border-radius: 8px; transition: 0.3s; }
+.btn-pdf { background: #d4af37; color: #000; }
+.btn-share { background: #25D366; color: #fff; }
+
+#loader-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; }
+.spinner { width: 50px; height: 50px; border: 5px solid #333; border-top: 5px solid #d4af37; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.no-display { display: none !important; }
+</style>
+</head>
+<body>
+
+<div id="loader-overlay">
+    <div class="spinner"></div>
+    <p id="l-text" style="color:#d4af37; margin-top:15px; font-family:Orbitron; font-size:12px; letter-spacing:2px; text-align:center; padding:0 20px;">AUTHENTICATING...</p>
+</div>
+
+<div id="invoice-card">
+    <div class="inv-header">
+        <h1 id="t-title">REPORT</h1>
+        <p id="t-date" style="font-weight:800; color:#888; margin-top:10px;">00.00.0000</p>
+    </div>
+    <div class="acc-info">
+        <b id="p-name">...</b>
+        <span id="p-tax-info" style="font-size:10px; border:1px solid #d4af37; padding:8px; font-weight:800; letter-spacing:1px;">OFFICIAL FINANCIAL RECORD</span>
+    </div>
+    <table>
+        <thead><tr id="t-head"></tr></thead>
+        <tbody id="t-rows"></tbody>
+    </table>
+
+    <div class="summary-wrap">
+        <div class="sum-line"><span id="lbl-sub">NET TOTAL:</span> <b id="v-sub" style="color:#0984e3">0.00</b></div>
+        <div class="sum-line"><span id="lbl-tax">TAX TOTAL:</span> <b id="v-tax" style="color:#6c5ce7">0.00</b></div>
+
+        <div class="status-box" id="pdf-status-box">---</div>
+
+        <div class="total-line">
+            <span id="lbl-grand" style="font-size:11px; letter-spacing:2px;">GRAND TOTAL</span> <b id="v-total">0.00</b>
+        </div>
+    </div>
+</div>
+
+<div class="btn-group">
+    <button class="btn btn-pdf" id="btn-save" onclick="secureProcess('download')">SAVE PDF</button>
+    <button class="btn btn-share" id="btn-share" onclick="secureProcess('share')">SHARE</button>
+</div>
+
+<script>
+let cData = null;
+
+// Tam 13 Dil Sözlüğü Entegrasyonu
+const dict = {
+    tr: { m: "HESAP ÖZETİ", h: ["DETAYLAR", "KATEGORİ", "TOPLAM"], vn: "KDV", net: "MATRAH", sub: "TOPLAM MATRAH", tax: "TOPLAM KDV", grand: "GENEL TOPLAM", b1: "PDF KAYDET", b2: "PAYLAŞ", inc: "GELİR", exp: "GİDER", pay: "VERGİ ÖDENECEK", get: "VERGİ ALACAKLI", stat: "VERGİ DURUMU", w: ["VERİLER DOĞRULANIYOR...", "GÜVENLİK MÜHÜRLERİ EKLENİYOR...", "PDF OLUŞTURULUYOR..."] },
+    en: { m: "INVOICE SUMMARY", h: ["DETAILS", "CATEGORY", "TOTAL"], vn: "TAX", net: "NET", sub: "TOTAL NET", tax: "TOTAL TAX", grand: "GRAND TOTAL", b1: "SAVE PDF", b2: "SHARE", inc: "INCOME", exp: "EXPENSE", pay: "TAX TO PAY", get: "TAX CREDIT", stat: "TAX STATUS", w: ["VERIFYING DATA...", "APPLYING SECURITY SEALS...", "GENERATING PDF..."] },
+    nl: { m: "FACTUUR OVERZICHT", h: ["DETAILS", "CATEGORIE", "TOTAAL"], vn: "BTW", net: "NETTO", sub: "TOTAAL NETTO", tax: "TOTAAL BTW", grand: "EINDTOTAAL", b1: "PDF OPSLAAN", b2: "DELEN", inc: "INKOMSTEN", exp: "UITGAVEN", pay: "BTW TE BETALEN", get: "BTW TE ONTVANGEN", stat: "BTW STATUS", w: ["CONTROLEREN...", "BEVEILIGINGSZEGELS...", "PDF MAKEN..."] },
+    de: { m: "RECHNUNGSÜBERSICHT", h: ["DETAILS", "KATEGORIE", "GESAMT"], vn: "MWST", net: "NETTO", sub: "GESAMT NETTO", tax: "GESAMT MWST", grand: "GESAMTBETRAG", b1: "PDF SPEICHERN", b2: "TEILEN", inc: "EINNAHMEN", exp: "AUSGABEN", pay: "STEUERSCHULD", get: "STEUERGUTHABEN", stat: "STEUERSTATUS", w: ["PRÜFUNG LÄUFT...", "SICHERHEITSSIEGEL...", "PDF GENERIEREN..."] },
+    fr: { m: "RÉSUMÉ DE FACTURE", h: ["DÉTAILS", "CATÉGORIE", "TOTAL"], vn: "TVA", net: "NET", sub: "TOTAL NET", tax: "TOTAL TVA", grand: "TOTAL TTC", b1: "ENREGISTRER PDF", b2: "PARTAGER", inc: "REVENUS", exp: "DÉPENSES", pay: "TVA À PAYER", get: "CRÉDIT TVA", stat: "STATUT FISCAL", w: ["VÉRIFICATION...", "SCELLAGE DE SÉCURITÉ...", "GÉNÉRATION PDF..."] },
+    it: { m: "RIEPILOGO FATTURA", h: ["DETTAGLI", "CATEGORIA", "TOTALE"], vn: "IVA", net: "NETTO", sub: "TOTALE NETTO", tax: "TOTALE IVA", grand: "TOTALE GENERALE", b1: "SALVA PDF", b2: "CONDIVIDI", inc: "ENTRATE", exp: "USCITE", pay: "IVA DA PAGARE", get: "CREDITO IVA", stat: "STATO FISCALE", w: ["VERIFICA DATI...", "SIGILLI DI SICUREZZA...", "GENERAZIONE PDF..."] },
+    ru: { m: "СВОДКА ПО СЧЕТУ", h: ["ДЕТАЛИ", "КАТЕГОРИЯ", "ИТОГО"], vn: "НДС", net: "НЕТТО", sub: "ВСЕГО НЕТТО", tax: "ВСЕГО НДС", grand: "ОБЩАЯ СУММА", b1: "СКАЧАТЬ PDF", b2: "ПОДЕЛИТЬСЯ", inc: "ДОХОД", exp: "РАСХОД", pay: "НДС К УПЛАТЕ", get: "ВОЗМЕЩЕНИЕ НДС", stat: "СТАТУС НДС", w: ["ПРОВЕРКА ДАННЫХ...", "ПРИМЕНЕНИЕ ПЕЧАТЕЙ...", "СОЗДАНИЕ PDF..."] },
+    es: { m: "RESUMEN DE CUENTA", h: ["DETALLES", "CATEGORÍA", "TOTAL"], vn: "IVA", net: "NETO", sub: "TOTAL NETO", tax: "TOTAL IVA", grand: "TOTAL GENERAL", b1: "GUARDAR PDF", b2: "COMPARTIR", inc: "INGRESO", exp: "GASTO", pay: "IVA A PAGAR", get: "SALDO A FAVOR", stat: "ESTADO DE IVA", w: ["VERIFICANDO DATOS...", "APLICANDO SELLOS...", "GENERANDO PDF..."] },
+    pt: { m: "RESUMO DA CONTA", h: ["DETALHES", "CATEGORIA", "TOTAL"], vn: "IVA", net: "LÍQUIDO", sub: "TOTAL LÍQUIDO", tax: "TOTAL IVA", grand: "TOTAL GERAL", b1: "SALVAR PDF", b2: "COMPARTILHAR", inc: "RECEITA", exp: "DESPESA", pay: "IVA A PAGAR", get: "CRÉDITO DE IVA", stat: "ESTADO DO IVA", w: ["VERIFICANDO DADOS...", "APLICANDO SELOS...", "GERANDO PDF..."] },
+    zh: { m: "账户摘要", h: ["详情", "类别", "总计"], vn: "增值税", net: "净额", sub: "净额总计", tax: "税额总计", grand: "总计", b1: "保存 PDF", b2: "分享", inc: "收入", exp: "支出", pay: "应交税费", get: "留抵税额", stat: "税务状态", w: ["正在验证数据...", "正在添加安全印章...", "正在生成 PDF..."] },
+    ja: { m: "口座概要", h: ["詳細", "カテゴリ", "合計"], vn: "消費税", net: "税抜", sub: "税抜合計", tax: "消費税合計", grand: "総合計", b1: "PDFを保存", b2: "共有", inc: "収入", exp: "支出", pay: "納付税額", get: "還付税額", stat: "税務ステータス", w: ["データを検証中...", "セキュリティシールを適用中...", "PDFを生成中..."] },
+    hi: { m: "खाता सारांश", h: ["विवरण", "श्रेणी", "कुल"], vn: "टैक्स", net: "शुद्ध", sub: "कुल शुद्ध", tax: "कुल टैक्स", grand: "कुल योग", b1: "PDF सहेजें", b2: "साझा करें", inc: "आय", exp: "व्यय", pay: "देय टैक्स", get: "टैक्स क्रेडिट", stat: "टैक्स स्थिति", w: ["डेटा सत्यापित किया जा रहा है...", "सुरक्षा मुहरें जोड़ी जा रही हैं...", "PDF बनाई जा रही है..."] },
+    ar: { m: "ملخص الحساب", h: ["التفاصيل", "الفئة", "المجموع"], vn: "الضريبة", net: "الصافي", sub: "إجمالي الصافي", tax: "إجمالي الضريبة", grand: "المجموع الإجمالي", b1: "حفظ PDF", b2: "مشاركة", inc: "دخل", exp: "مصروف", pay: "الضريبة المستحقة", get: "رصيد الضريبة", stat: "الحالة الضريبية", w: ["جاري التحقق من البيانات...", "جاري تطبيق الأختام الأمنية...", "جاري إنشاء PDF..."] }
+};
+
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get('vault');
+    if(!v) return;
+    try {
+        cData = JSON.parse(decodeURIComponent(escape(atob(v))));
+        const lang = cData.l || 'en';
+        const d = dict[lang] || dict.en;
+
+        // Arapça için Sağdan Sola (RTL) Görünüm Ayarı
+        if (lang === 'ar') {
+            document.documentElement.dir = 'rtl';
+        } else {
+            document.documentElement.dir = 'ltr';
+        }
+
+        // Profil İsmini Formatlama (vault_company_test -> COMPANY / TEST)
+        let displayTitle = cData.n.toUpperCase();
+        if(cData.n.startsWith('vault_')) {
+            let parts = cData.n.split('_');
+            if(parts.length >= 3) {
+                displayTitle = parts[1].toUpperCase() + " / " + parts.slice(2).join(' ').toUpperCase();
+            }
+        }
+
+        document.getElementById('t-title').innerText = d.m;
+        document.getElementById('t-date').innerText = new Date().toLocaleDateString(lang);
+        document.getElementById('p-name').innerText = displayTitle;
+        document.getElementById('t-head').innerHTML = d.h.map(h => `<th>${h}</th>`).join('');
+        document.getElementById('lbl-sub').innerText = d.sub + ":";
+        document.getElementById('lbl-tax').innerText = d.tax + ":";
+        document.getElementById('lbl-grand').innerText = d.grand;
+        document.getElementById('btn-save').innerText = d.b1;
+        document.getElementById('btn-share').innerText = d.b2;
+
+        let tBrut = 0, tTax = 0, tNet = 0, rows = "", cur = "€";
+        cData.d.forEach(r => {
+            cur = r.currency || "€";
+            const rNet = parseFloat(r.net || 0);
+            const rTax = parseFloat(r.taxAmt || 0);
+            const rTot = parseFloat(r.total || r.amount || 0);
+            const rate = r.taxRate || 0;
+
+            const isInc = r.type === 'income';
+            if(isInc) { tBrut += rTot; tTax += rTax; tNet += rNet; }
+            else { tBrut -= rTot; tTax -= rTax; tNet -= rNet; }
+
+            const bCls = isInc ? 'badge-income' : 'badge-expense';
+            const bTxt = isInc ? d.inc : d.exp;
+            const rowColor = isInc ? '#27ae60' : '#c0392b';
+
+            // KDV 0 ise kırmızı, değilse mavi
+            const taxColor = rTax === 0 ? '#d63031' : '#0984e3';
+
+            // Arapça düzeninde (+/-) işaretini düzgün göstermek için yön kontrolü
+            const sign = isInc ? '+' : '-';
+
+            rows += `<tr>
+                <td>
+                    <span class="badge ${bCls}">${bTxt}</span>
+                    <span style="display:block; font-size:10px; color:#999; margin-top:4px;">${r.date}</span>
+                </td>
+                <td style="text-transform:uppercase; font-size:12px;">${r.category} <small style="color:#888; display:block; font-size:9px;">(${r.account || '---'})</small></td>
+                <td style="text-align:right;">
+                    <span class="row-sub" style="color:#0984e3 !important;">${d.net}: ${rNet.toFixed(2)} ${cur}</span>
+                    <span class="row-sub" style="color:${taxColor} !important;">${d.vn} (%${rate}): ${rTax.toFixed(2)} ${cur}</span>
+                    <span class="row-main" style="color:${rowColor}; margin-top:5px; display:block; direction:ltr; text-align:right;">
+                        ${sign}${rTot.toFixed(2)} ${cur}
+                    </span>
+                </td>
+            </tr>`;
+        });
+
+        document.getElementById('t-rows').innerHTML = rows;
+        document.getElementById('v-sub').innerText = tNet.toFixed(2) + " " + cur;
+        document.getElementById('v-tax').innerText = tTax.toFixed(2) + " " + cur;
+
+        // Genel Toplam için LTR koruması (Arapçada da para birimi ve rakamlar düzgün gözüksün)
+        const totalEl = document.getElementById('v-total');
+        totalEl.innerText = tBrut.toFixed(2) + " " + cur;
+        totalEl.style.direction = "ltr";
+
+        const pBox = document.getElementById('pdf-status-box');
+        if(tTax > 0) {
+            pBox.innerText = d.stat + ": " + d.pay + " (" + tTax.toFixed(2) + " " + cur + ")";
+            pBox.style.background = "#fff3e0"; pBox.style.color = "#e67e22"; pBox.style.border = "2px solid #ffcc80";
+            pBox.style.display = 'block';
+        } else if (tTax < 0) {
+            pBox.innerText = d.stat + ": " + d.get + " (" + Math.abs(tTax).toFixed(2) + " " + cur + ")";
+            pBox.style.background = "#e8f5e9"; pBox.style.color = "#2e7d32"; pBox.style.border = "2px solid #a5d6a7";
+            pBox.style.display = 'block';
+        } else {
+            pBox.style.display = 'none';
+        }
+
+    } catch(e) { console.error(e); }
+};
+
+async function secureProcess(mode) {
+    if(!cData) return;
+    const lang = cData.l || 'en';
+    const d = dict[lang] || dict.en;
+    const loader = document.getElementById('loader-overlay');
+    const lText = document.getElementById('l-text');
+
+    loader.style.display = 'flex';
+    const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+    for(let msg of d.w) {
+        lText.innerText = msg;
+        await delay(1200 + Math.random() * 400);
+    }
+
+    try {
+        const el = document.getElementById('invoice-card');
+        const canvas = await html2canvas(el, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pW = pdf.internal.pageSize.getWidth();
+        const pH = (canvas.height * pW) / canvas.width;
+
+        pdf.addImage(imgData, 'JPEG', 0, 0, pW, pH);
+        const fname = "SECURE_REPORT_" + Date.now() + ".pdf";
+
+        if (mode === 'share') {
+            const blob = pdf.output('blob');
+            const file = new File([blob], fname, { type: 'application/pdf' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try { await navigator.share({ files: [file], title: d.m, text: cData.n.toUpperCase() + " Financial Summary" }); }
+                catch (err) { if (err.name !== 'AbortError') pdf.save(fname); }
+            } else { pdf.save(fname); }
+        } else { pdf.save(fname); }
+    } catch(e) {
+        alert("Processing error. Please try again.");
+        console.error(e);
+    } finally { loader.style.display = 'none'; }
+}
+</script>
+</body>
+</html>

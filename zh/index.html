@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>发票大师 - 专业发票生成器</title>
+    <meta name="description" content="免费在线发票生成器。PDF发票、客户管理、增值税计算。适合个体工商户、小微企业、自由职业者。">
+    <meta name="theme-color" content="#DE2910">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="发票大师">
+    <link rel="manifest" href="#" id="pwa-manifest">
+    <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --zh-red: #DE2910;
+            --zh-gold: #D4A017;
+            --zh-gold-light: #F5D76E;
+            --zh-dark: #1A0A00;
+            --zh-bg: #FDF8F0;
+        }
+        * { box-sizing: border-box; }
+        body { background: var(--zh-bg); font-family: 'Plus Jakarta Sans', 'Noto Serif SC', sans-serif; color: #1A1A1A; margin: 0; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+        .brand-font { font-family: 'Noto Serif SC', serif; }
+
+        /* SLIDER */
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1); will-change: transform; }
+        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 220px; scrollbar-width: none; flex-shrink: 0; }
+        .page::-webkit-scrollbar { display: none; }
+
+        /* CARDS */
+        .lux-card { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #EDE0C4; box-shadow: 0 4px 20px rgba(212,160,23,0.06); }
+        .stat-card { background: #fff; border: 1.5px solid var(--zh-gold); border-radius: 12px; position: relative; overflow: hidden; }
+        .action-card { background: #fff; border: 1px solid #EDE0C4; border-radius: 12px; transition: 0.3s; position: relative; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,0.04); cursor: pointer; }
+        .action-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--zh-gold); }
+        .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #FDF3DC; border: 1px solid var(--zh-gold); color: var(--zh-gold); }
+        .chart-container { background: #fff; border-radius: 14px; padding: 16px; border: 1.5px solid var(--zh-gold); margin-bottom: 14px; box-shadow: 0 8px 24px rgba(212,160,23,0.08); }
+
+        /* INPUTS */
+        .input-pro { background: #fff !important; border: 1.5px solid #D1C4A0; border-radius: 8px; padding: 12px 14px; width: 100%; font-size: 14px; outline: none; transition: 0.3s; color: #1A1A1A; font-weight: 500; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .input-pro:focus { border-color: var(--zh-gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.12); }
+        label { font-size: 10px; font-weight: 800; color: #7A6B4A; text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 1px; }
+
+        /* BADGES */
+        .badge-sel { padding: 10px; border-radius: 6px; background: #F5F0E8; font-size: 10px; font-weight: 800; cursor: pointer; text-align: center; border: 1.5px solid transparent; color: #7A6B4A; transition: 0.2s; }
+        .badge-sel.active { background: #FDF3DC; border-color: var(--zh-gold); color: var(--zh-dark); }
+
+        /* ITEM ROW */
+        .item-row { background: #fff; border: 1.5px solid #EDE0C4; border-radius: 10px; padding: 16px; margin-bottom: 12px; position: relative; }
+
+        /* TOP BAR */
+        #top-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(253,248,240,0.97); border-bottom: 1.5px solid #EDE0C4; position: sticky; top: 0; z-index: 100; flex-shrink: 0; backdrop-filter: blur(10px); }
+        .logo-text { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 700; color: var(--zh-dark); }
+        .logo-text span { color: var(--zh-red); }
+        #currency-pill, #language-pill { display: flex; align-items: center; gap: 5px; background: #FDF3DC; border: 1.5px solid var(--zh-gold); border-radius: 20px; padding: 5px 10px; cursor: pointer; transition: 0.2s; }
+        #currency-pill:active, #language-pill:active { opacity: 0.7; }
+        .pill-sym { font-size: 11px; font-weight: 900; color: var(--zh-red); }
+        .pill-lang { font-size: 11px; font-weight: 900; color: var(--zh-dark); }
+
+        /* NAV */
+        .dock-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: rgba(26,10,0,0.97); backdrop-filter: blur(14px); display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom, 12px); z-index: 999; border-radius: 24px 24px 0 0; border-top: 2px solid var(--zh-gold); box-shadow: 0 -8px 30px rgba(0,0,0,0.2); }
+        .nav-tabs { display: flex; justify-content: space-around; padding: 10px 0 6px; }
+        .nav-btn { color: #6B5B3A; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 10px; border-radius: 12px; transition: 0.3s; background: none; border: none; cursor: pointer; min-width: 56px; }
+        .nav-btn span { font-size: 8px; font-weight: 700; text-transform: uppercase; }
+        .nav-btn.active { color: var(--zh-gold-light); }
+        .nav-btn.active i { color: var(--zh-gold); }
+
+        /* INSTALL BTN */
+        #install-bar { margin: 8px 14px 4px; background: linear-gradient(135deg, #2A1400, #1A0A00); border: 1.5px solid var(--zh-gold); border-radius: 16px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        #install-bar:active { transform: scale(0.97); }
+        #install-bar .i-icon { width: 34px; height: 34px; background: var(--zh-red); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        #install-bar .i-main { font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; }
+        #install-bar .i-sub { font-size: 9px; color: #7A6B4A; margin-top: 1px; }
+
+        /* BTN */
+        .btn-main { background: var(--zh-red); color: white; border-radius: 10px; padding: 16px; font-weight: 800; text-transform: uppercase; border: none; box-shadow: 0 8px 20px rgba(222,41,16,0.2); transition: 0.2s; cursor: pointer; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.5px; }
+        .btn-main:active { transform: scale(0.98); }
+        .btn-gold { background: var(--zh-gold); color: var(--zh-dark); border-radius: 10px; padding: 16px; font-weight: 800; text-transform: uppercase; border: none; transition: 0.2s; cursor: pointer; width: 100%; }
+
+        /* MODALS */
+        #p-modal { position: fixed; inset: 0; background: #f0ede8; z-index: 10000; display: none; flex-direction: column; }
+        .preview-container { flex: 1; display: flex; align-items: start; justify-content: center; overflow: auto; padding: 20px 0; }
+        .a4-preview { background: #fff; width: 794px; min-height: 1123px; transform-origin: top center; color: #000; box-shadow: 0 0 60px rgba(0,0,0,0.15); }
+        #text-modal { position: fixed; inset: 0; background: #fff; z-index: 10001; display: none; flex-direction: column; }
+
+        /* CURRENCY / LANGUAGE MODALS */
+        #currency-modal, #language-modal { position: fixed; inset: 0; background: rgba(26,10,0,0.98); z-index: 20001; display: none; flex-direction: column; }
+        .modal-hdr { background: var(--zh-bg); border-bottom: 1.5px solid #EDE0C4; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .modal-body { flex: 1; overflow-y: auto; padding: 16px; background: var(--zh-bg); }
+        .list-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #EDE0C4; margin-bottom: 8px; cursor: pointer; background: #fff; transition: 0.2s; }
+        .list-item.selected { border-color: var(--zh-gold); background: #FDF3DC; }
+        .list-item .flag { font-size: 22px; flex-shrink: 0; }
+        .list-item .item-name { font-size: 13px; font-weight: 800; color: #1A1A1A; }
+        .list-item .item-sub { font-size: 10px; color: #94A3B8; margin-top: 1px; }
+        .list-item .item-sym { font-size: 16px; font-weight: 900; color: var(--zh-red); margin-left: auto; }
+
+        /* iOS MODAL */
+        #ios-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 30000; display: none; align-items: flex-end; justify-content: center; padding: 0 0 24px; }
+        #ios-modal.open { display: flex; }
+        .ios-box { background: #fff; border-radius: 24px; padding: 26px 22px 30px; width: 100%; max-width: 430px; }
+        .ios-step { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .ios-num { width: 30px; height: 30px; background: var(--zh-red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; flex-shrink: 0; }
+
+        /* ══════════════════════════════════════════
+           侧边菜单 (SIDE MENU) — ZH版本
+           暖色主题: 米白背景, 金色/红色点缀
+           ══════════════════════════════════════════ */
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 290px;
+            height: 100vh;
+            background: #fff;
+            border-right: 1.5px solid #EDE0C4;
+            box-shadow: 6px 0 30px rgba(26,10,0,0.12);
+            z-index: 30000;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        #side-menu.open { left: 0; }
+
+        .side-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26,10,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 29999;
+            display: none;
+        }
+        .side-overlay.open { display: block; }
+
+        /* 侧边菜单工具链接 */
+        .tool-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1.5px solid #EDE0C4;
+            margin-bottom: 10px;
+            color: var(--zh-dark);
+            text-decoration: none;
+            transition: 0.2s;
+            background: var(--zh-bg);
+        }
+        .tool-link:hover,
+        .tool-link:active {
+            border-color: var(--zh-gold);
+            background: #FDF3DC;
+            transform: translateX(4px);
+        }
+        .tool-link .tl-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .tool-link .tl-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--zh-dark);
+        }
+        .tool-link .tl-sub {
+            font-size: 9px;
+            color: #7A6B4A;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* 工时记录 action-card — 主页专用样式 */
+        .action-card-hours {
+            background: #fff;
+            border: 1.5px solid #EDE0C4;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(212,160,23,0.08);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .action-card-hours::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--zh-red), var(--zh-gold));
+        }
+        .action-card-hours:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="flex justify-center">
+
+<!-- ══════════════════════════════════════════
+     侧边菜单遮罩 + 菜单
+     ══════════════════════════════════════════ -->
+<div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+
+<div id="side-menu">
+    <!-- 菜单标题 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #EDE0C4;">
+        <div>
+            <div class="brand-font" style="font-size:16px;font-weight:700;color:var(--zh-dark);">精英 <span style="color:var(--zh-red);">工具</span></div>
+            <div style="font-size:9px;color:#7A6B4A;font-weight:700;margin-top:2px;text-transform:uppercase;letter-spacing:1px;">工具菜单</div>
+        </div>
+        <button onclick="closeSideMenu()" style="width:34px;height:34px;border-radius:50%;background:var(--zh-bg);border:1.5px solid #EDE0C4;color:#7A6B4A;font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+
+    <!-- 工具链接 -->
+    <div style="flex:1;overflow-y:auto;">
+
+        <a href="discount.html" class="tool-link">
+            <div class="tl-icon" style="background:#ECFDF5;border:1px solid #BBF7D0;">
+                <i class="fa-solid fa-tags" style="color:#16A34A;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">折扣引擎</div>
+                <div class="tl-sub">快速折扣计算</div>
+            </div>
+        </a>
+
+        <a href="online-pdf-suite.html" class="tool-link">
+            <div class="tl-icon" style="background:#FEF2F2;border:1px solid #FECACA;">
+                <i class="fa-solid fa-file-pdf" style="color:#DC2626;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">PDF引擎</div>
+                <div class="tl-sub">文档生成</div>
+            </div>
+        </a>
+
+        <a href="html-editor.html" class="tool-link">
+            <div class="tl-icon" style="background:#EFF6FF;border:1px solid #BFDBFE;">
+                <i class="fa-solid fa-code" style="color:#2563EB;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">HTML编辑器</div>
+                <div class="tl-sub">实时代码编辑</div>
+            </div>
+        </a>
+
+        <a href="weekly-calendar.html" class="tool-link">
+            <div class="tl-icon" style="background:#F5F3FF;border:1px solid #DDD6FE;">
+                <i class="fa-solid fa-calendar-days" style="color:#7C3AED;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">日历</div>
+                <div class="tl-sub">活动管理</div>
+            </div>
+        </a>
+
+        <!-- 工时记录 — 高亮/活跃链接 -->
+        <a href="working-hours.html" class="tool-link" style="border-color:var(--zh-gold);background:#FDF3DC;">
+            <div class="tl-icon" style="background:#FDF3DC;border:1px solid var(--zh-gold);">
+                <i class="fa-solid fa-clock" style="color:var(--zh-red);font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title" style="color:var(--zh-red);">工时记录</div>
+                <div class="tl-sub">时间追踪与管理</div>
+            </div>
+        </a>
+
+    </div>
+</div>
+<!-- /侧边菜单 -->
+
+<div class="w-full max-w-[480px] relative overflow-hidden flex flex-col h-screen">
+
+    <!-- TOP BAR -->
+    <div id="top-bar">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <!-- 汉堡菜单按钮 — 打开侧边菜单 -->
+            <button onclick="openSideMenu()" style="color:var(--zh-red);background:none;border:none;cursor:pointer;padding:4px;transition:0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                <i class="fa-solid fa-bars-staggered" style="font-size:20px;"></i>
+            </button>
+            <span class="logo-text">发票<span>大师</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div id="language-pill" onclick="openLanguageModal()">
+                <span>🇨🇳</span>
+                <span class="pill-lang">ZH</span>
+                <i class="fa-solid fa-chevron-down text-[8px] text-amber-400"></i>
+            </div>
+            <div id="currency-pill" onclick="openCurrencyModal()">
+                <span id="top-flag">🇨🇳</span>
+                <span class="pill-sym" id="top-sym">¥</span>
+                <i class="fa-solid fa-chevron-down text-[8px] text-amber-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-wrapper flex-1" id="main-slider">
+
+        <!-- 页面0: 主页 -->
+        <div class="page px-5 pt-6" style="background:var(--zh-bg);">
+            <div class="flex items-center justify-between mb-5">
+                <div>
+                    <p class="text-[var(--zh-red)] text-[10px] font-extrabold uppercase tracking-[3px] mb-1">专业发票系统</p>
+                    <h1 class="brand-font text-3xl font-bold text-[var(--zh-dark)]">发票<span class="text-[var(--zh-red)]">大师</span></h1>
+                </div>
+                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow border border-[#EDE0C4] text-[var(--zh-red)]">
+                    <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                </div>
+            </div>
+
+            <!-- 财务图表 -->
+            <div class="chart-container">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-[9px] font-black uppercase text-[#7A6B4A]">财务分析</h3>
+                    <span id="total-revenue" class="text-sm font-bold text-[var(--zh-dark)]">¥ 0.00</span>
+                </div>
+                <div style="height:140px; position:relative; display:flex; justify-content:center;">
+                    <canvas id="financeChart"></canvas>
+                </div>
+                <div class="mt-3 grid grid-cols-2 gap-2 border-t pt-3 border-[#EDE0C4] text-center">
+                    <div><p class="text-[8px] uppercase font-bold text-[#7A6B4A]">净额 (不含税)</p><p id="chart-net" class="text-[11px] font-bold text-[var(--zh-dark)]">¥ 0.00</p></div>
+                    <div><p class="text-[8px] uppercase font-bold text-[#7A6B4A]">增值税合计</p><p id="chart-vat" class="text-[11px] font-bold text-[var(--zh-gold)]">¥ 0.00</p></div>
+                </div>
+            </div>
+
+            <!-- 统计 -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="stat-card p-4 text-center">
+                    <div id="stat-invoices" class="brand-font text-2xl font-bold text-[var(--zh-dark)] italic">0</div>
+                    <div class="text-[8px] uppercase font-black text-[#7A6B4A] mt-1">发票数量</div>
+                </div>
+                <div class="stat-card p-4 text-center">
+                    <div id="stat-clients" class="brand-font text-2xl font-bold text-[var(--zh-dark)] italic">0</div>
+                    <div class="text-[8px] uppercase font-black text-[#7A6B4A] mt-1">客户数量</div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="space-y-3 mb-4">
+                <div onclick="resetAndNew()" class="action-card p-4 flex items-center gap-4">
+                    <div class="card-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div><h3 class="text-[11px] font-black uppercase text-[var(--zh-dark)]">新建发票</h3><p class="text-[9px] text-[#7A6B4A]">快速专业地创建发票</p></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div onclick="showPage(2)" class="action-card p-4">
+                        <div class="card-icon mb-3"><i class="fa-solid fa-box-archive"></i></div>
+                        <h3 class="text-[10px] font-black uppercase text-[var(--zh-dark)]">发票档案</h3>
+                    </div>
+                    <div onclick="showPage(3)" class="action-card p-4">
+                        <div class="card-icon mb-3"><i class="fa-solid fa-address-card"></i></div>
+                        <h3 class="text-[10px] font-black uppercase text-[var(--zh-dark)]">客户管理</h3>
+                    </div>
+                </div>
+                <div onclick="showPage(4)" class="action-card p-4 flex items-center gap-4">
+                    <div class="card-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <div class="flex-1"><h3 class="text-[11px] font-black uppercase text-[var(--zh-dark)]">公司设置</h3><p class="text-[9px] text-[#7A6B4A]">企业信息与银行账户</p></div>
+                    <i class="fa-solid fa-chevron-right text-[#D1C4A0]"></i>
+                </div>
+
+                <!-- ══ 工时记录按钮 ══ -->
+                <div onclick="window.location.href='working-hours.html'" class="action-card-hours p-4 flex items-center gap-4">
+                    <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FDF3DC;border:1px solid var(--zh-gold);flex-shrink:0;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--zh-red);font-size:16px;"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--zh-red);">工时记录</h3>
+                        <p style="font-size:9px;color:#7A6B4A;font-weight:600;margin-top:2px;">时间记录 · 工时追踪</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--zh-red);font-size:10px;flex-shrink:0;"></i>
+                </div>
+                <!-- ══ /工时记录按钮 ══ -->
+
+                <!-- ══ 所有工具按钮 (herramientas / index 全部工具菜单) ══ -->
+                <div onclick="window.location.href='herramientas.html'" class="action-card-hours p-4 flex items-center gap-4">
+                    <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FDF3DC;border:1px solid var(--zh-gold);flex-shrink:0;">
+                        <i class="fa-solid fa-toolbox" style="color:var(--zh-red);font-size:16px;"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--zh-red);">所有工具</h3>
+                        <p style="font-size:9px;color:#7A6B4A;font-weight:600;margin-top:2px;">免费商务工具大全</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--zh-red);font-size:10px;flex-shrink:0;"></i>
+                </div>
+                <!-- ══ /所有工具按钮 ══ -->
+
+                <div class="lux-card flex items-center gap-4">
+                    <span id="home-flag" class="text-2xl">🇨🇳</span>
+                    <div class="flex-1">
+                        <div class="text-[10px] font-black text-[#7A6B4A] uppercase tracking-wider">当前货币</div>
+                        <div class="text-sm font-black text-[var(--zh-dark)]" id="home-currency-name">人民币 (¥)</div>
+                    </div>
+                    <button onclick="openCurrencyModal()" class="text-[9px] font-black text-[var(--zh-red)] uppercase border border-[var(--zh-red)] rounded-full px-3 py-1">更换</button>
+                </div>
+            </div>
+
+            <!-- SEO -->
+            <div style="padding:20px 0 20px; border-top:1px solid #EDE0C4; margin-top:8px;">
+                <h2 style="font-size:15px;font-weight:900;color:var(--zh-red);margin-bottom:8px;">免费在线发票生成器</h2>
+                <p style="font-size:12px;color:#7A6B4A;line-height:1.7;margin-bottom:10px;">无需注册，免费创建专业发票。适合个体工商户、小微企业、自由职业者。支持人民币、美元、欧元等多种货币。</p>
+                <h3 style="font-size:12px;font-weight:900;color:var(--zh-dark);margin:14px 0 6px;">支持货币</h3>
+                <p style="font-size:11px;color:#7A6B4A;line-height:1.8;">🇨🇳 人民币 · 🇺🇸 美元 · 🇪🇺 欧元 · 🇬🇧 英镑 · 🇯🇵 日元 · 🇭🇰 港元 · 🇸🇬 新加坡元 · 🇰🇷 韩元 · 🇹🇭 泰铢 · 🇲🇾 马来西亚林吉特 · 🇮🇩 印度尼西亚卢比 · 🇻🇳 越南盾</p>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">免费发票</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">PDF发票</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">增值税</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">个体户</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">小微企业</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">自由职业</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">亚洲</span>
+                    <span style="font-size:9px;padding:4px 10px;border:1px solid #EDE0C4;border-radius:20px;color:#7A6B4A;font-weight:700;">中国大陆</span>
+                </div>
+            </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "InvoiceLuxe - 发票生成器",
+  "url": "https://invoiceluxe.com",
+  "inLanguage": "zh",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "description": "免费且专业的电子发票生成器。免费创建PDF发票、收据、报价单，添加电子签名，记录工作时间并使用高级HTML编辑器。",
+  "featureList": [
+    "创建电子发票",
+    "导出和打印PDF文件",
+    "创建收据和报价单",
+    "电子签名功能",
+    "记录和追踪工作时间",
+    "用于自定义的内置HTML编辑器"
+  ]
+}
+</script>
+
+            <!-- SEO 扩展内容 / FAQ -->
+            <div style="padding:16px 0 80px; border-top:1px solid #EDE0C4;">
+                <h2 style="font-size:15px;font-weight:900;color:var(--zh-red);margin-bottom:10px;">如何免费创建专业发票？</h2>
+                <p style="font-size:12px;color:#7A6B4A;line-height:1.8;margin-bottom:16px;">Invoice Luxe 是一款免费、简单易用的手机应用，让您在几秒钟内创建专业的PDF发票——无需注册，无需订阅。此外，您还可以记录工作时间，更高效地管理业务。</p>
+
+                <div class="lux-card mb-4" style="border-top:3px solid var(--zh-gold);">
+                    <h3 style="font-size:13px;font-weight:900;color:var(--zh-dark);margin-bottom:10px;">✅ 发票大师主要功能</h3>
+                    <ul style="font-size:11.5px;color:#4A4A4A;line-height:2;padding-left:18px;list-style:disc;">
+                        <li>直接从手机创建并下载PDF发票</li>
+                        <li>保存客户信息，方便重复使用</li>
+                        <li>轻松设置增值税/GST税率（如13%、9%、6%等）</li>
+                        <li>添加银行信息、账号及税号</li>
+                        <li>支持中文及其他13种语言</li>
+                        <li>所有数据仅保存在您的手机本地——无云端存储，完全保护隐私</li>
+                    </ul>
+                </div>
+
+                <div class="lux-card mb-4" style="border-top:3px solid var(--zh-red);">
+                    <h3 style="font-size:13px;font-weight:900;color:var(--zh-dark);margin-bottom:8px;">⏱️ 为什么工时记录很重要？</h3>
+                    <p style="font-size:11.5px;color:#4A4A4A;line-height:1.9;">如果您是自由职业者、个体户或服务提供商，记录工作时间非常重要。工时记录工具可以帮助您记录每个项目所花费的时间，并据此生成精确的发票。</p>
+                </div>
+
+                <div class="lux-card mb-4" style="border-top:3px solid var(--zh-gold);">
+                    <h3 style="font-size:13px;font-weight:900;color:var(--zh-dark);margin-bottom:10px;">🛠️ 其他实用工具</h3>
+                    <ul style="font-size:11.5px;color:#4A4A4A;line-height:2;padding-left:18px;list-style:disc;">
+                        <li><b style="color:var(--zh-dark);">折扣引擎</b> — 快速计算折扣</li>
+                        <li><b style="color:var(--zh-dark);">PDF引擎</b> — 将任何文档转换为PDF</li>
+                        <li><b style="color:var(--zh-dark);">HTML编辑器</b> — 实时在线编辑代码</li>
+                        <li><b style="color:var(--zh-dark);">日历</b> — 管理日程与预约</li>
+                    </ul>
+                </div>
+
+                <h3 style="font-size:14px;font-weight:900;color:var(--zh-red);margin:18px 0 10px;">🙋 常见问题</h3>
+
+                <div class="lux-card mb-3">
+                    <p style="font-size:12px;font-weight:800;color:var(--zh-dark);margin-bottom:4px;">发票大师真的免费吗？</p>
+                    <p style="font-size:11.5px;color:#7A6B4A;line-height:1.7;">是的，发票大师完全免费，没有任何隐藏费用或订阅。</p>
+                </div>
+                <div class="lux-card mb-3">
+                    <p style="font-size:12px;font-weight:800;color:var(--zh-dark);margin-bottom:4px;">可以开具含增值税的发票吗？</p>
+                    <p style="font-size:11.5px;color:#7A6B4A;line-height:1.7;">当然可以！您可以自定义增值税/GST税率，例如13%或9%，并生成含税发票。</p>
+                </div>
+                <div class="lux-card mb-3">
+                    <p style="font-size:12px;font-weight:800;color:var(--zh-dark);margin-bottom:4px;">工时记录工具如何使用？</p>
+                    <p style="font-size:11.5px;color:#7A6B4A;line-height:1.7;">开始工作时启动计时器，完成后停止即可。所有工时都会被保存，您可以直接将其添加到发票中。</p>
+                </div>
+                <div class="lux-card mb-3">
+                    <p style="font-size:12px;font-weight:800;color:var(--zh-dark);margin-bottom:4px;">我的数据安全吗？</p>
+                    <p style="font-size:11.5px;color:#7A6B4A;line-height:1.7;">是的。所有信息仅保存在您的设备本地——没有服务器，也没有云端存储。</p>
+                </div>
+                <div class="lux-card mb-3">
+                    <p style="font-size:12px;font-weight:800;color:var(--zh-dark);margin-bottom:4px;">该应用支持安卓和iOS吗？</p>
+                    <p style="font-size:11.5px;color:#7A6B4A;line-height:1.7;">是的。这是一个PWA（渐进式网页应用），可在任何智能手机浏览器中运行，并可添加到主屏幕。</p>
+                </div>
+
+                <p style="font-size:11px;color:#7A6B4A;line-height:1.8;margin-top:16px;">发票大师是 invoiceluxe.com 旗下产品，专为自由职业者、店主和小微企业打造，是简单高效的开票与工时管理解决方案。</p>
+            </div>
+        </div>
+
+        <!-- 页面1: 发票编辑器 -->
+        <div class="page px-5 pt-8 bg-white">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showPage(0)" class="text-[#7A6B4A]"><i class="fa-solid fa-arrow-left text-xl"></i></button>
+                <h2 class="brand-font text-2xl font-bold text-[var(--zh-dark)]">开具发票</h2>
+            </div>
+            <div class="lux-card mb-5" style="border-top:4px solid var(--zh-gold);">
+                <label>选择客户</label>
+                <select id="inv-cust-select" class="input-pro mb-4"></select>
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div><label>发票编号</label><input type="text" id="inv-no" class="input-pro"></div>
+                    <div><label>开票日期</label><input type="date" id="inv-date" class="input-pro"></div>
+                </div>
+                <label>付款期限</label>
+                <div class="grid grid-cols-4 gap-2 mb-4">
+                    <div class="badge-sel" id="due-0" onclick="setDue(0)">即期</div>
+                    <div class="badge-sel active" id="due-14" onclick="setDue(14)">14天</div>
+                    <div class="badge-sel" id="due-30" onclick="setDue(30)">30天</div>
+                    <div class="badge-sel" id="due-60" onclick="setDue(60)">60天</div>
+                </div>
+                <input type="hidden" id="inv-due-days" value="14">
+                <label id="tax-lbl">增值税 (%)</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="badge-sel active" id="vat-13" onclick="setVat(13,this)">13%</div>
+                    <div class="badge-sel" id="vat-9" onclick="setVat(9,this)">9%</div>
+                    <div class="badge-sel" id="vat-6" onclick="setVat(6,this)">6%</div>
+                    <div class="badge-sel" id="custom-vat-btn" onclick="promptVat(this)">自定义</div>
+                </div>
+                <input type="hidden" id="selected-vat" value="13">
+            </div>
+            <div id="items-list"></div>
+            <button onclick="addRow()" class="w-full bg-white border-2 border-dashed border-[#D1C4A0] p-4 rounded-xl text-[10px] font-black text-[#7A6B4A] my-5 uppercase tracking-widest">+ 添加项目</button>
+            <div class="p-5 bg-[var(--zh-dark)] rounded-2xl flex justify-between items-center mb-6">
+                <span class="text-white/50 text-[10px] font-black uppercase tracking-widest">含税总额</span>
+                <span id="grand-total" class="text-3xl font-black text-white">0.00 <span id="gt-sym">¥</span></span>
+            </div>
+            <button onclick="generatePreviewFromCurrent()" class="btn-main mb-12">预览并生成PDF <i class="fa-solid fa-paper-plane ml-2"></i></button>
+        </div>
+
+        <!-- 页面2: 档案 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6 text-[var(--zh-dark)]">发票<span class="text-[var(--zh-red)]">档案</span></h2>
+            <div id="archiv-list" class="space-y-3"></div>
+        </div>
+
+        <!-- 页面3: 客户 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6 text-[var(--zh-dark)]">客户<span class="text-[var(--zh-gold)]">管理</span></h2>
+            <div class="lux-card mb-6" style="border-top:4px solid var(--zh-gold);">
+                <input type="hidden" id="edit-cust-idx" value="-1">
+                <label>公司名称 / 姓名</label><input type="text" id="c-name" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>统一社会信用代码</label><input type="text" id="c-tax" class="input-pro"></div>
+                    <div><label>增值税号</label><input type="text" id="c-vat" class="input-pro"></div>
+                </div>
+                <label>地址</label><input type="text" id="c-adr" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>邮政编码</label><input type="text" id="c-pc" class="input-pro"></div>
+                    <div><label>城市</label><input type="text" id="c-city" class="input-pro"></div>
+                </div>
+                <label>电话</label><input type="text" id="c-tel" class="input-pro mb-3">
+                <label>电子邮箱</label><input type="email" id="c-mail" class="input-pro mb-5">
+                <button id="save-cust-btn" onclick="saveCustomer()" class="btn-main">保存客户 <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+            <div id="customer-list" class="space-y-3"></div>
+        </div>
+
+        <!-- 页面4: 公司设置 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6 text-[var(--zh-dark)]">公司<span class="text-[var(--zh-red)]">设置</span></h2>
+            <div class="lux-card" style="border-top:4px solid var(--zh-gold);">
+                <label>公司名称</label><input type="text" id="p-name" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>统一社会信用代码</label><input type="text" id="p-tax" class="input-pro"></div>
+                    <div><label>增值税号</label><input type="text" id="p-vat" class="input-pro"></div>
+                </div>
+                <label>注册地址</label><input type="text" id="p-adr" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>邮政编码</label><input type="text" id="p-pc" class="input-pro"></div>
+                    <div><label>城市</label><input type="text" id="p-city" class="input-pro"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>电话</label><input type="text" id="p-tel" class="input-pro"></div>
+                    <div><label>电子邮箱</label><input type="text" id="p-mail" class="input-pro"></div>
+                </div>
+                <div class="h-px bg-[#EDE0C4] my-4"></div>
+                <label>开户银行</label><input type="text" id="p-bank" class="input-pro mb-3">
+                <label>银行账号 / SWIFT</label><input type="text" id="p-iban" class="input-pro mb-6">
+                <button onclick="saveProfile()" class="btn-main">保存设置 <i class="fa-solid fa-check ml-2"></i></button>
+            </div>
+        </div>
+
+    </div><!-- /slider -->
+
+    <!-- 底部导航 -->
+    <nav class="dock-nav">
+        <div id="install-bar" onclick="handleInstall()">
+            <div class="i-icon"><i class="fa-solid fa-mobile-screen-button text-white text-base"></i></div>
+            <div class="flex-1">
+                <div class="i-main">📲 添加到主屏幕</div>
+                <div class="i-sub" id="install-sub-text">免费安装 · 无需应用商店</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-[#6B5B3A] text-xs"></i>
+        </div>
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="showPage(0)"><i class="fa-solid fa-house"></i><span>主页</span></button>
+            <button class="nav-btn" onclick="showPage(1)"><i class="fa-solid fa-file-invoice"></i><span>开票</span></button>
+            <button class="nav-btn" onclick="showPage(2)"><i class="fa-solid fa-folder"></i><span>档案</span></button>
+            <button class="nav-btn" onclick="showPage(3)"><i class="fa-solid fa-users"></i><span>客户</span></button>
+            <button class="nav-btn" onclick="showPage(4)"><i class="fa-solid fa-gear"></i><span>设置</span></button>
+        </div>
+    </nav>
+</div><!-- /wrapper -->
+
+<!-- 发票预览模态框 -->
+<div id="p-modal">
+    <div class="p-4 flex gap-3 bg-white border-b shadow" style="flex-shrink:0;">
+        <button onclick="closePreview()" class="flex-1 bg-slate-100 text-slate-500 p-4 rounded-xl font-black uppercase text-[10px]">关闭</button>
+        <button id="modal-confirm-btn" onclick="confirmAndArchive()" class="flex-[2] btn-main p-4 text-[10px]">确认并生成PDF <i class="fa-solid fa-check ml-1"></i></button>
+    </div>
+    <div class="preview-container" id="zoom-area">
+        <div class="a4-preview" id="p-page">
+            <div style="background:var(--zh-red);padding:50px;color:#fff;clip-path:polygon(0 0,100% 0,100% 88%,0% 100%);">
+                <div style="font-family:'Noto Serif SC',serif;font-size:36px;font-weight:700;" id="pv-title">公司名称</div>
+                <div style="margin-top:10px;opacity:0.85;font-size:14px;">发票编号: <span id="pv-no" style="font-size:22px;font-weight:300;"></span></div>
+            </div>
+            <div style="padding:40px 50px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:30px;border-bottom:1px solid #eee;padding-bottom:15px;">
+                    <div><div style="font-size:10px;color:#aaa;font-weight:800;">开票日期</div><div id="pv-date" style="font-size:14px;font-weight:700;"></div></div>
+                    <div style="text-align:right;"><div style="font-size:10px;color:var(--zh-red);font-weight:800;">付款截止日期</div><div id="pv-due" style="font-size:14px;font-weight:700;color:var(--zh-red);"></div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:35px;">
+                    <div><div style="font-size:9px;font-weight:800;border-bottom:2px solid var(--zh-red);display:inline-block;margin-bottom:10px;color:var(--zh-red);padding-bottom:3px;">发票方</div><div id="pv-sender" style="font-size:11px;line-height:1.7;color:#444;"></div></div>
+                    <div><div style="font-size:9px;font-weight:800;border-bottom:2px solid var(--zh-red);display:inline-block;margin-bottom:10px;color:var(--zh-red);padding-bottom:3px;">收票方</div><div id="pv-receiver" style="font-size:11px;line-height:1.7;color:#444;"></div></div>
+                </div>
+                <table style="width:100%;border-collapse:collapse;margin-bottom:30px;font-size:11px;">
+                    <thead><tr style="border-bottom:2px solid #000;font-size:10px;text-transform:uppercase;">
+                        <th style="padding:10px 0;text-align:left;font-weight:800;">货物/服务描述</th>
+                        <th style="text-align:center;font-weight:800;">数量</th>
+                        <th style="text-align:right;font-weight:800;">单价</th>
+                        <th style="text-align:right;font-weight:800;">金额</th>
+                    </tr></thead>
+                    <tbody id="pv-items" style="font-weight:600;"></tbody>
+                </table>
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:60px;">
+                    <div style="width:300px;border:2px solid #000;padding:16px;border-radius:12px;">
+                        <div style="font-size:8px;font-weight:800;color:#aaa;margin-bottom:6px;">银行信息</div>
+                        <div id="pv-bank" style="font-size:13px;font-weight:700;line-height:1.4;"></div>
+                    </div>
+                    <div style="width:270px;background:var(--zh-dark);color:#fff;padding:22px;border-radius:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;opacity:0.7;"><span>不含税金额</span><span id="pv-sub"></span></div>
+                        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:14px;opacity:0.7;"><span id="pv-tax-lbl">增值税</span><span id="pv-tax"></span></div>
+                        <div style="border-top:2px solid var(--zh-gold);padding-top:14px;display:flex;justify-content:space-between;align-items:center;">
+                            <span style="font-size:14px;font-weight:800;text-transform:uppercase;">合计</span>
+                            <span id="pv-total" style="font-size:22px;font-weight:900;color:var(--zh-gold-light);"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 文本编辑器 -->
+<div id="text-modal">
+    <div class="p-8 h-full flex flex-col">
+        <h3 class="brand-font text-3xl font-bold mb-5 text-[var(--zh-dark)]">编辑描述</h3>
+        <textarea id="modal-textarea" class="flex-1 w-full bg-[var(--zh-bg)] text-[var(--zh-dark)] p-6 rounded-2xl text-lg font-bold outline-none border-2 border-[#EDE0C4] focus:border-[var(--zh-gold)] transition-all"></textarea>
+        <div class="flex gap-4 mt-6">
+            <button onclick="closeTextModal()" class="flex-1 bg-slate-100 p-5 rounded-2xl font-black uppercase text-xs text-slate-500">取消</button>
+            <button id="save-text-btn" class="flex-[2] btn-main">保存 <i class="fa-solid fa-save ml-2"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- 货币选择 -->
+<div id="currency-modal">
+    <div class="modal-hdr">
+        <div>
+            <div style="font-size:16px;font-weight:900;color:var(--zh-red);">选择货币</div>
+            <div style="font-size:10px;color:#7A6B4A;margin-top:2px;">自动保存</div>
+        </div>
+        <button onclick="closeCurrencyModal()" style="width:34px;height:34px;border-radius:50%;background:#FDF3DC;border:1.5px solid var(--zh-gold);color:var(--zh-dark);font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="currency-list"></div></div>
+</div>
+
+<!-- 语言选择 -->
+<div id="language-modal">
+    <div class="modal-hdr">
+        <div>
+            <div style="font-size:16px;font-weight:900;color:var(--zh-red);">选择语言</div>
+            <div style="font-size:10px;color:#7A6B4A;margin-top:2px;">Select language</div>
+        </div>
+        <button onclick="closeLanguageModal()" style="width:34px;height:34px;border-radius:50%;background:#FDF3DC;border:1.5px solid var(--zh-gold);color:var(--zh-dark);font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="language-list"></div></div>
+</div>
+
+<!-- iOS安装提示 -->
+<div id="ios-modal" onclick="closeIosModal()">
+    <div class="ios-box" onclick="event.stopPropagation()">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+                <div style="font-size:16px;font-weight:900;color:var(--zh-red);">添加到主屏幕</div>
+                <div style="font-size:11px;color:#7A6B4A;margin-top:2px;">iPhone / iPad — Safari</div>
+            </div>
+            <button onclick="closeIosModal()" style="width:32px;height:32px;border-radius:50%;background:#FDF3DC;border:1.5px solid var(--zh-gold);color:var(--zh-dark);font-size:15px;cursor:pointer;">✕</button>
+        </div>
+        <div class="ios-step"><div class="ios-num">1</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">点击"分享"按钮</div><div style="font-size:11px;color:#7A6B4A;margin-top:2px;">Safari底栏的 <span style="color:var(--zh-red);font-size:16px;">⬆</span> 图标</div></div></div>
+        <div class="ios-step"><div class="ios-num">2</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">点击"添加到主屏幕"</div><div style="font-size:11px;color:#7A6B4A;margin-top:2px;">向下滚动菜单找到该选项</div></div></div>
+        <div class="ios-step" style="margin-bottom:0;"><div class="ios-num">3</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">点击右上角"添加"</div><div style="font-size:11px;color:#7A6B4A;margin-top:2px;">完成！图标将出现在主屏幕</div></div></div>
+        <div style="margin-top:18px;padding:12px;background:#FDF3DC;border-radius:12px;text-align:center;">
+            <div style="font-size:11px;color:#7A6B4A;">⚠️ 仅支持 <b style="color:#1A1A1A;">Safari</b> 浏览器</div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// 侧边菜单控制器
+// ══════════════════════════════════════════
+function openSideMenu() {
+    document.getElementById('side-menu').classList.add('open');
+    document.getElementById('side-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeSideMenu() {
+    document.getElementById('side-menu').classList.remove('open');
+    document.getElementById('side-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// ══════════════════════════════
+// 语言系统
+// ══════════════════════════════
+const LANGUAGES = [
+    { code: 'es', flag: '🇪🇸', name: 'Español' },
+    { code: 'en', flag: '🇬🇧', name: 'English' },
+    { code: 'ru', flag: '🇷🇺', name: 'Русский' },
+    { code: 'de', flag: '🇩🇪', name: 'Deutsch' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' },
+    { code: 'it', flag: '🇮🇹', name: 'Italiano' },
+    { code: 'pt', flag: '🇵🇹', name: 'Português' },
+    { code: 'nl', flag: '🇳🇱', name: 'Nederlands' },
+    { code: 'in', flag: '🇮🇳', name: 'India' },
+    { code: 'tr', flag: '🇹🇷', name: 'Türkçe' },
+    { code: 'ar', flag: '🇸🇦', name: 'العربية' },
+    { code: 'zh', flag: '🇨🇳', name: '简体中文' },
+    { code: 'ja', flag: '🇯🇵', name: '日本語' },
+    { code: 'hi', flag: '🇮🇳', name: 'हिन्दी' },
+    { code: 'br', flag: '🇧🇷', name: 'Português (Brasil)' },
+    { code: 'ca', flag: '🇨🇦', name: 'English (Canada)' },
+    { code: 'da', flag: '🇩🇰', name: 'Dansk' },
+    { code: 'fi', flag: '🇫🇮', name: 'Suomi' },
+    { code: 'gb', flag: '🇬🇧', name: 'English (UK)' },
+    { code: 'ko', flag: '🇰🇷', name: '한국어' },
+    { code: 'no', flag: '🇳🇴', name: 'Norsk' },
+    { code: 'sv', flag: '🇸🇪', name: 'Svenska' },
+    { code: 'us', flag: '🇺🇸', name: 'English (US)' }
+];
+
+function openLanguageModal() {
+    document.getElementById('language-list').innerHTML = LANGUAGES.map(l => `
+        <div class="list-item ${l.code==='zh'?'selected':''}" onclick="goToLanguage('${l.code}')">
+            <span class="flag">${l.flag}</span>
+            <div style="flex:1;"><div class="item-name">${l.name}</div></div>
+            <span class="item-sym" style="font-size:12px;">${l.code.toUpperCase()}</span>
+            ${l.code==='zh'?'<i class="fa-solid fa-check ml-2 text-xs" style="color:var(--zh-red);"></i>':''}
+        </div>`).join('');
+    document.getElementById('language-modal').style.display = 'flex';
+}
+function closeLanguageModal() { document.getElementById('language-modal').style.display = 'none'; }
+function goToLanguage(code) {
+    if (code === 'zh') { closeLanguageModal(); return; }
+    localStorage.setItem('elite_lang_v1', code);
+    window.location.href = '../' + code + '/index.html';
+}
+
+// ══════════════════════════════
+// 货币系统
+// ══════════════════════════════
+const CURRENCIES = [
+    { code:'CNY',  flag:'🇨🇳', country:'中国大陆',      name:'人民币',           sym:'¥',   taxLabel:'增值税' },
+    { code:'HKD',  flag:'🇭🇰', country:'香港',          name:'港元',             sym:'HK$', taxLabel:'GST' },
+    { code:'TWD',  flag:'🇹🇼', country:'台湾',          name:'新台币',           sym:'NT$', taxLabel:'营业税' },
+    { code:'USD',  flag:'🇺🇸', country:'美国',          name:'美元',             sym:'$',   taxLabel:'VAT' },
+    { code:'EUR',  flag:'🇪🇺', country:'欧元区',        name:'欧元',             sym:'€',   taxLabel:'VAT' },
+    { code:'GBP',  flag:'🇬🇧', country:'英国',          name:'英镑',             sym:'£',   taxLabel:'VAT' },
+    { code:'JPY',  flag:'🇯🇵', country:'日本',          name:'日元',             sym:'¥',   taxLabel:'消费税' },
+    { code:'KRW',  flag:'🇰🇷', country:'韩国',          name:'韩元',             sym:'₩',   taxLabel:'VAT' },
+    { code:'SGD',  flag:'🇸🇬', country:'新加坡',        name:'新加坡元',         sym:'S$',  taxLabel:'GST' },
+    { code:'MYR',  flag:'🇲🇾', country:'马来西亚',      name:'林吉特',           sym:'RM',  taxLabel:'SST' },
+    { code:'THB',  flag:'🇹🇭', country:'泰国',          name:'泰铢',             sym:'฿',   taxLabel:'VAT' },
+    { code:'IDR',  flag:'🇮🇩', country:'印度尼西亚',    name:'卢比',             sym:'Rp',  taxLabel:'PPN' },
+    { code:'VND',  flag:'🇻🇳', country:'越南',          name:'越南盾',           sym:'₫',   taxLabel:'VAT' },
+    { code:'AED',  flag:'🇦🇪', country:'阿联酋',        name:'迪拉姆',           sym:'AED', taxLabel:'VAT' },
+    { code:'RUB',  flag:'🇷🇺', country:'俄罗斯',        name:'卢布',             sym:'₽',   taxLabel:'НДС' },
+];
+
+let activeCurrency = null;
+function loadCurrency() {
+    const s = localStorage.getItem('zh_currency_v1');
+    activeCurrency = s ? JSON.parse(s) : CURRENCIES[0];
+    applyCurrency();
+}
+function saveCurrency(cur) {
+    activeCurrency = cur;
+    localStorage.setItem('zh_currency_v1', JSON.stringify(cur));
+    applyCurrency(); closeCurrencyModal();
+}
+function applyCurrency() {
+    const c = activeCurrency;
+    document.getElementById('top-flag').textContent = c.flag;
+    document.getElementById('top-sym').textContent = c.sym;
+    document.getElementById('home-flag').textContent = c.flag;
+    document.getElementById('home-currency-name').textContent = c.name + ' (' + c.sym + ')';
+    const tl = document.getElementById('tax-lbl');
+    if (tl) tl.textContent = c.taxLabel + ' (%)';
+    const gs = document.getElementById('gt-sym');
+    if (gs) gs.textContent = c.sym;
+    updateRowSymbols(); calcTotal();
+}
+function openCurrencyModal() { renderCurrencyList(); document.getElementById('currency-modal').style.display = 'flex'; }
+function closeCurrencyModal() { document.getElementById('currency-modal').style.display = 'none'; }
+function renderCurrencyList() {
+    document.getElementById('currency-list').innerHTML = CURRENCIES.map(c => `
+        <div class="list-item ${activeCurrency&&activeCurrency.code===c.code?'selected':''}" onclick='saveCurrency(${JSON.stringify(c)})'>
+            <span class="flag">${c.flag}</span>
+            <div style="flex:1;"><div class="item-name">${c.country}</div><div class="item-sub">${c.name} · ${c.taxLabel}</div></div>
+            <span class="item-sym">${c.sym}</span>
+            ${activeCurrency&&activeCurrency.code===c.code?'<i class="fa-solid fa-check ml-2 text-xs" style="color:var(--zh-red);"></i>':''}
+        </div>`).join('');
+}
+function getSym() { return activeCurrency ? activeCurrency.sym : '¥'; }
+function getTaxLabel() { return activeCurrency ? activeCurrency.taxLabel : '增值税'; }
+
+// ══════════════════════════════
+// PWA 安装
+// ══════════════════════════════
+let deferredPrompt = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+function injectManifest() {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="#DE2910"></rect><rect x="30" y="30" width="452" height="452" rx="60" fill="none" stroke="#D4A017" stroke-width="18" stroke-opacity="0.6"></rect><text x="256" y="210" font-size="100" text-anchor="middle" fill="#FFDE00" font-family="serif" font-weight="700">发票</text><text x="256" y="330" font-size="110" text-anchor="middle" fill="#fff" font-family="serif" font-weight="700">大师</text></svg>`;
+    const iconUrl = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    document.getElementById('pwa-apple-icon').href = iconUrl;
+    const manifest = { name:"发票大师 - 专业发票", short_name:"发票大师", description:"免费专业发票生成器", start_url:"./", display:"standalone", background_color:"#FDF8F0", theme_color:"#DE2910", icons:[{src:iconUrl,sizes:"512x512",type:"image/svg+xml"}] };
+    const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+    document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+}
+function updateInstallBar() {
+    const bar = document.getElementById('install-bar');
+    if (isStandalone) { bar.style.display = 'none'; return; }
+    if (isIOS) document.getElementById('install-sub-text').textContent = 'iPhone/iPad: 点击⬆ → 添加到主屏幕';
+    else document.getElementById('install-sub-text').textContent = 'Android/Chrome: 点击安装';
+}
+function handleInstall() {
+    if (isIOS) { document.getElementById('ios-modal').classList.add('open'); }
+    else if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { document.getElementById('install-bar').style.display='none'; deferredPrompt=null; }); }
+    else { alert('请在Chrome中打开，点击 ⋮ → 添加到主屏幕'); }
+}
+function closeIosModal() { document.getElementById('ios-modal').classList.remove('open'); }
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt=e; document.getElementById('install-sub-text').textContent='✓ 点击立即安装'; });
+window.addEventListener('appinstalled', () => { document.getElementById('install-bar').style.display='none'; deferredPrompt=null; });
+
+// ══════════════════════════════
+// 滑动手势
+// ══════════════════════════════
+let touchStartX = 0, touchStartY = 0, isSwiping = false;
+const slider = document.getElementById('main-slider');
+
+slider.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwiping = false;
+}, { passive: true });
+
+slider.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) isSwiping = true;
+}, { passive: true });
+
+slider.addEventListener('touchend', e => {
+    if (!isSwiping) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) < 50) return;
+    if (dx < 0 && currentIdx < 4) showPage(currentIdx + 1);
+    if (dx > 0 && currentIdx > 0) showPage(currentIdx - 1);
+}, { passive: true });
+
+// ══════════════════════════════
+// 应用逻辑
+// ══════════════════════════════
+let currentIdx = 0;
+let activeTextId = null;
+let myChart = null;
+
+function showPage(idx) {
+    currentIdx = idx;
+    slider.style.transform = `translateX(-${idx * 20}%)`;
+    document.querySelectorAll('.nav-btn').forEach((n, i) => n.classList.toggle('active', i === idx));
+    if (idx === 0) updateStats();
+    if (idx === 2) renderArchiv();
+    if (idx === 3) renderCustomers();
+    if (idx === 1) updateCustSelect();
+}
+
+function updateStats() {
+    const arch = JSON.parse(localStorage.getItem('zh_arsiv_v1')) || [];
+    const cust = JSON.parse(localStorage.getItem('zh_klienty_v1')) || [];
+    document.getElementById('stat-invoices').innerText = arch.length;
+    document.getElementById('stat-clients').innerText = cust.length;
+    const sym = getSym();
+    let net = 0, vat = 0;
+    arch.forEach(inv => {
+        let sub = 0;
+        inv.items.forEach(it => sub += (parseFloat(it.q)||0)*(parseFloat(it.p)||0));
+        net += sub; vat += sub * (parseFloat(inv.vrate)/100);
+    });
+    document.getElementById('total-revenue').innerText = sym + ' ' + (net+vat).toFixed(2);
+    document.getElementById('chart-net').innerText = sym + ' ' + net.toFixed(2);
+    document.getElementById('chart-vat').innerText = sym + ' ' + vat.toFixed(2);
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    if (myChart) myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels:['净额','增值税'], datasets:[{ data:[net||1, vat||0.01], backgroundColor:['#1A0A00','#D4A017'], borderWidth:0 }] },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{size:9}, usePointStyle:true } } }, cutout:'70%' }
+    });
+}
+
+function resetAndNew() {
+    document.getElementById('items-list').innerHTML = "";
+    addRow();
+    setVat(13, document.getElementById('vat-13'));
+    setDue(14);
+    const arch = JSON.parse(localStorage.getItem('zh_arsiv_v1')) || [];
+    document.getElementById('inv-no').value = new Date().getFullYear() + '-' + String(arch.length + 1).padStart(4,'0');
+    document.getElementById('inv-date').valueAsDate = new Date();
+    showPage(1);
+}
+
+function setVat(val, el) {
+    document.getElementById('selected-vat').value = val;
+    document.querySelectorAll('[id^="vat-"], #custom-vat-btn').forEach(b => b.classList.remove('active'));
+    if (el) { el.classList.add('active'); }
+    else {
+        const map = {'13':'vat-13','9':'vat-9','6':'vat-6','0':'vat-0'};
+        if (map[String(val)]) document.getElementById(map[String(val)]).classList.add('active');
+        else { const cb = document.getElementById('custom-vat-btn'); cb.innerText = val+'%'; cb.classList.add('active'); }
+    }
+    calcTotal();
+}
+
+function setDue(val) {
+    document.getElementById('inv-due-days').value = val;
+    document.querySelectorAll('[id^="due-"]').forEach(b => b.classList.remove('active'));
+    const t = document.getElementById('due-'+val);
+    if (t) t.classList.add('active');
+}
+
+function promptVat(el) {
+    let v = prompt(getTaxLabel() + ' %:', '13');
+    if (v) { const n = parseFloat(v); if(!isNaN(n)) { el.innerText = n+'%'; setVat(n, el); } }
+}
+
+const UNITS = ['件','小时','天','周','月','kg','吨','升','米','公里','项目','套餐'];
+
+function addRow(data = null) {
+    const id = 'r-' + Math.random().toString(36).substr(2, 8);
+    const div = document.createElement('div');
+    div.className = 'item-row'; div.id = id;
+    div.innerHTML = `
+        <button class="absolute -top-3 -right-3 bg-white text-red-500 w-8 h-8 rounded-full border border-[#EDE0C4] shadow flex items-center justify-center text-xs" onclick="document.getElementById('${id}').remove(); calcTotal();"><i class="fa-solid fa-times"></i></button>
+        <div class="flex gap-2 mb-3">
+            <input type="text" class="input-pro d flex-1" placeholder="货物/服务描述..." value="${data?data.d:''}">
+            <button onclick="openTextModal('${id}')" class="bg-[var(--zh-dark)] text-[var(--zh-gold)] w-12 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-expand text-sm"></i></button>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div><label>数量</label><input type="number" class="input-pro qty" value="${data?data.q:'1'}" oninput="calcTotal()"></div>
+            <div><label>单位</label><select class="input-pro u">${UNITS.map(u=>`<option value="${u}" ${data?.u==u?'selected':''}>${u}</option>`).join('')}</select></div>
+            <div><label>单价 (<span class="row-sym">${getSym()}</span>)</label><input type="number" class="input-pro p" placeholder="0.00" value="${data?data.p:''}" oninput="calcTotal()"></div>
+        </div>`;
+    document.getElementById('items-list').appendChild(div);
+    calcTotal();
+}
+
+function updateRowSymbols() {
+    document.querySelectorAll('.row-sym').forEach(el => el.textContent = getSym());
+}
+
+function calcTotal() {
+    let sub = 0;
+    document.querySelectorAll('.item-row').forEach(r => {
+        sub += (parseFloat(r.querySelector('.qty').value)||0) * (parseFloat(r.querySelector('.p').value)||0);
+    });
+    const v = parseFloat(document.getElementById('selected-vat').value)||0;
+    const total = (sub*(1+v/100)).toFixed(2);
+    const symEl = document.getElementById('gt-sym');
+    const totalEl = document.getElementById('grand-total');
+    if (totalEl.childNodes[0]) totalEl.childNodes[0].textContent = total + ' ';
+    else totalEl.insertBefore(document.createTextNode(total+' '), symEl);
+    if (symEl) symEl.textContent = getSym();
+}
+
+function generatePreview(prof, cust, invNo, date, items, vRate, dueDays) {
+    const sym = getSym(); const taxLbl = getTaxLabel();
+    document.getElementById('pv-no').innerText = invNo;
+    document.getElementById('pv-title').innerText = prof.name || '公司名称';
+    const p = date.split('-');
+    document.getElementById('pv-date').innerText = `${p[0]}年${p[1]}月${p[2]}日`;
+    const dt = new Date(date); dt.setDate(dt.getDate() + parseInt(dueDays));
+    document.getElementById('pv-due').innerText = `${dt.getFullYear()}年${String(dt.getMonth()+1).padStart(2,'0')}月${String(dt.getDate()).padStart(2,'0')}日`;
+    const fmt = (lbl, val) => val ? `<div><b style="font-size:9px;color:#aaa;">${lbl}:</b> ${val}</div>` : '';
+    document.getElementById('pv-sender').innerHTML = `<b style="font-size:12px;color:#000;">${prof.name||''}</b><br>${prof.adr||''}<br>${prof.pc||''} ${prof.city||''}<br>${fmt('统一社会信用代码',prof.tax)}${fmt('增值税号',prof.vat)}${fmt('电话',prof.tel)}${fmt('邮箱',prof.mail)}`;
+    document.getElementById('pv-receiver').innerHTML = `<b style="font-size:12px;color:#000;">${cust.name||''}</b><br>${cust.adr||''}<br>${cust.pc||''} ${cust.city||''}<br>${fmt('统一社会信用代码',cust.tax)}${fmt('增值税号',cust.vat)}${fmt('电话',cust.tel)}${fmt('邮箱',cust.mail)}`;
+    document.getElementById('pv-bank').innerHTML = `<b>${prof.bank||''}</b><br>${prof.iban||''}`;
+    let sub = 0;
+    document.getElementById('pv-items').innerHTML = items.map(it => {
+        let t = (parseFloat(it.q)||0)*(parseFloat(it.p)||0); sub += t;
+        return `<tr style="border-bottom:1px solid #eee;"><td style="padding:12px 0;font-weight:600;">${it.d}</td><td style="text-align:center;">${it.q} ${it.u}</td><td style="text-align:right;">${parseFloat(it.p).toFixed(2)} ${sym}</td><td style="text-align:right;font-weight:800;">${t.toFixed(2)} ${sym}</td></tr>`;
+    }).join('');
+    const tax = sub * (parseFloat(vRate)/100);
+    document.getElementById('pv-sub').innerText = sub.toFixed(2) + ' ' + sym;
+    document.getElementById('pv-tax-lbl').innerText = `${taxLbl} (${vRate}%)`;
+    document.getElementById('pv-tax').innerText = tax.toFixed(2) + ' ' + sym;
+    document.getElementById('pv-total').innerText = (sub+tax).toFixed(2) + ' ' + sym;
+    document.getElementById('p-modal').style.display = 'flex';
+    requestAnimationFrame(() => {
+        const za = document.getElementById('zoom-area');
+        const scale = Math.min((za.offsetWidth-40)/794, (za.offsetHeight-40)/1123);
+        document.getElementById('p-page').style.transform = `scale(${scale})`;
+    });
+}
+
+function generatePreviewFromCurrent() {
+    const cIdx = document.getElementById('inv-cust-select').value;
+    if (cIdx === '') return alert('请选择客户！');
+    const prof = JSON.parse(localStorage.getItem('zh_profil_v1')) || {};
+    const cust = (JSON.parse(localStorage.getItem('zh_klienty_v1'))||[])[cIdx];
+    let items = [];
+    document.querySelectorAll('.item-row').forEach(r => items.push({ d:r.querySelector('.d').value, q:r.querySelector('.qty').value, p:r.querySelector('.p').value, u:r.querySelector('.u').value }));
+    document.getElementById('modal-confirm-btn').style.display = 'block';
+    generatePreview(prof, cust, document.getElementById('inv-no').value, document.getElementById('inv-date').value, items, document.getElementById('selected-vat').value, document.getElementById('inv-due-days').value);
+}
+
+function confirmAndArchive() {
+    const cIdx = document.getElementById('inv-cust-select').value;
+    const prof = JSON.parse(localStorage.getItem('zh_profil_v1')) || {};
+    const cust = (JSON.parse(localStorage.getItem('zh_klienty_v1'))||[])[cIdx];
+    let items = [];
+    document.querySelectorAll('.item-row').forEach(r => items.push({ d:r.querySelector('.d').value, q:r.querySelector('.qty').value, p:r.querySelector('.p').value, u:r.querySelector('.u').value }));
+    const invNo = document.getElementById('inv-no').value;
+    const invDate = document.getElementById('inv-date').value;
+    const vatRate = document.getElementById('selected-vat').value;
+    const dueDays = document.getElementById('inv-due-days').value;
+    const sym = getSym();
+    const [y,m,d] = invDate.split('-');
+    const params = new URLSearchParams();
+    params.set('l','zh'); params.set('sym', sym);
+    params.set('n', prof.name||''); params.set('adr', prof.adr||''); params.set('pc', prof.pc||''); params.set('ct', prof.city||''); params.set('mob', prof.tel||''); params.set('mail', prof.mail||''); params.set('bnk', prof.bank||''); params.set('i', prof.iban||''); params.set('k', prof.vat||''); params.set('vat', prof.tax||'');
+    params.set('c', cust.name||''); params.set('cadr', cust.adr||''); params.set('cpc', cust.pc||''); params.set('cct', cust.city||''); params.set('cmob', cust.tel||''); params.set('cmail', cust.mail||''); params.set('cx', cust.vat||''); params.set('cv', cust.tax||'');
+    params.set('inv', invNo); params.set('d', `${d}-${m}-${y}`); params.set('vrate', vatRate); params.set('due', dueDays);
+    params.set('items', items.map(it => `${encodeURIComponent(it.d)}|${it.q}|${it.p}|${it.u}`).join('!!'));
+    let arch = JSON.parse(localStorage.getItem('zh_arsiv_v1')) || [];
+    arch.unshift({ no:invNo, date:invDate, custName:cust.name, items, vrate:vatRate, due:dueDays, cIdx, currencyCode:activeCurrency.code, id:Date.now() });
+    localStorage.setItem('zh_arsiv_v1', JSON.stringify(arch));
+    window.open("https://invoiceluxe.com/invoice.html? " + params.toString(), '_blank');
+    closePreview(); showPage(2);
+}
+
+function saveProfile() {
+    const p = { name:document.getElementById('p-name').value, adr:document.getElementById('p-adr').value, pc:document.getElementById('p-pc').value, city:document.getElementById('p-city').value, tel:document.getElementById('p-tel').value, mail:document.getElementById('p-mail').value, tax:document.getElementById('p-tax').value, vat:document.getElementById('p-vat').value, bank:document.getElementById('p-bank').value, iban:document.getElementById('p-iban').value };
+    localStorage.setItem('zh_profil_v1', JSON.stringify(p));
+    showPage(3);
+}
+
+function saveCustomer() {
+    let l = JSON.parse(localStorage.getItem('zh_klienty_v1')) || [];
+    const c = { name:document.getElementById('c-name').value, adr:document.getElementById('c-adr').value, pc:document.getElementById('c-pc').value, city:document.getElementById('c-city').value, tel:document.getElementById('c-tel').value, mail:document.getElementById('c-mail').value, tax:document.getElementById('c-tax').value, vat:document.getElementById('c-vat').value };
+    if (!c.name) return alert('请输入公司名称！');
+    let idx = document.getElementById('edit-cust-idx').value;
+    if (idx != '-1') l[idx] = c; else l.unshift(c);
+    localStorage.setItem('zh_klienty_v1', JSON.stringify(l));
+    document.getElementById('edit-cust-idx').value = '-1';
+    document.getElementById('save-cust-btn').innerText = '保存客户';
+    ['c-name','c-adr','c-pc','c-city','c-tel','c-mail','c-tax','c-vat'].forEach(id => document.getElementById(id).value = '');
+    renderCustomers(); showPage(1);
+}
+
+function renderCustomers() {
+    const l = JSON.parse(localStorage.getItem('zh_klienty_v1')) || [];
+    document.getElementById('customer-list').innerHTML = l.map((c,i) => `
+        <div class="p-4 bg-white rounded-xl border border-[#EDE0C4] flex justify-between items-center mb-2" style="border-left:4px solid var(--zh-gold);">
+            <div><div class="font-black text-sm">${c.name}</div><div class="text-[9px] text-[#7A6B4A] font-bold">${c.tel||'—'} | ${c.mail||'—'}</div></div>
+            <div class="flex gap-2">
+                <button onclick="editCust(${i})" class="w-9 h-9 bg-[#FDF3DC] text-[var(--zh-gold)] rounded-xl flex items-center justify-center border border-[var(--zh-gold)]"><i class="fa-solid fa-pen text-xs"></i></button>
+                <button onclick="deleteCust(${i})" class="w-9 h-9 bg-red-50 text-red-500 rounded-xl flex items-center justify-center border border-red-100"><i class="fa-solid fa-trash text-xs"></i></button>
+            </div>
+        </div>`).join('');
+    updateCustSelect();
+}
+
+function editCust(i) {
+    const c = (JSON.parse(localStorage.getItem('zh_klienty_v1')))[i];
+    ['name','adr','pc','city','tel','mail','tax','vat'].forEach(k => { const el = document.getElementById('c-'+k); if(el) el.value = c[k]||''; });
+    document.getElementById('edit-cust-idx').value = i;
+    document.getElementById('save-cust-btn').innerText = '更新客户';
+    showPage(3);
+}
+
+function deleteCust(i) {
+    if (confirm('确认删除该客户？')) {
+        let l = JSON.parse(localStorage.getItem('zh_klienty_v1'));
+        l.splice(i,1); localStorage.setItem('zh_klienty_v1', JSON.stringify(l)); renderCustomers();
+    }
+}
+
+function renderArchiv() {
+    const l = JSON.parse(localStorage.getItem('zh_arsiv_v1')) || [];
+    document.getElementById('archiv-list').innerHTML = l.length === 0
+        ? '<div class="text-center text-[#7A6B4A] text-sm py-10 lux-card">暂无发票记录</div>'
+        : l.map((a,i) => `
+        <div class="p-4 bg-white rounded-xl border border-[#EDE0C4] flex justify-between items-center" style="border-left:4px solid var(--zh-red);">
+            <div>
+                <div class="font-black text-sm text-[var(--zh-red)]">发票 ${a.no}</div>
+                <div class="text-[10px] text-[#7A6B4A] uppercase font-bold">${a.custName}</div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="previewArchiv(${i})" class="w-9 h-9 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center"><i class="fa-solid fa-eye text-xs"></i></button>
+                <button onclick="editArchiv(${i})" class="w-9 h-9 bg-[#FDF3DC] text-[var(--zh-gold)] rounded-xl flex items-center justify-center"><i class="fa-solid fa-rotate text-xs"></i></button>
+                <button onclick="deleteArchiv(${i})" class="w-9 h-9 bg-red-50 text-red-500 rounded-xl flex items-center justify-center"><i class="fa-solid fa-trash text-xs"></i></button>
+            </div>
+        </div>`).join('');
+}
+
+function previewArchiv(i) {
+    const a = (JSON.parse(localStorage.getItem('zh_arsiv_v1')))[i];
+    const prof = JSON.parse(localStorage.getItem('zh_profil_v1')) || {};
+    const custs = JSON.parse(localStorage.getItem('zh_klienty_v1')) || [];
+    if (a.currencyCode) { const sc = CURRENCIES.find(c=>c.code===a.currencyCode); if(sc){activeCurrency=sc;applyCurrency();} }
+    document.getElementById('modal-confirm-btn').style.display = 'none';
+    generatePreview(prof, custs[a.cIdx]||{name:a.custName}, a.no, a.date, a.items, a.vrate, a.due);
+}
+
+function editArchiv(i) {
+    const a = (JSON.parse(localStorage.getItem('zh_arsiv_v1')))[i];
+    document.getElementById('inv-no').value = a.no;
+    document.getElementById('inv-date').value = a.date;
+    document.getElementById('inv-cust-select').value = a.cIdx;
+    setVat(a.vrate, null); setDue(a.due);
+    document.getElementById('items-list').innerHTML = '';
+    a.items.forEach(it => addRow(it)); showPage(1);
+}
+
+function deleteArchiv(i) {
+    if (confirm('确认删除该发票？')) {
+        let l = JSON.parse(localStorage.getItem('zh_arsiv_v1'));
+        l.splice(i,1); localStorage.setItem('zh_arsiv_v1', JSON.stringify(l)); renderArchiv(); updateStats();
+    }
+}
+
+function updateCustSelect() {
+    const l = JSON.parse(localStorage.getItem('zh_klienty_v1')) || [];
+    document.getElementById('inv-cust-select').innerHTML = '<option value="">-- 请选择客户 --</option>' + l.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');
+}
+
+function openTextModal(rowId) {
+    activeTextId = rowId;
+    document.getElementById('modal-textarea').value = document.querySelector(`#${rowId} .d`).value;
+    document.getElementById('text-modal').style.display = 'flex';
+    document.getElementById('save-text-btn').onclick = () => {
+        document.querySelector(`#${activeTextId} .d`).value = document.getElementById('modal-textarea').value;
+        closeTextModal();
+    };
+}
+function closeTextModal() { document.getElementById('text-modal').style.display = 'none'; }
+function closePreview() { document.getElementById('p-modal').style.display = 'none'; }
+
+// ══════════════════════════════
+// 启动
+// ══════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+    injectManifest();
+    updateInstallBar();
+    loadCurrency();
+    const p = JSON.parse(localStorage.getItem('zh_profil_v1')) || {};
+    if (p.name) ['name','adr','pc','city','tel','mail','tax','vat','bank','iban'].forEach(k => { const el = document.getElementById('p-'+k); if(el) el.value = p[k]||''; });
+    renderCustomers(); updateStats();
+    document.getElementById('inv-date').valueAsDate = new Date();
+    setVat(13, document.getElementById('vat-13'));
+    addRow();
+});
+</script>
+</body>
+</html>

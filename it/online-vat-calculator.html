@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calcolatore IVA online – Web app con Modalità facile | InvoiceLuxe</title>
+<meta name="description" content="Web app gratuita per calcolare l’IVA: aggiungi o scorpora l’IVA in EUR, USD e GBP. Con Modalità facile, consigli fiscali e tabella IVA mondiale.">
+<meta name="application-name" content="InvoiceLuxe Calcolatore IVA (web app)">
+<meta name="apple-mobile-web-app-title" content="InvoiceLuxe">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://invoiceluxe.com/it/calculator.html">
+<link rel="alternate" hreflang="en" href="https://invoiceluxe.com/calculator.html?lang=en">
+<link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/calculator.html">
+<link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/calculator.html">
+<link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/calculator.html">
+<link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/calculator.html">
+<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/calculator.html?lang=en">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="InvoiceLuxe">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Calcolatore IVA online – Web app con Modalità facile | InvoiceLuxe">
+<meta property="og:description" content="Web app per calcolare l’IVA: Modalità facile per chi parte da zero o calcolatore classico. EUR, USD e GBP, con consigli fiscali e aliquote IVA nel mondo.">
+<meta property="og:url" content="https://invoiceluxe.com/it/calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calcolatore IVA online – Web app con Modalità facile | InvoiceLuxe">
+<meta name="twitter:description" content="Web app per calcolare l’IVA: Modalità facile per chi parte da zero o calcolatore classico. EUR, USD e GBP, con consigli fiscali e aliquote IVA nel mondo.">
+
+<!-- Structured data: web application -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "InvoiceLuxe Calcolatore IVA (web app)",
+  "alternateName": [
+    "Calcolatore IVA online",
+    "Scorporo IVA",
+    "Calcolo IVA web app"
+  ],
+  "url": "https://invoiceluxe.com/it/calculator.html",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Works in any modern web browser.",
+  "description": "Web app gratuita per il calcolo dell’IVA: Modalità facile per chi non ha dimestichezza con l’IVA e calcolatore classico. Aggiungi o scorpora l’IVA in EUR, USD e GBP, con consigli fiscali e una tabella IVA mondiale.",
+  "inLanguage": "it",
+  "isAccessibleForFree": true,
+  "featureList": [
+    "Modalità facile con guida passo dopo passo",
+    "Calcolatore classico con anteprima in tempo reale di netto, IVA e totale",
+    "Aggiunta e scorporo dell’IVA",
+    "Importi in EUR, USD e GBP",
+    "Consigli fiscali e tabella comparativa dell’IVA nel mondo"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "InvoiceLuxe",
+    "url": "https://invoiceluxe.com/"
+  }
+}
+</script>
+
+<!-- Structured data: FAQ (matches the visible FAQ section) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "it",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si scorpora il 20% di IVA da un prezzo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dividi il prezzo IVA inclusa per 1,20. Esempio: 600 ÷ 1,20 = 500, quindi 100 del totale sono IVA. Sottrarre il 20% da 600 dà 480, che è sbagliato."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le aziende statunitensi possono recuperare l’IVA sulle spese sostenute nel Regno Unito o nell’UE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. Le imprese estere possono recuperare l’IVA sulle spese aziendali ammissibili (ad es. fiere, viaggi, software) tramite la procedura della 13ª direttiva o altri meccanismi di rimborso transfrontaliero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come vengono trattate le esportazioni digitali verso l’UE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le vendite B2C di servizi digitali a consumatori dell’UE richiedono l’applicazione dell’IVA del paese di destinazione tramite lo sportello unico (One Stop Shop, OSS). Le esportazioni di beni fisici fuori dal Regno Unito sono a aliquota 0%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quale software è compatibile con l’MTD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Per la conformità a Making Tax Digital (MTD) serve un software contabile compatibile con le API, come Xero, QuickBooks, FreeAgent o Sage (15–50 $ al mese)."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    :root {
+        --paper: #F4F6F9;
+        --panel: #FFFFFF;
+        --ink: #0B1F3A;
+        --ink-2: #14294A;
+        --text: #1E293B;
+        --muted: #64748B;
+        --line: #E1E6EE;
+        --primary: #1D4ED8;
+        --primary-dark: #1739A6;
+        --gold: #B98A2E;
+        --add: #1D4ED8;
+        --remove: #7C5A12;
+        --chip-bg: #EEF1F6;
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    [hidden] { display: none !important; }
+
+    body {
+        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background-color: var(--paper);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; }
+    }
+
+    .app-view {
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .topbar {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: clamp(6px, 1.6vh, 10px) 16px;
+        background: rgba(255,255,255,0.94);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        flex-shrink: 0;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 13.5px;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        min-width: 0;
+        white-space: nowrap;
+    }
+    .brand .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        flex-shrink: 0;
+    }
+    .back-btn {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 15px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top-actions { display: flex; align-items: center; gap: 6px; }
+
+    #lang-pill {
+        display: flex; align-items: center; gap: 5px;
+        background: #fff; border: 1px solid var(--line);
+        border-radius: 20px; padding: 3px 9px; cursor: pointer;
+        font-family: inherit;
+    }
+
+    .mode-pill {
+        display: flex; align-items: center; gap: 5px;
+        background: #fff; border: 1px solid var(--line);
+        border-radius: 20px; padding: 4px 10px; cursor: pointer;
+        font-family: inherit; font-size: 11px; font-weight: 600;
+        color: var(--primary);
+    }
+    .mode-pill i { font-size: 11px; }
+
+    .main {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(4px, 1vh, 10px) 14px env(safe-area-inset-bottom, 4px) 14px;
+        overflow: hidden;
+    }
+
+    /* ---------- Shared pane layout (chooser / easy mode) ---------- */
+    .pane {
+        width: 100%;
+        max-width: 460px;
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        scrollbar-width: none;
+    }
+    .pane::-webkit-scrollbar { display: none; }
+    .pane-inner {
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 0;
+    }
+    .pane-title {
+        font-size: 24px;
+        line-height: 1.2;
+        margin: 0 0 6px;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+    }
+    .pane-title.sm { font-size: 20px; margin-bottom: 4px; }
+    .pane-sub { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    /* ---------- Chooser ---------- */
+    .region-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .region-label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+    .seg {
+        display: inline-grid; grid-auto-flow: column;
+        background: var(--chip-bg); border-radius: 8px; padding: 2px;
+    }
+    .seg button {
+        border: none; background: transparent;
+        font-family: inherit; font-size: 12px; font-weight: 600;
+        color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+    .choice-card {
+        display: flex; align-items: center; gap: 14px;
+        width: 100%; text-align: left;
+        background: var(--panel);
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        cursor: pointer;
+        font-family: inherit; color: var(--text);
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .choice-card:hover { border-color: var(--primary); box-shadow: 0 4px 14px rgba(29,78,216,0.10); }
+    .choice-icon {
+        flex: 0 0 44px; height: 44px; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 18px; background: var(--ink); color: #fff;
+    }
+    .choice-card.calc .choice-icon { background: var(--chip-bg); color: var(--primary); }
+    .choice-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .choice-text strong { font-size: 16px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+    .choice-text > span { font-size: 13px; color: var(--muted); line-height: 1.45; }
+    .choice-go { color: var(--muted); font-size: 13px; }
+    .badge {
+        font-size: 10.5px; font-weight: 600; color: var(--gold);
+        background: rgba(185,138,46,0.12); border-radius: 20px; padding: 2px 8px;
+    }
+    .guide-link {
+        align-self: center; display: inline-flex; align-items: center; gap: 6px;
+        font-size: 13px; font-weight: 600; color: var(--primary);
+        text-decoration: none; padding: 6px;
+    }
+
+    /* ---------- Easy mode ---------- */
+    .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 12px 14px;
+        display: flex; flex-direction: column; gap: 10px;
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+    }
+    .step-head { display: flex; align-items: center; gap: 10px; }
+    .step-head h3 { margin: 0; font-size: 14.5px; color: var(--ink); }
+    .step-num {
+        width: 22px; height: 22px; border-radius: 50%;
+        background: var(--ink); color: #fff; font-size: 12px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .seg-big { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .seg-big button {
+        border: 1.5px solid var(--line); background: var(--chip-bg);
+        border-radius: var(--radius-sm); padding: 10px 8px;
+        font-family: inherit; font-size: 13.5px; font-weight: 600;
+        color: var(--muted); cursor: pointer;
+    }
+    .seg-big button[aria-checked="true"] { color: #fff; border-color: transparent; }
+    .seg-big button[data-e="add"][aria-checked="true"] { background: var(--add); }
+    .seg-big button[data-e="remove"][aria-checked="true"] { background: var(--remove); }
+    .desc { margin: 0; font-size: 13.5px; color: var(--text); line-height: 1.5; }
+    .hint { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+    .field-label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+
+    .amount-row { display: flex; gap: 8px; }
+    .amount-row select {
+        font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+        background: var(--chip-bg); border: 1.5px solid var(--line);
+        border-radius: var(--radius-sm); padding: 0 8px;
+    }
+    .amount-row input {
+        flex: 1; min-width: 0;
+        font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600;
+        color: var(--ink); background: #fff;
+        border: 1.5px solid var(--line); border-radius: var(--radius-sm);
+        padding: 10px 12px; outline: none;
+    }
+    .amount-row input:focus { border-color: var(--primary); }
+
+    .rchips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rchip {
+        flex: 1 1 0; min-width: 56px;
+        display: flex; flex-direction: column; align-items: center; gap: 1px;
+        border: 1.5px solid var(--line); background: var(--chip-bg);
+        border-radius: var(--radius-sm); padding: 8px 6px;
+        font-family: 'IBM Plex Mono', monospace; color: var(--ink); cursor: pointer;
+    }
+    .rchip b { font-size: 15px; }
+    .rchip small { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; color: var(--muted); }
+    .rchip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .rchip.active small { color: #B9C6DD; }
+
+    .other-rate { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+    .other-rate input {
+        width: 76px; text-align: center;
+        font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 16px;
+        padding: 6px; border: 1.5px solid var(--line); border-radius: 6px;
+        background: var(--chip-bg); color: var(--ink); outline: none;
+    }
+    .other-rate input:focus { border-color: var(--primary); }
+
+    .result {
+        background: var(--ink); color: #F4F6F9;
+        border-radius: var(--radius-md); padding: 16px 18px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+    }
+    .result-empty { font-size: 13.5px; color: #B9C6DD; line-height: 1.5; }
+    .res-key { display: flex; flex-direction: column; gap: 2px; }
+    .res-key span { font-size: 12.5px; color: #93A2BD; font-weight: 600; }
+    .res-key strong {
+        font-family: 'IBM Plex Mono', monospace; font-weight: 600;
+        font-size: clamp(28px, 9vw, 36px); letter-spacing: -0.01em; word-break: break-all;
+    }
+    .res-sentence { margin: 10px 0 0; font-size: 13.5px; line-height: 1.55; color: #DCE3EE; }
+    .res-rows {
+        margin-top: 12px; padding-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.12);
+        display: flex; flex-direction: column; gap: 5px;
+    }
+    .res-rows > div { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: #B9C6DD; }
+    .res-rows b { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #DCE3EE; }
+    .res-rows .tax b { color: #7DA3F5; }
+    .result.is-remove .res-rows .tax b { color: #D8B25E; }
+    .res-rows .is-key, .res-rows .is-key b { color: #fff; font-weight: 700; }
+    .res-warn {
+        margin-top: 12px; padding: 10px 12px; border-radius: var(--radius-sm);
+        background: rgba(216,178,94,0.14); color: #F1DFAE;
+        font-size: 12.5px; line-height: 1.5;
+    }
+    .link-btn {
+        align-self: center; background: none; border: none;
+        font-family: inherit; font-size: 13px; font-weight: 600;
+        color: var(--primary); cursor: pointer; padding: 6px;
+    }
+
+    /* ---------- Classic calculator (unchanged) ---------- */
+    .console {
+        width: 100%;
+        max-width: 460px;
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(6px, 1.6vh, 10px);
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+    .console::-webkit-scrollbar { display: none; }
+
+    .settings-bar {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: clamp(6px, 1.4vh, 9px) 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        box-shadow: 0 1px 3px rgba(11,31,58,0.04);
+        flex-shrink: 0;
+    }
+
+    .settings-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .rate-box {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    input#vatRate {
+        width: 46px;
+        text-align: center;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 600;
+        font-size: 13.5px;
+        padding: 3px;
+        border: 1.5px solid var(--line);
+        border-radius: 6px;
+        outline: none;
+        color: var(--ink);
+        background: var(--chip-bg);
+    }
+    input#vatRate:focus { border-color: var(--primary); }
+    .rate-box span { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+    .quick-rates { display: flex; gap: 5px; }
+    .chip {
+        border: 1.5px solid var(--line);
+        background: var(--chip-bg);
+        color: var(--muted);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+    .chip:hover { border-color: var(--primary); color: var(--primary); }
+    .chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+    .mode-toggle {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--chip-bg);
+        border-radius: 6px;
+        padding: 2px;
+    }
+    .mode-toggle .slider {
+        position: absolute;
+        top: 2px; bottom: 2px; left: 2px;
+        width: calc(50% - 2px);
+        border-radius: 4px;
+        background: var(--add);
+        transition: transform 0.2s cubic-bezier(.4,0,.2,1);
+        z-index: 0;
+    }
+    .mode-toggle.mode-remove .slider { transform: translateX(100%); background: var(--remove); }
+    .mode-toggle button {
+        position: relative; z-index: 1;
+        border: none; background: transparent;
+        padding: 5px 4px;
+        font-family: inherit; font-size: 11px; font-weight: 600;
+        color: var(--muted); cursor: pointer; border-radius: 4px;
+        transition: color 0.2s ease;
+    }
+    .mode-toggle.mode-add button[data-mode="add"],
+    .mode-toggle.mode-remove button[data-mode="remove"] { color: #fff; }
+
+    .display {
+        background: var(--ink);
+        color: #F4F6F9;
+        padding: clamp(16px, 3.4vh, 22px) 18px;
+        border-radius: var(--radius-md);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-shrink: 0;
+        min-height: clamp(96px, 20vh, 130px);
+        justify-content: center;
+    }
+
+    #mainDisplay {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: clamp(28px, 9.5vw, 38px);
+        font-weight: 600;
+        text-align: right;
+        word-break: break-all;
+        min-height: 42px;
+        letter-spacing: -0.01em;
+    }
+
+    #breakdown {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding-top: 6px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .breakdown-row {
+        display: flex; justify-content: space-between; align-items: baseline;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12.5px;
+    }
+    .breakdown-row .b-label {
+        color: #93A2BD; font-weight: 600;
+        text-transform: uppercase; font-size: 10.5px;
+        letter-spacing: 0.03em;
+    }
+    .breakdown-row.total .b-label,
+    .breakdown-row.total .b-val { color: #F4F6F9; font-weight: 700; font-size: 14.5px; }
+    .breakdown-row .b-val { color: #DCE3EE; }
+    .breakdown-row.vat-line .b-val { color: #7DA3F5; }
+    .mode-remove ~ .display .breakdown-row.vat-line .b-val { color: #D8B25E; }
+
+    .apply-btn {
+        border: none; color: #fff;
+        font-family: inherit; font-size: 12px; font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: clamp(7px, 1.8vh, 9px); border-radius: var(--radius-sm);
+        cursor: pointer; transition: all 0.15s ease;
+        background: var(--ink);
+        box-shadow: 0 2px 8px rgba(11,31,58,0.18);
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .apply-btn.remove-style { background: var(--remove); box-shadow: 0 2px 8px rgba(124,90,18,0.2); }
+    .apply-btn:active { transform: scale(0.98); }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    button.calc-btn {
+        padding: clamp(16px, 3.6vh, 20px) 4px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: clamp(17px, 5vw, 20px);
+        font-weight: 600;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.10s ease;
+    }
+    button.calc-btn:active { background: var(--chip-bg); transform: scale(0.96); }
+    button.calc-btn.operator { background: var(--chip-bg); color: var(--primary); font-weight: 700; }
+    button.calc-btn.action { color: var(--muted); font-size: 14.5px; font-weight: 600; font-family: inherit; }
+    button.calc-btn.equal { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 700; }
+    button.calc-btn.equal:hover { background: var(--primary-dark); }
+
+    /* ---------- SEO article ---------- */
+    .seo-section {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px 20px 60px 20px;
+    }
+    .seo-section h1 { font-size: 24px; color: var(--ink); margin-bottom: 12px; }
+    .seo-section h2 { font-size: 18px; color: var(--ink-2); margin-top: 34px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+    .seo-section h3 { font-size: 16px; color: var(--ink-2); margin: 22px 0 8px; }
+    .seo-section p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .seo-section ol, .seo-section ul { color: var(--muted); padding-left: 20px; line-height: 1.6; }
+    .seo-section li { margin-bottom: 10px; font-size: 15px; }
+    .seo-section strong { color: var(--ink); }
+    .seo-section .note { font-size: 13px; margin-top: 28px; padding: 12px 14px; background: var(--chip-bg); border-radius: var(--radius-sm); }
+    .seo-section .to-top { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none; }
+
+    .table-wrap {
+        overflow-x: auto;
+        margin: 14px 0 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--panel);
+    }
+    .seo-section table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+    .seo-section th, .seo-section td {
+        text-align: left; vertical-align: top;
+        padding: 9px 12px; border-bottom: 1px solid var(--line);
+        color: var(--text);
+    }
+    .seo-section th { background: var(--chip-bg); color: var(--ink); font-weight: 600; }
+    .seo-section tbody tr:last-child td { border-bottom: none; }
+
+    [dir="rtl"] .seo-section ol, [dir="rtl"] .seo-section ul { padding-left: 0; padding-right: 20px; }
+
+    @media (max-height: 640px) {
+        .buttons { gap: 6px; }
+        button.calc-btn { padding: 12px 4px; }
+        .console { gap: 5px; }
+    }
+
+    .rchip small { font-size: 10px; text-align: center; overflow-wrap: anywhere; }
+    .language-item { text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="app-view" id="top">
+    <div class="topbar">
+        <a href="../index.html" class="back-btn" id="backBtn" aria-label="Indietro" onclick="onBack(event)"><i class="fa-solid fa-chevron-left"></i></a>
+        <div class="brand">
+            <span class="dot"></span>
+            <span id="brandTitle">Analisi IVA</span>
+        </div>
+        <div class="top-actions">
+            <button type="button" class="mode-pill" id="modeSwitch" hidden onclick="switchMode()">
+                <i class="fa-solid fa-wand-magic-sparkles" id="modeSwitchIcon"></i>
+                <span id="modeSwitchLabel">Modalità facile</span>
+            </button>
+            <button type="button" id="lang-pill" onclick="openLangModal()" aria-label="Cambia lingua">
+                <span class="flag" style="font-size:13px;">🇮🇹</span>
+                <span class="code" style="font-size:10px; font-weight:700; text-transform:uppercase; color:#334155;">IT</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <!-- ============ CHOOSER ============ -->
+        <section class="pane" id="paneChooser" aria-labelledby="chooserTitle">
+            <div class="pane-inner">
+                <div>
+                    <h1 class="pane-title" id="chooserTitle">Calcolatore IVA online – web app gratuita</h1>
+                    <p class="pane-sub">Scegli come preferisci lavorare. Puoi cambiare in qualsiasi momento.</p>
+                </div>
+
+                <button type="button" class="choice-card easy" onclick="startMode('easy')">
+                    <span class="choice-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <span class="choice-text">
+                        <strong>Modalità facile <span class="badge" id="badgeEasy" hidden>Ultimo usato</span></strong>
+                        <span>Ti facciamo qualche domanda, tu rispondi. Linguaggio semplice, nessuna conoscenza fiscale necessaria.</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-right choice-go"></i>
+                </button>
+
+                <button type="button" class="choice-card calc" onclick="startMode('calc')">
+                    <span class="choice-icon"><i class="fa-solid fa-calculator"></i></span>
+                    <span class="choice-text">
+                        <strong>Calcolatore <span class="badge" id="badgeCalc" hidden>Ultimo usato</span></strong>
+                        <span>Tastierino classico con dettaglio in tempo reale di netto, IVA e totale.</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-right choice-go"></i>
+                </button>
+
+                <a href="#guide" class="guide-link">Leggi la guida su IVA e imposte <i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <!-- ============ EASY MODE ============ -->
+        <section class="pane" id="paneEasy" hidden aria-label="Modalità facile">
+            <div class="pane-inner">
+                <div>
+                    <h2 class="pane-title sm">Modalità facile</h2>
+                    <p class="pane-sub">Rispondi a tre semplici domande: ai calcoli pensiamo noi.</p>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">1</span><h3 id="q1">Cosa vuoi fare?</h3></div>
+                    <div class="seg-big" role="radiogroup" aria-labelledby="q1">
+                        <button type="button" role="radio" data-e="add" aria-checked="true" id="optAdd" onclick="setEasyMode('add')">Aggiungi IVA</button>
+                        <button type="button" role="radio" data-e="remove" aria-checked="false" id="optRemove" onclick="setEasyMode('remove')">Scorpora IVA</button>
+                    </div>
+                    <p class="desc" id="easyDesc"></p>
+                    <p class="hint">Non sei sicuro? Se sullo scontrino o sul preventivo c’è scritto “IVA inclusa”, l’IVA è già nel prezzo: scegli “Scorpora IVA”.</p>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">2</span><h3>Quanto costa?</h3></div>
+                    <label class="field-label" for="easyAmount" id="easyAmountLabel"></label>
+                    <div class="amount-row">
+                        <select id="easyCurrency" aria-label="Valuta" onchange="onEasyCurrency()">
+                            <option value="EUR">€ EUR</option>
+                            <option value="USD">$ USD</option>
+                            <option value="GBP">£ GBP</option>
+                        </select>
+                        <input id="easyAmount" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0,00" oninput="onEasyInput()">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="step-head"><span class="step-num">3</span><h3>Quale aliquota si applica?</h3></div>
+                    <div class="rchips" id="easyChips" role="group" aria-label="Aliquota in percentuale"></div>
+                    <div class="other-rate">
+                        <label for="easyRate">Oppure scrivi un’altra aliquota</label>
+                        <input id="easyRate" type="text" inputmode="decimal" autocomplete="off" oninput="onEasyRateInput()">
+                        <span>%</span>
+                    </div>
+                    <p class="hint">In Italia l’aliquota ordinaria è il 22%. Per alcuni beni e servizi si applicano le aliquote ridotte del 10%, del 5% e del 4%.</p>
+                </div>
+
+                <div class="result" id="easyResult" aria-live="polite">
+                    <div class="result-empty" id="resEmpty">Inserisci un importo qui sopra: il risultato apparirà qui.</div>
+                    <div id="resBody" hidden>
+                        <div class="res-key"><span id="resKeyLabel"></span><strong id="resKeyVal">0</strong></div>
+                        <p class="res-sentence" id="resSentence"></p>
+                        <div class="res-rows">
+                            <div id="rowNet"><span id="r1l"></span><b id="r1v">0</b></div>
+                            <div id="rowTax" class="tax"><span id="r2l"></span><b id="r2v">0</b></div>
+                            <div id="rowGross"><span id="r3l"></span><b id="r3v">0</b></div>
+                        </div>
+                        <div class="res-warn" id="resWarn" hidden></div>
+                    </div>
+                </div>
+
+                <button type="button" class="link-btn" onclick="resetEasy()">Ricomincia</button>
+            </div>
+        </section>
+
+        <!-- ============ CLASSIC CALCULATOR ============ -->
+        <div class="console" id="paneCalc" hidden>
+            <div class="settings-bar">
+                <div class="settings-top">
+                    <div class="rate-box">
+                        <input type="number" id="vatRate" value="22" min="0" max="100" step="any" oninput="onRateInput()" aria-label="Aliquota in percentuale">
+                        <span>%</span>
+                    </div>
+                    <div class="quick-rates" id="quickRates"></div>
+                </div>
+
+                <div class="mode-toggle mode-add" id="modeToggle">
+                    <div class="slider"></div>
+                    <button type="button" data-mode="add" onclick="setMode('add')" id="btnModeAdd">Aggiungi IVA</button>
+                    <button type="button" data-mode="remove" onclick="setMode('remove')" id="btnModeRemove">Scorpora IVA</button>
+                </div>
+            </div>
+
+            <div class="display">
+                <div id="mainDisplay">0</div>
+                <div id="breakdown">
+                    <div class="breakdown-row">
+                        <span class="b-label" id="lblRow1">Imponibile</span>
+                        <span class="b-val" id="valRow1">0</span>
+                    </div>
+                    <div class="breakdown-row vat-line">
+                        <span class="b-label" id="lblRow2">Importo IVA</span>
+                        <span class="b-val" id="valRow2">0</span>
+                    </div>
+                    <div class="breakdown-row total">
+                        <span class="b-label" id="lblRow3">Totale</span>
+                        <span class="b-val" id="valRow3">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="apply-btn" id="applyBtn" onclick="applyVat()">Usa risultato</button>
+
+            <div class="buttons">
+                <button class="calc-btn action" onclick="clearDisplay()">C</button>
+                <button class="calc-btn action" onclick="backspace()">⌫</button>
+                <button class="calc-btn action" onclick="calculatePercentage()">%</button>
+                <button class="calc-btn operator" onclick="appendOperator('/')">÷</button>
+
+                <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                <button class="calc-btn operator" onclick="appendOperator('*')">×</button>
+
+                <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                <button class="calc-btn operator" onclick="appendOperator('-')">-</button>
+
+                <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+
+                <button class="calc-btn" onclick="appendNumber('00')">00</button>
+                <button class="calc-btn" onclick="appendNumber('0')">0</button>
+                <button class="calc-btn" onclick="appendNumber('.')">,</button>
+                <button class="calc-btn equal" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============ SEO CONTENT ============ -->
+<article class="seo-section" id="guide">
+    <div>
+        <h2>Calcolatore online di IVA e sales tax: panoramica</h2>
+        <p>Benvenuto nel calcolatore IVA online di InvoiceLuxe. Pensato per freelance di tutto il mondo, aziende statunitensi che operano a livello internazionale, appaltatori e team finanziari, questo strumento offre calcoli immediati, in un solo passaggio, per l’imposta sul valore aggiunto (IVA/VAT) e la Goods &amp; Services Tax (GST) nel Regno Unito, nell’UE e sui mercati globali. Non hai dimestichezza con l’IVA? Scegli la <strong>Modalità facile</strong> in cima alla pagina: ti guidiamo passo dopo passo.</p>
+        <h3>Come calcolare l’IVA e gli importi equivalenti in dollari statunitensi (USD)</h3><ul>
+        <li><strong>Aggiungi IVA:</strong> Inserisci un prezzo netto in USD ($), GBP (£) o EUR (€) e premi “Aggiungi IVA” per calcolare l’importo lordo, IVA inclusa.</li>
+        <li><strong>Scorpora IVA:</strong> Inserisci un prezzo lordo e premi “Scorpora IVA” per ricavare a ritroso l’importo netto e la quota esatta di imposta.</li>
+        <li><strong>Aliquote standard e personalizzate:</strong> Il valore predefinito è l’aliquota ordinaria italiana del 22%, ma puoi modificarla facilmente per le aliquote ridotte (10%, 5%, 4%) o per le aliquote internazionali dallo 0% al 27%.</li>
+        </ul>
+        <h3>Un’importante regola di calcolo dell’IVA</h3><p>Per scorporare l’IVA da un prezzo lordo con aliquota del 20%, dividi il prezzo lordo per 1,20.</p><ul>
+        <li><strong>Calcolo corretto:</strong> 600 € lordi ÷ 1,20 = 500 € netti (100 € di IVA).</li>
+        <li><strong>Errore comune:</strong> Sottrarre il 20% da 600 € dà 480 €, un risultato matematicamente errato.</li>
+        </ul>
+        <h2>13 consigli di esperti per ottimizzare IVA e imposte aziendali</h2><p>Applicando queste 13 strategie fiscali collaudate, le aziende che operano a livello transfrontaliero e le imprese del Regno Unito e degli Stati Uniti possono risparmiare migliaia di euro l’anno:</p><ol>
+        <li><strong>Bollette del telefono cellulare:</strong> Recupera l’IVA sulla quota di uso aziendale delle bollette del cellulare.</li>
+        <li><strong>Costi dell’ufficio a casa:</strong> Recupera l’IVA su elettricità, riscaldamento, banda larga e affitto (dove è prevista l’IVA) in proporzione all’uso aziendale.</li>
+        <li><strong>Chilometraggio aziendale:</strong> Recupera l’IVA sulla quota di carburante dei viaggi di lavoro, con un registro dei chilometri corretto e le ricevute del carburante.</li>
+        <li><strong>Abbonamenti professionali:</strong> Recupera l’IVA su abbonamenti a pubblicazioni di settore, assicurazioni professionali e quote associative a organismi di categoria.</li>
+        <li><strong>Regola del 50% di IVA sul leasing auto:</strong> L’acquisto di un’auto non dà diritto al recupero dell’IVA se l’uso non è al 100% aziendale, mentre con il leasing è ammesso un recupero forfettario del 50% dell’IVA anche in caso di uso privato: di fatto, una rata di leasing su dodici è gratuita.</li>
+        <li><strong>Conto bancario dedicato all’IVA:</strong> Trasferisci l’IVA incassata direttamente su un conto separato per proteggere il capitale circolante e semplificare le dichiarazioni trimestrali.</li>
+        <li><strong>Recupero dell’IVA prima della registrazione:</strong> Le imprese appena registrate possono recuperare l’IVA sui beni materiali acquistati negli ultimi 4 anni e sulle fatture di servizi degli ultimi 6 mesi.</li>
+        <li><strong>Verifica annuale del Flat Rate Scheme:</strong> Verifica ogni anno se il regime forfettario è ancora adatto. Attenzione all’aliquota del 16,5% per i “limited cost trader”, che scatta se le spese per beni sono inferiori al 2% del fatturato totale.</li>
+        <li><strong>Ammortamento dei pannelli solari commerciali:</strong> Le imprese possono dedurre il 100% del costo dei pannelli solari commerciali con le First Year Capital Allowances (AIA fino a 1 milione di £ / circa 1,31 milioni di $) dall’imposta societaria, incassando per 25 anni anche i ricavi della Smart Export Guarantee (SEG).</li>
+        <li><strong>Tempistica strategica degli acquisti:</strong> Pianifica con strategia i grandi acquisti. Una spesa di 50.000 $ (50.000 £) in attrezzature comporta 10.000 $ (10.000 £) di IVA recuperabile: se perdi la scadenza della dichiarazione, il rimborso in contanti slitta fino a 3 mesi.</li>
+        <li><strong>Regime di cassa (Cash Accounting Scheme):</strong> Passare alla contabilità di cassa rinvia l’IVA dovuta fino all’incasso dal cliente, essenziale nei settori con cicli di pagamento lunghi.</li>
+        <li><strong>Postponed VAT Accounting (PVA):</strong> Scegli il PVA nelle dichiarazioni doganali per le importazioni, così da contabilizzare e recuperare l’IVA all’importazione nella stessa dichiarazione, senza alcun esborso netto alla frontiera.</li>
+        <li><strong>Recupero dell’IVA sui crediti inesigibili:</strong> Recupera l’IVA sui crediti non pagati dopo 6 mesi. Anche con il Flat Rate Scheme per cassa, le imprese possono comunque richiedere la differenza tra l’aliquota ordinaria del 20% e la propria percentuale forfettaria.</li>
+        </ol>
+        <h2>12 errori costosi su imposte e IVA da evitare</h2><ol>
+        <li><strong>Fatture non valide:</strong> Ricevute del POS, fatture proforma ed estratti conto non sono validi. Una fattura valida richiede indirizzo del fornitore, partita IVA, data, descrizione, importo netto, aliquota e imposta totale. (Le fatture semplificate sono ammesse fino a 250 £ / circa 325 $ IVA inclusa.)</li>
+        <li><strong>Confondere uso personale e aziendale:</strong> Mescolare spese personali e aziendali senza applicare le percentuali proporzionali di uso aziendale.</li>
+        <li><strong>Classificazioni errate nel regime forfettario:</strong> Applicare la percentuale forfettaria sbagliata quando l’attività d’impresa interessa più settori.</li>
+        <li><strong>Uso personale delle merci aziendali:</strong> Non contabilizzare l’IVA a debito quando merci o scorte aziendali (ad es. materiali edili, prodotti da forno) vengono usate a titolo personale.</li>
+        <li><strong>Equivoci sul momento impositivo (tax point):</strong> Per i servizi il momento impositivo coincide con l’ultimazione, la fattura o il pagamento. Emettere la fattura entro 14 giorni dal completamento del servizio fa coincidere il momento impositivo con la data della fattura.</li>
+        <li><strong>Lacune nella documentazione dei beni strumentali:</strong> Non conservare una documentazione cartacea impeccabile per le attrezzature importanti e per i recuperi su beni strumentali.</li>
+        <li><strong>Scadenze perse per il recupero sui crediti inesigibili:</strong> Il recupero sui crediti inesigibili può essere richiesto dopo 6 mesi, ma decade definitivamente dopo 4 anni e 6 mesi.</li>
+        <li><strong>Acquisti da conti personali non recuperati:</strong> Pagare spese aziendali da conti personali senza conservare una fattura IVA valida intestata all’azienda.</li>
+        <li><strong>Note di credito per i rimborsi non corrette:</strong> Rimborsare i clienti senza emettere una nota di credito IVA formale gonfia l’IVA complessivamente dovuta.</li>
+        <li><strong>Rappresentanza: personale o clienti:</strong> L’IVA è recuperabile sulle spese di intrattenimento del personale, ma rigorosamente non recuperabile su quelle per i clienti.</li>
+        <li><strong>Conservazione inadeguata dei documenti:</strong> Non conservare per il minimo richiesto di 6 anni la documentazione completa delle operazioni e fiscale.</li>
+        <li><strong>Dichiarazioni in ritardo per mancanza di liquidità:</strong> Presentare la dichiarazione in ritardo per problemi di cassa a breve termine comporta sanzioni doppie. Meglio presentarla in tempo e chiedere un piano di pagamento (Time to Pay, TTP).</li>
+        </ol>
+        <h2>Regole di registrazione: soglie IVA nel Regno Unito e nel mondo e nexus della sales tax USA</h2><p>Capire quando scatta l’obbligo di registrazione è fondamentale, sia per le imprese nazionali sia per le aziende internazionali che si espandono nei mercati di USA, Regno Unito e UE:</p><ul>
+        <li><strong>Soglia mobile di 90.000 £ (circa 118.000 $):</strong> La registrazione IVA nel Regno Unito è obbligatoria se il fatturato supera 90.000 £ in un qualsiasi periodo mobile di 12 mesi (non anno solare né fiscale). L’HMRC va informata entro 30 giorni.</li>
+        <li><strong>La regola prospettica dei 30 giorni:</strong> Se si prevede che il fatturato superi 90.000 £ solo nei prossimi 30 giorni (ad es. per la firma di un contratto da 100.000 $), la registrazione immediata è obbligatoria per legge.</li>
+        <li><strong>Modulo di eccezione VAT1:</strong> Picchi di vendite temporanei e non ricorrenti oltre 90.000 £ possono essere presentati per l’esenzione con il modulo HMRC VAT1.</li>
+        <li><strong>Sales tax USA e struttura globale dell’IVA:</strong> A differenza di Regno Unito e UE, gli Stati Uniti non hanno un’IVA nazionale. Ogni stato e ogni ente locale applica invece una sales tax (dallo 0% al 10,25%) sulla base di soglie di nexus economico (in genere 100.000 $ di vendite o 200 transazioni).</li>
+        <li><strong>Registrazione volontaria B2B:</strong> Registrarsi volontariamente sotto soglia conviene ai fornitori B2B, perché l’IVA sugli acquisti per attrezzature e costi operativi può essere recuperata per intero senza gravare sui clienti aziendali.</li>
+        </ul>
+        <h2>Operazioni a aliquota zero e operazioni esenti: esempio pratico</h2><ul>
+        <li><strong>Aliquota zero (0% di IVA):</strong> Generi alimentari di base, libri, abbigliamento per bambini, trasporto pubblico ed esportazioni. L’IVA sulle spese aziendali può essere recuperata per intero.</li>
+        <li><strong>Esente (nessuna IVA):</strong> Servizi finanziari, assicurazioni, sanità e istruzione. L’IVA sulle spese non può essere recuperata.</li>
+        </ul>
+        <div class="table-wrap"><table><thead><tr><th scope="col">Indicatore / scenario</th><th scope="col">Azienda A (aliquota zero / alimentari)</th><th scope="col">Azienda B (esente / finanza)</th></tr></thead><tbody>
+        <tr><th scope="row">Spese operative annue</th><td>50.000 € + 20% di IVA (10.000 €)</td><td>50.000 € + 20% di IVA (10.000 €)</td></tr>
+        <tr><th scope="row">Imposta applicata ai clienti</th><td>0% (0 €)</td><td>Esente (0 €)</td></tr>
+        <tr><th scope="row">IVA a credito recuperabile</th><td>+10.000 € (recupero totale)</td><td>0 € (costo perso)</td></tr>
+        <tr><th scope="row">Vantaggio finanziario netto</th><td>+10.000 € recuperati</td><td>0 € recuperati</td></tr>
+        </tbody></table></div>
+        <h2>Tabella comparativa mondiale di IVA e sales tax (in dollari USA)</h2><p>Confronto tra aliquote standard e soglie di registrazione nei principali mercati mondiali:</p>
+        <div class="table-wrap"><table><thead><tr><th scope="col">Paese e valuta</th><th scope="col">Aliquota standard</th><th scope="col">Soglia di registrazione (locale e circa in USD)</th></tr></thead><tbody>
+        <tr><td>🇬🇧 Regno Unito (GBP)</td><td>20%</td><td>90.000 £ (~118.000 $ / 105.000 €)</td></tr>
+        <tr><td>🇺🇸 Stati Uniti (USD)</td><td>Nessuna IVA (sales tax 0–10,25%)</td><td>Nexus economico statale (in genere 100.000 $ di vendite)</td></tr>
+        <tr><td>🇩🇪 Germania (EUR)</td><td>19%</td><td>22.000 € (~24.000 $)</td></tr>
+        <tr><td>🇫🇷 Francia (EUR)</td><td>20%</td><td>37.500 € / 85.000 € (~41.000 – 93.000 $)</td></tr>
+        <tr><td>🇮🇪 Irlanda (EUR)</td><td>23%</td><td>40.000 € / 80.000 € (~44.000 – 88.000 $)</td></tr>
+        <tr><td>🇳🇱 Paesi Bassi (EUR)</td><td>21%</td><td>20.000 € (~22.000 $)</td></tr>
+        <tr><td>🇪🇸 Spagna (EUR)</td><td>21%</td><td>Nessuna (registrazione immediata)</td></tr>
+        <tr><td>🇮🇹 Italia (EUR)</td><td>22%</td><td>85.000 € (~93.000 $)</td></tr>
+        <tr><td>🇸🇪 Svezia (SEK)</td><td>25%</td><td>80.000 SEK (~7.800 $)</td></tr>
+        <tr><td>🇭🇺 Ungheria (HUF)</td><td>27% (la più alta dell’UE)</td><td>Nessuna</td></tr>
+        <tr><td>🇱🇺 Lussemburgo (EUR)</td><td>17% (la più bassa dell’UE)</td><td>35.000 € (~38.500 $)</td></tr>
+        <tr><td>🇨🇭 Svizzera (CHF)</td><td>8,1%</td><td>100.000 CHF (~118.000 $)</td></tr>
+        <tr><td>🇦🇺 Australia (AUD)</td><td>10% GST</td><td>75.000 AUD (~50.000 $)</td></tr>
+        <tr><td>🇨🇦 Canada (CAD)</td><td>5% GST (+ imposte provinciali)</td><td>30.000 CAD (~22.000 $)</td></tr>
+        <tr><td>🇦🇪 Emirati Arabi Uniti (AED)</td><td>5%</td><td>375.000 AED (~102.000 $)</td></tr>
+        <tr><td>🇸🇬 Singapore (SGD)</td><td>9% GST</td><td>1.000.000 SGD (~770.000 $)</td></tr>
+        <tr><td>🇯🇵 Giappone (JPY)</td><td>10%</td><td>10.000.000 ¥ (~68.000 $)</td></tr>
+        <tr><td>🇮🇳 India (INR)</td><td>18% GST</td><td>4.000.000 ₹ (~48.000 $)</td></tr>
+        <tr><td>🇿🇦 Sudafrica (ZAR)</td><td>15%</td><td>1.000.000 ZAR (~56.000 $)</td></tr>
+        <tr><td>🇧🇷 Brasile (BRL)</td><td>~34% (combinata)</td><td>Varia a seconda della giurisdizione</td></tr>
+        </tbody></table></div>
+        <h2>Domande frequenti e software compatibile con l’MTD</h2>
+        <h3>Come si scorpora il 20% di IVA da un prezzo?</h3><p>Dividi il prezzo IVA inclusa per 1,20. Esempio: 600 ÷ 1,20 = 500, quindi 100 del totale sono IVA. Sottrarre il 20% da 600 dà 480, che è sbagliato.</p>
+        <h3>Le aziende statunitensi possono recuperare l’IVA sulle spese sostenute nel Regno Unito o nell’UE?</h3><p>Sì. Le imprese estere possono recuperare l’IVA sulle spese aziendali ammissibili (ad es. fiere, viaggi, software) tramite la procedura della 13ª direttiva o altri meccanismi di rimborso transfrontaliero.</p>
+        <h3>Come vengono trattate le esportazioni digitali verso l’UE?</h3><p>Le vendite B2C di servizi digitali a consumatori dell’UE richiedono l’applicazione dell’IVA del paese di destinazione tramite lo sportello unico (One Stop Shop, OSS). Le esportazioni di beni fisici fuori dal Regno Unito sono a aliquota 0%.</p>
+        <h3>Quale software è compatibile con l’MTD?</h3><p>Per la conformità a Making Tax Digital (MTD) serve un software contabile compatibile con le API, come Xero, QuickBooks, FreeAgent o Sage (15–50 $ al mese).</p>
+        <h3>Breve storia dell’IVA britannica</h3><p>Introdotta nel 1973 al posto della Purchase Tax, l’IVA britannica genera ogni anno oltre 170 miliardi di sterline (più di 220 miliardi di dollari). L’aliquota standard è passata dal 17,5% al 20% il 4 gennaio 2011.</p>
+        <p class="note">Questa pagina offre solo informazioni generali e non costituisce consulenza fiscale, legale o finanziaria. Aliquote e soglie di registrazione cambiano: verifica i valori aggiornati con la tua autorità fiscale o con un consulente qualificato prima di registrarti o presentare dichiarazioni.</p>
+        <a class="to-top" href="#top">↑ Torna al calcolatore</a>
+    </div>
+</article>
+
+<!-- LANGUAGE MODAL (links to the localized pages) -->
+<div id="language-modal" style="position:fixed; inset:0; background:rgba(11,31,58,0.45); backdrop-filter:blur(4px); z-index:20000; display:none; flex-direction:column; justify-content:flex-end;" onclick="if(event.target===this)closeLangModal()">
+  <div style="background:#fff; border-radius:22px 22px 0 0; display:flex; flex-direction:column; max-height:85vh;">
+    <div style="border-bottom:1px solid #E1E6EE; padding:18px 20px; display:flex; align-items:center; justify-content:space-between;">
+      <div style="font-size:14px; font-weight:700; color:#0B1F3A; text-transform:uppercase; letter-spacing:0.03em;">Seleziona la lingua</div>
+      <button onclick="closeLangModal()" aria-label="Chiudi" style="width:32px; height:32px; border-radius:50%; background:#EEF1F6; border:none; color:#0B1F3A; font-size:14px; cursor:pointer;">✕</button>
+    </div>
+    <div style="flex:1; overflow-y:auto; padding:16px 20px;"><div id="language-list"></div></div>
+  </div>
+</div>
+
+<script>
+const L = {"code": "it", "locale": "it-IT", "dec": ",", "ui": {"easyName": "Modalità facile", "calcName": "Calcolatore"}, "easy": {"intro": "Rispondi a tre semplici domande: ai calcoli pensiamo noi.", "q1": "Cosa vuoi fare?", "add": "Aggiungi IVA", "remove": "Scorpora IVA", "addDesc": "Conosci il prezzo senza IVA. Calcoliamo il totale.", "removeDesc": "Il prezzo comprende già l’IVA. Calcoliamo il prezzo senza IVA (lo “scorporo”).", "hint": "Non sei sicuro? Se sullo scontrino o sul preventivo c’è scritto “IVA inclusa”, l’IVA è già nel prezzo: scegli “Scorpora IVA”.", "q2": "Quanto costa?", "amtAdd": "Prezzo senza IVA (imponibile)", "amtRemove": "Totale IVA inclusa", "q3": "Quale aliquota si applica?", "other": "Oppure scrivi un’altra aliquota", "rateHint": "In Italia l’aliquota ordinaria è il 22%. Per alcuni beni e servizi si applicano le aliquote ridotte del 10%, del 5% e del 4%.", "emptyAmount": "Inserisci un importo qui sopra: il risultato apparirà qui.", "emptyRate": "Inserisci un’aliquota tra 0% e 100% per vedere il risultato.", "pre": "Prezzo senza IVA", "inc": "Totale IVA inclusa", "name": "IVA", "taxRow": "IVA ({rate}%)", "reset": "Ricomincia", "sentAdd": "{net} + {tax} di {name} ({rate}%) = {gross}", "sentRemove": "{gross} ÷ {div} = {net}. Significa che {tax} del totale sono {name}.", "sentZeroAdd": "Con aliquota 0% non c’è {name} da aggiungere, quindi il totale resta {gross}.", "sentZeroRemove": "Con aliquota 0% nel prezzo non c’è {name}, quindi resta {net}.", "warn": "Perché dividere? L’{name} si calcola sul prezzo senza {name} (l’imponibile). Togliere semplicemente il {rate}% dal totale dà un risultato sbagliato: {gross} meno il {rate}% fa {wrong}, non {net}."}, "calc": {"brand": "Analisi IVA", "modeAdd": "Aggiungi IVA", "modeRemove": "Scorpora IVA", "net": "Imponibile", "vat": "Importo IVA", "total": "Totale", "apply": "Usa risultato"}, "rates": {"def": 22, "calc": [4, 5, 10, 22], "easy": [[22, "Ordinaria"], [10, "Ridotta"], [5, "Ridotta"], [4, "Minima"]]}, "langs": [{"code": "en", "flag": "🇬🇧", "name": "English", "href": "../calculator.html?lang=en"}, {"code": "de", "flag": "🇩🇪", "name": "Deutsch", "href": "../de/calculator.html"}, {"code": "nl", "flag": "🇳🇱", "name": "Nederlands", "href": "../nl/calculator.html"}, {"code": "it", "flag": "🇮🇹", "name": "Italiano", "href": "calculator.html"}, {"code": "fr", "flag": "🇫🇷", "name": "Français", "href": "../fr/calculator.html"}, {"code": "es", "flag": "🇪🇸", "name": "Español", "href": "../es/calculator.html"}]};
+const DEC = L.dec;
+const LS_LANG = 'elite_lang_v1';
+const LS_MODE = 'il_mode_v1';
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e) { return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e) {} }
+function el(id){ return document.getElementById(id); }
+function fill(t, m){ return t.replace(/\{(\w+)\}/g, (x, k) => (k in m ? m[k] : x)); }
+
+let uiMode = 'chooser';
+const easy = { mode: 'add', rate: L.rates.def, currency: 'EUR' };
+const nfPlain = new Intl.NumberFormat(L.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+function fmtRate(r){ return String(parseFloat(Number(r).toFixed(4))).replace('.', DEC); }
+function fmtDivisor(r){ return (1 + r / 100).toFixed(4).replace(/0{1,2}$/, '').replace('.', DEC); }
+
+// Accepts "1.250,50", "1250,50", "1,250.50", "1250.50", "600"
+function parseNum(str){
+  let s = String(str).replace(/[^\d.,]/g, '');
+  if (!/\d/.test(s)) return NaN;
+  const d = (s.match(/\./g) || []).length, c = (s.match(/,/g) || []).length;
+  let dec = null;
+  if (d && c) dec = s.lastIndexOf('.') > s.lastIndexOf(',') ? '.' : ',';
+  else if (c === 1) dec = ',';
+  else if (d === 1 && !/\.\d{3}$/.test(s)) dec = '.';
+  if (dec) {
+    const i = s.lastIndexOf(dec);
+    s = s.slice(0, i).replace(/[.,]/g, '') + '.' + s.slice(i + 1).replace(/[.,]/g, '');
+  } else {
+    s = s.replace(/[.,]/g, '');
+  }
+  const n = parseFloat(s);
+  return isNaN(n) ? NaN : n;
+}
+
+/* ---------- Language modal ---------- */
+function rememberLang(code){ lsSet(LS_LANG, code); }
+function renderLangList(){
+  el('language-list').innerHTML = L.langs.map(l => {
+    const cur = l.code === L.code;
+    return `<a class="language-item ${cur ? 'selected' : ''}" href="${l.href}" hreflang="${l.code}" onclick="rememberLang('${l.code}')" style="display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:12px; border:1.5px solid #E1E6EE; margin-bottom:6px; cursor:pointer; ${cur ? 'border-color:#1D4ED8; background:rgba(29,78,216,0.05);' : ''}">
+      <span style="font-size:18px;">${l.flag}</span>
+      <span style="flex:1; font-size:13px; font-weight:600; color:#0B1F3A;">${l.name}</span>
+      <span style="font-size:11.5px; font-weight:700; color:#1D4ED8; text-transform:uppercase;">${l.code}</span>
+      ${cur ? '<i class="fa-solid fa-check" style="color:#1D4ED8; font-size:12px;"></i>' : ''}
+    </a>`;
+  }).join('');
+}
+function openLangModal(){ renderLangList(); el('language-modal').style.display = 'flex'; }
+function closeLangModal(){ el('language-modal').style.display = 'none'; }
+
+/* ---------- Panes ---------- */
+function showPane(mode){
+  uiMode = mode;
+  el('paneChooser').hidden = mode !== 'chooser';
+  el('paneEasy').hidden = mode !== 'easy';
+  el('paneCalc').hidden = mode !== 'calc';
+
+  const sw = el('modeSwitch');
+  sw.hidden = mode === 'chooser';
+  if (!sw.hidden) {
+    const toEasy = mode === 'calc';
+    el('modeSwitchLabel').textContent = toEasy ? L.ui.easyName : L.ui.calcName;
+    el('modeSwitchIcon').className = toEasy ? 'fa-solid fa-wand-magic-sparkles' : 'fa-solid fa-calculator';
+  }
+  if (mode === 'chooser') refreshBadges();
+  if (mode === 'easy') refreshEasy();
+  const pane = mode === 'chooser' ? el('paneChooser') : mode === 'easy' ? el('paneEasy') : el('paneCalc');
+  pane.scrollTop = 0;
+}
+function startMode(mode){ lsSet(LS_MODE, mode); showPane(mode); }
+function switchMode(){ startMode(uiMode === 'easy' ? 'calc' : 'easy'); }
+function onBack(e){ if (uiMode !== 'chooser') { e.preventDefault(); showPane('chooser'); } }
+function refreshBadges(){
+  const last = lsGet(LS_MODE);
+  el('badgeEasy').hidden = last !== 'easy';
+  el('badgeCalc').hidden = last !== 'calc';
+}
+
+/* ---------- Easy Mode ---------- */
+function renderEasyChips(){
+  el('easyChips').innerHTML = L.rates.easy.map(c => `
+    <button type="button" class="rchip" data-rate="${c[0]}" aria-pressed="false" onclick="setEasyRate(${c[0]})">
+      <b>${fmtRate(c[0])}%</b>${c[1] ? `<small>${c[1]}</small>` : ''}
+    </button>`).join('');
+  syncEasyChips();
+}
+function syncEasyChips(){
+  document.querySelectorAll('#easyChips .rchip').forEach(c => {
+    const on = parseFloat(c.dataset.rate) === easy.rate;
+    c.classList.toggle('active', on);
+    c.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+function syncEasyModeUI(){
+  const E = L.easy, isAdd = easy.mode === 'add';
+  el('optAdd').setAttribute('aria-checked', isAdd ? 'true' : 'false');
+  el('optRemove').setAttribute('aria-checked', isAdd ? 'false' : 'true');
+  el('easyDesc').textContent = isAdd ? E.addDesc : E.removeDesc;
+  el('easyAmountLabel').textContent = isAdd ? E.amtAdd : E.amtRemove;
+}
+function setEasyMode(m){ easy.mode = m; syncEasyModeUI(); refreshEasy(); }
+function setEasyRate(v){
+  easy.rate = v;
+  el('easyRate').value = fmtRate(v);
+  syncEasyChips();
+  refreshEasy();
+}
+function onEasyRateInput(){
+  const inp = el('easyRate');
+  const v = inp.value.replace(/[^\d.,]/g, '').slice(0, 7);
+  if (v !== inp.value) inp.value = v;
+  easy.rate = parseNum(v);
+  syncEasyChips();
+  refreshEasy();
+}
+function onEasyCurrency(){ easy.currency = el('easyCurrency').value; refreshEasy(); }
+function onEasyInput(){
+  const inp = el('easyAmount');
+  const v = inp.value.replace(/[^\d.,]/g, '').slice(0, 18);
+  if (v !== inp.value) inp.value = v;
+  refreshEasy();
+}
+
+function refreshEasy(){
+  const E = L.easy;
+  const amount = parseNum(el('easyAmount').value);
+  const rate = easy.rate;
+  const box = el('easyResult'), empty = el('resEmpty'), body = el('resBody');
+
+  if (isNaN(rate) || rate < 0 || rate > 100) {
+    empty.textContent = E.emptyRate; empty.hidden = false; body.hidden = true; return;
+  }
+  if (isNaN(amount) || amount <= 0 || amount > 999999999999) {
+    empty.textContent = E.emptyAmount; empty.hidden = false; body.hidden = true; return;
+  }
+
+  // Work in whole cents so the parts always add up exactly
+  const cents = Math.round(amount * 100);
+  let net, tax, gross;
+  if (easy.mode === 'add') {
+    net = cents;
+    tax = Math.round(net * rate / 100);
+    gross = net + tax;
+  } else {
+    gross = cents;
+    net = Math.round(gross / (1 + rate / 100));
+    tax = gross - net;
+  }
+
+  const nf = new Intl.NumberFormat(L.locale, { style: 'currency', currency: easy.currency });
+  const fmt = c => nf.format(c / 100);
+  const rs = fmtRate(rate);
+  const isAdd = easy.mode === 'add';
+  const wrong = Math.round(gross * (1 - rate / 100));
+  const map = { net: fmt(net), tax: fmt(tax), gross: fmt(gross), rate: rs, name: E.name, div: fmtDivisor(rate), wrong: fmt(wrong) };
+
+  el('resKeyLabel').textContent = isAdd ? E.inc : E.pre;
+  el('resKeyVal').textContent = fmt(isAdd ? gross : net);
+
+  let sentence;
+  if (rate === 0) sentence = fill(isAdd ? E.sentZeroAdd : E.sentZeroRemove, map);
+  else sentence = fill(isAdd ? E.sentAdd : E.sentRemove, map);
+  el('resSentence').textContent = sentence.replace(/\.\.$/, '.');
+
+  el('r1l').textContent = E.pre;
+  el('r2l').textContent = fill(E.taxRow, map);
+  el('r3l').textContent = E.inc;
+  el('r1v').textContent = map.net;
+  el('r2v').textContent = map.tax;
+  el('r3v').textContent = map.gross;
+  el('rowNet').classList.toggle('is-key', !isAdd);
+  el('rowGross').classList.toggle('is-key', isAdd);
+
+  const warn = el('resWarn');
+  if (!isAdd && rate > 0) { warn.textContent = fill(E.warn, map); warn.hidden = false; }
+  else warn.hidden = true;
+
+  box.classList.toggle('is-remove', !isAdd);
+  empty.hidden = true;
+  body.hidden = false;
+}
+
+function resetEasy(){
+  el('easyAmount').value = '';
+  easy.mode = 'add';
+  easy.rate = L.rates.def;
+  el('easyRate').value = fmtRate(easy.rate);
+  syncEasyModeUI();
+  syncEasyChips();
+  refreshEasy();
+  el('paneEasy').scrollTop = 0;
+}
+
+/* ---------- Classic calculator ---------- */
+const mainDisplay = el('mainDisplay');
+const breakdown = el('breakdown');
+const modeToggle = el('modeToggle');
+let currentExpression = '';
+let vatMode = 'add';
+
+function renderCalcChips(){
+  el('quickRates').innerHTML = L.rates.calc.map(v =>
+    `<button type="button" class="chip" data-rate="${v}" onclick="selectRate(${v})">${fmtRate(v)}%</button>`
+  ).join('');
+  onRateInput();
+}
+
+// raw expression (uses "."), shown with the local decimal mark
+function updateDisplay(value){ mainDisplay.innerText = String(value || '0').replace(/\./g, DEC); }
+function isPlainNumber(str){ return /^\d+(\.\d*)?$/.test(str) || /^\.\d*$/.test(str); }
+function formatCurrency(num){ return nfPlain.format(num); }
+
+function refreshBreakdown(){
+  const t = L.calc;
+  if (!isPlainNumber(currentExpression) || currentExpression === '' || currentExpression === '.') {
+    breakdown.style.display = 'none';
+    return;
+  }
+  const value = parseFloat(currentExpression);
+  const vatRate = parseFloat(el('vatRate').value) || 0;
+  if (isNaN(value)) { breakdown.style.display = 'none'; return; }
+  const rs = fmtRate(vatRate);
+
+  let base, vatAmt, total;
+  if (vatMode === 'add') {
+    base = value;
+    vatAmt = base * (vatRate / 100);
+    total = base + vatAmt;
+    el('lblRow1').innerText = t.net;
+    el('lblRow2').innerText = `${t.vat} (+${rs}%)`;
+    el('lblRow3').innerText = t.total;
+  } else {
+    total = value;
+    base = total / (1 + (vatRate / 100));
+    vatAmt = total - base;
+    el('lblRow1').innerText = t.total;
+    el('lblRow2').innerText = `${t.vat} (-${rs}%)`;
+    el('lblRow3').innerText = t.net;
+  }
+  el('valRow1').innerText = formatCurrency(vatMode === 'add' ? base : total);
+  el('valRow2').innerText = formatCurrency(vatAmt);
+  el('valRow3').innerText = formatCurrency(vatMode === 'add' ? total : base);
+  breakdown.style.display = 'flex';
+}
+
+function appendNumber(num){
+  if (currentExpression === '0') {
+    if (num === '0' || num === '00') return;
+    if (num !== '.') currentExpression = '';
+  }
+  if (num === '.') {
+    const lastBlock = currentExpression.split(/[+\-*/]/).pop();
+    if (lastBlock.includes('.')) return;
+  }
+  currentExpression += num;
+  updateDisplay(currentExpression);
+  refreshBreakdown();
+}
+function appendOperator(operator){
+  if (currentExpression === '') return;
+  const lastChar = currentExpression.slice(-1);
+  if (['+', '-', '*', '/'].includes(lastChar)) currentExpression = currentExpression.slice(0, -1);
+  currentExpression += operator;
+  updateDisplay(currentExpression);
+  refreshBreakdown();
+}
+function clearDisplay(){
+  currentExpression = '';
+  updateDisplay('0');
+  breakdown.style.display = 'none';
+}
+function backspace(){
+  currentExpression = currentExpression.slice(0, -1);
+  updateDisplay(currentExpression);
+  refreshBreakdown();
+}
+function safeEval(expr){
+  if (!/^[0-9+\-*/.]+$/.test(expr)) throw new Error('invalid');
+  return Function(`"use strict"; return (${expr})`)();
+}
+function calculatePercentage(){
+  if (currentExpression === '') return;
+  try {
+    let result = safeEval(currentExpression) / 100;
+    result = Math.round(result * 100000000) / 100000000;
+    currentExpression = result.toString();
+    updateDisplay(currentExpression);
+    refreshBreakdown();
+  } catch (e) {
+    updateDisplay('Error');
+    setTimeout(clearDisplay, 1200);
+  }
+}
+function calculate(){
+  if (currentExpression === '') return;
+  try {
+    let result = safeEval(currentExpression);
+    if (!isFinite(result)) throw new Error('inf');
+    result = Math.round(result * 100000000) / 100000000;
+    currentExpression = result.toString();
+    updateDisplay(currentExpression);
+    refreshBreakdown();
+  } catch (e) {
+    updateDisplay('Error');
+    setTimeout(clearDisplay, 1200);
+  }
+}
+function setMode(mode){
+  vatMode = mode;
+  modeToggle.classList.toggle('mode-add', mode === 'add');
+  modeToggle.classList.toggle('mode-remove', mode === 'remove');
+  el('applyBtn').classList.toggle('remove-style', mode === 'remove');
+  refreshBreakdown();
+}
+function selectRate(rate){
+  el('vatRate').value = rate;
+  document.querySelectorAll('#quickRates .chip').forEach(c => {
+    c.classList.toggle('active', parseFloat(c.dataset.rate) === rate);
+  });
+  refreshBreakdown();
+}
+function onRateInput(){
+  const val = parseFloat(el('vatRate').value);
+  document.querySelectorAll('#quickRates .chip').forEach(c => {
+    c.classList.toggle('active', parseFloat(c.dataset.rate) === val);
+  });
+  refreshBreakdown();
+}
+function applyVat(){
+  if (currentExpression === '') return;
+  calculate();
+  const value = parseFloat(currentExpression);
+  const vatRate = parseFloat(el('vatRate').value) || 0;
+  if (isNaN(value)) return;
+  const result = vatMode === 'add' ? value + value * (vatRate / 100) : value / (1 + (vatRate / 100));
+  currentExpression = parseFloat(result.toFixed(2)).toString();
+  mainDisplay.innerText = formatCurrency(result);
+  refreshBreakdown();
+}
+
+/* ---------- Init ---------- */
+el('easyAmount').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
+el('easyAmount').addEventListener('change', () => {
+  if (!el('resBody').hidden) el('easyResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+el('vatRate').value = L.rates.def;
+el('easyCurrency').value = easy.currency;
+el('easyRate').value = fmtRate(easy.rate);
+renderCalcChips();
+renderEasyChips();
+syncEasyModeUI();
+showPane('chooser');
+</script>
+</body>
+</html>
