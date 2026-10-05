@@ -130,6 +130,14 @@ tr:last-child td{border-bottom:0}
 
 const head = (title, desc, url, extra = '', img = '') => `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PQ41DBEN71');
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
