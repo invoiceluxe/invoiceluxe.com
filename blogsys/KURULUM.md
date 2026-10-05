@@ -1,4 +1,4 @@
-# Invoice Luxe Blog Sistemi (Netlify) - Kurulum
+# Invoice Luxe Blog Sistemi (Vercel + GitHub) - Kurulum
 
 ## 1. Dosyaları siteye ekle (sitenin kök klasörüne)
 - build.js
@@ -7,12 +7,12 @@
 - content/blog/       (makaleler buraya)
 - .gitignore          (blog/ ve sitemap-blog.xml build sırasında üretilir)
 
-ÖNEMLİ: Sitenin Netlify'a **GitHub (Git) üzerinden** bağlı olması gerekiyor.
+ÖNEMLİ: Sitenin Vercel'e **GitHub (Git) üzerinden** bağlı olması gerekiyor.
 Zip'i sürükle-bırak ile yüklüyorsan build ve zamanlayıcı çalışmaz.
 Sitede şu an /blog/ klasörü yoksa çakışma olmaz (varsa adını değiştir).
 
 ## 2. Build Hook oluştur
-Netlify > Site configuration > Build & deploy > Build hooks > Add build hook
+Vercel > Project Settings > Git > Deploy Hooks > Create Hook
 (ad: daily, branch: main) > çıkan URL'yi kopyala.
 
 ## 3. Ortam değişkeni
@@ -46,9 +46,9 @@ Dosyanın başı:
 - Dosya adı _ ile başlarsa yok sayılır.
 
 ## 6. Her gün otomatik yayın
-Zamanlayıcı her gün 05:00 UTC'de build'i tetikler (Netlify Scheduled Function).
+Zamanlayıcı her gün 05:00 UTC'de build'i tetikler (GitHub Actions + Vercel Deploy Hook).
 Saati değiştirmek için daily-build.mjs içindeki '0 5 * * *' değerini düzenle.
-Netlify > Functions bölümünde "daily-build" görünmeli.
+GitHub Actions içindeki günlük workflow çalışmalı ve Vercel Deploy Hook secret doğru ayarlanmış olmalı.
 
 ## 7. Araçlar ve yönlendirme (tools.json)
 7 araç tools.json içinde tanımlı (invoice, discount, vat, pdf, sign, tax, pdftext).
@@ -75,7 +75,7 @@ site-snippets/buttons.html içindeki bloğu İngilizce ana sayfaya ve Tools sayf
 
 ## 11. Görseller klasörü ve tarih ayarı
 - images/blog/ klasörünü de sitenin ana klasörüne koy (30 kapak/örnek kartı + 4 gerçek ekran görüntüsü).
-- İlk batch 15 makale, 12 Ekim 2026'dan başlıyor (hafta içi her gün 1 makale, 30 Ekim'de bitiyor).
+- İlk batch 15 makale, 5 Ekim 2026'dan başlıyor (hafta içi her gün 1 makale, 30 Ekim'de bitiyor).
 - Yayına çıkış gününü değiştirmek için (örnek: 19 Ekim'den başlasın):
       node reschedule.js 2026-10-19
   Hafta sonu dahil her gün yayın için sona 7 ekle:  node reschedule.js 2026-10-19 7

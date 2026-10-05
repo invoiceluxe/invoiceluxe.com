@@ -1,4 +1,4 @@
-# Her gün 05:10 UTC'de Vercel'i yeniden build ettirir; tarihi gelen makaleler yayına çıkar.
+# Her gün 05:10 UTC'de Vercel Deploy Hook ile yeniden build edilir; tarihi gelen makaleler yayına çıkar.
 name: Daily Vercel deploy
 on:
   schedule:
