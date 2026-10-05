@@ -1,0 +1,25 @@
+{
+  "framework": null,
+  "buildCommand": "node build.js",
+  "outputDirectory": ".",
+  "redirects": [
+    { "source": "/demo", "destination": "/video-create-invoice.html", "permanent": false },
+    { "source": "/video-demo", "destination": "/video-create-invoice.html", "permanent": false },
+    { "source": "/video/create-invoice", "destination": "/video-create-invoice.html", "permanent": false },
+    { "source": "/video/create-invoice/", "destination": "/video-create-invoice.html", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/content/:path*", "destination": "/404-not-found" },
+    { "source": "/netlify/:path*", "destination": "/404-not-found" },
+    { "source": "/blogsys/:path*", "destination": "/404-not-found" },
+    { "source": "/build.js", "destination": "/404-not-found" },
+    { "source": "/reschedule.js", "destination": "/404-not-found" }
+  ],
+  "headers": [
+    { "source": "/sw.js", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+      { "key": "Service-Worker-Allowed", "value": "/" } ] },
+    { "source": "/manifest.json", "headers": [{ "key": "Content-Type", "value": "application/manifest+json" }] },
+    { "source": "/manifest.webmanifest", "headers": [{ "key": "Content-Type", "value": "application/manifest+json" }] }
+  ]
+}

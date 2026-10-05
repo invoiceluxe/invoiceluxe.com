@@ -1,0 +1,11 @@
+# Her gün 05:10 UTC'de Vercel'i yeniden build ettirir; tarihi gelen makaleler yayına çıkar.
+name: Daily Vercel deploy
+on:
+  schedule:
+    - cron: '10 5 * * *'
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
