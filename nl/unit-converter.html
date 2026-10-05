@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="nl" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+
+    <title>Gratis Eenhedenomzetter – Afstand, Gewicht, Temperatuur, Snelheid & Meer | Invoice Luxe</title>
+    <meta name="description" content="Reken km om naar mijlen, kg naar ponden, Celsius naar Fahrenheit, liters naar gallons en meer. Gratis eenhedenomzetter met 8 categorieën. Zonder registratie. Door Invoice Luxe.">
+    <meta name="keywords" content="eenhedenomzetter, km naar mijl, kg naar pond, celsius naar fahrenheit, liter naar gallon, snelheidsomzetter, gegevensomzetter, gratis omzetter, Invoice Luxe">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/nl/unit-converter">
+
+    <meta property="og:title" content="Gratis Eenhedenomzetter – Afstand, Gewicht, Temperatuur, Snelheid & Meer | Invoice Luxe">
+    <meta property="og:description" content="Reken km om naar mijlen, kg naar ponden, Celsius naar Fahrenheit, liters naar gallons en meer. Gratis eenhedenomzetter met 8 categorieën. Zonder registratie. Door Invoice Luxe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/nl/unit-converter">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Geavanceerde Eenhedenomzetter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "url": "https://invoiceluxe.com/nl/unit-converter",
+      "description": "Gratis online eenhedenomzetter voor afstand, gewicht, temperatuur, snelheid, volume, oppervlakte, druk en gegevensopslag.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold: #FFD700; --black: #121212; --card: #1a1510; --border: #2d241c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg-oak); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; color: #fff; }
+
+        /* TOP BAR */
+        .top-bar { padding: 12px 20px; background: var(--black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold); flex-wrap: wrap; gap: 8px; }
+        h1 { margin: 0; color: var(--gold); font-size: 16px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .top-btns { display: flex; gap: 8px; }
+        .back-btn { background: var(--gold); color: var(--black); padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 11px; display: flex; align-items: center; gap: 6px; }
+        .guide-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 14px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+        .guide-btn:hover { background: rgba(255,215,0,0.1); }
+
+        /* MAIN */
+        .main-container { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
+        .converter-box { background: var(--card); border: 2px solid var(--gold); padding: 25px; border-radius: 28px; width: 100%; max-width: 460px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 18px; }
+
+        /* CATEGORY PILLS */
+        .cat-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-pill { flex-shrink: 0; background: rgba(0,0,0,0.4); border: 1px solid var(--border); color: #888; padding: 8px 14px; border-radius: 20px; font-size: 10px; font-weight: 800; cursor: pointer; transition: 0.2s; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+        .cat-pill.active { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,0.08); }
+
+        /* FORM */
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        label { color: var(--gold); font-weight: 800; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        select, input[type="number"] { padding: 13px 14px; background: #000; border: 1.5px solid #333; border-radius: 10px; color: #fff; font-size: 16px; outline: none; width: 100%; transition: 0.2s; }
+        select:focus, input[type="number"]:focus { border-color: var(--gold); }
+
+        .units-row { display: grid; grid-template-columns: 1fr 44px 1fr; gap: 10px; align-items: end; }
+        .swap-btn { background: rgba(255,215,0,0.1); border: 1.5px solid var(--gold); color: var(--gold); border-radius: 10px; height: 46px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .swap-btn:hover { background: rgba(255,215,0,0.2); }
+
+        /* RESULT */
+        .result-card { background: rgba(0,0,0,0.5); border: 1.5px dashed var(--gold); border-radius: 14px; padding: 18px; text-align: center; }
+        .result-label { font-size: 9px; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .result-value { font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+        .result-formula { font-size: 11px; color: #666; margin-top: 6px; font-family: monospace; }
+
+        /* QUICK PRESETS */
+        .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+        .preset-btn { background: #111; border: 1px solid var(--border); color: #aaa; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.1s; }
+        .preset-btn:hover { border-color: var(--gold); color: #fff; }
+
+        /* ===== SEO SYSTEM CONTENT ===== */
+        .seo-content-wrapper { max-width: 600px; margin: 20px auto 50px auto; width: 100%; padding: 0 20px; }
+        .seo-content { background: var(--card); border: 2px solid var(--gold); padding: 25px; border-radius: 24px; color: #bbb; font-size: 13px; line-height: 1.6; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .seo-content h2 { color: var(--gold); font-size: 16px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 800; }
+        .seo-content h3 { color: #fff; font-size: 14px; margin: 22px 0 10px 0; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 700; }
+        .seo-content p { margin-bottom: 12px; }
+        .seo-content strong { color: #fff; }
+        .seo-content ul { margin-left: 20px; margin-bottom: 15px; list-style-type: square; }
+        .seo-content li { margin-bottom: 8px; }
+        .seo-content li strong { color: var(--gold); }
+
+        /* GUIDE MODAL */
+        #guide-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.94); z-index: 9999; overflow-y: auto; padding: 20px; }
+        #guide-modal.open { display: flex; flex-direction: column; align-items: center; }
+        .guide-box { background: #111; border: 1.5px solid var(--gold); border-radius: 16px; max-width: 460px; width: 100%; padding: 24px; margin-top: 20px; }
+        .guide-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2a; }
+        .guide-head span { color: var(--gold); font-size: 11px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .guide-close { background: none; border: none; color: #555; font-size: 24px; cursor: pointer; }
+        .guide-close:hover { color: #fff; }
+
+        .guide-step { display: flex; gap: 12px; margin-bottom: 16px; }
+        .step-num { min-width: 26px; height: 26px; background: var(--gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #888; line-height: 1.6; }
+        .step-text b { color: #ddd; display: block; margin-bottom: 2px; }
+
+        .guide-cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+        .guide-cat-tag { background: #1a1510; border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; font-size: 10px; color: #aaa; }
+        .guide-cat-tag b { color: var(--gold); }
+
+        .guide-tip { border-left: 3px solid var(--gold); padding: 10px 12px; background: rgba(255,215,0,0.03); font-size: 11px; color: #888; margin-top: 12px; line-height: 1.7; border-radius: 0 8px 8px 0; }
+        .guide-tip b { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <h1 id="L_TITLE"><i class="material-symbols-rounded">calculate</i> UNIT CONVERTER</h1>
+    <div class="top-btns">
+        <button class="guide-btn" onclick="openGuide()">
+            <i class="material-symbols-rounded" style="font-size:16px;">help</i>
+            <span id="L_GUIDE">HOW TO USE</span>
+        </button>
+        <a href="../index.html" class="back-btn">
+            <i class="material-symbols-rounded" style="font-size:16px;">arrow_back</i>
+            <span id="L_BACK">BACK</span>
+        </a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="converter-box">
+
+        <div class="cat-scroll" id="cat-pills"></div>
+
+        <div class="form-group">
+            <label id="L_VAL">VALUE TO CONVERT</label>
+            <input type="number" id="from-value" value="1" oninput="calculate()">
+        </div>
+
+        <div class="units-row">
+            <div class="form-group">
+                <label id="L_FROM">FROM</label>
+                <select id="from-unit" onchange="calculate()"></select>
+            </div>
+            <button class="swap-btn" onclick="swapUnits()" title="Swap">⇄</button>
+            <div class="form-group">
+                <label id="L_TO">TO</label>
+                <select id="to-unit" onchange="calculate()"></select>
+            </div>
+        </div>
+
+        <div class="result-card">
+            <div class="result-label" id="L_RES">CONVERSION RESULT</div>
+            <div class="result-value" id="result-output">—</div>
+            <div class="result-formula" id="result-formula"></div>
+        </div>
+
+        <div class="form-group">
+            <label id="L_QUICK">QUICK CONVERSIONS</label>
+            <div class="presets" id="preset-area"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="seo-content-wrapper">
+    <div class="seo-content">
+        <h2>Alles-in-één Meet-Hub: Gratis Online Eenhedenomzetter</h2>
+        <p>Welkom bij de meest efficiënte omzetter op het web. De <strong>Invoice Luxe Gratis Eenhedenomzetter</strong> biedt directe wiskundige omzettingen voor meerdere standaard meetcategorieën. Of u nu commerciële logistiek beheert, werkt met wetenschappelijke gegevens, IT-systemen analyseert of internationaal reist, onze rekenmodule levert nauwkeurige waarden zonder vertraging.</p>
+        <p>Geen registratie, geen e-mail, geen installatie vereist. Onze tool werkt lokaal in uw browser, wat garandeert dat uw berekeningen privé en veilig blijven.</p>
+
+        <h3>Directe Omzettingen in 8 Gespecialiseerde Categorieën</h3>
+        <p>Onze interface vereenvoudigt de complexiteit door acht essentiële wetenschappelijke dimensies samen te brengen in één responsief paneel:</p>
+        <ul>
+            <li><strong>Afstand & Lengte:</strong> Reken eenvoudig <strong>km om naar mijlen</strong>, meters naar feet, yards naar inches en zeemijlen.</li>
+            <li><strong>Gewicht & Massa:</strong> Schakel tussen <strong>kg en ponden (lbs)</strong>, grammen, ounces, tonnen en stones voor logistieke of industriële berekeningen.</li>
+            <li><strong>Temperatuurschalen:</strong> Zet <strong>Celsius om naar Fahrenheit</strong> en Kelvin met uiterst nauwkeurige formules.</li>
+            <li><strong>Volume & Vloeistoffen:</strong> Schakel moeiteloos van <strong>liters naar gallons</strong>, milliliters, fluid ounces, pints, cups en kubieke meters.</li>
+        </ul>
+
+        <h3>Geavanceerde Berekeningen voor Data, Snelheid, Oppervlakte en Druk</h3>
+        <p>Naast traditionele statistieken kunt u onze geavanceerde algoritmen gebruiken voor een complete <strong>snelheidsomzetter</strong> (km/h, mph, knopen, m/s) of een <strong>gegevensopslag-omzetter</strong> voor Bytes, Kilobytes, Megabytes, Gigabytes en Terabytes. Evalueer geografische gebieden (hectaren, acres, vierkante mijlen) en drukwaardes (bar, psi, atm, pascal) op elk apparaat.</p>
+    </div>
+</div>
+
+<div id="guide-modal">
+    <div class="guide-box">
+        <div class="guide-head">
+            <span id="g-title">HOW TO USE</span>
+            <button class="guide-close" onclick="closeGuide()">✕</button>
+        </div>
+
+        <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><b id="g-s1t">Choose a category</b><span id="g-s1d">Tap one of the category pills at the top to select the type of conversion you need.</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><b id="g-s2t">Enter a value</b><span id="g-s2d">Type the number you want to convert into the input field.</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><b id="g-s3t">Select units</b><span id="g-s3d">Choose FROM and TO units. Tap the ⇄ button to instantly swap them.</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-text"><b id="g-s4t">Use quick presets</b><span id="g-s4d">Tap any preset button for the most common conversions in that category.</span></div>
+        </div>
+
+        <div class="guide-cats" id="g-cats"></div>
+
+        <div class="guide-tip">
+            <b id="g-tip-label">💡 Tip: </b>
+            <span id="g-tip-text">Temperature (°C / °F / K) uses special formulas — the converter handles it automatically.</span>
+        </div>
+    </div>
+</div>
+
+<script>
+const dict = {
+    en: { title:"UNIT CONVERTER", back:"BACK", guide:"HOW TO USE", val:"VALUE TO CONVERT", from:"FROM", to:"TO", res:"CONVERSION RESULT", quick:"QUICK CONVERSIONS",
+          s1t:"Choose a category", s1d:"Tap one of the category pills at the top to select the type of conversion you need.",
+          s2t:"Enter a value", s2d:"Type the number you want to convert into the input field.",
+          s3t:"Select units", s3d:"Choose FROM and TO units. Tap the ⇄ button to instantly swap them.",
+          s4t:"Use quick presets", s4d:"Tap any preset button for the most common conversions in that category.",
+          tipLabel:"💡 Tip:", tipText:"Temperature (°C / °F / K) uses special formulas — the converter handles it automatically." },
+    tr: { title:"BİRİM ÇEVİRİCİ", back:"GERİ", guide:"NASIL KULLANILIR", val:"ÇEVRİLECEK DEĞER", from:"NEREDEN", to:"NEREYE", res:"HESAPLAMA SONUCU", quick:"HIZLI DÖNÜŞÜMLER",
+          s1t:"Kategori seçin", s1d:"İhtiyacınız olan dönüşüm türünü seçmek için üstteki kategorilerden birine dokunun.",
+          s2t:"Değer girin", s2d:"Dönüştürmek istediğiniz sayıyı giriş alanına yazın.",
+          s3t:"Birim seçin", s3d:"NEREDEN ve NEREYE birimlerini seçin. ⇄ butonuyla anında yer değiştirin.",
+          s4t:"Hızlı presetleri kullanın", s4d:"O kategorideki en yaygın dönüşümler için preset butonlarına dokunun.",
+          tipLabel:"💡 İpucu:", tipText:"Sıcaklık (°C / °F / K) özel formüller kullanır — dönüştürücü bunu otomatik halleder." },
+    nl: { title:"EENHEDENOMZETTER", back:"TERUG", guide:"HOE TE GEBRUIKEN", val:"WAARDE", from:"VAN", to:"NAAR", res:"RESULTAAT", quick:"SNELLE OMZETTINGEN",
+          s1t:"Kies een categorie", s1d:"Tik op een categorieknop bovenaan om het gewenste type omzetting te selecteren.",
+          s2t:"Voer een waarde in", s2d:"Typ het getal in dat u wilt omzetten.",
+          s3t:"Selecteer eenheden", s3d:"Kies VAN en NAAR eenheden. Tik op ⇄ om ze direct te wisselen.",
+          s4t:"Gebruik snelle presets", s4d:"Tik op een presetknop voor de meest gebruikte omzettingen.",
+          tipLabel:"💡 Tip:", tipText:"Temperatuur (°C / °F / K) gebruikt speciale formules — de converter regelt dit automatisch." },
+    de: { title:"EINHEITENRECHNER", back:"ZURÜCK", guide:"ANLEITUNG", val:"WERT", from:"VON", to:"NACH", res:"ERGEBNIS", quick:"SCHNELLUMRECHNUNGEN",
+          s1t:"Kategorie wählen", s1d:"Tippen Sie auf eine Kategorieschaltfläche, um den gewünschten Umrechnungstyp auszuwählen.",
+          s2t:"Wert eingeben", s2d:"Geben Sie die Zahl ein, die Sie umrechnen möchten.",
+          s3t:"Einheiten auswählen", s3d:"VON- und NACH-Einheiten wählen. Mit ⇄ sofort tauschen.",
+          s4t:"Schnellpresets verwenden", s4d:"Tippen Sie auf einen Preset für die häufigsten Umrechnungen.",
+          tipLabel:"💡 Tipp:", tipText:"Temperatur (°C / °F / K) verwendet spezielle Formeln — der Rechner erledigt das automatisch." },
+    fr: { title:"CONVERTISSEUR", back:"RETOUR", guide:"MODE D'EMPLOI", val:"VALEUR", from:"DE", to:"VERS", res:"RÉSULTAT", quick:"CONVERSIONS RAPIDES",
+          s1t:"Choisir une catégorie", s1d:"Appuyez sur une pastille de catégorie en haut pour sélectionner le type de conversion.",
+          s2t:"Entrer une valeur", s2d:"Tapez le nombre que vous souhaitez convertir.",
+          s3t:"Sélectionner les unités", s3d:"Choisissez DE et VERS. Appuyez sur ⇄ pour les inverser instantanément.",
+          s4t:"Utiliser les préréglages", s4d:"Appuyez sur un bouton de préréglage pour les conversions les plus courantes.",
+          tipLabel:"💡 Astuce:", tipText:"La température (°C / °F / K) utilise des formules spéciales — le convertisseur les gère automatiquement." },
+    it: { title:"CONVERTITORE", back:"INDIETRO", guide:"COME SI USA", val:"VALORE", from:"DA", to:"A", res:"RISULTATO", quick:"CONVERSIONI RAPIDE",
+          s1t:"Scegli una categoria", s1d:"Tocca una delle categorie in alto per selezionare il tipo di conversione desiderato.",
+          s2t:"Inserisci un valore", s2d:"Digita il numero che vuoi convertire.",
+          s3t:"Seleziona le unità", s3d:"Scegli DA e A. Tocca ⇄ per scambiarle istantaneamente.",
+          s4t:"Usa i preset rapidi", s4d:"Tocca un pulsante preset per le conversioni più comuni.",
+          tipLabel:"💡 Suggerimento:", tipText:"La temperatura (°C / °F / K) usa formule speciali — il convertitore le gestisce automaticamente." }
+};
+
+const categories = [
+    { id:"distance",    icon:"🛣️",  en:"Distance",    tr:"Mesafe",      nl:"Afstand",     de:"Entfernung",      fr:"Distance",   it:"Distanza",
+      units:["km","mile","m","yard","ft","inch","nautical mile","cm"],
+      rates:{ km:1000, mile:1609.344, m:1, yard:0.9144, ft:0.3048, inch:0.0254, "nautical mile":1852, cm:0.01 },
+      presets:[["1 km","mile",1,"km"],["1 mile","km",1,"mile"],["100 m","ft",100,"m"],["1 foot","cm",1,"ft"]] },
+
+    { id:"weight",      icon:"⚖️",  en:"Weight",      tr:"Ağırlık",     nl:"Gewicht",     de:"Gewicht",         fr:"Poids",      it:"Peso",
+      units:["kg","lb","g","oz","ton","stone"],
+      rates:{ kg:1, lb:0.453592, g:0.001, oz:0.0283495, ton:1000, stone:6.35029 },
+      presets:[["1 kg","lb",1,"kg"],["1 lb","kg",1,"lb"],["100 g","oz",100,"g"],["1 ton","kg",1,"ton"]] },
+
+    { id:"temperature", icon:"🌡️",  en:"Temperature", tr:"Sıcaklık",    nl:"Temperatuur", de:"Temperatur",      fr:"Température",it:"Temperatura",
+      units:["°C","°F","K"],
+      special: true,
+      presets:[["0°C","°F",0,"°C"],["100°C","°F",100,"°C"],["37°C","°F",37,"°C"],["32°F","°C",32,"°F"]] },
+
+    { id:"volume",      icon:"🧴",  en:"Volume",      tr:"Hacim",       nl:"Volume",      de:"Volumen",         fr:"Volume",     it:"Volume",
+      units:["L","gallon","mL","m³","fl oz","cup","pint"],
+      rates:{ L:1, gallon:3.78541, mL:0.001, "m³":1000, "fl oz":0.0295735, cup:0.236588, pint:0.473176 },
+      presets:[["1 L","gallon",1,"L"],["1 gallon","L",1,"gallon"],["250 mL","fl oz",250,"mL"],["1 cup","mL",1,"cup"]] },
+
+    { id:"speed",       icon:"🚀",  en:"Speed",       tr:"Hız",         nl:"Snelheid",    de:"Geschwindigkeit", fr:"Vitesse",    it:"Velocità",
+      units:["km/h","mph","m/s","knot","ft/s"],
+      rates:{ "km/h":1, mph:1.609344, "m/s":3.6, knot:1.852, "ft/s":1.09728 },
+      presets:[["100 km/h","mph",100,"km/h"],["60 mph","km/h",60,"mph"],["1 m/s","km/h",1,"m/s"],["1 knot","km/h",1,"knot"]] },
+
+    { id:"area",        icon:"📐",  en:"Area",        tr:"Alan",        nl:"Oppervlak",   de:"Fläche",          fr:"Surface",    it:"Area",
+      units:["m²","km²","ft²","acre","hectare","mi²","cm²","mm²"],
+      rates:{ "m²":1, "km²":1e6, "ft²":0.092903, acre:4046.86, hectare:10000, "mi²":2589988, "cm²":0.0001, "mm²":0.000001 },
+      presets:[["1 hectare","m²",1,"hectare"],["1 acre","m²",1,"acre"],["1 km²","hectare",1,"km²"],["100 ft²","m²",100,"ft²"]] },
+
+    { id:"pressure",    icon:"🔵",  en:"Pressure",    tr:"Basınç",      nl:"Druk",        de:"Druck",           fr:"Pression",   it:"Pressione",
+      units:["bar","psi","atm","Pa","kPa","mmHg"],
+      rates:{ bar:100000, psi:6894.76, atm:101325, Pa:1, kPa:1000, mmHg:133.322 },
+      presets:[["1 bar","psi",1,"bar"],["1 atm","bar",1,"atm"],["1 psi","kPa",1,"psi"],["760 mmHg","atm",760,"mmHg"]] },
+
+    { id:"data",        icon:"💾",  en:"Data",        tr:"Veri",        nl:"Gegevens",    de:"Daten",           fr:"Données",    it:"Dati",
+      units:["MB","GB","TB","KB","Byte","bit"],
+      rates:{ Byte:1, bit:0.125, KB:1024, MB:1048576, GB:1073741824, TB:1099511627776 },
+      presets:[["1 GB","MB",1,"GB"],["1 TB","GB",1,"TB"],["100 MB","KB",100,"MB"],["1 GB","KB",1,"GB"]] }
+];
+
+let currentLang = 'nl';
+let currentCat = categories[0];
+
+function openGuide() { document.getElementById('guide-modal').classList.add('open'); }
+function closeGuide() { document.getElementById('guide-modal').classList.remove('open'); }
+
+function buildCategoryPills() {
+    const area = document.getElementById('cat-pills');
+    area.innerHTML = '';
+    categories.forEach((cat, i) => {
+        const name = cat[currentLang] || cat.en;
+        const pill = document.createElement('button');
+        pill.className = 'cat-pill' + (i === 0 ? ' active' : '');
+        pill.innerHTML = `${cat.icon} ${name}`;
+        pill.onclick = () => selectCategory(cat, pill);
+        area.appendChild(pill);
+    });
+}
+
+function buildGuideCats() {
+    const area = document.getElementById('g-cats');
+    area.innerHTML = '';
+    categories.forEach(cat => {
+        const name = cat[currentLang] || cat.en;
+        const tag = document.createElement('div');
+        tag.className = 'guide-cat-tag';
+        tag.innerHTML = `${cat.icon} <b>${name}</b>`;
+        area.appendChild(tag);
+    });
+}
+
+function selectCategory(cat, pillEl) {
+    currentCat = cat;
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    if (pillEl) pillEl.classList.add('active');
+    updateUnits();
+    buildPresets();
+}
+
+function updateUnits() {
+    const fromSel = document.getElementById('from-unit');
+    const toSel = document.getElementById('to-unit');
+    fromSel.innerHTML = '';
+    toSel.innerHTML = '';
+    currentCat.units.forEach(u => {
+        fromSel.add(new Option(u, u));
+        toSel.add(new Option(u, u));
+    });
+    if (toSel.options.length > 1) toSel.selectedIndex = 1;
+    calculate();
+}
+
+function buildPresets() {
+    const area = document.getElementById('preset-area');
+    area.innerHTML = '';
+    (currentCat.presets || []).forEach(([label, toUnit, val, fromUnit]) => {
+        const btn = document.createElement('button');
+        btn.className = 'preset-btn';
+        btn.innerText = label + ' → ' + toUnit;
+        btn.onclick = () => {
+            document.getElementById('from-value').value = val;
+            document.getElementById('from-unit').value = fromUnit;
+            document.getElementById('to-unit').value = toUnit;
+            calculate();
+        };
+        area.appendChild(btn);
+    });
+}
+
+function swapUnits() {
+    const f = document.getElementById('from-unit');
+    const t = document.getElementById('to-unit');
+    [f.value, t.value] = [t.value, f.value];
+    calculate();
+}
+
+function convertTemperature(val, from, to) {
+    let celsius;
+    if (from === '°C') celsius = val;
+    else if (from === '°F') celsius = (val - 32) * 5/9;
+    else celsius = val - 273.15; // K
+    if (to === '°C') return celsius;
+    if (to === '°F') return celsius * 9/5 + 32;
+    return celsius + 273.15; // K
+}
+
+function calculate() {
+    const val = parseFloat(document.getElementById('from-value').value);
+    const from = document.getElementById('from-unit').value;
+    const to = document.getElementById('to-unit').value;
+    const outEl = document.getElementById('result-output');
+    const formulaEl = document.getElementById('result-formula');
+
+    if (isNaN(val)) { outEl.innerText = '—'; formulaEl.innerText = ''; return; }
+    if (from === to) { outEl.innerText = val + ' ' + to; formulaEl.innerText = ''; return; }
+
+    let result;
+    if (currentCat.special) {
+        result = convertTemperature(val, from, to);
+    } else {
+        const rates = currentCat.rates;
+        result = (val * rates[from]) / rates[to];
+    }
+
+    const formatted = Math.abs(result) < 0.0001 ? result.toExponential(4) : (Math.abs(result) >= 10000 ? result.toLocaleString('en-US', {maximumFractionDigits:2}) : result.toFixed(4).replace(/\.?0+$/, ''));
+    outEl.innerText = formatted + ' ' + to;
+    formulaEl.innerText = `${val} ${from} = ${formatted} ${to}`;
+}
+
+function initPage() {
+    currentLang = 'nl';
+    const t = dict[currentLang] || dict.en;
+
+    document.getElementById('L_TITLE').innerHTML = `<i class="material-symbols-rounded">calculate</i> ${t.title}`;
+    document.getElementById('L_BACK').innerText = t.back;
+    document.getElementById('L_GUIDE').innerText = t.guide;
+    document.getElementById('L_VAL').innerText = t.val;
+    document.getElementById('L_FROM').innerText = t.from;
+    document.getElementById('L_TO').innerText = t.to;
+    document.getElementById('L_RES').innerText = t.res;
+    document.getElementById('L_QUICK').innerText = t.quick;
+    document.getElementById('g-title').innerText = t.guide;
+    document.getElementById('g-s1t').innerText = t.s1t;
+    document.getElementById('g-s1d').innerText = t.s1d;
+    document.getElementById('g-s2t').innerText = t.s2t;
+    document.getElementById('g-s2d').innerText = t.s2d;
+    document.getElementById('g-s3t').innerText = t.s3t;
+    document.getElementById('g-s3d').innerText = t.s3d;
+    document.getElementById('g-s4t').innerText = t.s4t;
+    document.getElementById('g-s4d').innerText = t.s4d;
+    document.getElementById('g-tip-label').innerText = t.tipLabel;
+    document.getElementById('g-tip-text').innerText = t.tipText;
+
+    buildCategoryPills();
+    buildGuideCats();
+    currentCat = categories[0];
+    updateUnits();
+    buildPresets();
+}
+
+window.onload = initPage;
+</script>
+</body>
+</html>

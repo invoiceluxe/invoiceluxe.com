@@ -1,0 +1,3861 @@
+<!DOCTYPE html>
+<html lang="sv" translate="no">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<title>Gratis QR-kodgenerator online – Företag, vCard, WiFi, Bitcoin</title>
+
+<!-- Google Çeviri Engelleme (Google Translate Prevention) -->
+<meta name="google" content="notranslate">
+
+<meta name="description" content="Skapa gratis QR-koder online för webbplatser, vCard, företag, Wi-Fi, WhatsApp, Bitcoin och betalningar. Anpassa, ladda ner och spara i webbläsaren. Ingen registrering.">
+
+<meta name="keywords" content="gratis qr kod generator, qr kod generator online gratis, vcard qr kod, wifi qr kod, bitcoin qr kod, skapa qr kod gratis">
+
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow, max-image-preview:large">
+
+<link rel="canonical" href="https://invoiceluxe.com/sv/qr-kod-generator.html">
+
+<link rel="alternate" hreflang="en" href="https://invoiceluxe.com/us/qr-code-generator.html">
+<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/qr-code-generator.html">
+<link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/qr-code-generator.html">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/qr-code-generator.html">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/qr-kode-generator.html">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/qr-koodi-generaattori.html">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/sv/qr-kod-generator.html">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/qr-kode-generator.html">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/gerador-qr-code.html">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/qr-code-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/us/qr-code-generator.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gratis QR-kodgenerator | QR Studio Luxe">
+<meta property="og:description" content="Skapa professionella QR-koder för företag, vCard, Wi-Fi och betalning. Gratis, ingen registrering.">
+<meta property="og:url" content="https://invoiceluxe.com/sv/qr-kod-generator.html">
+<meta property="og:site_name" content="QR Studio Luxe">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gratis QR-kodgenerator | QR Studio Luxe">
+<meta name="twitter:description" content="Skapa professionella QR-koder för företag, vCard, Wi-Fi och betalning. Gratis, ingen registrering.">
+
+<meta name="theme-color" content="#0f172a">
+
+<!-- QR library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root{
+    --bg:#07111f;
+    --bg2:#0b1628;
+    --card:#111f33;
+    --card2:#16263c;
+    --input:#081321;
+    --border:#263b55;
+    --text:#f8fafc;
+    --muted:#93a4b8;
+    --gold:#f59e0b;
+    --gold2:#d97706;
+    --gold-soft:rgba(245,158,11,.12);
+    --green:#22c55e;
+    --red:#ef4444;
+    --blue:#3b82f6;
+    --white:#fff;
+    --shadow:0 15px 45px rgba(0,0,0,.28);
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(245,158,11,.10),transparent 35%),
+        var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.topbar{
+    width:100%;
+    padding:14px 16px 0;
+}
+
+.topbar-inner{
+    max-width:760px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.back-button{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:42px;
+    padding:0 14px;
+    border-radius:11px;
+    text-decoration:none;
+    color:#fff;
+    background:#132238;
+    border:1px solid var(--border);
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.back-button:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.archive-top-button{
+    min-height:42px;
+    padding:0 14px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+}
+
+.brand{
+    max-width:760px;
+    margin:14px auto 0;
+    padding:25px 20px;
+    border-radius:20px;
+    text-align:center;
+    background:
+        radial-gradient(100% 130% at 50% 0%,#26354b 0%,#111b2c 55%,#0a1320 100%);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.brand-mark{
+    font-size:38px;
+    line-height:1;
+    color:var(--gold);
+    letter-spacing:5px;
+    font-weight:300;
+}
+
+.brand-title{
+    margin-top:8px;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.brand-title span{
+    color:var(--gold);
+}
+
+.brand-subtitle{
+    margin-top:7px;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:16px 16px 150px;
+}
+
+.card{
+    background:linear-gradient(145deg,var(--card),#0f1c2e);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 8px 28px rgba(0,0,0,.16);
+}
+
+.card-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--border);
+}
+
+.icon-box{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:var(--gold-soft);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.card-title{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:900;
+}
+
+.card-subtitle{
+    margin-top:3px;
+    font-size:11px;
+    color:var(--muted);
+}
+
+/* =========================
+   TYPE GRID
+========================= */
+
+.type-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.type-button{
+    min-height:72px;
+    padding:12px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#0b1728;
+    color:#fff;
+    text-align:left;
+    transition:.18s ease;
+}
+
+.type-button:hover,
+.type-button.active{
+    border-color:var(--gold);
+    background:rgba(245,158,11,.08);
+}
+
+.type-icon{
+    font-size:19px;
+    margin-bottom:6px;
+}
+
+.type-name{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+}
+
+.type-desc{
+    display:block;
+    margin-top:3px;
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.field-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    font-weight:900;
+    letter-spacing:.7px;
+    margin-bottom:7px;
+}
+
+.input{
+    width:100%;
+    min-height:48px;
+    padding:0 13px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:var(--input);
+    color:#fff;
+    outline:none;
+}
+
+textarea.input{
+    min-height:100px;
+    padding-top:12px;
+    resize:vertical;
+}
+
+.input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(245,158,11,.12);
+}
+
+.input::placeholder{
+    color:#52647a;
+}
+
+.helper{
+    margin-top:5px;
+    color:#667991;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.required{
+    color:var(--gold);
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.option-box{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:13px;
+    background:#0b1728;
+}
+
+.option-box label{
+    margin-bottom:8px;
+}
+
+.color-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.color-input{
+    width:48px;
+    height:38px;
+    padding:3px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:transparent;
+}
+
+/* =========================
+   BUSINESS ACTIONS
+========================= */
+
+.business-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.small-button{
+    flex:1;
+    min-width:140px;
+    min-height:46px;
+    padding:0 15px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:#0b1728;
+    color:#fff;
+    font-weight:800;
+    font-size:11px;
+}
+
+.small-button.primary{
+    background:var(--gold2);
+    border-color:var(--gold2);
+}
+
+/* =========================
+   BOTTOM ACTION
+========================= */
+
+.bottom-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:5000;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(8,18,31,.96);
+    border-top:1px solid var(--border);
+    backdrop-filter:blur(12px);
+}
+
+.bottom-inner{
+    max-width:760px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.status{
+    min-width:0;
+}
+
+.status-label{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    text-transform:uppercase;
+    font-weight:800;
+}
+
+.status-value{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    margin-top:2px;
+}
+
+.generate-button{
+    min-height:50px;
+    padding:0 22px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.5px;
+    box-shadow:0 8px 20px rgba(245,158,11,.24);
+}
+
+/* =========================
+   ARCHIVE
+========================= */
+
+.archive-card{
+    margin-top:25px;
+}
+
+.archive-toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.archive-search{
+    flex:1;
+}
+
+.archive-count{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:70px;
+    padding:0 10px;
+    border-radius:10px;
+    background:var(--gold-soft);
+    color:var(--gold);
+    font-size:12px;
+    font-weight:900;
+}
+
+.archive-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.archive-empty{
+    text-align:center;
+    padding:28px 15px;
+    color:var(--muted);
+    font-size:12px;
+    border:1px dashed var(--border);
+    border-radius:12px;
+}
+
+.archive-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#0a1626;
+}
+
+.archive-icon{
+    width:44px;
+    height:44px;
+    flex-shrink:0;
+    border-radius:11px;
+    background:var(--gold-soft);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.archive-info{
+    flex:1;
+    min-width:0;
+}
+
+.archive-name{
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.archive-meta{
+    margin-top:4px;
+    color:var(--muted);
+    font-size:9px;
+}
+
+.archive-actions{
+    display:flex;
+    gap:5px;
+}
+
+.archive-action{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:#132238;
+    color:#fff;
+    font-size:13px;
+}
+
+.archive-action.delete{
+    color:#f87171;
+}
+
+/* =========================
+   SEO
+========================= */
+
+.seo-section{
+    margin-top:30px;
+}
+
+.seo-box{
+    background:linear-gradient(145deg,#111f33,#0d1929);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:23px;
+    margin-bottom:18px;
+}
+
+.seo-box h1,
+.seo-box h2,
+.seo-box h3{
+    color:#fff;
+}
+
+.seo-box h1{
+    font-size:22px;
+    margin:0 0 12px;
+}
+
+.seo-box h2{
+    font-size:17px;
+    margin:0 0 10px;
+}
+
+.seo-box h3{
+    font-size:14px;
+    margin:20px 0 8px;
+}
+
+.seo-box p,
+.seo-box li{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.75;
+}
+
+.seo-box ul{
+    padding-left:20px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:none;
+    background:rgba(2,8,18,.90);
+    backdrop-filter:blur(10px);
+    overflow:auto;
+    padding:18px;
+}
+
+.modal.show{
+    display:block;
+}
+
+.modal-top{
+    position:sticky;
+    top:0;
+    z-index:20;
+    max-width:760px;
+    margin:0 auto 15px;
+    display:flex;
+    gap:10px;
+}
+
+.modal-top button{
+    flex:1;
+    min-height:45px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    font-size:11px;
+    font-weight:900;
+}
+
+.close-modal{
+    background:#17263b;
+    color:#fff;
+}
+
+.save-modal{
+    background:var(--green);
+    color:#fff;
+}
+
+.preview-wrap{
+    max-width:760px;
+    margin:auto;
+}
+
+.preview-page{
+    width:min(100%,620px);
+    min-height:820px;
+    margin:10px auto 30px;
+    padding:45px;
+    background:#fff;
+    color:#111827;
+    border-radius:20px;
+    box-shadow:0 25px 70px rgba(0,0,0,.5);
+    display:flex;
+    flex-direction:column;
+}
+
+.preview-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding-bottom:20px;
+    border-bottom:2px solid #eef2f7;
+}
+
+.preview-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.preview-logo{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#0f172a;
+    color:#f59e0b;
+    font-weight:900;
+    font-size:23px;
+}
+
+.preview-title{
+    font-size:18px;
+    font-weight:900;
+}
+
+.preview-subtitle{
+    color:#64748b;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.secure-badge{
+    color:#b45309;
+    background:#fef3c7;
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:900;
+}
+
+.qr-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:35px 0 25px;
+}
+
+.qr-box{
+    display:inline-flex;
+    padding:20px;
+    background:#fff;
+    border:2px dashed #cbd5e1;
+    border-radius:18px;
+}
+
+#qrcode img,
+#qrcode canvas{
+    display:block;
+}
+
+.preview-details{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:16px;
+    font-size:12px;
+    line-height:1.7;
+    color:#334155;
+}
+
+.preview-details-row{
+    display:flex;
+    gap:10px;
+    padding:5px 0;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.preview-details-row:last-child{
+    border-bottom:0;
+}
+
+.preview-details-label{
+    min-width:105px;
+    font-weight:900;
+    color:#0f172a;
+}
+
+.preview-actions{
+    margin-top:auto;
+    padding-top:25px;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.preview-action{
+    grid-column: span 2;
+    min-height:45px;
+    border:0;
+    border-radius:10px;
+    font-size:10px;
+    font-weight:900;
+}
+
+.action-png{
+    background:#e2e8f0;
+    color:#0f172a;
+}
+
+.action-svg{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.action-pdf{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.action-share-pdf {
+    grid-column: span 3;
+    background: #f3e8ff;
+    color: #7e22ce;
+}
+
+.action-whatsapp {
+    grid-column: span 3;
+    background: #dcf8c6;
+    color: #128c7e;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:90px;
+    transform:translate(-50%,20px);
+    opacity:0;
+    pointer-events:none;
+    z-index:20000;
+    padding:12px 17px;
+    border-radius:10px;
+    background:#fff;
+    color:#0f172a;
+    font-size:11px;
+    font-weight:900;
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+    transition:.25s ease;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .container{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .card{
+        padding:16px;
+    }
+
+    .field-grid,
+    .options-grid{
+        grid-template-columns:1fr;
+    }
+
+    .type-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .preview-page{
+        min-height:720px;
+        padding:25px;
+        border-radius:14px;
+    }
+
+    .preview-actions{
+        grid-template-columns:1fr;
+    }
+
+    .preview-action, .action-share-pdf, .action-whatsapp {
+        grid-column: 1 / -1;
+    }
+
+    .preview-header{
+        align-items:flex-start;
+    }
+
+    .secure-badge{
+        display:none;
+    }
+
+    .bottom-inner{
+        gap:10px;
+    }
+
+    .generate-button{
+        padding:0 16px;
+    }
+
+    .status-value{
+        font-size:12px;
+    }
+
+    .archive-item{
+        align-items:flex-start;
+    }
+
+    .archive-actions{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:390px){
+
+    .type-grid{
+        grid-template-columns:1fr;
+    }
+
+    .back-button,
+    .archive-top-button{
+        font-size:10px;
+        padding:0 10px;
+    }
+
+    .brand{
+        margin-top:10px;
+    }
+}
+
+
+/* share mode toggle */
+.share-mode{display:flex;gap:8px;margin:0 0 14px}
+.share-mode button{flex:1;min-height:42px;border-radius:10px;border:1px solid #cbd5e1;background:#f1f5f9;color:#0f172a;font-size:12px;font-weight:800}
+.share-mode button.on{background:#0f172a;color:#f59e0b;border-color:#0f172a}
+.modal.qr-only #previewDetails{display:none}
+
+/* print */
+@media print{
+    body *{
+        visibility:hidden!important;
+    }
+
+    #printArea,
+    #printArea *{
+        visibility:visible!important;
+    }
+
+    #printArea{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+}
+</style>
+
+<!-- SEO Structured Data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"QR Studio Luxe – Gratis QR-kodgenerator",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Web, iOS, Android, Windows, macOS",
+  "url":"https://invoiceluxe.com/sv/qr-kod-generator.html",
+  "inLanguage":"sv",
+  "isAccessibleForFree":true,
+  "description":"Gratis online QR-kodgenerator för företag, vCard, Wi-Fi, Bitcoin med mera. Körs i webbläsaren.",
+  "offers":{
+    "@type":"Offer",
+    "price":"0",
+    "priceCurrency":"USD"
+  },
+  "featureList":[
+    "Business QR codes",
+    "vCard QR codes",
+    "Bitcoin payment QR codes",
+    "Bank and IBAN QR codes",
+    "Wi-Fi QR codes",
+    "WhatsApp QR codes",
+    "Email QR codes",
+    "Phone QR codes",
+    "Location QR codes",
+    "PDF export",
+    "PNG export",
+    "SVG export",
+    "Local QR archive"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Is this QR code generator free?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. QR Studio Luxe can generate QR codes directly in your browser without requiring an account."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I create a Bitcoin QR code?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. You can enter a Bitcoin address, optional amount, label and payment message to create a Bitcoin payment QR code."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I create a business vCard QR code?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Business and personal contact information can be combined into a vCard QR code or generated as separate QR codes."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Are my QR codes saved?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Saved QR projects are stored locally in the browser using localStorage. They can be edited, duplicated, previewed or deleted."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I export my QR code?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Generated QR codes can be downloaded as PNG, SVG or PDF."
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="topbar">
+        <div class="topbar-inner">
+
+            <a href="index.html" class="back-button">
+                ← Tillbaka till huvudmeny
+            </a>
+
+            <button class="archive-top-button" onclick="scrollToArchive()">Arkiv <span id="topArchiveCount">0</span>
+            </button>
+
+        </div>
+    </div>
+
+    <div class="brand">
+        <div class="brand-mark">QR</div>
+
+        <div class="brand-title">
+            Studio <span>Luxe</span>
+        </div>
+
+        <div class="brand-subtitle">
+            Gratis QR-kodgenerator och digital studio
+        </div>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- TYPE SELECTION -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div class="icon-box">
+                ▦
+            </div>
+
+            <div>
+                <div class="card-title">
+                    Choose QR Code Type
+                </div>
+
+                <div class="card-subtitle">
+                    Select what you want your QR code to do.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="type-grid">
+
+            <button class="type-button active" data-type="personal" onclick="selectType('personal')">
+                <div class="type-icon">👤</div>
+                <span class="type-name">Personal / vCard</span>
+                <span class="type-desc">Contact information</span>
+            </button>
+
+            <button class="type-button" data-type="business" onclick="selectType('business')">
+                <div class="type-icon">🏢</div>
+                <span class="type-name">Business</span>
+                <span class="type-desc">Company profile</span>
+            </button>
+
+            <button class="type-button" data-type="url" onclick="selectType('url')">
+                <div class="type-icon">🌐</div>
+                <span class="type-name">Website / URL</span>
+                <span class="type-desc">Open a website</span>
+            </button>
+
+            <button class="type-button" data-type="text" onclick="selectType('text')">
+                <div class="type-icon">📝</div>
+                <span class="type-name">Text</span>
+                <span class="type-desc">Custom information</span>
+            </button>
+
+            <button class="type-button" data-type="phone" onclick="selectType('phone')">
+                <div class="type-icon">📞</div>
+                <span class="type-name">Phone</span>
+                <span class="type-desc">Call a number</span>
+            </button>
+
+            <button class="type-button" data-type="email" onclick="selectType('email')">
+                <div class="type-icon">✉️</div>
+                <span class="type-name">Email</span>
+                <span class="type-desc">Open email composer</span>
+            </button>
+
+            <button class="type-button" data-type="whatsapp" onclick="selectType('whatsapp')">
+                <div class="type-icon">💬</div>
+                <span class="type-name">WhatsApp</span>
+                <span class="type-desc">Start a WhatsApp chat</span>
+            </button>
+
+            <button class="type-button" data-type="wifi" onclick="selectType('wifi')">
+                <div class="type-icon">📶</div>
+                <span class="type-name">Wi-Fi</span>
+                <span class="type-desc">Share Wi-Fi access</span>
+            </button>
+
+            <button class="type-button" data-type="location" onclick="selectType('location')">
+                <div class="type-icon">📍</div>
+                <span class="type-name">Location</span>
+                <span class="type-desc">Open a map location</span>
+            </button>
+
+            <button class="type-button" data-type="bank" onclick="selectType('bank')">
+                <div class="type-icon">🏦</div>
+                <span class="type-name">Bank / IBAN</span>
+                <span class="type-desc">Payment details</span>
+            </button>
+
+            <button class="type-button" data-type="bitcoin" onclick="selectType('bitcoin')">
+                <div class="type-icon">₿</div>
+                <span class="type-name">Bitcoin</span>
+                <span class="type-desc">Crypto payment</span>
+            </button>
+
+            <button class="type-button" data-type="crypto" onclick="selectType('crypto')">
+                <div class="type-icon">◆</div>
+                <span class="type-name">Crypto Address</span>
+                <span class="type-desc">Ethereum / other URI</span>
+            </button>
+
+            <button class="type-button" data-type="event" onclick="selectType('event')">
+                <div class="type-icon">📅</div>
+                <span class="type-name">Event</span>
+                <span class="type-desc">Calendar event</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- DYNAMIC FORM -->
+
+    <section class="card" id="formCard">
+
+        <div class="card-header">
+
+            <div class="icon-box">
+                ✎
+            </div>
+
+            <div>
+                <div class="card-title" id="formTitle">
+                    Personal Information
+                </div>
+
+                <div class="card-subtitle" id="formSubtitle">
+                    Create a professional digital contact card.
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dynamicForm"></div>
+
+    </section>
+
+
+    <!-- CUSTOMIZATION -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div class="icon-box">
+                🎨
+            </div>
+
+            <div>
+                <div class="card-title">
+                    QR Customization
+                </div>
+
+                <div class="card-subtitle">
+                    Customize the appearance of your QR code.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="options-grid">
+
+            <div class="option-box">
+
+                <label for="qrDark">
+                    QR Color
+                </label>
+
+                <div class="color-row">
+                    <input id="qrDark"
+                           class="color-input"
+                           type="color"
+                           value="#0f172a">
+
+                    <span style="font-size:11px;color:#94a3b8;">
+                        Dark modules
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="option-box">
+
+                <label for="qrLight">
+                    Background
+                </label>
+
+                <div class="color-row">
+                    <input id="qrLight"
+                           class="color-input"
+                           type="color"
+                           value="#ffffff">
+
+                    <span style="font-size:11px;color:#94a3b8;">
+                        Light background
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUSINESS GENERATION OPTIONS -->
+
+    <section class="card" id="businessActionsCard" style="display:none;">
+
+        <div class="card-header">
+
+            <div class="icon-box">
+                ⚡
+            </div>
+
+            <div>
+                <div class="card-title">
+                    Business QR Options
+                </div>
+
+                <div class="card-subtitle">
+                    Generate everything together or create individual business QR codes.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="business-actions">
+
+            <button class="small-button primary" onclick="generateBusinessAll()">
+                Generate All Business Data
+            </button>
+
+            <button class="small-button" onclick="generateBusinessWebsite()">
+                Website QR
+            </button>
+
+            <button class="small-button" onclick="generateBusinessPhone()">
+                Phone QR
+            </button>
+
+            <button class="small-button" onclick="generateBusinessEmail()">
+                Email QR
+            </button>
+
+            <button class="small-button" onclick="generateBusinessWhatsApp()">
+                WhatsApp QR
+            </button>
+
+            <button class="small-button" onclick="generateBusinessLocation()">
+                Location QR
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ARCHIVE -->
+
+    <section class="card archive-card" id="archiveSection">
+
+        <div class="card-header">
+
+            <div class="icon-box">
+                🗂
+            </div>
+
+            <div>
+                <div class="card-title">
+                    My QR Archive
+                </div>
+
+                <div class="card-subtitle">
+                    Your saved QR projects stay in this browser.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="archive-toolbar">
+
+            <input
+                id="archiveSearch"
+                class="input archive-search"
+                type="search"
+                placeholder="Search your saved QR codes..."
+                oninput="renderArchive()">
+
+            <div class="archive-count" id="archiveCount">
+                0
+            </div>
+
+        </div>
+
+        <div class="archive-list" id="archiveList"></div>
+
+    </section>
+
+
+    <!-- SEO CONTENT -->
+
+    <section class="seo-section">
+<article class="seo-box">
+<h1>Gratis QR-kodgenerator online – Företag, vCard, Wi-Fi och betalning</h1>
+<p>QR Studio Luxe är en <strong>gratis QR-kodgenerator</strong> som fungerar i webbläsaren. Skapa professionella QR-koder för webbplatser, digitala visitkort, kontaktuppgifter, WhatsApp, Wi-Fi, kartor, bankuppgifter och Bitcoin — utan konto.</p>
+</article>
+<article class="seo-box">
+<h2>Så använder du den gratis online QR-kodgeneratorn</h2>
+<ol>
+<li>Välj typ (Personlig/vCard, Företag, Webbplats, Text, Telefon, E-post, WhatsApp, Wi-Fi, Plats, Bank/IBAN eller Bitcoin).</li>
+<li>Fyll i fälten.</li>
+<li>Välj eventuellt färger.</li>
+<li>Tryck Generera för förhandsvisning.</li>
+<li>Ladda ner PNG, SVG eller PDF — eller dela via WhatsApp.</li>
+<li>Spara i lokalt arkiv för senare användning.</li>
+</ol>
+<p>Sökord: <em>gratis QR-kodgenerator</em>, <em>skapa QR-kod gratis</em>, <em>vCard QR-kod</em>, <em>WiFi QR-kod</em>.</p>
+</article>
+<article class="seo-box">
+<h2>Företags-QR, vCard och betalnings-QR</h2>
+<p>Skapa en full <strong>företags-QR-kod</strong>, <strong>vCard QR-kod</strong>, <strong>Wi-Fi QR-kod</strong> eller <strong>Bitcoin-/bankbetalnings-QR</strong> på sekunder. Exportera för tryck eller digital användning i Sverige.</p>
+</article>
+<article class="seo-box">
+<h2>Dela QR-kod som bild eller PDF – bara QR eller med uppgifter</h2>
+<p>Behöver du dela en QR-kod? Skapa den med vår <strong>gratis QR-kod generator</strong> och välj: skicka bara QR-koden, eller QR-koden med dina uppgifter under – namn, telefon, e-post, wifi eller webbplats. Ladda ner en skarp PNG-bild eller en utskriftsklar PDF, eller dela direkt till WhatsApp, e-post och sociala medier.</p>
+<p>Populära användningar: <strong>QR-kod för visitkort</strong>, <strong>vCard QR-kod</strong>, <strong>wifi QR-kod</strong> för gäster, <strong>WhatsApp QR-kod</strong> och <strong>Bitcoin QR-kod</strong>. Ingen registrering och ingen vattenstämpel.</p>
+<ul>
+<li>QR-kod generator gratis</li>
+<li>skapa QR-kod</li>
+<li>dela QR-kod</li>
+<li>QR-kod PDF</li>
+<li>QR-kod visitkort</li>
+</ul>
+</article>
+</section>
+
+</main>
+
+
+<!-- BOTTOM ACTION -->
+
+<div class="bottom-bar">
+
+    <div class="bottom-inner">
+
+        <div class="status">
+
+            <span class="status-label">
+                Generator Status
+            </span>
+
+            <span class="status-value" id="statusText">
+                Ready to create
+            </span>
+
+        </div>
+
+        <button class="generate-button" onclick="openPreview()">
+            ▣   GENERATE QR
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PREVIEW MODAL -->
+
+<div class="modal" id="previewModal">
+
+    <div class="modal-top">
+
+        <button class="close-modal" onclick="closePreview()">
+            ← Edit Data
+        </button>
+
+        <button class="save-modal" onclick="saveCurrentProject()">
+            ✓ Save to Archive
+        </button>
+
+    </div>
+
+
+    <div class="preview-wrap">
+
+        <div class="preview-page" id="printArea">
+
+            <div class="preview-header">
+
+                <div class="preview-brand">
+
+                    <div class="preview-logo" id="previewLogo">
+                        QR
+                    </div>
+
+                    <div>
+
+                        <div class="preview-title" id="previewTitle">
+                            QR Studio Luxe
+                        </div>
+
+                        <div class="preview-subtitle">
+                            Professional Digital QR Asset
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="secure-badge">
+                    CLIENT-SIDE
+                </div>
+
+            </div>
+
+
+            <div class="qr-area">
+
+                <div class="qr-box">
+
+                    <div id="qrcode"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-details" id="previewDetails"></div>
+
+
+            <div class="share-mode" id="shareMode">
+                <button type="button" class="on" data-m="full" onclick="setShareMode('full')">QR + details</button>
+                <button type="button" data-m="qr" onclick="setShareMode('qr')">QR only</button>
+            </div>
+
+            <div class="preview-actions">
+
+                <button class="preview-action action-png"
+                        onclick="downloadPNG()">
+                    ↓ PNG
+                </button>
+
+                <button class="preview-action action-svg"
+                        onclick="downloadSVG()">
+                    ↓ SVG
+                </button>
+
+                <button class="preview-action action-pdf"
+                        onclick="downloadPDF()">
+                    ↓ PDF
+                </button>
+
+                <button class="preview-action action-share-pdf"
+                        onclick="sharePDF()">
+                    ⧉ Share PDF
+                </button>
+
+                <button class="preview-action action-whatsapp"
+                        onclick="shareWhatsApp()">
+                    💬 WhatsApp
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ==========================================================
+   QR STUDIO LUXE
+   Client-side QR generator + local archive
+========================================================== */
+
+const STORAGE_KEY = "qrStudioLuxeArchive_v2";
+
+let currentType = "personal";
+let currentPayload = "";
+let currentProject = null;
+
+
+/* ==========================================================
+   UTILITY
+========================================================== */
+
+function escapeHTML(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+}
+
+function getValue(id){
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function setValue(id,value){
+    const el = document.getElementById(id);
+    if(el) el.value = value ?? "";
+}
+
+
+function showToast(message){
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+        toast.classList.remove("show");
+    },2200);
+}
+
+
+function formatDate(timestamp){
+    try{
+        return new Intl.DateTimeFormat("en-US",{
+            dateStyle:"medium",
+            timeStyle:"short"
+        }).format(new Date(timestamp));
+    }catch(e){
+        return new Date(timestamp).toLocaleString();
+    }
+}
+
+
+/* ==========================================================
+   TYPE DEFINITIONS
+========================================================== */
+
+const typeMeta = {
+
+    personal:{
+        title:"Personal Information",
+        subtitle:"Create a professional digital contact card.",
+        icon:"👤"
+    },
+
+    business:{
+        title:"Business Information",
+        subtitle:"Create a complete company profile and business vCard.",
+        icon:"🏢"
+    },
+
+    url:{
+        title:"Website / URL",
+        subtitle:"Create a QR code that opens a website.",
+        icon:"🌐"
+    },
+
+    text:{
+        title:"Custom Text",
+        subtitle:"Turn any text or message into a QR code.",
+        icon:"📝"
+    },
+
+    phone:{
+        title:"Phone Number",
+        subtitle:"Create a QR code that starts a phone call.",
+        icon:"📞"
+    },
+
+    email:{
+        title:"Email",
+        subtitle:"Create a QR code that opens an email composer.",
+        icon:"✉️"
+    },
+
+    whatsapp:{
+        title:"WhatsApp",
+        subtitle:"Create a QR code that opens a WhatsApp conversation.",
+        icon:"💬"
+    },
+
+    wifi:{
+        title:"Wi-Fi Access",
+        subtitle:"Share Wi-Fi network credentials with a QR code.",
+        icon:"📶"
+    },
+
+    location:{
+        title:"Location",
+        subtitle:"Create a QR code that opens a map location.",
+        icon:"📍"
+    },
+
+    bank:{
+        title:"Bank / IBAN",
+        subtitle:"Create a QR code containing payment details.",
+        icon:"🏦"
+    },
+
+    bitcoin:{
+        title:"Bitcoin Payment",
+        subtitle:"Create a Bitcoin payment URI with optional amount and message.",
+        icon:"₿"
+    },
+
+    crypto:{
+        title:"Crypto Address",
+        subtitle:"Create an Ethereum or crypto payment QR code.",
+        icon:"◆"
+    },
+
+    event:{
+        title:"Calendar Event",
+        subtitle:"Create a QR code containing an event.",
+        icon:"📅"
+    }
+
+};
+
+
+/* ==========================================================
+   SELECT TYPE
+========================================================== */
+
+function selectType(type){
+
+    currentType = type;
+
+    document.querySelectorAll(".type-button").forEach(btn=>{
+        btn.classList.toggle(
+            "active",
+            btn.dataset.type === type
+        );
+    });
+
+    const meta = typeMeta[type];
+
+    document.getElementById("formTitle").textContent = meta.title;
+    document.getElementById("formSubtitle").textContent = meta.subtitle;
+
+    document.getElementById("businessActionsCard").style.display =
+        type === "business" ? "block" : "none";
+
+    renderForm(type);
+
+    document.getElementById("statusText").textContent =
+        meta.title + " ready";
+
+    window.scrollTo({
+        top:document.getElementById("formCard").offsetTop - 10,
+        behavior:"smooth"
+    });
+}
+
+
+/* ==========================================================
+   FORM RENDERER
+========================================================== */
+
+function renderForm(type){
+
+    const form = document.getElementById("dynamicForm");
+
+    if(type === "personal"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input id="p-name" class="input"
+                           placeholder="John Doe">
+                </div>
+
+                <div class="field">
+                    <label>Job Title</label>
+                    <input id="p-title" class="input"
+                           placeholder="Creative Director">
+                </div>
+
+                <div class="field">
+                    <label>Company</label>
+                    <input id="p-company" class="input"
+                           placeholder="Acme Global Ltd.">
+                </div>
+
+                <div class="field">
+                    <label>Phone</label>
+                    <input id="p-phone" class="input"
+                           type="tel"
+                           placeholder="+1 555 123 4567">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="p-email" class="input"
+                           type="email"
+                           placeholder="hello@example.com">
+                </div>
+
+                <div class="field">
+                    <label>Website</label>
+                    <input id="p-website" class="input"
+                           placeholder="https://example.com">
+                </div>
+
+                <div class="field full">
+                    <label>Address</label>
+                    <textarea id="p-address" class="input"
+                              placeholder="Street, City, Country"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Social / LinkedIn</label>
+                    <input id="p-social" class="input"
+                           placeholder="https://linkedin.com/in/...">
+                </div>
+
+                <div class="field">
+                    <label>WhatsApp</label>
+                    <input id="p-whatsapp" class="input"
+                           placeholder="+15551234567">
+                </div>
+
+            </div>
+
+            <div class="helper">
+                Fill in as much information as you want.
+                The generator can combine all available fields into one vCard QR.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "business"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Company Name <span class="required">*</span></label>
+                    <input id="b-company" class="input"
+                           placeholder="Acme Global Ltd.">
+                </div>
+
+                <div class="field">
+                    <label>Contact Person</label>
+                    <input id="b-contact" class="input"
+                           placeholder="John Doe">
+                </div>
+
+                <div class="field">
+                    <label>Job Title</label>
+                    <input id="b-title" class="input"
+                           placeholder="Managing Director">
+                </div>
+
+                <div class="field">
+                    <label>Phone</label>
+                    <input id="b-phone" class="input"
+                           type="tel"
+                           placeholder="+1 555 123 4567">
+                </div>
+
+                <div class="field">
+                    <label>Mobile</label>
+                    <input id="b-mobile" class="input"
+                           placeholder="+1 555 987 6543">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="b-email" class="input"
+                           type="email"
+                           placeholder="contact@company.com">
+                </div>
+
+                <div class="field">
+                    <label>Website</label>
+                    <input id="b-website" class="input"
+                           placeholder="https://company.com">
+                </div>
+
+                <div class="field">
+                    <label>WhatsApp</label>
+                    <input id="b-whatsapp" class="input"
+                           placeholder="+15551234567">
+                </div>
+
+                <div class="field">
+                    <label>VAT / Tax Number</label>
+                    <input id="b-vat" class="input"
+                           placeholder="VAT123456">
+                </div>
+
+                <div class="field">
+                    <label>Company Registration</label>
+                    <input id="b-registration" class="input"
+                           placeholder="Registration number">
+                </div>
+
+                <div class="field">
+                    <label>City</label>
+                    <input id="b-city" class="input"
+                           placeholder="Amsterdam">
+                </div>
+
+                <div class="field">
+                    <label>Country</label>
+                    <input id="b-country" class="input"
+                           placeholder="Netherlands">
+                </div>
+
+                <div class="field full">
+                    <label>Business Address</label>
+                    <textarea id="b-address" class="input"
+                              placeholder="Street, building, city, country"></textarea>
+                </div>
+
+                <div class="field full">
+                    <label>Business Description</label>
+                    <textarea id="b-description" class="input"
+                              placeholder="Short description of your business"></textarea>
+                </div>
+
+                <div class="field full">
+                    <label>Social Media / LinkedIn</label>
+                    <input id="b-social" class="input"
+                           placeholder="https://linkedin.com/company/...">
+                </div>
+
+            </div>
+
+            <div class="helper">
+                You can generate the entire business profile as one QR code,
+                or use the buttons below to create individual website, phone,
+                email, WhatsApp and location QR codes.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "url"){
+
+        form.innerHTML = `
+
+            <div class="field">
+                <label>Website URL <span class="required">*</span></label>
+
+                <input id="u-url"
+                       class="input"
+                       type="url"
+                       placeholder="https://example.com">
+
+                <div class="helper">
+                    Include https:// when possible.
+                </div>
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(type === "text"){
+
+        form.innerHTML = `
+
+            <div class="field">
+                <label>Custom Text <span class="required">*</span></label>
+
+                <textarea id="t-content"
+                          class="input"
+                          style="min-height:180px"
+                          placeholder="Enter any text you want to encode..."></textarea>
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(type === "phone"){
+
+        form.innerHTML = `
+
+            <div class="field">
+                <label>Phone Number <span class="required">*</span></label>
+                <input id="ph-number"
+                       class="input"
+                       type="tel"
+                       placeholder="+1 555 123 4567">
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(type === "email"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input id="e-address"
+                           class="input"
+                           type="email"
+                           placeholder="hello@example.com">
+                </div>
+
+                <div class="field">
+                    <label>Subject</label>
+                    <input id="e-subject"
+                           class="input"
+                           placeholder="Your subject">
+                </div>
+
+                <div class="field full">
+                    <label>Message</label>
+                    <textarea id="e-message"
+                              class="input"
+                              placeholder="Your message"></textarea>
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "whatsapp"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>WhatsApp Number <span class="required">*</span></label>
+                    <input id="w-number"
+                           class="input"
+                           placeholder="15551234567">
+                    <div class="helper">
+                        Use country code without + or spaces.
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Pre-filled Message</label>
+                    <input id="w-message"
+                           class="input"
+                           placeholder="Hello, I would like more information.">
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "wifi"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Network Name (SSID) <span class="required">*</span></label>
+                    <input id="wifi-ssid"
+                           class="input"
+                           placeholder="My WiFi">
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input id="wifi-password"
+                           class="input"
+                           type="text"
+                           placeholder="WiFi password">
+                </div>
+
+                <div class="field">
+                    <label>Security</label>
+                    <select id="wifi-security" class="input">
+                        <option value="WPA">WPA / WPA2 / WPA3</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">No Password</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Hidden Network</label>
+                    <select id="wifi-hidden" class="input">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "location"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Latitude <span class="required">*</span></label>
+                    <input id="loc-lat"
+                           class="input"
+                           placeholder="52.3676">
+                </div>
+
+                <div class="field">
+                    <label>Longitude <span class="required">*</span></label>
+                    <input id="loc-lon"
+                           class="input"
+                           placeholder="4.9041">
+                </div>
+
+                <div class="field full">
+                    <label>Location Name</label>
+                    <input id="loc-name"
+                           class="input"
+                           placeholder="Our Office">
+                </div>
+
+            </div>
+
+            <div class="helper">
+                You can find latitude and longitude using your preferred map service.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "bank"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Account Holder <span class="required">*</span></label>
+                    <input id="bank-holder"
+                           class="input"
+                           placeholder="John Doe">
+                </div>
+
+                <div class="field">
+                    <label>Bank Name</label>
+                    <input id="bank-name"
+                           class="input"
+                           placeholder="Example Bank">
+                </div>
+
+                <div class="field">
+                    <label>IBAN <span class="required">*</span></label>
+                    <input id="bank-iban"
+                           class="input"
+                           placeholder="NL00 BANK 0000 0000 00">
+                </div>
+
+                <div class="field">
+                    <label>BIC / SWIFT</label>
+                    <input id="bank-bic"
+                           class="input"
+                           placeholder="BANKNL2A">
+                </div>
+
+                <div class="field">
+                    <label>Amount</label>
+                    <input id="bank-amount"
+                           class="input"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           placeholder="100.00">
+                </div>
+
+                <div class="field">
+                    <label>Currency</label>
+                    <select id="bank-currency" class="input">
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CAD">CAD</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                </div>
+
+                <div class="field full">
+                    <label>Payment Reference / Message</label>
+                    <textarea id="bank-message"
+                              class="input"
+                              placeholder="Invoice 1024"></textarea>
+                </div>
+
+            </div>
+
+            <div class="helper">
+                Bank QR data is encoded as text unless a compatible payment standard
+                is implemented by the receiving banking application.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "bitcoin"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field full">
+                    <label>Bitcoin Address <span class="required">*</span></label>
+                    <input id="btc-address"
+                           class="input"
+                           placeholder="bc1q...">
+                </div>
+
+                <div class="field">
+                    <label>Amount (BTC)</label>
+                    <input id="btc-amount"
+                           class="input"
+                           type="number"
+                           step="0.00000001"
+                           min="0"
+                           placeholder="0.001">
+                </div>
+
+                <div class="field">
+                    <label>Recipient / Label</label>
+                    <input id="btc-label"
+                           class="input"
+                           placeholder="My Business">
+                </div>
+
+                <div class="field full">
+                    <label>Payment Message</label>
+                    <textarea id="btc-message"
+                              class="input"
+                              placeholder="Invoice 1024"></textarea>
+                </div>
+
+            </div>
+
+            <div class="helper">
+                The generator creates a Bitcoin payment URI using the bitcoin:
+                scheme. Amounts are entered in BTC.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "crypto"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label>Protocol</label>
+                    <select id="crypto-protocol" class="input">
+                        <option value="ethereum">Ethereum</option>
+                        <option value="ethereum:">Ethereum URI</option>
+                        <option value="">Generic Address</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Address <span class="required">*</span></label>
+                    <input id="crypto-address"
+                           class="input"
+                           placeholder="0x...">
+                </div>
+
+                <div class="field">
+                    <label>Amount</label>
+                    <input id="crypto-amount"
+                           class="input"
+                           placeholder="0.1">
+                </div>
+
+                <div class="field">
+                    <label>Token / Currency</label>
+                    <input id="crypto-token"
+                           class="input"
+                           placeholder="ETH">
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(type === "event"){
+
+        form.innerHTML = `
+
+            <div class="field-grid">
+
+                <div class="field full">
+                    <label>Event Title <span class="required">*</span></label>
+                    <input id="event-title"
+                           class="input"
+                           placeholder="Business Meeting">
+                </div>
+
+                <div class="field">
+                    <label>Start Date & Time</label>
+                    <input id="event-start"
+                           class="input"
+                           type="datetime-local">
+                </div>
+
+                <div class="field">
+                    <label>End Date & Time</label>
+                    <input id="event-end"
+                           class="input"
+                           type="datetime-local">
+                </div>
+
+                <div class="field full">
+                    <label>Location</label>
+                    <input id="event-location"
+                           class="input"
+                           placeholder="Amsterdam Office">
+                </div>
+
+                <div class="field full">
+                    <label>Description</label>
+                    <textarea id="event-description"
+                              class="input"
+                              placeholder="Event details"></textarea>
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+}
+
+
+/* ==========================================================
+   PAYLOAD GENERATION
+========================================================== */
+
+function buildPayload(type){
+
+    if(type === "personal"){
+
+        const name = getValue("p-name");
+        const title = getValue("p-title");
+        const company = getValue("p-company");
+        const phone = getValue("p-phone");
+        const email = getValue("p-email");
+        const website = getValue("p-website");
+        const address = getValue("p-address");
+        const social = getValue("p-social");
+        const whatsapp = getValue("p-whatsapp");
+
+        if(!name && !phone && !email){
+            throw new Error("Please enter at least a name, phone number or email address.");
+        }
+
+        let vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            `FN:${name || ""}`
+        ];
+
+        if(company) vcard.push(`ORG:${company}`);
+        if(title) vcard.push(`TITLE:${title}`);
+        if(phone) vcard.push(`TEL:${phone}`);
+        if(email) vcard.push(`EMAIL:${email}`);
+        if(website) vcard.push(`URL:${website}`);
+
+        if(address){
+            vcard.push(`ADR:;;${address};;;;`);
+        }
+
+        if(social){
+            vcard.push(`X-SOCIALPROFILE;TYPE=linkedin:${social}`);
+        }
+
+        if(whatsapp){
+            vcard.push(`X-WHATSAPP:${whatsapp}`);
+        }
+
+        vcard.push("END:VCARD");
+
+        return {
+            title:name || "Personal Contact",
+            payload:vcard.join("\n"),
+            details:{
+                "Type":"Personal vCard",
+                "Name":name,
+                "Company":company,
+                "Phone":phone,
+                "Email":email,
+                "Website":website,
+                "Address":address
+            }
+        };
+    }
+
+
+    if(type === "business"){
+
+        const company = getValue("b-company");
+        const contact = getValue("b-contact");
+        const title = getValue("b-title");
+        const phone = getValue("b-phone");
+        const mobile = getValue("b-mobile");
+        const email = getValue("b-email");
+        const website = getValue("b-website");
+        const whatsapp = getValue("b-whatsapp");
+        const vat = getValue("b-vat");
+        const registration = getValue("b-registration");
+        const city = getValue("b-city");
+        const country = getValue("b-country");
+        const address = getValue("b-address");
+        const description = getValue("b-description");
+        const social = getValue("b-social");
+
+        if(!company && !contact){
+            throw new Error("Please enter a company name or contact person.");
+        }
+
+        const vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            `FN:${contact || company}`,
+            company ? `ORG:${company}` : "",
+            title ? `TITLE:${title}` : "",
+            phone ? `TEL;TYPE=WORK:${phone}` : "",
+            mobile ? `TEL;TYPE=CELL:${mobile}` : "",
+            email ? `EMAIL;TYPE=WORK:${email}` : "",
+            website ? `URL:${website}` : "",
+            address ? `ADR;TYPE=WORK:;;${address};${city};;${country}` : "",
+            description ? `NOTE:${description}` : "",
+            social ? `X-SOCIALPROFILE;TYPE=linkedin:${social}` : "",
+            whatsapp ? `X-WHATSAPP:${whatsapp}` : "",
+            vat ? `X-VAT:${vat}` : "",
+            registration ? `X-REGISTRATION:${registration}` : "",
+            "END:VCARD"
+        ].filter(Boolean);
+
+        return {
+            title:company || contact || "Business",
+            payload:vcard.join("\n"),
+            details:{
+                "Type":"Business vCard",
+                "Company":company,
+                "Contact":contact,
+                "Job Title":title,
+                "Phone":phone,
+                "Mobile":mobile,
+                "Email":email,
+                "Website":website,
+                "WhatsApp":whatsapp,
+                "Address":address,
+                "City":city,
+                "Country":country,
+                "VAT":vat,
+                "Registration":registration
+            }
+        };
+    }
+
+
+    if(type === "url"){
+
+        let url = getValue("u-url");
+
+        if(!url){
+            throw new Error("Please enter a website URL.");
+        }
+
+        if(!/^https?:\/\//i.test(url)){
+            url = "https://" + url;
+        }
+
+        return {
+            title:url,
+            payload:url,
+            details:{
+                "Type":"Website URL",
+                "URL":url
+            }
+        };
+    }
+
+
+    if(type === "text"){
+
+        const text = getValue("t-content");
+
+        if(!text){
+            throw new Error("Please enter some text.");
+        }
+
+        return {
+            title:"Custom Text",
+            payload:text,
+            details:{
+                "Type":"Custom Text",
+                "Content":text
+            }
+        };
+    }
+
+
+    if(type === "phone"){
+
+        const phone = getValue("ph-number");
+
+        if(!phone){
+            throw new Error("Please enter a phone number.");
+        }
+
+        return {
+            title:phone,
+            payload:`tel:${phone}`,
+            details:{
+                "Type":"Phone",
+                "Number":phone
+            }
+        };
+    }
+
+
+    if(type === "email"){
+
+        const address = getValue("e-address");
+
+        if(!address){
+            throw new Error("Please enter an email address.");
+        }
+
+        const subject = getValue("e-subject");
+        const message = getValue("e-message");
+
+        const params = [];
+
+        if(subject){
+            params.push("subject=" + encodeURIComponent(subject));
+        }
+
+        if(message){
+            params.push("body=" + encodeURIComponent(message));
+        }
+
+        const payload =
+            "mailto:" +
+            address +
+            (params.length ? "?" + params.join("&") : "");
+
+        return {
+            title:address,
+            payload,
+            details:{
+                "Type":"Email",
+                "Email":address,
+                "Subject":subject,
+                "Message":message
+            }
+        };
+    }
+
+
+    if(type === "whatsapp"){
+
+        let number = getValue("w-number").replace(/[^\d]/g,"");
+        const message = getValue("w-message");
+
+        if(!number){
+            throw new Error("Please enter a WhatsApp number.");
+        }
+
+        let payload = `https://wa.me/${number}`;
+
+        if(message){
+            payload += "?text=" + encodeURIComponent(message);
+        }
+
+        return {
+            title:"WhatsApp " + number,
+            payload,
+            details:{
+                "Type":"WhatsApp",
+                "Number":"+" + number,
+                "Message":message
+            }
+        };
+    }
+
+
+    if(type === "wifi"){
+
+        const ssid = getValue("wifi-ssid");
+
+        if(!ssid){
+            throw new Error("Please enter the Wi-Fi network name.");
+        }
+
+        const password = getValue("wifi-password");
+        const security = getValue("wifi-security");
+        const hidden = getValue("wifi-hidden");
+
+        const escapeWifi = value =>
+            String(value)
+                .replace(/\\/g,"\\\\")
+                .replace(/;/g,"\\;")
+                .replace(/,/g,"\\,")
+                .replace(/:/g,"\\:");
+
+        const payload =
+            `WIFI:T:${security};S:${escapeWifi(ssid)};P:${escapeWifi(password)};H:${hidden};;`;
+
+        return {
+            title:ssid,
+            payload,
+            details:{
+                "Type":"Wi-Fi",
+                "Network":ssid,
+                "Security":security,
+                "Hidden":hidden === "true" ? "Yes" : "No"
+            }
+        };
+    }
+
+
+    if(type === "location"){
+
+        const lat = getValue("loc-lat");
+        const lon = getValue("loc-lon");
+        const name = getValue("loc-name");
+
+        if(!lat || !lon){
+            throw new Error("Please enter latitude and longitude.");
+        }
+
+        const payload =
+            `https://www.google.com/maps?q=${encodeURIComponent(lat)},${encodeURIComponent(lon)}`;
+
+        return {
+            title:name || "Map Location",
+            payload,
+            details:{
+                "Type":"Location",
+                "Name":name,
+                "Latitude":lat,
+                "Longitude":lon
+            }
+        };
+    }
+
+
+    if(type === "bank"){
+
+        const holder = getValue("bank-holder");
+        const bank = getValue("bank-name");
+        const iban = getValue("bank-iban");
+        const bic = getValue("bank-bic");
+        const amount = getValue("bank-amount");
+        const currency = getValue("bank-currency");
+        const message = getValue("bank-message");
+
+        if(!holder || !iban){
+            throw new Error("Please enter the account holder and IBAN.");
+        }
+
+        const payload = [
+            "BANK PAYMENT",
+            `Account Holder: ${holder}`,
+            `Bank: ${bank}`,
+            `IBAN: ${iban}`,
+            `BIC/SWIFT: ${bic}`,
+            `Amount: ${amount ? amount + " " + currency : ""}`,
+            `Reference: ${message}`
+        ].join("\n");
+
+        return {
+            title:"Bank Payment - " + holder,
+            payload,
+            details:{
+                "Type":"Bank / IBAN",
+                "Holder":holder,
+                "Bank":bank,
+                "IBAN":iban,
+                "BIC/SWIFT":bic,
+                "Amount":amount ? amount + " " + currency : "",
+                "Reference":message
+            }
+        };
+    }
+
+
+    if(type === "bitcoin"){
+
+        const address = getValue("btc-address");
+        const amount = getValue("btc-amount");
+        const label = getValue("btc-label");
+        const message = getValue("btc-message");
+
+        if(!address){
+            throw new Error("Please enter a Bitcoin address.");
+        }
+
+        const params = [];
+
+        if(amount){
+            params.push("amount=" + encodeURIComponent(amount));
+        }
+
+        if(label){
+            params.push("label=" + encodeURIComponent(label));
+        }
+
+        if(message){
+            params.push("message=" + encodeURIComponent(message));
+        }
+
+        const payload =
+            "bitcoin:" +
+            address +
+            (params.length ? "?" + params.join("&") : "");
+
+        return {
+            title:label || "Bitcoin Payment",
+            payload,
+            details:{
+                "Type":"Bitcoin Payment",
+                "Address":address,
+                "Amount":amount ? amount + " BTC" : "",
+                "Label":label,
+                "Message":message
+            }
+        };
+    }
+
+
+    if(type === "crypto"){
+
+        const protocol = getValue("crypto-protocol");
+        const address = getValue("crypto-address");
+        const amount = getValue("crypto-amount");
+        const token = getValue("crypto-token");
+
+        if(!address){
+            throw new Error("Please enter a crypto address.");
+        }
+
+        let payload = address;
+
+        if(protocol === "ethereum" || protocol === "ethereum:"){
+
+            payload = "ethereum:" + address;
+
+            if(amount){
+                payload += "?value=" + encodeURIComponent(amount);
+            }
+        }
+
+        return {
+            title:token ? token + " Payment" : "Crypto Payment",
+            payload,
+            details:{
+                "Type":"Crypto Address",
+                "Protocol":protocol || "Generic",
+                "Address":address,
+                "Amount":amount,
+                "Token":token
+            }
+        };
+    }
+
+
+    if(type === "event"){
+
+        const title = getValue("event-title");
+        const start = getValue("event-start");
+        const end = getValue("event-end");
+        const location = getValue("event-location");
+        const description = getValue("event-description");
+
+        if(!title){
+            throw new Error("Please enter an event title.");
+        }
+
+        function toICSDate(value){
+
+            if(!value) return "";
+
+            const date = new Date(value);
+
+            const pad = n => String(n).padStart(2,"0");
+
+            return (
+                date.getUTCFullYear() +
+                pad(date.getUTCMonth()+1) +
+                pad(date.getUTCDate()) +
+                "T" +
+                pad(date.getUTCHours()) +
+                pad(date.getUTCMinutes()) +
+                pad(date.getUTCSeconds()) +
+                "Z"
+            );
+        }
+
+        const payload = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "BEGIN:VEVENT",
+            `SUMMARY:${title}`,
+            start ? `DTSTART:${toICSDate(start)}` : "",
+            end ? `DTEND:${toICSDate(end)}` : "",
+            location ? `LOCATION:${location}` : "",
+            description ? `DESCRIPTION:${description}` : "",
+            "END:VEVENT",
+            "END:VCALENDAR"
+        ].filter(Boolean).join("\n");
+
+        return {
+            title,
+            payload,
+            details:{
+                "Type":"Calendar Event",
+                "Title":title,
+                "Start":start,
+                "End":end,
+                "Location":location,
+                "Description":description
+            }
+        };
+    }
+
+
+    throw new Error("Unsupported QR type.");
+}
+
+
+/* ==========================================================
+   OPEN PREVIEW
+========================================================== */
+
+function openPreview(typeOverride=null, payloadOverride=null, detailsOverride=null, titleOverride=null){
+
+    try{
+
+        let result;
+
+        if(typeOverride && payloadOverride){
+
+            result = {
+                title:titleOverride || "QR Code",
+                payload:payloadOverride,
+                details:detailsOverride || {
+                    "Type":"QR Code"
+                }
+            };
+
+        }else{
+
+            result = buildPayload(currentType);
+
+        }
+
+        currentPayload = result.payload;
+
+        currentProject = {
+            id:currentProject?.id || null,
+            type:typeOverride || currentType,
+            title:result.title,
+            payload:result.payload,
+            details:result.details,
+            dark:document.getElementById("qrDark").value,
+            light:document.getElementById("qrLight").value
+        };
+
+        document.getElementById("previewTitle").textContent =
+            result.title;
+
+        document.getElementById("previewLogo").textContent =
+            getLogo(result.title);
+
+        renderDetails(result.details);
+
+        generateQRCode(
+            result.payload,
+            currentProject.dark,
+            currentProject.light
+        );
+
+        document.getElementById("previewModal").classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+        document.getElementById("statusText").textContent =
+            "QR preview ready";
+
+    }catch(error){
+
+        showToast(error.message);
+    }
+}
+
+
+function getLogo(title){
+
+    const clean = String(title || "QR").trim();
+
+    if(!clean) return "QR";
+
+    const words = clean.split(/\s+/);
+
+    if(words.length > 1){
+        return (
+            words[0].charAt(0) +
+            words[1].charAt(0)
+        ).toUpperCase();
+    }
+
+    return clean.substring(0,2).toUpperCase();
+}
+
+
+/* ==========================================================
+   QR GENERATION
+========================================================== */
+
+function generateQRCode(payload,dark="#0f172a",light="#ffffff"){
+
+    const container = document.getElementById("qrcode");
+
+    container.innerHTML = "";
+
+    new QRCode(container,{
+        text:payload,
+        width:230,
+        height:230,
+        colorDark:dark,
+        colorLight:light,
+        correctLevel:QRCode.CorrectLevel.H
+    });
+}
+
+
+/* ==========================================================
+   DETAILS
+========================================================== */
+
+function renderDetails(details){
+
+    const container =
+        document.getElementById("previewDetails");
+
+    container.innerHTML = "";
+
+    Object.entries(details || {}).forEach(([label,value])=>{
+
+        if(!value) return;
+
+        const row = document.createElement("div");
+        row.className = "preview-details-row";
+
+        const labelEl = document.createElement("div");
+        labelEl.className = "preview-details-label";
+        labelEl.textContent = label;
+
+        const valueEl = document.createElement("div");
+        valueEl.textContent = value;
+
+        row.appendChild(labelEl);
+        row.appendChild(valueEl);
+
+        container.appendChild(row);
+    });
+}
+
+
+/* ==========================================================
+   CLOSE PREVIEW
+========================================================== */
+
+function closePreview(){
+
+    document.getElementById("previewModal")
+        .classList.remove("show");
+
+    document.body.style.overflow = "";
+
+    document.getElementById("statusText").textContent =
+        "Ready to edit";
+}
+
+
+/* ==========================================================
+   ARCHIVE STORAGE
+========================================================== */
+
+function getArchive(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(STORAGE_KEY) || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+
+function saveArchive(items){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(items)
+    );
+}
+
+
+/* ==========================================================
+   SAVE PROJECT
+========================================================== */
+
+function saveCurrentProject(){
+
+    if(!currentProject){
+        showToast("Generate a QR code first.");
+        return;
+    }
+
+    const archive = getArchive();
+
+    const now = Date.now();
+
+    if(currentProject.id){
+
+        const index = archive.findIndex(
+            item => item.id === currentProject.id
+        );
+
+        if(index !== -1){
+
+            archive[index] = {
+                ...currentProject,
+                updatedAt:now
+            };
+
+            saveArchive(archive);
+
+            renderArchive();
+
+            showToast("QR project updated.");
+
+            return;
+        }
+    }
+
+    currentProject.id =
+        "qr_" +
+        now +
+        "_" +
+        Math.random().toString(36).slice(2,8);
+
+    currentProject.createdAt = now;
+    currentProject.updatedAt = now;
+
+    archive.unshift(currentProject);
+
+    saveArchive(archive);
+
+    renderArchive();
+
+    showToast("QR project saved to archive.");
+}
+
+
+/* ==========================================================
+   RENDER ARCHIVE
+========================================================== */
+
+function renderArchive(){
+
+    const list =
+        document.getElementById("archiveList");
+
+    const search =
+        getValue("archiveSearch").toLowerCase();
+
+    const archive =
+        getArchive();
+
+    const filtered = archive.filter(item=>{
+
+        const text = [
+            item.title,
+            item.type,
+            item.payload,
+            JSON.stringify(item.details || {})
+        ].join(" ").toLowerCase();
+
+        return text.includes(search);
+    });
+
+    document.getElementById("archiveCount").textContent =
+        filtered.length;
+
+    document.getElementById("topArchiveCount").textContent =
+        archive.length;
+
+    list.innerHTML = "";
+
+    if(!filtered.length){
+
+        list.innerHTML = `
+            <div class="archive-empty">
+                ${
+                    archive.length
+                    ? "No QR projects match your search."
+                    : "No saved QR projects yet. Generate your first QR code and save it here."
+                }
+            </div>
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach(item=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className = "archive-item";
+
+        const icon =
+            typeMeta[item.type]?.icon || "▦";
+
+        div.innerHTML = `
+
+            <div class="archive-icon">
+                ${icon}
+            </div>
+
+            <div class="archive-info">
+
+                <div class="archive-name">
+                    ${escapeHTML(item.title)}
+                </div>
+
+                <div class="archive-meta">
+                    ${escapeHTML(item.type)}
+                    ·
+                    ${escapeHTML(formatDate(item.updatedAt || item.createdAt))}
+                </div>
+
+            </div>
+
+            <div class="archive-actions">
+
+                <button
+                    class="archive-action"
+                    title="Preview"
+                    onclick="previewArchive('${item.id}')">
+                    ▶
+                </button>
+
+                <button
+                    class="archive-action"
+                    title="Edit"
+                    onclick="editArchive('${item.id}')">
+                    ✎
+                </button>
+
+                <button
+                    class="archive-action"
+                    title="Duplicate"
+                    onclick="duplicateArchive('${item.id}')">
+                    ⧉
+                </button>
+
+                <button
+                    class="archive-action delete"
+                    title="Delete"
+                    onclick="deleteArchive('${item.id}')">
+                    ×
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+/* ==========================================================
+   PREVIEW ARCHIVE ITEM
+========================================================== */
+
+function previewArchive(id){
+
+    const archive = getArchive();
+
+    const item =
+        archive.find(x=>x.id === id);
+
+    if(!item) return;
+
+    currentProject = {
+        ...item
+    };
+
+    openPreview(
+        item.type,
+        item.payload,
+        item.details,
+        item.title
+    );
+}
+
+
+/* ==========================================================
+   EDIT ARCHIVE
+========================================================== */
+
+function editArchive(id){
+
+    const archive = getArchive();
+
+    const item =
+        archive.find(x=>x.id === id);
+
+    if(!item) return;
+
+    currentProject = {
+        ...item
+    };
+
+    selectType(item.type);
+
+    /* We cannot reliably reconstruct every original
+       form field from a generic QR payload, so populate
+       fields from the saved details where possible. */
+
+    populateFormFromProject(item);
+
+    showToast("Project loaded for editing.");
+
+    window.scrollTo({
+        top:document.getElementById("formCard").offsetTop - 10,
+        behavior:"smooth"
+    });
+}
+
+
+/* ==========================================================
+   POPULATE EDIT FORM
+========================================================== */
+
+function populateFormFromProject(item){
+
+    const d = item.details || {};
+
+    if(item.type === "personal"){
+
+        setValue("p-name",d["Name"]);
+        setValue("p-company",d["Company"]);
+        setValue("p-phone",d["Phone"]);
+        setValue("p-email",d["Email"]);
+        setValue("p-website",d["Website"]);
+        setValue("p-address",d["Address"]);
+
+    }
+
+
+    if(item.type === "business"){
+
+        setValue("b-company",d["Company"]);
+        setValue("b-contact",d["Contact"]);
+        setValue("b-title",d["Job Title"]);
+        setValue("b-phone",d["Phone"]);
+        setValue("b-mobile",d["Mobile"]);
+        setValue("b-email",d["Email"]);
+        setValue("b-website",d["Website"]);
+        setValue("b-whatsapp",d["WhatsApp"]);
+        setValue("b-address",d["Address"]);
+        setValue("b-city",d["City"]);
+        setValue("b-country",d["Country"]);
+        setValue("b-vat",d["VAT"]);
+        setValue("b-registration",d["Registration"]);
+
+    }
+
+
+    if(item.type === "url"){
+        setValue("u-url",d["URL"]);
+    }
+
+
+    if(item.type === "text"){
+        setValue("t-content",d["Content"]);
+    }
+
+
+    if(item.type === "phone"){
+        setValue("ph-number",d["Number"]);
+    }
+
+
+    if(item.type === "email"){
+        setValue("e-address",d["Email"]);
+        setValue("e-subject",d["Subject"]);
+        setValue("e-message",d["Message"]);
+    }
+
+
+    if(item.type === "whatsapp"){
+        setValue(
+            "w-number",
+            String(d["Number"] || "").replace("+","")
+        );
+        setValue("w-message",d["Message"]);
+    }
+
+
+    if(item.type === "location"){
+        setValue("loc-name",d["Name"]);
+        setValue("loc-lat",d["Latitude"]);
+        setValue("loc-lon",d["Longitude"]);
+    }
+
+
+    if(item.type === "bank"){
+
+        setValue("bank-holder",d["Holder"]);
+        setValue("bank-name",d["Bank"]);
+        setValue("bank-iban",d["IBAN"]);
+        setValue("bank-bic",d["BIC/SWIFT"]);
+
+    }
+
+
+    if(item.type === "bitcoin"){
+
+        setValue("btc-address",d["Address"]);
+        setValue(
+            "btc-amount",
+            String(d["Amount"] || "").replace(" BTC","")
+        );
+        setValue("btc-label",d["Label"]);
+        setValue("btc-message",d["Message"]);
+
+    }
+}
+
+
+/* ==========================================================
+   DUPLICATE
+========================================================== */
+
+function duplicateArchive(id){
+
+    const archive = getArchive();
+
+    const item =
+        archive.find(x=>x.id === id);
+
+    if(!item) return;
+
+    const copy = {
+        ...item,
+        id:
+            "qr_" +
+            Date.now() +
+            "_" +
+            Math.random().toString(36).slice(2,8),
+        title:item.title + " Copy",
+        createdAt:Date.now(),
+        updatedAt:Date.now()
+    };
+
+    archive.unshift(copy);
+
+    saveArchive(archive);
+
+    renderArchive();
+
+    showToast("QR project duplicated.");
+}
+
+
+/* ==========================================================
+   DELETE
+========================================================== */
+
+function deleteArchive(id){
+
+    const archive = getArchive();
+
+    const item =
+        archive.find(x=>x.id === id);
+
+    if(!item) return;
+
+    const confirmed =
+        confirm(
+            `Delete "${item.title}" from your QR archive?`
+        );
+
+    if(!confirmed) return;
+
+    const updated =
+        archive.filter(x=>x.id !== id);
+
+    saveArchive(updated);
+
+    if(currentProject?.id === id){
+        currentProject = null;
+    }
+
+    renderArchive();
+
+    showToast("QR project deleted.");
+}
+
+
+/* ==========================================================
+   BUSINESS INDIVIDUAL QR
+========================================================== */
+
+function businessValue(id){
+    return getValue(id);
+}
+
+
+function generateBusinessAll(){
+
+    openPreview();
+}
+
+
+function generateBusinessWebsite(){
+
+    const url = businessValue("b-website");
+
+    if(!url){
+        showToast("Please enter a business website first.");
+        return;
+    }
+
+    openPreview(
+        "url",
+        /^https?:\/\//i.test(url) ? url : "https://" + url,
+        {
+            "Type":"Business Website",
+            "Company":businessValue("b-company"),
+            "URL":url
+        },
+        businessValue("b-company") + " Website"
+    );
+}
+
+
+function generateBusinessPhone(){
+
+    const phone =
+        businessValue("b-phone") ||
+        businessValue("b-mobile");
+
+    if(!phone){
+        showToast("Please enter a business phone number first.");
+        return;
+    }
+
+    openPreview(
+        "phone",
+        "tel:" + phone,
+        {
+            "Type":"Business Phone",
+            "Company":businessValue("b-company"),
+            "Phone":phone
+        },
+        businessValue("b-company") + " Phone"
+    );
+}
+
+
+function generateBusinessEmail(){
+
+    const email = businessValue("b-email");
+
+    if(!email){
+        showToast("Please enter a business email first.");
+        return;
+    }
+
+    openPreview(
+        "email",
+        "mailto:" + email,
+        {
+            "Type":"Business Email",
+            "Company":businessValue("b-company"),
+            "Email":email
+        },
+        businessValue("b-company") + " Email"
+    );
+}
+
+
+function generateBusinessWhatsApp(){
+
+    let number =
+        businessValue("b-whatsapp").replace(/[^\d]/g,"");
+
+    if(!number){
+        showToast("Please enter a WhatsApp number first.");
+        return;
+    }
+
+    openPreview(
+        "whatsapp",
+        "https://wa.me/" + number,
+        {
+            "Type":"Business WhatsApp",
+            "Company":businessValue("b-company"),
+            "WhatsApp":"+" + number
+        },
+        businessValue("b-company") + " WhatsApp"
+    );
+}
+
+
+function generateBusinessLocation(){
+
+    const address = businessValue("b-address");
+    const city = businessValue("b-city");
+    const country = businessValue("b-country");
+
+    const query = [
+        address,
+        city,
+        country
+    ].filter(Boolean).join(", ");
+
+    if(!query){
+        showToast("Please enter a business address first.");
+        return;
+    }
+
+    const payload =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(query);
+
+    openPreview(
+        "location",
+        payload,
+        {
+            "Type":"Business Location",
+            "Company":businessValue("b-company"),
+            "Address":query
+        },
+        businessValue("b-company") + " Location"
+    );
+}
+
+
+/* ==========================================================
+   EXPORT & SHARE (v2) - QR only / QR + details
+   Canvas ile çizilir (html2pdf boş sayfa hatası giderildi)
+========================================================== */
+const L10N={
+ en:["QR only","QR + details","Generate a QR code first.","Download started.","Sharing is not supported here - file downloaded."],
+ no:["Bare QR","QR + info","Lag en QR-kode først.","Nedlasting startet.","Deling støttes ikke her - filen er lastet ned."],
+ fi:["Vain QR","QR + tiedot","Luo ensin QR-koodi.","Lataus alkoi.","Jakaminen ei toimi täällä - tiedosto ladattiin."],
+ sv:["Bara QR","QR + info","Skapa en QR-kod först.","Nedladdningen startade.","Delning stöds inte här - filen laddades ner."],
+ da:["Kun QR","QR + info","Opret en QR-kode først.","Download startet.","Deling understøttes ikke her - filen er downloadet."],
+ pt:["Só o QR","QR + dados","Gere um QR code primeiro.","Download iniciado.","Compartilhamento indisponível - arquivo baixado."],
+ ko:["QR만","QR + 정보","먼저 QR 코드를 생성하세요.","다운로드를 시작했습니다.","공유가 지원되지 않아 파일을 다운로드했습니다."]
+};
+const T=L10N[(document.documentElement.lang||"en").slice(0,2).toLowerCase()]||L10N.en;
+let shareMode="full";
+
+function setShareMode(m){
+    shareMode=m;
+    document.getElementById("previewModal").classList.toggle("qr-only",m==="qr");
+    document.querySelectorAll("#shareMode button").forEach(b=>{
+        b.classList.toggle("on",b.dataset.m===m);
+    });
+}
+
+function hiResQR(size){
+    const box=document.createElement("div");
+    new QRCode(box,{text:currentPayload,width:size,height:size,
+        colorDark:currentProject.dark,colorLight:currentProject.light,
+        correctLevel:QRCode.CorrectLevel.H});
+    return box.querySelector("canvas")||document.querySelector("#qrcode canvas");
+}
+
+function renderCard(){
+    const W=1200,pad=90,qr=760,F="'Segoe UI',Roboto,Helvetica,Arial,'Noto Sans KR','Malgun Gothic',sans-serif";
+    const c=document.createElement("canvas"),x=c.getContext("2d");
+    const wrap=(t,f,mw)=>{x.font=f;const o=[];String(t).split("\n").forEach(p=>{let l="";
+        p.split(" ").forEach(w=>{const s=l?l+" "+w:w;if(x.measureText(s).width<=mw){l=s;return;}
+            if(l)o.push(l);l="";for(const ch of w){if(x.measureText(l+ch).width>mw){o.push(l);l=ch;}else l+=ch;}});
+        o.push(l);});return o;};
+    const mw=W-2*pad;
+    const title=wrap(currentProject.title||"QR Code","800 54px "+F,mw);
+    const rows=shareMode==="full"?Object.entries(currentProject.details||{}).filter(e=>e[1]).map(e=>({k:String(e[0]),v:wrap(e[1],"500 34px "+F,mw-60)})):[];
+    let h=pad+title.length*68+40+qr+80+40;
+    if(rows.length){h+=30+rows.reduce((s,r)=>s+34+r.v.length*46+26,0)+40;}
+    h+=50+pad/2;
+    c.width=W;c.height=h;
+    x.fillStyle="#fff";x.fillRect(0,0,W,h);
+    x.textAlign="center";x.textBaseline="top";x.fillStyle="#0f172a";x.font="800 54px "+F;
+    let y=pad;title.forEach(t=>{x.fillText(t,W/2,y);y+=68;});
+    y+=40;
+    const bx=(W-qr-80)/2;
+    x.strokeStyle="#cbd5e1";x.lineWidth=4;x.setLineDash([14,10]);x.strokeRect(bx,y,qr+80,qr+80);x.setLineDash([]);
+    x.fillStyle="#fff";x.fillRect(bx+2,y+2,qr+76,qr+76);
+    x.imageSmoothingEnabled=false;x.drawImage(hiResQR(1024),bx+40,y+40,qr,qr);
+    y+=qr+80+40;
+    if(rows.length){
+        y+=10;x.fillStyle="#f8fafc";x.fillRect(pad,y,mw,h-y-pad/2-50);
+        y+=30;x.textAlign="left";
+        rows.forEach(r=>{
+            x.fillStyle="#b45309";x.font="800 24px "+F;x.fillText(r.k.toUpperCase(),pad+30,y);y+=34;
+            x.fillStyle="#111827";x.font="500 34px "+F;r.v.forEach(t=>{x.fillText(t,pad+30,y);y+=46;});y+=26;
+        });
+    }
+    x.textAlign="center";x.fillStyle="#94a3b8";x.font="600 22px "+F;x.fillText("QR Studio Luxe",W/2,h-pad/2-22);
+    return c;
+}
+
+function dataURLtoBlob(u){
+    const p=u.split(","),bin=atob(p[1]),a=new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);
+    return new Blob([a],{type:p[0].match(/:(.*?);/)[1]});
+}
+
+function buildFile(kind){
+    const c=renderCard(),name=safeFilename((currentProject.title||"QR_Code")+"."+kind);
+    if(kind==="png")return new File([dataURLtoBlob(c.toDataURL("image/png"))],name,{type:"image/png"});
+    const doc=new window.jspdf.jsPDF({unit:"mm",format:"a4"}),pw=210,ph=297,m=12;
+    let w=pw-2*m,h=w*c.height/c.width;
+    if(h>ph-2*m){h=ph-2*m;w=h*c.width/c.height;}
+    doc.addImage(c.toDataURL("image/jpeg",0.95),"JPEG",(pw-w)/2,m,w,h);
+    return new File([doc.output("blob")],name,{type:"application/pdf"});
+}
+
+function saveFile(f){
+    const u=URL.createObjectURL(f),a=document.createElement("a");
+    a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u),4000);
+}
+
+function readyCheck(){
+    if(!currentPayload||!currentProject){showToast(T[2]);return false;}
+    return true;
+}
+
+function downloadPNG(){if(!readyCheck())return;saveFile(buildFile("png"));showToast(T[3]);}
+
+function downloadPDF(){
+    if(!readyCheck())return;
+    if(!window.jspdf){showToast("PDF library not loaded.");return;}
+    saveFile(buildFile("pdf"));showToast(T[3]);
+}
+
+function canShareFile(f){return !!(navigator.canShare&&navigator.canShare({files:[f]}));}
+
+function shareText(){
+    let t=currentProject.title||"QR Code";
+    if(shareMode==="full"){Object.entries(currentProject.details||{}).forEach(e=>{if(e[1])t+="\n"+e[0]+": "+e[1];});}
+    return t;
+}
+
+function sharePDF(){
+    if(!readyCheck())return;
+    if(!window.jspdf){showToast("PDF library not loaded.");return;}
+    const f=buildFile("pdf");
+    if(canShareFile(f)){
+        navigator.share({files:[f],title:currentProject.title||"QR Code"}).catch(()=>{});
+    }else{saveFile(f);showToast(T[4]);}
+}
+
+function shareWhatsApp(){
+    if(!readyCheck())return;
+    const f=buildFile("png");
+    if(canShareFile(f)){
+        navigator.share({files:[f],title:currentProject.title||"QR Code",text:shareText()}).catch(()=>{});
+    }else{
+        saveFile(f);showToast(T[4]);
+        window.open("https://wa.me/?text="+encodeURIComponent(shareText()),"_blank");
+    }
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+    const b=document.querySelectorAll("#shareMode button");
+    b[0].textContent=T[0];b[1].textContent=T[1];
+});
+
+
+/* ==========================================================
+   SAFE FILENAME
+========================================================== */
+
+function safeFilename(name){
+
+    return String(name)
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g,"")
+        .replace(/\s+/g,"_")
+        .substring(0,100);
+}
+
+
+/* ==========================================================
+   ARCHIVE SCROLL
+========================================================== */
+
+function scrollToArchive(){
+
+    document
+        .getElementById("archiveSection")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+/* ==========================================================
+   COLOR CHANGE
+========================================================== */
+
+document.getElementById("qrDark")
+    .addEventListener("change",()=>{
+
+        if(currentProject && currentPayload){
+
+            currentProject.dark =
+                document.getElementById("qrDark").value;
+
+            generateQRCode(
+                currentPayload,
+                currentProject.dark,
+                currentProject.light
+            );
+        }
+    });
+
+
+document.getElementById("qrLight")
+    .addEventListener("change",()=>{
+
+        if(currentProject && currentPayload){
+
+            currentProject.light =
+                document.getElementById("qrLight").value;
+
+            generateQRCode(
+                currentPayload,
+                currentProject.dark,
+                currentProject.light
+            );
+        }
+    });
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    selectType("personal");
+
+    renderArchive();
+
+});
+
+
+/* ==========================================================
+   KEYBOARD ESC
+========================================================== */
+
+document.addEventListener("keydown",event=>{
+
+    if(event.key === "Escape"){
+
+        const modal =
+            document.getElementById("previewModal");
+
+        if(modal.classList.contains("show")){
+            closePreview();
+        }
+    }
+
+});
+
+
+/* ==========================================================
+   PREVENT ACCIDENTAL DATA LOSS
+========================================================== */
+
+window.addEventListener("beforeunload",event=>{
+
+    /*
+      We intentionally do not block navigation.
+      Saved archive data remains in localStorage.
+    */
+
+});
+
+
+</script>
+
+</body>
+</html>

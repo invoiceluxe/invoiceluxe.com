@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kostenloser Einheitenrechner Online | km in Meilen, Liter in Gallonen, MB in GB | Invoice Luxe</title>
+    <meta name="description" content="Kostenloser Online-Einheitenrechner. Rechnen Sie blitzschnell Kilometer in Meilen, Liter in Gallonen, MB in GB, km/h in mph und mehr um. Verfügbar in 6 Sprachen — kein Konto erforderlich.">
+    <meta name="keywords" content="unit converter, km to miles, liters to gallons, MB to GB, speed converter, distance converter, km/h to mph, free online converter, birim çevirici, Einheitenrechner, convertisseur d'unités, convertitore di unità, eenheden omrekenen">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+
+    <link rel="canonical" href="https://invoiceluxe.com/unit-converter.html" />
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/unit-converter.html" />
+    <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/unit-converter.html?lang=en" />
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/unit-converter.html?lang=tr" />
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/unit-converter.html?lang=nl" />
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/unit-converter.html?lang=de" />
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/unit-converter.html?lang=fr" />
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/unit-converter.html?lang=it" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Invoice Luxe Unit Converter",
+      "url": "https://invoiceluxe.com/unit-converter.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Kostenloser Online-Einheitenrechner für Entfernung, Volumen, Geschwindigkeit und Datenspeicher. Verfügbar in 6 Sprachen.",
+      "inLanguage": ["en", "tr", "nl", "de", "fr", "it"],
+      "featureList": ["Distance Converter", "Volume Converter", "Speed Converter", "Data Storage Converter", "6 Languages", "No Account Required", "Instant Results"]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold-main: #FFD700; --m-black: #121212; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background-color: var(--bg-oak); background-image: url('https://www.transparenttextures.com/patterns/pichica-wood.png'); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; color: #fff; }
+        .top-bar { padding: 15px 20px; background: var(--m-black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold-main); }
+        .top-bar h1 { margin: 0; color: var(--gold-main); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn { background: var(--gold-main); color: var(--m-black); padding: 8px 16px; border-radius: 10px; text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 6px; font-size: 12px; }
+        .main-container { flex: 1; padding: 20px 15px 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .converter-box { background: #1a1510; border: 2.5px solid var(--gold-main); padding: 25px 20px; border-radius: 30px; width: 100%; max-width: 450px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 7px; }
+        label { color: var(--gold-main); font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        select, input[type="number"] { padding: 12px; background: #000; border: 2px solid var(--gold-main); border-radius: 12px; color: #fff; font-size: 16px; outline: none; width: 100%; }
+        select:focus, input:focus { border-color: #fff; }
+        .units-row { display: flex; gap: 12px; }
+        .units-row .form-group { flex: 1; }
+        .swap-btn { background: rgba(255,215,0,0.1); border: 2px solid var(--gold-main); color: var(--gold-main); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; align-self: flex-end; margin-bottom: 18px; flex-shrink: 0; font-size: 20px; transition: 0.2s; }
+        .swap-btn:active { transform: scale(0.9); }
+        .result-display { margin-top: 5px; padding: 18px; background: rgba(255,255,255,0.05); border-radius: 15px; text-align: center; border: 1px dashed var(--gold-main); }
+        .result-label { font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+        .result-text { font-size: 28px; font-weight: 900; color: var(--gold-main); margin: 8px 0 0; }
+        .result-formula { font-size: 11px; color: #888; margin-top: 5px; }
+
+        /* Hızlı Çevrim Kısayolları */
+        .quick-section { width: 100%; max-width: 450px; }
+        .quick-title { font-size: 11px; color: var(--gold-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+        .quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .quick-btn { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .quick-btn:active { background: rgba(255,215,0,0.1); }
+        .quick-btn .q-val { font-size: 13px; font-weight: 900; color: var(--gold-main); }
+        .quick-btn .q-label { font-size: 10px; color: #888; margin-top: 2px; }
+
+        /* SEO Kılavuz */
+        .guide-section { width: 100%; max-width: 450px; background: rgba(0,0,0,0.3); border-radius: 20px; padding: 20px; border: 1px solid rgba(255,215,0,0.15); }
+        .guide-section h2 { color: var(--gold-main); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; text-align: center; }
+        .guide-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .step-num { background: var(--gold-main); color: #000; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+        .guide-step p { margin: 0; font-size: 12px; color: #c4a97a; line-height: 1.6; font-weight: normal; }
+        .guide-step p strong { color: #fff; }
+        .guide-divider { border: none; border-top: 1px dashed rgba(255,215,0,0.15); margin: 15px 0; }
+        .feature-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+        .feature-tag { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.25); border-radius: 20px; padding: 4px 11px; font-size: 10px; color: var(--gold-main); font-weight: 700; }
+
+        /* Kategori renkleri */
+        .cat-distance { border-color: #00d2ff; }
+        .cat-volume { border-color: #2ecc71; }
+        .cat-speed { border-color: #ff6b35; }
+        .cat-data { border-color: #9b59b6; }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <h1 id="L_TITLE">ERWEITERTER EINHEITENRECHNER</h1>
+        <a href="index.html" class="back-btn">
+            <i class="material-symbols-rounded">arrow_back</i>
+            <span id="L_BACK">ZURÜCK</span>
+        </a>
+    </header>
+
+    <main class="main-container">
+
+        <div class="converter-box">
+
+            <div class="form-group">
+                <label id="L_CAT">KATEGORIE</label>
+                <select id="category" onchange="updateUnits()">
+                    <option value="distance" id="O_DIS">Entfernung (km, Meile, m, Yard)</option>
+                    <option value="volume" id="O_VOL">Volumen (Liter, Gallone, m³)</option>
+                    <option value="speed" id="O_SPE">Geschwindigkeit (km/h, mph, Knoten)</option>
+                    <option value="data" id="O_DAT">Datenspeicher (MB, GB, TB)</option>
+                    <option value="weight" id="O_WGT">Gewicht (kg, lb, oz, Tonne)</option>
+                    <option value="area" id="O_ARE">Fläche (m², km², ft², Acre)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="L_VAL">WERT UMRECHNEN</label>
+                <input type="number" id="from-value" value="1" oninput="calculate()" inputmode="decimal">
+            </div>
+
+            <div class="units-row">
+                <div class="form-group">
+                    <label id="L_FROM">VON</label>
+                    <select id="from-unit" onchange="calculate()"></select>
+                </div>
+                <button class="swap-btn" onclick="swapUnits()" title="Swap">⇄</button>
+                <div class="form-group">
+                    <label id="L_TO">NACH</label>
+                    <select id="to-unit" onchange="calculate()"></select>
+                </div>
+            </div>
+
+            <div class="result-display">
+                <div class="result-label" id="L_RES">ERGEBNIS</div>
+                <div class="result-text" id="result-output">0.00</div>
+                <div class="result-formula" id="result-formula"></div>
+            </div>
+
+        </div>
+
+        <div class="quick-section">
+            <div class="quick-title" id="quick-title">BELIEBTE UMRECHNUNGEN</div>
+            <div class="quick-grid" id="quick-grid"></div>
+        </div>
+
+        <section class="guide-section" aria-label="Wie benutzen">
+            <h2 id="guide-title">WIE BENUTZEN</h2>
+
+            <div class="guide-step">
+                <div class="step-num">1</div>
+                <p id="guide-step1"><strong>Kategorie wählen</strong> — Wählen Sie aus Entfernung, Volumen, Geschwindigkeit, Datenspeicher, Gewicht oder Fläche.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">2</div>
+                <p id="guide-step2"><strong>Wert eingeben</strong> — Geben Sie die Zahl ein, die Sie umrechnen möchten.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">3</div>
+                <p id="guide-step3"><strong>Einheiten wählen</strong> — Quelleinheit (Von) und Zieleinheit (Nach) auswählen. Das Ergebnis erscheint sofort.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">4</div>
+                <p id="guide-step4"><strong>Einheiten tauschen</strong> — Tippen Sie auf ⇄ um die Richtung sofort umzukehren.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">5</div>
+                <p id="guide-step5"><strong>Schnelle Umrechnungen</strong> — Nutzen Sie die Schaltflächen für die beliebtesten Umrechnungen.</p>
+            </div>
+
+            <hr class="guide-divider">
+            <div class="feature-tags" id="feature-tags">
+                <span class="feature-tag">✓ Kostenlos</span>
+                <span class="feature-tag">✓ 6 Sprachen</span>
+                <span class="feature-tag">✓ Sofort</span>
+                <span class="feature-tag">✓ Kein Konto</span>
+                <span class="feature-tag">✓ 6 Kategorien</span>
+                <span class="feature-tag">✓ Mobilfreundlich</span>
+            </div>
+        </section>
+
+    </main>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceLang = urlParams.get('lang');
+    if (forceLang) localStorage.setItem('global_lang', forceLang);
+    const lang = localStorage.getItem('global_lang') || 'de'; // Varsayılan DE yapıldı
+    document.documentElement.lang = lang;
+
+    const dict = {
+        tr: {
+            title: "GELİŞMİŞ BİRİM HESAPLAMA", back: "GERİ", cat: "KATEGORİ", val: "ÇEVRİLECEK DEĞER", from: "NEREDEN", to: "NEREYE", res: "HESAPLAMA SONUCU",
+            dis: "Mesafe (km, mil, m, yard)", vol: "Hacim (Litre, Galon, m³)", spe: "Hız (km/s, mil/s, düğüm)", dat: "Veri (MB, GB, TB)", wgt: "Ağırlık (kg, lb, oz, ton)", are: "Alan (m², km², ft², acre)",
+            quick: "POPÜLER ÇEVİRİMLER",
+            guideTitle: "NASIL KULLANILIR",
+            step1: "<strong>Kategori seçin</strong> — Mesafe, Hacim, Hız, Veri, Ağırlık veya Alan kategorilerinden birini seçin.",
+            step2: "<strong>Değerinizi girin</strong> — Çevirmek istediğiniz sayıyı giriş alanına yazın.",
+            step3: "<strong>Birimleri seçin</strong> — Kaynak birimi (Nereden) ve hedef birimi (Nereye) seçin. Sonuç anında gösterilir.",
+            step4: "<strong>Birimleri ters çevirin</strong> — ⇄ butonuna basarak çevrim yönünü anında tersine çevirin.",
+            step5: "<strong>Hızlı çevrimler</strong> — En popüler çevrimler için alttaki kısayol butonlarını kullanın.",
+            tags: ["✓ Ücretsiz","✓ 6 Dil","✓ Anlık","✓ Hesap Gerekmez","✓ 6 Kategori","✓ Mobil Uyumlu"]
+        },
+        en: {
+            title: "ADVANCED UNIT CONVERTER", back: "BACK", cat: "CATEGORY", val: "VALUE TO CONVERT", from: "FROM", to: "TO", res: "CONVERSION RESULT",
+            dis: "Distance (km, mile, m, yard)", vol: "Volume (Litre, Gallon, m³)", spe: "Speed (km/h, mph, knot)", dat: "Data Storage (MB, GB, TB)", wgt: "Weight (kg, lb, oz, ton)", are: "Area (m², km², ft², acre)",
+            quick: "POPULAR CONVERSIONS",
+            guideTitle: "HOW TO USE",
+            step1: "<strong>Select category</strong> — Choose from Distance, Volume, Speed, Data Storage, Weight or Area.",
+            step2: "<strong>Enter your value</strong> — Type the number you want to convert in the input field.",
+            step3: "<strong>Select units</strong> — Choose the source unit (From) and target unit (To). The result is shown instantly.",
+            step4: "<strong>Swap units</strong> — Tap the ⇄ button to instantly reverse the conversion direction.",
+            step5: "<strong>Quick conversions</strong> — Use the shortcut buttons below for the most popular conversions.",
+            tags: ["✓ Free","✓ 6 Languages","✓ Instant","✓ No Account","✓ 6 Categories","✓ Mobile Friendly"]
+        },
+        nl: {
+            title: "GEAVANCEERDE OMREKENTOOL", back: "TERUG", cat: "CATEGORIE", val: "WAARDE", from: "VAN", to: "NAAR", res: "RESULTAAT",
+            dis: "Afstand (km, mijl, m, yard)", vol: "Volume (Liter, Gallon, m³)", spe: "Snelheid (km/u, mph, knoop)", dat: "Dataopslag (MB, GB, TB)", wgt: "Gewicht (kg, lb, oz, ton)", are: "Oppervlakte (m², km², ft², acre)",
+            quick: "POPULAIRE CONVERSIES",
+            guideTitle: "HOE TE GEBRUIKEN",
+            step1: "<strong>Selecteer categorie</strong> — Kies uit Afstand, Volume, Snelheid, Dataopslag, Gewicht of Oppervlakte.",
+            step2: "<strong>Voer uw waarde in</strong> — Typ het getal dat u wilt omrekenen.",
+            step3: "<strong>Selecteer eenheden</strong> — Kies de broneenheid (Van) en doeleenheid (Naar). Het resultaat verschijnt direct.",
+            step4: "<strong>Eenheden omwisselen</strong> — Tik op ⇄ om de conversierichting direct om te draaien.",
+            step5: "<strong>Snelle conversies</strong> — Gebruik de snelkoppelingen voor de meest populaire omrekeningen.",
+            tags: ["✓ Gratis","✓ 6 Talen","✓ Direct","✓ Geen Account","✓ 6 Categorieën","✓ Mobiel Vriendelijk"]
+        },
+        de: {
+            title: "ERWEITERTER EINHEITENRECHNER", back: "ZURÜCK", cat: "KATEGORIE", val: "WERT UMRECHNEN", from: "VON", to: "NACH", res: "ERGEBNIS",
+            dis: "Entfernung (km, Meile, m, Yard)", vol: "Volumen (Liter, Gallone, m³)", spe: "Geschwindigkeit (km/h, mph, Knoten)", dat: "Datenspeicher (MB, GB, TB)", wgt: "Gewicht (kg, lb, oz, Tonne)", are: "Fläche (m², km², ft², Acre)",
+            quick: "BELIEBTE UMRECHNUNGEN",
+            guideTitle: "WIE BENUTZEN",
+            step1: "<strong>Kategorie wählen</strong> — Wählen Sie aus Entfernung, Volumen, Geschwindigkeit, Datenspeicher, Gewicht oder Fläche.",
+            step2: "<strong>Wert eingeben</strong> — Geben Sie die Zahl ein, die Sie umrechnen möchten.",
+            step3: "<strong>Einheiten wählen</strong> — Quelleinheit (Von) und Zieleinheit (Nach) auswählen. Das Ergebnis erscheint sofort.",
+            step4: "<strong>Einheiten tauschen</strong> — Tippen Sie auf ⇄ um die Richtung sofort umzukehren.",
+            step5: "<strong>Schnelle Umrechnungen</strong> — Nutzen Sie die Schaltflächen für die beliebtesten Umrechnungen.",
+            tags: ["✓ Kostenlos","✓ 6 Sprachen","✓ Sofort","✓ Kein Konto","✓ 6 Kategorien","✓ Mobilfreundlich"]
+        },
+        fr: {
+            title: "CONVERTISSEUR D'UNITÉS", back: "RETOUR", cat: "CATÉGORIE", val: "VALEUR À CONVERTIR", from: "DE", to: "VERS", res: "RÉSULTAT",
+            dis: "Distance (km, mile, m, yard)", vol: "Volume (Litre, Gallon, m³)", spe: "Vitesse (km/h, mph, nœud)", dat: "Stockage (MB, GB, TB)", wgt: "Poids (kg, lb, oz, tonne)", are: "Surface (m², km², ft², acre)",
+            quick: "CONVERSIONS POPULAIRES",
+            guideTitle: "COMMENT UTILISER",
+            step1: "<strong>Sélectionner la catégorie</strong> — Choisissez parmi Distance, Volume, Vitesse, Stockage, Poids ou Surface.",
+            step2: "<strong>Entrer votre valeur</strong> — Tapez le nombre que vous souhaitez convertir.",
+            step3: "<strong>Sélectionner les unités</strong> — Choisissez l'unité source (De) et l'unité cible (Vers). Le résultat s'affiche instantanément.",
+            step4: "<strong>Inverser les unités</strong> — Appuyez sur ⇄ pour inverser instantanément la direction de conversion.",
+            step5: "<strong>Conversions rapides</strong> — Utilisez les boutons de raccourci pour les conversions les plus populaires.",
+            tags: ["✓ Gratuit","✓ 6 Langues","✓ Instantané","✓ Sans Compte","✓ 6 Catégories","✓ Compatible Mobile"]
+        },
+        it: {
+            title: "CONVERTITORE DI UNITÀ", back: "INDIETRO", cat: "CATEGORIA", val: "VALORE DA CONVERTIRE", from: "DA", to: "A", res: "RISULTATO",
+            dis: "Distanza (km, miglio, m, yard)", vol: "Volume (Litro, Gallone, m³)", spe: "Velocità (km/h, mph, nodo)", dat: "Archiviazione (MB, GB, TB)", wgt: "Peso (kg, lb, oz, tonnellata)", are: "Area (m², km², ft², acro)",
+            quick: "CONVERSIONI POPOLARI",
+            guideTitle: "COME USARE",
+            step1: "<strong>Seleziona categoria</strong> — Scegli tra Distanza, Volume, Velocità, Archiviazione, Peso o Area.",
+            step2: "<strong>Inserisci il valore</strong> — Digita il numero che vuoi convertire.",
+            step3: "<strong>Seleziona unità</strong> — Scegli l'unità sorgente (Da) e l'unità target (A). Il risultato appare istantaneamente.",
+            step4: "<strong>Inverti unità</strong> — Tocca ⇄ per invertire istantaneamente la direzione di conversione.",
+            step5: "<strong>Conversioni rapide</strong> — Usa i pulsanti di scelta rapida per le conversioni più popolari.",
+            tags: ["✓ Gratuito","✓ 6 Lingue","✓ Istantaneo","✓ Senza Account","✓ 6 Categorie","✓ Mobile Friendly"]
+        }
+    };
+
+    const unitData = {
+        distance: { units: ['km','mile','m','yard','cm','mm'], rates: { km:1000, mile:1609.344, m:1, yard:0.9144, cm:0.01, mm:0.001 } },
+        volume: { units: ['Litre','Gallon','m³','ml','fl oz','cup'], rates: { Litre:1, Gallon:3.78541, 'm³':1000, ml:0.001, 'fl oz':0.0295735, cup:0.236588 } },
+        speed: { units: ['km/h','mph','m/s','knot'], rates: { 'km/h':1, mph:1.609344, 'm/s':3.6, knot:1.852 } },
+        data: { units: ['MB','GB','TB','KB','PB'], rates: { KB:1, MB:1024, GB:1048576, TB:1073741824, PB:1099511627776 } },
+        weight: { units: ['kg','lb','oz','gram','ton'], rates: { gram:1, kg:1000, lb:453.592, oz:28.3495, ton:1000000 } },
+        area: { units: ['m²','km²','ft²','acre','hectare'], rates: { 'm²':1, 'km²':1000000, 'ft²':0.092903, acre:4046.86, hectare:10000 } }
+    };
+
+    const quickConversions = [
+        { val:1, from:'km', to:'mile', cat:'distance' },
+        { val:1, from:'mile', to:'km', cat:'distance' },
+        { val:1, from:'Litre', to:'Gallon', cat:'volume' },
+        { val:1, from:'GB', to:'MB', cat:'data' },
+        { val:1, from:'kg', to:'lb', cat:'weight' },
+        { val:100, from:'km/h', to:'mph', cat:'speed' },
+    ];
+
+    function initPage() {
+        const t = dict[lang] || dict['de']; // Varsayılan DE yapıldı
+        document.getElementById('L_TITLE').innerText = t.title;
+        document.getElementById('L_BACK').innerText = t.back;
+        document.getElementById('L_CAT').innerText = t.cat;
+        document.getElementById('L_VAL').innerText = t.val;
+        document.getElementById('L_FROM').innerText = t.from;
+        document.getElementById('L_TO').innerText = t.to;
+        document.getElementById('L_RES').innerText = t.res;
+        document.getElementById('O_DIS').innerText = t.dis;
+        document.getElementById('O_VOL').innerText = t.vol;
+        document.getElementById('O_SPE').innerText = t.spe;
+        document.getElementById('O_DAT').innerText = t.dat;
+        document.getElementById('O_WGT').innerText = t.wgt;
+        document.getElementById('O_ARE').innerText = t.are;
+        document.getElementById('quick-title').innerText = t.quick;
+        document.getElementById('guide-title').innerText = t.guideTitle;
+        document.getElementById('guide-step1').innerHTML = t.step1;
+        document.getElementById('guide-step2').innerHTML = t.step2;
+        document.getElementById('guide-step3').innerHTML = t.step3;
+        document.getElementById('guide-step4').innerHTML = t.step4;
+        document.getElementById('guide-step5').innerHTML = t.step5;
+        document.getElementById('feature-tags').innerHTML = t.tags.map(tag => `<span class="feature-tag">${tag}</span>`).join('');
+
+        // Hızlı çevrim butonları
+        const grid = document.getElementById('quick-grid');
+        grid.innerHTML = quickConversions.map(q => {
+            const result = doConvert(q.val, q.from, q.to, q.cat);
+            return `<div class="quick-btn" onclick="setQuick('${q.cat}','${q.from}','${q.to}',${q.val})">
+                <div class="q-val">${q.val} ${q.from} = ${result} ${q.to}</div>
+                <div class="q-label">${q.from} → ${q.to}</div>
+            </div>`;
+        }).join('');
+
+        updateUnits();
+    }
+
+    function doConvert(val, from, to, cat) {
+        const rates = unitData[cat].rates;
+        const base = val * rates[from];
+        const result = base / rates[to];
+        return result < 0.01 ? result.toFixed(4) : result.toFixed(2);
+    }
+
+    function setQuick(cat, from, to, val) {
+        document.getElementById('category').value = cat;
+        updateUnits();
+        document.getElementById('from-unit').value = from;
+        document.getElementById('to-unit').value = to;
+        document.getElementById('from-value').value = val;
+        calculate();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateUnits() {
+        const cat = document.getElementById('category').value;
+        const fromSelect = document.getElementById('from-unit');
+        const toSelect = document.getElementById('to-unit');
+        fromSelect.innerHTML = '';
+        toSelect.innerHTML = '';
+        unitData[cat].units.forEach(unit => {
+            fromSelect.options[fromSelect.options.length] = new Option(unit, unit);
+            toSelect.options[toSelect.options.length] = new Option(unit, unit);
+        });
+        if(toSelect.options.length > 1) toSelect.selectedIndex = 1;
+        calculate();
+    }
+
+    function swapUnits() {
+        const fromSelect = document.getElementById('from-unit');
+        const toSelect = document.getElementById('to-unit');
+        const tmp = fromSelect.value;
+        fromSelect.value = toSelect.value;
+        toSelect.value = tmp;
+        calculate();
+    }
+
+    function calculate() {
+        const cat = document.getElementById('category').value;
+        const val = parseFloat(document.getElementById('from-value').value);
+        const from = document.getElementById('from-unit').value;
+        const to = document.getElementById('to-unit').value;
+        const output = document.getElementById('result-output');
+        const formula = document.getElementById('result-formula');
+        if (isNaN(val)) { output.innerText = "0.00"; formula.innerText = ''; return; }
+        if (from === to) { output.innerText = val + " " + to; formula.innerText = ''; return; }
+        const result = doConvert(val, from, to, cat);
+        output.innerText = result + " " + to;
+        formula.innerText = val + " " + from + " = " + result + " " + to;
+    }
+
+    window.onload = initPage;
+</script>
+</body>
+</html>

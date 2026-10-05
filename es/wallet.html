@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="google" content="notranslate">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Control de Ingresos y Gastos — Invoice Luxe Wallet</title>
+    <meta name="description" content="Controla tus ingresos y gastos con cálculo de IVA en tiempo real. Invoice Luxe Wallet ofrece una visión financiera clara para tu negocio — gratis, multidivisa, sin registro.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="control ingresos gastos, calculadora IVA, cartera empresarial, visión financiera, gestión de facturas">
+
+    <link rel="canonical" href="https://www.invoiceluxe.com/es/wallet" />
+    <link rel="alternate" hreflang="en" href="https://www.invoiceluxe.com/en/wallet" />
+    <link rel="alternate" hreflang="tr" href="https://www.invoiceluxe.com/tr/wallet" />
+    <link rel="alternate" hreflang="de" href="https://www.invoiceluxe.com/de/wallet" />
+    <link rel="alternate" hreflang="fr" href="https://www.invoiceluxe.com/fr/wallet" />
+    <link rel="alternate" hreflang="it" href="https://www.invoiceluxe.com/it/wallet" />
+    <link rel="alternate" hreflang="pt" href="https://www.invoiceluxe.com/pt/wallet" />
+    <link rel="alternate" hreflang="es" href="https://www.invoiceluxe.com/es/wallet" />
+    <link rel="alternate" hreflang="x-default" href="https://www.invoiceluxe.com/en/wallet" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Control de Ingresos y Gastos — Invoice Luxe Wallet">
+    <meta property="og:description" content="Controla tus ingresos y gastos con cálculo de IVA en tiempo real. Invoice Luxe Wallet ofrece una visión financiera clara para tu negocio — gratis, multidivisa, sin registro.">
+    <meta property="og:url" content="https://www.invoiceluxe.com/es/wallet">
+    <meta property="og:site_name" content="Invoice Luxe">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Control de Ingresos y Gastos — Invoice Luxe Wallet">
+    <meta name="twitter:description" content="Controla tus ingresos y gastos con cálculo de IVA en tiempo real. Invoice Luxe Wallet ofrece una visión financiera clara para tu negocio — gratis, multidivisa, sin registro.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://www.invoiceluxe.com/es/wallet#webapp",
+      "name": "Invoice Luxe Wallet — Rastreador de Ingresos y Gastos",
+      "url": "https://www.invoiceluxe.com/es/wallet",
+      "description": "Controla ingresos y gastos con cálculo automático de IVA. Compatible con múltiples monedas. Herramienta financiera gratuita para negocios.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, iOS, Android, Windows, macOS",
+      "browserRequirements": "Requires JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "es",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://www.invoiceluxe.com/" },
+      "isPartOf": { "@type": "WebSite", "@id": "https://www.invoiceluxe.com/#website", "name": "Invoice Luxe", "url": "https://www.invoiceluxe.com/" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+:root{
+    --bg:#060608;--gold:#ffc83d;--gold-2:#f2a900;--text:#f4f4f6;--muted:#a9a9b8;
+    --card:#0f0f13;--line:rgba(255,200,61,.30);--line-soft:rgba(255,200,61,.15);
+    --ok:#34d399;--bad:#ff6b6b;
+    --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:radial-gradient(120% 42% at 0% 0%,rgba(255,200,61,.10),transparent 58%),var(--bg);color:var(--text);font-family:'Poppins','Segoe UI',system-ui,-apple-system,sans-serif;font-weight:400;line-height:1.45;padding:calc(14px + var(--safe-top)) 16px calc(110px + var(--safe-bottom))}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.app{width:100%;max-width:640px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand h1{margin:0;font-size:clamp(14px,4vw,18px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.1}
+.brand h1 b{color:var(--gold)}
+.back-btn{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;border:1.5px solid var(--line);background:rgba(255,200,61,.06);font-size:12px;font-weight:600}
+.back-btn:hover{background:rgba(255,200,61,.12)}
+.page-head{margin-bottom:18px}
+.page-head h2{margin:0 0 6px;font-size:clamp(22px,6vw,28px);font-weight:700;color:var(--gold);letter-spacing:-.01em}
+.page-head p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.card{border-radius:20px;border:1.5px solid var(--line);background:linear-gradient(160deg,rgba(255,200,61,.06),rgba(255,255,255,.02));padding:20px;margin-bottom:18px}
+.summary-card{text-align:center}
+.balance-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.folder-tag{display:inline-block;margin-top:6px;background:rgba(255,200,61,.14);color:var(--gold);padding:3px 12px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.main-val{font-size:32px;font-weight:700;color:var(--text);margin:12px 0}
+.stats-row{display:flex;justify-content:space-around;margin-top:12px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.stat-box{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.stat-box b{display:block;font-size:15px;margin-top:4px;font-weight:700}
+.vat-status-box{margin-top:14px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px dashed var(--line);font-size:11.5px;color:var(--muted);display:flex;justify-content:center;align-items:center;gap:8px}
+.vat-status-box b{color:var(--gold);font-size:13px}
+.section-title{margin:0 0 14px;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--line-soft)}
+.type-selector{display:flex;gap:10px;margin-bottom:16px}
+.type-btn{flex:1;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--muted);font-weight:700;cursor:pointer;font-size:11px;letter-spacing:.05em;text-transform:uppercase;transition:.2s}
+.type-btn.active-gelir{background:rgba(52,211,153,.16);color:var(--ok);border-color:var(--ok)}
+.type-btn.active-gider{background:rgba(255,107,107,.16);color:var(--bad);border-color:var(--bad)}
+input,select{width:100%;padding:12px 14px;margin-bottom:10px;border-radius:12px;border:1.5px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);outline:none;font-size:13px;font-weight:500;box-sizing:border-box;font-family:inherit}
+input::placeholder{color:var(--muted)}
+input:focus,select:focus{border-color:var(--gold)}
+select option{background:#15151b;color:var(--text)}
+.btn-save{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1300;border:0;width:100%;padding:14px;border-radius:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;margin-top:8px;font-size:13px}
+.btn-save:hover{filter:brightness(1.06)}
+.btn-pdf{background:rgba(255,255,255,.04);color:var(--text);border:1.5px solid var(--line);width:100%;padding:14px;border-radius:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;margin-top:10px;font-size:13px}
+.btn-pdf:hover{background:rgba(255,255,255,.08)}
+.item{background:rgba(255,255,255,.03);padding:14px 16px;border-radius:16px;margin-bottom:10px;border:1.5px solid var(--line-soft);display:flex;justify-content:space-between;align-items:center;border-left-width:4px;box-sizing:border-box;width:100%}
+.item.gelir{border-left-color:var(--ok)}
+.item.gider{border-left-color:var(--bad)}
+.item-info{min-width:0;display:flex;flex-direction:column}
+.item-info b{display:block;font-size:13.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-info span{font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.item-info small{font-size:10px;color:var(--muted);opacity:.7;margin-top:2px}
+.item-amt{text-align:right;font-size:14.5px;font-weight:700;flex-shrink:0;margin-left:10px}
+.del-btn{background:rgba(255,107,107,.10);color:var(--bad);border:1px solid rgba(255,107,107,.4);padding:4px 10px;border-radius:8px;font-size:9px;cursor:pointer;font-weight:700;margin-top:8px;align-self:flex-start;letter-spacing:.04em}
+.seo-block{margin-top:28px;padding:18px;border-radius:20px;background:rgba(0,0,0,.35);border:1px solid var(--line-soft);font-size:13px;line-height:1.7;color:#d0d0d8}
+.seo-block h2{margin:0 0 10px;font-size:16px;font-weight:700;color:var(--gold)}
+.seo-block h3{margin:18px 0 6px;font-size:14px;font-weight:600;color:var(--text)}
+.seo-block p{margin:0 0 10px}
+.seo-block ol,.seo-block ul{margin:0 0 10px;padding-left:18px}
+.seo-block li{margin-bottom:6px}
+.seo-block strong{color:var(--text)}
+.footer-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--safe-bottom));width:min(560px,calc(100% - 24px));z-index:50}
+.btn-home{display:block;width:100%;background:var(--card);color:var(--gold);text-align:center;padding:14px;border-radius:16px;font-weight:700;text-transform:uppercase;font-size:12px;border:1.5px solid var(--line);letter-spacing:.05em;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.btn-home:hover{background:rgba(255,200,61,.08)}
+</style>
+</head>
+<body>
+
+<div class="app">
+    <div class="top">
+        <div class="brand"><h1>Invoice <b>Luxe</b></h1></div>
+        <a href="index.html" class="back-btn"><i class="material-symbols-rounded" style="font-size:16px;vertical-align:-3px">arrow_back</i> Dashboard</a>
+    </div>
+
+    <div class="page-head">
+        <h2>Ingresos &amp; Gastos</h2>
+        <p>Controla las finanzas de tu negocio con IVA automático — gratis, multidivisa, sin registro.</p>
+    </div>
+
+    <div class="card summary-card">
+        <div class="balance-label" id="l-balance">Saldo Neto</div>
+        <span class="folder-tag" id="folder-tag">---</span>
+        <div class="main-val" id="total-val">0,00 €</div>
+        <div class="stats-row">
+            <div class="stat-box" id="l-gel">INGRESOS<b id="val-gelir" style="color:var(--ok)">0,00</b></div>
+            <div class="stat-box" id="l-gid">GASTOS<b id="val-gider" style="color:var(--bad)">0,00</b></div>
+        </div>
+        <div class="vat-status-box">
+            <span id="L_VAT_TEXT">IVA A PAGAR:</span> <b id="val-vat-result">0,00 €</b>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">Nueva Transacción</div>
+        <div class="type-selector">
+            <button class="type-btn active-gelir" id="t-gelir" onclick="setType('gelir')">INGRESOS</button>
+            <button class="type-btn" id="t-gider" onclick="setType('gider')">GASTOS</button>
+        </div>
+        <input type="text" id="inp-desc" placeholder="Descripción...">
+        <input type="text" id="inp-client" placeholder="Cliente...">
+        <input type="number" id="inp-amt" placeholder="0.00" step="0.01">
+        <select id="inp-tax" onchange="checkTax(this.value)"></select>
+        <input type="number" id="inp-custom-tax" placeholder="% PERSONALIZADO" style="display:none;border:1.5px solid var(--gold)">
+        <button class="btn-save" id="b-save" onclick="saveManual()">GUARDAR TRANSACCIÓN</button>
+        <button class="btn-pdf" id="b-pdf" onclick="sendToBlogger()">📊 OBTENER INFORME PDF</button>
+    </div>
+
+    <div class="section-title">Historial de Transacciones</div>
+    <div id="list"></div>
+
+    <section class="seo-block" aria-labelledby="seo-wallet-h">
+        <h2 id="seo-wallet-h">Control de Ingresos y Gastos para Autónomos y Pequeñas Empresas</h2>
+        <p>Invoice Luxe Wallet es una herramienta financiera gratuita que controla tus ingresos y gastos con cálculo automático del IVA. Admite varias monedas (EUR, USD, GBP, TRY y más), ofrece una visión financiera en tiempo real y te permite exportar un informe en PDF al instante — sin necesidad de registro.</p>
+        <h3>Cómo usar Wallet</h3>
+        <ol>
+                    <li>Elige <strong>Ingreso</strong> o <strong>Gasto</strong> con el selector encima del formulario.</li>
+                    <li>Introduce una descripción, un nombre de cliente opcional y el importe.</li>
+                    <li>Selecciona el tipo de IVA aplicable a esta transacción, o introduce uno personalizado.</li>
+                    <li>Toca <strong>Guardar</strong> para añadir el registro.</li>
+                    <li>Consulta en cualquier momento tus totales y tu situación de IVA en la parte superior de la página.</li>
+                    <li>Toca <strong>Informe PDF</strong> para generar un resumen de tus finanzas que puedes compartir.</li>
+        </ol>
+        <h3>Por qué usar Invoice Luxe Wallet</h3>
+        <ul>
+                    <li>Desglose automático del IVA en cada transacción, para saber siempre qué debes o puedes recuperar.</li>
+                    <li>Compatibilidad multidivisa para autónomos y empresas internacionales.</li>
+                    <li>Todos los datos permanecen en tu dispositivo — sin registro, sin seguimiento.</li>
+                    <li>Funciona junto con el resto de herramientas de Invoice Luxe (facturación, herramientas PDF, análisis fiscal).</li>
+        </ul>
+    </section>
+</div>
+
+<div class="footer-nav"><a href="index.html" class="btn-home" id="b-home">Dashboard</a></div>
+
+<script>
+    const activeCompName = localStorage.getItem('active_company_name') || 'default';
+    const historyKey = `history_${activeCompName}`;
+    const manualKey = `manual_${activeCompName}`;
+    const hideKey = `hidden_${activeCompName}`;
+    const currentL = "es";
+    const d = { gel: "INGRESOS", gid: "GASTOS", save: "GUARDAR TRANSACCI\u00d3N", pdf: "\ud83d\udcca OBTENER INFORME PDF", desc: "Descripci\u00f3n...", client: "Cliente...", home: "Dashboard", del: "ELIMINAR", tax: "IVA", custom: "% PERSONALIZADO", loc: "es-ES", vat_pay: "IVA A PAGAR:", vat_get: "DEVOLUCI\u00d3N DE IVA:", conf: "\u00bfEst\u00e1s seguro?" };
+
+    let currentType = 'gelir';
+    const prof = JSON.parse(localStorage.getItem('pro_profile')) || { curr: '€' };
+
+    function setType(t) {
+        currentType = t;
+        document.getElementById('t-gelir').className = t === 'gelir' ? 'type-btn active-gelir' : 'type-btn';
+        document.getElementById('t-gider').className = t === 'gider' ? 'type-btn active-gider' : 'type-btn';
+    }
+
+    function checkTax(val) { document.getElementById('inp-custom-tax').style.display = (val === 'custom') ? 'block' : 'none'; }
+
+    function init() {
+        document.getElementById('folder-tag').innerText = activeCompName;
+
+        const taxSel = document.getElementById('inp-tax'); taxSel.innerHTML = '';
+        [21, 9, 0].forEach(v => { taxSel.innerHTML += `<option value="${v}">%${v} ${d.tax}</option>`; });
+        taxSel.innerHTML += `<option value="custom">${d.custom}</option>`;
+        render();
+    }
+
+    function render() {
+        const box = document.getElementById('list'); box.innerHTML = '';
+        const cur = prof.curr || '€';
+
+        let archiveData = JSON.parse(localStorage.getItem(historyKey)) || [];
+        let manualData = JSON.parse(localStorage.getItem(manualKey)) || [];
+        let hiddenInvs = JSON.parse(localStorage.getItem(hideKey)) || [];
+
+        let combined = [
+            ...archiveData.filter(f => !hiddenInvs.includes(f.no)).map(f => ({
+                id: 'arch_' + f.no, desc: f.no, client: f.customer, amt: f.amount, tax: f.vrate || 21, type: 'gelir', date: f.date, manual: false
+            })),
+            ...manualData.map((m, idx) => ({ ...m, id: 'man_' + idx, manual: true }))
+        ].sort((a,b) => {
+            const dateA = a.date.split('-').reverse().join('');
+            const dateB = b.date.split('-').reverse().join('');
+            return dateB.localeCompare(dateA);
+        });
+
+        let tNet = 0, tGel = 0, tGid = 0, totalVatCollected = 0, totalVatPaid = 0;
+
+        combined.forEach(i => {
+            const val = parseFloat(i.amt) || 0;
+            const taxRate = parseFloat(i.tax) || 0;
+            const netAmount = val / (1 + taxRate/100);
+            const vatAmount = val - netAmount;
+
+            if(i.type === 'gelir') {
+                tGel += val; tNet += val; totalVatCollected += vatAmount;
+            } else {
+                tGid += val; tNet -= val; totalVatPaid += vatAmount;
+            }
+
+            box.innerHTML += `
+                <div class="item ${i.type}">
+                    <div class="item-info">
+                        <b>${i.desc}</b>
+                        <span>${i.client || '---'}</span>
+                        <small>${i.date} | %${i.tax} ${d.tax}</small>
+                        <button class="del-btn" onclick="handleRemove('${i.id}', ${i.manual})">${d.del}</button>
+                    </div>
+                    <div class="item-amt" style="color:${i.type==='gelir'?'var(--ok)':'var(--bad)'}">
+                        ${i.type==='gelir'?'+':'-'} ${cur}${val.toLocaleString(d.loc,{minimumFractionDigits:2})}
+                    </div>
+                </div>`;
+        });
+
+        const vatDiff = totalVatCollected - totalVatPaid;
+        document.getElementById('L_VAT_TEXT').innerText = vatDiff >= 0 ? d.vat_pay : d.vat_get;
+        document.getElementById('val-vat-result').innerText = cur + " " + Math.abs(vatDiff).toLocaleString(d.loc, {minimumFractionDigits:2});
+        document.getElementById('val-vat-result').style.color = vatDiff >= 0 ? 'var(--bad)' : 'var(--ok)';
+
+        document.getElementById('total-val').innerText = cur + " " + tNet.toLocaleString(d.loc,{minimumFractionDigits:2});
+        document.getElementById('val-gelir').innerText = tGel.toLocaleString(d.loc,{minimumFractionDigits:2});
+        document.getElementById('val-gider').innerText = tGid.toLocaleString(d.loc,{minimumFractionDigits:2});
+    }
+
+    function saveManual() {
+        const desc = document.getElementById('inp-desc').value.trim();
+        const amt = document.getElementById('inp-amt').value;
+        const client = document.getElementById('inp-client').value.trim();
+        let tax = document.getElementById('inp-tax').value === 'custom' ? document.getElementById('inp-custom-tax').value : document.getElementById('inp-tax').value;
+        if(!desc || !amt) return;
+
+        let list = JSON.parse(localStorage.getItem(manualKey)) || [];
+        const today = new Date();
+        const dateStr = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
+
+        list.unshift({ desc, client: client || '---', amt, tax, type: currentType, date: dateStr });
+        if(list.length > 40) list = list.slice(0, 40);
+
+        localStorage.setItem(manualKey, JSON.stringify(list));
+
+        document.getElementById('inp-desc').value = '';
+        document.getElementById('inp-amt').value = '';
+        document.getElementById('inp-client').value = '';
+        render();
+    }
+
+    function handleRemove(id, isManual) {
+        if(!confirm(d.conf)) return;
+        if(!isManual) {
+            let hidden = JSON.parse(localStorage.getItem(hideKey)) || [];
+            hidden.push(id.replace('arch_', ''));
+            localStorage.setItem(hideKey, JSON.stringify(hidden));
+        } else {
+            let list = JSON.parse(localStorage.getItem(manualKey)) || [];
+            const idx = parseInt(id.split('_')[1]);
+            list.splice(idx, 1);
+            localStorage.setItem(manualKey, JSON.stringify(list));
+        }
+        render();
+    }
+
+    function sendToBlogger() {
+        let archiveData = JSON.parse(localStorage.getItem(historyKey)) || [];
+        let manualData = JSON.parse(localStorage.getItem(manualKey)) || [];
+        let hiddenInvs = JSON.parse(localStorage.getItem(hideKey)) || [];
+        let all = [...archiveData.filter(f => !hiddenInvs.includes(f.no)).map(f => ({ desc: f.no, client: f.customer, amt: f.amount, tax: f.vrate || 21, type: 'gelir', date: f.date })), ...manualData];
+
+        const jsonStr = JSON.stringify(all);
+        const base64Data = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+
+        window.open(`https://gelirgiderhesaplama.blogspot.com/?lang=es&data=${base64Data}`, '_blank');
+    }
+    window.onload = init;
+</script>
+</body>
+</html>

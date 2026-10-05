@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="da" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fakturaarkiv & Historik — InvoiceLuxe PRO | Gratis webapp</title>
+    <meta name="description" content="Gratis fakturaarkiv webapp. Se, genåbn og administrer tidligere fakturaer på denne enhed. Ubegrænset historik. Integreret med InvoiceLuxe og wallet.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://invoiceluxe.com/archive-da.html">
+    <link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/archive-en-us.html">
+    <link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/archive-en-ca.html">
+    <link rel="alternate" hreflang="da" href="https://invoiceluxe.com/archive-da.html">
+    <link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/archive-fi.html">
+    <link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/archive-ko.html">
+    <link rel="alternate" hreflang="no" href="https://invoiceluxe.com/archive-no.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/archive-pt-br.html">
+    <link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/archive-se.html">
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/archive-en-us.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fakturaarkiv & Historik — InvoiceLuxe PRO | Gratis webapp">
+    <meta property="og:description" content="Gratis fakturaarkiv webapp. Se, genåbn og administrer tidligere fakturaer på denne enhed. Ubegrænset historik. Integreret med InvoiceLuxe og wallet.">
+    <meta property="og:url" content="https://invoiceluxe.com/archive-da.html">
+    <meta property="og:locale" content="da_DK">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Fakturaarkiv & Historik — InvoiceLuxe PRO | Gratis webapp">
+    <meta name="twitter:description" content="Gratis fakturaarkiv webapp. Se, genåbn og administrer tidligere fakturaer på denne enhed. Ubegrænset historik. Integreret med InvoiceLuxe og wallet.">
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Fakturaarkiv & Historik — InvoiceLuxe PRO | Gratis webapp",
+      "url": "https://invoiceluxe.com/archive-da.html",
+      "description": "Gratis fakturaarkiv webapp. Se, genåbn og administrer tidligere fakturaer på denne enhed. Ubegrænset historik. Integreret med InvoiceLuxe og wallet.",
+      "inLanguage": "da",
+      "isPartOf": {
+        "@type": "WebApplication",
+        "name": "InvoiceLuxe PRO",
+        "url": "https://invoiceluxe.com",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free invoice web application with multi-language archive, wallet and PDF engine."
+      }
+    }
+    </script>
+    <style>
+        :root { --gold: #FFD700; --gold-deep: #b8860b; --bg-oak: #8d6e63; --p-green: #2ecc71; --p-blue: #3498db; --p-gold: #f1c40f; --m-black: #121212; --p-color: #2ecc71; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--bg-oak) url('https://www.transparenttextures.com/patterns/pichica-wood.png'); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #fff; min-height: 100vh; }
+        .container { padding: 15px; max-width: 800px; margin: auto; min-height: 100vh; overflow-y: auto; padding-bottom: 90px; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; gap: 10px; }
+        .header-top h1 { margin: 0; font-size: 18px; letter-spacing: 1px; font-weight: 900; color: #fff; }
+        .seo-lead { font-size: 11px; line-height: 1.5; color: #f5f5f5; opacity: 0.92; font-weight: 600; margin: 0 0 16px; max-width: 560px; }
+        .invoice-card { background: linear-gradient(145deg, #bcaaa4, #8d6e63); border: 2.5px solid var(--gold); border-radius: 15px; padding: 12px 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); gap: 10px; }
+        .inv-info { min-width: 0; }
+        .inv-info h4 { margin: 0; font-size: 13px; color: #fff; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .inv-info p { margin: 3px 0 0; font-size: 10px; color: #eee; font-weight: 700; }
+        .card-btns { display: flex; gap: 8px; flex-shrink: 0; }
+        .btn-view, .btn-del-card { border: none; padding: 10px 14px; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 10px; text-transform: uppercase; font-family: inherit; }
+        .btn-view { background: linear-gradient(135deg, var(--gold), var(--gold-deep)); color: #000; }
+        .btn-del-card { background: #441111; color: #fff; }
+        .btn-back { background: #444; color: #fff; border: none; padding: 8px 12px; border-radius: 10px; font-weight: 800; cursor: pointer; text-decoration: none; font-size: 12px; display: inline-flex; align-items: center; white-space: nowrap; }
+        .empty { text-align: center; font-weight: 700; margin-top: 30px; color: #eee; font-size: 13px; }
+        .site-foot { max-width: 560px; margin: 20px auto 0; text-align: center; font-size: 11px; line-height: 1.5; color: #f5f5f5; opacity: 0.9; font-weight: 600; }
+
+        #preview-modal { position: fixed; inset: 0; background: rgba(20,20,20,0.98); z-index: 10000; display: none; backdrop-filter: blur(10px); }
+        .modal-nav { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; gap: 10px; z-index: 10001; }
+        .btn-nav-close { flex: 1; background: #444; color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 800; cursor: pointer; font-family: inherit; }
+        .btn-nav-edit { flex: 2; background: var(--p-green); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 900; cursor: pointer; text-align: center; font-size: 13px; font-family: inherit; }
+
+        #zoom-area { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; padding-top: 56px; }
+        .a4-page { background: #fff; color: #333; width: 600px; height: 842px; padding: 36px 40px; position: absolute; transform: scale(0.55); display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,0.5); font-family: 'Segoe UI', system-ui, sans-serif; }
+        .a4-header { border-bottom: 5px solid var(--p-color); padding-bottom: 14px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+        .s3-header { background: #121212 !important; color: #FFD700 !important; border-bottom: 5px solid #FFD700 !important; margin: -36px -40px 20px !important; padding: 28px 40px !important; }
+        .brand-side { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .user-logo { width: 56px; height: 56px; object-fit: cover; flex: none; background: #fff; border: 1px solid #e5e7eb; display: none; }
+        .user-logo[data-shape="round"] { border-radius: 50%; }
+        .user-logo[data-shape="rounded"] { border-radius: 22%; }
+        .user-logo[data-shape="square"] { border-radius: 0; }
+        .seal-box { width: 56px; height: 56px; flex: none; display: none; }
+        .seal-box svg { width: 100%; height: 100%; }
+        .a4-header h1 { margin: 0; font-size: 22px; font-weight: 900; color: #000; text-transform: uppercase; line-height: 1.15; word-break: break-word; }
+        .s3-header h1 { color: #FFD700 !important; }
+        .address-box { border: 2.5px solid var(--p-color); border-radius: 14px; padding: 12px; min-height: 100px; background: #fcfcfc; }
+        .address-box label { font-size: 9px; color: var(--p-color); font-weight: 900; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .address-box div { font-size: 11px; margin: 0; line-height: 1.4; font-weight: 700; color: #333; white-space: pre-line; }
+        .p-table { width: 100%; border-collapse: collapse; margin-top: 12px; margin-bottom: 16px; }
+        .p-table th { border-bottom: 2px solid #333; padding-bottom: 8px; text-transform: uppercase; text-align: left; font-size: 10px; color: #999; }
+        .p-table td { border-bottom: 1px solid #eee; padding: 10px 0; font-size: 11px; font-weight: 700; color: #000; vertical-align: top; }
+        .p-footer { display: flex; justify-content: space-between; margin-top: auto; padding-top: 18px; align-items: flex-end; gap: 12px; }
+        .p-bank-info { border: 1.5px solid #eee; padding: 12px; border-radius: 12px; width: 45%; font-size: 10px; }
+        .p-total-box { width: 48%; border: 3.5px solid var(--p-color); border-radius: 14px; padding: 12px; }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-top">
+        <h1 id="L_ARCHIVE">ARCHIVE</h1>
+        <a class="btn-back" id="L_MENU_BTN" href="index.html">← Menu</a>
+    </div>
+    <p class="seo-lead">InvoiceLuxe er en gratis faktura-webapplikation. Arkivet gemmer tidligere fakturaer på denne enhed, så du kan forhåndsvise, slette eller genåbne dem i fakturamotoren. Data forbliver lokalt og kan føde indkomstgrafer.</p>
+    <div id="history-list"></div>
+    <footer><p class="site-foot">InvoiceLuxe er en gratis browserbaseret webapp. Arkivposter forbliver på denne enhed og integreres med fakturamotoren.</p></footer>
+</div>
+
+<div id="preview-modal">
+    <div class="modal-nav">
+        <button type="button" class="btn-nav-close" id="L_CLOSE">CLOSE</button>
+        <button type="button" class="btn-nav-edit" id="L_EDIT">EDIT</button>
+    </div>
+    <div id="zoom-area">
+        <div class="a4-page" id="p-page">
+            <div class="a4-header" id="ph">
+                <div class="brand-side">
+                    <img id="p-logo" class="user-logo" alt="" referrerpolicy="no-referrer" hidden>
+                    <div class="seal-box" id="p-seal" aria-hidden="true">
+                        <svg viewBox="0 0 100 100">
+                            <defs><path d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" id="arcPath"/></defs>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <text font-size="6.5" font-weight="600" fill="currentColor">
+                                <textPath href="#arcPath" startOffset="50%" text-anchor="middle" id="p-seal-name">COMPANY</textPath>
+                            </text>
+                            <text font-size="24" font-weight="700" fill="currentColor" text-anchor="middle" x="50" y="56" id="p-seal-letter">S</text>
+                        </svg>
+                    </div>
+                    <h1 id="p-comp">...</h1>
+                </div>
+                <div style="text-align:right; flex-shrink:0;">
+                    <span id="L_INV_P" style="font-size:9px; color:#aaa;">INVOICE NO</span><br>
+                    <b id="p-inv-no" style="font-size:18px;"></b>
+                </div>
+            </div>
+            <div style="font-size: 10px; margin-bottom: 16px; font-weight: 700;">
+                <span id="L_DATE_P">DATE</span>: <span id="p-date"></span>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:16px;">
+                <div class="address-box"><label id="L_SENDER_P">SENDER</label><div id="p-sender-info"></div></div>
+                <div class="address-box"><label id="L_RECEIVER_P">RECEIVER</label><div id="p-receiver-info"></div></div>
+            </div>
+            <table class="p-table">
+                <thead>
+                    <tr>
+                        <th id="L_DESC_P">DESCRIPTION</th>
+                        <th style="text-align:center" id="L_QTY_P">QTY</th>
+                        <th style="text-align:right" id="L_PRC_P">PRICE</th>
+                        <th style="text-align:right" id="L_TOTAL_P">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody id="p-items"></tbody>
+            </table>
+            <div class="p-footer">
+                <div class="p-bank-info" id="p-bank-box"><b id="L_BANK_P">BANK</b><p id="p-bank" style="margin-top:5px; color:var(--p-color); font-weight:900;"></p></div>
+                <div class="p-total-box">
+                    <div style="display:flex; justify-content:space-between; font-size:10px;"><span id="L_SUB_P">SUBTOTAL</span> <span id="p-sub"></span></div>
+                    <div style="display:flex; justify-content:space-between; font-size:10px; margin:5px 0;"><span id="L_VAT_P">VAT</span> <span id="p-tax"></span></div>
+                    <div style="border-top:3.5px solid var(--p-color); margin-top:8px; padding-top:8px; display:flex; justify-content:space-between; font-size:18px; font-weight:900;"><span id="L_TOTAL_P2">TOTAL</span> <span id="p-grand"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    const LANG = 'da';
+    const t = {"archive": "ARKIV", "close": "LUK", "edit": "REDIGER", "show": "VIS", "inv": "FAKTURA NR", "sender": "AFSENDER", "receiver": "MODTAGER", "desc": "BESKRIVELSE", "qty": "ANTAL", "prc": "PRIS", "total": "TOTAL", "sub": "SUBTOTAL", "vat": "MOMS", "grand": "TOTAL", "bank": "BANK", "date": "DATO", "del_q": "Slet denne faktura?", "tax_id": "CVR / SKAT", "vat_id": "MOMSNR", "fix_l": "FASTNET", "mail": "E-MAIL", "gsm": "MOBIL", "empty": "Ingen arkivposter endnu.", "back_menu": "← Menu"};
+    try { localStorage.setItem('global_lang', 'da'); } catch (e) {}
+
+    const LABEL_MAP = {
+      L_ARCHIVE: t.archive, L_CLOSE: t.close, L_EDIT: t.edit,
+      L_INV_P: t.inv, L_DATE_P: t.date, L_SENDER_P: t.sender, L_RECEIVER_P: t.receiver,
+      L_DESC_P: t.desc, L_QTY_P: t.qty, L_PRC_P: t.prc, L_TOTAL_P: t.total,
+      L_BANK_P: t.bank, L_SUB_P: t.sub, L_VAT_P: t.vat, L_TOTAL_P2: t.grand
+    };
+    Object.keys(LABEL_MAP).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = LABEL_MAP[id];
+    });
+    var menuBtn = document.getElementById('L_MENU_BTN');
+    if (menuBtn) menuBtn.textContent = t.back_menu;
+
+
+    const activeKey = localStorage.getItem('active_company_name') || 'default';
+    const selectedStyle = localStorage.getItem('active_style') || '1';
+
+    function applyStyles() {
+        const colors = ['#2ecc71', '#3498db', '#FFD700', '#64748b', '#8b5cf6'];
+        const i = Math.max(0, (parseInt(selectedStyle, 10) || 1) - 1) % colors.length;
+        document.documentElement.style.setProperty('--p-color', colors[i]);
+    }
+
+    function countryName(code) {
+        code = String(code || '').trim();
+        if (!code) return '';
+        if (/^[A-Za-z]{2}$/.test(code)) {
+          try { return new Intl.DisplayNames(['da'], { type: 'region' }).of(code.toUpperCase()) || code.toUpperCase(); }
+          catch (e) { return code.toUpperCase(); }
+        }
+        return code; /* free-text country */
+    }
+
+    function logoOk(v) {
+        return !!(v && (String(v).indexOf('data:image') === 0 || String(v).indexOf('http') === 0));
+    }
+    function shapeOf(s) {
+        s = String(s || 'round').toLowerCase();
+        return (s === 'rounded' || s === 'square') ? s : 'round';
+    }
+
+    function applyBrand(prof) {
+        const name = (prof.n || 'COMPANY').replace(/<\/?b>/g, '');
+        const img = document.getElementById('p-logo');
+        const seal = document.getElementById('p-seal');
+        document.getElementById('p-comp').textContent = name.toUpperCase();
+        document.getElementById('p-seal-name').textContent = name.toUpperCase().slice(0, 28);
+        document.getElementById('p-seal-letter').textContent = (name.charAt(0) || 'S').toUpperCase();
+
+        if (logoOk(prof.logo)) {
+            img.setAttribute('data-shape', shapeOf(prof.logoShape));
+            img.onerror = function () {
+                img.hidden = true; img.style.display = 'none';
+                seal.style.display = 'block';
+            };
+            img.onload = function () {
+                img.hidden = false; img.style.display = 'block';
+                seal.style.display = 'none';
+            };
+            img.src = prof.logo;
+        } else {
+            img.hidden = true; img.style.display = 'none'; img.removeAttribute('src');
+            seal.style.display = 'block';
+        }
+    }
+
+    function buildParty(htmlName, o, isSender) {
+        o = o || {};
+        let lines = ['<b>' + esc(htmlName) + '</b>'];
+        if (o.adr) lines.push(esc(o.adr));
+        const pcCity = ((o.pc || '') + ' ' + (o.ct || '')).trim();
+        if (pcCity) lines.push(esc(pcCity));
+        const co = countryName(o.country || o.cc);
+        if (co) lines.push(esc(co));
+        if (o.vat) lines.push(esc(t.vat_id + ': ' + o.vat));
+        if (o.tax) lines.push(esc(t.tax_id + ': ' + o.tax));
+        if (o.mail) lines.push(esc((isSender ? '' : t.mail + ': ') + o.mail));
+        if (o.mob) lines.push(esc((isSender ? 'GSM: ' : t.gsm + ': ') + o.mob));
+        if (isSender && o.fix) lines.push(esc(t.fix_l + ': ' + o.fix));
+        return lines.join('<br>');
+    }
+
+    function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (ch) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+        });
+    }
+
+    function renderList() {
+        let h = [];
+        try { h = JSON.parse(localStorage.getItem('history_' + activeKey) || '[]') || []; } catch (e) {}
+        if (!Array.isArray(h)) h = [];
+        const list = document.getElementById('history-list');
+        if (!h.length) {
+            list.innerHTML = '<p class="empty">' + esc(t.empty) + '</p>';
+            return;
+        }
+        list.innerHTML = '';
+        h.forEach(function (inv, i) {
+            const cleanName = String(inv.customer || '').replace(/<\/?b>/g, '');
+            const card = document.createElement('div');
+            card.className = 'invoice-card';
+            card.innerHTML =
+                '<div class="inv-info"><h4>#' + esc(inv.no) + ' | ' + esc(cleanName) + '</h4>' +
+                '<p>' + esc(inv.date) + ' — ' + esc(inv.amount) + '</p></div>' +
+                '<div class="card-btns">' +
+                '<button type="button" class="btn-view" data-i="' + i + '">' + esc(t.show) + '</button>' +
+                '<button type="button" class="btn-del-card" data-i="' + i + '">X</button></div>';
+            list.appendChild(card);
+        });
+        list.querySelectorAll('.btn-view').forEach(function (b) {
+            b.addEventListener('click', function () { openPreview(+b.getAttribute('data-i')); });
+        });
+        list.querySelectorAll('.btn-del-card').forEach(function (b) {
+            b.addEventListener('click', function () { deleteInv(+b.getAttribute('data-i')); });
+        });
+    }
+
+    function applyPreviewScale() {
+        const page = document.getElementById('p-page');
+        const area = document.getElementById('zoom-area');
+        const scale = Math.min((area.offsetWidth - 20) / 600, (area.offsetHeight - 20) / 842, 0.9);
+        page.style.transform = 'scale(' + scale + ')';
+    }
+
+    function openPreview(idx) {
+        let h = [];
+        try { h = JSON.parse(localStorage.getItem('history_' + activeKey) || '[]') || []; } catch (e) {}
+        const inv = h[idx];
+        if (!inv) return;
+        let prof = {};
+        try { prof = JSON.parse(localStorage.getItem('pro_profile') || '{}') || {}; } catch (e) {}
+        let custs = [];
+        try { custs = JSON.parse(localStorage.getItem('pro_customers') || '[]') || []; } catch (e) {}
+        const c = custs.find(function (cli) { return cli.name === inv.customer; }) || { name: inv.customer };
+        const sym = inv.currency || '€';
+        const cleanComp = String(prof.n || '').replace(/<\/?b>/g, '');
+        const cleanCust = String(c.name || inv.customer || '').replace(/<\/?b>/g, '');
+
+        applyBrand(prof);
+        document.getElementById('p-inv-no').textContent = '#' + (inv.no || '');
+        document.getElementById('p-date').textContent = inv.date || '';
+        document.getElementById('p-sender-info').innerHTML = buildParty(cleanComp, prof, true);
+        document.getElementById('p-receiver-info').innerHTML = buildParty(cleanCust, c, false);
+
+        if (prof.i) {
+            document.getElementById('p-bank-box').style.display = 'block';
+            document.getElementById('p-bank').innerHTML = esc(prof.bnk || '') + (prof.bnk ? '<br>' : '') + esc(prof.i);
+        } else {
+            document.getElementById('p-bank-box').style.display = 'none';
+        }
+
+        let tbodyHTML = '', sub = 0;
+        (inv.items || []).forEach(function (it) {
+            const q = parseFloat(it.q) || 0, p = parseFloat(it.p) || 0;
+            const line = q * p; sub += line;
+            tbodyHTML += '<tr><td>' + esc(it.d || '') + '</td><td style="text-align:center">' + q + ' ' + esc(it.u || '') +
+                '</td><td style="text-align:right">' + p.toFixed(2) + sym + '</td><td style="text-align:right">' + line.toFixed(2) + sym + '</td></tr>';
+        });
+        document.getElementById('p-items').innerHTML = tbodyHTML;
+        const vRate = parseFloat(inv.vrate) || 0;
+        const tax = sub * (vRate / 100);
+        document.getElementById('p-sub').textContent = sub.toFixed(2) + sym;
+        document.getElementById('p-tax').textContent = tax.toFixed(2) + sym + ' (%' + vRate + ')';
+        document.getElementById('p-grand').textContent = (sub + tax).toFixed(2) + sym;
+
+        const st = localStorage.getItem('active_style') || '1';
+        document.getElementById('ph').className = (st === '3') ? 'a4-header s3-header' : 'a4-header';
+
+        document.getElementById('L_EDIT').onclick = function () {
+            localStorage.setItem('edit_temp_data', JSON.stringify(inv));
+            location.href = 'create-invoice-da.html';
+        };
+
+        document.getElementById('preview-modal').style.display = 'block';
+        applyPreviewScale();
+        window.addEventListener('resize', applyPreviewScale);
+    }
+
+    function deleteInv(idx) {
+        if (!confirm(t.del_q)) return;
+        let h = [];
+        try { h = JSON.parse(localStorage.getItem('history_' + activeKey) || '[]') || []; } catch (e) {}
+        h.splice(idx, 1);
+        localStorage.setItem('history_' + activeKey, JSON.stringify(h));
+        renderList();
+    }
+
+    document.getElementById('L_CLOSE').addEventListener('click', function () {
+        document.getElementById('preview-modal').style.display = 'none';
+        window.removeEventListener('resize', applyPreviewScale);
+    });
+
+    applyStyles();
+    renderList();
+})();
+</script>
+</body>
+</html>

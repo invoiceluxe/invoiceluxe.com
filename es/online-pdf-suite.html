@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Centro de Herramientas PDF - Comprimir, Editar, Escanear PDF | WebApp</title>
+<meta name="description" content="Convertidor PDF online gratuito, compresión PDF, OCR PDF y gestión segura de documentos.">
+<meta name="theme-color" content="#f4f6fa">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+  :root { --bg-main:#f4f6fa; --text-dark:#121829; --text-muted:#64748b; --brand-blue:#2a3782; --brand-blue-light:#5263ff; --card-bg:#ffffff; --shadow-sm:0 4px 12px rgba(0,0,0,0.03); --shadow-md:0 8px 24px rgba(42,55,130,0.08); }
+  *{box-sizing:border-box} html,body{margin:0;padding:0} body{background:var(--bg-main);color:var(--text-dark);font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;min-height:100vh}
+  a{text-decoration:none;color:inherit} button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .app-container{max-width:480px;margin:0 auto;width:100%;min-height:100vh;display:flex;flex-direction:column;padding-bottom:90px;background:var(--bg-main);position:relative;box-shadow:0 0 40px rgba(0,0,0,0.05)}
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;position:sticky;top:0;z-index:30;background:var(--bg-main)}
+  .btn-back{display:inline-flex;align-items:center;gap:6px;background:var(--card-bg);padding:8px 14px 8px 10px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--shadow-sm)} 
+  .header-actions{display:flex;gap:8px} .btn-circle{width:36px;height:36px;border-radius:50%;background:var(--card-bg);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm)}
+  main{flex:1;padding:0 16px;display:flex;flex-direction:column;gap:16px}
+  .hero-card{background:var(--card-bg);border-radius:24px;padding:16px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+  .hero-header-row{display:flex;gap:12px;align-items:center;margin-bottom:12px;position:relative;z-index:2}
+  .app-icon{width:54px;height:54px;background:linear-gradient(135deg,#7c5cff,#5a3cf5);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 16px rgba(90,60,245,0.3)}
+  .hero-title h1{margin:0;font-size:22px;font-weight:900;line-height:1.1;color:var(--brand-blue)} .hero-title h1 span{color:var(--brand-blue-light)} .badge{display:inline-flex;background:linear-gradient(90deg,#7c5cff,#5a3cf5);color:#fff;font-size:9px;font-weight:800;letter-spacing:0.5px;padding:4px 10px;border-radius:999px;margin-top:6px}
+  .hero-card p{margin:0;font-size:12px;line-height:1.5;color:var(--text-muted);max-width:65%;position:relative;z-index:2}
+  .hero-illustration{position:absolute;right:-20px;bottom:-10px;width:140px;height:140px;z-index:1;pointer-events:none} .blob-bg{position:absolute;right:10px;bottom:10px;width:120px;height:120px;background:#e6e9ff;border-radius:40px;transform:rotate(15deg)} .doc-icon{position:absolute;right:25px;bottom:25px;width:80px;height:100px;background:#fff;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,0.1);transform:rotate(5deg);padding:12px;display:flex;flex-direction:column;gap:6px} .doc-red-tag{background:#ff3b30;color:#fff;font-size:14px;font-weight:900;text-align:center;border-radius:6px;padding:4px 0;margin-bottom:4px} .doc-line{height:4px;background:#f1f5f9;border-radius:2px}
+  .divider{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;color:var(--brand-blue);letter-spacing:0.5px} .divider .line{flex:1;height:1px;background:#e2e8f0}
+  .grid-menu{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid-item{background:var(--card-bg);border-radius:20px;padding:12px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,0.8)} .item-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff} .item-text{flex:1;min-width:0} .item-text strong{display:block;font-size:13px} .item-text span{display:block;font-size:9.5px;font-weight:700;color:var(--text-muted);margin-top:2px} .item-arrow{color:#cbd5e1;display:flex}
+  .promo-card{background:linear-gradient(135deg,#4b3ee8,#6d5cff);border-radius:24px;padding:16px;color:#fff;position:relative;overflow:hidden} .promo-top-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.2);padding:4px 10px;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:0.5px;margin-bottom:12px} .promo-top-badge .dot{width:6px;height:6px;background:#22c55e;border-radius:50%} .promo-content h2{margin:0;font-size:20px;font-weight:900;line-height:1.1} .promo-content h2 span{color:#c4b5fd;display:block} .promo-content p{margin:8px 0 16px;font-size:11.5px;line-height:1.4;color:rgba(255,255,255,0.85);max-width:65%} .promo-art{position:absolute;right:0;top:30px;width:100px;height:100px} .promo-blob{position:absolute;right:-10px;top:0;width:100px;height:100px;background:#3c2bd6;border-radius:30px;transform:rotate(15deg)} .promo-doc{position:absolute;right:15px;top:10px;width:60px;height:75px;background:#fff;border-radius:8px;transform:rotate(10deg);box-shadow:0 8px 16px rgba(0,0,0,0.2);padding:8px} .promo-doc .red-tag{background:#ff3b30;color:#fff;font-size:10px;font-weight:900;text-align:center;border-radius:4px;padding:2px 0} .promo-check{position:absolute;right:5px;bottom:5px;width:24px;height:24px;background:#3b82f6;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff} .install-btn{width:100%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;color:#fff;font-size:11px;font-weight:700;backdrop-filter:blur(10px)} .install-btn .text{flex:1;text-align:left}
+  .seo-section{background:var(--card-bg);border-radius:24px;padding:20px 18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px;margin-top:4px} .seo-block h2{font-size:15px;font-weight:800;color:var(--brand-blue);margin:0 0 6px 0;line-height:1.3} .seo-block p{font-size:12px;line-height:1.6;color:#475569;margin:0}
+  .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--card-bg);display:flex;justify-content:space-around;padding:8px 8px 20px 8px;border-top:1px solid #e2e8f0;z-index:40} .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;width:60px;position:relative} .nav-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff} .nav-label{font-size:10px;font-weight:600;color:var(--text-muted)} .nav-item.active .nav-label{color:#5a3cf5;font-weight:800} .nav-item.active::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:24px;height:3px;background:#5a3cf5;border-radius:2px}
+  .bg-dark{background:#1f2937} .bg-orange{background:#f97316} .bg-purple{background:#8b5cf6} .bg-green{background:#10b981} svg{display:block}
+</style>
+</head>
+<body>
+<div class="app-container">
+<header><a href="index.html" class="btn-back">← Volver al Menú Principal</a><div class="header-actions"><button class="btn-circle"></></button><button class="btn-circle">⋯</button></div></header>
+<main>
+<section class="hero-card">
+<div class="hero-illustration"><div class="blob-bg"></div><div class="doc-icon"><div class="doc-red-tag">PDF</div><div class="doc-line" style="width:100%"></div><div class="doc-line" style="width:70%"></div></div></div>
+<div class="hero-header-row"><div class="app-icon">📄</div><div class="hero-title"><h1>Herramientas<br><span>PDF</span></h1><div class="badge">WEBAPP</div></div></div>
+<p>Basado en navegador, rápido y seguro. Sin descarga, sin registro. Mismos botones arriba y abajo, tarjetas verticales en el medio.</p>
+</section>
+<div class="divider">★ MENÚ RÁPIDO • MISMOS BOTONES <div class="line"></div></div>
+<div class="grid-menu">
+<a href="index.html" class="grid-item"><div class="item-icon bg-dark">🏠</div><div class="item-text"><strong>Menú Principal</strong><span>HUB</span></div><div class="item-arrow">›</div></a>
+<a href="resize-and-edit-pdf.html" class="grid-item"><div class="item-icon bg-orange">⚡</div><div class="item-text"><strong>Comprimir PDF</strong><span>RÁPIDO</span></div><div class="item-arrow">›</div></a>
+<a href="sign-pdf-online.html" class="grid-item"><div class="item-icon bg-purple">✦</div><div class="item-text"><strong>PDF PRO</strong><span>POPULAR</span></div><div class="item-arrow">›</div></a>
+<a href="pdf-text-editor.html" class="grid-item"><div class="item-icon bg-green">◫</div><div class="item-text"><strong>PDF OCR</strong><span>OCR</span></div><div class="item-arrow">›</div></a>
+</div>
+<section class="promo-card">
+<div class="promo-top-badge"><span class="dot"></span>SEO + PWA • 4 HERRAMIENTAS UN HUB</div>
+<div class="promo-art"><div class="promo-blob"></div><div class="promo-doc"><div class="red-tag">PDF</div></div><div class="promo-check">✓</div></div>
+<div class="promo-content"><h2>Herramientas PDF Gratis<br><span>Comprimir, Editar, Escanear.</span></h2><p>¡Los mismos 4 botones horizontales arriba, verticales en el medio, todo en una pantalla!</p></div>
+<button id="installBtn" class="install-btn"><div class="text">Haz clic para instalar la WebApp — Añade a la pantalla de inicio con 1 clic</div><div>→</div></button>
+</section>
+<section class="seo-section">
+<article class="seo-block"><h2>Conoce el Mejor Centro de Herramientas PDF Gratis</h2><p>Nuestro sitio es una solución todo en uno para tu <strong>convertidor PDF online</strong>. Gestiona archivos gratis sin instalar nada. <strong>Crea, edita PDF</strong> en segundos.</p></article>
+<article class="seo-block"><h2>Compresión PDF Rápida y Tecnología OCR Avanzada</h2><p>¿Archivos muy grandes? Reduce sin perder calidad con <strong>Comprimir PDF</strong>. Con <strong>PDF OCR</strong> convierte documentos escaneados en editables en segundos.</p></article>
+<article class="seo-block"><h2>Gestión de Documentos Segura y Privada</h2><p>Tu seguridad es prioridad. Transferencias con <strong>cifrado SSL de 256 bits</strong>. Archivos <strong>eliminados automáticamente</strong> tras el proceso. 100% privado sin registro.</p></article>
+</section>
+</main>
+<nav class="bottom-nav">
+<a href="index.html" class="nav-item active"><div class="nav-icon bg-dark">🏠</div><span class="nav-label">Menú Principal</span></a>
+<a href="resize-and-edit-pdf.html" class="nav-item"><div class="nav-icon bg-orange">⚡</div><span class="nav-label">Comprimir PDF</span></a>
+<a href="sign-pdf-online.html" class="nav-item"><div class="nav-icon bg-purple">✦</div><span class="nav-label">PDF PRO</span></a>
+<a href="pdf-text-editor.html" class="nav-item"><div class="nav-icon bg-green">◫</div><span class="nav-label">PDF Scan</span></a>
+</nav>
+</div>
+<script>document.getElementById('installBtn').addEventListener('click',function(){alert("Haz clic para instalar la WebApp — Añade a la pantalla de inicio con 1 clic");});</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>

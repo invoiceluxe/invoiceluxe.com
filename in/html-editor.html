@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+
+    <title>Live HTML CSS JS Code Previewer – Free Online Editor | Invoice Luxe</title>
+    <meta name="description" content="Free live HTML, CSS and JavaScript code editor with instant preview. Paste your code and see results in real-time. No signup required. By Invoice Luxe.">
+    <meta name="keywords" content="live html editor, css previewer, javascript tester, online code editor, html preview tool, Invoice Luxe tools">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/code-previewer">
+
+    <meta property="og:title" content="Live Code Previewer | Invoice Luxe">
+    <meta property="og:description" content="Paste HTML, CSS or JS and see a live preview instantly. Free tool by Invoice Luxe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/code-previewer">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Live HTML CSS JS Code Previewer",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "url": "https://invoiceluxe.com/code-previewer",
+      "description": "Free online live HTML, CSS and JavaScript editor with instant preview panel.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold-main: #FFD700; --m-black: #121212; --dark-grey: #1e1e1e; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background-color: var(--bg-oak); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; overflow-y: auto; }
+
+        .app-container { height: 100vh; display: flex; flex-direction: column; flex-shrink: 0; width: 100%; }
+
+        .top-bar { padding: 12px 20px; background: var(--m-black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold-main); box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; flex-wrap: wrap; gap: 8px; }
+        h1 { margin: 0; color: var(--gold-main); font-size: 18px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .btn { cursor: pointer; border: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; display: flex; align-items: center; gap: 5px; background: var(--gold-main); color: var(--m-black); text-decoration: none; transition: 0.2s; font-size: 12px; }
+        .btn:hover { background: #e6c200; transform: scale(0.98); }
+        .btn-guide { background: transparent; border: 1px solid var(--gold-main); color: var(--gold-main); }
+        .btn-guide:hover { background: rgba(255,215,0,0.1); transform: scale(0.98); }
+
+        .workspace { display: flex; flex: 1; padding: 15px; gap: 15px; flex-direction: row; overflow: hidden; }
+        .panel { flex: 1; display: flex; flex-direction: column; background: var(--dark-grey); border-radius: 12px; border: 2px solid var(--gold-main); overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.2); position: relative; }
+        .panel-header { background: var(--m-black); color: var(--gold-main); padding: 8px 15px; font-size: 13px; font-weight: bold; letter-spacing: 1px; border-bottom: 1px solid var(--gold-main); display: flex; align-items: center; gap: 8px; }
+
+        textarea { flex: 1; background: #000; color: #00ff00; border: none; padding: 15px; font-family: 'Courier New', monospace; font-size: 14px; resize: none; outline: none; line-height: 1.5; }
+        #preview { flex: 1; background: #fff; border: none; width: 100%; height: 100%; }
+
+        .close-fullscreen-btn { display: none; position: absolute; top: 10px; right: 10px; z-index: 10000; background: var(--m-black); color: var(--gold-main); border: 2px solid var(--gold-main); padding: 8px 12px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .close-fullscreen-btn:hover { background: var(--gold-main); color: var(--m-black); }
+        .fullscreen { position: fixed !important; inset: 0 !important; z-index: 9999; border-radius: 0 !important; }
+        .fullscreen .close-fullscreen-btn { display: flex; }
+
+        /* ===== KULLANIM KILAVUZU MODAL ===== */
+        #guide-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 99999; padding: 20px; overflow-y: auto; }
+        #guide-modal.open { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .guide-box { background: #111; border: 1.5px solid var(--gold-main); border-radius: 16px; max-width: 500px; width: 100%; padding: 25px; margin-top: 20px; }
+        .guide-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #333; }
+        .guide-box-header span { color: var(--gold-main); font-size: 12px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .guide-close { background: none; border: none; color: #555; font-size: 24px; cursor: pointer; line-height: 1; }
+        .guide-close:hover { color: #fff; }
+
+        .guide-step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+        .step-num { min-width: 28px; height: 28px; background: var(--gold-main); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #999; line-height: 1.6; }
+        .step-text b { color: #fff; display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 0.3px; }
+
+        .guide-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+        .guide-tag { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 5px 10px; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; }
+        .guide-tag b { color: var(--gold-main); }
+
+        .guide-tip { border-left: 3px solid var(--gold-main); padding: 10px 12px; background: rgba(255,215,0,0.04); font-size: 11px; color: #999; margin-top: 12px; line-height: 1.7; border-radius: 0 8px 8px 0; }
+        .guide-tip b { color: var(--gold-main); }
+
+        .guide-example { background: #000; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 14px; font-family: 'Courier New', monospace; font-size: 10px; color: #00ff00; line-height: 1.8; margin: 12px 0; }
+
+        /* ===== SEO BLOG CONTENT ===== */
+        .seo-content-wrapper { max-width: 1200px; margin: 0 auto; width: 100%; padding: 20px 15px 40px 15px; }
+        .seo-content { background: var(--dark-grey); border: 2px solid var(--gold-main); border-radius: 12px; padding: 25px; color: #bbb; font-size: 14px; line-height: 1.6; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .seo-content h2 { color: var(--gold-main); font-size: 18px; margin-bottom: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,217,0,0.2); padding-bottom: 8px; margin-top: 0; }
+        .seo-content h3 { color: #fff; font-size: 15px; margin: 22px 0 10px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+        .seo-content p { margin-bottom: 14px; }
+        .seo-content strong { color: #fff; }
+        .seo-content ul, .seo-content ol { margin-left: 20px; margin-bottom: 15px; }
+        .seo-content li { margin-bottom: 8px; }
+        .seo-content li strong { color: var(--gold-main); }
+
+        @media (max-width: 768px) {
+            .workspace { flex-direction: column; padding: 10px; gap: 10px; }
+            .top-bar { padding: 10px; }
+            h1 { font-size: 14px; }
+            .btn span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="top-bar">
+            <h1 id="L_TITLE"><i class="material-symbols-rounded">code</i> CODE PREVIEWER</h1>
+            <div class="controls">
+                <button class="btn btn-guide" onclick="openGuide()" title="How to use">
+                    <i class="material-symbols-rounded">help</i>
+                    <span id="L_GUIDE">HOW TO USE</span>
+                </button>
+                <button class="btn" onclick="toggleFullscreen()" title="Full Screen">
+                    <i class="material-symbols-rounded">fullscreen</i>
+                    <span id="L_FULL">FULL SCREEN</span>
+                </button>
+                <a href="tools.html" class="btn" title="Back">
+                    <i class="material-symbols-rounded">arrow_back</i>
+                    <span id="L_BACK">BACK</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="workspace" id="workspace">
+            <div class="panel">
+                <div class="panel-header">
+                    <i class="material-symbols-rounded" style="font-size:18px;">terminal</i>
+                    <span id="L_EDITOR_TITLE">EDITOR (HTML/CSS/JS)</span>
+                </div>
+                <textarea id="code-input" placeholder="Paste your code here..." oninput="renderCode()"></textarea>
+            </div>
+
+            <div class="panel" id="preview-container">
+                <button class="close-fullscreen-btn" onclick="toggleFullscreen()">
+                    <i class="material-symbols-rounded" style="font-size:16px;">fullscreen_exit</i>
+                    <span id="L_CLOSE">CLOSE</span>
+                </button>
+                <div class="panel-header">
+                    <i class="material-symbols-rounded" style="font-size:18px;">visibility</i>
+                    <span id="L_PREVIEW_TITLE">LIVE PREVIEW</span>
+                </div>
+                <iframe id="preview"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="seo-content-wrapper">
+        <div class="seo-content">
+            <h2>Real-Time Frontend Sandbox: Free Live HTML CSS JS Code Previewer</h2>
+            <p>Welcome to the ultimate environment for rapid web prototyping and design testing. The <strong>Invoice Luxe Live Code Previewer</strong> is a robust, web-based sandbox built explicitly for front-end developers, programmers, students, and ui designers. If you need a fast and seamless way to evaluate markup snippets, test complex responsive CSS rules, or debug interactive interface elements, this <strong>online code editor</strong> provides zero-latency rendering directly in your browser.</p>
+            <p>Forget the hassle of setting up heavy software or configure local server structures. Simply paste your work directly into our interface to stream visual results instantly.</p>
+
+            <h3>Instant Production Results with Our Live HTML Editor Component</h3>
+            <p>Writing modern structural markup is an iterative journey. Traditional environments require engineers to repeatedly save files and reload their local browser engines to verify accurate alignment. Our <strong>live html editor</strong> removes this friction from your workflow completely. Equipped with a high-performance 300ms smart refresh cycle, the engine parses layout rules instantly. Type your code standard, inject modular nodes, and watch your adjustments materialize live on the canvas panel.</p>
+
+            <h3>An Integrated CSS Previewer & JavaScript Tester Architecture</h3>
+            <p>Modern frontend user experiences rely heavily on the dynamic connection between your layout's structure, presentation layer, and reactive logic. That is why our advanced workspace bridges all three crucial core development layers seamlessly into one environment:</p>
+            <ul>
+                <li><strong>HTML Preview Tool:</strong> Paste complete page document layouts, standard inline microelements, or complex structural code fragments to crosscheck nesting and syntax accuracy on the fly.</li>
+                <li><strong>CSS Previewer Engine:</strong> Dynamically inject presentation styles, evaluate complex flexbox properties, manipulate multi-grid layouts, or prototype custom keyframe animations with immediate visual clarity.</li>
+                <li><strong>JavaScript Tester Sandbox:</strong> Initialize responsive event triggers, manipulate DOM nodes, test conditional algorithms, or quickly evaluate framework scripts without complex system dependencies.</li>
+            </ul>
+
+            <h3>Zero Installation Threshold: No Signups, 100% Private</h3>
+            <p>We firmly believe that critical utility tools should be openly accessible without artificial software bottlenecks. There are absolutely no membership paywalls, tracking scripts, or premium account requirements enforced on our site. Your source code computation runs natively inside a isolated, secure sandboxed iframe layout right on your client hardware, keeping your project code local and private. Streamline your everyday development flow, test components securely, and master your deployment process with <strong>Invoice Luxe</strong>.</p>
+        </div>
+    </div>
+
+    <div id="guide-modal">
+        <div class="guide-box">
+            <div class="guide-box-header">
+                <span id="g-title">HOW TO USE</span>
+                <button class="guide-close" onclick="closeGuide()">✕</button>
+            </div>
+
+            <div class="guide-step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <b id="g-s1t">Write or paste your code</b>
+                    <span id="g-s1d">Click the left panel and type or paste any HTML, CSS or JavaScript code.</span>
+                </div>
+            </div>
+
+            <div class="guide-step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <b id="g-s2t">See the live result instantly</b>
+                    <span id="g-s2d">The right panel updates automatically as you type — no need to press any button.</span>
+                </div>
+            </div>
+
+            <div class="guide-step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                    <b id="g-s3t">Use Full Screen for better view</b>
+                    <span id="g-s3d">Tap the FULL SCREEN button to expand the preview panel. Tap CLOSE to go back.</span>
+                </div>
+            </div>
+
+            <div class="guide-tags">
+                <div class="guide-tag"><b>&lt;html&gt;</b> supported</div>
+                <div class="guide-tag"><b>CSS</b> supported</div>
+                <div class="guide-tag"><b>JavaScript</b> supported</div>
+                <div class="guide-tag"><b>300ms</b> live refresh</div>
+            </div>
+
+            <div class="guide-example" id="g-example">&lt;h1 style="color:gold"&gt;Hello!&lt;/h1&gt;
+&lt;p&gt;Live preview works instantly.&lt;/p&gt;</div>
+
+            <div class="guide-tip">
+                <b id="g-tip-label">💡 Tip: </b>
+                <span id="g-tip-text">You can paste a full HTML page including &lt;head&gt; and &lt;body&gt; tags — it renders completely.</span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const dict = {
+        en: { title:"CODE PREVIEWER", full:"FULL SCREEN", back:"BACK", ph:"Paste your code here...", ed:"EDITOR (HTML/CSS/JS)", pr:"LIVE PREVIEW", cl:"CLOSE", guide:"HOW TO USE",
+              s1t:"Write or paste your code", s1d:"Click the left panel and type or paste any HTML, CSS or JavaScript code.",
+              s2t:"See the live result instantly", s2d:"The right panel updates automatically as you type — no need to press any button.",
+              s3t:"Use Full Screen for better view", s3d:"Tap the FULL SCREEN button to expand the preview panel. Tap CLOSE to go back.",
+              example:'<h1 style="color:gold">Hello!</h1>\n<p>Live preview works instantly.</p>',
+              tipLabel:"💡 Tip:", tipText:"You can paste a full HTML page including <head> and <body> tags — it renders completely." },
+        tr: { title:"KOD ÖNİZLEYİCİ", full:"TAM EKRAN", back:"ANA MENÜ", ph:"Kodunu buraya yapıştır...", ed:"EDİTÖR (HTML/CSS/JS)", pr:"CANLI ÖNİZLEME", cl:"KAPAT", guide:"NASIL KULLANILIR",
+              s1t:"Kodunu yaz veya yapıştır", s1d:"Sol panele tıkla ve HTML, CSS veya JavaScript kodunu yaz ya da yapıştır.",
+              s2t:"Canlı sonucu anında gör", s2d:"Sağ panel yazdıkça otomatik güncellenir — hiçbir butona basmana gerek yok.",
+              s3t:"Daha iyi görünüm için tam ekran kullan", s3d:"TAM EKRAN butonuna bas, önizleme genişler. Geri dönmek için KAPAT'a bas.",
+              example:'<h1 style="color:gold">Merhaba!</h1>\n<p>Canlı önizleme anında çalışır.</p>',
+              tipLabel:"💡 İpucu:", tipText:"<head> ve <body> etiketleri dahil tam bir HTML sayfası yapıştırabilirsin — tamamen render edilir." },
+        nl: { title:"CODE VOORBEELD", full:"VOLLEDIG SCHERM", back:"MENU", ph:"Plak je code hier...", ed:"BEWERKER (HTML/CSS/JS)", pr:"LIVE VOORBEELD", cl:"SLUITEN", guide:"HOE TE GEBRUIKEN",
+              s1t:"Schrijf of plak je code", s1d:"Klik op het linker paneel en typ of plak HTML, CSS of JavaScript.",
+              s2t:"Zie het resultaat direct", s2d:"Het rechter paneel wordt automatisch bijgewerkt terwijl je typt.",
+              s3t:"Gebruik volledig scherm", s3d:"Tik op VOLLEDIG SCHERM om het voorbeeldpaneel te vergroten. Tik SLUITEN om terug te gaan.",
+              example:'<h1 style="color:gold">Hallo!</h1>\n<p>Live voorbeeld werkt direct.</p>',
+              tipLabel:"💡 Tip:", tipText:"Je kunt een volledige HTML-pagina inclusief <head> en <body> tags plakken." },
+        de: { title:"CODE-VORSCHAU", full:"VOLLBILD", back:"MENÜ", ph:"Füge deinen Code hier ein...", ed:"EDITOR (HTML/CSS/JS)", pr:"LIVE-VORSCHAU", cl:"SCHLIESSEN", guide:"ANLEITUNG",
+              s1t:"Code schreiben oder einfügen", s1d:"Klicke auf das linke Panel und tippe oder füge HTML, CSS oder JavaScript ein.",
+              s2t:"Live-Ergebnis sofort sehen", s2d:"Das rechte Panel aktualisiert sich automatisch während des Tippens.",
+              s3t:"Vollbild für bessere Ansicht", s3d:"VOLLBILD-Schaltfläche tippen, Vorschau vergrößert sich. SCHLIESSEN zum Zurückgehen.",
+              example:'<h1 style="color:gold">Hallo!</h1>\n<p>Live-Vorschau funktioniert sofort.</p>',
+              tipLabel:"💡 Tipp:", tipText:"Du kannst eine vollständige HTML-Seite mit <head> und <body> Tags einfügen." },
+        fr: { title:"APERÇU DU CODE", full:"PLEIN ÉCRAN", back:"MENU", ph:"Collez votre code ici...", ed:"ÉDITEUR (HTML/CSS/JS)", pr:"APERÇU EN DIRECT", cl:"FERMER", guide:"MODE D'EMPLOI",
+              s1t:"Écrivez ou collez votre code", s1d:"Cliquez sur le panneau gauche et tapez ou collez du HTML, CSS ou JavaScript.",
+              s2t:"Voir le résultat en direct", s2d:"Le panneau droit se met à jour automatiquement pendant la saisie.",
+              s3t:"Utilisez le plein écran", s3d:"Appuyez sur PLEIN ÉCRAN pour agrandir l'aperçu. Appuyez FERMER pour revenir.",
+              example:'<h1 style="color:gold">Bonjour!</h1>\n<p>L\'aperçu fonctionne instantanément.</p>',
+              tipLabel:"💡 Astuce:", tipText:"Vous pouvez coller une page HTML complète avec les balises <head> et <body>." },
+        it: { title:"ANTEPRIMA CODICE", full:"SCHERMO INTERO", back:"MENU", ph:"Incolla il tuo codice qui...", ed:"EDITORE (HTML/CSS/JS)", pr:"ANTEPRIMA DAL VIVO", cl:"CHIUDI", guide:"COME SI USA",
+              s1t:"Scrivi o incolla il codice", s1d:"Clicca sul pannello sinistro e digita o incolla HTML, CSS o JavaScript.",
+              s2t:"Vedi il risultato in tempo reale", s2d:"Il pannello destro si aggiorna automaticamente mentre scrivi.",
+              s3t:"Usa lo schermo intero", s3d:"Tocca SCHERMO INTERO per espandere l'anteprima. Tocca CHIUDI per tornare.",
+              example:'<h1 style="color:gold">Ciao!</h1>\n<p>L\'anteprima funziona istantaneamente.</p>',
+              tipLabel:"💡 Suggerimento:", tipText:"Puoi incollare una pagina HTML completa con i tag <head> e <body>." }
+    };
+
+    let renderTimeout, currentBlobUrl = null;
+
+    function renderCode() {
+        clearTimeout(renderTimeout);
+        renderTimeout = setTimeout(() => {
+            const code = document.getElementById('code-input').value;
+            const iframe = document.getElementById('preview');
+            if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+            const blob = new Blob([code], { type: 'text/html' });
+            currentBlobUrl = URL.createObjectURL(blob);
+            iframe.src = currentBlobUrl;
+        }, 300);
+    }
+
+    function toggleFullscreen() {
+        document.getElementById('preview-container').classList.toggle('fullscreen');
+    }
+
+    function openGuide() { document.getElementById('guide-modal').classList.add('open'); }
+    function closeGuide() { document.getElementById('guide-modal').classList.remove('open'); }
+
+    function setLanguage() {
+        const lang = localStorage.getItem('global_lang') || 'en';
+        const t = dict[lang] || dict.en;
+        document.getElementById('L_TITLE').innerHTML = `<i class="material-symbols-rounded">code</i> ${t.title}`;
+        document.getElementById('L_FULL').innerText = t.full;
+        document.getElementById('L_BACK').innerText = t.back;
+        document.getElementById('L_GUIDE').innerText = t.guide;
+        document.getElementById('code-input').placeholder = t.ph;
+        document.getElementById('L_EDITOR_TITLE').innerText = t.ed;
+        document.getElementById('L_PREVIEW_TITLE').innerText = t.pr;
+        document.getElementById('L_CLOSE').innerText = t.cl;
+        document.getElementById('g-title').innerText = t.guide;
+        document.getElementById('g-s1t').innerText = t.s1t;
+        document.getElementById('g-s1d').innerText = t.s1d;
+        document.getElementById('g-s2t').innerText = t.s2t;
+        document.getElementById('g-s2d').innerText = t.s2d;
+        document.getElementById('g-s3t').innerText = t.s3t;
+        document.getElementById('g-s3d').innerText = t.s3d;
+        document.getElementById('g-example').innerText = t.example;
+        document.getElementById('g-tip-label').innerText = t.tipLabel;
+        document.getElementById('g-tip-text').innerText = t.tipText;
+    }
+
+    window.onload = setLanguage;
+</script>
+</body>
+</html>

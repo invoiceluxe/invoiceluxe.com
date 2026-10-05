@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en-IN" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>Free VAT & Tax Calculator Online | Invoice Luxe Tax Analytics</title>
+    <meta name="description" content="Free online VAT calculator for businesses. Enter gross amounts, select VAT rate and instantly see net profit, tax to pay or reclaim. Available in 6 languages — no account needed.">
+    <meta name="keywords" content="VAT calculator, tax analytics, BTW berekening, KDV hesaplama, Mehrwertsteuer Rechner, calculateur TVA, calcolo IVA, net profit calculator, tax refund calculator, free business tools">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+
+    <link rel="canonical" href="https://invoiceluxe.com/tax-analytics.html" />
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/tax-analytics.html" />
+    <link rel="alternate" hreflang="en-IN" href="https://invoiceluxe.com/tax-analytics.html?lang=en" />
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tax-analytics.html?lang=tr" />
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/tax-analytics.html?lang=nl" />
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/tax-analytics.html?lang=de" />
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/tax-analytics.html?lang=fr" />
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/tax-analytics.html?lang=it" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Invoice Luxe Tax Analytics",
+      "url": "https://invoiceluxe.com/tax-analytics.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Free online VAT and tax calculator for businesses. Instantly calculate net profit, VAT to pay or reclaim. Available in 6 languages.",
+      "inLanguage": ["en", "tr", "nl", "de", "fr", "it"],
+      "featureList": ["VAT Calculation", "Net Profit", "Tax Refund", "Income & Expense Tracking", "WhatsApp Report", "6 Languages", "No Account Required"]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@500;700;900&display=swap');
+        :root { --gold: #b3995d; --bg-dark: #000000; --soft-green: #2ecc71; --soft-red: #e74c3c; --cool-blue: #3498db; --card-bg: #0d0d0d; --border: #222222; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto Mono', monospace; }
+        body { background: var(--bg-dark); color: #fff; padding: 0; padding-bottom: 220px; }
+        .nav-header { width: 100%; background: #080808; padding: 15px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); }
+        .btn-back { background: #1c1c1e; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 800; font-size: 11px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; border: 1px solid #333; transition: 0.2s; }
+        .btn-back:hover { background: #2c2c2e; border-color: var(--gold); }
+        .wrapper { padding: 10px; }
+        #welcome-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .info-box { background: #050505; border: 1px solid var(--gold); padding: 30px; border-radius: 5px; text-align: center; max-width: 380px; box-shadow: 0 0 30px rgba(179,153,93,0.2); }
+        .main-sticky-header { position: sticky; top: 0; z-index: 1000; background: var(--bg-dark); padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .main-res-card { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; text-align: center; }
+        .main-res-val { font-size: 32px; font-weight: 700; color: var(--gold); }
+        .tax-summary-box { margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+        .input-section { display: flex; gap: 8px; margin: 15px 0; }
+        .column { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .side-title { font-size: 10px; font-weight: 700; text-align: center; padding: 5px; text-transform: uppercase; border: 1px solid #333; }
+        .entry-group { background: #080808; border: 1px solid var(--border); padding: 10px; position: relative; }
+        .entry-group input[type="number"] { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; color: #fff; font-size: 18px; font-weight: 700; padding: 5px; text-align: center; outline: none; }
+        .tax-row { display: flex; gap: 3px; margin-top: 8px; }
+        .tax-btn { flex: 1; background: #111; color: #666; font-size: 9px; padding: 6px 0; cursor: pointer; text-align: center; border: 1px solid #222; }
+        .tax-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(179,153,93,0.1); }
+        .custom-tax-input { width: 35px; background: #000; border: 1px solid #333; color: var(--gold); font-size: 9px; text-align: center; outline: none; display: none; }
+        .inv-item { background: #050505; margin-bottom: 8px; padding: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .inv-left { display: flex; flex-direction: column; }
+        .inv-label { font-size: 9px; color: #555; text-transform: uppercase; }
+        .neto-big { font-size: 20px; font-weight: 700; color: var(--soft-green); }
+        .inv-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+        .brut-tag { font-size: 10px; color: #fff; background: var(--cool-blue); padding: 2px 6px; font-weight: 700; }
+        .btw-tag { font-size: 10px; color: #fff; background: var(--soft-red); padding: 2px 6px; font-weight: 700; }
+        .footer-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px; border-top: 1px solid var(--border); display: flex; gap: 8px; z-index: 2000; }
+        .btn-clear { background: #111; color: #fff; padding: 12px; border: 1px solid #333; font-size: 11px; flex: 1; cursor: pointer; }
+        .btn-share { background: var(--gold); color: #000; padding: 12px; border: none; font-weight: 700; font-size: 12px; flex: 2; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+
+        /* Kullanım Kılavuzu */
+        .guide-section { margin: 25px 0 10px; background: #050505; border: 1px solid #222; border-radius: 5px; padding: 20px; }
+        .guide-section h2 { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 18px 0; text-align: center; font-family: 'Montserrat', sans-serif; }
+        .guide-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+        .step-num { background: var(--gold); color: #000; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 11px; flex-shrink: 0; margin-top: 2px; font-family: 'Montserrat', sans-serif; }
+        .guide-step p { margin: 0; font-size: 11px; color: #888; line-height: 1.7; }
+        .guide-step p strong { color: #ccc; }
+        .guide-divider { border: none; border-top: 1px solid #1a1a1a; margin: 15px 0; }
+        .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .feature-tag { background: rgba(179,153,93,0.08); border: 1px solid rgba(179,153,93,0.25); border-radius: 3px; padding: 4px 10px; font-size: 9px; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
+
+        /* Açıklama Kutusu */
+        .info-card { background: #050505; border-left: 3px solid var(--gold); padding: 15px; margin: 15px 0; }
+        .info-card p { font-size: 11px; color: #666; line-height: 1.8; margin: 0; }
+        .info-card strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-header">
+        <a href="tools.html" class="btn-back" id="b-back">⬅ BACK TO MAIN MENU</a>
+        <div style="color:#444; font-weight:800; font-size:12px; letter-spacing:1px; font-family:'Montserrat',sans-serif;" id="l-top-tag">TAX ANALYTICS</div>
+    </nav>
+
+    <div class="wrapper">
+        <div id="welcome-modal">
+            <div class="info-box">
+                <i class="fa-solid fa-file-invoice-dollar" style="font-size:35px; color:var(--gold); margin-bottom:15px;"></i>
+                <h2 id="t-m-h" style="color:var(--gold); font-family:'Montserrat',sans-serif; margin-bottom:10px;">SYSTEM READY</h2>
+                <p id="t-m-p" style="font-size:12px; line-height:1.6; color:#888; margin-bottom:20px;">Loading...</p>
+                <button class="btn-share" style="width:100%; border-radius:5px;" onclick="closeModal()" id="t-m-b">OK</button>
+            </div>
+        </div>
+
+        <div class="main-sticky-header">
+            <div class="main-res-card">
+                <div style="font-size:9px; letter-spacing:2px; color:#444;" id="t-net-title">TOTAL NET</div>
+                <div class="main-res-val" id="res-net">0.00</div>
+                <div class="tax-summary-box" id="res-tax-summary">...</div>
+            </div>
+        </div>
+
+        <!-- Kısa Açıklama (SEO + Kullanıcı) -->
+        <div class="info-card" id="info-card">
+            <p id="info-text"><strong>How it works:</strong> Enter your gross income and expense amounts with the applicable VAT rate. The system automatically separates the net amount and VAT. The top panel shows your total net profit and whether you need to pay or reclaim VAT.</p>
+        </div>
+
+        <div class="input-section">
+            <div class="column" id="incomeCol">
+                <div class="side-title" style="color:var(--soft-green)" id="t-inc">INCOME</div>
+                <div class="entry-group" data-type="income">
+                    <input type="number" placeholder="0.00" oninput="handleInput(this)">
+                    <div class="tax-row">
+                        <div class="tax-btn active" onclick="setTax(this,0)">%0</div>
+                        <div class="tax-btn" onclick="setTax(this,9)">%9</div>
+                        <div class="tax-btn" onclick="setTax(this,21)">%21</div>
+                        <div class="tax-btn" onclick="toggleCustom(this)">%?</div>
+                        <input type="number" class="custom-tax-input" placeholder="%" oninput="calculateAll()">
+                    </div>
+                </div>
+            </div>
+            <div class="column" id="expenseCol">
+                <div class="side-title" style="color:var(--soft-red)" id="t-exp">EXPENSE</div>
+                <div class="entry-group" data-type="expense">
+                    <input type="number" placeholder="0.00" oninput="handleInput(this)">
+                    <div class="tax-row">
+                        <div class="tax-btn active" onclick="setTax(this,0)">%0</div>
+                        <div class="tax-btn" onclick="setTax(this,9)">%9</div>
+                        <div class="tax-btn" onclick="setTax(this,21)">%21</div>
+                        <div class="tax-btn" onclick="toggleCustom(this)">%?</div>
+                        <input type="number" class="custom-tax-input" placeholder="%" oninput="calculateAll()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="invoice-list"></div>
+
+        <!-- Kullanım Kılavuzu -->
+        <section class="guide-section" id="guide-section">
+            <h2 id="guide-title">HOW TO USE</h2>
+
+            <div class="guide-step">
+                <div class="step-num">1</div>
+                <p id="guide-step1"><strong>Enter income</strong> — Type your gross invoice amount in the green Income column. You can add multiple entries.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">2</div>
+                <p id="guide-step2"><strong>Select VAT rate</strong> — Choose the applicable VAT percentage (%0, %9, %21) or tap %? to enter a custom rate.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">3</div>
+                <p id="guide-step3"><strong>Enter expenses</strong> — Add your gross expense amounts in the red Expense column with their VAT rates.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">4</div>
+                <p id="guide-step4"><strong>See results</strong> — The top panel instantly shows your net profit. Red means VAT to pay, green means VAT to reclaim.</p>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">5</div>
+                <p id="guide-step5"><strong>Send report</strong> — Tap the Send button to share a detailed breakdown via WhatsApp.</p>
+            </div>
+
+            <hr class="guide-divider">
+            <div class="feature-tags" id="feature-tags">
+                <span class="feature-tag">✓ FREE</span>
+                <span class="feature-tag">✓ NO ACCOUNT</span>
+                <span class="feature-tag">✓ OFFLINE STORAGE</span>
+                <span class="feature-tag">✓ 6 LANGUAGES</span>
+                <span class="feature-tag">✓ WHATSAPP REPORT</span>
+                <span class="feature-tag">✓ MOBILE FRIENDLY</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer-nav">
+        <button class="btn-clear" onclick="clearData()" id="t-clear">CLEAR</button>
+        <button class="btn-share" onclick="shareWhatsApp()" id="t-send">
+            <i class="fab fa-whatsapp"></i> SEND
+        </button>
+    </div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceLang = urlParams.get('lang');
+    if (forceLang) localStorage.setItem('global_lang', forceLang);
+    const lang = localStorage.getItem('global_lang') || 'en';
+    const sym = localStorage.getItem('invoice_symbol') || '€';
+
+    document.documentElement.lang = lang;
+
+    const i18n = {
+        tr: {
+            h: "VERGİ ANALİTİĞİ", p: "KDV dahil tutarı girin, sistem otomatik olarak net tutar ve KDV'yi ayırır. Mavi: Brüt, Kırmızı: KDV. WhatsApp raporu gönderilebilir.", b: "BAŞLAT",
+            net: "NET KAZANÇ", inc: "GELİR", exp: "GİDER", pay: "ÖDENECEK KDV", get: "İADE ALINACAK KDV", brut: "BRÜT", tax: "KDV", clear: "TEMİZLE", send: "GÖNDER", report: "RAPOR",
+            back: "⬅ ANA MENÜYE DÖN", toptag: "VERGİ ANALİTİĞİ",
+            infoText: "<strong>Nasıl çalışır:</strong> KDV dahil gelir ve gider tutarlarını ilgili KDV oranıyla girin. Sistem otomatik olarak net tutar ve KDV'yi ayırır. Üst panel, toplam net kazancınızı ve KDV ödeyip ödemeyeceğinizi gösterir.",
+            guideTitle: "NASIL KULLANILIR",
+            step1: "<strong>Gelir girin</strong> — KDV dahil fatura tutarını yeşil Gelir sütununa yazın. Birden fazla kayıt ekleyebilirsiniz.",
+            step2: "<strong>KDV oranı seçin</strong> — Geçerli KDV yüzdesini seçin (%0, %9, %21) veya özel oran için %? butonuna basın.",
+            step3: "<strong>Gider girin</strong> — KDV dahil gider tutarlarını kırmızı Gider sütununa ilgili KDV oranıyla ekleyin.",
+            step4: "<strong>Sonuçları görün</strong> — Üst panel anında net kazancınızı gösterir. Kırmızı: ödenecek KDV, yeşil: iade alınacak KDV.",
+            step5: "<strong>Rapor gönderin</strong> — Detaylı dökümü WhatsApp üzerinden paylaşmak için Gönder butonuna basın.",
+            tags: ["✓ ÜCRETSİZ","✓ HESAP GEREKMİYOR","✓ ÇEVRİMDIŞI KAYIT","✓ 6 DİL","✓ WHATSAPP RAPORU","✓ MOBİL UYUMLU"]
+        },
+        en: {
+            h: "TAX ANALYTICS", p: "Enter gross amounts with VAT rate. System auto-separates net and VAT. Blue: Gross, Red: VAT. Export detailed WhatsApp report.", b: "START",
+            net: "NET PROFIT", inc: "INCOME", exp: "EXPENSE", pay: "VAT TO PAY", get: "VAT REFUND", brut: "GROSS", tax: "VAT", clear: "CLEAR", send: "SEND", report: "REPORT",
+            back: "⬅ BACK TO MAIN MENU", toptag: "TAX ANALYTICS",
+            infoText: "<strong>How it works:</strong> Enter your gross income and expense amounts with the applicable VAT rate. The system automatically separates the net amount and VAT. The top panel shows your total net profit and whether you need to pay or reclaim VAT.",
+            guideTitle: "HOW TO USE",
+            step1: "<strong>Enter income</strong> — Type your gross invoice amount in the green Income column. You can add multiple entries.",
+            step2: "<strong>Select VAT rate</strong> — Choose the applicable VAT percentage (%0, %9, %21) or tap %? to enter a custom rate.",
+            step3: "<strong>Enter expenses</strong> — Add your gross expense amounts in the red Expense column with their VAT rates.",
+            step4: "<strong>See results</strong> — The top panel instantly shows your net profit. Red means VAT to pay, green means VAT to reclaim.",
+            step5: "<strong>Send report</strong> — Tap the Send button to share a detailed breakdown via WhatsApp.",
+            tags: ["✓ FREE","✓ NO ACCOUNT","✓ OFFLINE STORAGE","✓ 6 LANGUAGES","✓ WHATSAPP REPORT","✓ MOBILE FRIENDLY"]
+        },
+        nl: {
+            h: "BTW ANALYSE", p: "Voer bruto bedragen in met BTW-tarief. Systeem scheidt automatisch netto en BTW. Blauw: Bruto, Rood: BTW. WhatsApp-rapport beschikbaar.", b: "STARTEN",
+            net: "NETTO WINST", inc: "INKOMSTEN", exp: "UITGAVEN", pay: "BTW TE BETALEN", get: "BTW TERUGGAVE", brut: "BRUTO", tax: "BTW", clear: "WISSEN", send: "VERZENDEN", report: "RAPPORT",
+            back: "⬅ TERUG NAAR HOOFDMENU", toptag: "BTW ANALYSE",
+            infoText: "<strong>Hoe het werkt:</strong> Voer uw bruto inkomsten en uitgaven in met het toepasselijke BTW-tarief. Het systeem scheidt automatisch het nettobedrag en de BTW. Het bovenste paneel toont uw netto winst en of u BTW moet betalen of terugkrijgt.",
+            guideTitle: "HOE TE GEBRUIKEN",
+            step1: "<strong>Inkomsten invoeren</strong> — Typ uw bruto factuurbedrag in de groene kolom Inkomsten. U kunt meerdere items toevoegen.",
+            step2: "<strong>BTW-tarief selecteren</strong> — Kies het toepasselijke BTW-percentage (%0, %9, %21) of tik op %? voor een aangepast tarief.",
+            step3: "<strong>Uitgaven invoeren</strong> — Voeg uw bruto uitgaven toe in de rode kolom Uitgaven met hun BTW-tarieven.",
+            step4: "<strong>Resultaten bekijken</strong> — Het bovenste paneel toont direct uw netto winst. Rood: BTW te betalen, groen: BTW teruggave.",
+            step5: "<strong>Rapport verzenden</strong> — Tik op Verzenden om een gedetailleerd overzicht via WhatsApp te delen.",
+            tags: ["✓ GRATIS","✓ GEEN ACCOUNT","✓ OFFLINE OPSLAG","✓ 6 TALEN","✓ WHATSAPP RAPPORT","✓ MOBIEL VRIENDELIJK"]
+        },
+        de: {
+            h: "STEUERANALYSE", p: "Bruttobeträge mit MwSt eingeben. System trennt automatisch Netto und MwSt. Blau: Brutto, Rot: MwSt. WhatsApp-Bericht möglich.", b: "STARTEN",
+            net: "NETTO-GEWINN", inc: "EINNAHMEN", exp: "AUSGABEN", pay: "MWST ZU ZAHLEN", get: "MWST ERSTATTUNG", brut: "BRUTTO", tax: "MWST", clear: "LÖSCHEN", send: "SENDEN", report: "BERICHT",
+            back: "⬅ ZURÜCK ZUM HAUPTMENÜ", toptag: "STEUERANALYSE",
+            infoText: "<strong>Wie es funktioniert:</strong> Geben Sie Ihre Bruttoeinnahmen und -ausgaben mit dem entsprechenden MwSt-Satz ein. Das System trennt automatisch den Nettobetrag und die MwSt. Das obere Panel zeigt Ihren Nettogewinn und ob Sie MwSt zahlen oder erstattet bekommen.",
+            guideTitle: "WIE BENUTZEN",
+            step1: "<strong>Einnahmen eingeben</strong> — Geben Sie Ihren Bruttorechnungsbetrag in die grüne Einnahmenspalte ein. Sie können mehrere Einträge hinzufügen.",
+            step2: "<strong>MwSt-Satz wählen</strong> — Wählen Sie den MwSt-Prozentsatz (%0, %9, %21) oder tippen Sie auf %? für einen benutzerdefinierten Satz.",
+            step3: "<strong>Ausgaben eingeben</strong> — Fügen Sie Ihre Bruttoausgaben in die rote Ausgabenspalte mit ihren MwSt-Sätzen ein.",
+            step4: "<strong>Ergebnisse sehen</strong> — Das obere Panel zeigt sofort Ihren Nettogewinn. Rot: MwSt zu zahlen, Grün: MwSt-Erstattung.",
+            step5: "<strong>Bericht senden</strong> — Tippen Sie auf Senden, um eine detaillierte Aufschlüsselung per WhatsApp zu teilen.",
+            tags: ["✓ KOSTENLOS","✓ KEIN KONTO","✓ OFFLINE-SPEICHER","✓ 6 SPRACHEN","✓ WHATSAPP-BERICHT","✓ MOBILFREUNDLICH"]
+        },
+        fr: {
+            h: "ANALYSE FISCALE", p: "Entrez les montants bruts avec le taux de TVA. Le système sépare automatiquement le net et la TVA. Bleu: Brut, Rouge: TVA. Rapport WhatsApp disponible.", b: "LANCER",
+            net: "BÉNÉFICE NET", inc: "REVENUS", exp: "DÉPENSES", pay: "TVA À PAYER", get: "REMBOURSEMENT TVA", brut: "BRUT", tax: "TVA", clear: "EFFACER", send: "ENVOYER", report: "RAPPORT",
+            back: "⬅ RETOUR AU MENU PRINCIPAL", toptag: "ANALYSE FISCALE",
+            infoText: "<strong>Comment ça marche:</strong> Saisissez vos revenus et dépenses bruts avec le taux de TVA applicable. Le système sépare automatiquement le montant net et la TVA. Le panneau supérieur montre votre bénéfice net et si vous devez payer ou récupérer de la TVA.",
+            guideTitle: "COMMENT UTILISER",
+            step1: "<strong>Saisir les revenus</strong> — Tapez votre montant brut de facture dans la colonne verte Revenus. Vous pouvez ajouter plusieurs entrées.",
+            step2: "<strong>Sélectionner le taux TVA</strong> — Choisissez le pourcentage TVA applicable (%0, %9, %21) ou appuyez sur %? pour un taux personnalisé.",
+            step3: "<strong>Saisir les dépenses</strong> — Ajoutez vos dépenses brutes dans la colonne rouge Dépenses avec leurs taux de TVA.",
+            step4: "<strong>Voir les résultats</strong> — Le panneau supérieur affiche instantanément votre bénéfice net. Rouge: TVA à payer, vert: remboursement TVA.",
+            step5: "<strong>Envoyer le rapport</strong> — Appuyez sur Envoyer pour partager un détail complet via WhatsApp.",
+            tags: ["✓ GRATUIT","✓ SANS COMPTE","✓ STOCKAGE HORS LIGNE","✓ 6 LANGUES","✓ RAPPORT WHATSAPP","✓ COMPATIBLE MOBILE"]
+        },
+        it: {
+            h: "ANALISI FISCALE", p: "Inserisci importi lordi con aliquota IVA. Il sistema separa automaticamente netto e IVA. Blu: Lordo, Rosso: IVA. Report WhatsApp disponibile.", b: "AVVIA",
+            net: "UTILE NETTO", inc: "ENTRATE", exp: "USCITE", pay: "IVA DA PAGARE", get: "RIMBORSO IVA", brut: "LORDO", tax: "IVA", clear: "CANCELLA", send: "INVIA", report: "RAPPORTO",
+            back: "⬅ TORNA AL MENU PRINCIPALE", toptag: "ANALISI FISCALE",
+            infoText: "<strong>Come funziona:</strong> Inserisci i tuoi redditi e spese lordi con l'aliquota IVA applicabile. Il sistema separa automaticamente l'importo netto e l'IVA. Il pannello superiore mostra il tuo utile netto e se devi pagare o recuperare l'IVA.",
+            guideTitle: "COME USARE",
+            step1: "<strong>Inserisci entrate</strong> — Digita il tuo importo lordo fattura nella colonna verde Entrate. Puoi aggiungere più voci.",
+            step2: "<strong>Seleziona aliquota IVA</strong> — Scegli la percentuale IVA applicabile (%0, %9, %21) o tocca %? per un'aliquota personalizzata.",
+            step3: "<strong>Inserisci spese</strong> — Aggiungi le tue spese lorde nella colonna rossa Uscite con le loro aliquote IVA.",
+            step4: "<strong>Vedi i risultati</strong> — Il pannello superiore mostra istantaneamente il tuo utile netto. Rosso: IVA da pagare, verde: rimborso IVA.",
+            step5: "<strong>Invia rapporto</strong> — Tocca Invia per condividere un dettaglio completo via WhatsApp.",
+            tags: ["✓ GRATUITO","✓ SENZA ACCOUNT","✓ ARCHIVIAZIONE OFFLINE","✓ 6 LINGUE","✓ REPORT WHATSAPP","✓ MOBILE FRIENDLY"]
+        }
+    };
+
+    const t = i18n[lang] || i18n.en;
+
+    window.onload = () => {
+        applyLanguage();
+        loadSavedData();
+    };
+
+    function applyLanguage() {
+        document.getElementById('t-m-h').innerText = t.h;
+        document.getElementById('t-m-p').innerText = t.p;
+        document.getElementById('t-m-b').innerText = t.b;
+        document.getElementById('t-net-title').innerText = t.net;
+        document.getElementById('t-inc').innerText = t.inc;
+        document.getElementById('t-exp').innerText = t.exp;
+        document.getElementById('t-clear').innerText = t.clear;
+        document.getElementById('b-back').innerText = t.back;
+        document.getElementById('l-top-tag').innerText = t.toptag;
+        document.getElementById('t-send').innerHTML = `<i class="fab fa-whatsapp"></i> ${t.send}`;
+        document.getElementById('info-text').innerHTML = t.infoText;
+        document.getElementById('guide-title').innerText = t.guideTitle;
+        document.getElementById('guide-step1').innerHTML = t.step1;
+        document.getElementById('guide-step2').innerHTML = t.step2;
+        document.getElementById('guide-step3').innerHTML = t.step3;
+        document.getElementById('guide-step4').innerHTML = t.step4;
+        document.getElementById('guide-step5').innerHTML = t.step5;
+        const tagContainer = document.getElementById('feature-tags');
+        tagContainer.innerHTML = t.tags.map(tag => `<span class="feature-tag">${tag}</span>`).join('');
+    }
+
+    function closeModal() { document.getElementById('welcome-modal').style.display = 'none'; }
+
+    function toggleCustom(btn) {
+        const input = btn.parentElement.querySelector('.custom-tax-input');
+        const btns = btn.parentElement.querySelectorAll('.tax-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        input.style.display = 'block';
+        input.focus();
+    }
+
+    function setTax(btn, val) {
+        const input = btn.parentElement.querySelector('.custom-tax-input');
+        const btns = btn.parentElement.querySelectorAll('.tax-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        input.style.display = 'none';
+        input.value = "";
+        calculateAll();
+    }
+
+    function handleInput(input) {
+        if (input.value !== "") {
+            const col = input.closest('.column');
+            const groups = col.querySelectorAll('.entry-group');
+            if (input === groups[groups.length-1].querySelector('input')) {
+                const newNode = groups[groups.length-1].cloneNode(true);
+                newNode.querySelector('input').value = "";
+                newNode.querySelector('.custom-tax-input').style.display = 'none';
+                newNode.querySelector('.custom-tax-input').value = "";
+                col.appendChild(newNode);
+            }
+        }
+        calculateAll();
+    }
+
+    function calculateAll() {
+        let ti=0, te=0, tp=0, tg=0;
+        const listDiv = document.getElementById('invoice-list');
+        listDiv.innerHTML = "";
+        let storageData = [];
+        document.querySelectorAll('.entry-group').forEach((g, idx) => {
+            const val = parseFloat(g.querySelector('input[type="number"]').value) || 0;
+            if(val === 0) return;
+            const customVal = g.querySelector('.custom-tax-input').value;
+            let perc = (customVal !== "") ? parseFloat(customVal) : parseFloat(g.querySelector('.tax-btn.active').innerText.replace('%',''));
+            const tax = val - (val / (1 + (perc/100)));
+            const net = val - tax;
+            const type = g.dataset.type;
+            if(type==='income') { ti+=val; tp+=tax; } else { te+=val; tg+=tax; }
+            storageData.push({v:val, p:perc, t:type, n:net, tx:tax});
+            listDiv.innerHTML += `
+                <div class="inv-item">
+                    <div class="inv-left">
+                        <span class="inv-label">${type==='income' ? t.inc : t.exp} #${idx+1}</span>
+                        <span class="neto-big">${net.toFixed(2)}${sym}</span>
+                    </div>
+                    <div class="inv-right">
+                        <span class="brut-tag">${t.brut}: ${val.toFixed(2)}${sym}</span>
+                        <span class="btw-tag">${t.tax} %${perc}: ${tax.toFixed(2)}${sym}</span>
+                    </div>
+                </div>`;
+        });
+        const totalTax = tp - tg;
+        const totalNet = (ti-tp) - (te-tg);
+        document.getElementById('res-net').innerText = totalNet.toFixed(2) + sym;
+        document.getElementById('res-net').style.color = totalNet >= 0 ? "var(--soft-green)" : "var(--soft-red)";
+        const summary = document.getElementById('res-tax-summary');
+        summary.innerText = `${totalTax >= 0 ? t.pay : t.get}: ${Math.abs(totalTax).toFixed(2)}${sym}`;
+        summary.style.color = totalTax >= 0 ? "var(--soft-red)" : "var(--soft-green)";
+        localStorage.setItem('netplus_db', JSON.stringify(storageData));
+    }
+
+    function loadSavedData() {
+        const saved = JSON.parse(localStorage.getItem('netplus_db')) || [];
+        if (saved.length === 0) return;
+        document.getElementById('incomeCol').querySelectorAll('.entry-group').forEach((el,i) => { if(i>0) el.remove(); el.querySelector('input').value=""; });
+        document.getElementById('expenseCol').querySelectorAll('.entry-group').forEach((el,i) => { if(i>0) el.remove(); el.querySelector('input').value=""; });
+        saved.forEach(item => {
+            const col = document.getElementById(item.t==='income' ? 'incomeCol' : 'expenseCol');
+            const groups = col.querySelectorAll('.entry-group');
+            const targetGroup = groups[groups.length-1];
+            targetGroup.querySelector('input').value = item.v;
+            const btns = targetGroup.querySelectorAll('.tax-btn');
+            let found = false;
+            btns.forEach(b => {
+                if(parseFloat(b.innerText.replace('%',''))===item.p) { b.classList.add('active'); found=true; }
+                else b.classList.remove('active');
+            });
+            if(!found) {
+                const customBtn = targetGroup.querySelector('.tax-btn[onclick*="toggleCustom"]');
+                if(customBtn) customBtn.classList.add('active');
+                const customInput = targetGroup.querySelector('.custom-tax-input');
+                customInput.style.display = 'block';
+                customInput.value = item.p;
+            }
+            const newNode = targetGroup.cloneNode(true);
+            newNode.querySelector('input').value = "";
+            newNode.querySelector('.custom-tax-input').style.display = 'none';
+            newNode.querySelector('.custom-tax-input').value = "";
+            newNode.querySelectorAll('.tax-btn').forEach((b,i) => { if(i===0) b.classList.add('active'); else b.classList.remove('active'); });
+            col.appendChild(newNode);
+        });
+        calculateAll();
+    }
+
+    function clearData() {
+        if(confirm(t.clear + "?")) { localStorage.removeItem('netplus_db'); location.reload(); }
+    }
+
+    function shareWhatsApp() {
+        const saved = JSON.parse(localStorage.getItem('netplus_db')) || [];
+        if(saved.length===0) return;
+        let msg = `📄 *NETPLUS ${t.report}*\n--------------------------\n`;
+        saved.forEach((item,i) => {
+            const typeEmoji = item.t==='income' ? '➕' : '➖';
+            const typeName = item.t==='income' ? t.inc : t.exp;
+            msg += `${typeEmoji} *${typeName} #${i+1}*\n`;
+            msg += `   Net: ${item.n.toFixed(2)}${sym}\n`;
+            msg += `   ${t.tax} (%${item.p}): ${item.tx.toFixed(2)}${sym}\n`;
+            msg += `   ${t.brut}: ${item.v.toFixed(2)}${sym}\n\n`;
+        });
+        msg += `--------------------------\n`;
+        msg += `💰 *${t.net}: ${document.getElementById('res-net').innerText}*\n`;
+        msg += `🏛️ *${document.getElementById('res-tax-summary').innerText}*`;
+        window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kundeadministration — InvoiceLuxe PRO Danmark | Gratis kundekartotek</title>
+<meta name="description" content="Administrer ubegrænsede kunder: navn, adresse, land, moms. Gratis webapp — klar til PDF-fakturaer.">
+<meta name="keywords" content="kundeadministration Danmark, kundekartotek faktura, moms kunder, gratis CRM">
+<meta name="robots" content="index, follow">
+<meta name="application-name" content="InvoiceLuxe PRO">
+<meta name="theme-color" content="#FFFBF5">
+<link rel="canonical" href="https://invoiceluxe.com/da/customers">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/customers">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/customers">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/customers">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/customers">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/customers">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/customers">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/se/customers">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/customers">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/da/customers">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Customer Management — InvoiceLuxe PRO">
+<meta property="og:description" content="Unlimited client directory for free PDF invoicing. Web application, no signup.">
+<meta property="og:url" content="https://invoiceluxe.com/da/customers">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"InvoiceLuxe Customer Management","url":"https://invoiceluxe.com/da/customers","description":"Free web app to manage unlimited customers for invoicing. Name, address, country, VAT. Data stays in your browser.","applicationCategory":"BusinessApplication","applicationSubCategory":"WebApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"DKK"},"operatingSystem":"Any"}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFFBF5;--bg:#f5f1e8;--navy:#0f2238;--gold:#f5d27a;--gold2:#f5b70a;--ink:#102a4a;--sub:#6b7a90;--line:#e8dfc8;--green:#10b981;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:430px;margin:0 auto;min-height:100vh;background:var(--cream);box-shadow:0 0 60px rgba(15,45,77,.06);padding:10px 14px 40px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.back-home{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:var(--navy);color:var(--gold);border-radius:14px;text-decoration:none;font-size:12px;font-weight:800;box-shadow:0 4px 14px rgba(15,34,56,.2)}
+.mark{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:#2a1f0f;background:linear-gradient(135deg,#fff9eb,#e9d3a3 40%,#b89b6a 80%,#f0ddae)}
+h1{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400;margin-bottom:4px}
+.lead{font-size:12px;color:var(--sub);line-height:1.4;margin-bottom:12px}
+.guide{background:linear-gradient(135deg,#fffaf0,#fff);border:1px solid #f5e6c8;border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.guide h2{font-size:11px;font-weight:800;margin-bottom:6px;color:#9a7a3d;letter-spacing:.06em;text-transform:uppercase}
+.guide ol{margin:0;padding-left:18px;font-size:11px;color:#3a4a62;line-height:1.55}
+.card{background:#fff;border-radius:18px;border:1px solid var(--line);padding:16px;margin-bottom:12px;box-shadow:0 4px 16px rgba(15,45,77,.05)}
+.hint{font-size:10px;color:var(--sub);font-weight:700;margin-bottom:12px}
+label{display:block;font-size:10px;font-weight:800;color:var(--sub);margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+label .opt{font-weight:600;text-transform:none;letter-spacing:0;opacity:.75}
+input{width:100%;height:42px;border-radius:12px;border:1px solid var(--line);padding:0 12px;font-family:inherit;font-size:13px;font-weight:600;background:#fff;color:var(--ink);margin-bottom:10px}
+input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(15,34,56,.1)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.btn-save{width:100%;height:48px;border-radius:14px;border:0;background:linear-gradient(135deg,var(--gold2),#d4a017);color:#1a1200;font-family:inherit;font-weight:800;font-size:13px;cursor:pointer;margin-top:4px}
+.list-h{font-size:12px;font-weight:800;text-align:center;margin:16px 0 10px;letter-spacing:.04em}
+.c-item{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.c-name{font-weight:800;font-size:14px;color:var(--navy)}
+.c-sub{font-size:11px;color:var(--sub);margin-top:2px}
+.actions{display:flex;gap:8px;flex-shrink:0}
+.action-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fdfcfa;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.btn-del{color:var(--red);border-color:#fecaca;background:#fef2f2}
+.empty{text-align:center;padding:20px;font-size:12px;color:var(--sub)}
+.seo{margin-top:12px;padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.seo h2{font-size:12px;margin-bottom:6px}
+.seo p{font-size:11px;line-height:1.45;color:#3a4a62}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+<span class="sr">customer management web application, client directory invoice, free CRM, unlimited customers, InvoiceLuxe, not a blog</span>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back-home" href="index.html">← Hovedmenu</a>
+    <div class="mark">IL</div>
+  </div>
+
+  <h1>Kunder</h1>
+  <p class="lead">Gem kunder i browseren og brug dem med det samme på fakturaer. Ubegrænset. Ingen tilmelding.</p>
+
+  <div class="guide">
+    <h2>Hurtig guide</h2>
+    <ol>
+      <li>Indtast mindst navn (firma eller person).</li>
+      <li>Tilføj adresse, by og <strong>land</strong> — skriv ethvert landenavn; det gemmes som du skriver det.</li>
+      <li>Valgfrit: e-mail, telefon, momsnr., skat-ID.</li>
+      <li>Tryk <strong>Gem</strong>. Rediger eller slet når som helst. Kunder vises i fakturaformularen.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <p class="hint" id="L_HINT">Påkrævet: navn. Land kan indtastes frit (ethvert land / egen tekst).</p>
+    <input type="hidden" id="edit-index" value="-1">
+
+    <label id="L_NAME" for="in-name">Navn / firma</label>
+    <input type="text" id="in-name" autocomplete="organization">
+
+    <label id="L_ADR" for="in-adr">Adresse</label>
+    <input type="text" id="in-adr" autocomplete="street-address">
+
+    <div class="grid">
+      <div>
+        <label id="L_PC" for="in-pc">Postnummer <span class="opt">(valgfrit)</span></label>
+        <input type="text" id="in-pc" autocomplete="postal-code">
+      </div>
+      <div>
+        <label id="L_CT" for="in-ct">By</label>
+        <input type="text" id="in-ct" autocomplete="address-level2">
+      </div>
+    </div>
+
+    <label id="L_COUNTRY" for="in-country-name">Land</label>
+    <input type="text" id="in-country-name" list="country-datalist" autocomplete="off" placeholder="Skriv ethvert land…">
+    <input type="hidden" id="in-country" value="">
+    <datalist id="country-datalist"></datalist>
+
+    <div class="grid">
+      <div>
+        <label id="L_MAIL" for="in-mail">E-mail <span class="opt">(valgfrit)</span></label>
+        <input type="email" id="in-mail" autocomplete="email">
+      </div>
+      <div>
+        <label id="L_MOB" for="in-mob">Telefon <span class="opt">(valgfrit)</span></label>
+        <input type="tel" id="in-mob" autocomplete="tel">
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label id="L_VAT" for="in-vat">Momsnummer <span class="opt">(valgfrit)</span></label>
+        <input type="text" id="in-vat">
+      </div>
+      <div>
+        <label id="L_TAX" for="in-tax">Skat-ID <span class="opt">(valgfrit)</span></label>
+        <input type="text" id="in-tax">
+      </div>
+    </div>
+
+    <button type="button" class="btn-save" id="B_SAVE">Gem kunde</button>
+  </div>
+
+  <div class="list-h" id="L_LIST">Registrerede kunder (ubegrænset)</div>
+  <div id="cust-list"></div>
+
+  <div class="seo">
+    <h2>Gratis kundekartotek til danske fakturaer</h2>
+    <p>InvoiceLuxe er en gratis webapplikation — ikke en blog. Kundelisten gemmes på denne enhed og bruges i PDF-fakturamotoren. Tilføj ubegrænsede kunder, også lande skrevet i fri tekst.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const LANG = document.documentElement.lang || 'en-US';
+  const T = {
+    save: "Gem kunde",
+    edit: "Opdater kunde",
+    conf: "Slet denne kunde?",
+    empty: "Ingen kunder endnu. Tilføj en ovenfor."
+  };
+  try { localStorage.setItem('global_lang', LANG); } catch (e) {}
+
+  function readCusts() {
+    try {
+      const d = JSON.parse(localStorage.getItem('pro_customers') || '[]');
+      return Array.isArray(d) ? d : [];
+    } catch (e) { return []; }
+  }
+  function writeCusts(arr) {
+    localStorage.setItem('pro_customers', JSON.stringify(arr));
+  }
+
+  /* Country: free text always saved. Optional ISO resolve if countries.js present */
+  function fillCountry(selected) {
+    const nameEl = document.getElementById('in-country-name');
+    const codeEl = document.getElementById('in-country');
+    if (!nameEl || !codeEl) return;
+    selected = String(selected || '').trim();
+    if (window.ILX && ILX.countries && ILX.countries.fillSearchable) {
+      if (selected && !/^[A-Za-z]{2}$/.test(selected)) {
+        var resolved = ILX.countries.resolve ? (ILX.countries.resolve(selected, LANG) || '') : '';
+        if (resolved) {
+          ILX.countries.fillSearchable(nameEl, codeEl, LANG, resolved);
+          return;
+        }
+        nameEl.value = selected;
+        codeEl.value = '';
+        return;
+      }
+      ILX.countries.fillSearchable(nameEl, codeEl, LANG, selected);
+      return;
+    }
+    nameEl.value = selected;
+    codeEl.value = /^[A-Za-z]{2}$/.test(selected) ? selected.toUpperCase() : '';
+  }
+
+  function clearInputs() {
+    ['in-name','in-mail','in-mob','in-adr','in-pc','in-ct','in-vat','in-tax'].forEach(function (id) {
+      document.getElementById(id).value = '';
+    });
+    fillCountry('');
+    document.getElementById('edit-index').value = '-1';
+    document.getElementById('B_SAVE').textContent = T.save;
+  }
+
+  function saveCust() {
+    const name = document.getElementById('in-name').value.trim();
+    if (!name) {
+      document.getElementById('in-name').focus();
+      return;
+    }
+    const nameEl = document.getElementById('in-country-name');
+    const typed = nameEl ? nameEl.value.trim() : '';
+    let code = (document.getElementById('in-country').value || '').trim().toUpperCase();
+    let countryVal = typed;
+    if (code && /^[A-Z]{2}$/.test(code)) {
+      countryVal = code;
+    } else if (typed && window.ILX && ILX.countries && ILX.countries.resolve) {
+      var resolved = ILX.countries.resolve(typed, LANG) || '';
+      if (resolved) countryVal = resolved;
+      else countryVal = typed; /* free text kept */
+    } else {
+      countryVal = typed; /* always keep what user typed */
+    }
+
+    const newCust = {
+      name: name,
+      mail: document.getElementById('in-mail').value.trim(),
+      mob: document.getElementById('in-mob').value.trim(),
+      adr: document.getElementById('in-adr').value.trim(),
+      pc: document.getElementById('in-pc').value.trim(),
+      ct: document.getElementById('in-ct').value.trim(),
+      country: countryVal,
+      vat: document.getElementById('in-vat').value.trim(),
+      tax: document.getElementById('in-tax').value.trim()
+    };
+    const data = readCusts();
+    const index = document.getElementById('edit-index').value;
+    if (index === '-1') data.unshift(newCust);
+    else data[parseInt(index, 10)] = newCust;
+    writeCusts(data);
+    clearInputs();
+    render();
+  }
+
+  function editCust(i) {
+    const data = readCusts();
+    const c = data[i];
+    if (!c) return;
+    document.getElementById('in-name').value = c.name || '';
+    document.getElementById('in-mail').value = c.mail || '';
+    document.getElementById('in-mob').value = c.mob || '';
+    document.getElementById('in-adr').value = c.adr || '';
+    document.getElementById('in-pc').value = c.pc || '';
+    document.getElementById('in-ct').value = c.ct || '';
+    document.getElementById('in-vat').value = c.vat || '';
+    document.getElementById('in-tax').value = c.tax || '';
+    fillCountry(c.country || c.cc || '');
+    document.getElementById('edit-index').value = String(i);
+    document.getElementById('B_SAVE').textContent = T.edit;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function delCust(i) {
+    if (!confirm(T.conf)) return;
+    const data = readCusts();
+    data.splice(i, 1);
+    writeCusts(data);
+    render();
+  }
+
+  function countryLabel(code) {
+    if (!code) return '';
+    code = String(code).trim();
+    if (/^[A-Za-z]{2}$/.test(code) && window.ILX && ILX.countries) {
+      return ILX.countries.name(code.toUpperCase(), LANG) || code;
+    }
+    return code; /* free-text country shown as entered */
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  function render() {
+    const list = document.getElementById('cust-list');
+    const data = readCusts();
+    if (!data.length) {
+      list.innerHTML = '<p class="empty">' + T.empty + '</p>';
+      return;
+    }
+    list.innerHTML = data.map(function (c, i) {
+      const co = countryLabel(c.country || c.cc || '');
+      const loc = [c.ct, co].filter(Boolean).join(', ');
+      return '<div class="c-item">' +
+        '<div class="c-info">' +
+          '<div class="c-name">' + esc(c.name) + '</div>' +
+          '<div class="c-sub">' + esc(c.mail || '—') + '</div>' +
+          '<div class="c-sub">' + esc((c.mob || '—') + (loc ? ' · ' + loc : '')) + '</div>' +
+        '</div>' +
+        '<div class="actions">' +
+          '<button type="button" class="action-btn btn-edit" data-i="' + i + '" aria-label="edit">✎</button>' +
+          '<button type="button" class="action-btn btn-del" data-i="' + i + '" aria-label="delete">×</button>' +
+        '</div></div>';
+    }).join('');
+    list.querySelectorAll('.btn-edit').forEach(function (b) {
+      b.addEventListener('click', function () { editCust(+b.getAttribute('data-i')); });
+    });
+    list.querySelectorAll('.btn-del').forEach(function (b) {
+      b.addEventListener('click', function () { delCust(+b.getAttribute('data-i')); });
+    });
+  }
+
+  function boot() {
+    fillCountry('');
+    document.getElementById('B_SAVE').addEventListener('click', saveCust);
+    render();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  window.addEventListener('load', function () {
+    fillCountry(document.getElementById('in-country').value || document.getElementById('in-country-name').value);
+    render();
+  });
+})();
+</script>
+</body>
+</html>

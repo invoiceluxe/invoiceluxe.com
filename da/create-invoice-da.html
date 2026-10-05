@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta name="google" content="notranslate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gratis fakturagenerator — InvoiceLuxe PRO Danmark</title>
+<meta name="description" content="Opret professionelle fakturaer gratis. Moms, flere valutaer, gemt firma og kunder. Gratis webapp.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="gratis faktura generator Danmark, moms faktura, online faktura, PDF faktura">
+<meta name="application-name" content="InvoiceLuxe PRO">
+<meta name="theme-color" content="#FFFBF5">
+<link rel="canonical" href="https://invoiceluxe.com/da/create-invoice">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/create-invoice">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/create-invoice">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/create-invoice">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/create-invoice">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/create-invoice">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/create-invoice">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/se/create-invoice">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/create-invoice">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/da/create-invoice">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Invoice Generator Online — InvoiceLuxe PRO">
+<meta property="og:description" content="Create professional PDF invoices free. Web application, no signup.">
+<meta property="og:url" content="https://invoiceluxe.com/da/create-invoice">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"InvoiceLuxe Free Invoice Generator","url":"https://invoiceluxe.com/da/create-invoice","description":"Gratis online fakturagenerator with PDF export, sales tax, multi-currency. Web application.","applicationCategory":"BusinessApplication","applicationSubCategory":"WebApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"DKK"},"featureList":["PDF invoice","Sales tax","Multi-currency","Company logo","Client directory"]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFFBF5;--bg:#f5f1e8;--navy:#0f2238;--gold:#f5d27a;--gold2:#f5b70a;--ink:#102a4a;--sub:#6b7a90;--line:#e8dfc8;--green:#10b981;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:100px}
+.wrap{max-width:430px;margin:0 auto;min-height:100vh;background:var(--cream);box-shadow:0 0 60px rgba(15,45,77,.06);padding:10px 14px 20px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.back-home{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;background:var(--navy);color:var(--gold);border-radius:12px;text-decoration:none;font-size:12px;font-weight:800}
+.mark{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:#2a1f0f;background:linear-gradient(135deg,#fff9eb,#e9d3a3 40%,#b89b6a)}
+h1{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400;margin-bottom:4px}
+.lead{font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.4}
+.guide{background:linear-gradient(135deg,#fffaf0,#fff);border:1px solid #f5e6c8;border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.guide h2{font-size:11px;font-weight:800;color:#9a7a3d;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.guide ol{margin:0;padding-left:18px;font-size:11px;color:#3a4a62;line-height:1.55}
+.card{background:#fff;border-radius:18px;border:1px solid var(--line);padding:14px;margin-bottom:12px}
+.sec{font-size:12px;font-weight:800;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid #f1eee6;color:var(--navy)}
+label,.lt{display:block;font-size:10px;font-weight:800;color:var(--sub);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+input,select{width:100%;height:42px;border-radius:12px;border:1px solid var(--line);padding:0 12px;font-family:inherit;font-size:14px;font-weight:600;background:#fff;margin-bottom:10px}
+input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(15,34,56,.1)}
+.invalid{border-color:var(--red)!important}
+.field-err{background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700;margin-bottom:10px}
+.grid-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item-row{background:#fdfcfa;padding:12px;border-radius:14px;margin-bottom:8px;border:1px solid var(--line)}
+.item-row .desc-input{cursor:pointer;margin-bottom:8px}
+.row-bottom{display:flex;gap:6px;align-items:flex-end}
+.row-bottom .input-wrap{flex:1;min-width:0}
+.row-bottom input,.row-bottom select{margin-bottom:0;font-size:13px}
+.btn-del{background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:10px;height:42px;width:40px;flex:none;cursor:pointer;font-weight:900;font-size:18px}
+.btn-add{background:#fff;color:var(--navy);border:1.5px dashed var(--line);padding:12px;width:100%;border-radius:12px;cursor:pointer;font-family:inherit;font-weight:800;font-size:13px;margin-top:4px}
+.footer-action{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:1000;box-shadow:0 -8px 30px rgba(0,0,0,.08)}
+.fa-inner{max-width:430px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.total-label{font-size:10px;font-weight:700;color:var(--sub)}
+.total-text{font-family:"Instrument Serif",serif;font-size:20px;font-weight:400}
+.btn-gen{background:linear-gradient(135deg,var(--gold2),#d4a017);color:#1a1200;border:none;padding:12px 22px;min-height:46px;border-radius:14px;font-family:inherit;font-weight:800;cursor:pointer;font-size:13px}
+#done-modal,#modal,#p-modal{position:fixed;inset:0;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,34,56,.92);backdrop-filter:blur(8px)}
+.done-content,.modal-content{background:var(--cream);border:2px solid var(--gold);border-radius:22px;width:100%;max-width:400px;padding:24px;text-align:center}
+.done-icon{font-size:40px;color:var(--green);margin-bottom:10px}
+.done-text{font-size:15px;font-weight:800;margin-bottom:18px}
+.done-btns{display:flex;flex-direction:column;gap:10px}
+.btn-main{background:var(--green);color:#06301a;border:none;padding:14px;border-radius:12px;font-weight:800;text-decoration:none;font-size:13px}
+.btn-sec{background:transparent;border:1.5px solid var(--line);padding:12px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+textarea{width:100%;height:100px;border-radius:12px;border:1px solid var(--line);padding:12px;font-family:inherit;font-size:14px;margin-bottom:10px;resize:vertical}
+.btn-save{background:var(--navy);color:var(--gold);width:100%;padding:12px;border-radius:12px;border:none;font-weight:800;cursor:pointer;font-family:inherit}
+#p-modal{overflow:hidden;display:none}
+#p-modal.open{display:block}
+.p-nav{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:10px;z-index:10005;max-width:600px;margin:0 auto}
+.nav-btn{flex:1;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer;font-size:13px;font-family:inherit}
+#p-zoom-area{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.a4-page{background:#fff;color:#333;width:600px;height:842px;padding:40px;position:absolute;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,0,0,.5);font-family:system-ui,sans-serif;transform:scale(.55)}
+.a4-header{border-bottom:4px solid var(--green);padding-bottom:14px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.a4-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.a4-logo{width:56px;height:56px;object-fit:cover;flex:none;border:1px solid #eee}
+.a4-name{margin:0;font-size:20px;font-weight:900;color:#000;overflow-wrap:anywhere}
+[data-shape="round"]{border-radius:50%}
+[data-shape="rounded"]{border-radius:18%}
+[data-shape="square"]{border-radius:0}
+.address-box{border:2px solid var(--green);border-radius:12px;padding:12px;min-height:100px;background:#fcfcfc}
+.address-box .ab-label{font-size:9px;color:var(--green);font-weight:900;display:block;margin-bottom:4px}
+.address-box div{font-size:11px;margin:2px 0;line-height:1.35;font-weight:700;white-space:pre-line}
+.p-table{width:100%;border-collapse:collapse;margin:12px 0 16px}
+.p-table th{border-bottom:2px solid #333;padding-bottom:8px;text-align:left;font-size:10px;color:#999}
+.p-table td{border-bottom:1px solid #eee;padding:10px 0;font-size:11px;font-weight:700;vertical-align:top;white-space:pre-line}
+.p-footer{display:flex;justify-content:space-between;margin-top:auto;padding-top:20px;align-items:flex-end}
+.p-bank-info{border:1px solid #eee;padding:10px;border-radius:10px;width:45%;font-size:10px}
+.p-total-box{width:48%;border:3px solid var(--green);border-radius:12px;padding:12px}
+.seo{margin-top:8px;padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:11px;color:#3a4a62;line-height:1.45}
+.seo h2{font-size:12px;margin-bottom:6px;color:var(--ink)}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+<span class="sr">free invoice generator web application, online invoice maker, PDF invoice, sales tax, InvoiceLuxe, not a blog</span>
+
+<div id="done-modal" role="dialog" aria-modal="true">
+  <div class="done-content">
+    <div class="done-icon">✓</div>
+    <div class="done-text" id="DONE_MSG">Faktura oprettet. Tilbage til hovedmenu?</div>
+    <div class="done-btns">
+      <a class="btn-main" id="DONE_BACK_BTN" href="index.html">Hovedmenu</a>
+      <button type="button" class="btn-sec" id="DONE_STAY_BTN">Fortsæt redigering</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal" role="dialog" aria-modal="true">
+  <div class="modal-content" style="text-align:left">
+    <label id="L_MODAL_DESC" for="modal-text">Description</label>
+    <textarea id="modal-text"></textarea>
+    <button type="button" class="btn-save" id="L_MODAL_SAVE">Save</button>
+  </div>
+</div>
+
+<div id="p-modal" role="dialog" aria-modal="true">
+  <div class="p-nav">
+    <button type="button" id="PV_CLOSE" class="nav-btn" style="background:#444;color:#fff">Edit</button>
+    <button type="button" id="PV_CONF" class="nav-btn" style="background:#10b981;color:#06301a">Confirm</button>
+  </div>
+  <div id="p-zoom-area">
+    <div class="a4-page" id="p-page">
+      <div class="a4-header">
+        <div class="a4-brand">
+          <img id="pv-logo" class="a4-logo" alt="" referrerpolicy="no-referrer" hidden>
+          <div class="a4-name" id="pv-myname"></div>
+        </div>
+        <div style="text-align:right;font-size:12px;font-weight:700">
+          <div><span id="PV_INV_L">INVOICE NO.</span> <span id="pv-invno"></span></div>
+          <div><span id="PV_DATE_L">DATE</span> <span id="pv-date"></span></div>
+          <div id="pv-due-container"><span id="PV_DUEDATE_L">DUE DATE</span> <span id="pv-duedate"></span></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="address-box"><span class="ab-label" id="PV_SENDER_L">SENDER</span><div id="pv-from"></div></div>
+        <div class="address-box"><span class="ab-label" id="PV_RECEIVER_L">RECEIVER</span><div id="pv-to"></div></div>
+      </div>
+      <table class="p-table">
+        <thead><tr>
+          <th id="PV_DESC_L">DESCRIPTION</th>
+          <th id="PV_QTY_L" style="text-align:center">QTY</th>
+          <th id="PV_PRC_L" style="text-align:right">PRICE</th>
+          <th id="PV_TOTAL_L" style="text-align:right">TOTAL</th>
+        </tr></thead>
+        <tbody id="pv-rows"></tbody>
+      </table>
+      <div class="p-footer">
+        <div class="p-bank-info" id="pv-bank-box"><div style="font-weight:900;margin-bottom:4px" id="PV_BANK_L">BANK</div><div id="pv-bank-content"></div></div>
+        <div class="p-total-box">
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span id="PV_SUB_L">SUBTOTAL</span><span id="pv-sub"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span id="pv-vat-label">TAX</span><span id="pv-tax"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:900"><span id="PV_GRAND_L">TOTAL</span><span id="pv-grand"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="topbar">
+    <a class="back-home" href="index.html" id="L_BACK">← Hovedmenu</a>
+    <div class="mark">IL</div>
+  </div>
+  <h1>Opret faktura</h1>
+  <p class="lead">Bruger din virksomhedsprofil og kundeliste. Forhåndsvis, åbn derefter PDF-siden.</p>
+
+  <div class="guide">
+    <h2>Hurtig guide</h2>
+    <ol>
+      <li>Vælg en kunde (tilføj dem først under Kunder om nødvendigt).</li>
+      <li>Angiv fakturanr., dato, forfald, valuta og momssats.</li>
+      <li>Tilføj linjer — tryk på beskrivelse for længere tekst.</li>
+      <li>Tryk <strong>Forhåndsvis</strong>, tjek A4, derefter <strong>Bekræft</strong> for at åbne PDF-motoren.</li>
+    </ol>
+  </div>
+
+  <section class="card">
+    <h2 class="sec">Kunde</h2>
+    <label for="sc">Vælg kunde</label>
+    <select id="sc"><option value="">---</option></select>
+    <div class="field-err" id="cust-err" hidden>Vælg venligst en kunde.</div>
+  </section>
+
+  <section class="card">
+    <h2 class="sec">Fakturadetaljer</h2>
+    <div class="grid-row">
+      <div>
+        <label for="inv">Fakturanr.</label>
+        <input type="text" id="inv" placeholder="1001" value="1001">
+      </div>
+      <div>
+        <label for="idate">Dato</label>
+        <input type="date" id="idate">
+      </div>
+    </div>
+    <div class="grid-row">
+      <div>
+        <label for="due_days">Forfald (dage)</label>
+        <select id="due_days">
+          <option value="0">Ved modtagelse</option>
+          <option value="7" selected>7 dage</option>
+          <option value="14">14 dage</option>
+          <option value="30">30 dage</option>
+          <option value="60">60 dage</option>
+        </select>
+      </div>
+      <div>
+        <label for="curr">Valuta</label>
+        <select id="curr">
+          <option value="$">USD ($)</option>
+          <option value="€">EUR (€)</option>
+          <option value="£">GBP (£)</option>
+          <option value="₺">TRY (₺)</option>
+        </select>
+      </div>
+    </div>
+    <label for="vrate">Momssats</label>
+    <select id="vrate">
+      <option value="0">0%</option>
+      <option value="5">5%</option>
+      <option value="6">6%</option>
+      <option value="25" selected>25%</option>
+      <option value="10">10%</option>
+      <option value="12">12%</option>
+      <option value="13">13%</option>
+      <option value="15">15%</option>
+      <option value="19">19%</option>
+      <option value="20">20%</option>
+      <option value="21">21%</option>
+      <option value="23">23%</option>
+      <option value="25">25%</option>
+      <option value="27">27%</option>
+    </select>
+  </section>
+
+  <section class="card">
+    <h2 class="sec">Linjer</h2>
+    <div id="items-list"></div>
+    <button type="button" class="btn-add" id="L_ADD">+ Ny række</button>
+  </section>
+
+  <div class="seo">
+    <h2>Gratis online fakturagenerator</h2>
+    <p>InvoiceLuxe er en gratis webapplikation — ikke en blog. Opret professionelle PDF-fakturaer med dit gemte firma og kunder. Ingen tilmelding. Moms og flere valutaer.</p>
+  </div>
+</div>
+
+<div class="footer-action">
+  <div class="fa-inner">
+    <div><span class="total-label">Total inkl. moms</span><div class="total-text" id="gt">€ 0.00</div></div>
+    <button type="button" class="btn-gen" id="L_GEN">Forhåndsvis</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const LANG = document.documentElement.lang || 'en-US';
+  const T = {
+    err: "Vælg venligst en kunde.",
+    unit: "Enhed", qty: "Antal", prc: "Pris", delRow: "Fjern række",
+    close: "Rediger", conf: "Bekræft",
+    inv: "Fakturanr.", date: "Dato", duedate: "Forfaldsdato",
+    sender: "Afsender", receiver: "Modtager", total: "Total", bank: "Bank",
+    sub: "Subtotal", grand: "Total", vat_label: "Moms", vat: "Momsnr.", tx: "Skat-ID",
+    mail: "E-mail", gsm: "Mobil", fix_l: "Fastnet",
+    u_list: ["Pcs","Hours","Days","Weeks","Months","kg","Ton","L","m","cm","mm","km","Trip","Pack","Project"],
+    desc: "Beskrivelse"
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const up = (s) => String(s == null ? '' : s).toLocaleUpperCase(LANG);
+  const readJSON = (key, fallback) => { try { const v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; } };
+  const readRaw = (key) => { try { return localStorage.getItem(key) || ''; } catch (e) { return ''; } };
+  const writeRaw = (key, val) => { try { localStorage.setItem(key, val); return true; } catch (e) { return false; } };
+
+  const prof = readJSON('pro_profile', null) || { n: 'Your Company', lang: LANG };
+  let custs = readJSON('pro_customers', []);
+  if (!Array.isArray(custs)) custs = [];
+  const activeKey = readRaw('active_company_name') || 'default';
+  let activeInput = null;
+  writeRaw('global_lang', LANG);
+
+  const countryOf = (o) => String((o && (o.country || o.cc)) || '').trim();
+  function countryName(code) {
+    code = String(code || '').trim();
+    if (!code) return '';
+    if (/^[A-Za-z]{2}$/.test(code)) {
+      try { return new Intl.DisplayNames([LANG], { type: 'region' }).of(code.toUpperCase()) || code.toUpperCase(); } catch (e) { return code.toUpperCase(); }
+    }
+    return code;
+  }
+
+  const DATA_LOGO = /^data:image\/(png|jpeg|webp);base64,/;
+  const SHAPES = ['round', 'rounded', 'square'];
+  const shapeOf = (s) => (SHAPES.indexOf(s) > -1 ? s : 'rounded');
+  function logoOk(v) {
+    if (DATA_LOGO.test(v || '')) return true;
+    try { const u = new URL(v); return u.protocol === 'https:' || u.protocol === 'http:'; } catch (e) { return false; }
+  }
+  function stashLogo(key, data) {
+    try {
+      const keys = JSON.parse(localStorage.getItem('print_logo_keys') || '[]');
+      keys.push(key);
+      while (keys.length > 5) localStorage.removeItem('print_logo_' + keys.shift());
+      localStorage.setItem('print_logo_' + key, data);
+      localStorage.setItem('print_logo_keys', JSON.stringify(keys));
+      return true;
+    } catch (e) { return false; }
+  }
+
+  const todayStr = () => { const n = new Date(), p = (v) => String(v).padStart(2, '0'); return n.getFullYear() + '-' + p(n.getMonth() + 1) + '-' + p(n.getDate()); };
+  const formatDate = (date) => date.split('-').reverse().join('-');
+  function addDays(date, days) { const r = new Date(date); r.setDate(r.getDate() + parseInt(days, 10)); return r.toISOString().split('T')[0]; }
+
+  const PV = { PV_CLOSE: 'close', PV_CONF: 'conf', PV_INV_L: 'inv', PV_DATE_L: 'date', PV_DUEDATE_L: 'duedate', PV_SENDER_L: 'sender', PV_RECEIVER_L: 'receiver', PV_DESC_L: 'desc', PV_QTY_L: 'qty', PV_PRC_L: 'prc', PV_TOTAL_L: 'total', PV_BANK_L: 'bank', PV_SUB_L: 'sub', PV_GRAND_L: 'grand' };
+
+  function init() {
+    Object.keys(PV).forEach((id) => { const e = $(id); if (e) e.textContent = up(T[PV[id]]); });
+    $('sc').innerHTML = '<option value="">---</option>' + custs.map((c, i) => {
+      const cc = countryOf(c);
+      return '<option value="' + i + '">' + esc(c.name) + (cc ? ' (' + esc(String(cc).toUpperCase()) + ')' : '') + '</option>';
+    }).join('');
+    $('idate').value = todayStr();
+    $('due_days').value = '7';
+    const stickyVat = readRaw('sticky_vat_' + activeKey);
+    $('vrate').value = stickyVat || '25';
+    const stickyCurr = readRaw('sticky_curr_' + activeKey);
+    $('curr').value = stickyCurr || '€';
+
+    const editData = readJSON('edit_temp_data', null);
+    if (editData) {
+      $('inv').value = editData.no || '';
+      if (editData.date) {
+        const parts = editData.date.split('-');
+        if (parts.length === 3) $('idate').value = parts[2] + '-' + parts[1] + '-' + parts[0];
+      }
+      $('curr').value = editData.currency || '€';
+      $('vrate').value = editData.vrate || '25';
+      $('due_days').value = editData.due || '7';
+      const cIdx = custs.findIndex((c) => c.name === editData.customer);
+      if (cIdx !== -1) $('sc').value = cIdx;
+      $('items-list').innerHTML = '';
+      if (editData.items && editData.items.length) editData.items.forEach((it) => addRow(it.d, it.q, it.p, it.u));
+      else addRow();
+      try { localStorage.removeItem('edit_temp_data'); } catch (e) {}
+    } else {
+      const stickyCust = readRaw('sticky_cust_' + activeKey);
+      if (stickyCust && custs[stickyCust]) $('sc').value = stickyCust;
+      addRow();
+    }
+    calc();
+  }
+
+  function saveSticky() {
+    writeRaw('sticky_cust_' + activeKey, $('sc').value);
+    writeRaw('sticky_vat_' + activeKey, $('vrate').value);
+    writeRaw('sticky_curr_' + activeKey, $('curr').value);
+  }
+
+  function addRow(d, q, p, u) {
+    d = d || ''; q = (q === undefined || q === null) ? 1 : q; p = p || ''; u = u || '';
+    const div = document.createElement('div');
+    div.className = 'item-row';
+    div.innerHTML =
+      '<label><span class="lt">' + esc(T.desc) + '</span><input type="text" class="desc-input d" value="' + esc(d) + '" readonly></label>' +
+      '<div class="row-bottom">' +
+        '<div class="input-wrap"><label><span class="lt">' + esc(T.unit) + '</span><select class="u">' +
+          T.u_list.map((opt) => '<option value="' + esc(opt) + '"' + (u === opt ? ' selected' : '') + '>' + esc(opt) + '</option>').join('') +
+        '</select></label></div>' +
+        '<div class="input-wrap"><label><span class="lt">' + esc(T.qty) + '</span><input type="number" class="q" inputmode="decimal" value="' + esc(q) + '"></label></div>' +
+        '<div class="input-wrap"><label><span class="lt">' + esc(T.prc) + '</span><input type="number" class="p" inputmode="decimal" step="any" value="' + esc(p) + '"></label></div>' +
+        '<button type="button" class="btn-del" aria-label="' + esc(T.delRow) + '">×</button>' +
+      '</div>';
+    $('items-list').appendChild(div);
+  }
+
+  const list = $('items-list');
+  list.addEventListener('input', (e) => { if (e.target.matches('.q, .p')) calc(); });
+  list.addEventListener('change', (e) => { if (e.target.matches('.u')) calc(); });
+  list.addEventListener('click', (e) => {
+    const del = e.target.closest('.btn-del');
+    if (del) { del.closest('.item-row').remove(); calc(); return; }
+    if (e.target.matches('.desc-input')) openModal(e.target);
+  });
+  list.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('.desc-input')) { e.preventDefault(); openModal(e.target); } });
+  $('L_ADD').addEventListener('click', () => addRow());
+
+  function openModal(el) {
+    activeInput = el;
+    $('modal-text').value = el.value;
+    $('modal').style.display = 'flex';
+    $('modal-text').focus();
+  }
+  function closeModal() { $('modal').style.display = 'none'; }
+  function saveModal() { if (activeInput) { activeInput.value = $('modal-text').value.replace(/\s*\n\s*/g, ' ').trim(); closeModal(); calc(); } }
+  $('L_MODAL_SAVE').addEventListener('click', saveModal);
+  $('modal').addEventListener('click', (e) => { if (e.target === $('modal')) closeModal(); });
+
+  function calc() {
+    let sub = 0;
+    const sym = $('curr').value;
+    document.querySelectorAll('.item-row').forEach((row) => {
+      sub += (parseFloat(row.querySelector('.q').value) || 0) * (parseFloat(row.querySelector('.p').value) || 0);
+    });
+    const v = parseFloat($('vrate').value);
+    $('gt').textContent = sym + ' ' + (sub * (1 + v / 100)).toFixed(2);
+  }
+
+  $('sc').addEventListener('change', () => { $('sc').classList.remove('invalid'); $('cust-err').hidden = true; saveSticky(); calc(); });
+  $('curr').addEventListener('change', () => { saveSticky(); calc(); });
+  $('vrate').addEventListener('change', () => { saveSticky(); calc(); });
+
+  function generate() {
+    const idx = $('sc').value;
+    const c = idx === '' ? null : custs[idx];
+    if (!c) { $('sc').classList.add('invalid'); $('cust-err').hidden = false; $('sc').focus(); return; }
+    const sym = $('curr').value;
+    const dateVal = $('idate').value || todayStr();
+
+    const lg = $('pv-logo');
+    if (prof.logo && logoOk(prof.logo)) {
+      lg.setAttribute('data-shape', shapeOf(prof.logoShape));
+      lg.onerror = () => { lg.hidden = true; };
+      lg.hidden = false;
+      lg.src = prof.logo;
+    } else {
+      lg.hidden = true;
+      lg.removeAttribute('src');
+    }
+
+    $('pv-myname').textContent = up(prof.n || 'COMPANY');
+    $('pv-invno').textContent = '#' + ($('inv').value || '1001');
+    $('pv-date').textContent = formatDate(dateVal);
+    const due = $('due_days').value;
+    if (due === '0') { $('pv-due-container').style.display = 'none'; }
+    else { $('pv-due-container').style.display = 'block'; $('pv-duedate').textContent = formatDate(addDays(dateVal, due)); }
+
+    const line = (label, v) => (v ? '<br>' + esc(up(label)) + ': ' + esc(v) : '');
+    const addr = (o) => {
+      let h = '<b>' + esc(o.n || o.name || '') + '</b>';
+      if (o.adr) h += '<br>' + esc(o.adr);
+      const pcCity = ((o.pc || '') + ' ' + (o.ct || '')).trim();
+      if (pcCity) h += '<br>' + esc(pcCity);
+      const co = countryName(countryOf(o));
+      if (co) h += '<br>' + esc(co);
+      return h;
+    };
+    let sHTML = addr(prof);
+    sHTML += line(T.vat, prof.vat) + line(T.tx, prof.tax) + line(T.mail, prof.mail) + line(T.gsm, prof.mob) + line(T.fix_l, prof.fix);
+    $('pv-from').innerHTML = sHTML;
+
+    let rHTML = addr(c);
+    rHTML += line(T.vat, c.vat) + line(T.tx, c.tax) + line(T.mail, c.mail) + line(T.gsm, c.mob);
+    $('pv-to').innerHTML = rHTML;
+
+    const bankName = prof.bnk || '', bankIban = prof.i || '';
+    if (bankName || bankIban) { $('pv-bank-box').style.display = 'block'; $('pv-bank-content').textContent = (bankName + '\n' + bankIban).trim(); }
+    else { $('pv-bank-box').style.display = 'none'; }
+
+    let rowsHTML = '', sub = 0;
+    document.querySelectorAll('.item-row').forEach((row) => {
+      const desc = row.querySelector('.d').value, q = parseFloat(row.querySelector('.q').value) || 0, p = parseFloat(row.querySelector('.p').value) || 0, unit = row.querySelector('.u').value;
+      if (desc) {
+        const total = q * p; sub += total;
+        rowsHTML += '<tr><td>' + esc(desc) + '</td><td style="text-align:center">' + q + ' ' + esc(unit) + '</td><td style="text-align:right">' + p.toFixed(2) + esc(sym) + '</td><td style="text-align:right">' + total.toFixed(2) + esc(sym) + '</td></tr>';
+      }
+    });
+    $('pv-rows').innerHTML = rowsHTML;
+    const vr = parseFloat($('vrate').value), tax = sub * (vr / 100);
+    $('pv-sub').textContent = sub.toFixed(2) + sym;
+    $('pv-tax').textContent = tax.toFixed(2) + sym;
+    $('pv-vat-label').textContent = up(T.vat_label) + ' (%' + vr + ')';
+    $('pv-grand').textContent = (sub + tax).toFixed(2) + sym;
+    $('p-modal').classList.add('open');
+    $('p-modal').style.display = 'block';
+    applyPreviewScale();
+  }
+
+  function applyPreviewScale() {
+    const page = $('p-page'), area = $('p-zoom-area');
+    const scale = Math.min((area.offsetWidth - 20) / 600, (area.offsetHeight - 20) / 842, 0.7);
+    page.style.transform = 'scale(' + scale + ')';
+  }
+  function closePreview() { $('p-modal').classList.remove('open'); $('p-modal').style.display = 'none'; }
+  window.addEventListener('resize', () => { if ($('p-modal').style.display === 'block') applyPreviewScale(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); if ($('p-modal').style.display === 'block') closePreview(); } });
+  $('L_GEN').addEventListener('click', generate);
+  $('PV_CLOSE').addEventListener('click', closePreview);
+  $('PV_CONF').addEventListener('click', confirmAndGo);
+  $('DONE_STAY_BTN').addEventListener('click', () => { $('done-modal').style.display = 'none'; });
+
+  function confirmAndGo() {
+    const idx = $('sc').value; const c = custs[idx]; const sym = $('curr').value;
+    const hash = btoa(unescape(encodeURIComponent(($('inv').value || '') + Date.now()))).toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 20);
+    const itemsForArchive = [], itemsForMotor = [];
+    document.querySelectorAll('.item-row').forEach((row) => {
+      const desc = row.querySelector('.d').value, q = row.querySelector('.q').value, p = row.querySelector('.p').value, unit = row.querySelector('.u').value;
+      if (desc) { itemsForMotor.push(desc + '|' + q + '|' + p + '|' + unit); itemsForArchive.push({ d: desc, q: q, p: p, u: unit }); }
+    });
+    const history = readJSON('history_' + activeKey, []);
+    history.unshift({ no: $('inv').value || '1001', date: formatDate($('idate').value || todayStr()), customer: c.name, amount: $('pv-grand').textContent, currency: sym, vrate: $('vrate').value, due: $('due_days').value, items: itemsForArchive });
+    try { localStorage.setItem('history_' + activeKey, JSON.stringify(history.slice(0, 50))); } catch (e) {}
+
+    const params = new URLSearchParams({
+      l: LANG, sym: sym, n: prof.n || '', adr: prof.adr || '', pc: prof.pc || '', ct: prof.ct || '',
+      mail: prof.mail || '', mob: prof.mob || '', fix: prof.fix || '', i: prof.i || '', k: prof.tax || '',
+      vat: prof.vat || '', bnk: prof.bnk || '', c: c.name || '', cadr: c.adr || '', cpc: c.pc || '',
+      cct: c.ct || '', cv: c.vat || '', cx: c.tax || '', cmail: c.mail || '', cmob: c.mob || '',
+      cco: countryOf(c), sco: countryOf(prof),
+      inv: $('inv').value || '1001', d: formatDate($('idate').value || todayStr()),
+      due: $('due_days').value, vrate: $('vrate').value, items: itemsForMotor.join('!!'), sec: hash
+    });
+
+    if (prof.logo && logoOk(prof.logo)) {
+      params.set('ls', shapeOf(prof.logoShape));
+      if (DATA_LOGO.test(prof.logo)) { if (stashLogo(hash, prof.logo)) params.set('lk', hash); }
+      else params.set('logo', prof.logo);
+    }
+
+    window.open('print.html?' + params.toString(), '_blank');
+    setTimeout(() => { $('done-modal').style.display = 'flex'; }, 800);
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

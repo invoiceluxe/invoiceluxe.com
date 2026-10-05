@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko-KR" class="notranslate" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="google" content="notranslate">
+<title>무료 견적서 생성기 | Invoice Luxe</title>
+<meta name="description" content="전문 견적서를 온라인에서 무료로 작성하세요. 항목, 수량, 단가, 부가세를 추가하고 PDF로 내보내세요. 가입 불필요.">
+<meta name="keywords" content="무료 견적서, 견적 생성기, 견적서 PDF, 프리랜서 견적, 견적 계산기">
+<meta name="application-name" content="Invoice Luxe">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#08080a">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://invoiceluxe.com/ko/estimates.html">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/estimates.html">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/estimates.html">
+<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/estimates.html">
+<link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/estimates.html">
+<link rel="alternate" hreflang="da-DK" href="https://invoiceluxe.com/da/estimates.html">
+<link rel="alternate" hreflang="fi-FI" href="https://invoiceluxe.com/fi/estimates.html">
+<link rel="alternate" hreflang="ko-KR" href="https://invoiceluxe.com/ko/estimates.html">
+<link rel="alternate" hreflang="nb-NO" href="https://invoiceluxe.com/no/estimates.html">
+<link rel="alternate" hreflang="sv-SE" href="https://invoiceluxe.com/sv/estimates.html">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/us/estimates.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invoice Luxe">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="무료 견적서 생성기 | Invoice Luxe">
+<meta property="og:description" content="전문 견적서를 온라인에서 무료로 작성하세요. 항목, 수량, 단가, 부가세를 추가하고 PDF로 내보내세요. 가입 불필요.">
+<meta property="og:url" content="https://invoiceluxe.com/ko/estimates.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap" rel="stylesheet">
+<script>window.INVOICE_LUXE_WEB_APP=true;window.INVOICE_LUXE_APP_INFO={name:"Invoice Luxe Estimates",type:"WebApplication",version:"1.0"};</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Invoice Luxe Estimate Generator","applicationCategory":"BusinessApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://invoiceluxe.com/ko/estimates.html","inLanguage":"ko-KR"}</script>
+<style>
+:root{--bg:#060608;--gold:#ffc83d;--text:#f4f4f6;--muted:#a9a9b8;--card:#0f0f13;--line:rgba(255,200,61,.30);--line-soft:rgba(255,200,61,.15);--ok:#34d399;--safe-bottom:env(safe-area-inset-bottom,0px);--nav-bg:linear-gradient(180deg,rgba(30,25,14,.93),rgba(12,12,15,.95));}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;color:var(--text);font-family:'Poppins',system-ui,sans-serif;line-height:1.45;background:radial-gradient(120% 42% at 0% 0%,rgba(184,134,11,.34),transparent 58%),radial-gradient(90% 40% at 100% 40%,rgba(184,134,11,.16),transparent 62%),var(--bg);background-attachment:fixed}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,textarea,select{font:inherit;color:var(--text);background:rgba(255,255,255,.04);border:1.5px solid var(--line-soft);border-radius:12px;padding:10px 12px;width:100%;outline:none}
+input:focus,textarea:focus{border-color:var(--gold)}
+.material-symbols-rounded{font-size:22px;line-height:1}
+.app{width:100%;max-width:640px;margin:0 auto;padding:14px 16px calc(100px + var(--safe-bottom))}
+.brand-txt h1{margin:0;font-size:clamp(14px,4vw,18px);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.brand-txt h1 b{color:var(--gold)}
+.brand-txt p{margin:2px 0 0;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.page-head{margin:16px 0 18px}
+.page-head h1{margin:0 0 6px;font-size:clamp(22px,5.5vw,26px);font-weight:700;color:var(--gold)}
+.page-head p{margin:0;font-size:13px;color:var(--muted)}
+.free-badge{display:inline-flex;margin-top:8px;padding:5px 10px;border-radius:999px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:var(--ok);font-size:11px;font-weight:600}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.card h3{margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.row-3{display:grid;grid-template-columns:2fr 0.7fr 1fr 0.9fr auto;gap:8px;align-items:end;margin-bottom:8px}
+@media(max-width:520px){.row{grid-template-columns:1fr}.row-3{grid-template-columns:1fr 1fr;gap:8px}.row-3 .item-desc{grid-column:1/-1}.row-3 .item-total{grid-column:1/2}.row-3 .del-btn{grid-column:2/3;justify-self:end}}
+label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.item-total{font-weight:700;font-size:14px;color:var(--gold);padding:10px 0;text-align:right}
+.del-btn{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#ff6b6b;border:1px solid rgba(255,107,107,.3);background:rgba(255,107,107,.08)}
+.btn-add{width:100%;padding:12px;border-radius:14px;border:1.5px dashed var(--line);color:var(--gold);font-weight:600;font-size:13px;margin-top:6px}
+.btn-add:hover{background:rgba(255,200,61,.08)}
+.totals{margin-top:8px}
+.tot-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:var(--muted)}
+.tot-row.grand{font-size:18px;font-weight:800;color:var(--gold);border-top:1.5px solid var(--line);padding-top:12px;margin-top:6px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn{padding:14px;border-radius:14px;font-weight:700;font-size:13px;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-gold{background:linear-gradient(135deg,#ffc83d,#f2a900);color:#1a1300}
+.btn-outline{border:1.5px solid var(--line);color:var(--gold)}
+.btn-muted{border:1.5px solid var(--line-soft);color:var(--muted)}
+.guide{margin-top:8px}
+.guide ol{margin:0;padding-left:18px;font-size:13px;color:var(--muted);line-height:1.65}
+.guide li{margin-bottom:4px}
+.seo-block{margin-top:28px;padding:16px;border-radius:18px;background:rgba(0,0,0,.35);border:1px solid var(--line-soft);font-size:13px;line-height:1.7;color:#d0d0d8}
+.seo-block h2{margin:0 0 8px;font-size:15px;font-weight:700;color:var(--gold)}
+.seo-block p{margin:0 0 8px}
+.foot{margin-top:20px;text-align:center;font-size:12px;color:var(--muted)}
+.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--safe-bottom));width:min(560px,calc(100% - 24px));height:68px;display:flex;justify-content:space-around;align-items:center;border-radius:26px;border:1.5px solid var(--line);background:var(--nav-bg);backdrop-filter:blur(14px);box-shadow:0 14px 40px rgba(0,0,0,.6);z-index:50}
+.nav-link{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:600;color:var(--muted);padding:8px 12px;min-width:64px}
+.nav-link.active,.nav-link:hover{color:var(--gold)}
+.nav-link.active .material-symbols-rounded{font-variation-settings:'FILL' 1}
+.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-bottom));transform:translateX(-50%) translateY(20px);padding:10px 18px;border-radius:12px;background:#1c2126;border:1px solid var(--line);font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:60}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media print{.bottom-nav,.actions,.guide,.seo-block,.free-badge,.foot,.btn-add,.del-btn{display:none!important}.app{padding:0;max-width:100%}.card{border:1px solid #ccc;box-shadow:none;break-inside:avoid}body{background:#fff;color:#111}input,textarea{border:1px solid #ddd;background:#fff;color:#111}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand-txt"><h1>INVOICE <b>LUXE</b></h1><p>WEB APP · 한국어</p></div>
+  <div class="page-head">
+    <h1>견적서 생성기</h1>
+    <p>몇 초 만에 전문 견적서를 만드세요. 항목, 수량, 세금, 합계 — 무료.</p>
+    <span class="free-badge">✦ 100% 무료 · 가입 불필요 · PWA</span>
+  </div>
+
+  <div class="card">
+    <h3>고객 / 회사 / 프로젝트 / 제목</h3>
+    <div class="row">
+      <div><label>고객 / 회사</label><input type="text" id="client" placeholder="고객 이름"></div>
+      <div><label>프로젝트 / 제목</label><input type="text" id="project" placeholder="견적 제목"></div>
+    </div>
+    <div class="row">
+      <div><label>날짜</label><input type="date" id="date"></div>
+      <div><label>유효 기간</label><input type="date" id="valid"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>항목 / 서비스</h3>
+    <div id="items"></div>
+    <button type="button" class="btn-add" id="add-item">+ 항목 추가</button>
+  </div>
+
+  <div class="card">
+    <h3>부가세 (%) / 할인 (%)</h3>
+    <div class="row">
+      <div><label>부가세 (%)</label><input type="number" id="tax" min="0" step="0.1" value="0"></div>
+      <div><label>할인 (%)</label><input type="number" id="discount" min="0" step="0.1" value="0"></div>
+    </div>
+    <div class="totals">
+      <div class="tot-row"><span>소계</span><span id="subtotal">₩0.00</span></div>
+      <div class="tot-row"><span>부가세</span><span id="tax-amt">₩0.00</span></div>
+      <div class="tot-row"><span>할인</span><span id="disc-amt">₩0.00</span></div>
+      <div class="tot-row grand"><span>총액</span><span id="grand">₩0.00</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>비고</h3>
+    <textarea id="notes" rows="3" placeholder="결제 조건, 납기..."></textarea>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn btn-gold" id="btn-save"><i class="material-symbols-rounded">save</i> 임시 저장</button>
+    <button type="button" class="btn btn-outline" id="btn-pdf"><i class="material-symbols-rounded">picture_as_pdf</i> PDF 다운로드</button>
+    <button type="button" class="btn btn-outline" id="btn-print"><i class="material-symbols-rounded">print</i> 인쇄</button>
+    <button type="button" class="btn btn-muted" id="btn-clear"><i class="material-symbols-rounded">delete</i> 지우기</button>
+  </div>
+
+  <div class="card guide">
+    <h3>사용 방법</h3>
+    <ol><li>고객 이름과 프로젝트 제목을 입력하세요.</li><li>수량과 단가로 항목을 추가하세요.</li><li>필요시 부가세(%)와 할인(%)을 설정하세요.</li><li>합계는 자동으로 계산됩니다.</li><li>기기에 임시 저장하거나 PDF를 다운로드하세요.</li><li>인쇄하거나 고객과 공유하세요.</li></ol>
+  </div>
+
+  <div class="seo-block">
+    <h2>전문 견적서를 온라인에서 무료로 만드는 방법</h2>
+    <p><strong>Invoice Luxe</strong>는 한국 프리랜서와 소규모 비즈니스를 위한 무료 견적서 생성기입니다. 항목, 수량, 단가, 부가세, 할인으로 제안서를 만드세요.</p>
+    <p>데이터는 기기에만 저장됩니다. PDF 내보내기, 인쇄, 공유가 가능합니다. 인보이스 생성기 및 근무시간·급여 계산기와 함께 사용하세요.</p>
+  </div>
+  <div class="foot"><p>© <span id="yr"></span> Invoice Luxe · <a href="index.html">홈</a></p></div>
+</div>
+<div class="toast" id="toast"></div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-link"><i class="material-symbols-rounded">home</i><span>홈</span></a>
+  <a href="tools.html" class="nav-link"><i class="material-symbols-rounded">apps</i><span>도구</span></a>
+  <a href="estimates.html" class="nav-link active"><i class="material-symbols-rounded">request_quote</i><span>Est.</span></a>
+  <a href="settings-ko.html" class="nav-link"><i class="material-symbols-rounded">settings</i><span>프로필</span></a>
+</nav>
+<script>
+(function(){
+  var CUR='₩', KEY='invoiceLuxeEstimate_ko';
+  var emptyItem='서비스 또는 제품 설명';
+  var MSG_SAVED='임시 저장됨', MSG_CLEARED='지워짐';
+  var y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
+  var dateEl=document.getElementById('date');
+  if(dateEl && !dateEl.value) dateEl.value=new Date().toISOString().slice(0,10);
+
+  function toast(m){var t=document.getElementById('toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show')},1600)}
+  function money(n){return CUR+Number(n||0).toFixed(2)}
+
+  function addRow(data){
+    data=data||{desc:'',qty:1,price:0};
+    var box=document.getElementById('items');
+    var div=document.createElement('div');
+    div.className='row-3 item-row';
+    div.innerHTML='<div class="item-desc"><label>항목 / 서비스</label><input type="text" class="desc" placeholder="'+emptyItem+'" value="'+(data.desc||'')+'"></div>'+
+      '<div><label>수량</label><input type="number" class="qty" min="0" step="0.01" value="'+(data.qty||1)+'"></div>'+
+      '<div><label>단가</label><input type="number" class="price" min="0" step="0.01" value="'+(data.price||0)+'"></div>'+
+      '<div class="item-total"><label>합계</label><div class="line-tot">'+money(0)+'</div></div>'+
+      '<button type="button" class="del-btn" title="Remove"><i class="material-symbols-rounded">close</i></button>';
+    box.appendChild(div);
+    div.querySelectorAll('input').forEach(function(inp){inp.addEventListener('input',calc)});
+    div.querySelector('.del-btn').addEventListener('click',function(){div.remove();calc()});
+    calc();
+  }
+
+  function calc(){
+    var sub=0;
+    document.querySelectorAll('.item-row').forEach(function(row){
+      var q=parseFloat(row.querySelector('.qty').value)||0;
+      var p=parseFloat(row.querySelector('.price').value)||0;
+      var t=q*p; sub+=t;
+      row.querySelector('.line-tot').textContent=money(t);
+    });
+    var taxP=parseFloat(document.getElementById('tax').value)||0;
+    var discP=parseFloat(document.getElementById('discount').value)||0;
+    var disc=sub*(discP/100);
+    var after=sub-disc;
+    var tax=after*(taxP/100);
+    var grand=after+tax;
+    document.getElementById('subtotal').textContent=money(sub);
+    document.getElementById('tax-amt').textContent=money(tax);
+    document.getElementById('disc-amt').textContent=money(disc);
+    document.getElementById('grand').textContent=money(grand);
+  }
+
+  document.getElementById('add-item').addEventListener('click',function(){addRow()});
+  document.getElementById('tax').addEventListener('input',calc);
+  document.getElementById('discount').addEventListener('input',calc);
+
+  document.getElementById('btn-save').addEventListener('click',function(){
+    var items=[];
+    document.querySelectorAll('.item-row').forEach(function(row){
+      items.push({desc:row.querySelector('.desc').value,qty:row.querySelector('.qty').value,price:row.querySelector('.price').value});
+    });
+    var data={client:document.getElementById('client').value,project:document.getElementById('project').value,
+      date:document.getElementById('date').value,valid:document.getElementById('valid').value,
+      tax:document.getElementById('tax').value,discount:document.getElementById('discount').value,
+      notes:document.getElementById('notes').value,items:items};
+    try{localStorage.setItem(KEY,JSON.stringify(data));toast(MSG_SAVED)}catch(e){}
+  });
+
+  document.getElementById('btn-clear').addEventListener('click',function(){
+    document.getElementById('client').value='';
+    document.getElementById('project').value='';
+    document.getElementById('notes').value='';
+    document.getElementById('tax').value='0';
+    document.getElementById('discount').value='0';
+    document.getElementById('items').innerHTML='';
+    addRow();calc();
+    try{localStorage.removeItem(KEY)}catch(e){}
+    toast(MSG_CLEARED);
+  });
+
+  document.getElementById('btn-print').addEventListener('click',function(){window.print()});
+  document.getElementById('btn-pdf').addEventListener('click',function(){window.print()});
+
+  // load draft
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){
+      var d=JSON.parse(raw);
+      if(d.client) document.getElementById('client').value=d.client;
+      if(d.project) document.getElementById('project').value=d.project;
+      if(d.date) document.getElementById('date').value=d.date;
+      if(d.valid) document.getElementById('valid').value=d.valid;
+      if(d.tax) document.getElementById('tax').value=d.tax;
+      if(d.discount) document.getElementById('discount').value=d.discount;
+      if(d.notes) document.getElementById('notes').value=d.notes;
+      if(d.items&&d.items.length){d.items.forEach(function(it){addRow(it)});}
+      else addRow();
+    } else addRow();
+  }catch(e){addRow()}
+  calc();
+})();
+</script>
+</body>
+</html>

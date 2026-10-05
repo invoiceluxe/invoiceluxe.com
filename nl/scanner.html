@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Universele QR & Barcode Scanner – Gratis Online Tool | Invoice Luxe</title>
+    <meta name="description" content="Scan direct elke QR-code, websitelink of barcode met uw camera. Gratis online scanner tool van Invoice Luxe – geen installatie vereist.">
+    <meta name="keywords" content="QR scanner, barcode scanner, QR code lezen, gratis scanner tool, Invoice Luxe">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/scanner">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=500;700;900&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        :root { --accent: #10b981; --dark: #0f172a; --slate: #1e293b; }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background: #f1f5f9; color: var(--dark); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        /* Üst Menü / Navigasyon */
+        .nav-header { width: 100%; background: var(--slate); padding: 15px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; }
+        .btn-back { background: #475569; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid #64748b; transition: 0.2s; }
+        .btn-back:hover { background: #334155; }
+
+        .container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; text-align: center; margin-top: 30px; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        p { color: #64748b; font-weight: 600; margin-bottom: 25px; font-size: 14px; }
+        
+        .scanner-card { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; overflow: hidden; position: relative; }
+        #reader { width: 100%; border: none !important; border-radius: 12px; overflow: hidden; background: #000; }
+        
+        button { background: var(--accent) !important; color: white !important; border: none !important; padding: 12px 24px !important; font-weight: 800 !important; border-radius: 8px !important; cursor: pointer !important; text-transform: uppercase !important; font-size: 12px !important; margin: 10px 0 !important; transition: 0.2s !important; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+        select { padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 600; margin-top: 10px; width: 100%; max-width: 250px; }
+
+        .result-card { display: none; margin-top: 25px; background: #fff; border-radius: 15px; padding: 20px; border: 2.5px solid var(--accent); text-align: left; box-shadow: 0 15px 30px rgba(16, 185, 129, 0.05); }
+        .result-header { font-weight: 900; font-size: 14px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .result-body { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; font-family: monospace; font-size: 14px; word-break: break-all; white-space: pre-line; font-weight: 700; color: #0f172a; }
+        
+        .btn-action { width: 100%; background: var(--slate) !important; margin-top: 15px !important; display: none; text-align: center; justify-content: center; align-items: center; text-decoration: none; color: #fff; padding: 12px 0; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 12px; }
+        .btn-action:hover { background: #0f172a !important; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <a href="index.html" class="btn-back" id="b-back">⬅ BACK TO MAIN MENU</a>
+        <div style="color: #94a3b8; font-weight: 800; font-size: 12px; letter-spacing: 1px;" id="l-top-tag">MAIN MENU</div>
+    </div>
+
+    <div class="container">
+        <h1 id="l-title">UNIVERSAL SCANNER</h1>
+        <p id="l-desc">Scan any QR code, website link, or barcode instantly using your camera.</p>
+        
+        <div class="scanner-card">
+            <div id="reader"></div>
+        </div>
+
+        <div class="result-card" id="res-card">
+            <div class="result-header">
+                <span id="l-detected">SUCCESSFULLY DETECTED</span>
+                <span style="font-size: 18px;">✅</span>
+            </div>
+            <div class="result-body" id="res-text">...</div>
+            <a href="#" target="_blank" class="btn-action" id="res-link-btn">GO TO WEBSITE 🌐</a>
+        </div>
+    </div>
+
+    <script>
+        const dicts = {
+            tr: { title: "EVRENSEL BARKOD OKUYUCU", desc: "Kameranızı kullanarak her türlü QR kodu, web sitesi linkini veya ürün barkodunu anında tarayın.", detected: "BAŞARIYLA OKUNDU", back: "⬅ ANA MENÜYE DÖN", go: "WEB SİTESİNE GİT 🌐", toptag: "ANA MENÜ" },
+            nl: { title: "UNIVERSELE SCANNER", desc: "Scan direct elke QR-code, websitelink of barcode met uw camera.", detected: "SUCCESVOL GESCAND", back: "⬅ TERUG NAAR HOOFDMENU", go: "GA NAAR WEBSITE 🌐", toptag: "HOOFDMENU" },
+            en: { title: "UNIVERSAL SCANNER", desc: "Scan any QR code, website link, or barcode instantly using your camera.", detected: "SUCCESSFULLY DETECTED", back: "⬅ BACK TO MAIN MENU", go: "GO TO WEBSITE 🌐", toptag: "MAIN MENU" },
+            de: { title: "UNIVERSAL-SCANNER", desc: "Scannen Sie jeden QR-Code, Website-Link oder Barcode sofort mit Ihrer Kamera.", detected: "ERFOLGREICH GESCANNT", back: "⬅ ZURÜCK ZUM HAUPTMENÜ", go: "ZUR WEBSITE GEHEN 🌐", toptag: "HAUPTMENÜ" },
+            fr: { title: "SCANNER UNIVERSEL", desc: "Scannez instantanément tout code QR, lien de site Web ou code-barres à l'aide de votre caméra.", detected: "DÉTECTÉ AVEC SUCCÈS", back: "⬅ RETOUR AU MENU PRINCIPAL", go: "ALLER SUR LE SITE WEB 🌐", toptag: "MENU PRINCIPAL" },
+            it: { title: "SCANNER UNIVERSALE", desc: "Scansiona istantaneamente qualsiasi codice QR, link a siti web o codice a barre utilizzando la tua fotocamera.", detected: "RILEVATO CON SUCCESSO", back: "⬅ TORNA AL MENU PRINCIPALE", go: "VAI AL SITO WEB 🌐", toptag: "MENU PRINCIPALE" }
+        };
+
+        let html5QrcodeScanner;
+
+        window.onload = function() {
+            const globalLang = localStorage.getItem('global_lang') || 'nl';
+            const d = dicts[globalLang] || dicts.en;
+
+            document.getElementById('l-title').innerText = d.title;
+            document.getElementById('l-desc').innerText = d.desc;
+            document.getElementById('l-detected').innerText = d.detected;
+            document.getElementById('b-back').innerText = d.back;
+            document.getElementById('res-link-btn').innerText = d.go;
+            document.getElementById('l-top-tag').innerText = d.toptag;
+
+            html5QrcodeScanner = new Html5QrcodeScanner("reader", { 
+                fps: 15, 
+                qrbox: function(viewfinderWidth, viewfinderHeight) {
+                    return { width: viewfinderWidth * 0.75, height: viewfinderHeight * 0.5 };
+                },
+                rememberLastUsedCamera: true
+            });
+            
+            html5QrcodeScanner.render(onScanSuccess);
+        };
+
+        function onScanSuccess(decodedText, decodedResult) {
+            document.getElementById('res-card').style.display = 'block';
+            document.getElementById('res-text').innerText = decodedText;
+
+            const linkBtn = document.getElementById('res-link-btn');
+            
+            if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
+                linkBtn.href = decodedText;
+                linkBtn.style.display = 'flex';
+            } else {
+                linkBtn.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

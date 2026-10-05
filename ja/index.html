@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>請求書匠 - プロの請求書作成</title>
+    <meta name="description" content="無料でプロの請求書をオンライン作成。PDF請求書、顧客管理、消費税計算。フリーランサー・個人事業主・中小企業向け。">
+    <meta name="theme-color" content="#BC002D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="請求書匠">
+    <link rel="manifest" href="#" id="pwa-manifest">
+    <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --ja-red: #BC002D;
+            --ja-ink: #1C1C2E;
+            --ja-silver: #8C8FA8;
+            --ja-mist: #F4F5F9;
+            --ja-snow: #FFFFFF;
+            --ja-indigo: #2D2F6B;
+            --ja-sakura: #F2C4CE;
+            --ja-gold: #C8993A;
+        }
+        * { box-sizing: border-box; }
+        body {
+            background: var(--ja-mist);
+            font-family: 'Plus Jakarta Sans', 'Noto Serif JP', sans-serif;
+            color: var(--ja-ink);
+            margin: 0;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .brand-font { font-family: 'Noto Serif JP', serif; }
+
+        /* SLIDER */
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1); will-change: transform; }
+        .page { width: 20%; height: 100vh; overflow-y: auto; overflow-x: hidden; padding-bottom: 220px; scrollbar-width: none; flex-shrink: 0; touch-action: pan-y; }
+        .page::-webkit-scrollbar { display: none; }
+
+        /* CARDS */
+        .lux-card { background: var(--ja-snow); border-radius: 14px; padding: 20px; border: 1px solid #E2E4EF; box-shadow: 0 2px 16px rgba(28,28,46,0.06); }
+        .stat-card { background: var(--ja-snow); border: 1.5px solid #E2E4EF; border-radius: 14px; position: relative; overflow: hidden; }
+        .stat-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--ja-red), var(--ja-sakura)); }
+        .action-card { background: var(--ja-snow); border: 1px solid #E2E4EF; border-radius: 14px; transition: 0.3s; position: relative; overflow: hidden; box-shadow: 0 2px 12px rgba(28,28,46,0.04); cursor: pointer; }
+        .action-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ja-red); }
+        .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #FEF0F3; border: 1px solid #F2C4CE; color: var(--ja-red); }
+        .chart-container { background: var(--ja-snow); border-radius: 16px; padding: 16px; border: 1px solid #E2E4EF; margin-bottom: 14px; box-shadow: 0 4px 20px rgba(28,28,46,0.05); }
+
+        /* INPUTS */
+        .input-pro { background: var(--ja-mist) !important; border: 1.5px solid #D8DAE8; border-radius: 8px; padding: 12px 14px; width: 100%; font-size: 14px; outline: none; transition: 0.3s; color: var(--ja-ink); font-weight: 500; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .input-pro:focus { border-color: var(--ja-red); box-shadow: 0 0 0 3px rgba(188,0,45,0.08); background: #fff !important; }
+        label { font-size: 10px; font-weight: 800; color: var(--ja-silver); text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 1px; }
+
+        /* BADGES */
+        .badge-sel { padding: 10px; border-radius: 6px; background: var(--ja-mist); font-size: 10px; font-weight: 800; cursor: pointer; text-align: center; border: 1.5px solid transparent; color: var(--ja-silver); transition: 0.2s; }
+        .badge-sel.active { background: #FEF0F3; border-color: var(--ja-red); color: var(--ja-ink); }
+
+        /* ITEM ROW */
+        .item-row { background: var(--ja-snow); border: 1.5px solid #E2E4EF; border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; }
+
+        /* TOP BAR */
+        #top-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(244,245,249,0.97); border-bottom: 1px solid #E2E4EF; position: sticky; top: 0; z-index: 100; flex-shrink: 0; backdrop-filter: blur(10px); }
+        .logo-text { font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700; color: var(--ja-ink); }
+        .logo-text span { color: var(--ja-red); }
+        #currency-pill, #language-pill { display: flex; align-items: center; gap: 5px; background: var(--ja-snow); border: 1.5px solid #E2E4EF; border-radius: 20px; padding: 5px 10px; cursor: pointer; transition: 0.2s; box-shadow: 0 1px 4px rgba(28,28,46,0.07); }
+        #currency-pill:active, #language-pill:active { opacity: 0.7; }
+        .pill-sym { font-size: 11px; font-weight: 900; color: var(--ja-red); }
+        .pill-lang { font-size: 11px; font-weight: 900; color: var(--ja-ink); }
+
+        /* NAV */
+        .dock-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: rgba(28,28,46,0.98); backdrop-filter: blur(14px); display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom, 12px); z-index: 999; border-radius: 24px 24px 0 0; border-top: 1.5px solid rgba(188,0,45,0.5); box-shadow: 0 -6px 30px rgba(28,28,46,0.25); }
+        .nav-tabs { display: flex; justify-content: space-around; padding: 10px 0 6px; }
+        .nav-btn { color: #4A4C6A; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 10px; border-radius: 12px; transition: 0.3s; background: none; border: none; cursor: pointer; min-width: 56px; }
+        .nav-btn span { font-size: 8px; font-weight: 700; text-transform: uppercase; }
+        .nav-btn.active { color: #F2C4CE; }
+        .nav-btn.active i { color: var(--ja-red); }
+
+        /* INSTALL BTN */
+        #install-bar { margin: 8px 14px 4px; background: linear-gradient(135deg, var(--ja-indigo), var(--ja-ink)); border: 1px solid rgba(188,0,45,0.35); border-radius: 16px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        #install-bar:active { transform: scale(0.97); }
+        #install-bar .i-icon { width: 34px; height: 34px; background: var(--ja-red); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        #install-bar .i-main { font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; }
+        #install-bar .i-sub { font-size: 9px; color: #6B6D8A; margin-top: 1px; }
+
+        /* BUTTONS */
+        .btn-main { background: var(--ja-red); color: white; border-radius: 10px; padding: 16px; font-weight: 800; text-transform: uppercase; border: none; box-shadow: 0 6px 20px rgba(188,0,45,0.25); transition: 0.2s; cursor: pointer; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.5px; }
+        .btn-main:active { transform: scale(0.98); opacity: 0.9; }
+        .btn-gold { background: var(--ja-gold); color: #fff; border-radius: 10px; padding: 16px; font-weight: 800; text-transform: uppercase; border: none; transition: 0.2s; cursor: pointer; width: 100%; }
+
+        /* MODALS */
+        #p-modal { position: fixed; inset: 0; background: #EDEEF3; z-index: 10000; display: none; flex-direction: column; }
+        .preview-container { flex: 1; display: flex; align-items: start; justify-content: center; overflow: auto; padding: 20px 0; }
+        .a4-preview { background: #fff; width: 794px; min-height: 1123px; transform-origin: top center; color: #000; box-shadow: 0 0 60px rgba(28,28,46,0.15); }
+        #text-modal { position: fixed; inset: 0; background: #fff; z-index: 10001; display: none; flex-direction: column; }
+
+        /* CURRENCY / LANGUAGE MODALS */
+        #currency-modal, #language-modal { position: fixed; inset: 0; background: rgba(28,28,46,0.99); z-index: 20001; display: none; flex-direction: column; }
+        .modal-hdr { background: var(--ja-mist); border-bottom: 1px solid #E2E4EF; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .modal-body { flex: 1; overflow-y: auto; padding: 16px; background: var(--ja-mist); }
+        .list-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #E2E4EF; margin-bottom: 8px; cursor: pointer; background: #fff; transition: 0.2s; }
+        .list-item.selected { border-color: var(--ja-red); background: #FEF0F3; }
+        .list-item .flag { font-size: 22px; flex-shrink: 0; }
+        .list-item .item-name { font-size: 13px; font-weight: 800; color: var(--ja-ink); }
+        .list-item .item-sub { font-size: 10px; color: #94A3B8; margin-top: 1px; }
+        .list-item .item-sym { font-size: 16px; font-weight: 900; color: var(--ja-red); margin-left: auto; }
+
+        /* iOS MODAL */
+        #ios-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 30000; display: none; align-items: flex-end; justify-content: center; padding: 0 0 24px; }
+        #ios-modal.open { display: flex; }
+        .ios-box { background: #fff; border-radius: 24px; padding: 26px 22px 30px; width: 100%; max-width: 430px; }
+        .ios-step { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .ios-num { width: 30px; height: 30px; background: var(--ja-red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; flex-shrink: 0; }
+
+        /* HERO DECORATION */
+        .rising-sun {
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(188,0,45,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .divider-line { height: 1px; background: linear-gradient(90deg, transparent, #E2E4EF 30%, #E2E4EF 70%, transparent); margin: 16px 0; }
+
+        /* ══════════════════════════════════════════
+           YAN MENÜ (SIDE MENU) — JA versiyonu
+           Açık tema: beyaz arka plan, kırmızı aksanlar
+           ══════════════════════════════════════════ */
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 290px;
+            height: 100vh;
+            background: var(--ja-snow);
+            border-right: 1.5px solid #E2E4EF;
+            box-shadow: 6px 0 30px rgba(28,28,46,0.12);
+            z-index: 30000;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        #side-menu.open { left: 0; }
+
+        .side-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(28,28,46,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 29999;
+            display: none;
+        }
+        .side-overlay.open { display: block; }
+
+        /* Yan menü içindeki tool linkleri */
+        .tool-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1.5px solid #E2E4EF;
+            margin-bottom: 10px;
+            color: var(--ja-ink);
+            text-decoration: none;
+            transition: 0.2s;
+            background: var(--ja-mist);
+        }
+        .tool-link:hover,
+        .tool-link:active {
+            border-color: var(--ja-red);
+            background: #FEF0F3;
+            transform: translateX(4px);
+        }
+        .tool-link .tl-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .tool-link .tl-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--ja-ink);
+        }
+        .tool-link .tl-sub {
+            font-size: 9px;
+            color: var(--ja-silver);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Çalışma saatleri action-card — ana menü için özel stil */
+        .action-card-hours {
+            background: var(--ja-snow);
+            border: 1.5px solid #E8D5D8;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(188,0,45,0.06);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .action-card-hours::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--ja-red), var(--ja-sakura));
+        }
+        .action-card-hours:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="flex justify-center">
+
+<!-- ══════════════════════════════════════════
+     YAN MENÜ OVERLAY + MENÜ
+     ══════════════════════════════════════════ -->
+<div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+
+<div id="side-menu">
+    <!-- Menü başlığı -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #E2E4EF;">
+        <div>
+            <div class="brand-font" style="font-size:16px;font-weight:700;color:var(--ja-ink);">Elite <span style="color:var(--ja-red);">Tools</span></div>
+            <div style="font-size:9px;color:var(--ja-silver);font-weight:700;margin-top:2px;text-transform:uppercase;letter-spacing:1px;">ツールメニュー</div>
+        </div>
+        <button onclick="closeSideMenu()" style="width:34px;height:34px;border-radius:50%;background:var(--ja-mist);border:1.5px solid #E2E4EF;color:var(--ja-silver);font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+
+    <!-- Tool linkleri -->
+    <div style="flex:1;overflow-y:auto;">
+
+        <a href="discount.html" class="tool-link">
+            <div class="tl-icon" style="background:#ECFDF5;border:1px solid #BBF7D0;">
+                <i class="fa-solid fa-tags" style="color:#16A34A;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">割引エンジン</div>
+                <div class="tl-sub">クイック割引計算</div>
+            </div>
+        </a>
+
+        <a href="pdf-engine.html" class="tool-link">
+            <div class="tl-icon" style="background:#FEF2F2;border:1px solid #FECACA;">
+                <i class="fa-solid fa-file-pdf" style="color:#DC2626;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">PDFエンジン</div>
+                <div class="tl-sub">ドキュメント生成</div>
+            </div>
+        </a>
+
+        <a href="html-editor.html" class="tool-link">
+            <div class="tl-icon" style="background:#EFF6FF;border:1px solid #BFDBFE;">
+                <i class="fa-solid fa-code" style="color:#2563EB;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">HTMLエディター</div>
+                <div class="tl-sub">ライブコード編集</div>
+            </div>
+        </a>
+
+        <a href="weekly-calendar.html" class="tool-link">
+            <div class="tl-icon" style="background:#F5F3FF;border:1px solid #DDD6FE;">
+                <i class="fa-solid fa-calendar-days" style="color:#7C3AED;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">カレンダー</div>
+                <div class="tl-sub">イベント管理</div>
+            </div>
+        </a>
+
+        <!-- Çalışma saatleri — aktif / öne çıkan link -->
+        <a href="working-hours.html" class="tool-link" style="border-color:#F2C4CE;background:#FEF0F3;">
+            <div class="tl-icon" style="background:#FEF0F3;border:1px solid #F2C4CE;">
+                <i class="fa-solid fa-clock" style="color:var(--ja-red);font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title" style="color:var(--ja-red);">労働時間</div>
+                <div class="tl-sub">時間記録・管理</div>
+            </div>
+        </a>
+
+    </div>
+</div>
+<!-- /YAN MENÜ -->
+
+<div class="w-full max-w-[480px] relative overflow-hidden flex flex-col h-screen">
+
+    <!-- TOP BAR -->
+    <div id="top-bar">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <!-- Hamburger butonu — yan menüyü açar -->
+            <button onclick="openSideMenu()" style="color:var(--ja-red);background:none;border:none;cursor:pointer;padding:4px;transition:0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                <i class="fa-solid fa-bars-staggered" style="font-size:20px;"></i>
+            </button>
+            <span class="logo-text">請求書<span>匠</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div id="language-pill" onclick="openLanguageModal()">
+                <span>🇯🇵</span>
+                <span class="pill-lang">JA</span>
+                <i class="fa-solid fa-chevron-down text-[8px]" style="color:var(--ja-red)"></i>
+            </div>
+            <div id="currency-pill" onclick="openCurrencyModal()">
+                <span id="top-flag">🇯🇵</span>
+                <span class="pill-sym" id="top-sym">¥</span>
+                <i class="fa-solid fa-chevron-down text-[8px]" style="color:var(--ja-red)"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-wrapper flex-1" id="main-slider">
+
+        <!-- PAGE 0: ホーム -->
+        <div class="page px-5 pt-6" style="background:var(--ja-mist);">
+            <div class="flex items-center justify-between mb-5" style="position:relative;">
+                <div class="rising-sun"></div>
+                <div>
+                    <p style="color:var(--ja-red);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">プロの請求書システム</p>
+                    <h1 class="brand-font text-3xl font-bold" style="color:var(--ja-ink);">請求書<span style="color:var(--ja-red);">匠</span></h1>
+                </div>
+                <div style="width:48px;height:48px;background:var(--ja-snow);border-radius:14px;display:flex;align-items:center;justify-content:center;border:1px solid #E2E4EF;box-shadow:0 2px 8px rgba(28,28,46,0.08);">
+                    <i class="fa-solid fa-file-invoice-dollar" style="color:var(--ja-red);font-size:18px;"></i>
+                </div>
+            </div>
+
+            <!-- 財務チャート -->
+            <div class="chart-container">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 style="font-size:9px;font-weight:800;text-transform:uppercase;color:var(--ja-silver);letter-spacing:1px;">財務分析</h3>
+                    <span id="total-revenue" style="font-size:14px;font-weight:700;color:var(--ja-ink);">¥ 0.00</span>
+                </div>
+                <div style="height:140px;position:relative;display:flex;justify-content:center;">
+                    <canvas id="financeChart"></canvas>
+                </div>
+                <div class="divider-line"></div>
+                <div class="grid grid-cols-2 gap-2 text-center">
+                    <div><p style="font-size:8px;text-transform:uppercase;font-weight:800;color:var(--ja-silver);">税抜金額</p><p id="chart-net" style="font-size:11px;font-weight:800;color:var(--ja-ink);">¥ 0.00</p></div>
+                    <div><p style="font-size:8px;text-transform:uppercase;font-weight:800;color:var(--ja-silver);">消費税合計</p><p id="chart-vat" style="font-size:11px;font-weight:800;color:var(--ja-red);">¥ 0.00</p></div>
+                </div>
+            </div>
+
+            <!-- 統計 -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="stat-card p-4 text-center">
+                    <div id="stat-invoices" class="brand-font text-2xl font-bold italic" style="color:var(--ja-ink);">0</div>
+                    <div style="font-size:8px;text-transform:uppercase;font-weight:800;color:var(--ja-silver);margin-top:4px;">請求書数</div>
+                </div>
+                <div class="stat-card p-4 text-center">
+                    <div id="stat-clients" class="brand-font text-2xl font-bold italic" style="color:var(--ja-ink);">0</div>
+                    <div style="font-size:8px;text-transform:uppercase;font-weight:800;color:var(--ja-silver);margin-top:4px;">取引先数</div>
+                </div>
+            </div>
+
+            <!-- アクション -->
+            <div class="space-y-3 mb-4">
+                <div onclick="resetAndNew()" class="action-card p-4 flex items-center gap-4">
+                    <div class="card-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div><h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ja-ink);">新規請求書</h3><p style="font-size:9px;color:var(--ja-silver);">すぐにプロの請求書を作成</p></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div onclick="showPage(2)" class="action-card p-4">
+                        <div class="card-icon mb-3"><i class="fa-solid fa-box-archive"></i></div>
+                        <h3 style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--ja-ink);">請求書一覧</h3>
+                    </div>
+                    <div onclick="showPage(3)" class="action-card p-4">
+                        <div class="card-icon mb-3"><i class="fa-solid fa-address-card"></i></div>
+                        <h3 style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--ja-ink);">取引先管理</h3>
+                    </div>
+                </div>
+                <div onclick="showPage(4)" class="action-card p-4 flex items-center gap-4">
+                    <div class="card-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <div class="flex-1"><h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ja-ink);">会社設定</h3><p style="font-size:9px;color:var(--ja-silver);">会社情報・銀行口座</p></div>
+                    <i class="fa-solid fa-chevron-right" style="color:#D8DAE8;"></i>
+                </div>
+
+                <!-- ══ 労働時間ボタン (çalışma saatleri butonu) ══ -->
+                <div onclick="window.location.href='working-hours.html'" class="action-card-hours p-4 flex items-center gap-4">
+                    <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FEF0F3;border:1px solid #F2C4CE;flex-shrink:0;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--ja-red);font-size:16px;"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ja-red);">労働時間</h3>
+                        <p style="font-size:9px;color:var(--ja-silver);font-weight:600;margin-top:2px;">時間記録・タイムトラッカー</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--ja-red);font-size:10px;flex-shrink:0;"></i>
+                </div>
+                <!-- ══ /労働時間ボタン ══ -->
+
+                <!-- ══ 全ツールボタン (herramientas.html'e yönlenir) ══ -->
+                <div onclick="window.location.href='herramientas.html'" class="action-card-hours p-4 flex items-center gap-4">
+                    <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FEF0F3;border:1px solid #F2C4CE;flex-shrink:0;">
+                        <i class="fa-solid fa-toolbox" style="color:var(--ja-red);font-size:16px;"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--ja-red);">全ツール</h3>
+                        <p style="font-size:9px;color:var(--ja-silver);font-weight:600;margin-top:2px;">無料ビジネスツール一覧</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--ja-red);font-size:10px;flex-shrink:0;"></i>
+                </div>
+                <!-- ══ /全ツールボタン ══ -->
+
+                <div class="lux-card flex items-center gap-4">
+                    <span id="home-flag" style="font-size:24px;">🇯🇵</span>
+                    <div class="flex-1">
+                        <div style="font-size:10px;font-weight:800;color:var(--ja-silver);text-transform:uppercase;letter-spacing:1px;">現在の通貨</div>
+                        <div style="font-size:14px;font-weight:800;color:var(--ja-ink);" id="home-currency-name">日本円 (¥)</div>
+                    </div>
+                    <button onclick="openCurrencyModal()" style="font-size:9px;font-weight:800;color:var(--ja-red);text-transform:uppercase;border:1.5px solid var(--ja-red);border-radius:20px;padding:4px 12px;background:none;cursor:pointer;">変更</button>
+                </div>
+            </div>
+
+            <!-- SEO -->
+    <div style="padding:20px 0 80px;border-top:1px solid #E2E4EF;margin-top:8px;">
+    <h2 style="font-size:15px;font-weight:900;color:var(--ja-red);margin-bottom:8px;">無料オンライン請求書発行ツール</h2>
+    <p style="font-size:12px;color:var(--ja-silver);line-height:1.8;margin-bottom:10px;">登録不要で、プロ仕様の請求書を無料で作成できます。個人事業主、中小企業、フリーランスに最適。人民元、米ドル、ユーロなど多様な通貨に対応。</p>
+
+    <h3 style="font-size:12px;font-weight:900;color:var(--ja-ink);margin:14px 0 6px;">対応通貨</h3>
+    <p style="font-size:11px;color:var(--ja-silver);line-height:1.9;">🇨🇳 人民元 · 🇺🇸 米ドル · 🇪🇺 ユーロ · 🇬🇧 英ポンド · 🇯🇵 日本円 · 🇭🇰 香港ドル · 🇸🇬 シンガポールドル · 🇰🇷 韓国ウォン · 🇹🇭 タイバーツ · 🇲🇾 マレーシアリンギット · 🇮🇩 インドネシアルピア · 🇻🇳 ベトナムドン</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;margin-bottom:18px;">
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">無料請求書</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">PDF請求書</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">消費税・VAT</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">個人事業主</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">中小企業</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">フリーランス</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">アジア</span>
+        <span style="font-size:9px;padding:4px 10px;border:1px solid #E2E4EF;border-radius:20px;color:var(--ja-silver);font-weight:700;">中国本土</span>
+        </div>
+
+   <div class="divider-line">
+  </div>
+
+    <h2 style="font-size:14px;font-weight:900;color:var(--ja-red);margin:16px 0 8px;">プロ仕様の請求書を無料で作成するには？</h2>
+    <p style="font-size:12px;color:var(--ja-silver);line-height:1.8;margin-bottom:14px;">Invoice Luxeは、登録やサブスクリプション不要で、わずか数秒でプロ仕様のPDF請求書を作成できる無料のスマホアプリです。さらに稼働時間も記録でき、ビジネスの管理をより効率化できます。</p>
+
+    <h3 style="font-size:12px;font-weight:900;color:var(--ja-ink);margin:14px 0 8px;">✅ インボイスマスターの主な機能</h3>
+    <ul style="font-size:11px;color:var(--ja-silver);line-height:2;list-style:none;padding:0;margin:0 0 16px;">
+        <li>・スマホから直接PDF請求書を作成・ダウンロード</li>
+        <li>・顧客情報を保存し、次回から簡単に再利用</li>
+        <li>・消費税/GST税率を簡単に設定（13%、9%、6%など）</li>
+        <li>・銀行口座情報、口座番号、納税者番号を追加可能</li>
+        <li>・日本語・中国語をはじめ13以上の言語に対応</li>
+        <li>・全データはお使いのスマホローカル環境にのみ保存（クラウド保存なしでプライバシーを徹底保護）</li>
+    </ul>
+
+    <h3 style="font-size:12px;font-weight:900;color:var(--ja-ink);margin:14px 0 8px;">⏱️ なぜ稼働時間の記録（タイムトラッキング）が重要なのか？</h3>
+    <p style="font-size:11px;color:var(--ja-silver);line-height:1.8;margin-bottom:16px;">フリーランス、個人事業主、サービス提供者にとって、作業時間を正確に把握することは極めて重要です。タイムトラッキングツールを活用することで、プロジェクトごとの作業時間を記録し、それに基づいた正確な請求書を発行できます。</p>
+
+    <h3 style="font-size:12px;font-weight:900;color:var(--ja-ink);margin:14px 0 8px;">🛠️ その他の便利なツール</h3>
+    <ul style="font-size:11px;color:var(--ja-silver);line-height:2;list-style:none;padding:0;margin:0 0 16px;">
+        <li>・割引計算エンジン — 割引を素早く計算</li>
+        <li>・PDFエンジン — あらゆるドキュメントをPDFに変換</li>
+        <li>・HTMLエディタ — リアルタイムでコードをオンライン編集</li>
+        <li>・カレンダー — スケジュールと予約を管理</li>
+    </ul>
+
+    <div class="divider-line"></div>
+
+    <h2 style="font-size:14px;font-weight:900;color:var(--ja-red);margin:16px 0 10px;">🙋 よくある質問（FAQ）</h2>
+
+    <div style="margin-bottom:12px;">
+        <h3 style="font-size:11px;font-weight:800;color:var(--ja-ink);margin-bottom:4px;">インボイスマスターは本当に無料ですか？</h3>
+        <p style="font-size:11px;color:var(--ja-silver);line-height:1.7;">はい、完全無料です。隠れた費用やサブスクリプションは一切ありません。</p>
+    </div>
+    <div style="margin-bottom:12px;">
+        <h3 style="font-size:11px;font-weight:800;color:var(--ja-ink);margin-bottom:4px;">消費税（VAT）込みの請求書を発行できますか？</h3>
+        <p style="font-size:11px;color:var(--ja-silver);line-height:1.7;">もちろんです！13%や9%など、任意の消費税/GST税率をカスタム設定して税込請求書を作成できます。</p>
+    </div>
+    <div style="margin-bottom:12px;">
+        <h3 style="font-size:11px;font-weight:800;color:var(--ja-ink);margin-bottom:4px;">タイムトラッキング機能はどのように使いますか？</h3>
+        <p style="font-size:11px;color:var(--ja-silver);line-height:1.7;">作業開始時にタイマーをスタートし、終了時にストップするだけです。記録された時間は保存され、直接請求書に反映できます。</p>
+    </div>
+    <div style="margin-bottom:12px;">
+        <h3 style="font-size:11px;font-weight:800;color:var(--ja-ink);margin-bottom:4px;">データは安全ですか？</h3>
+        <p style="font-size:11px;color:var(--ja-silver);line-height:1.7;">はい。すべての情報は端末のローカル環境にのみ保存され、外部サーバーやクラウドへの送信は一切行われません。</p>
+    </div>
+    <div style="margin-bottom:16px;">
+        <h3 style="font-size:11px;font-weight:800;color:var(--ja-ink);margin-bottom:4px;">AndroidとiOSの両方に対応していますか？</h3>
+        <p style="font-size:11px;color:var(--ja-silver);line-height:1.7;">はい。PWA（プログレッシブウェブアプリ）のため、スマートフォンなどのブラウザで動作し、ホーム画面に追加して使用可能です。</p>
+    </div>
+
+    <div class="divider-line"></div>
+    <p style="font-size:10px;color:var(--ja-silver);line-height:1.7;margin-top:10px;">インボイスマスターは invoiceluxe.com の提供するサービスです。フリーランス、店舗オーナー、小規模事業者のために作られた、シンプルで効率的な請求書発行・時間管理ソリューションです。</p>
+</div>
+</div>     
+      
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "請求書匠",
+  "url": "https://invoiceluxe.com/ja/index.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, Android, iOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "description": "無料でプロの請求書をオンライン作成。PDF請求書、顧客管理、消費税計算。フリーランサー・個人事業主・中小企業向け。",
+  "inLanguage": "ja",
+  "featureList": [
+    "請求書作成（無料）",
+    "PDF請求書生成",
+    "電子署名作成",
+    "HTMLエディター",
+    "労働時間・タイムトラッキング記録",
+    "取引先・顧客管理",
+    "多通貨対応（円・ドル・ユーロなど）",
+    "消費税・VAT自動計算"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "インボイスマスターは本当に無料ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、完全無料です。隠れた費用やサブスクリプションは一切ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "消費税（VAT）込みの請求書を発行できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "もちろんです！13%や9%など、任意の消費税/GST税率をカスタム設定して税込請求書を作成できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "タイムトラッキング機能はどのように使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "作業開始時にタイマーをスタートし、終了時にストップするだけです。記録された時間は保存され、直接請求書に反映できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "データは安全ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。すべての情報は端末のローカル環境にのみ保存され、外部サーバーやクラウドへの送信は一切行われません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AndroidとiOSの両方に対応していますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。PWA（プログレッシブウェブアプリ）のため、スマートフォンなどのブラウザで動作し、ホーム画面に追加して使用可能です。"
+      }
+    }
+  ]
+}
+</script>
+
+        <!-- PAGE 1: 請求書エディター -->
+        <div class="page px-5 pt-8 bg-white">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showPage(0)" style="color:var(--ja-silver);"><i class="fa-solid fa-arrow-left text-xl"></i></button>
+                <h2 class="brand-font text-2xl font-bold" style="color:var(--ja-ink);">請求書作成</h2>
+            </div>
+            <div class="lux-card mb-5" style="border-top:3px solid var(--ja-red);">
+                <label>取引先を選択</label>
+                <select id="inv-cust-select" class="input-pro mb-4"></select>
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div><label>請求書番号</label><input type="text" id="inv-no" class="input-pro"></div>
+                    <div><label>発行日</label><input type="date" id="inv-date" class="input-pro"></div>
+                </div>
+                <label>支払期限</label>
+                <div class="grid grid-cols-4 gap-2 mb-4">
+                    <div class="badge-sel" id="due-0" onclick="setDue(0)">即日</div>
+                    <div class="badge-sel active" id="due-14" onclick="setDue(14)">14日</div>
+                    <div class="badge-sel" id="due-30" onclick="setDue(30)">30日</div>
+                    <div class="badge-sel" id="due-60" onclick="setDue(60)">60日</div>
+                </div>
+                <input type="hidden" id="inv-due-days" value="14">
+                <label id="tax-lbl">消費税 (%)</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="badge-sel active" id="vat-10" onclick="setVat(10,this)">10%</div>
+                    <div class="badge-sel" id="vat-8" onclick="setVat(8,this)">8%</div>
+                    <div class="badge-sel" id="vat-0" onclick="setVat(0,this)">0%</div>
+                    <div class="badge-sel" id="custom-vat-btn" onclick="promptVat(this)">カスタム</div>
+                </div>
+                <input type="hidden" id="selected-vat" value="10">
+            </div>
+            <div id="items-list"></div>
+            <button onclick="addRow()" style="width:100%;background:white;border:2px dashed #D8DAE8;padding:16px;border-radius:12px;font-size:10px;font-weight:800;color:var(--ja-silver);margin:16px 0;text-transform:uppercase;letter-spacing:2px;cursor:pointer;">+ 項目を追加</button>
+            <div style="padding:20px;background:var(--ja-ink);border-radius:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+                <span style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">税込合計</span>
+                <span id="grand-total" style="font-size:28px;font-weight:900;color:white;">0.00 <span id="gt-sym">¥</span></span>
+            </div>
+            <button onclick="generatePreviewFromCurrent()" class="btn-main mb-12">プレビュー・PDF生成 <i class="fa-solid fa-paper-plane ml-2"></i></button>
+        </div>
+
+        <!-- PAGE 2: 請求書一覧 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6" style="color:var(--ja-ink);">請求書<span style="color:var(--ja-red);">一覧</span></h2>
+            <div id="archiv-list" class="space-y-3"></div>
+        </div>
+
+        <!-- PAGE 3: 取引先 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6" style="color:var(--ja-ink);">取引先<span style="color:var(--ja-red);">管理</span></h2>
+            <div class="lux-card mb-6" style="border-top:3px solid var(--ja-red);">
+                <input type="hidden" id="edit-cust-idx" value="-1">
+                <label>会社名 / 氏名</label><input type="text" id="c-name" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>法人番号</label><input type="text" id="c-tax" class="input-pro"></div>
+                    <div><label>適格請求書番号 (T番号)</label><input type="text" id="c-vat" class="input-pro"></div>
+                </div>
+                <label>住所</label><input type="text" id="c-adr" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>郵便番号</label><input type="text" id="c-pc" class="input-pro"></div>
+                    <div><label>市区町村</label><input type="text" id="c-city" class="input-pro"></div>
+                </div>
+                <label>電話番号</label><input type="text" id="c-tel" class="input-pro mb-3">
+                <label>メールアドレス</label><input type="email" id="c-mail" class="input-pro mb-5">
+                <button id="save-cust-btn" onclick="saveCustomer()" class="btn-main">取引先を保存 <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+            <div id="customer-list" class="space-y-3"></div>
+        </div>
+
+        <!-- PAGE 4: 会社設定 -->
+        <div class="page px-5 pt-8 bg-white">
+            <h2 class="brand-font text-2xl font-bold mb-6" style="color:var(--ja-ink);">会社<span style="color:var(--ja-red);">設定</span></h2>
+            <div class="lux-card" style="border-top:3px solid var(--ja-red);">
+                <label>会社名 / 屋号</label><input type="text" id="p-name" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>法人番号</label><input type="text" id="p-tax" class="input-pro"></div>
+                    <div><label>適格請求書番号 (T番号)</label><input type="text" id="p-vat" class="input-pro"></div>
+                </div>
+                <label>住所</label><input type="text" id="p-adr" class="input-pro mb-3">
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>郵便番号</label><input type="text" id="p-pc" class="input-pro"></div>
+                    <div><label>市区町村</label><input type="text" id="p-city" class="input-pro"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div><label>電話番号</label><input type="text" id="p-tel" class="input-pro"></div>
+                    <div><label>メールアドレス</label><input type="text" id="p-mail" class="input-pro"></div>
+                </div>
+                <div class="divider-line"></div>
+                <label>銀行名</label><input type="text" id="p-bank" class="input-pro mb-3">
+                <label>口座番号 / SWIFT</label><input type="text" id="p-iban" class="input-pro mb-6">
+                <button onclick="saveProfile()" class="btn-main">設定を保存 <i class="fa-solid fa-check ml-2"></i></button>
+            </div>
+        </div>
+
+    </div><!-- /slider -->
+
+    <!-- ボトムナビ -->
+    <nav class="dock-nav">
+        <div id="install-bar" onclick="handleInstall()">
+            <div class="i-icon"><i class="fa-solid fa-mobile-screen-button text-white text-base"></i></div>
+            <div class="flex-1">
+                <div class="i-main">📲 ホーム画面に追加</div>
+                <div class="i-sub" id="install-sub-text">無料インストール · アプリ不要</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs" style="color:#4A4C6A;"></i>
+        </div>
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="showPage(0)"><i class="fa-solid fa-house"></i><span>ホーム</span></button>
+            <button class="nav-btn" onclick="showPage(1)"><i class="fa-solid fa-file-invoice"></i><span>作成</span></button>
+            <button class="nav-btn" onclick="showPage(2)"><i class="fa-solid fa-folder"></i><span>一覧</span></button>
+            <button class="nav-btn" onclick="showPage(3)"><i class="fa-solid fa-users"></i><span>取引先</span></button>
+            <button class="nav-btn" onclick="showPage(4)"><i class="fa-solid fa-gear"></i><span>設定</span></button>
+        </div>
+    </nav>
+</div><!-- /wrapper -->
+
+<!-- 請求書プレビュー -->
+<div id="p-modal">
+    <div style="padding:16px;display:flex;gap:12px;background:white;border-bottom:1px solid #E2E4EF;flex-shrink:0;">
+        <button onclick="closePreview()" style="flex:1;background:var(--ja-mist);color:var(--ja-silver);padding:16px;border-radius:12px;font-weight:800;text-transform:uppercase;font-size:10px;border:none;cursor:pointer;">閉じる</button>
+        <button id="modal-confirm-btn" onclick="confirmAndArchive()" class="btn-main" style="flex:2;padding:16px;font-size:10px;">確認・PDF生成 <i class="fa-solid fa-check ml-1"></i></button>
+    </div>
+    <div class="preview-container" id="zoom-area">
+        <div class="a4-preview" id="p-page">
+            <div style="background:var(--ja-ink);padding:50px;color:#fff;clip-path:polygon(0 0,100% 0,100% 88%,0% 100%);">
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+                    <div style="width:6px;height:48px;background:var(--ja-red);border-radius:3px;flex-shrink:0;"></div>
+                    <div style="font-family:'Noto Serif JP',serif;font-size:30px;font-weight:700;" id="pv-title">会社名</div>
+                </div>
+                <div style="margin-top:6px;opacity:0.7;font-size:13px;">請求書番号: <span id="pv-no" style="font-size:20px;font-weight:300;opacity:1;"></span></div>
+            </div>
+            <div style="padding:40px 50px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:30px;border-bottom:1px solid #eee;padding-bottom:15px;">
+                    <div><div style="font-size:10px;color:#aaa;font-weight:800;">発行日</div><div id="pv-date" style="font-size:14px;font-weight:700;"></div></div>
+                    <div style="text-align:right;"><div style="font-size:10px;color:var(--ja-red);font-weight:800;">支払期限</div><div id="pv-due" style="font-size:14px;font-weight:700;color:var(--ja-red);"></div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:35px;">
+                    <div><div style="font-size:9px;font-weight:800;border-bottom:2px solid var(--ja-red);display:inline-block;margin-bottom:10px;color:var(--ja-red);padding-bottom:3px;">請求者</div><div id="pv-sender" style="font-size:11px;line-height:1.8;color:#444;"></div></div>
+                    <div><div style="font-size:9px;font-weight:800;border-bottom:2px solid var(--ja-red);display:inline-block;margin-bottom:10px;color:var(--ja-red);padding-bottom:3px;">請求先</div><div id="pv-receiver" style="font-size:11px;line-height:1.8;color:#444;"></div></div>
+                </div>
+                <table style="width:100%;border-collapse:collapse;margin-bottom:30px;font-size:11px;">
+                    <thead><tr style="border-bottom:2px solid #000;font-size:10px;text-transform:uppercase;">
+                        <th style="padding:10px 0;text-align:left;font-weight:800;">品目・サービス内容</th>
+                        <th style="text-align:center;font-weight:800;">数量</th>
+                        <th style="text-align:right;font-weight:800;">単価</th>
+                        <th style="text-align:right;font-weight:800;">金額</th>
+                    </tr></thead>
+                    <tbody id="pv-items" style="font-weight:600;"></tbody>
+                </table>
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:60px;">
+                    <div style="width:300px;border:1.5px solid #E2E4EF;padding:16px;border-radius:12px;">
+                        <div style="font-size:8px;font-weight:800;color:#aaa;margin-bottom:6px;">振込先</div>
+                        <div id="pv-bank" style="font-size:13px;font-weight:700;line-height:1.5;"></div>
+                    </div>
+                    <div style="width:270px;background:var(--ja-ink);color:#fff;padding:22px;border-radius:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;opacity:0.6;"><span>税抜金額</span><span id="pv-sub"></span></div>
+                        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:14px;opacity:0.6;"><span id="pv-tax-lbl">消費税</span><span id="pv-tax"></span></div>
+                        <div style="border-top:1.5px solid var(--ja-red);padding-top:14px;display:flex;justify-content:space-between;align-items:center;">
+                            <span style="font-size:14px;font-weight:800;text-transform:uppercase;">合計</span>
+                            <span id="pv-total" style="font-size:22px;font-weight:900;color:#F2C4CE;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- テキストエディター -->
+<div id="text-modal">
+    <div style="padding:32px;height:100%;display:flex;flex-direction:column;">
+        <h3 class="brand-font text-3xl font-bold mb-5" style="color:var(--ja-ink);">内容を編集</h3>
+        <textarea id="modal-textarea" style="flex:1;width:100%;background:var(--ja-mist);color:var(--ja-ink);padding:24px;border-radius:16px;font-size:16px;font-weight:600;outline:none;border:1.5px solid #E2E4EF;transition:0.3s;resize:none;" onfocus="this.style.borderColor='var(--ja-red)'" onblur="this.style.borderColor='#E2E4EF'"></textarea>
+        <div style="display:flex;gap:12px;margin-top:20px;">
+            <button onclick="closeTextModal()" style="flex:1;background:var(--ja-mist);padding:20px;border-radius:16px;font-weight:800;text-transform:uppercase;font-size:11px;color:var(--ja-silver);border:none;cursor:pointer;">キャンセル</button>
+            <button id="save-text-btn" class="btn-main" style="flex:2;">保存 <i class="fa-solid fa-save ml-2"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- 通貨選択 -->
+<div id="currency-modal">
+    <div class="modal-hdr">
+        <div>
+            <div style="font-size:16px;font-weight:900;color:var(--ja-red);">通貨を選択</div>
+            <div style="font-size:10px;color:var(--ja-silver);margin-top:2px;">自動保存</div>
+        </div>
+        <button onclick="closeCurrencyModal()" style="width:34px;height:34px;border-radius:50%;background:var(--ja-mist);border:1.5px solid #E2E4EF;color:var(--ja-ink);font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="currency-list"></div></div>
+</div>
+
+<!-- 言語選択 -->
+<div id="language-modal">
+    <div class="modal-hdr">
+        <div>
+            <div style="font-size:16px;font-weight:900;color:var(--ja-red);">言語を選択</div>
+            <div style="font-size:10px;color:var(--ja-silver);margin-top:2px;">Select language</div>
+        </div>
+        <button onclick="closeLanguageModal()" style="width:34px;height:34px;border-radius:50%;background:var(--ja-mist);border:1.5px solid #E2E4EF;color:var(--ja-ink);font-size:16px;cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="language-list"></div></div>
+</div>
+
+<!-- iOSインストール案内 -->
+<div id="ios-modal" onclick="closeIosModal()">
+    <div class="ios-box" onclick="event.stopPropagation()">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+                <div style="font-size:16px;font-weight:900;color:var(--ja-red);">ホーム画面に追加</div>
+                <div style="font-size:11px;color:var(--ja-silver);margin-top:2px;">iPhone / iPad — Safari</div>
+            </div>
+            <button onclick="closeIosModal()" style="width:32px;height:32px;border-radius:50%;background:var(--ja-mist);border:1.5px solid #E2E4EF;color:var(--ja-ink);font-size:15px;cursor:pointer;">✕</button>
+        </div>
+        <div class="ios-step"><div class="ios-num">1</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">「共有」ボタンをタップ</div><div style="font-size:11px;color:var(--ja-silver);margin-top:2px;">Safariの下部にある <span style="color:var(--ja-red);font-size:16px;">⬆</span> アイコン</div></div></div>
+        <div class="ios-step"><div class="ios-num">2</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">「ホーム画面に追加」をタップ</div><div style="font-size:11px;color:var(--ja-silver);margin-top:2px;">メニューをスクロールして選択</div></div></div>
+        <div class="ios-step" style="margin-bottom:0;"><div class="ios-num">3</div><div><div style="font-size:13px;font-weight:800;color:#1A1A1A;">右上の「追加」をタップ</div><div style="font-size:11px;color:var(--ja-silver);margin-top:2px;">完了！ホーム画面にアイコンが表示されます</div></div></div>
+        <div style="margin-top:18px;padding:12px;background:var(--ja-mist);border-radius:12px;text-align:center;">
+            <div style="font-size:11px;color:var(--ja-silver);">⚠️ <b style="color:var(--ja-ink);">Safari</b> ブラウザのみ対応</div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// YAN MENÜ (SIDE MENU) KONTROLLERİ
+// ══════════════════════════════════════════
+function openSideMenu() {
+    document.getElementById('side-menu').classList.add('open');
+    document.getElementById('side-overlay').classList.add('open');
+    // Scroll'u engelle
+    document.body.style.overflow = 'hidden';
+}
+function closeSideMenu() {
+    document.getElementById('side-menu').classList.remove('open');
+    document.getElementById('side-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// ══════════════════════════════
+// 言語システム
+// ══════════════════════════════
+const LANGUAGES = [
+    { code: 'es', flag: '🇪🇸', name: 'Español' },
+    { code: 'en', flag: '🇬🇧', name: 'English' },
+    { code: 'ru', flag: '🇷🇺', name: 'Русский' },
+    { code: 'de', flag: '🇩🇪', name: 'Deutsch' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' },
+    { code: 'it', flag: '🇮🇹', name: 'Italiano' },
+    { code: 'pt', flag: '🇵🇹', name: 'Português' },
+    { code: 'nl', flag: '🇳🇱', name: 'Nederlands' },
+    { code: 'in', flag: '🇮🇳', name: 'India' },
+    { code: 'tr', flag: '🇹🇷', name: 'Türkçe' },
+    { code: 'ar', flag: '🇸🇦', name: 'العربية' },
+    { code: 'zh', flag: '🇨🇳', name: '简体中文' },
+    { code: 'ja', flag: '🇯🇵', name: '日本語' },
+    { code: 'hi', flag: '🇮🇳', name: 'हिन्दी' },
+    { code: 'br', flag: '🇧🇷', name: 'Português (Brasil)' },
+    { code: 'ca', flag: '🇨🇦', name: 'English (Canada)' },
+    { code: 'da', flag: '🇩🇰', name: 'Dansk' },
+    { code: 'fi', flag: '🇫🇮', name: 'Suomi' },
+    { code: 'gb', flag: '🇬🇧', name: 'English (UK)' },
+    { code: 'ko', flag: '🇰🇷', name: '한국어' },
+    { code: 'no', flag: '🇳🇴', name: 'Norsk' },
+    { code: 'sv', flag: '🇸🇪', name: 'Svenska' },
+    { code: 'us', flag: '🇺🇸', name: 'English (US)' }
+];
+
+function openLanguageModal() {
+    document.getElementById('language-list').innerHTML = LANGUAGES.map(l => `
+        <div class="list-item ${l.code==='ja'?'selected':''}" onclick="goToLanguage('${l.code}')">
+            <span class="flag">${l.flag}</span>
+            <div style="flex:1;"><div class="item-name">${l.name}</div></div>
+            <span class="item-sym" style="font-size:12px;">${l.code.toUpperCase()}</span>
+            ${l.code==='ja'?'<i class="fa-solid fa-check ml-2 text-xs" style="color:var(--ja-red);"></i>':''}
+        </div>`).join('');
+    document.getElementById('language-modal').style.display = 'flex';
+}
+function closeLanguageModal() { document.getElementById('language-modal').style.display = 'none'; }
+function goToLanguage(code) {
+    if (code === 'ja') { closeLanguageModal(); return; }
+    localStorage.setItem('elite_lang_v1', code);
+    window.location.href = '../' + code + '/index.html';
+}
+
+// ══════════════════════════════
+// 通貨システム
+// ══════════════════════════════
+const CURRENCIES = [
+    { code:'JPY',  flag:'🇯🇵', country:'日本',              name:'日本円',             sym:'¥',   taxLabel:'消費税' },
+    { code:'USD',  flag:'🇺🇸', country:'アメリカ',          name:'米ドル',             sym:'$',   taxLabel:'VAT' },
+    { code:'EUR',  flag:'🇪🇺', country:'ユーロ圏',          name:'ユーロ',             sym:'€',   taxLabel:'VAT' },
+    { code:'GBP',  flag:'🇬🇧', country:'イギリス',          name:'英ポンド',           sym:'£',   taxLabel:'VAT' },
+    { code:'CNY',  flag:'🇨🇳', country:'中国',              name:'人民元',             sym:'¥',   taxLabel:'増値税' },
+    { code:'HKD',  flag:'🇭🇰', country:'香港',              name:'香港ドル',           sym:'HK$', taxLabel:'GST' },
+    { code:'TWD',  flag:'🇹🇼', country:'台湾',              name:'台湾ドル',           sym:'NT$', taxLabel:'営業税' },
+    { code:'KRW',  flag:'🇰🇷', country:'韓国',              name:'韓国ウォン',         sym:'₩',   taxLabel:'VAT' },
+    { code:'SGD',  flag:'🇸🇬', country:'シンガポール',      name:'シンガポールドル',   sym:'S$',  taxLabel:'GST' },
+    { code:'MYR',  flag:'🇲🇾', country:'マレーシア',        name:'リンギット',         sym:'RM',  taxLabel:'SST' },
+    { code:'THB',  flag:'🇹🇭', country:'タイ',              name:'タイバーツ',         sym:'฿',   taxLabel:'VAT' },
+    { code:'IDR',  flag:'🇮🇩', country:'インドネシア',      name:'ルピア',             sym:'Rp',  taxLabel:'PPN' },
+    { code:'VND',  flag:'🇻🇳', country:'ベトナム',          name:'ベトナムドン',       sym:'₫',   taxLabel:'VAT' },
+    { code:'AED',  flag:'🇦🇪', country:'アラブ首長国連邦',  name:'ディルハム',         sym:'AED', taxLabel:'VAT' },
+    { code:'RUB',  flag:'🇷🇺', country:'ロシア',            name:'ルーブル',           sym:'₽',   taxLabel:'НДС' },
+];
+
+let activeCurrency = null;
+function loadCurrency() {
+    const s = localStorage.getItem('ja_currency_v1');
+    activeCurrency = s ? JSON.parse(s) : CURRENCIES[0];
+    applyCurrency();
+}
+function saveCurrency(cur) {
+    activeCurrency = cur;
+    localStorage.setItem('ja_currency_v1', JSON.stringify(cur));
+    applyCurrency(); closeCurrencyModal();
+}
+function applyCurrency() {
+    const c = activeCurrency;
+    document.getElementById('top-flag').textContent = c.flag;
+    document.getElementById('top-sym').textContent = c.sym;
+    document.getElementById('home-flag').textContent = c.flag;
+    document.getElementById('home-currency-name').textContent = c.name + ' (' + c.sym + ')';
+    const tl = document.getElementById('tax-lbl');
+    if (tl) tl.textContent = c.taxLabel + ' (%)';
+    const gs = document.getElementById('gt-sym');
+    if (gs) gs.textContent = c.sym;
+    updateRowSymbols(); calcTotal();
+}
+function openCurrencyModal() { renderCurrencyList(); document.getElementById('currency-modal').style.display = 'flex'; }
+function closeCurrencyModal() { document.getElementById('currency-modal').style.display = 'none'; }
+function renderCurrencyList() {
+    document.getElementById('currency-list').innerHTML = CURRENCIES.map(c => `
+        <div class="list-item ${activeCurrency&&activeCurrency.code===c.code?'selected':''}" onclick='saveCurrency(${JSON.stringify(c)})'>
+            <span class="flag">${c.flag}</span>
+            <div style="flex:1;"><div class="item-name">${c.country}</div><div class="item-sub">${c.name} · ${c.taxLabel}</div></div>
+            <span class="item-sym">${c.sym}</span>
+            ${activeCurrency&&activeCurrency.code===c.code?'<i class="fa-solid fa-check ml-2 text-xs" style="color:var(--ja-red);"></i>':''}
+        </div>`).join('');
+}
+function getSym() { return activeCurrency ? activeCurrency.sym : '¥'; }
+function getTaxLabel() { return activeCurrency ? activeCurrency.taxLabel : '消費税'; }
+
+// ══════════════════════════════
+// PWA インストール
+// ══════════════════════════════
+let deferredPrompt = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+function injectManifest() {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="#1C1C2E"></rect><rect x="30" y="30" width="452" height="452" rx="60" fill="none" stroke="#BC002D" stroke-width="14" stroke-opacity="0.5"></rect><circle cx="256" cy="210" r="70" fill="#BC002D"></circle><text x="256" y="360" font-size="90" text-anchor="middle" fill="#fff" font-family="serif" font-weight="700">匠</text></svg>`;
+    const iconUrl = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    document.getElementById('pwa-apple-icon').href = iconUrl;
+    const manifest = { name:"請求書匠 - プロの請求書", short_name:"請求書匠", description:"無料プロ請求書作成ツール", start_url:"./", display:"standalone", background_color:"#F4F5F9", theme_color:"#BC002D", icons:[{src:iconUrl,sizes:"512x512",type:"image/svg+xml"}] };
+    const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+    document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+}
+function updateInstallBar() {
+    const bar = document.getElementById('install-bar');
+    if (isStandalone) { bar.style.display = 'none'; return; }
+    if (isIOS) document.getElementById('install-sub-text').textContent = 'iPhone/iPad: ⬆ → ホーム画面に追加';
+    else document.getElementById('install-sub-text').textContent = 'Android/Chrome: タップしてインストール';
+}
+function handleInstall() {
+    if (isIOS) { document.getElementById('ios-modal').classList.add('open'); }
+    else if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { document.getElementById('install-bar').style.display='none'; deferredPrompt=null; }); }
+    else { alert('Chromeで開いて ⋮ → ホーム画面に追加 をタップしてください'); }
+}
+function closeIosModal() { document.getElementById('ios-modal').classList.remove('open'); }
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt=e; document.getElementById('install-sub-text').textContent='✓ タップして今すぐインストール'; });
+window.addEventListener('appinstalled', () => { document.getElementById('install-bar').style.display='none'; deferredPrompt=null; });
+
+// ══════════════════════════════
+// スワイプナビゲーション
+// ══════════════════════════════
+let touchStartX = 0, touchStartY = 0, isSwiping = false;
+const slider = document.getElementById('main-slider');
+
+slider.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwiping = false;
+}, { passive: true });
+
+slider.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) isSwiping = true;
+}, { passive: true });
+
+slider.addEventListener('touchend', e => {
+    if (!isSwiping) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) < 50) return;
+    if (dx < 0 && currentIdx < 4) showPage(currentIdx + 1);
+    if (dx > 0 && currentIdx > 0) showPage(currentIdx - 1);
+}, { passive: true });
+
+// ══════════════════════════════
+// アプリロジック
+// ══════════════════════════════
+let currentIdx = 0;
+let activeTextId = null;
+let myChart = null;
+
+function showPage(idx) {
+    currentIdx = idx;
+    slider.style.transform = `translateX(-${idx * 20}%)`;
+    document.querySelectorAll('.nav-btn').forEach((n, i) => n.classList.toggle('active', i === idx));
+    if (idx === 0) updateStats();
+    if (idx === 2) renderArchiv();
+    if (idx === 3) renderCustomers();
+    if (idx === 1) updateCustSelect();
+}
+
+function updateStats() {
+    const arch = JSON.parse(localStorage.getItem('ja_arsiv_v1')) || [];
+    const cust = JSON.parse(localStorage.getItem('ja_klienty_v1')) || [];
+    document.getElementById('stat-invoices').innerText = arch.length;
+    document.getElementById('stat-clients').innerText = cust.length;
+    const sym = getSym();
+    let net = 0, vat = 0;
+    arch.forEach(inv => {
+        let sub = 0;
+        inv.items.forEach(it => sub += (parseFloat(it.q)||0)*(parseFloat(it.p)||0));
+        net += sub; vat += sub * (parseFloat(inv.vrate)/100);
+    });
+    document.getElementById('total-revenue').innerText = sym + ' ' + (net+vat).toFixed(2);
+    document.getElementById('chart-net').innerText = sym + ' ' + net.toFixed(2);
+    document.getElementById('chart-vat').innerText = sym + ' ' + vat.toFixed(2);
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    if (myChart) myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels:['税抜','消費税'], datasets:[{ data:[net||1, vat||0.01], backgroundColor:['#1C1C2E','#BC002D'], borderWidth:0 }] },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{size:9}, usePointStyle:true } } }, cutout:'70%' }
+    });
+}
+
+function resetAndNew() {
+    document.getElementById('items-list').innerHTML = "";
+    addRow();
+    setVat(10, document.getElementById('vat-10'));
+    setDue(14);
+    const arch = JSON.parse(localStorage.getItem('ja_arsiv_v1')) || [];
+    document.getElementById('inv-no').value = new Date().getFullYear() + '-' + String(arch.length + 1).padStart(4,'0');
+    document.getElementById('inv-date').valueAsDate = new Date();
+    showPage(1);
+}
+
+function setVat(val, el) {
+    document.getElementById('selected-vat').value = val;
+    document.querySelectorAll('[id^="vat-"], #custom-vat-btn').forEach(b => b.classList.remove('active'));
+    if (el) { el.classList.add('active'); }
+    else {
+        const map = {'10':'vat-10','8':'vat-8','0':'vat-0'};
+        if (map[String(val)]) document.getElementById(map[String(val)]).classList.add('active');
+        else { const cb = document.getElementById('custom-vat-btn'); cb.innerText = val+'%'; cb.classList.add('active'); }
+    }
+    calcTotal();
+}
+
+function setDue(val) {
+    document.getElementById('inv-due-days').value = val;
+    document.querySelectorAll('[id^="due-"]').forEach(b => b.classList.remove('active'));
+    const t = document.getElementById('due-'+val);
+    if (t) t.classList.add('active');
+}
+
+function promptVat(el) {
+    let v = prompt(getTaxLabel() + ' %:', '10');
+    if (v) { const n = parseFloat(v); if(!isNaN(n)) { el.innerText = n+'%'; setVat(n, el); } }
+}
+
+const UNITS = ['個','時間','日','週','月','kg','トン','L','m','km','件','パッケージ'];
+
+function addRow(data = null) {
+    const id = 'r-' + Math.random().toString(36).substr(2, 8);
+    const div = document.createElement('div');
+    div.className = 'item-row'; div.id = id;
+    div.innerHTML = `
+        <button class="absolute -top-3 -right-3 bg-white text-red-500 w-8 h-8 rounded-full border border-[#E2E4EF] shadow flex items-center justify-center text-xs" onclick="document.getElementById('${id}').remove(); calcTotal();"><i class="fa-solid fa-times"></i></button>
+        <div class="flex gap-2 mb-3">
+            <input type="text" class="input-pro d flex-1" placeholder="品目・サービス内容..." value="${data?data.d:''}">
+            <button onclick="openTextModal('${id}')" style="background:var(--ja-ink);color:var(--ja-sakura);width:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:none;cursor:pointer;"><i class="fa-solid fa-expand text-sm"></i></button>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div><label>数量</label><input type="number" class="input-pro qty" value="${data?data.q:'1'}" oninput="calcTotal()"></div>
+            <div><label>単位</label><select class="input-pro u">${UNITS.map(u=>`<option value="${u}" ${data?.u==u?'selected':''}>${u}</option>`).join('')}</select></div>
+            <div><label>単価 (<span class="row-sym">${getSym()}</span>)</label><input type="number" class="input-pro p" placeholder="0.00" value="${data?data.p:''}" oninput="calcTotal()"></div>
+        </div>`;
+    document.getElementById('items-list').appendChild(div);
+    calcTotal();
+}
+
+function updateRowSymbols() {
+    document.querySelectorAll('.row-sym').forEach(el => el.textContent = getSym());
+}
+
+function calcTotal() {
+    let sub = 0;
+    document.querySelectorAll('.item-row').forEach(r => {
+        sub += (parseFloat(r.querySelector('.qty').value)||0) * (parseFloat(r.querySelector('.p').value)||0);
+    });
+    const v = parseFloat(document.getElementById('selected-vat').value)||0;
+    const total = (sub*(1+v/100)).toFixed(2);
+    const symEl = document.getElementById('gt-sym');
+    const totalEl = document.getElementById('grand-total');
+    if (totalEl.childNodes[0]) totalEl.childNodes[0].textContent = total + ' ';
+    else totalEl.insertBefore(document.createTextNode(total+' '), symEl);
+    if (symEl) symEl.textContent = getSym();
+}
+
+function generatePreview(prof, cust, invNo, date, items, vRate, dueDays) {
+    const sym = getSym(); const taxLbl = getTaxLabel();
+    document.getElementById('pv-no').innerText = invNo;
+    document.getElementById('pv-title').innerText = prof.name || '会社名';
+    const p = date.split('-');
+    document.getElementById('pv-date').innerText = `${p[0]}年${p[1]}月${p[2]}日`;
+    const dt = new Date(date); dt.setDate(dt.getDate() + parseInt(dueDays));
+    document.getElementById('pv-due').innerText = `${dt.getFullYear()}年${String(dt.getMonth()+1).padStart(2,'0')}月${String(dt.getDate()).padStart(2,'0')}日`;
+    const fmt = (lbl, val) => val ? `<div><b style="font-size:9px;color:#aaa;">${lbl}:</b> ${val}</div>` : '';
+    document.getElementById('pv-sender').innerHTML = `<b style="font-size:12px;color:#000;">${prof.name||''}</b><br>${prof.adr||''}<br>${prof.pc||''} ${prof.city||''}<br>${fmt('法人番号',prof.tax)}${fmt('T番号',prof.vat)}${fmt('電話',prof.tel)}${fmt('メール',prof.mail)}`;
+    document.getElementById('pv-receiver').innerHTML = `<b style="font-size:12px;color:#000;">${cust.name||''}</b><br>${cust.adr||''}<br>${cust.pc||''} ${cust.city||''}<br>${fmt('法人番号',cust.tax)}${fmt('T番号',cust.vat)}${fmt('電話',cust.tel)}${fmt('メール',cust.mail)}`;
+    document.getElementById('pv-bank').innerHTML = `<b>${prof.bank||''}</b><br>${prof.iban||''}`;
+    let sub = 0;
+    document.getElementById('pv-items').innerHTML = items.map(it => {
+        let t = (parseFloat(it.q)||0)*(parseFloat(it.p)||0); sub += t;
+        return `<tr style="border-bottom:1px solid #eee;"><td style="padding:12px 0;font-weight:600;">${it.d}</td><td style="text-align:center;">${it.q} ${it.u}</td><td style="text-align:right;">${parseFloat(it.p).toFixed(2)} ${sym}</td><td style="text-align:right;font-weight:800;">${t.toFixed(2)} ${sym}</td></tr>`;
+    }).join('');
+    const tax = sub * (parseFloat(vRate)/100);
+    document.getElementById('pv-sub').innerText = sub.toFixed(2) + ' ' + sym;
+    document.getElementById('pv-tax-lbl').innerText = `${taxLbl} (${vRate}%)`;
+    document.getElementById('pv-tax').innerText = tax.toFixed(2) + ' ' + sym;
+    document.getElementById('pv-total').innerText = (sub+tax).toFixed(2) + ' ' + sym;
+    document.getElementById('p-modal').style.display = 'flex';
+    requestAnimationFrame(() => {
+        const za = document.getElementById('zoom-area');
+        const scale = Math.min((za.offsetWidth-40)/794, (za.offsetHeight-40)/1123);
+        document.getElementById('p-page').style.transform = `scale(${scale})`;
+    });
+}
+
+function generatePreviewFromCurrent() {
+    const cIdx = document.getElementById('inv-cust-select').value;
+    if (cIdx === '') return alert('取引先を選択してください！');
+    const prof = JSON.parse(localStorage.getItem('ja_profil_v1')) || {};
+    const cust = (JSON.parse(localStorage.getItem('ja_klienty_v1'))||[])[cIdx];
+    let items = [];
+    document.querySelectorAll('.item-row').forEach(r => items.push({ d:r.querySelector('.d').value, q:r.querySelector('.qty').value, p:r.querySelector('.p').value, u:r.querySelector('.u').value }));
+    document.getElementById('modal-confirm-btn').style.display = 'block';
+    generatePreview(prof, cust, document.getElementById('inv-no').value, document.getElementById('inv-date').value, items, document.getElementById('selected-vat').value, document.getElementById('inv-due-days').value);
+}
+
+function confirmAndArchive() {
+    const cIdx = document.getElementById('inv-cust-select').value;
+    const prof = JSON.parse(localStorage.getItem('ja_profil_v1')) || {};
+    const cust = (JSON.parse(localStorage.getItem('ja_klienty_v1'))||[])[cIdx];
+    let items = [];
+    document.querySelectorAll('.item-row').forEach(r => items.push({ d:r.querySelector('.d').value, q:r.querySelector('.qty').value, p:r.querySelector('.p').value, u:r.querySelector('.u').value }));
+    const invNo = document.getElementById('inv-no').value;
+    const invDate = document.getElementById('inv-date').value;
+    const vatRate = document.getElementById('selected-vat').value;
+    const dueDays = document.getElementById('inv-due-days').value;
+    const sym = getSym();
+    const [y,m,d] = invDate.split('-');
+    const params = new URLSearchParams();
+    params.set('l','ja'); params.set('sym', sym);
+    params.set('n', prof.name||''); params.set('adr', prof.adr||''); params.set('pc', prof.pc||''); params.set('ct', prof.city||''); params.set('mob', prof.tel||''); params.set('mail', prof.mail||''); params.set('bnk', prof.bank||''); params.set('i', prof.iban||''); params.set('k', prof.vat||''); params.set('vat', prof.tax||'');
+    params.set('c', cust.name||''); params.set('cadr', cust.adr||''); params.set('cpc', cust.pc||''); params.set('cct', cust.city||''); params.set('cmob', cust.tel||''); params.set('cmail', cust.mail||''); params.set('cx', cust.vat||''); params.set('cv', cust.tax||'');
+    params.set('inv', invNo); params.set('d', `${d}-${m}-${y}`); params.set('vrate', vatRate); params.set('due', dueDays);
+    params.set('items', items.map(it => `${encodeURIComponent(it.d)}|${it.q}|${it.p}|${it.u}`).join('!!'));
+    let arch = JSON.parse(localStorage.getItem('ja_arsiv_v1')) || [];
+    arch.unshift({ no:invNo, date:invDate, custName:cust.name, items, vrate:vatRate, due:dueDays, cIdx, currencyCode:activeCurrency.code, id:Date.now() });
+    localStorage.setItem('ja_arsiv_v1', JSON.stringify(arch));
+    window.open('https://invoiceluxe.com/invoice.html?' + params.toString(), '_blank');
+    closePreview(); showPage(2);
+}
+
+function saveProfile() {
+    const p = { name:document.getElementById('p-name').value, adr:document.getElementById('p-adr').value, pc:document.getElementById('p-pc').value, city:document.getElementById('p-city').value, tel:document.getElementById('p-tel').value, mail:document.getElementById('p-mail').value, tax:document.getElementById('p-tax').value, vat:document.getElementById('p-vat').value, bank:document.getElementById('p-bank').value, iban:document.getElementById('p-iban').value };
+    localStorage.setItem('ja_profil_v1', JSON.stringify(p));
+    showPage(3);
+}
+
+function saveCustomer() {
+    let l = JSON.parse(localStorage.getItem('ja_klienty_v1')) || [];
+    const c = { name:document.getElementById('c-name').value, adr:document.getElementById('c-adr').value, pc:document.getElementById('c-pc').value, city:document.getElementById('c-city').value, tel:document.getElementById('c-tel').value, mail:document.getElementById('c-mail').value, tax:document.getElementById('c-tax').value, vat:document.getElementById('c-vat').value };
+    if (!c.name) return alert('会社名・氏名を入力してください！');
+    let idx = document.getElementById('edit-cust-idx').value;
+    if (idx != '-1') l[idx] = c; else l.unshift(c);
+    localStorage.setItem('ja_klienty_v1', JSON.stringify(l));
+    document.getElementById('edit-cust-idx').value = '-1';
+    document.getElementById('save-cust-btn').innerText = '取引先を保存';
+    ['c-name','c-adr','c-pc','c-city','c-tel','c-mail','c-tax','c-vat'].forEach(id => document.getElementById(id).value = '');
+    renderCustomers(); showPage(1);
+}
+
+function renderCustomers() {
+    const l = JSON.parse(localStorage.getItem('ja_klienty_v1')) || [];
+    document.getElementById('customer-list').innerHTML = l.map((c,i) => `
+        <div style="padding:16px;background:white;border-radius:12px;border:1px solid #E2E4EF;border-left:4px solid var(--ja-red);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div><div style="font-weight:800;font-size:14px;">${c.name}</div><div style="font-size:9px;color:var(--ja-silver);font-weight:700;margin-top:2px;">${c.tel||'—'} | ${c.mail||'—'}</div></div>
+            <div style="display:flex;gap:8px;">
+                <button onclick="editCust(${i})" style="width:36px;height:36px;background:#FEF0F3;color:var(--ja-red);border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid #F2C4CE;cursor:pointer;"><i class="fa-solid fa-pen text-xs"></i></button>
+                <button onclick="deleteCust(${i})" style="width:36px;height:36px;background:#FFF0F0;color:#EF4444;border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid #FECACA;cursor:pointer;"><i class="fa-solid fa-trash text-xs"></i></button>
+            </div>
+        </div>`).join('');
+    updateCustSelect();
+}
+
+function editCust(i) {
+    const c = (JSON.parse(localStorage.getItem('ja_klienty_v1')))[i];
+    ['name','adr','pc','city','tel','mail','tax','vat'].forEach(k => { const el = document.getElementById('c-'+k); if(el) el.value = c[k]||''; });
+    document.getElementById('edit-cust-idx').value = i;
+    document.getElementById('save-cust-btn').innerText = '取引先を更新';
+    showPage(3);
+}
+
+function deleteCust(i) {
+    if (confirm('この取引先を削除しますか？')) {
+        let l = JSON.parse(localStorage.getItem('ja_klienty_v1'));
+        l.splice(i,1); localStorage.setItem('ja_klienty_v1', JSON.stringify(l)); renderCustomers();
+    }
+}
+
+function renderArchiv() {
+    const l = JSON.parse(localStorage.getItem('ja_arsiv_v1')) || [];
+    document.getElementById('archiv-list').innerHTML = l.length === 0
+        ? '<div style="text-align:center;color:var(--ja-silver);font-size:14px;padding:40px;background:var(--ja-mist);border-radius:12px;">請求書がまだありません</div>'
+        : l.map((a,i) => `
+        <div style="padding:16px;background:white;border-radius:12px;border:1px solid #E2E4EF;border-left:4px solid var(--ja-red);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div>
+                <div style="font-weight:800;font-size:14px;color:var(--ja-red);">請求書 ${a.no}</div>
+                <div style="font-size:10px;color:var(--ja-silver);font-weight:700;text-transform:uppercase;">${a.custName}</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+                <button onclick="previewArchiv(${i})" style="width:36px;height:36px;background:#EFF6FF;color:#3B82F6;border-radius:10px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;"><i class="fa-solid fa-eye text-xs"></i></button>
+                <button onclick="editArchiv(${i})" style="width:36px;height:36px;background:#FEF0F3;color:var(--ja-red);border-radius:10px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;"><i class="fa-solid fa-rotate text-xs"></i></button>
+                <button onclick="deleteArchiv(${i})" style="width:36px;height:36px;background:#FFF0F0;color:#EF4444;border-radius:10px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;"><i class="fa-solid fa-trash text-xs"></i></button>
+            </div>
+        </div>`).join('');
+}
+
+function previewArchiv(i) {
+    const a = (JSON.parse(localStorage.getItem('ja_arsiv_v1')))[i];
+    const prof = JSON.parse(localStorage.getItem('ja_profil_v1')) || {};
+    const custs = JSON.parse(localStorage.getItem('ja_klienty_v1')) || [];
+    if (a.currencyCode) { const sc = CURRENCIES.find(c=>c.code===a.currencyCode); if(sc){activeCurrency=sc;applyCurrency();} }
+    document.getElementById('modal-confirm-btn').style.display = 'none';
+    generatePreview(prof, custs[a.cIdx]||{name:a.custName}, a.no, a.date, a.items, a.vrate, a.due);
+}
+
+function editArchiv(i) {
+    const a = (JSON.parse(localStorage.getItem('ja_arsiv_v1')))[i];
+    document.getElementById('inv-no').value = a.no;
+    document.getElementById('inv-date').value = a.date;
+    document.getElementById('inv-cust-select').value = a.cIdx;
+    setVat(a.vrate, null); setDue(a.due);
+    document.getElementById('items-list').innerHTML = '';
+    a.items.forEach(it => addRow(it)); showPage(1);
+}
+
+function deleteArchiv(i) {
+    if (confirm('この請求書を削除しますか？')) {
+        let l = JSON.parse(localStorage.getItem('ja_arsiv_v1'));
+        l.splice(i,1); localStorage.setItem('ja_arsiv_v1', JSON.stringify(l)); renderArchiv(); updateStats();
+    }
+}
+
+function updateCustSelect() {
+    const l = JSON.parse(localStorage.getItem('ja_klienty_v1')) || [];
+    document.getElementById('inv-cust-select').innerHTML = '<option value="">-- 取引先を選択 --</option>' + l.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');
+}
+
+function openTextModal(rowId) {
+    activeTextId = rowId;
+    document.getElementById('modal-textarea').value = document.querySelector(`#${rowId} .d`).value;
+    document.getElementById('text-modal').style.display = 'flex';
+    document.getElementById('save-text-btn').onclick = () => {
+        document.querySelector(`#${activeTextId} .d`).value = document.getElementById('modal-textarea').value;
+        closeTextModal();
+    };
+}
+function closeTextModal() { document.getElementById('text-modal').style.display = 'none'; }
+function closePreview() { document.getElementById('p-modal').style.display = 'none'; }
+
+// ══════════════════════════════
+// 起動
+// ══════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+    injectManifest();
+    updateInstallBar();
+    loadCurrency();
+    const p = JSON.parse(localStorage.getItem('ja_profil_v1')) || {};
+    if (p.name) ['name','adr','pc','city','tel','mail','tax','vat','bank','iban'].forEach(k => { const el = document.getElementById('p-'+k); if(el) el.value = p[k]||''; });
+    renderCustomers(); updateStats();
+    document.getElementById('inv-date').valueAsDate = new Date();
+    setVat(10, document.getElementById('vat-10'));
+    addRow();
+});
+</script>
+</body>
+</html>

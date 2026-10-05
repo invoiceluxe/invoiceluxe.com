@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-IN" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="google" content="notranslate">
+
+    <!-- SEO -->
+    <title>Discount Calculator – Free Percentage & Price Tool | Invoice Luxe</title>
+    <meta name="description" content="Calculate discounts instantly. Enter the original price and discount rate to see exactly how much you save. Free tool by Invoice Luxe – no signup required.">
+    <meta name="keywords" content="discount calculator, percentage calculator, price discount, how much do I save, sale price calculator, Invoice Luxe tools">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/discount">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Discount Calculator | Invoice Luxe">
+    <meta property="og:description" content="Instantly calculate how much you save. Enter price + discount rate — done.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/discount">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Discount Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "url": "https://invoiceluxe.com/discount",
+      "description": "Free online discount and percentage calculator. Calculate sale prices instantly.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000; --gold: #d4af37; --panel: #1c1c1e; --text: #fff; --gray: #8e8e93; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+
+        .nav-header { width: 100%; background: #0f172a; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1e293b; }
+        .btn-back { background: #475569; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid #64748b; transition: 0.2s; }
+        .btn-back:hover { background: #334155; }
+
+        .main-content { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
+        .container { width: 100%; max-width: 400px; }
+
+        .lang-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; background: var(--panel); padding: 10px; border-radius: 15px; border: 1px solid #2c2c2e; }
+        .lang-btn { background: transparent; border: 1px solid transparent; color: var(--gray); font-size: 11px; font-weight: 600; cursor: pointer; padding: 5px 8px; border-radius: 8px; transition: 0.2s; }
+        .lang-btn.active { color: var(--gold); border-color: var(--gold); background: rgba(212,175,55,0.1); }
+
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h1 { font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin: 0; }
+
+        .result-screen { background: linear-gradient(145deg, #0a0a0a, #151515); border-radius: 35px; padding: 40px 20px; text-align: center; border: 1px solid #222; box-shadow: 0 25px 50px rgba(0,0,0,0.6); margin-bottom: 25px; }
+        .result-label { font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        #final-price { font-size: 56px; font-weight: 200; color: #fff; margin: 0; }
+
+        .input-card { background: var(--panel); border-radius: 30px; padding: 25px; border: 1px solid #2c2c2e; }
+        .group { margin-bottom: 20px; }
+        label { display: block; font-size: 10px; color: var(--gray); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper span { position: absolute; right: 15px; color: var(--gold); font-size: 20px; }
+        input { width: 100%; background: #000; border: 1px solid #333; padding: 18px; border-radius: 15px; color: #fff; font-size: 24px; font-weight: 300; outline: none; font-family: 'Montserrat', sans-serif; }
+
+        .details { margin-top: 20px; padding-top: 15px; border-top: 1px solid #333; }
+        .d-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+        .val { font-weight: 600; color: #fff; }
+        .saving { color: #34c759; }
+
+        .reset-btn { width: 100%; background: transparent; border: 1px solid #333; color: var(--gray); padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 11px; cursor: pointer; text-transform: uppercase; font-weight: 600; font-family: 'Montserrat', sans-serif; transition: 0.2s; }
+        .reset-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ===== KULLANIM KILAVUZU ===== */
+        .guide { margin-top: 30px; border-radius: 24px; overflow: hidden; border: 1px solid #2c2c2e; }
+        .guide-header { background: linear-gradient(135deg, #1a1a1a, #111); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; border-bottom: 1px solid #2c2c2e; }
+        .guide-header span { font-size: 10px; letter-spacing: 2px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+        .guide-toggle { font-size: 18px; color: var(--gold); transition: transform 0.3s; }
+        .guide-toggle.open { transform: rotate(180deg); }
+        .guide-body { background: #0d0d0d; padding: 0 22px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+        .guide-body.open { max-height: 600px; padding: 20px 22px; }
+
+        .guide-step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+        .step-num { min-width: 28px; height: 28px; background: var(--gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #aaa; line-height: 1.6; }
+        .step-text b { color: #fff; display: block; margin-bottom: 3px; font-size: 12px; }
+
+        .guide-formula { background: #111; border: 1px solid #2c2c2e; border-radius: 12px; padding: 14px 16px; margin: 15px 0; font-size: 11px; color: var(--gold); font-family: monospace; letter-spacing: 0.5px; line-height: 1.8; }
+
+        .guide-tip { background: rgba(212,175,55,0.06); border-left: 3px solid var(--gold); padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 11px; color: #aaa; margin-top: 5px; line-height: 1.6; }
+        .guide-tip b { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <a href="tools.html" class="btn-back" id="b-back">⬅ BACK TO MAIN MENU</a>
+        <div style="color:#94a3b8; font-weight:800; font-size:12px; letter-spacing:1px;" id="l-top-tag">MAIN MENU</div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+
+            <div class="lang-bar">
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+                <button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button>
+                <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" id="btn-it" onclick="setLang('it')">IT</button>
+            </div>
+
+            <div class="header">
+                <h1 id="l-title">Executive Discount</h1>
+            </div>
+
+            <div class="result-screen">
+                <span class="result-label" id="l-top-label">Amount to Pay</span>
+                <h2 id="final-price">$0.00</h2>
+            </div>
+
+            <div class="input-card">
+                <div class="group">
+                    <label id="l-price">Original Price</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="price" placeholder="0.00" oninput="calculate()" inputmode="decimal">
+                        <span>$</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <label id="l-rate">Discount Rate</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="pct" placeholder="0" oninput="calculate()" inputmode="numeric">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="details">
+                    <div class="d-row"><span id="l-old">Old Price:</span><span class="val" id="old-val">$0.00</span></div>
+                    <div class="d-row"><span id="l-save">You Save:</span><span class="val saving" id="save-val">-$0.00</span></div>
+                </div>
+                <button class="reset-btn" id="l-reset" onclick="resetAll()">Reset</button>
+            </div>
+
+            <!-- KULLANIM KILAVUZU -->
+            <div class="guide">
+                <div class="guide-header" onclick="toggleGuide()">
+                    <span id="l-guide-title">HOW TO USE</span>
+                    <span class="guide-toggle" id="guide-arrow">▼</span>
+                </div>
+                <div class="guide-body" id="guide-body">
+                    <div class="guide-step">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <b id="g-s1-title">Enter the original price</b>
+                            <span id="g-s1-desc">Type the full price before any discount is applied into the first field.</span>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <b id="g-s2-title">Enter the discount rate</b>
+                            <span id="g-s2-desc">Type the percentage discount (e.g. 20 for 20%) into the second field.</span>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <b id="g-s3-title">See your result instantly</b>
+                            <span id="g-s3-desc">The final price and your savings are calculated automatically as you type.</span>
+                        </div>
+                    </div>
+                    <div class="guide-formula" id="g-formula">
+                        Final Price = Original Price × (1 − Discount% ÷ 100)<br>
+                        Saving = Original Price × Discount% ÷ 100
+                    </div>
+                    <div class="guide-tip">
+                        <b id="g-tip-label">💡 Example: </b>
+                        <span id="g-tip-text">$200 price with 25% discount → You pay $150, you save $50.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    const translations = {
+        en: { title:"Executive Discount", top:"Amount to Pay", price:"Original Price", rate:"Discount Rate", old:"Old Price:", save:"You Save:", reset:"Reset", back:"⬅ BACK TO MAIN MENU", toptag:"MAIN MENU", guide:"HOW TO USE", s1t:"Enter the original price", s1d:"Type the full price before any discount is applied into the first field.", s2t:"Enter the discount rate", s2d:"Type the percentage discount (e.g. 20 for 20%) into the second field.", s3t:"See your result instantly", s3d:"The final price and your savings are calculated automatically as you type.", formula:"Final Price = Original Price × (1 − Discount% ÷ 100)\nSaving = Original Price × Discount% ÷ 100", tipLabel:"💡 Example:", tipText:"$200 price with 25% discount → You pay $150, you save $50." },
+        tr: { title:"Yönetici İndirimi", top:"Ödenecek Tutar", price:"Etiket Fiyatı", rate:"İndirim Oranı", old:"Eski Fiyat:", save:"Kazancınız:", reset:"Sıfırla", back:"⬅ ANA MENÜYE DÖN", toptag:"ANA MENÜ", guide:"NASIL KULLANILIR", s1t:"Orijinal fiyatı girin", s1d:"İndirim uygulanmadan önceki tam fiyatı ilk alana yazın.", s2t:"İndirim oranını girin", s2d:"Yüzde indirim oranını girin (örn. 20% için 20 yazın).", s3t:"Sonucu anında görün", s3d:"Siz yazarken nihai fiyat ve tasarrufunuz otomatik hesaplanır.", formula:"Net Fiyat = Orijinal Fiyat × (1 − İndirim% ÷ 100)\nTasarruf = Orijinal Fiyat × İndirim% ÷ 100", tipLabel:"💡 Örnek:", tipText:"200$ fiyata %25 indirim → 150$ ödersiniz, 50$ tasarruf edersiniz." },
+        nl: { title:"Executive Korting", top:"Te Betalen Bedrag", price:"Originele Prijs", rate:"Kortingspercentage", old:"Oude Prijs:", save:"U Bespaart:", reset:"Resetten", back:"⬅ TERUG NAAR HOOFDMENU", toptag:"HOOFDMENU", guide:"HOE TE GEBRUIKEN", s1t:"Voer de originele prijs in", s1d:"Typ de volledige prijs vóór korting in het eerste veld.", s2t:"Voer het kortingspercentage in", s2d:"Typ het kortingspercentage (bijv. 20 voor 20%).", s3t:"Zie direct uw resultaat", s3d:"De eindprijs en uw besparing worden automatisch berekend.", formula:"Eindprijs = Originele Prijs × (1 − Korting% ÷ 100)\nBesparing = Originele Prijs × Korting% ÷ 100", tipLabel:"💡 Voorbeeld:", tipText:"$200 met 25% korting → U betaalt $150, u bespaart $50." },
+        de: { title:"Executive Rabatt", top:"Zahlbetrag", price:"Originalpreis", rate:"Rabattsatz", old:"Alter Preis:", save:"Sie Sparen:", reset:"Zurücksetzen", back:"⬅ ZURÜCK ZUM HAUPTMENÜ", toptag:"HAUPTMENÜ", guide:"ANLEITUNG", s1t:"Originalpreis eingeben", s1d:"Geben Sie den vollen Preis vor dem Rabatt in das erste Feld ein.", s2t:"Rabattsatz eingeben", s2d:"Geben Sie den Rabattprozentsatz ein (z.B. 20 für 20%).", s3t:"Sofortiges Ergebnis sehen", s3d:"Endpreis und Ersparnis werden automatisch berechnet.", formula:"Endpreis = Originalpreis × (1 − Rabatt% ÷ 100)\nErsparnis = Originalpreis × Rabatt% ÷ 100", tipLabel:"💡 Beispiel:", tipText:"$200 mit 25% Rabatt → Sie zahlen $150, Sie sparen $50." },
+        fr: { title:"Remise Executive", top:"Montant à Payer", price:"Prix Original", rate:"Taux de Remise", old:"Ancien Prix:", save:"Vous Économisez:", reset:"Réinitialiser", back:"⬅ RETOUR AU MENU PRINCIPAL", toptag:"MENU PRINCIPAL", guide:"MODE D'EMPLOI", s1t:"Entrez le prix original", s1d:"Tapez le prix complet avant remise dans le premier champ.", s2t:"Entrez le taux de remise", s2d:"Tapez le pourcentage de remise (ex: 20 pour 20%).", s3t:"Voir le résultat instantanément", s3d:"Le prix final et vos économies sont calculés automatiquement.", formula:"Prix Final = Prix Original × (1 − Remise% ÷ 100)\nÉconomie = Prix Original × Remise% ÷ 100", tipLabel:"💡 Exemple:", tipText:"$200 avec 25% de remise → Vous payez $150, vous économisez $50." },
+        it: { title:"Sconto Executive", top:"Importo da Pagare", price:"Prezzo Originale", rate:"Tasso di Sconto", old:"Vecchio Prezzo:", save:"Risparmi:", reset:"Ripristina", back:"⬅ TORNA AL MENU PRINCIPALE", toptag:"MENU PRINCIPALE", guide:"COME SI USA", s1t:"Inserisci il prezzo originale", s1d:"Digita il prezzo completo prima dello sconto nel primo campo.", s2t:"Inserisci il tasso di sconto", s2d:"Digita la percentuale di sconto (es. 20 per il 20%).", s3t:"Vedi il risultato istantaneamente", s3d:"Il prezzo finale e il risparmio vengono calcolati automaticamente.", formula:"Prezzo Finale = Prezzo Originale × (1 − Sconto% ÷ 100)\nRisparmio = Prezzo Originale × Sconto% ÷ 100", tipLabel:"💡 Esempio:", tipText:"$200 con sconto del 25% → Paghi $150, risparmi $50." }
+    };
+
+    let currentLang = 'en';
+
+    function toggleGuide() {
+        const body = document.getElementById('guide-body');
+        const arrow = document.getElementById('guide-arrow');
+        body.classList.toggle('open');
+        arrow.classList.toggle('open');
+    }
+
+    window.onload = function() {
+        const globalLang = localStorage.getItem('global_lang') || 'en';
+        setLang(globalLang);
+    };
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('global_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.getElementById('btn-' + lang);
+        if(btn) btn.classList.add('active');
+        const t = translations[lang] || translations.en;
+        document.getElementById('l-title').innerText = t.title;
+        document.getElementById('l-top-label').innerText = t.top;
+        document.getElementById('l-price').innerText = t.price;
+        document.getElementById('l-rate').innerText = t.rate;
+        document.getElementById('l-old').innerText = t.old;
+        document.getElementById('l-save').innerText = t.save;
+        document.getElementById('l-reset').innerText = t.reset;
+        document.getElementById('b-back').innerText = t.back;
+        document.getElementById('l-top-tag').innerText = t.toptag;
+        document.getElementById('l-guide-title').innerText = t.guide;
+        document.getElementById('g-s1-title').innerText = t.s1t;
+        document.getElementById('g-s1-desc').innerText = t.s1d;
+        document.getElementById('g-s2-title').innerText = t.s2t;
+        document.getElementById('g-s2-desc').innerText = t.s2d;
+        document.getElementById('g-s3-title').innerText = t.s3t;
+        document.getElementById('g-s3-desc').innerText = t.s3d;
+        document.getElementById('g-formula').innerText = t.formula;
+        document.getElementById('g-tip-label').innerText = t.tipLabel;
+        document.getElementById('g-tip-text').innerText = t.tipText;
+        calculate();
+    }
+
+    function calculate() {
+        const price = parseFloat(document.getElementById('price').value) || 0;
+        const pct = parseFloat(document.getElementById('pct').value) || 0;
+        const saving = price * (pct / 100);
+        const final = price - saving;
+        document.getElementById('final-price').innerText = formatCurrency(final);
+        document.getElementById('old-val').innerText = formatCurrency(price);
+        document.getElementById('save-val').innerText = "-" + formatCurrency(saving);
+    }
+
+    function formatCurrency(val) {
+        return "$" + val.toLocaleString(currentLang === 'en' ? 'en-US' : 'tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function resetAll() {
+        document.getElementById('price').value = "";
+        document.getElementById('pct').value = "";
+        calculate();
+    }
+</script>
+</body>
+</html>

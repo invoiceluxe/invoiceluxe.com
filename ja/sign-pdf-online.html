@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Ücretsiz PDF Kırpma ve İmzalama Aracı Online – Belge Tarayıcı, PDF'e İmza At, WhatsApp'tan Paylaş</title>
+<meta name="description" content="Ücretsiz online PDF kırpma ve PDF imzalama aracı. Fotoğraf veya PDF sayfalarını 4 köşeden bağımsız esnek çerçeveyle kırpın, belgeyi düzleştirin, imzanızı çizip PDF'e veya resme ekleyin, kırpılan sayfaları A4 PDF'e dönüştürün ve imzalı belgeyi anında WhatsApp'tan paylaşın. Kurulum yok, filigran yok, mobil ve bilgisayarda çalışır.">
+<meta name="keywords" content="ücretsiz pdf kırpma, pdf kırpma programı online, resim kırpma online, pdf imzalama, pdf'e imza atma, online imza atma, belge tarayıcı uygulaması, fotoğrafı pdf yap, resmi a4 pdf yap, pdf whatsapp'tan paylaş, ücretsiz pdf editör, mobil pdf araçları, e-imza pdf, pdf sayfası kırpma, online belge düzenleme">
+<meta property="og:title" content="Ücretsiz PDF Kırpma ve İmzalama Aracı">
+<meta property="og:description" content="PDF veya fotoğrafları kırpın, düzleştirin, imzalayın. A4 PDF'e dönüştürüp WhatsApp'tan anında paylaşın. Ücretsiz, filigransız, kurulumsuz.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<style>
+  html,body{margin:0;padding:0;background:#0a0a0f;overflow-x:hidden;}
+  #root{min-height:100vh;}
+  #loaderr{display:none;color:#f0f0f5;padding:24px;font-family:sans-serif;line-height:1.6;}
+  #seo-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
+</head>
+<body>
+<div id="root"><div id="loaderr">Yükleniyor…</div></div>
+<!-- SEO: hidden descriptive text for crawlers -->
+<p id="seo-text">Ücretsiz online PDF kırpma ve PDF imzalama aracı. PDF sayfalarını ve fotoğrafları 4 köşeden bağımsız esnek çerçeveyle kırpın, eğik belgeyi bir tarayıcı gibi düzleştirin, imzanızı çizip PDF'e veya resme ekleyin, kırpılan sayfaları A4 PDF'e dönüştürün ve imzalı belgeyi WhatsApp'tan paylaşın ya da indirin. Tamamen ücretsiz, filigransız, kurulum gerektirmez, mobil ve masaüstü tarayıcılarda çalışır. Free online PDF crop tool and PDF sign tool. Crop PDF pages and photos with an independent 4-point perspective document scanner crop, draw your signature and add it to a PDF or image, convert cropped pages into an A4 PDF, and share the signed PDF via WhatsApp or download it. 100% free, no watermark, no installation, works on mobile and desktop browsers.</p>
+
+<script>
+  window.addEventListener('error', function(e){
+    var el = document.getElementById('loaderr');
+    if(el){
+      el.style.display = 'block';
+      el.innerHTML = '⚠️ Bir dosya yüklenemedi (' + (e.target && e.target.src ? e.target.src : (e.message||'bilinmeyen hata')) + ').<br>İnternet bağlantını kontrol et ve sayfayı yenile.';
+    }
+  }, true);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+
+<script>
+  if(!window.React || !window.ReactDOM || !window.Babel){
+    var el = document.getElementById('loaderr');
+    el.style.display = 'block';
+    el.innerHTML = '⚠️ React/Babel yüklenemedi. İnternet bağlantını kontrol et ve sayfayı yenile.';
+  }
+</script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useRef, useEffect, useCallback, useContext, createContext } = React;
+
+const C = {
+  bg: "#0a0a0f", panel: "#181825", panel2: "#222235", border: "#2e2e45",
+  lime: "#c8f542", teal: "#42f5c8", pink: "#f542a8", text: "#f0f0f5", muted: "#8a8a9a"
+};
+
+function btn(bg, color = "#fff") {
+  return { borderRadius: 999, background: bg, border: `1px solid ${C.border}`, padding: "8px 14px", fontSize: 12, color, cursor: "pointer" };
+}
+
+// ==================== i18n ====================
+const LANGS = [
+  { code: "tr", name: "Türkçe" },
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "nl", name: "Nederlands" },
+  { code: "es", name: "Español" },
+  { code: "it", name: "Italiano" },
+  { code: "fr", name: "Français" },
+  { code: "ar", name: "العربية" },
+  { code: "pt", name: "Português" },
+  { code: "hi", name: "हिन्दी" },
+  { code: "ja", name: "日本語" },
+  { code: "ru", name: "Русский" },
+];
+
+const translations = {
+tr: {
+  nav_home: "🏠 Ana Sayfa", nav_home_title: "Ana Sayfaya Dön", nav_title: "PDF Tools v10", nav_subtitle: "Perspektif Kırpma • İmza • WhatsApp", nav_menu: "Araç Menüsü", nav_lang: "Dil",
+  mm_title: "v10 — Gerçek 4 nokta perspektif kırpma.", mm_desc: "Kırpma çerçevesinin 4 köşesi birbirinden tamamen bağımsız — bir köşeyi sürüklemek diğerlerini etkilemiyor, tıpkı bir tarayıcı uygulaması gibi eğik belgeyi düzleştiriyor. İmza modülünde her sayfaya imzayı istediğin gibi taşıyıp \"Onayla\" ile sabitleyebilir, sonraki sayfada tekrar esnek çerçeveyle yeniden yerleştirebilirsin.",
+  mm_crop_title: "🖼️ Kırpma Pro", mm_crop_desc: "Resim veya PDF yükle, 4 köşe tamamen bağımsız hareket eder — eğik fotoğrafı gerçek bir tarayıcı gibi düzleştirir.",
+  mm_sign_title: "✍️ İmza & PDF İmzala", mm_sign_desc: "İmza çiz, resim veya çok sayfalı PDF'e ekle, önizle, sonra WhatsApp'ta paylaş ya da PDF olarak indir.", mm_open: "Aç",
+  crop_drop_title: "Resim veya PDF yükle", crop_drop_desc: "Yükleyince kırpma otomatik açılır. 4 köşeyi bağımsız sürükleyerek eğik belgeyi düzleştir.",
+  crop_btn_crop: "✂️ Kırp", crop_btn_generate: "⬇ A4 PDF Oluştur, Önizle & Paylaş", crop_btn_generating: "Hazırlanıyor…",
+  crop_modal_title: "✂️ 4 Nokta Bağımsız Perspektif Kırpma", crop_modal_subtitle: "4 köşe tamamen bağımsız. Üstte/altta/solda/sağda ortadaki çubuğu sürükleyerek de o kenarın tamamını tek seferde hizalayabilirsin",
+  crop_cancel: "İptal", crop_reset: "Sıfırla", crop_confirm: "✓ Kırp", crop_confirming: "İşleniyor…",
+  crop_preview_title: "👁️ Kırpma Önizleme — Net & Canlı", crop_edit: "✏️ Düzelt", crop_share_pdf: "📄 PDF Paylaş / İndir", crop_share_whatsapp: "🟢 WhatsApp'ta Paylaş",
+  crop_preview_help: "Beğenmediysen \"Düzelt\" ile geri dönüp köşeleri tekrar ayarlayabilirsin. Paylaş butonları telefonunun paylaşım penceresini açar; oradan WhatsApp'ı seçebilirsin.",
+  crop_combined_title: "Kırpılan Sayfalar — Önizleme",
+  msg_loading: "Yükleniyor…", msg_pdf_read_fail: "✗ PDF okunamadı: ", msg_processing: "İşleniyor…", msg_crop_first: "Önce en az bir sayfayı kırp.",
+  sign_step1: "1. İmzanı Çiz", sign_thickness: "Kalınlık", sign_clear: "Temizle", sign_ready: "✓ İmza hazır",
+  sign_step2: "2. Belgeye Yerleştir (Resim veya PDF)", sign_upload_doc: "📄 Belge yükle (JPG, PNG veya PDF)", sign_upload_help: "Çok sayfalı PDF'lerde sayfa sayfa gezip her sayfaya ayrı imza koyabilirsin",
+  sign_prev_page: "← Önceki Sayfa", sign_next_page: "Sonraki Sayfa →", sign_page_of: "Sayfa {cur} / {total}",
+  sign_page_signed: "✓ Bu sayfa imzalı", sign_page_unsigned: "İmzasız", sign_change_doc: "Belgeyi Değiştir",
+  sign_paste_sig: "✍️ İmzayı Bu Sayfaya Yapıştır", sign_remove_sig: "Bu Sayfadan İmzayı Kaldır",
+  sign_lock: "✓ Onayla", sign_edit_placement: "✏️ Düzenle",
+  sign_preview_share: "👁️ Önizle, Paylaş veya İndir", sign_preparing: "Hazırlanıyor…",
+  sign_multi_help: "İmzayı yapıştırdıktan sonra \"Onayla\" ile sabitle, sonra yukarıdaki \"Sonraki Sayfa →\" butonuyla diğer sayfaya geç ve orada da yapıştır. Bitince \"Önizle, Paylaş veya İndir\"e bas.",
+  sign_draw_first: "Önce yukarıdan imzanı çiz.", sig_overlay_label: "✓ İmza — sürükle/boyutlandır", sign_locked_label: "✓ İmza sabitlendi",
+  sign_preview_title: "İmzalı Belge — Önizleme", sign_place_first_msg: "Önce imza çiz ve belge yükle.", sign_doc_read_fail: "✗ Belge okunamadı: ",
+  psp_back: "✕ Düzenlemeye Dön", psp_share_pdf: "📄 PDF Paylaş / İndir", psp_whatsapp: "🟢 WhatsApp'ta Paylaş",
+  psp_preparing: "Hazırlanıyor…", psp_shared: "✓ Paylaşıldı", psp_downloaded: "✓ İndirildi",
+  psp_prev: "← Önceki", psp_next: "Sonraki →", psp_page_of: "Sayfa {cur} / {total}",
+  psp_help: "Tüm sayfalara göz attıktan sonra yukarıdaki butonlardan paylaşabilir ya da indirebilirsin. Beğenmezsen \"Düzenlemeye Dön\" ile geri dönüp değiştirebilirsin.",
+},
+en: {
+  nav_home: "🏠 Home", nav_home_title: "Back to Home", nav_title: "PDF Tools v10", nav_subtitle: "Perspective Crop • Sign • WhatsApp", nav_menu: "Tools Menu", nav_lang: "Language",
+  mm_title: "v10 — True 4-point perspective crop.", mm_desc: "All 4 crop corners move completely independently — dragging one corner doesn't affect the others, flattening a skewed document just like a scanner app. In the Sign module you can freely move a signature on each page, lock it in place with \"Confirm\", then place a fresh flexible frame again on the next page.",
+  mm_crop_title: "🖼️ Crop Pro", mm_crop_desc: "Upload an image or PDF — all 4 corners move fully independently, flattening a skewed photo like a real scanner.",
+  mm_sign_title: "✍️ Sign & Sign PDF", mm_sign_desc: "Draw your signature, add it to an image or multi-page PDF, preview it, then share on WhatsApp or download as PDF.", mm_open: "Open",
+  crop_drop_title: "Upload image or PDF", crop_drop_desc: "Cropping opens automatically after upload. Drag the 4 corners independently to flatten a skewed document.",
+  crop_btn_crop: "✂️ Crop", crop_btn_generate: "⬇ Build A4 PDF, Preview & Share", crop_btn_generating: "Preparing…",
+  crop_modal_title: "✂️ 4-Point Independent Perspective Crop", crop_modal_subtitle: "All 4 corners are fully independent. You can also drag the bar in the middle of the top/bottom/left/right edge to align that whole side at once",
+  crop_cancel: "Cancel", crop_reset: "Reset", crop_confirm: "✓ Crop", crop_confirming: "Processing…",
+  crop_preview_title: "👁️ Crop Preview — Sharp & Vivid", crop_edit: "✏️ Edit", crop_share_pdf: "📄 Share / Download PDF", crop_share_whatsapp: "🟢 Share on WhatsApp",
+  crop_preview_help: "If you don't like it, tap \"Edit\" to go back and adjust the corners again. The share buttons open your phone's share sheet — choose WhatsApp from there.",
+  crop_combined_title: "Cropped Pages — Preview",
+  msg_loading: "Loading…", msg_pdf_read_fail: "✗ Couldn't read PDF: ", msg_processing: "Processing…", msg_crop_first: "Crop at least one page first.",
+  sign_step1: "1. Draw Your Signature", sign_thickness: "Thickness", sign_clear: "Clear", sign_ready: "✓ Signature ready",
+  sign_step2: "2. Place on Document (Image or PDF)", sign_upload_doc: "📄 Upload document (JPG, PNG or PDF)", sign_upload_help: "For multi-page PDFs you can browse page by page and place a separate signature on each",
+  sign_prev_page: "← Previous Page", sign_next_page: "Next Page →", sign_page_of: "Page {cur} / {total}",
+  sign_page_signed: "✓ This page is signed", sign_page_unsigned: "Unsigned", sign_change_doc: "Change Document",
+  sign_paste_sig: "✍️ Paste Signature on This Page", sign_remove_sig: "Remove Signature from This Page",
+  sign_lock: "✓ Confirm", sign_edit_placement: "✏️ Edit",
+  sign_preview_share: "👁️ Preview, Share or Download", sign_preparing: "Preparing…",
+  sign_multi_help: "After pasting the signature, tap \"Confirm\" to lock it in place, then use \"Next Page →\" above to move to the next page and paste there too. When done, tap \"Preview, Share or Download\".",
+  sign_draw_first: "Draw your signature above first.", sig_overlay_label: "✓ Signature — drag/resize", sign_locked_label: "✓ Signature locked",
+  sign_preview_title: "Signed Document — Preview", sign_place_first_msg: "Draw a signature and upload a document first.", sign_doc_read_fail: "✗ Couldn't read document: ",
+  psp_back: "✕ Back to Editing", psp_share_pdf: "📄 Share / Download PDF", psp_whatsapp: "🟢 Share on WhatsApp",
+  psp_preparing: "Preparing…", psp_shared: "✓ Shared", psp_downloaded: "✓ Downloaded",
+  psp_prev: "← Previous", psp_next: "Next →", psp_page_of: "Page {cur} / {total}",
+  psp_help: "Once you've looked through all the pages, share or download using the buttons above. If you don't like it, tap \"Back to Editing\" to go back and make changes.",
+},
+de: {
+  nav_home: "🏠 Startseite", nav_home_title: "Zur Startseite", nav_title: "PDF Tools v10", nav_subtitle: "Perspektiv-Zuschnitt • Signatur • WhatsApp", nav_menu: "Toolmenü", nav_lang: "Sprache",
+  mm_title: "v10 — Echter 4-Punkt-Perspektivzuschnitt.", mm_desc: "Alle 4 Ecken des Zuschnittrahmens bewegen sich völlig unabhängig voneinander — das Ziehen einer Ecke beeinflusst die anderen nicht, wodurch ein schiefes Dokument wie bei einer Scanner-App begradigt wird. Im Signatur-Modul kannst du die Signatur auf jeder Seite frei verschieben, mit \"Bestätigen\" fixieren und auf der nächsten Seite erneut frei platzieren.",
+  mm_crop_title: "🖼️ Zuschnitt Pro", mm_crop_desc: "Bild oder PDF hochladen — alle 4 Ecken bewegen sich völlig unabhängig und begradigen ein schiefes Foto wie ein echter Scanner.",
+  mm_sign_title: "✍️ Signatur & PDF unterschreiben", mm_sign_desc: "Signatur zeichnen, zu Bild oder mehrseitigem PDF hinzufügen, Vorschau ansehen, dann per WhatsApp teilen oder als PDF herunterladen.", mm_open: "Öffnen",
+  crop_drop_title: "Bild oder PDF hochladen", crop_drop_desc: "Der Zuschnitt öffnet sich automatisch nach dem Hochladen. Ziehe die 4 Ecken unabhängig, um ein schiefes Dokument zu begradigen.",
+  crop_btn_crop: "✂️ Zuschneiden", crop_btn_generate: "⬇ A4-PDF erstellen, Vorschau & Teilen", crop_btn_generating: "Wird vorbereitet…",
+  crop_modal_title: "✂️ 4-Punkt unabhängiger Perspektivzuschnitt", crop_modal_subtitle: "Alle 4 Ecken sind völlig unabhängig. Du kannst auch die Leiste in der Mitte der oberen/unteren/linken/rechten Kante ziehen, um diese Seite auf einmal auszurichten",
+  crop_cancel: "Abbrechen", crop_reset: "Zurücksetzen", crop_confirm: "✓ Zuschneiden", crop_confirming: "Wird verarbeitet…",
+  crop_preview_title: "👁️ Zuschnitt-Vorschau — scharf & lebendig", crop_edit: "✏️ Bearbeiten", crop_share_pdf: "📄 PDF teilen / herunterladen", crop_share_whatsapp: "🟢 Auf WhatsApp teilen",
+  crop_preview_help: "Wenn es dir nicht gefällt, tippe auf \"Bearbeiten\", um zurückzugehen und die Ecken erneut anzupassen. Die Teilen-Buttons öffnen das Freigabemenü deines Handys — wähle dort WhatsApp aus.",
+  crop_combined_title: "Zugeschnittene Seiten — Vorschau",
+  msg_loading: "Wird geladen…", msg_pdf_read_fail: "✗ PDF konnte nicht gelesen werden: ", msg_processing: "Wird verarbeitet…", msg_crop_first: "Schneide zuerst mindestens eine Seite zu.",
+  sign_step1: "1. Signatur zeichnen", sign_thickness: "Stärke", sign_clear: "Löschen", sign_ready: "✓ Signatur bereit",
+  sign_step2: "2. Auf dem Dokument platzieren (Bild oder PDF)", sign_upload_doc: "📄 Dokument hochladen (JPG, PNG oder PDF)", sign_upload_help: "Bei mehrseitigen PDFs kannst du seitenweise blättern und auf jeder Seite eine eigene Signatur platzieren",
+  sign_prev_page: "← Vorherige Seite", sign_next_page: "Nächste Seite →", sign_page_of: "Seite {cur} / {total}",
+  sign_page_signed: "✓ Diese Seite ist signiert", sign_page_unsigned: "Nicht signiert", sign_change_doc: "Dokument ändern",
+  sign_paste_sig: "✍️ Signatur auf diese Seite einfügen", sign_remove_sig: "Signatur von dieser Seite entfernen",
+  sign_lock: "✓ Bestätigen", sign_edit_placement: "✏️ Bearbeiten",
+  sign_preview_share: "👁️ Vorschau, Teilen oder Herunterladen", sign_preparing: "Wird vorbereitet…",
+  sign_multi_help: "Nach dem Einfügen der Signatur tippe auf \"Bestätigen\", um sie zu fixieren, wechsle dann oben mit \"Nächste Seite →\" zur nächsten Seite und füge sie dort ebenfalls ein. Am Ende tippe auf \"Vorschau, Teilen oder Herunterladen\".",
+  sign_draw_first: "Zeichne oben zuerst deine Signatur.", sig_overlay_label: "✓ Signatur — ziehen/skalieren", sign_locked_label: "✓ Signatur fixiert",
+  sign_preview_title: "Signiertes Dokument — Vorschau", sign_place_first_msg: "Zeichne zuerst eine Signatur und lade ein Dokument hoch.", sign_doc_read_fail: "✗ Dokument konnte nicht gelesen werden: ",
+  psp_back: "✕ Zurück zur Bearbeitung", psp_share_pdf: "📄 PDF teilen / herunterladen", psp_whatsapp: "🟢 Auf WhatsApp teilen",
+  psp_preparing: "Wird vorbereitet…", psp_shared: "✓ Geteilt", psp_downloaded: "✓ Heruntergeladen",
+  psp_prev: "← Zurück", psp_next: "Weiter →", psp_page_of: "Seite {cur} / {total}",
+  psp_help: "Nachdem du dir alle Seiten angesehen hast, kannst du oben teilen oder herunterladen. Wenn es dir nicht gefällt, tippe auf \"Zurück zur Bearbeitung\", um Änderungen vorzunehmen.",
+},
+nl: {
+  nav_home: "🏠 Startpagina", nav_home_title: "Terug naar startpagina", nav_title: "PDF Tools v10", nav_subtitle: "Perspectief bijsnijden • Ondertekenen • WhatsApp", nav_menu: "Toolmenu", nav_lang: "Taal",
+  mm_title: "v10 — Echt 4-punts perspectief bijsnijden.", mm_desc: "Alle 4 de hoeken van het bijsnijdkader bewegen volledig onafhankelijk — het slepen van één hoek beïnvloedt de andere niet, waardoor een scheef document net als bij een scanner-app wordt rechtgetrokken. In de ondertekenmodule kun je de handtekening op elke pagina vrij verplaatsen, met \"Bevestigen\" vastzetten en op de volgende pagina opnieuw vrij plaatsen.",
+  mm_crop_title: "🖼️ Bijsnijden Pro", mm_crop_desc: "Upload een afbeelding of PDF — alle 4 de hoeken bewegen volledig onafhankelijk en trekken een scheve foto recht als een echte scanner.",
+  mm_sign_title: "✍️ Ondertekenen & PDF ondertekenen", mm_sign_desc: "Teken je handtekening, voeg toe aan een afbeelding of meerpagina-PDF, bekijk het voorbeeld, deel via WhatsApp of download als PDF.", mm_open: "Openen",
+  crop_drop_title: "Afbeelding of PDF uploaden", crop_drop_desc: "Bijsnijden opent automatisch na het uploaden. Sleep de 4 hoeken onafhankelijk om een scheef document recht te trekken.",
+  crop_btn_crop: "✂️ Bijsnijden", crop_btn_generate: "⬇ A4-PDF maken, bekijken & delen", crop_btn_generating: "Bezig met voorbereiden…",
+  crop_modal_title: "✂️ 4-punts onafhankelijk perspectief bijsnijden", crop_modal_subtitle: "Alle 4 de hoeken zijn volledig onafhankelijk. Je kunt ook de balk in het midden van de boven-/onder-/linker-/rechterrand slepen om die hele zijde in één keer uit te lijnen",
+  crop_cancel: "Annuleren", crop_reset: "Reset", crop_confirm: "✓ Bijsnijden", crop_confirming: "Bezig met verwerken…",
+  crop_preview_title: "👁️ Bijsnijdvoorbeeld — scherp & levendig", crop_edit: "✏️ Bewerken", crop_share_pdf: "📄 PDF delen / downloaden", crop_share_whatsapp: "🟢 Delen via WhatsApp",
+  crop_preview_help: "Niet tevreden? Tik op \"Bewerken\" om terug te gaan en de hoeken opnieuw aan te passen. De deelknoppen openen het deelvenster van je telefoon — kies daar WhatsApp.",
+  crop_combined_title: "Bijgesneden pagina's — Voorbeeld",
+  msg_loading: "Bezig met laden…", msg_pdf_read_fail: "✗ PDF kon niet worden gelezen: ", msg_processing: "Bezig met verwerken…", msg_crop_first: "Snijd eerst minstens één pagina bij.",
+  sign_step1: "1. Teken je handtekening", sign_thickness: "Dikte", sign_clear: "Wissen", sign_ready: "✓ Handtekening klaar",
+  sign_step2: "2. Plaatsen op document (afbeelding of PDF)", sign_upload_doc: "📄 Document uploaden (JPG, PNG of PDF)", sign_upload_help: "Bij PDF's met meerdere pagina's kun je per pagina bladeren en op elke pagina een eigen handtekening plaatsen",
+  sign_prev_page: "← Vorige pagina", sign_next_page: "Volgende pagina →", sign_page_of: "Pagina {cur} / {total}",
+  sign_page_signed: "✓ Deze pagina is ondertekend", sign_page_unsigned: "Niet ondertekend", sign_change_doc: "Document wijzigen",
+  sign_paste_sig: "✍️ Handtekening op deze pagina plakken", sign_remove_sig: "Handtekening van deze pagina verwijderen",
+  sign_lock: "✓ Bevestigen", sign_edit_placement: "✏️ Bewerken",
+  sign_preview_share: "👁️ Bekijken, delen of downloaden", sign_preparing: "Bezig met voorbereiden…",
+  sign_multi_help: "Tik na het plakken van de handtekening op \"Bevestigen\" om deze vast te zetten, ga dan met \"Volgende pagina →\" hierboven naar de volgende pagina en plak daar ook. Tik als je klaar bent op \"Bekijken, delen of downloaden\".",
+  sign_draw_first: "Teken hierboven eerst je handtekening.", sig_overlay_label: "✓ Handtekening — slepen/formaat wijzigen", sign_locked_label: "✓ Handtekening vastgezet",
+  sign_preview_title: "Ondertekend document — Voorbeeld", sign_place_first_msg: "Teken eerst een handtekening en upload een document.", sign_doc_read_fail: "✗ Document kon niet worden gelezen: ",
+  psp_back: "✕ Terug naar bewerken", psp_share_pdf: "📄 PDF delen / downloaden", psp_whatsapp: "🟢 Delen via WhatsApp",
+  psp_preparing: "Bezig met voorbereiden…", psp_shared: "✓ Gedeeld", psp_downloaded: "✓ Gedownload",
+  psp_prev: "← Vorige", psp_next: "Volgende →", psp_page_of: "Pagina {cur} / {total}",
+  psp_help: "Nadat je alle pagina's hebt bekeken, kun je hierboven delen of downloaden. Niet tevreden? Tik op \"Terug naar bewerken\" om wijzigingen aan te brengen.",
+},
+es: {
+  nav_home: "🏠 Inicio", nav_home_title: "Volver al inicio", nav_title: "PDF Tools v10", nav_subtitle: "Recorte en perspectiva • Firma • WhatsApp", nav_menu: "Menú de herramientas", nav_lang: "Idioma",
+  mm_title: "v10 — Recorte en perspectiva real de 4 puntos.", mm_desc: "Las 4 esquinas del marco de recorte se mueven de forma totalmente independiente — arrastrar una esquina no afecta a las demás, enderezando un documento torcido como una app escáner. En el módulo de firma puedes mover la firma libremente en cada página, fijarla con \"Confirmar\" y volver a colocarla libremente en la siguiente página.",
+  mm_crop_title: "🖼️ Recorte Pro", mm_crop_desc: "Sube una imagen o PDF — las 4 esquinas se mueven de forma totalmente independiente, enderezando una foto torcida como un escáner real.",
+  mm_sign_title: "✍️ Firma y firmar PDF", mm_sign_desc: "Dibuja tu firma, agrégala a una imagen o a un PDF de varias páginas, previsualiza y luego comparte por WhatsApp o descarga como PDF.", mm_open: "Abrir",
+  crop_drop_title: "Sube una imagen o PDF", crop_drop_desc: "El recorte se abre automáticamente al subir el archivo. Arrastra las 4 esquinas de forma independiente para enderezar un documento torcido.",
+  crop_btn_crop: "✂️ Recortar", crop_btn_generate: "⬇ Crear PDF A4, previsualizar y compartir", crop_btn_generating: "Preparando…",
+  crop_modal_title: "✂️ Recorte en perspectiva independiente de 4 puntos", crop_modal_subtitle: "Las 4 esquinas son totalmente independientes. También puedes arrastrar la barra del centro del borde superior/inferior/izquierdo/derecho para alinear todo ese lado a la vez",
+  crop_cancel: "Cancelar", crop_reset: "Restablecer", crop_confirm: "✓ Recortar", crop_confirming: "Procesando…",
+  crop_preview_title: "👁️ Vista previa del recorte — Nítida y vívida", crop_edit: "✏️ Editar", crop_share_pdf: "📄 Compartir / Descargar PDF", crop_share_whatsapp: "🟢 Compartir por WhatsApp",
+  crop_preview_help: "Si no te gusta, toca \"Editar\" para volver y ajustar las esquinas de nuevo. Los botones de compartir abren el panel para compartir de tu teléfono; elige WhatsApp desde allí.",
+  crop_combined_title: "Páginas recortadas — Vista previa",
+  msg_loading: "Cargando…", msg_pdf_read_fail: "✗ No se pudo leer el PDF: ", msg_processing: "Procesando…", msg_crop_first: "Recorta al menos una página primero.",
+  sign_step1: "1. Dibuja tu firma", sign_thickness: "Grosor", sign_clear: "Borrar", sign_ready: "✓ Firma lista",
+  sign_step2: "2. Colocar en el documento (imagen o PDF)", sign_upload_doc: "📄 Subir documento (JPG, PNG o PDF)", sign_upload_help: "En PDF de varias páginas puedes navegar página por página y colocar una firma distinta en cada una",
+  sign_prev_page: "← Página anterior", sign_next_page: "Página siguiente →", sign_page_of: "Página {cur} / {total}",
+  sign_page_signed: "✓ Esta página está firmada", sign_page_unsigned: "Sin firmar", sign_change_doc: "Cambiar documento",
+  sign_paste_sig: "✍️ Pegar firma en esta página", sign_remove_sig: "Quitar firma de esta página",
+  sign_lock: "✓ Confirmar", sign_edit_placement: "✏️ Editar",
+  sign_preview_share: "👁️ Previsualizar, compartir o descargar", sign_preparing: "Preparando…",
+  sign_multi_help: "Después de pegar la firma, toca \"Confirmar\" para fijarla, luego usa \"Página siguiente →\" arriba para ir a la siguiente página y pégala allí también. Al terminar, toca \"Previsualizar, compartir o descargar\".",
+  sign_draw_first: "Primero dibuja tu firma arriba.", sig_overlay_label: "✓ Firma — arrastrar/redimensionar", sign_locked_label: "✓ Firma fijada",
+  sign_preview_title: "Documento firmado — Vista previa", sign_place_first_msg: "Primero dibuja una firma y sube un documento.", sign_doc_read_fail: "✗ No se pudo leer el documento: ",
+  psp_back: "✕ Volver a editar", psp_share_pdf: "📄 Compartir / Descargar PDF", psp_whatsapp: "🟢 Compartir por WhatsApp",
+  psp_preparing: "Preparando…", psp_shared: "✓ Compartido", psp_downloaded: "✓ Descargado",
+  psp_prev: "← Anterior", psp_next: "Siguiente →", psp_page_of: "Página {cur} / {total}",
+  psp_help: "Después de revisar todas las páginas, puedes compartir o descargar con los botones de arriba. Si no te gusta, toca \"Volver a editar\" para hacer cambios.",
+},
+it: {
+  nav_home: "🏠 Home", nav_home_title: "Torna alla home", nav_title: "PDF Tools v10", nav_subtitle: "Ritaglio prospettico • Firma • WhatsApp", nav_menu: "Menu strumenti", nav_lang: "Lingua",
+  mm_title: "v10 — Vero ritaglio prospettico a 4 punti.", mm_desc: "Tutti e 4 gli angoli del riquadro di ritaglio si muovono in modo completamente indipendente — trascinare un angolo non influisce sugli altri, raddrizzando un documento storto come un'app scanner. Nel modulo firma puoi spostare liberamente la firma su ogni pagina, fissarla con \"Conferma\" e riposizionarla liberamente nella pagina successiva.",
+  mm_crop_title: "🖼️ Ritaglio Pro", mm_crop_desc: "Carica un'immagine o un PDF — tutti e 4 gli angoli si muovono in modo completamente indipendente, raddrizzando una foto storta come uno scanner vero.",
+  mm_sign_title: "✍️ Firma & Firma PDF", mm_sign_desc: "Disegna la tua firma, aggiungila a un'immagine o a un PDF multipagina, visualizza l'anteprima, poi condividi su WhatsApp o scarica come PDF.", mm_open: "Apri",
+  crop_drop_title: "Carica immagine o PDF", crop_drop_desc: "Il ritaglio si apre automaticamente dopo il caricamento. Trascina i 4 angoli in modo indipendente per raddrizzare un documento storto.",
+  crop_btn_crop: "✂️ Ritaglia", crop_btn_generate: "⬇ Crea PDF A4, anteprima e condividi", crop_btn_generating: "Preparazione…",
+  crop_modal_title: "✂️ Ritaglio prospettico indipendente a 4 punti", crop_modal_subtitle: "Tutti e 4 gli angoli sono completamente indipendenti. Puoi anche trascinare la barra al centro del bordo superiore/inferiore/sinistro/destro per allineare tutto quel lato in una volta",
+  crop_cancel: "Annulla", crop_reset: "Reimposta", crop_confirm: "✓ Ritaglia", crop_confirming: "Elaborazione…",
+  crop_preview_title: "👁️ Anteprima ritaglio — Nitida e vivida", crop_edit: "✏️ Modifica", crop_share_pdf: "📄 Condividi / Scarica PDF", crop_share_whatsapp: "🟢 Condividi su WhatsApp",
+  crop_preview_help: "Se non ti piace, tocca \"Modifica\" per tornare indietro e regolare di nuovo gli angoli. I pulsanti di condivisione aprono il menu di condivisione del telefono — scegli WhatsApp da lì.",
+  crop_combined_title: "Pagine ritagliate — Anteprima",
+  msg_loading: "Caricamento…", msg_pdf_read_fail: "✗ Impossibile leggere il PDF: ", msg_processing: "Elaborazione…", msg_crop_first: "Ritaglia prima almeno una pagina.",
+  sign_step1: "1. Disegna la tua firma", sign_thickness: "Spessore", sign_clear: "Cancella", sign_ready: "✓ Firma pronta",
+  sign_step2: "2. Posiziona sul documento (immagine o PDF)", sign_upload_doc: "📄 Carica documento (JPG, PNG o PDF)", sign_upload_help: "Nei PDF multipagina puoi scorrere pagina per pagina e posizionare una firma diversa su ciascuna",
+  sign_prev_page: "← Pagina precedente", sign_next_page: "Pagina successiva →", sign_page_of: "Pagina {cur} / {total}",
+  sign_page_signed: "✓ Questa pagina è firmata", sign_page_unsigned: "Non firmata", sign_change_doc: "Cambia documento",
+  sign_paste_sig: "✍️ Incolla la firma su questa pagina", sign_remove_sig: "Rimuovi firma da questa pagina",
+  sign_lock: "✓ Conferma", sign_edit_placement: "✏️ Modifica",
+  sign_preview_share: "👁️ Anteprima, condividi o scarica", sign_preparing: "Preparazione…",
+  sign_multi_help: "Dopo aver incollato la firma, tocca \"Conferma\" per fissarla, poi usa \"Pagina successiva →\" in alto per passare alla pagina seguente e incollarla anche lì. Al termine, tocca \"Anteprima, condividi o scarica\".",
+  sign_draw_first: "Disegna prima la tua firma qui sopra.", sig_overlay_label: "✓ Firma — trascina/ridimensiona", sign_locked_label: "✓ Firma fissata",
+  sign_preview_title: "Documento firmato — Anteprima", sign_place_first_msg: "Disegna prima una firma e carica un documento.", sign_doc_read_fail: "✗ Impossibile leggere il documento: ",
+  psp_back: "✕ Torna alla modifica", psp_share_pdf: "📄 Condividi / Scarica PDF", psp_whatsapp: "🟢 Condividi su WhatsApp",
+  psp_preparing: "Preparazione…", psp_shared: "✓ Condiviso", psp_downloaded: "✓ Scaricato",
+  psp_prev: "← Precedente", psp_next: "Successiva →", psp_page_of: "Pagina {cur} / {total}",
+  psp_help: "Dopo aver esaminato tutte le pagine, puoi condividere o scaricare con i pulsanti sopra. Se non ti piace, tocca \"Torna alla modifica\" per apportare modifiche.",
+},
+fr: {
+  nav_home: "🏠 Accueil", nav_home_title: "Retour à l'accueil", nav_title: "PDF Tools v10", nav_subtitle: "Recadrage en perspective • Signature • WhatsApp", nav_menu: "Menu des outils", nav_lang: "Langue",
+  mm_title: "v10 — Véritable recadrage en perspective à 4 points.", mm_desc: "Les 4 coins du cadre de recadrage se déplacent de façon totalement indépendante — faire glisser un coin n'affecte pas les autres, ce qui redresse un document penché comme une application de scanner. Dans le module de signature, vous pouvez déplacer librement la signature sur chaque page, la fixer avec \"Confirmer\", puis la replacer librement sur la page suivante.",
+  mm_crop_title: "🖼️ Recadrage Pro", mm_crop_desc: "Importez une image ou un PDF — les 4 coins bougent de façon totalement indépendante, redressant une photo penchée comme un vrai scanner.",
+  mm_sign_title: "✍️ Signature & Signer un PDF", mm_sign_desc: "Dessinez votre signature, ajoutez-la à une image ou à un PDF multipage, prévisualisez, puis partagez sur WhatsApp ou téléchargez en PDF.", mm_open: "Ouvrir",
+  crop_drop_title: "Importer une image ou un PDF", crop_drop_desc: "Le recadrage s'ouvre automatiquement après l'import. Faites glisser les 4 coins indépendamment pour redresser un document penché.",
+  crop_btn_crop: "✂️ Recadrer", crop_btn_generate: "⬇ Créer un PDF A4, prévisualiser & partager", crop_btn_generating: "Préparation…",
+  crop_modal_title: "✂️ Recadrage en perspective indépendant à 4 points", crop_modal_subtitle: "Les 4 coins sont totalement indépendants. Vous pouvez aussi faire glisser la barre au milieu du bord haut/bas/gauche/droit pour aligner tout ce côté en une seule fois",
+  crop_cancel: "Annuler", crop_reset: "Réinitialiser", crop_confirm: "✓ Recadrer", crop_confirming: "Traitement…",
+  crop_preview_title: "👁️ Aperçu du recadrage — Net et vif", crop_edit: "✏️ Modifier", crop_share_pdf: "📄 Partager / Télécharger le PDF", crop_share_whatsapp: "🟢 Partager sur WhatsApp",
+  crop_preview_help: "Si le résultat ne vous convient pas, appuyez sur \"Modifier\" pour revenir ajuster les coins. Les boutons de partage ouvrent le menu de partage de votre téléphone — choisissez WhatsApp depuis là.",
+  crop_combined_title: "Pages recadrées — Aperçu",
+  msg_loading: "Chargement…", msg_pdf_read_fail: "✗ Impossible de lire le PDF : ", msg_processing: "Traitement…", msg_crop_first: "Recadrez d'abord au moins une page.",
+  sign_step1: "1. Dessinez votre signature", sign_thickness: "Épaisseur", sign_clear: "Effacer", sign_ready: "✓ Signature prête",
+  sign_step2: "2. Placer sur le document (image ou PDF)", sign_upload_doc: "📄 Importer un document (JPG, PNG ou PDF)", sign_upload_help: "Pour les PDF multipages, vous pouvez naviguer page par page et placer une signature différente sur chacune",
+  sign_prev_page: "← Page précédente", sign_next_page: "Page suivante →", sign_page_of: "Page {cur} / {total}",
+  sign_page_signed: "✓ Cette page est signée", sign_page_unsigned: "Non signée", sign_change_doc: "Changer de document",
+  sign_paste_sig: "✍️ Coller la signature sur cette page", sign_remove_sig: "Retirer la signature de cette page",
+  sign_lock: "✓ Confirmer", sign_edit_placement: "✏️ Modifier",
+  sign_preview_share: "👁️ Prévisualiser, partager ou télécharger", sign_preparing: "Préparation…",
+  sign_multi_help: "Après avoir collé la signature, appuyez sur \"Confirmer\" pour la fixer, puis utilisez \"Page suivante →\" ci-dessus pour passer à la page suivante et la coller aussi là-bas. Une fois terminé, appuyez sur \"Prévisualiser, partager ou télécharger\".",
+  sign_draw_first: "Dessinez d'abord votre signature ci-dessus.", sig_overlay_label: "✓ Signature — glisser/redimensionner", sign_locked_label: "✓ Signature fixée",
+  sign_preview_title: "Document signé — Aperçu", sign_place_first_msg: "Dessinez d'abord une signature et importez un document.", sign_doc_read_fail: "✗ Impossible de lire le document : ",
+  psp_back: "✕ Retour à l'édition", psp_share_pdf: "📄 Partager / Télécharger le PDF", psp_whatsapp: "🟢 Partager sur WhatsApp",
+  psp_preparing: "Préparation…", psp_shared: "✓ Partagé", psp_downloaded: "✓ Téléchargé",
+  psp_prev: "← Précédent", psp_next: "Suivant →", psp_page_of: "Page {cur} / {total}",
+  psp_help: "Une fois toutes les pages consultées, partagez ou téléchargez avec les boutons ci-dessus. Si le résultat ne vous convient pas, appuyez sur \"Retour à l'édition\" pour faire des modifications.",
+},
+ar: {
+  nav_home: "🏠 الرئيسية", nav_home_title: "العودة إلى الرئيسية", nav_title: "أدوات PDF v10", nav_subtitle: "قص بمنظور • توقيع • واتساب", nav_menu: "قائمة الأدوات", nav_lang: "اللغة",
+  mm_title: "v10 — قص حقيقي بمنظور من 4 نقاط.", mm_desc: "تتحرك زوايا إطار القص الأربع بشكل مستقل تمامًا — سحب زاوية واحدة لا يؤثر على الأخريات، مما يُسوّي المستند المائل تمامًا مثل تطبيق الماسح الضوئي. في وحدة التوقيع يمكنك تحريك التوقيع بحرية في كل صفحة، وتثبيته بزر \"تأكيد\"، ثم وضعه بحرية مجددًا في الصفحة التالية.",
+  mm_crop_title: "🖼️ القص الاحترافي", mm_crop_desc: "ارفع صورة أو ملف PDF — تتحرك الزوايا الأربع بشكل مستقل تمامًا، وتُسوّي صورة مائلة مثل ماسح ضوئي حقيقي.",
+  mm_sign_title: "✍️ التوقيع وتوقيع PDF", mm_sign_desc: "ارسم توقيعك، أضفه إلى صورة أو ملف PDF متعدد الصفحات، عايِنه، ثم شاركه عبر واتساب أو نزّله كملف PDF.", mm_open: "فتح",
+  crop_drop_title: "ارفع صورة أو ملف PDF", crop_drop_desc: "يفتح القص تلقائيًا بعد الرفع. اسحب الزوايا الأربع بشكل مستقل لتسوية مستند مائل.",
+  crop_btn_crop: "✂️ قص", crop_btn_generate: "⬇ إنشاء PDF بحجم A4، معاينة ومشاركة", crop_btn_generating: "جارٍ التحضير…",
+  crop_modal_title: "✂️ قص بمنظور مستقل من 4 نقاط", crop_modal_subtitle: "الزوايا الأربع مستقلة تمامًا. يمكنك أيضًا سحب الشريط في منتصف الحافة العلوية/السفلية/اليسرى/اليمنى لمحاذاة ذلك الجانب بالكامل دفعة واحدة",
+  crop_cancel: "إلغاء", crop_reset: "إعادة ضبط", crop_confirm: "✓ قص", crop_confirming: "جارٍ المعالجة…",
+  crop_preview_title: "👁️ معاينة القص — واضحة وحيّة", crop_edit: "✏️ تعديل", crop_share_pdf: "📄 مشاركة / تنزيل PDF", crop_share_whatsapp: "🟢 مشاركة عبر واتساب",
+  crop_preview_help: "إذا لم يعجبك، اضغط \"تعديل\" للعودة وضبط الزوايا مجددًا. أزرار المشاركة تفتح قائمة المشاركة في هاتفك — اختر واتساب من هناك.",
+  crop_combined_title: "الصفحات المقصوصة — معاينة",
+  msg_loading: "جارٍ التحميل…", msg_pdf_read_fail: "✗ تعذّرت قراءة ملف PDF: ", msg_processing: "جارٍ المعالجة…", msg_crop_first: "قص صفحة واحدة على الأقل أولًا.",
+  sign_step1: "1. ارسم توقيعك", sign_thickness: "السماكة", sign_clear: "مسح", sign_ready: "✓ التوقيع جاهز",
+  sign_step2: "2. وضعه على المستند (صورة أو PDF)", sign_upload_doc: "📄 رفع مستند (JPG أو PNG أو PDF)", sign_upload_help: "في ملفات PDF متعددة الصفحات يمكنك التنقل صفحة بصفحة ووضع توقيع مختلف على كل صفحة",
+  sign_prev_page: "← الصفحة السابقة", sign_next_page: "الصفحة التالية →", sign_page_of: "الصفحة {cur} / {total}",
+  sign_page_signed: "✓ هذه الصفحة موقّعة", sign_page_unsigned: "غير موقّعة", sign_change_doc: "تغيير المستند",
+  sign_paste_sig: "✍️ لصق التوقيع على هذه الصفحة", sign_remove_sig: "إزالة التوقيع من هذه الصفحة",
+  sign_lock: "✓ تأكيد", sign_edit_placement: "✏️ تعديل",
+  sign_preview_share: "👁️ معاينة أو مشاركة أو تنزيل", sign_preparing: "جارٍ التحضير…",
+  sign_multi_help: "بعد لصق التوقيع، اضغط \"تأكيد\" لتثبيته، ثم استخدم \"الصفحة التالية →\" أعلاه للانتقال إلى الصفحة التالية والصقه هناك أيضًا. عند الانتهاء، اضغط \"معاينة أو مشاركة أو تنزيل\".",
+  sign_draw_first: "ارسم توقيعك أعلاه أولًا.", sig_overlay_label: "✓ التوقيع — اسحب/غيّر الحجم", sign_locked_label: "✓ تم تثبيت التوقيع",
+  sign_preview_title: "المستند الموقّع — معاينة", sign_place_first_msg: "ارسم توقيعًا وارفع مستندًا أولًا.", sign_doc_read_fail: "✗ تعذّرت قراءة المستند: ",
+  psp_back: "✕ العودة إلى التحرير", psp_share_pdf: "📄 مشاركة / تنزيل PDF", psp_whatsapp: "🟢 مشاركة عبر واتساب",
+  psp_preparing: "جارٍ التحضير…", psp_shared: "✓ تمت المشاركة", psp_downloaded: "✓ تم التنزيل",
+  psp_prev: "← السابق", psp_next: "التالي →", psp_page_of: "الصفحة {cur} / {total}",
+  psp_help: "بعد مراجعة جميع الصفحات، يمكنك المشاركة أو التنزيل باستخدام الأزرار أعلاه. إذا لم يعجبك، اضغط \"العودة إلى التحرير\" للعودة وإجراء تغييرات.",
+},
+pt: {
+  nav_home: "🏠 Início", nav_home_title: "Voltar ao início", nav_title: "PDF Tools v10", nav_subtitle: "Recorte em perspetiva • Assinatura • WhatsApp", nav_menu: "Menu de ferramentas", nav_lang: "Idioma",
+  mm_title: "v10 — Recorte real em perspetiva de 4 pontos.", mm_desc: "Os 4 cantos do quadro de recorte movem-se de forma totalmente independente — arrastar um canto não afeta os outros, endireitando um documento torto como uma app de scanner. No módulo de assinatura pode mover a assinatura livremente em cada página, fixá-la com \"Confirmar\" e colocá-la livremente de novo na página seguinte.",
+  mm_crop_title: "🖼️ Recorte Pro", mm_crop_desc: "Carregue uma imagem ou PDF — os 4 cantos movem-se de forma totalmente independente, endireitando uma foto torta como um scanner real.",
+  mm_sign_title: "✍️ Assinatura e Assinar PDF", mm_sign_desc: "Desenhe a sua assinatura, adicione-a a uma imagem ou PDF de várias páginas, pré-visualize e depois partilhe no WhatsApp ou descarregue como PDF.", mm_open: "Abrir",
+  crop_drop_title: "Carregar imagem ou PDF", crop_drop_desc: "O recorte abre automaticamente após o carregamento. Arraste os 4 cantos de forma independente para endireitar um documento torto.",
+  crop_btn_crop: "✂️ Recortar", crop_btn_generate: "⬇ Criar PDF A4, pré-visualizar e partilhar", crop_btn_generating: "A preparar…",
+  crop_modal_title: "✂️ Recorte em perspetiva independente de 4 pontos", crop_modal_subtitle: "Os 4 cantos são totalmente independentes. Também pode arrastar a barra no meio da borda superior/inferior/esquerda/direita para alinhar esse lado inteiro de uma vez",
+  crop_cancel: "Cancelar", crop_reset: "Repor", crop_confirm: "✓ Recortar", crop_confirming: "A processar…",
+  crop_preview_title: "👁️ Pré-visualização do recorte — Nítida e viva", crop_edit: "✏️ Editar", crop_share_pdf: "📄 Partilhar / Descarregar PDF", crop_share_whatsapp: "🟢 Partilhar no WhatsApp",
+  crop_preview_help: "Se não gostar, toque em \"Editar\" para voltar e ajustar os cantos novamente. Os botões de partilha abrem o menu de partilha do telemóvel — escolha o WhatsApp por lá.",
+  crop_combined_title: "Páginas recortadas — Pré-visualização",
+  msg_loading: "A carregar…", msg_pdf_read_fail: "✗ Não foi possível ler o PDF: ", msg_processing: "A processar…", msg_crop_first: "Recorte pelo menos uma página primeiro.",
+  sign_step1: "1. Desenhe a sua assinatura", sign_thickness: "Espessura", sign_clear: "Limpar", sign_ready: "✓ Assinatura pronta",
+  sign_step2: "2. Colocar no documento (imagem ou PDF)", sign_upload_doc: "📄 Carregar documento (JPG, PNG ou PDF)", sign_upload_help: "Em PDFs com várias páginas pode navegar página a página e colocar uma assinatura diferente em cada uma",
+  sign_prev_page: "← Página anterior", sign_next_page: "Página seguinte →", sign_page_of: "Página {cur} / {total}",
+  sign_page_signed: "✓ Esta página está assinada", sign_page_unsigned: "Não assinada", sign_change_doc: "Mudar documento",
+  sign_paste_sig: "✍️ Colar assinatura nesta página", sign_remove_sig: "Remover assinatura desta página",
+  sign_lock: "✓ Confirmar", sign_edit_placement: "✏️ Editar",
+  sign_preview_share: "👁️ Pré-visualizar, partilhar ou descarregar", sign_preparing: "A preparar…",
+  sign_multi_help: "Depois de colar a assinatura, toque em \"Confirmar\" para a fixar, depois use \"Página seguinte →\" acima para ir para a próxima página e cole lá também. Quando terminar, toque em \"Pré-visualizar, partilhar ou descarregar\".",
+  sign_draw_first: "Desenhe primeiro a sua assinatura acima.", sig_overlay_label: "✓ Assinatura — arrastar/redimensionar", sign_locked_label: "✓ Assinatura fixada",
+  sign_preview_title: "Documento assinado — Pré-visualização", sign_place_first_msg: "Desenhe primeiro uma assinatura e carregue um documento.", sign_doc_read_fail: "✗ Não foi possível ler o documento: ",
+  psp_back: "✕ Voltar a editar", psp_share_pdf: "📄 Partilhar / Descarregar PDF", psp_whatsapp: "🟢 Partilhar no WhatsApp",
+  psp_preparing: "A preparar…", psp_shared: "✓ Partilhado", psp_downloaded: "✓ Descarregado",
+  psp_prev: "← Anterior", psp_next: "Seguinte →", psp_page_of: "Página {cur} / {total}",
+  psp_help: "Depois de rever todas as páginas, pode partilhar ou descarregar com os botões acima. Se não gostar, toque em \"Voltar a editar\" para fazer alterações.",
+},
+hi: {
+  nav_home: "🏠 होम", nav_home_title: "होम पर वापस जाएँ", nav_title: "PDF Tools v10", nav_subtitle: "पर्सपेक्टिव क्रॉप • हस्ताक्षर • व्हाट्सएप", nav_menu: "टूल मेनू", nav_lang: "भाषा",
+  mm_title: "v10 — असली 4-पॉइंट पर्सपेक्टिव क्रॉप।", mm_desc: "क्रॉप फ्रेम के चारों कोने पूरी तरह स्वतंत्र रूप से चलते हैं — एक कोने को खींचने से दूसरे प्रभावित नहीं होते, जिससे टेढ़ा दस्तावेज़ स्कैनर ऐप की तरह सीधा हो जाता है। साइन मॉड्यूल में हर पृष्ठ पर हस्ताक्षर को स्वतंत्र रूप से घुमाया जा सकता है, \"पुष्टि करें\" से स्थिर किया जा सकता है, और अगले पृष्ठ पर फिर से स्वतंत्र रूप से रखा जा सकता है।",
+  mm_crop_title: "🖼️ क्रॉप प्रो", mm_crop_desc: "छवि या PDF अपलोड करें — चारों कोने पूरी तरह स्वतंत्र रूप से चलते हैं, टेढ़ी फ़ोटो को असली स्कैनर की तरह सीधा करते हैं।",
+  mm_sign_title: "✍️ हस्ताक्षर और PDF साइन करें", mm_sign_desc: "अपना हस्ताक्षर बनाएं, इसे किसी छवि या बहु-पृष्ठ PDF में जोड़ें, पूर्वावलोकन करें, फिर व्हाट्सएप पर साझा करें या PDF के रूप में डाउनलोड करें।", mm_open: "खोलें",
+  crop_drop_title: "छवि या PDF अपलोड करें", crop_drop_desc: "अपलोड करने पर क्रॉपिंग अपने आप खुल जाती है। टेढ़े दस्तावेज़ को सीधा करने के लिए चारों कोनों को स्वतंत्र रूप से खींचें।",
+  crop_btn_crop: "✂️ क्रॉप करें", crop_btn_generate: "⬇ A4 PDF बनाएं, पूर्वावलोकन करें और साझा करें", crop_btn_generating: "तैयार हो रहा है…",
+  crop_modal_title: "✂️ 4-पॉइंट स्वतंत्र पर्सपेक्टिव क्रॉप", crop_modal_subtitle: "चारों कोने पूरी तरह स्वतंत्र हैं। आप ऊपर/नीचे/बाएँ/दाएँ किनारे के बीच वाली पट्टी को खींचकर भी उस पूरी तरफ को एक बार में संरेखित कर सकते हैं",
+  crop_cancel: "रद्द करें", crop_reset: "रीसेट करें", crop_confirm: "✓ क्रॉप करें", crop_confirming: "प्रोसेस हो रहा है…",
+  crop_preview_title: "👁️ क्रॉप पूर्वावलोकन — स्पष्ट और जीवंत", crop_edit: "✏️ संपादित करें", crop_share_pdf: "📄 PDF साझा करें / डाउनलोड करें", crop_share_whatsapp: "🟢 व्हाट्सएप पर साझा करें",
+  crop_preview_help: "पसंद न आए तो \"संपादित करें\" दबाकर वापस जाएँ और कोनों को फिर से समायोजित करें। साझा करने वाले बटन आपके फ़ोन का शेयर मेनू खोलते हैं — वहाँ से व्हाट्सएप चुनें।",
+  crop_combined_title: "क्रॉप किए गए पृष्ठ — पूर्वावलोकन",
+  msg_loading: "लोड हो रहा है…", msg_pdf_read_fail: "✗ PDF पढ़ा नहीं जा सका: ", msg_processing: "प्रोसेस हो रहा है…", msg_crop_first: "पहले कम से कम एक पृष्ठ क्रॉप करें।",
+  sign_step1: "1. अपना हस्ताक्षर बनाएं", sign_thickness: "मोटाई", sign_clear: "साफ़ करें", sign_ready: "✓ हस्ताक्षर तैयार है",
+  sign_step2: "2. दस्तावेज़ पर रखें (छवि या PDF)", sign_upload_doc: "📄 दस्तावेज़ अपलोड करें (JPG, PNG या PDF)", sign_upload_help: "बहु-पृष्ठ PDF में आप पृष्ठ दर पृष्ठ जाकर हर पृष्ठ पर अलग हस्ताक्षर रख सकते हैं",
+  sign_prev_page: "← पिछला पृष्ठ", sign_next_page: "अगला पृष्ठ →", sign_page_of: "पृष्ठ {cur} / {total}",
+  sign_page_signed: "✓ यह पृष्ठ हस्ताक्षरित है", sign_page_unsigned: "अहस्ताक्षरित", sign_change_doc: "दस्तावेज़ बदलें",
+  sign_paste_sig: "✍️ इस पृष्ठ पर हस्ताक्षर चिपकाएँ", sign_remove_sig: "इस पृष्ठ से हस्ताक्षर हटाएँ",
+  sign_lock: "✓ पुष्टि करें", sign_edit_placement: "✏️ संपादित करें",
+  sign_preview_share: "👁️ पूर्वावलोकन, साझा या डाउनलोड करें", sign_preparing: "तैयार हो रहा है…",
+  sign_multi_help: "हस्ताक्षर चिपकाने के बाद, उसे स्थिर करने के लिए \"पुष्टि करें\" दबाएँ, फिर ऊपर \"अगला पृष्ठ →\" से अगले पृष्ठ पर जाएँ और वहाँ भी चिपकाएँ। पूरा होने पर \"पूर्वावलोकन, साझा या डाउनलोड करें\" दबाएँ।",
+  sign_draw_first: "पहले ऊपर अपना हस्ताक्षर बनाएं।", sig_overlay_label: "✓ हस्ताक्षर — खींचें/आकार बदलें", sign_locked_label: "✓ हस्ताक्षर स्थिर किया गया",
+  sign_preview_title: "हस्ताक्षरित दस्तावेज़ — पूर्वावलोकन", sign_place_first_msg: "पहले हस्ताक्षर बनाएं और दस्तावेज़ अपलोड करें।", sign_doc_read_fail: "✗ दस्तावेज़ पढ़ा नहीं जा सका: ",
+  psp_back: "✕ संपादन पर वापस जाएँ", psp_share_pdf: "📄 PDF साझा करें / डाउनलोड करें", psp_whatsapp: "🟢 व्हाट्सएप पर साझा करें",
+  psp_preparing: "तैयार हो रहा है…", psp_shared: "✓ साझा किया गया", psp_downloaded: "✓ डाउनलोड हो गया",
+  psp_prev: "← पिछला", psp_next: "अगला →", psp_page_of: "पृष्ठ {cur} / {total}",
+  psp_help: "सभी पृष्ठ देखने के बाद, ऊपर दिए बटनों से साझा या डाउनलोड करें। पसंद न आए तो \"संपादन पर वापस जाएँ\" दबाकर बदलाव करें।",
+},
+ja: {
+  nav_home: "🏠 ホーム", nav_home_title: "ホームに戻る", nav_title: "PDF Tools v10", nav_subtitle: "遠近補正トリミング • 署名 • WhatsApp", nav_menu: "ツールメニュー", nav_lang: "言語",
+  mm_title: "v10 — 本物の4点遠近補正トリミング。", mm_desc: "トリミング枠の4つの角が完全に独立して動きます。1つの角をドラッグしても他には影響せず、スキャナーアプリのように傾いた文書をまっすぐにできます。署名モジュールでは各ページで署名を自由に動かし、「確定」で固定でき、次のページでは再び自由に配置できます。",
+  mm_crop_title: "🖼️ トリミング Pro", mm_crop_desc: "画像またはPDFをアップロード — 4つの角が完全に独立して動き、傾いた写真を本物のスキャナーのようにまっすぐにします。",
+  mm_sign_title: "✍️ 署名 & PDF署名", mm_sign_desc: "署名を描き、画像や複数ページのPDFに追加し、プレビューしてからWhatsAppで共有するかPDFとしてダウンロードします。", mm_open: "開く",
+  crop_drop_title: "画像またはPDFをアップロード", crop_drop_desc: "アップロードすると自動的にトリミングが開きます。4つの角を独立してドラッグし、傾いた文書をまっすぐにします。",
+  crop_btn_crop: "✂️ トリミング", crop_btn_generate: "⬇ A4 PDFを作成、プレビュー＆共有", crop_btn_generating: "準備中…",
+  crop_modal_title: "✂️ 4点独立遠近補正トリミング", crop_modal_subtitle: "4つの角は完全に独立しています。上下左右の辺の中央のバーをドラッグすると、その辺全体を一度に揃えることもできます",
+  crop_cancel: "キャンセル", crop_reset: "リセット", crop_confirm: "✓ トリミング", crop_confirming: "処理中…",
+  crop_preview_title: "👁️ トリミングプレビュー — 鮮明で鮮やか", crop_edit: "✏️ 編集", crop_share_pdf: "📄 PDFを共有 / ダウンロード", crop_share_whatsapp: "🟢 WhatsAppで共有",
+  crop_preview_help: "気に入らない場合は「編集」をタップして戻り、角を再調整してください。共有ボタンをタップすると端末の共有メニューが開くので、そこからWhatsAppを選択してください。",
+  crop_combined_title: "トリミングされたページ — プレビュー",
+  msg_loading: "読み込み中…", msg_pdf_read_fail: "✗ PDFを読み込めませんでした: ", msg_processing: "処理中…", msg_crop_first: "まず少なくとも1ページをトリミングしてください。",
+  sign_step1: "1. 署名を描く", sign_thickness: "太さ", sign_clear: "クリア", sign_ready: "✓ 署名の準備完了",
+  sign_step2: "2. 文書に配置（画像またはPDF）", sign_upload_doc: "📄 文書をアップロード（JPG、PNGまたはPDF）", sign_upload_help: "複数ページのPDFではページごとに移動し、各ページに別々の署名を配置できます",
+  sign_prev_page: "← 前のページ", sign_next_page: "次のページ →", sign_page_of: "ページ {cur} / {total}",
+  sign_page_signed: "✓ このページは署名済み", sign_page_unsigned: "未署名", sign_change_doc: "文書を変更",
+  sign_paste_sig: "✍️ このページに署名を貼り付け", sign_remove_sig: "このページから署名を削除",
+  sign_lock: "✓ 確定", sign_edit_placement: "✏️ 編集",
+  sign_preview_share: "👁️ プレビュー、共有またはダウンロード", sign_preparing: "準備中…",
+  sign_multi_help: "署名を貼り付けた後、「確定」をタップして固定し、上の「次のページ →」で次のページに移動してそこにも貼り付けてください。終わったら「プレビュー、共有またはダウンロード」をタップします。",
+  sign_draw_first: "まず上で署名を描いてください。", sig_overlay_label: "✓ 署名 — ドラッグ／サイズ変更", sign_locked_label: "✓ 署名を固定しました",
+  sign_preview_title: "署名済み文書 — プレビュー", sign_place_first_msg: "先に署名を描いて文書をアップロードしてください。", sign_doc_read_fail: "✗ 文書を読み込めませんでした: ",
+  psp_back: "✕ 編集に戻る", psp_share_pdf: "📄 PDFを共有 / ダウンロード", psp_whatsapp: "🟢 WhatsAppで共有",
+  psp_preparing: "準備中…", psp_shared: "✓ 共有しました", psp_downloaded: "✓ ダウンロードしました",
+  psp_prev: "← 前へ", psp_next: "次へ →", psp_page_of: "ページ {cur} / {total}",
+  psp_help: "すべてのページを確認したら、上のボタンで共有またはダウンロードできます。気に入らない場合は「編集に戻る」をタップして変更してください。",
+},
+ru: {
+  nav_home: "🏠 Главная", nav_home_title: "Вернуться на главную", nav_title: "PDF Tools v10", nav_subtitle: "Перспективная обрезка • Подпись • WhatsApp", nav_menu: "Меню инструментов", nav_lang: "Язык",
+  mm_title: "v10 — Настоящая 4-точечная перспективная обрезка.", mm_desc: "Все 4 угла рамки обрезки двигаются полностью независимо — перетаскивание одного угла не влияет на остальные, что выпрямляет перекошенный документ, как в приложении-сканере. В модуле подписи можно свободно перемещать подпись на каждой странице, закреплять её кнопкой «Подтвердить» и снова свободно размещать на следующей странице.",
+  mm_crop_title: "🖼️ Обрезка Pro", mm_crop_desc: "Загрузите изображение или PDF — все 4 угла двигаются полностью независимо, выпрямляя перекошенное фото как настоящий сканер.",
+  mm_sign_title: "✍️ Подпись и подписание PDF", mm_sign_desc: "Нарисуйте подпись, добавьте её на изображение или многостраничный PDF, просмотрите результат, затем поделитесь в WhatsApp или скачайте как PDF.", mm_open: "Открыть",
+  crop_drop_title: "Загрузить изображение или PDF", crop_drop_desc: "Обрезка открывается автоматически после загрузки. Перетаскивайте 4 угла независимо, чтобы выпрямить перекошенный документ.",
+  crop_btn_crop: "✂️ Обрезать", crop_btn_generate: "⬇ Создать PDF A4, просмотреть и поделиться", crop_btn_generating: "Подготовка…",
+  crop_modal_title: "✂️ Независимая 4-точечная перспективная обрезка", crop_modal_subtitle: "Все 4 угла полностью независимы. Также можно перетащить полосу в середине верхнего/нижнего/левого/правого края, чтобы выровнять всю эту сторону сразу",
+  crop_cancel: "Отмена", crop_reset: "Сбросить", crop_confirm: "✓ Обрезать", crop_confirming: "Обработка…",
+  crop_preview_title: "👁️ Предпросмотр обрезки — чётко и ярко", crop_edit: "✏️ Изменить", crop_share_pdf: "📄 Поделиться / скачать PDF", crop_share_whatsapp: "🟢 Поделиться в WhatsApp",
+  crop_preview_help: "Если результат не нравится, нажмите «Изменить», чтобы вернуться и снова настроить углы. Кнопки «Поделиться» открывают меню общего доступа телефона — выберите там WhatsApp.",
+  crop_combined_title: "Обрезанные страницы — предпросмотр",
+  msg_loading: "Загрузка…", msg_pdf_read_fail: "✗ Не удалось прочитать PDF: ", msg_processing: "Обработка…", msg_crop_first: "Сначала обрежьте хотя бы одну страницу.",
+  sign_step1: "1. Нарисуйте подпись", sign_thickness: "Толщина", sign_clear: "Очистить", sign_ready: "✓ Подпись готова",
+  sign_step2: "2. Разместить на документе (изображение или PDF)", sign_upload_doc: "📄 Загрузить документ (JPG, PNG или PDF)", sign_upload_help: "В многостраничных PDF можно переходить постранично и размещать отдельную подпись на каждой странице",
+  sign_prev_page: "← Предыдущая страница", sign_next_page: "Следующая страница →", sign_page_of: "Страница {cur} / {total}",
+  sign_page_signed: "✓ Эта страница подписана", sign_page_unsigned: "Не подписана", sign_change_doc: "Изменить документ",
+  sign_paste_sig: "✍️ Вставить подпись на эту страницу", sign_remove_sig: "Удалить подпись с этой страницы",
+  sign_lock: "✓ Подтвердить", sign_edit_placement: "✏️ Изменить",
+  sign_preview_share: "👁️ Просмотр, поделиться или скачать", sign_preparing: "Подготовка…",
+  sign_multi_help: "После вставки подписи нажмите «Подтвердить», чтобы закрепить её, затем перейдите на следующую страницу кнопкой «Следующая страница →» выше и вставьте подпись там же. По завершении нажмите «Просмотр, поделиться или скачать».",
+  sign_draw_first: "Сначала нарисуйте подпись выше.", sig_overlay_label: "✓ Подпись — перетащить/изменить размер", sign_locked_label: "✓ Подпись закреплена",
+  sign_preview_title: "Подписанный документ — предпросмотр", sign_place_first_msg: "Сначала нарисуйте подпись и загрузите документ.", sign_doc_read_fail: "✗ Не удалось прочитать документ: ",
+  psp_back: "✕ Вернуться к редактированию", psp_share_pdf: "📄 Поделиться / скачать PDF", psp_whatsapp: "🟢 Поделиться в WhatsApp",
+  psp_preparing: "Подготовка…", psp_shared: "✓ Отправлено", psp_downloaded: "✓ Скачано",
+  psp_prev: "← Назад", psp_next: "Далее →", psp_page_of: "Страница {cur} / {total}",
+  psp_help: "Просмотрев все страницы, вы можете поделиться или скачать файл с помощью кнопок выше. Если результат не нравится, нажмите «Вернуться к редактированию», чтобы внести изменения.",
+},
+};
+
+const LangContext = createContext(null);
+function useLang() { return useContext(LangContext); }
+
+function LangProvider({ children }) {
+  const [lang, setLang] = useState("ja");
+  const t = useCallback((key) => {
+    const dict = translations[lang] || translations.ja;
+    return dict[key] !== undefined ? dict[key] : (translations.ja[key] !== undefined ? translations.ja[key] : key);
+  }, [lang]);
+  const tf = useCallback((key, vals) => {
+    let s = t(key);
+    if (vals) Object.keys(vals).forEach((k) => { s = s.split("{" + k + "}").join(vals[k]); });
+    return s;
+  }, [t]);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, [lang]);
+  return <LangContext.Provider value={{ lang, setLang, t, tf }}>{children}</LangContext.Provider>;
+}
+
+function LangSelect({ compact }) {
+  const { lang, setLang, t } = useLang();
+  return (
+    <select
+      value={lang}
+      onChange={(e) => setLang(e.target.value)}
+      title={t("nav_lang")}
+      style={{ borderRadius: 8, background: C.panel2, border: `1px solid ${C.border}`, color: "#fff", fontSize: 12, padding: "8px 6px", cursor: "pointer", flexShrink: 0, maxWidth: compact ? 88 : undefined }}
+    >
+      {LANGS.map((l) => <option key={l.code} value={l.code} style={{ background: C.panel }}>{l.name}</option>)}
+    </select>
+  );
+}
+
+// ---------------- shared loaders ----------------
+function loadScript(src, checkGlobal) {
+  return new Promise((resolve, reject) => {
+    if (checkGlobal()) { resolve(); return; }
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("Yüklenemedi: " + src)));
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = src;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error("Yüklenemedi: " + src));
+    document.head.appendChild(s);
+  });
+}
+
+function loadPdfLib() {
+  return loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js", () => !!window.PDFLib).then(() => window.PDFLib);
+}
+
+function loadPdfJs() {
+  return loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js", () => !!window.pdfjsLib).then(() => {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    return window.pdfjsLib;
+  });
+}
+
+async function pdfFileToPages(file, scale = 2) {
+  const pdfjsLib = await loadPdfJs();
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const pages = [];
+  for (let p = 1; p <= pdf.numPages; p++) {
+    const page = await pdf.getPage(p);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement("canvas");
+    canvas.width = viewport.width; canvas.height = viewport.height;
+    const ctx = canvas.getContext("2d");
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    pages.push({ dataUrl: canvas.toDataURL("image/png"), width: canvas.width, height: canvas.height });
+  }
+  return pages;
+}
+
+function loadImage(file) {
+  return new Promise((resolve) => {
+    const r = new FileReader();
+    r.onload = (e) => {
+      const img = new Image();
+      img.onload = () => resolve({ img, dataUrl: e.target.result });
+      img.src = e.target.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+
+function loadImageFromSrc(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.src = src;
+  });
+}
+
+// ---------------- perspective (4-point) warp math ----------------
+function solveLinear8(A, B) {
+  const n = 8;
+  const M = A.map((row, i) => [...row, B[i]]);
+  for (let col = 0; col < n; col++) {
+    let piv = col;
+    for (let r = col + 1; r < n; r++) if (Math.abs(M[r][col]) > Math.abs(M[piv][col])) piv = r;
+    [M[col], M[piv]] = [M[piv], M[col]];
+    const pv = M[col][col] || 1e-9;
+    for (let c = col; c <= n; c++) M[col][c] /= pv;
+    for (let r = 0; r < n; r++) {
+      if (r === col) continue;
+      const f = M[r][col];
+      for (let c = col; c <= n; c++) M[r][c] -= f * M[col][c];
+    }
+  }
+  return M.map((row) => row[n]);
+}
+
+function computeHomography(src, dst) {
+  const A = [], B = [];
+  for (let i = 0; i < 4; i++) {
+    const { x: sx, y: sy } = src[i];
+    const { x: dx, y: dy } = dst[i];
+    A.push([sx, sy, 1, 0, 0, 0, -sx * dx, -sy * dx]); B.push(dx);
+    A.push([0, 0, 0, sx, sy, 1, -sx * dy, -sy * dy]); B.push(dy);
+  }
+  const h = solveLinear8(A, B);
+  return [h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], 1];
+}
+
+function applyH(H, x, y) {
+  const w = H[6] * x + H[7] * y + H[8];
+  return { x: (H[0] * x + H[1] * y + H[2]) / w, y: (H[3] * x + H[4] * y + H[5]) / w };
+}
+
+function quadOutputSize(quadSrc, maxDim = 1700) {
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  const topLen = dist(quadSrc[0], quadSrc[1]);
+  const bottomLen = dist(quadSrc[3], quadSrc[2]);
+  const leftLen = dist(quadSrc[0], quadSrc[3]);
+  const rightLen = dist(quadSrc[1], quadSrc[2]);
+  let w = Math.max(20, Math.round((topLen + bottomLen) / 2));
+  let h = Math.max(20, Math.round((leftLen + rightLen) / 2));
+  if (w > maxDim || h > maxDim) {
+    const s = maxDim / Math.max(w, h);
+    w = Math.round(w * s); h = Math.round(h * s);
+  }
+  return { w, h };
+}
+
+function warpQuadToRect(imgEl, quadSrc, outW, outH) {
+  const srcCanvas = document.createElement("canvas");
+  srcCanvas.width = imgEl.naturalWidth || imgEl.width;
+  srcCanvas.height = imgEl.naturalHeight || imgEl.height;
+  const sctx = srcCanvas.getContext("2d");
+  sctx.drawImage(imgEl, 0, 0);
+  const sw = srcCanvas.width, sh = srcCanvas.height;
+  const srcData = sctx.getImageData(0, 0, sw, sh);
+  const sd = srcData.data;
+
+  const outRect = [{ x: 0, y: 0 }, { x: outW, y: 0 }, { x: outW, y: outH }, { x: 0, y: outH }];
+  const H = computeHomography(outRect, quadSrc);
+
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = outW; outCanvas.height = outH;
+  const outCtx = outCanvas.getContext("2d");
+  const outData = outCtx.createImageData(outW, outH);
+  const od = outData.data;
+
+  for (let y = 0; y < outH; y++) {
+    for (let x = 0; x < outW; x++) {
+      const p = applyH(H, x + 0.5, y + 0.5);
+      const oi = (y * outW + x) * 4;
+      if (p.x < 0 || p.y < 0 || p.x >= sw - 1 || p.y >= sh - 1) {
+        od[oi] = 255; od[oi + 1] = 255; od[oi + 2] = 255; od[oi + 3] = 255;
+        continue;
+      }
+      const x0 = Math.floor(p.x), y0 = Math.floor(p.y);
+      const fx = p.x - x0, fy = p.y - y0;
+      const i00 = (y0 * sw + x0) * 4, i10 = (y0 * sw + x0 + 1) * 4;
+      const i01 = ((y0 + 1) * sw + x0) * 4, i11 = ((y0 + 1) * sw + x0 + 1) * 4;
+      for (let c = 0; c < 4; c++) {
+        const top = sd[i00 + c] * (1 - fx) + sd[i10 + c] * fx;
+        const bot = sd[i01 + c] * (1 - fx) + sd[i11 + c] * fx;
+        od[oi + c] = top * (1 - fy) + bot * fy;
+      }
+    }
+  }
+  outCtx.putImageData(outData, 0, 0);
+
+  const finalCanvas = document.createElement("canvas");
+  finalCanvas.width = outW; finalCanvas.height = outH;
+  const fctx = finalCanvas.getContext("2d");
+  fctx.filter = "contrast(1.14) saturate(1.28) brightness(1.03)";
+  fctx.drawImage(outCanvas, 0, 0);
+  return finalCanvas.toDataURL("image/png");
+}
+
+async function buildSinglePageA4Pdf(dataUrl) {
+  const PDFLib = await loadPdfLib();
+  const { PDFDocument } = PDFLib;
+  const doc = await PDFDocument.create();
+  const A4W = 595.28, A4H = 841.89;
+  const bytes = await (await fetch(dataUrl)).arrayBuffer();
+  const png = await doc.embedPng(bytes);
+  const page = doc.addPage([A4W, A4H]);
+  const margin = 24;
+  const maxW = A4W - margin * 2, maxH = A4H - margin * 2;
+  const scale = Math.min(maxW / png.width, maxH / png.height);
+  const w = png.width * scale, h = png.height * scale;
+  page.drawRectangle({ x: 0, y: 0, width: A4W, height: A4H, color: { type: "RGB", red: 1, green: 1, blue: 1 } });
+  page.drawImage(png, { x: (A4W - w) / 2, y: (A4H - h) / 2, width: w, height: h });
+  const outBytes = await doc.save();
+  return new Blob([outBytes], { type: "application/pdf" });
+}
+
+async function shareOrDownload(blob, filename, mime) {
+  try {
+    const file = new File([blob], filename, { type: mime });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: filename });
+      return "shared";
+    }
+  } catch (e) {
+    if (e && e.name === "AbortError") return "cancelled";
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 8000);
+  return "downloaded";
+}
+
+function PagedSharePreview({ images, buildBlob, defaultFilename, title, onClose }) {
+  const { t } = useLang();
+  const [idx, setIdx] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  const share = async () => {
+    setBusy(true); setMsg(t("psp_preparing"));
+    try {
+      const { blob, filename, mime } = await buildBlob();
+      const r = await shareOrDownload(blob, filename || defaultFilename, mime);
+      setMsg(r === "shared" ? t("psp_shared") : r === "downloaded" ? t("psp_downloaded") : "");
+    } catch (e) {
+      setMsg("✗ " + e.message);
+    }
+    setBusy(false);
+  };
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 7000, display: "flex", flexDirection: "column", background: "#000" }}>
+      <div style={{ borderBottom: `1px solid ${C.border}`, background: C.panel, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <b style={{ fontSize: 13, color: "#fff" }}>👁️ {title}</b>
+          <button onClick={onClose} style={btn(C.panel2)}>{t("psp_back")}</button>
+        </div>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button disabled={busy} onClick={share} style={{ flex: 1, borderRadius: 12, background: C.lime, border: "none", padding: "13px 0", fontWeight: 800, fontSize: 13, color: "#000", cursor: "pointer", opacity: busy ? 0.6 : 1 }}>
+            {t("psp_share_pdf")}
+          </button>
+          <button disabled={busy} onClick={share} style={{ flex: 1, borderRadius: 12, background: "#25D366", border: "none", padding: "13px 0", fontWeight: 800, fontSize: 13, color: "#04250f", cursor: "pointer", opacity: busy ? 0.6 : 1 }}>
+            {t("psp_whatsapp")}
+          </button>
+        </div>
+        {msg && <div style={{ fontSize: 12, color: C.teal }}>{msg}</div>}
+      </div>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 16, overflow: "auto", background: "#1c1c26" }}>
+        {images.length > 1 && (
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+            <button disabled={idx === 0} onClick={() => setIdx((p) => Math.max(0, p - 1))} style={{ ...btn(C.panel2), opacity: idx === 0 ? 0.4 : 1 }}>{t("psp_prev")}</button>
+            <span style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>{t("psp_page_of").split("{cur}").join(idx + 1).split("{total}").join(images.length)}</span>
+            <button disabled={idx === images.length - 1} onClick={() => setIdx((p) => Math.min(images.length - 1, p + 1))} style={{ ...btn(C.panel2), opacity: idx === images.length - 1 ? 0.4 : 1 }}>{t("psp_next")}</button>
+          </div>
+        )}
+        <img src={images[idx]} alt={`page-${idx + 1}`} style={{ maxWidth: "100%", maxHeight: "68vh", borderRadius: 6, boxShadow: "0 10px 40px rgba(0,0,0,0.5)", background: "#fff" }} />
+        <div style={{ fontSize: 10.5, color: C.muted, marginTop: 12, textAlign: "center", maxWidth: 360, lineHeight: 1.5 }}>
+          {t("psp_help")}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------- Nav ----------------
+function Nav({ screen, setScreen }) {
+  const { t } = useLang();
+  return (
+    <div style={{ position: "sticky", top: 0, zIndex: 30, display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: `1px solid ${C.border}`, background: "rgba(10,10,15,0.9)", backdropFilter: "blur(20px)", padding: "12px 16px", gap: 8, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+        <button
+          onClick={() => { window.location.href = "online-pdf-suite.html"; }}
+          title={t("nav_home_title")}
+          style={{ ...btn(C.panel2), display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}
+        >
+          {t("nav_home")}
+        </button>
+        <div style={{ height: 32, width: 32, borderRadius: 8, background: C.lime, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#000", flexShrink: 0 }}>P</div>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: 13, fontWeight: 800, whiteSpace: "nowrap" }}>{t("nav_title")}</div>
+          <div style={{ fontSize: 10, color: C.muted, letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap" }}>{t("nav_subtitle")}</div>
+        </div>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+        <LangSelect compact ></LangSelect>
+        {screen !== "main" && <button onClick={() => setScreen("main")} style={btn(C.panel2)}>{t("nav_menu")}</button>}
+      </div>
+    </div>
+  );
+}
+
+// ---------------- Main Menu ----------------
+function MainMenu({ setScreen }) {
+  const { t } = useLang();
+  const cards = [
+    { id: "crop", title: t("mm_crop_title"), desc: t("mm_crop_desc"), accent: C.lime },
+    { id: "sign", title: t("mm_sign_title"), desc: t("mm_sign_desc"), accent: C.teal },
+  ];
+  return (
+    <div style={{ maxWidth: 920, margin: "0 auto", padding: 16 }}>
+      <div style={{ borderRadius: 20, border: `1px solid ${C.border}`, background: C.panel, padding: 24 }}>
+        <h1 style={{ fontSize: 24, fontWeight: 800, margin: 0 }}>{t("mm_title")}</h1>
+        <p style={{ marginTop: 8, color: C.muted, fontSize: 14, maxWidth: 560, lineHeight: 1.6 }}>
+          {t("mm_desc")}
+        </p>
+        <div style={{ marginTop: 24, display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))" }}>
+          {cards.map((c) => (
+            <div key={c.id} onClick={() => setScreen(c.id)} style={{ cursor: "pointer", borderRadius: 16, border: `1px solid ${C.border}`, background: C.panel2, padding: 16 }}>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>{c.title}</div>
+              <div style={{ marginTop: 4, fontSize: 12, color: C.muted, minHeight: 40, lineHeight: 1.5 }}>{c.desc}</div>
+              <button style={{ marginTop: 12, width: "100%", borderRadius: 12, padding: "12px 0", fontWeight: 800, fontSize: 13, color: "#000", background: c.accent, border: "none", cursor: "pointer" }}>{t("mm_open")}</button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------- Corner handle (perspective quad) ----------------
+function CornerHandle({ x, y, onDown, active }) {
+  const size = 32;
+  return (
+    <div
+      onPointerDown={onDown}
+      style={{
+        position: "absolute", left: x - size / 2, top: y - size / 2, width: size, height: size,
+        borderRadius: "50%", background: active ? C.teal : C.lime, border: "3px solid #000",
+        touchAction: "none", cursor: "grab", boxShadow: "0 2px 8px rgba(0,0,0,0.5)", zIndex: 2
+      }}
+    ></div>
+  );
+}
+
+function EdgeHandle({ x, y, orientation, onDown, active }) {
+  const isH = orientation === "h";
+  const w = isH ? 48 : 20;
+  const h = isH ? 20 : 48;
+  return (
+    <div
+      onPointerDown={onDown}
+      style={{
+        position: "absolute", left: x - w / 2, top: y - h / 2, width: w, height: h,
+        borderRadius: 10, background: active ? C.teal : "rgba(200,245,66,0.85)", border: "2px solid #000",
+        touchAction: "none", cursor: "move", zIndex: 2
+      }}
+    ></div>
+  );
+}
+
+// ---------------- Crop Module (true independent 4-point perspective crop) ----------------
+function CropModule() {
+  const { t } = useLang();
+  const [files, setFiles] = useState([]);
+  const [active, setActive] = useState(null);
+  const [autoOpenIndex, setAutoOpenIndex] = useState(null);
+  const [img, setImg] = useState(null);
+  const [natural, setNatural] = useState({ w: 0, h: 0 });
+  const [disp, setDisp] = useState({ w: 0, h: 0 });
+  const [corners, setCorners] = useState(null);
+  const [activeHandle, setActiveHandle] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [previewIndex, setPreviewIndex] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewBusy, setPreviewBusy] = useState(false);
+  const [previewMsg, setPreviewMsg] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [combinedPreviewImages, setCombinedPreviewImages] = useState(null);
+  const [showCombinedPreview, setShowCombinedPreview] = useState(false);
+  const dragRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const stageRef = useRef(null);
+
+  const edgeDefs = [
+    { key: "top", a: 0, b: 1, orientation: "h" },
+    { key: "right", a: 1, b: 2, orientation: "v" },
+    { key: "bottom", a: 2, b: 3, orientation: "h" },
+    { key: "left", a: 3, b: 0, orientation: "v" },
+  ];
+
+  useEffect(() => { loadPdfLib().catch(() => {}); loadPdfJs().catch(() => {}); }, []);
+
+  const defaultCorners = (dw, dh) => ([
+    { x: dw * 0.06, y: dh * 0.06 },
+    { x: dw * 0.94, y: dh * 0.06 },
+    { x: dw * 0.94, y: dh * 0.94 },
+    { x: dw * 0.06, y: dh * 0.94 },
+  ]);
+
+  const addFiles = async (list) => {
+    const arr = Array.from(list).filter((f) => f.type.startsWith("image/") || f.type === "application/pdf");
+    if (!arr.length) return;
+    setMsg(t("msg_loading"));
+    const newEntries = [];
+    for (const f of arr) {
+      if (f.type === "application/pdf") {
+        try {
+          const pages = await pdfFileToPages(f);
+          pages.forEach((pg, i) => newEntries.push({ label: `${f.name} • ${i + 1}/${pages.length}`, dataUrl: pg.dataUrl, croppedUrl: null }));
+        } catch (e) {
+          setMsg(t("msg_pdf_read_fail") + e.message);
+        }
+      } else {
+        newEntries.push({ label: f.name, file: f, croppedUrl: null });
+      }
+    }
+    setMsg("");
+    if (!newEntries.length) return;
+    setFiles((prev) => {
+      const startIdx = prev.length;
+      setTimeout(() => setAutoOpenIndex(startIdx), 0);
+      return [...prev, ...newEntries];
+    });
+  };
+
+  const openCrop = useCallback(async (idx) => {
+    setFiles((cur) => {
+      (async () => {
+        const entry = cur[idx];
+        if (!entry) return;
+        let im;
+        if (entry.file) {
+          const res = await loadImage(entry.file);
+          im = res.img;
+        } else {
+          im = await loadImageFromSrc(entry.dataUrl);
+        }
+        const maxW = Math.min(window.innerWidth * 0.92, 760);
+        const maxH = window.innerHeight * 0.55;
+        const scale = Math.min(maxW / im.width, maxH / im.height, 1);
+        const dw = im.width * scale, dh = im.height * scale;
+        setImg(im);
+        setNatural({ w: im.width, h: im.height });
+        setDisp({ w: dw, h: dh });
+        setCorners(defaultCorners(dw, dh));
+        setActive(idx);
+      })();
+      return cur;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (autoOpenIndex !== null && files[autoOpenIndex]) {
+      openCrop(autoOpenIndex);
+      setAutoOpenIndex(null);
+    }
+  }, [autoOpenIndex, files, openCrop]);
+
+  const onCornerDown = (e, idx) => {
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setActiveHandle("corner-" + idx);
+    dragRef.current = { type: "corner", idx, startX: e.clientX, startY: e.clientY, corner: { ...corners[idx] } };
+  };
+
+  const onEdgeDown = (e, def) => {
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setActiveHandle("edge-" + def.key);
+    dragRef.current = {
+      type: "edge", a: def.a, b: def.b, startX: e.clientX, startY: e.clientY,
+      cornerA: { ...corners[def.a] }, cornerB: { ...corners[def.b] },
+    };
+  };
+
+  useEffect(() => {
+    const move = (e) => {
+      const d = dragRef.current;
+      if (!d) return;
+      const dx = e.clientX - d.startX, dy = e.clientY - d.startY;
+      const clampX = (v) => Math.max(0, Math.min(v, disp.w));
+      const clampY = (v) => Math.max(0, Math.min(v, disp.h));
+      if (d.type === "corner") {
+        const nx = clampX(d.corner.x + dx);
+        const ny = clampY(d.corner.y + dy);
+        setCorners((prev) => {
+          if (!prev) return prev;
+          const copy = prev.map((c) => ({ ...c }));
+          copy[d.idx] = { x: nx, y: ny };
+          return copy;
+        });
+      } else if (d.type === "edge") {
+        const naX = clampX(d.cornerA.x + dx), naY = clampY(d.cornerA.y + dy);
+        const nbX = clampX(d.cornerB.x + dx), nbY = clampY(d.cornerB.y + dy);
+        setCorners((prev) => {
+          if (!prev) return prev;
+          const copy = prev.map((c) => ({ ...c }));
+          copy[d.a] = { x: naX, y: naY };
+          copy[d.b] = { x: nbX, y: nbY };
+          return copy;
+        });
+      }
+    };
+    const up = () => { dragRef.current = null; setActiveHandle(null); };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    return () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+  }, [disp]);
+
+  const resetFrame = () => setCorners(defaultCorners(disp.w, disp.h));
+
+  const confirmCrop = async () => {
+    if (!img || !corners) return;
+    setBusy(true); setMsg(t("msg_processing"));
+    try {
+      const scaleX = natural.w / disp.w, scaleY = natural.h / disp.h;
+      const quadSrc = corners.map((c) => ({ x: c.x * scaleX, y: c.y * scaleY }));
+      const { w: outW, h: outH } = quadOutputSize(quadSrc);
+      await new Promise((r) => setTimeout(r, 30));
+      const url = warpQuadToRect(img, quadSrc, outW, outH);
+      setFiles((prev) => {
+        const copy = [...prev];
+        copy[active] = { ...copy[active], croppedUrl: url };
+        return copy;
+      });
+      setPreview(url);
+      setPreviewIndex(active);
+      setActive(null);
+      setShowPreview(true);
+      setPreviewMsg("");
+      setMsg("");
+    } catch (e) {
+      setMsg("✗ " + e.message);
+    }
+    setBusy(false);
+  };
+
+  const removeFile = (idx) => setFiles((prev) => prev.filter((_, i) => i !== idx));
+
+  const openCombinedPreview = () => {
+    const ready = files.filter((f) => f.croppedUrl);
+    if (!ready.length) { setMsg(t("msg_crop_first")); return; }
+    setCombinedPreviewImages(ready.map((f) => f.croppedUrl));
+    setShowCombinedPreview(true);
+    setMsg("");
+  };
+
+  const buildCropPdfBlob = async () => {
+    const ready = files.filter((f) => f.croppedUrl);
+    const PDFLib = await loadPdfLib();
+    const { PDFDocument } = PDFLib;
+    const doc = await PDFDocument.create();
+    const A4W = 595.28, A4H = 841.89;
+    for (const f of ready) {
+      const bytes = await (await fetch(f.croppedUrl)).arrayBuffer();
+      const png = await doc.embedPng(bytes);
+      const page = doc.addPage([A4W, A4H]);
+      const margin = 24;
+      const maxW = A4W - margin * 2, maxH = A4H - margin * 2;
+      const scale = Math.min(maxW / png.width, maxH / png.height);
+      const w = png.width * scale, h = png.height * scale;
+      page.drawRectangle({ x: 0, y: 0, width: A4W, height: A4H, color: { type: "RGB", red: 1, green: 1, blue: 1 } });
+      page.drawImage(png, { x: (A4W - w) / 2, y: (A4H - h) / 2, width: w, height: h });
+    }
+    const bytes = await doc.save();
+    return { blob: new Blob([bytes], { type: "application/pdf" }), filename: "belge-a4.pdf", mime: "application/pdf" };
+  };
+
+  return (
+    <div style={{ maxWidth: 900, margin: "0 auto", padding: 16 }}>
+      <div style={{ borderRadius: 16, border: `1px solid ${C.border}`, background: C.panel, padding: 16 }}>
+        <div
+          onClick={() => fileInputRef.current?.click()}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => { e.preventDefault(); addFiles(e.dataTransfer.files); }}
+          style={{ cursor: "pointer", borderRadius: 12, border: `2px dashed ${C.border}`, padding: 28, textAlign: "center" }}
+        >
+          <div style={{ fontSize: 24 }}>📂</div>
+          <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600 }}>{t("crop_drop_title")}</div>
+          <div style={{ fontSize: 11, color: C.muted, marginTop: 4 }}>{t("crop_drop_desc")}</div>
+          <input ref={fileInputRef} type="file" accept="image/*,application/pdf" multiple style={{ display: "none" }} onChange={(e) => e.target.files && addFiles(e.target.files)} />
+        </div>
+
+        <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+          {files.map((f, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderRadius: 12, background: C.panel2, border: `1px solid ${C.border}`, padding: "10px 12px" }}>
+              <div style={{ fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", paddingRight: 8 }}>
+                {f.croppedUrl ? "✓ " : ""}{f.label}
+              </div>
+              <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+                <button onClick={() => openCrop(i)} style={{ borderRadius: 8, background: C.lime, color: "#000", fontWeight: 700, fontSize: 12, padding: "6px 12px", border: "none", cursor: "pointer" }}>{t("crop_btn_crop")}</button>
+                {f.croppedUrl && <button onClick={() => { setPreview(f.croppedUrl); setPreviewIndex(i); setShowPreview(true); setPreviewMsg(""); }} style={{ borderRadius: 8, background: C.panel, border: `1px solid ${C.border}`, fontSize: 12, padding: "6px 10px", color: "#fff", cursor: "pointer" }}>👁</button>}
+                <button onClick={() => removeFile(i)} style={{ borderRadius: 8, background: C.bg, border: `1px solid ${C.border}`, fontSize: 12, padding: "6px 10px", color: "#fff", cursor: "pointer" }}>✕</button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button disabled={busy} onClick={openCombinedPreview} style={{ marginTop: 16, width: "100%", borderRadius: 12, padding: "14px 0", fontWeight: 800, fontSize: 14, color: "#000", background: C.lime, border: "none", cursor: "pointer", opacity: busy ? 0.5 : 1 }}>
+          {busy ? t("crop_btn_generating") : t("crop_btn_generate")}
+        </button>
+        {msg && <div style={{ marginTop: 8, fontSize: 12, color: C.lime }}>{msg}</div>}
+      </div>
+
+      {active !== null && img && corners && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 5000, display: "flex", flexDirection: "column", background: "#000" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: `1px solid ${C.border}`, background: C.panel, padding: "12px 16px" }}>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{t("crop_modal_title")}</div>
+              <div style={{ fontSize: 11, color: C.muted }}>{t("crop_modal_subtitle")}</div>
+            </div>
+            <button onClick={() => setActive(null)} style={btn(C.panel2)}>✕</button>
+          </div>
+          <div ref={stageRef} style={{ flex: 1, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#050507", touchAction: "none" }}>
+            <div style={{ position: "relative", width: disp.w, height: disp.h, lineHeight: 0 }}>
+              <img src={img.src} alt="crop" draggable={false} style={{ display: "block", width: disp.w, height: disp.h, userSelect: "none" }} />
+              <svg width={disp.w} height={disp.h} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
+                <polygon
+                  points={corners.map((c) => `${c.x},${c.y}`).join(" ")}
+                  fill="rgba(200,245,66,0.15)"
+                  stroke={C.lime}
+                  strokeWidth="2"
+                />
+              </svg>
+              {edgeDefs.map((def) => {
+                const a = corners[def.a], b = corners[def.b];
+                const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+                return (
+                  <EdgeHandle
+                    key={def.key}
+                    x={mx} y={my}
+                    orientation={def.orientation}
+                    active={activeHandle === "edge-" + def.key}
+                    onDown={(e) => onEdgeDown(e, def)}
+                  />
+                );
+              })}
+              {corners.map((c, i) => (
+                <CornerHandle key={i} x={c.x} y={c.y} active={activeHandle === "corner-" + i} onDown={(e) => onCornerDown(e, i)} />
+              ))}
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 8, borderTop: `1px solid ${C.border}`, background: C.panel, padding: 12 }}>
+            <button onClick={() => setActive(null)} style={{ flex: 1, borderRadius: 12, background: C.panel2, border: `1px solid ${C.border}`, padding: "12px 0", color: "#fff", fontSize: 14, cursor: "pointer" }}>{t("crop_cancel")}</button>
+            <button onClick={resetFrame} style={{ flex: 1, borderRadius: 12, background: C.panel2, border: `1px solid ${C.border}`, padding: "12px 0", color: "#fff", fontSize: 14, cursor: "pointer" }}>{t("crop_reset")}</button>
+            <button disabled={busy} onClick={confirmCrop} style={{ flex: 2, borderRadius: 12, background: C.lime, border: "none", padding: "12px 0", color: "#000", fontWeight: 800, fontSize: 14, cursor: "pointer", opacity: busy ? 0.6 : 1 }}>{busy ? t("crop_confirming") : t("crop_confirm")}</button>
+          </div>
+        </div>
+      )}
+
+      {showPreview && preview && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 6000, display: "flex", flexDirection: "column", background: "#c9c9d2" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: `1px solid ${C.border}`, background: C.panel, padding: "12px 16px", color: "#fff" }}>
+            <b style={{ fontSize: 13 }}>{t("crop_preview_title")}</b>
+            <button onClick={() => setShowPreview(false)} style={btn(C.panel2)}>✕</button>
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: 20, background: "radial-gradient(ellipse at center, #dcdce2 0%, #a6a6b4 100%)" }}>
+            <div style={{ width: "100%", maxWidth: 420, background: "#fff", borderRadius: 3, padding: 12, boxShadow: "0 20px 60px rgba(0,0,0,0.45), 0 2px 10px rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <img src={preview} alt="preview" style={{ maxWidth: "100%", maxHeight: "70vh", filter: "contrast(1.02)" }} />
+            </div>
+          </div>
+          <div style={{ borderTop: `1px solid ${C.border}`, background: C.panel, padding: 14, display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                onClick={() => { setShowPreview(false); if (previewIndex !== null) openCrop(previewIndex); }}
+                style={{ borderRadius: 12, background: C.panel2, border: `1px solid ${C.border}`, padding: "13px 16px", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}
+              >
+                {t("crop_edit")}
+              </button>
+              <button
+                disabled={previewBusy}
+                onClick={async () => {
+                  setPreviewBusy(true); setPreviewMsg(t("sign_preparing"));
+                  try {
+                    const blob = await buildSinglePageA4Pdf(preview);
+                    const r = await shareOrDownload(blob, "kirpilan-sayfa.pdf", "application/pdf");
+                    setPreviewMsg(r === "shared" ? t("psp_shared") : r === "downloaded" ? t("psp_downloaded") : "");
+                  } catch (e) { setPreviewMsg("✗ " + e.message); }
+                  setPreviewBusy(false);
+                }}
+                style={{ flex: 1, borderRadius: 12, background: C.lime, border: "none", padding: "13px 0", fontWeight: 800, fontSize: 13, color: "#000", cursor: "pointer", opacity: previewBusy ? 0.6 : 1 }}
+              >
+                {t("crop_share_pdf")}
+              </button>
+              <button
+                disabled={previewBusy}
+                onClick={async () => {
+                  setPreviewBusy(true); setPreviewMsg(t("sign_preparing"));
+                  try {
+                    const blob = await buildSinglePageA4Pdf(preview);
+                    const r = await shareOrDownload(blob, "kirpilan-sayfa.pdf", "application/pdf");
+                    setPreviewMsg(r === "shared" ? t("psp_shared") : r === "downloaded" ? t("psp_downloaded") : "");
+                  } catch (e) { setPreviewMsg("✗ " + e.message); }
+                  setPreviewBusy(false);
+                }}
+                style={{ flex: 1, borderRadius: 12, background: "#25D366", border: "none", padding: "13px 0", fontWeight: 800, fontSize: 13, color: "#04250f", cursor: "pointer", opacity: previewBusy ? 0.6 : 1 }}
+              >
+                {t("crop_share_whatsapp")}
+              </button>
+            </div>
+            <div style={{ fontSize: 10.5, color: C.muted, lineHeight: 1.5 }}>
+              {t("crop_preview_help")}
+            </div>
+            {previewMsg && <div style={{ fontSize: 12, color: "#0a0a0f", fontWeight: 700 }}>{previewMsg}</div>}
+          </div>
+        </div>
+      )}
+
+      {showCombinedPreview && combinedPreviewImages && (
+        <PagedSharePreview
+          images={combinedPreviewImages}
+          buildBlob={buildCropPdfBlob}
+          defaultFilename="belge-a4.pdf"
+          title={t("crop_combined_title")}
+          onClose={() => setShowCombinedPreview(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ---------------- Sign Module ----------------
+function SignModule() {
+  const { t } = useLang();
+  const [color, setColor] = useState("#0a0a0f");
+  const [thickness, setThickness] = useState(3);
+  const canvasRef = useRef(null);
+  const drawState = useRef({ drawing: false, lx: 0, ly: 0 });
+  const [sig, setSig] = useState(null);
+
+  const [pages, setPages] = useState([]);
+  const [pageIdx, setPageIdx] = useState(0);
+  const [sourceIsPdf, setSourceIsPdf] = useState(false);
+  const [docDisp, setDocDisp] = useState({ w: 0, h: 0 });
+  const stageRef = useRef(null);
+
+  // placements keyed by page index, fractional coords 0..1, plus a "locked" flag.
+  // When locked=true the signature is fixed in place (no drag handles) until the user unlocks it again.
+  const [placements, setPlacements] = useState({});
+  const dragRef = useRef(null);
+  const docInputRef = useRef(null);
+
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [previewImages, setPreviewImages] = useState(null);
+  const [showSignPreview, setShowSignPreview] = useState(false);
+
+  useEffect(() => { loadPdfLib().catch(() => {}); loadPdfJs().catch(() => {}); }, []);
+
+  const setupCanvas = useCallback(() => {
+    const c = canvasRef.current;
+    if (!c) return;
+    const dpr = window.devicePixelRatio || 1;
+    const width = c.parentElement.clientWidth;
+    c.width = width * dpr; c.height = 220 * dpr;
+    c.style.width = width + "px"; c.style.height = "220px";
+    const ctx = c.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, width, 220);
+    ctx.lineCap = "round"; ctx.lineJoin = "round";
+  }, []);
+
+  useEffect(() => { setupCanvas(); }, [setupCanvas]);
+
+  const onDown = (e) => {
+    const c = canvasRef.current;
+    c.setPointerCapture(e.pointerId);
+    const r = c.getBoundingClientRect();
+    drawState.current = { drawing: true, lx: e.clientX - r.left, ly: e.clientY - r.top };
+  };
+  const onMove = (e) => {
+    if (!drawState.current.drawing) return;
+    const c = canvasRef.current;
+    const ctx = c.getContext("2d");
+    const r = c.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    ctx.strokeStyle = color; ctx.lineWidth = thickness;
+    ctx.beginPath(); ctx.moveTo(drawState.current.lx, drawState.current.ly); ctx.lineTo(x, y); ctx.stroke();
+    drawState.current.lx = x; drawState.current.ly = y;
+  };
+  const onUp = () => {
+    if (!drawState.current.drawing) return;
+    drawState.current.drawing = false;
+    setSig(trimTransparent(canvasRef.current));
+  };
+  const clearSig = () => { setupCanvas(); setSig(null); };
+
+  const trimTransparent = (canvas) => {
+    const w = canvas.width, h = canvas.height;
+    const ctx = canvas.getContext("2d");
+    const data = ctx.getImageData(0, 0, w, h);
+    const d = data.data;
+    let minX = w, minY = h, maxX = 0, maxY = 0, found = false;
+    for (let yy = 0; yy < h; yy++) {
+      for (let xx = 0; xx < w; xx++) {
+        const idx = (yy * w + xx) * 4;
+        const r = d[idx], g = d[idx + 1], b = d[idx + 2];
+        if (!(r > 245 && g > 245 && b > 245)) {
+          found = true;
+          d[idx + 3] = 255;
+          if (xx < minX) minX = xx; if (yy < minY) minY = yy;
+          if (xx > maxX) maxX = xx; if (yy > maxY) maxY = yy;
+        } else { d[idx + 3] = 0; }
+      }
+    }
+    if (!found) return null;
+    const pad = 16;
+    minX = Math.max(0, minX - pad); minY = Math.max(0, minY - pad);
+    maxX = Math.min(w - 1, maxX + pad); maxY = Math.min(h - 1, maxY + pad);
+    const tw = maxX - minX + 1, th = maxY - minY + 1;
+    const full = document.createElement("canvas"); full.width = w; full.height = h;
+    full.getContext("2d").putImageData(data, 0, 0);
+    const out = document.createElement("canvas"); out.width = tw; out.height = th;
+    out.getContext("2d").drawImage(full, minX, minY, tw, th, 0, 0, tw, th);
+    return { url: out.toDataURL("image/png"), ratio: th / tw };
+  };
+
+  const onDocFile = async (file) => {
+    setMsg(t("msg_loading"));
+    try {
+      if (file.type === "application/pdf") {
+        setSourceIsPdf(true);
+        const pgs = await pdfFileToPages(file);
+        setPages(pgs);
+      } else {
+        setSourceIsPdf(false);
+        const { img } = await loadImage(file);
+        setPages([{ dataUrl: img.src, width: img.width, height: img.height }]);
+      }
+      setPageIdx(0);
+      setPlacements({});
+      setMsg("");
+    } catch (e) {
+      setMsg(t("sign_doc_read_fail") + e.message);
+    }
+  };
+
+  const fitCurrent = useCallback(() => {
+    const stage = stageRef.current;
+    const pg = pages[pageIdx];
+    if (!stage || !pg) return;
+    const maxW = stage.clientWidth - 12, maxH = stage.clientHeight - 12;
+    const scale = Math.min(maxW / pg.width, maxH / pg.height, 1);
+    setDocDisp({ w: pg.width * scale, h: pg.height * scale });
+  }, [pages, pageIdx]);
+
+  useEffect(() => { const tm = setTimeout(fitCurrent, 60); return () => clearTimeout(tm); }, [fitCurrent]);
+  useEffect(() => {
+    window.addEventListener("resize", fitCurrent);
+    return () => window.removeEventListener("resize", fitCurrent);
+  }, [fitCurrent]);
+
+  const pasteSignature = () => {
+    setPlacements((prev) => {
+      if (prev[pageIdx]) return prev;
+      const fw = 0.3;
+      return { ...prev, [pageIdx]: { fx: 0.06, fy: 0.06, fw, fh: fw * (sig ? sig.ratio : 0.5), locked: false } };
+    });
+  };
+
+  const removeSigFromPage = () => {
+    setPlacements((prev) => {
+      const copy = { ...prev };
+      delete copy[pageIdx];
+      return copy;
+    });
+  };
+
+  const lockPlacement = () => {
+    setPlacements((prev) => {
+      if (!prev[pageIdx]) return prev;
+      return { ...prev, [pageIdx]: { ...prev[pageIdx], locked: true } };
+    });
+  };
+
+  const unlockPlacement = () => {
+    setPlacements((prev) => {
+      if (!prev[pageIdx]) return prev;
+      return { ...prev, [pageIdx]: { ...prev[pageIdx], locked: false } };
+    });
+  };
+
+  const onOverlayDown = (e, mode, corner) => {
+    e.preventDefault(); e.stopPropagation();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragRef.current = { mode, corner, startX: e.clientX, startY: e.clientY, pl: { ...placements[pageIdx] } };
+  };
+  useEffect(() => {
+    const move = (e) => {
+      const d = dragRef.current;
+      if (!d || !docDisp.w || !docDisp.h) return;
+      const dx = e.clientX - d.startX, dy = e.clientY - d.startY;
+      const dxF = dx / docDisp.w, dyF = dy / docDisp.h;
+      const min = 0.03;
+      if (d.mode === "move") {
+        let fx = d.pl.fx + dxF;
+        let fy = d.pl.fy + dyF;
+        fx = Math.max(0, Math.min(fx, 1 - d.pl.fw));
+        fy = Math.max(0, Math.min(fy, 1 - d.pl.fh));
+        setPlacements((prev) => ({ ...prev, [pageIdx]: { ...prev[pageIdx], fx, fy } }));
+      } else if (d.mode === "resize") {
+        const { fx, fy, fw, fh } = d.pl;
+        let nfx = fx, nfy = fy, nfw = fw, nfh = fh;
+        if (d.corner === "se") {
+          nfw = Math.max(min, Math.min(fw + dxF, 1 - fx));
+          nfh = Math.max(min, Math.min(fh + dyF, 1 - fy));
+        } else if (d.corner === "nw") {
+          const newFx = Math.max(0, Math.min(fx + dxF, fx + fw - min));
+          const newFy = Math.max(0, Math.min(fy + dyF, fy + fh - min));
+          nfw = fx + fw - newFx; nfh = fy + fh - newFy;
+          nfx = newFx; nfy = newFy;
+        } else if (d.corner === "ne") {
+          nfw = Math.max(min, Math.min(fw + dxF, 1 - fx));
+          const newFy = Math.max(0, Math.min(fy + dyF, fy + fh - min));
+          nfh = fy + fh - newFy; nfy = newFy;
+        } else if (d.corner === "sw") {
+          const newFx = Math.max(0, Math.min(fx + dxF, fx + fw - min));
+          nfw = fx + fw - newFx; nfx = newFx;
+          nfh = Math.max(min, Math.min(fh + dyF, 1 - fy));
+        }
+        setPlacements((prev) => ({ ...prev, [pageIdx]: { ...prev[pageIdx], fx: nfx, fy: nfy, fw: nfw, fh: nfh } }));
+      }
+    };
+    const up = () => { dragRef.current = null; };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    return () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); };
+  }, [docDisp, pageIdx]);
+
+  const buildPagePreviews = async () => {
+    const sigImg = sig ? await loadImageFromSrc(sig.url) : null;
+    const out = [];
+    for (let i = 0; i < pages.length; i++) {
+      const pg = pages[i];
+      const pl = placements[i];
+      if (!pl || !sigImg) { out.push(pg.dataUrl); continue; }
+      const docImg = await loadImageFromSrc(pg.dataUrl);
+      const canvas = document.createElement("canvas");
+      canvas.width = pg.width; canvas.height = pg.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(docImg, 0, 0);
+      ctx.drawImage(sigImg, pl.fx * pg.width, pl.fy * pg.height, pl.fw * pg.width, pl.fh * pg.height);
+      out.push(canvas.toDataURL("image/png"));
+    }
+    return out;
+  };
+
+  const openSignPreview = async () => {
+    if (!pages.length || !sig) { setMsg(t("sign_place_first_msg")); return; }
+    setBusy(true); setMsg(t("sign_preparing"));
+    try {
+      const imgs = await buildPagePreviews();
+      setPreviewImages(imgs);
+      setShowSignPreview(true);
+      setMsg("");
+    } catch (e) {
+      setMsg("✗ " + e.message);
+    }
+    setBusy(false);
+  };
+
+  const buildFinalBlob = async () => {
+    if (sourceIsPdf) {
+      const PDFLib = await loadPdfLib();
+      const { PDFDocument } = PDFLib;
+      const doc = await PDFDocument.create();
+      const sigBytes = await (await fetch(sig.url)).arrayBuffer();
+      for (let i = 0; i < pages.length; i++) {
+        const pg = pages[i];
+        const bytes = await (await fetch(pg.dataUrl)).arrayBuffer();
+        const png = await doc.embedPng(bytes);
+        const page = doc.addPage([png.width, png.height]);
+        page.drawImage(png, { x: 0, y: 0, width: png.width, height: png.height });
+        const pl = placements[i];
+        if (pl) {
+          const sigPng = await doc.embedPng(sigBytes);
+          const sw = pl.fw * png.width, sh = pl.fh * png.height;
+          const sx = pl.fx * png.width;
+          const syTop = pl.fy * png.height;
+          const sy = png.height - syTop - sh;
+          page.drawImage(sigPng, { x: sx, y: sy, width: sw, height: sh });
+        }
+      }
+      const bytes = await doc.save();
+      return { blob: new Blob([bytes], { type: "application/pdf" }), filename: "imzali-belge.pdf", mime: "application/pdf" };
+    } else {
+      const pg = pages[0];
+      const pl = placements[0];
+      const docImg = await loadImageFromSrc(pg.dataUrl);
+      const canvas = document.createElement("canvas");
+      canvas.width = pg.width; canvas.height = pg.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(docImg, 0, 0);
+      if (pl && sig) {
+        const sigImg = await loadImageFromSrc(sig.url);
+        ctx.drawImage(sigImg, pl.fx * pg.width, pl.fy * pg.height, pl.fw * pg.width, pl.fh * pg.height);
+      }
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+      return { blob, filename: "imzali-belge.png", mime: "image/png" };
+    }
+  };
+
+  const currentPage = pages[pageIdx];
+  const pl = placements[pageIdx];
+
+  return (
+    <div style={{ maxWidth: 1300, margin: "0 auto", padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ borderRadius: 16, border: `1px solid ${C.border}`, background: C.panel, padding: 16 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>{t("sign_step1")}</div>
+        <canvas ref={canvasRef} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp}
+          style={{ width: "100%", height: 220, borderRadius: 12, touchAction: "none", background: "#fff", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.15)" }} ></canvas>
+        <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+          <input type="color" value={color} onChange={(e) => setColor(e.target.value)} style={{ height: 32, width: 32, borderRadius: 8, border: `1px solid ${C.border}`, overflow: "hidden" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 6, background: C.panel2, border: `1px solid ${C.border}`, borderRadius: 8, padding: "4px 10px" }}>
+            <span style={{ fontSize: 11, color: C.muted }}>{t("sign_thickness")}</span>
+            <input type="range" min="1" max="10" value={thickness} onChange={(e) => setThickness(parseInt(e.target.value))} />
+            <span style={{ fontSize: 12 }}>{thickness}</span>
+          </div>
+          <button onClick={clearSig} style={btn(C.panel2)}>{t("sign_clear")}</button>
+          {sig && <span style={{ fontSize: 11, color: C.teal }}>{t("sign_ready")}</span>}
+        </div>
+      </div>
+
+      <div style={{ borderRadius: 16, border: `1px solid ${C.border}`, background: C.panel, padding: 16 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>{t("sign_step2")}</div>
+        {!pages.length ? (
+          <div onClick={() => docInputRef.current?.click()} style={{ cursor: "pointer", borderRadius: 12, border: `2px dashed ${C.border}`, padding: 30, textAlign: "center", background: C.panel2 }}>
+            <div style={{ fontSize: 14, fontWeight: 600 }}>{t("sign_upload_doc")}</div>
+            <div style={{ fontSize: 11, color: C.muted, marginTop: 4 }}>{t("sign_upload_help")}</div>
+            <input ref={docInputRef} type="file" accept="image/*,application/pdf" style={{ display: "none" }} onChange={(e) => e.target.files?.[0] && onDocFile(e.target.files[0])} />
+          </div>
+        ) : (
+          <>
+            {pages.length > 1 && (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14, marginBottom: 12, flexWrap: "wrap" }}>
+                <button
+                  disabled={pageIdx === 0}
+                  onClick={() => setPageIdx((p) => Math.max(0, p - 1))}
+                  style={{ borderRadius: 14, background: C.panel2, border: `2px solid ${C.border}`, padding: "14px 20px", color: "#fff", fontSize: 15, fontWeight: 800, cursor: "pointer", opacity: pageIdx === 0 ? 0.35 : 1 }}
+                >
+                  {t("sign_prev_page")}
+                </button>
+                <span style={{ fontSize: 15, fontWeight: 800, color: C.lime, minWidth: 90, textAlign: "center" }}>{t("sign_page_of").split("{cur}").join(pageIdx + 1).split("{total}").join(pages.length)}</span>
+                <span style={{ fontSize: 11, fontWeight: 800, padding: "5px 10px", borderRadius: 999, background: pl ? C.teal : C.panel2, color: pl ? "#000" : C.muted, border: pl ? "none" : `1px solid ${C.border}` }}>
+                  {pl ? t("sign_page_signed") : t("sign_page_unsigned")}
+                </span>
+                <button
+                  disabled={pageIdx === pages.length - 1}
+                  onClick={() => setPageIdx((p) => Math.min(pages.length - 1, p + 1))}
+                  style={{ borderRadius: 14, background: C.teal, border: "2px solid #000", padding: "14px 20px", color: "#000", fontSize: 15, fontWeight: 800, cursor: "pointer", opacity: pageIdx === pages.length - 1 ? 0.35 : 1, boxShadow: pageIdx === pages.length - 1 ? "none" : "0 0 0 3px rgba(66,245,200,0.25)" }}
+                >
+                  {t("sign_next_page")}
+                </button>
+              </div>
+            )}
+            <div ref={stageRef} style={{ position: "relative", width: "100%", height: "82vh", minHeight: 560, display: "flex", alignItems: "center", justifyContent: "center", background: "#0c0c12", borderRadius: 12, overflow: "hidden" }}>
+              {currentPage && (
+                <div style={{ position: "relative", width: docDisp.w, height: docDisp.h }}>
+                  <img src={currentPage.dataUrl} alt="doc" style={{ width: docDisp.w, height: docDisp.h, display: "block", borderRadius: 4, boxShadow: "0 10px 40px rgba(0,0,0,0.5)" }} draggable={false} />
+                  {sig && pl && !pl.locked && (
+                    <div onPointerDown={(e) => onOverlayDown(e, "move")}
+                      style={{ position: "absolute", left: pl.fx * docDisp.w, top: pl.fy * docDisp.h, width: pl.fw * docDisp.w, height: pl.fh * docDisp.h, border: `2px dashed ${C.teal}`, borderRadius: 6, background: "rgba(66,245,200,0.08)", boxShadow: "0 0 0 3px rgba(66,245,200,0.12)", touchAction: "none", cursor: "move" }}>
+                      <div style={{ position: "absolute", top: -22, left: -2, background: C.teal, color: "#000", fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap" }}>{t("sig_overlay_label")}</div>
+                      <img src={sig.url} alt="sig" draggable={false} style={{ width: "100%", height: "100%", pointerEvents: "none" }} />
+                      {["nw", "ne", "se", "sw"].map((corner) => {
+                        const cs = {
+                          nw: { left: -12, top: -12, cursor: "nwse-resize" },
+                          ne: { right: -12, top: -12, cursor: "nesw-resize" },
+                          se: { right: -12, bottom: -12, cursor: "nwse-resize" },
+                          sw: { left: -12, bottom: -12, cursor: "nesw-resize" },
+                        }[corner];
+                        return (
+                          <div key={corner}
+                            onPointerDown={(e) => onOverlayDown(e, "resize", corner)}
+                            style={{ position: "absolute", width: 24, height: 24, borderRadius: "50%", background: C.teal, border: "3px solid #000", touchAction: "none", ...cs }} />
+                        );
+                      })}
+                    </div>
+                  )}
+                  {sig && pl && pl.locked && (
+                    <div
+                      style={{ position: "absolute", left: pl.fx * docDisp.w, top: pl.fy * docDisp.h, width: pl.fw * docDisp.w, height: pl.fh * docDisp.h }}
+                    >
+                      <img src={sig.url} alt="sig" draggable={false} style={{ width: "100%", height: "100%", pointerEvents: "none" }} />
+                      <button
+                        onClick={unlockPlacement}
+                        title={t("sign_edit_placement")}
+                        style={{ position: "absolute", top: -14, right: -14, width: 28, height: 28, borderRadius: "50%", background: C.lime, border: "2px solid #000", fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                      >
+                        ✏️
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap", gap: 8 }}>
+              <button onClick={() => { setPages([]); setPlacements({}); }} style={btn(C.panel2)}>{t("sign_change_doc")}</button>
+              <button disabled={!sig || !!pl} onClick={pasteSignature} style={{ ...btn(C.teal, "#000"), opacity: sig && !pl ? 1 : 0.4 }}>
+                {t("sign_paste_sig")}
+              </button>
+              {pl && !pl.locked && <button onClick={lockPlacement} style={btn(C.lime, "#000")}>{t("sign_lock")}</button>}
+              {pl && pl.locked && <button onClick={unlockPlacement} style={btn(C.panel2)}>{t("sign_edit_placement")}</button>}
+              {pl && <button onClick={removeSigFromPage} style={btn(C.pink)}>{t("sign_remove_sig")}</button>}
+              <button disabled={!sig || busy} onClick={openSignPreview} style={{ flex: 1, minWidth: 200, borderRadius: 10, background: C.lime, border: "none", padding: "10px 0", fontWeight: 800, color: "#000", cursor: "pointer", opacity: sig ? 1 : 0.4 }}>
+                {busy ? t("sign_preparing") : t("sign_preview_share")}
+              </button>
+            </div>
+            {pl && pl.locked && <div style={{ marginTop: 6, fontSize: 11, color: C.teal }}>{t("sign_locked_label")}</div>}
+            {pages.length > 1 && <div style={{ marginTop: 6, fontSize: 11, color: C.muted }}>{t("sign_multi_help")}</div>}
+            {!sig && <div style={{ marginTop: 6, fontSize: 11, color: C.muted }}>{t("sign_draw_first")}</div>}
+            {msg && <div style={{ marginTop: 8, fontSize: 12, color: C.teal }}>{msg}</div>}
+          </>
+        )}
+      </div>
+
+      {showSignPreview && previewImages && (
+        <PagedSharePreview
+          images={previewImages}
+          buildBlob={buildFinalBlob}
+          defaultFilename={sourceIsPdf ? "imzali-belge.pdf" : "imzali-belge.png"}
+          title={t("sign_preview_title")}
+          onClose={() => setShowSignPreview(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ---------------- App ----------------
+function PDFToolsProInner() {
+  const [screen, setScreen] = useState("main");
+  return (
+    <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "Inter, system-ui, sans-serif" }}>
+      <style>{`
+        * { box-sizing: border-box; }
+        input[type=range] { accent-color: ${C.lime}; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: ${C.border}; border-radius: 10px; }
+      `}</style>
+      <Nav screen={screen} setScreen={setScreen} ></Nav>
+      {screen === "main" && <MainMenu setScreen={setScreen} ></MainMenu>}
+      {screen === "crop" && <CropModule ></CropModule>}
+      {screen === "sign" && <SignModule ></SignModule>}
+    </div>
+  );
+}
+
+function PDFToolsPro() {
+  return (
+    <LangProvider>
+      <PDFToolsProInner ></PDFToolsProInner>
+    </LangProvider>
+  );
+}
+
+try {
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<PDFToolsPro ></PDFToolsPro>);
+} catch(err) {
+  document.getElementById("root").innerHTML =
+    '<div style="color:#fff;padding:24px;font-family:sans-serif;">⚠️ Uygulama başlatılamadı: ' + err.message + '</div>';
+}
+</script>
+</body>
+</html>

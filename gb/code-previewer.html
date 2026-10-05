@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-GB" dir="ltr" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+
+    <title>Free Live HTML CSS JS Editor &amp; Code Previewer Online UK – Invoice Luxe</title>
+    <meta name="description" content="Free online HTML, CSS and JavaScript editor with instant live preview, error console, code formatting and download. No sign-up, runs in your browser.">
+    <meta name="keywords" content="live html editor UK, html css js previewer, online code editor, javascript tester, html preview">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/gb/code-previewer.html">
+    <link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/code-previewer.html">
+    <link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/code-previewer.html">
+    <link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/code-previewer.html">
+    <link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/html-editor-online.html">
+    <link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/html-editori.html">
+    <link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/sv/html-editor-online.html">
+    <link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/html-editor-online.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/editor-html-online.html">
+    <link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/html-editor.html">
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/us/code-previewer.html">
+    <meta property="og:title" content="Free Live HTML CSS JS Editor &amp; Code Previewer Online UK – Invoice Luxe"><meta property="og:description" content="Free online HTML, CSS and JavaScript editor with instant live preview, error console, code formatting and download. No sign-up, runs in your browser."><meta property="og:type" content="website"><meta property="og:url" content="https://invoiceluxe.com/gb/code-previewer.html"><meta property="og:locale" content="en_GB">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Code Previewer">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Live HTML CSS JS Code Previewer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "url": "https://invoiceluxe.com/gb/code-previewer.html", "inLanguage": "en-GB", "description": "Free online HTML, CSS and JavaScript editor with instant live preview, error console, code formatting and download. No sign-up, runs in your browser.", "keywords": "live html editor UK, html css js previewer, online code editor, javascript tester, html preview", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "provider": {"@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com"}}</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold-main: #FFD700; --m-black: #121212; --dark-grey: #1e1e1e; --err-red: #ff4d4d; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background-color: var(--bg-oak); font-family: 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; overflow-y: auto; }
+
+        .app-container { height: 100vh; display: flex; flex-direction: column; flex-shrink: 0; width: 100%; }
+
+        .top-bar { padding: 12px 20px; background: var(--m-black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold-main); box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; flex-wrap: wrap; gap: 8px; }
+        h1 { margin: 0; color: var(--gold-main); font-size: 18px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .btn { cursor: pointer; border: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; display: flex; align-items: center; gap: 5px; background: var(--gold-main); color: var(--m-black); text-decoration: none; transition: 0.2s; font-size: 12px; }
+        .btn:hover { background: #e6c200; transform: scale(0.98); }
+        .btn-guide { background: transparent; border: 1px solid var(--gold-main); color: var(--gold-main); }
+        .btn-guide:hover { background: rgba(255,215,0,0.1); transform: scale(0.98); }
+
+        /* --- New toolbar row (araç çubuğu) --- */
+        .toolbar { display: flex; gap: 8px; align-items: center; padding: 8px 15px; background: #161616; border-bottom: 2px solid var(--gold-main); flex-wrap: wrap; }
+        .btn-tool { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; }
+        .btn-tool:hover { background: #3a3a3a; transform: scale(0.98); }
+        .btn-danger { background: #3a1414; border: 1px solid var(--err-red); color: #ffb3b3; }
+        .btn-danger:hover { background: #4a1a1a; }
+        .error-badge { margin-left: auto; display: flex; align-items: center; gap: 6px; background: #103a17; color: #7CFC9A; border: 1px solid #1e5c2c; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .error-badge.has-errors { background: #3a1414; color: #ff8080; border: 1px solid var(--err-red); }
+
+        .workspace { display: flex; flex: 1; padding: 15px; gap: 15px; flex-direction: row; overflow: hidden; }
+        .panel { flex: 1; display: flex; flex-direction: column; background: var(--dark-grey); border-radius: 12px; border: 2px solid var(--gold-main); overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.2); position: relative; }
+        .panel-header { background: var(--m-black); color: var(--gold-main); padding: 8px 15px; font-size: 13px; font-weight: bold; letter-spacing: 1px; border-bottom: 1px solid var(--gold-main); display: flex; align-items: center; gap: 8px; }
+
+        textarea { flex: 1; background: #000; color: #00ff00; border: none; padding: 15px; font-family: 'Courier New', monospace; font-size: 14px; resize: none; outline: none; line-height: 1.5; }
+        #preview { flex: 1; background: #fff; border: none; width: 100%; height: 100%; }
+
+        /* --- Error console panel --- */
+        #error-console { display: none; max-height: 140px; overflow-y: auto; background: #0d0d0d; border-top: 2px solid var(--err-red); padding: 8px 12px; font-family: 'Courier New', monospace; font-size: 11px; color: #ff8080; }
+        #error-console.open { display: block; }
+        #error-console .err-line { padding: 4px 0; border-bottom: 1px solid #221111; }
+        #error-console .no-err { color: #7CFC9A; }
+
+        .close-fullscreen-btn { display: none; position: absolute; top: 10px; right: 10px; z-index: 10000; background: var(--m-black); color: var(--gold-main); border: 2px solid var(--gold-main); padding: 8px 12px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .close-fullscreen-btn:hover { background: var(--gold-main); color: var(--m-black); }
+        .fullscreen { position: fixed !important; inset: 0 !important; z-index: 9999; border-radius: 0 !important; }
+        .fullscreen .close-fullscreen-btn { display: flex; }
+
+        #guide-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 99999; padding: 20px; overflow-y: auto; }
+        #guide-modal.open { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .guide-box { background: #111; border: 1.5px solid var(--gold-main); border-radius: 16px; max-width: 500px; width: 100%; padding: 25px; margin-top: 20px; }
+        .guide-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #333; }
+        .guide-box-header span { color: var(--gold-main); font-size: 12px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .guide-close { background: none; border: none; color: #555; font-size: 24px; cursor: pointer; line-height: 1; }
+        .guide-close:hover { color: #fff; }
+
+        .guide-step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+        .step-num { min-width: 28px; height: 28px; background: var(--gold-main); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #999; line-height: 1.6; }
+        .step-text b { color: #fff; display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: 0.3px; }
+
+        .guide-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+        .guide-tag { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 5px 10px; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; }
+        .guide-tag b { color: var(--gold-main); }
+
+        .guide-tip { border-left: 3px solid var(--gold-main); padding: 10px 12px; background: rgba(255,215,0,0.04); font-size: 11px; color: #999; margin-top: 12px; line-height: 1.7; border-radius: 0 8px 8px 0; }
+        .guide-tip b { color: var(--gold-main); }
+
+        .guide-example { background: #000; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 14px; font-family: 'Courier New', monospace; font-size: 10px; color: #00ff00; line-height: 1.8; margin: 12px 0; }
+
+        .seo-content-wrapper { max-width: 1200px; margin: 0 auto; width: 100%; padding: 20px 15px 40px 15px; }
+        .seo-content { background: var(--dark-grey); border: 2px solid var(--gold-main); border-radius: 12px; padding: 25px; color: #bbb; font-size: 14px; line-height: 1.6; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .seo-content h2 { color: var(--gold-main); font-size: 18px; margin-bottom: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,217,0,0.2); padding-bottom: 8px; margin-top: 0; }
+        .seo-content h3 { color: #fff; font-size: 15px; margin: 22px 0 10px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+        .seo-content p { margin-bottom: 14px; }
+        .seo-content strong { color: #fff; }
+        .seo-content ul, .seo-content ol { margin-left: 20px; margin-bottom: 15px; }
+        .seo-content li { margin-bottom: 8px; }
+        .seo-content li strong { color: var(--gold-main); }
+
+        @media (max-width: 768px) {
+            .workspace { flex-direction: column; padding: 10px; gap: 10px; }
+            .top-bar { padding: 10px; }
+            h1 { font-size: 14px; }
+            .btn span { display: none; }
+            .toolbar { overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="top-bar">
+            <h1><i class="material-symbols-rounded">code</i> CODE PREVIEWER</h1>
+            <div class="controls">
+                <button class="btn btn-guide" onclick="openGuide()" title="HOW TO USE">
+                    <i class="material-symbols-rounded">help</i>
+                    <span>HOW TO USE</span>
+                </button>
+                <button class="btn" onclick="toggleFullscreen()" title="FULL SCREEN">
+                    <i class="material-symbols-rounded">fullscreen</i>
+                    <span>FULL SCREEN</span>
+                </button>
+                <a href="index.html" class="btn" title="Back">
+    <i class="material-symbols-rounded">arrow_back</i>
+    <span>Back</span>
+</a>           
+ </div>
+        </div>
+
+        <!-- New toolbar: format / clear / download / error badge -->
+        <div class="toolbar">
+            <button class="btn btn-tool" onclick="formatCode()" title="FORMAT">
+                <i class="material-symbols-rounded" style="font-size:16px;">format_align_left</i>
+                <span>FORMAT</span>
+            </button>
+            <button class="btn btn-danger" onclick="clearCode()" title="CLEAR">
+                <i class="material-symbols-rounded" style="font-size:16px;">delete</i>
+                <span>CLEAR</span>
+            </button>
+            <button class="btn btn-tool" onclick="downloadCode()" title="DOWNLOAD">
+                <i class="material-symbols-rounded" style="font-size:16px;">download</i>
+                <span>DOWNLOAD</span>
+            </button>
+            <div class="error-badge" id="error-badge" onclick="toggleErrorConsole()">
+                <i class="material-symbols-rounded" style="font-size:16px;">bug_report</i>
+                <span id="error-count-label">ERRORS: 0</span>
+            </div>
+        </div>
+
+        <div class="workspace" id="workspace">
+            <div class="panel">
+                <div class="panel-header">
+                    <i class="material-symbols-rounded" style="font-size:18px;">terminal</i>
+                    <span>EDITOR (HTML/CSS/JS)</span>
+                </div>
+                <textarea id="code-input" placeholder="Paste your code here..." oninput="renderCode()"></textarea>
+                <div id="error-console"><div class="no-err">No errors detected</div></div>
+            </div>
+
+            <div class="panel" id="preview-container">
+                <button class="close-fullscreen-btn" onclick="toggleFullscreen()">
+                    <i class="material-symbols-rounded" style="font-size:16px;">fullscreen_exit</i>
+                    <span>CLOSE</span>
+                </button>
+                <div class="panel-header">
+                    <i class="material-symbols-rounded" style="font-size:18px;">visibility</i>
+                    <span>LIVE PREVIEW</span>
+                </div>
+                <iframe id="preview"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="seo-content-wrapper">
+        <div class="seo-content">
+            <h2>Free Live HTML, CSS & JavaScript Editor with Instant Preview – UK</h2>
+            <p>Looking for a fast <strong>online HTML editor</strong>? Paste your code and see the result instantly in a live preview. This free <strong>HTML CSS JS previewer</strong> works as a web app in your browser – no install, no signup.</p>
+            <p>A built-in error console catches JavaScript mistakes, one click formats your code, and you can download your work as a file. Ideal for students, designers and developers who want a quick <strong>JavaScript tester</strong> or CSS sandbox.</p>
+            <h3>What you can do</h3>
+            <ul><li>Preview full HTML pages or small snippets live</li><li>Test flexbox, grid and CSS animations</li><li>Debug JavaScript with a live error console</li></ul>
+            <h3>Private by design</h3>
+            <p>Your code runs in a sandboxed frame on your own device. Nothing is uploaded, tracked or stored on a server.</p>
+            <p style="font-size:12px"><a href="https://invoiceluxe.com/us/code-previewer.html" hreflang="en-US" style="color:#FFD700">English (US)</a> · <a href="https://invoiceluxe.com/gb/code-previewer.html" hreflang="en-GB" style="color:#FFD700">English (UK)</a> · <a href="https://invoiceluxe.com/ca/code-previewer.html" hreflang="en-CA" style="color:#FFD700">English (Canada)</a> · <a href="https://invoiceluxe.com/no/html-editor-online.html" hreflang="no" style="color:#FFD700">Norsk</a> · <a href="https://invoiceluxe.com/fi/html-editori.html" hreflang="fi" style="color:#FFD700">Suomi</a> · <a href="https://invoiceluxe.com/sv/html-editor-online.html" hreflang="sv" style="color:#FFD700">Svenska</a> · <a href="https://invoiceluxe.com/da/html-editor-online.html" hreflang="da" style="color:#FFD700">Dansk</a> · <a href="https://invoiceluxe.com/br/editor-html-online.html" hreflang="pt-BR" style="color:#FFD700">Português (Brasil)</a> · <a href="https://invoiceluxe.com/ko/html-editor.html" hreflang="ko" style="color:#FFD700">한국어</a></p>
+        </div>
+    </div>
+
+    <div id="guide-modal">
+        <div class="guide-box">
+            <div class="guide-box-header">
+                <span>HOW TO USE</span>
+                <button class="guide-close" onclick="closeGuide()">✕</button>
+            </div>
+
+            <div class="guide-step">
+                <div class="step-num">1</div>
+                <div class="step-text"><b>Write or paste your code</b><span>Click the left panel and type or paste any HTML, CSS or JavaScript code.</span></div>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">2</div>
+                <div class="step-text"><b>See the live result instantly</b><span>The right panel updates automatically as you type — no need to press any button.</span></div>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">3</div>
+                <div class="step-text"><b>Use Full Screen for better view</b><span>Tap FULL SCREEN to expand the preview. Tap CLOSE to go back.</span></div>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">4</div>
+                <div class="step-text"><b>Check for errors</b><span>The ERRORS badge shows live JavaScript errors caught from your code, with line details.</span></div>
+            </div>
+            <div class="guide-step">
+                <div class="step-num">5</div>
+                <div class="step-text"><b>Format or clear your code</b><span>Use FORMAT to auto-indent your code, CLEAR to start over, and DOWNLOAD to save it as a file.</span></div>
+            </div>
+
+            <div class="guide-tags">
+                <div class="guide-tag"><b>&lt;html&gt;</b> supported</div>
+                <div class="guide-tag"><b>CSS</b> supported</div>
+                <div class="guide-tag"><b>JavaScript</b> supported</div>
+                <div class="guide-tag"><b>300ms</b> live refresh</div>
+                <div class="guide-tag"><b>Errors</b> live console</div>
+            </div>
+
+            <div class="guide-example">&lt;h1 style="color:gold"&gt;Hello!&lt;/h1&gt;
+&lt;p&gt;Live preview works instantly.&lt;/p&gt;</div>
+
+            <div class="guide-tip">
+                <b>💡 Tip: </b>
+                <span>You can paste a full HTML page including <head> and <body> tags — it renders completely.</span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let renderTimeout, currentBlobUrl = null;
+    const codeInput = document.getElementById('code-input');
+    const errorConsole = document.getElementById('error-console');
+    const errorBadge = document.getElementById('error-badge');
+    const errorCountLabel = document.getElementById('error-count-label');
+    let errorList = [];
+
+    const L_ERRORS = 'ERRORS';
+    const L_NOERRORS = 'No errors detected';
+    const L_CONFIRM_CLEAR = 'Clear all code? This cannot be undone.';
+    const L_DOWNLOAD_NAME = 'my-code.html';
+
+    // Listen for runtime errors captured inside the sandboxed preview iframe
+    window.addEventListener('message', (event) => {
+        if (event.data && event.data.__previewError) {
+            errorList.push(event.data.__previewError);
+            updateErrorUI();
+        }
+    });
+
+    function updateErrorUI() {
+        errorCountLabel.textContent = L_ERRORS + ': ' + errorList.length;
+        errorBadge.classList.toggle('has-errors', errorList.length > 0);
+        if (errorList.length === 0) {
+            errorConsole.innerHTML = '<div class="no-err">' + L_NOERRORS + '</div>';
+        } else {
+            errorConsole.innerHTML = errorList.map(e =>
+                '<div class="err-line">⚠ ' + e + '</div>'
+            ).join('');
+        }
+    }
+
+    function toggleErrorConsole() {
+        errorConsole.classList.toggle('open');
+    }
+
+    function renderCode() {
+        clearTimeout(renderTimeout);
+        renderTimeout = setTimeout(() => {
+            errorList = [];
+            updateErrorUI();
+            const code = codeInput.value;
+            const iframe = document.getElementById('preview');
+            if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+
+            // Inject an error-capturing bridge script so JS errors inside the
+            // user's code are reported back to the parent error console.
+            const errorBridge = `
+                <script>
+                    window.onerror = function(msg, url, line, col) {
+                        window.parent.postMessage({ __previewError: 'Line ' + line + ': ' + msg }, '*');
+                        return false;
+                    };
+                    window.addEventListener('unhandledrejection', function(e) {
+                        window.parent.postMessage({ __previewError: 'Promise error: ' + (e.reason && e.reason.message ? e.reason.message : e.reason) }, '*');
+                    });
+                <\/script>
+            `;
+            const finalCode = errorBridge + code;
+            const blob = new Blob([finalCode], { type: 'text/html' });
+            currentBlobUrl = URL.createObjectURL(blob);
+            iframe.src = currentBlobUrl;
+        }, 300);
+    }
+
+    function clearCode() {
+        if (codeInput.value.trim() === '' || confirm(L_CONFIRM_CLEAR)) {
+            codeInput.value = '';
+            errorList = [];
+            updateErrorUI();
+            renderCode();
+        }
+    }
+
+    function downloadCode() {
+        const blob = new Blob([codeInput.value], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = L_DOWNLOAD_NAME;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Lightweight tag-based re-indentation formatter (no external dependency)
+    function formatCode() {
+        const src = codeInput.value;
+        const lines = src
+            .replace(/></g, '>\n<')
+            .split('\n')
+            .map(l => l.trim())
+            .filter(l => l.length > 0);
+
+        let indent = 0;
+        const step = '  ';
+        const voidTags = /^<(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr|!doctype)/i;
+        const out = [];
+
+        for (const line of lines) {
+            const isClosing = /^<\//.test(line);
+            const isSelfClose = /\/>$/.test(line) || voidTags.test(line);
+            const isOpenAndCloseOnSameLine = /^<[^>]+>.*<\/[^>]+>$/.test(line);
+            const isOpening = /^<[a-zA-Z!]/.test(line) && !isClosing && !isSelfClose && !isOpenAndCloseOnSameLine;
+
+            if (isClosing) indent = Math.max(indent - 1, 0);
+            out.push(step.repeat(indent) + line);
+            if (isOpening) indent += 1;
+        }
+        codeInput.value = out.join('\n');
+        renderCode();
+    }
+
+    function toggleFullscreen() {
+        document.getElementById('preview-container').classList.toggle('fullscreen');
+    }
+
+    function openGuide() { document.getElementById('guide-modal').classList.add('open'); }
+    function closeGuide() { document.getElementById('guide-modal').classList.remove('open'); }
+
+    updateErrorUI();
+</script>
+</body>
+</html>

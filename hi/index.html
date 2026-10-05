@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- SEO Meta Tags (Hindi) -->
+    <title>पॉकेट चालान - पेशेवर और अद्यतन</title>
+    <meta name="description" content="मुफ्त और पेशेवर मोबाइल चालान (इनवॉइस) बनाने वाला ऐप। आसानी से पीडीएफ चालान बनाएं, ग्राहकों को प्रबंधित करें और अपने फोन से ही बिलिंग करें।">
+    <meta name="keywords" content="चालान ऐप, पीडीएफ चालान, मोबाइल बिलिंग, invoiceluxe, GST चालान, हिंदी इनवॉइस, काम के घंटे ट्रैकर">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "इनवॉइस मास्टर",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "description": "निःशुल्क पेशेवर ऑनलाइन चालान जनरेटर। निःशुल्क पीडीएफ चालान और रसीदें बनाएं।"
+}
+</script>
+    
+    <!-- PWA / Add to Home Screen Icons -->
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="पॉकेट चालान">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --accent: #5d4037; 
+            --wood-border: #8b4513; 
+            --bg-main: #fdfaf5; 
+            --card-bg: #ffffff; 
+            --text-dark: #3e2723;
+            --text-muted: #8d6e63;
+        }
+        * { touch-action: manipulation; }
+        body { 
+            background: var(--bg-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            color: var(--text-dark); 
+            margin: 0; 
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 130px; box-sizing: border-box; }
+        .glass-card { background: var(--card-bg); border: 3px solid var(--wood-border); border-radius: 20px; padding: 20px; box-shadow: 6px 6px 0px rgba(139, 69, 19, 0.1); }
+        .input-pro { background: #fff !important; color: var(--text-dark) !important; border-radius: 12px; padding: 12px 16px; width: 100%; border: 2px solid var(--wood-border); font-size: 15px; transition: all 0.2s ease; outline: none; box-sizing: border-box; }
+        .input-pro:focus { background: #fffaf5 !important; box-shadow: 0 0 0 4px rgba(139, 69, 19, 0.15); }
+        label { font-size: 12px; font-weight: 800; color: var(--wood-border); text-transform: uppercase; margin-bottom: 6px; display: block; margin-left: 4px; }
+        .dock-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 420px; background: #fff; border: 3px solid var(--wood-border); display: flex; flex-direction: column; padding: 10px; z-index: 999; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); gap: 8px; }
+        .dock-nav-buttons { display: flex; justify-content: space-around; }
+        .nav-btn { color: #d7ccc8; font-size: 22px; padding: 10px; border-radius: 16px; transition: 0.3s; background: transparent; border: none; cursor: pointer; }
+        .nav-btn.active { color: var(--wood-border); transform: scale(1.1); }
+        .btn-wood { background: var(--wood-border); color: white; border-radius: 16px; padding: 15px; font-weight: 800; text-transform: uppercase; border: 2px solid #5d4037; box-shadow: 0 4px 0px #5d4037; transition: all 0.2s; cursor: pointer; width: 100%; }
+        .btn-wood:active { transform: translateY(3px); box-shadow: 0 1px 0px #5d4037; }
+        .badge-select { padding: 10px; border-radius: 12px; background: #fdf5f0; font-size: 11px; font-weight: 800; cursor: pointer; text-align: center; color: var(--wood-border); border: 2px solid var(--wood-border); transition: 0.2s; }
+        .badge-select.active { background: var(--wood-border); color: #fff; }
+        .item-row { background: #fff; border: 2px solid var(--wood-border); border-radius: 16px; padding: 16px; margin-bottom: 12px; position: relative; }
+        #p-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; display: none; flex-direction: column; backdrop-filter: blur(4px); }
+        .preview-container { flex: 1; display: flex; align-items: start; justify-content: center; overflow: auto; padding: 20px; background: #2c2c2c; }
+        .a4-preview { background: #ffffff; color: #1e293b; width: 794px; min-height: 1123px; transform-origin: top center; box-shadow: 0 10px 50px rgba(0,0,0,0.6); font-family: 'Inter', sans-serif; margin-bottom: 50px; }
+        .s2-header { background: #f0f7ff; padding: 45px; border-bottom: 8px solid #2563eb; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
+        .s2-logo-side { text-align: right; border-right: 5px solid #2563eb; padding-right: 20px; }
+        .s2-logo-title { font-weight: 800; font-size: 28px; color: #1e293b; text-transform: uppercase; line-height: 1; }
+        .s2-inv-label { color: #2563eb; font-weight: 900; font-size: 12px; letter-spacing: 1.5px; }
+        .s2-inv-no { font-size: 34px; font-weight: 900; color: #1e293b; margin-top: -5px; }
+        .info-box { background: #f8fafc; border-radius: 15px; padding: 20px; border-left: 8px solid #2563eb; font-size: 12px; }
+        .info-box b { display: block; border-bottom: 1px solid #e2e8f0; margin-bottom: 8px; padding-bottom: 4px; color: #2563eb; font-size: 13px; }
+        .info-line { display: flex; margin-bottom: 3px; }
+        .info-label { width: 85px; font-weight: 800; color: #64748b; flex-shrink: 0; }
+        .info-content { color: #1e293b; font-weight: 600; word-break: break-word; }
+
+        /* Lang Dropdown */
+        .lang-dropdown { position: absolute; top: 44px; right: 0; background: #fff; border: 2px solid var(--wood-border); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 9999; min-width: 220px; padding: 8px; display: none; }
+        .lang-dropdown.open { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+        .lang-item { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 800; color: var(--text-dark); transition: background 0.2s; white-space: nowrap; }
+        .lang-item:hover { background: #fdf5f0; }
+        .lang-item.active-lang { background: var(--wood-border); color: #fff; }
+        .lang-item .flag { font-size: 18px; }
+
+        /* PWA install bar inside dock */
+        .pwa-install-bar { display: none; background: #3e2723; border-radius: 14px; padding: 10px 14px; align-items: center; gap: 10px; cursor: pointer; border: none; width: 100%; transition: 0.2s; }
+        .pwa-install-bar:not(.hidden-bar) { display: flex; }
+        .pwa-install-bar .pwa-icons { display: flex; gap: 6px; align-items: center; }
+        .pwa-install-bar .pwa-text { flex: 1; text-align: left; }
+        .pwa-install-bar .pwa-text span { display: block; color: white; font-size: 12px; font-weight: 800; }
+        .pwa-install-bar .pwa-text small { display: block; color: rgba(255,255,255,0.65); font-size: 10px; font-weight: 600; margin-top: 1px; }
+
+        /* SEO Blog section */
+        .seo-blog { background: #fff; border: 3px solid var(--wood-border); padding: 28px 24px 40px; }
+        .seo-blog h2 { font-size: 20px; font-weight: 800; color: #3e2723; margin-bottom: 10px; line-height: 1.3; }
+        .seo-blog p { font-size: 14px; color: #6d4c41; line-height: 1.75; margin-bottom: 12px; }
+        .seo-blog h3 { font-size: 15px; font-weight: 800; color: #8b4513; margin: 18px 0 6px; }
+        .seo-blog ul { list-style: none; padding: 0; margin: 0 0 12px; }
+        .seo-blog ul li { font-size: 13px; color: #6d4c41; padding: 5px 0 5px 20px; position: relative; line-height: 1.6; }
+        .seo-blog ul li::before { content: "✓"; position: absolute; left: 0; color: #8b4513; font-weight: 800; }
+        .seo-faq { background: #fdf5f0; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid #8b4513; }
+        .seo-faq dt { font-size: 13px; font-weight: 800; color: #3e2723; margin-bottom: 4px; }
+        .seo-faq dd { font-size: 12px; color: #8d6e63; line-height: 1.6; margin: 0; }
+
+        /* ══════════════════════════════════════════
+           YAN MENÜ (SIDE MENU)
+           ══════════════════════════════════════════ */
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 285px;
+            height: 100vh;
+            background: #fdfaf5;
+            border-right: 3px solid var(--wood-border);
+            box-shadow: 8px 0 30px rgba(139,69,19,0.15);
+            z-index: 30000;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        #side-menu.open { left: 0; }
+
+        .side-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(62,39,35,0.5);
+            backdrop-filter: blur(3px);
+            z-index: 29999;
+            display: none;
+        }
+        .side-overlay.open { display: block; }
+
+        .tool-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 2px solid #e8d5c4;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: 0.2s;
+            background: #fff;
+            box-shadow: 3px 3px 0 rgba(139,69,19,0.08);
+        }
+        .tool-link:hover,
+        .tool-link:active {
+            border-color: var(--wood-border);
+            background: #fdf5f0;
+            transform: translateX(4px);
+            box-shadow: 3px 3px 0 rgba(139,69,19,0.2);
+        }
+        .tool-link .tl-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 2px solid;
+        }
+        .tool-link .tl-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+        .tool-link .tl-sub {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .hours-card {
+            background: #fff;
+            border: 3px solid #c4956a;
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 4px 4px 0 rgba(139,69,19,0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        .hours-card::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, #8b4513, #c4956a);
+            border-radius: 20px 0 0 20px;
+        }
+        .hours-card:active {
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 rgba(139,69,19,0.12);
+        }
+    </style>
+</head>
+<body class="flex justify-center">
+
+<!-- ══════════════════════════════════════════
+     YAN MENÜ OVERLAY + MENÜ
+     ══════════════════════════════════════════ -->
+<div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+
+<div id="side-menu">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid #e8d5c4;">
+        <div>
+            <div style="font-size:16px;font-weight:800;color:var(--text-dark);">Elite <span style="color:var(--wood-border);">Tools</span></div>
+            <div style="font-size:9px;color:var(--text-muted);font-weight:700;margin-top:2px;text-transform:uppercase;letter-spacing:1px;">🛠️ टूल मेनू</div>
+        </div>
+        <button onclick="closeSideMenu()" aria-label="बंद करें" style="width:34px;height:34px;border-radius:50%;background:#fdf5f0;border:2px solid var(--wood-border);color:var(--wood-border);font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;">
+        <a href="discount.html" class="tool-link">
+            <div class="tl-icon" style="background:#ecfdf5;border-color:#86efac;">
+                <i class="fa-solid fa-tags" style="color:#16a34a;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">छूट इंजन</div>
+                <div class="tl-sub">त्वरित छूट कैलकुलेटर</div>
+            </div>
+        </a>
+
+        <a href="pdf-engine.html" class="tool-link">
+            <div class="tl-icon" style="background:#fef2f2;border-color:#fca5a5;">
+                <i class="fa-solid fa-file-pdf" style="color:#dc2626;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">PDF इंजन</div>
+                <div class="tl-sub">दस्तावेज़ निर्माण</div>
+            </div>
+        </a>
+
+        <a href="html-editor.html" class="tool-link">
+            <div class="tl-icon" style="background:#eff6ff;border-color:#93c5fd;">
+                <i class="fa-solid fa-code" style="color:#2563eb;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">HTML संपादक</div>
+                <div class="tl-sub">लाइव कोड संपादन</div>
+            </div>
+        </a>
+
+        <a href="weekly-calendar.html" class="tool-link">
+            <div class="tl-icon" style="background:#f5f3ff;border-color:#c4b5fd;">
+                <i class="fa-solid fa-calendar-days" style="color:#7c3aed;font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title">कैलेंडर</div>
+                <div class="tl-sub">कार्यक्रम प्रबंधन</div>
+            </div>
+        </a>
+
+        <a href="working-hours.html" class="tool-link" style="border-color:#c4956a;background:#fdf5f0;">
+            <div class="tl-icon" style="background:#fdf5f0;border-color:#c4956a;">
+                <i class="fa-solid fa-clock" style="color:var(--wood-border);font-size:16px;"></i>
+            </div>
+            <div>
+                <div class="tl-title" style="color:var(--wood-border);">काम के घंटे ⏱️</div>
+                <div class="tl-sub">समय रिकॉर्ड और प्रबंधन</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    <div class="w-full max-w-[480px] relative overflow-hidden">
+        <div class="slider-wrapper" id="main-slider">
+            <!-- PAGE 0: HOME -->
+            <div class="page px-6 pt-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <button onclick="openSideMenu()" aria-label="मेनू खोलें" style="background:#fff;border:2px solid var(--wood-border);width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:3px 3px 0 rgba(139,69,19,0.1);flex-shrink:0;">
+                            <i class="fa-solid fa-bars-staggered" style="color:var(--wood-border);font-size:16px;"></i>
+                        </button>
+                        <div>
+                            <h1 class="text-3xl font-black tracking-tight text-[#3e2723]">पॉकेट <span class="text-[#8b4513]">चालान</span> 📱</h1>
+                            <p class="text-[#8d6e63] text-sm font-bold mt-1">🏷️ पेशेवर वर्कशॉप पैनल</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="relative">
+                            <button id="lang-toggle-btn" onclick="toggleLangDropdown()" class="flex items-center gap-1 bg-white border-2 border-[#8b4513] px-3 py-2 rounded-2xl shadow-sm text-xs font-black text-[#8b4513] whitespace-nowrap">
+                                <span class="text-base">🇮🇳</span> HI <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                            </button>
+                            <div id="lang-dropdown" class="lang-dropdown">
+                                <div class="lang-item" onclick="changeLang('en')"><span class="flag">🇬🇧</span> EN</div>
+                                <div class="lang-item" onclick="changeLang('tr')"><span class="flag">🇹🇷</span> TR</div>
+                                <div class="lang-item" onclick="changeLang('nl')"><span class="flag">🇳🇱</span> NL</div>
+                                <div class="lang-item" onclick="changeLang('de')"><span class="flag">🇩🇪</span> DE</div>
+                                <div class="lang-item" onclick="changeLang('fr')"><span class="flag">🇫🇷</span> FR</div>
+                                <div class="lang-item" onclick="changeLang('it')"><span class="flag">🇮🇹</span> IT</div>
+                                <div class="lang-item" onclick="changeLang('es')"><span class="flag">🇪🇸</span> ES</div>
+                                <div class="lang-item" onclick="changeLang('pt')"><span class="flag">🇵🇹</span> PT</div>
+                                <div class="lang-item" onclick="changeLang('zh')"><span class="flag">🇨🇳</span> ZH</div>
+                                <div class="lang-item" onclick="changeLang('ru')"><span class="flag">🇷🇺</span> RU</div>
+                                <div class="lang-item active-lang" onclick="changeLang('hi')"><span class="flag">🇮🇳</span> HI</div>
+                                <div class="lang-item" onclick="changeLang('ja')"><span class="flag">🇯🇵</span> JA</div>
+                                <div class="lang-item" onclick="changeLang('ar')"><span class="flag">🇸🇦</span> AR</div>
+                                <div class="lang-item" onclick="changeLang('in')"><span class="flag">🇮🇳</span> IN</div>
+                                <div class="lang-item" onclick="changeLang('br')"><span class="flag">🇧🇷</span> BR</div>
+                                <div class="lang-item" onclick="changeLang('ca')"><span class="flag">🇨🇦</span> CA</div>
+                                <div class="lang-item" onclick="changeLang('da')"><span class="flag">🇩🇰</span> DA</div>
+                                <div class="lang-item" onclick="changeLang('fi')"><span class="flag">🇫🇮</span> FI</div>
+                                <div class="lang-item" onclick="changeLang('gb')"><span class="flag">🇬🇧</span> GB</div>
+                                <div class="lang-item" onclick="changeLang('ko')"><span class="flag">🇰🇷</span> KO</div>
+                                <div class="lang-item" onclick="changeLang('no')"><span class="flag">🇳🇴</span> NO</div>
+                                <div class="lang-item" onclick="changeLang('sv')"><span class="flag">🇸🇪</span> SV</div>
+                                <div class="lang-item" onclick="changeLang('us')"><span class="flag">🇺🇸</span> US</div>
+                            </div>
+                        </div>
+                        <div class="w-14 h-14 bg-white border-4 border-[#8b4513] rounded-2xl flex items-center justify-center shadow-md"><i class="fa-solid fa-scroll text-[#8b4513] text-xl"></i></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="resetAndNew()" class="col-span-2 btn-wood flex items-center justify-between h-32">
+                        <div class="text-left pl-2">
+                            <span class="block text-white/80 text-[10px] font-bold uppercase mb-1 tracking-widest">नया कार्य रिकॉर्ड</span>
+                            <span class="text-2xl font-black">चालान बनाएँ ✨</span>
+                        </div>
+                        <i class="fa-solid fa-pen-ruler text-4xl text-white/30 pr-2"></i>
+                    </button>
+                    <div onclick="showPage(2)" class="glass-card flex flex-col items-center gap-2 cursor-pointer"><i class="fa-solid fa-archive text-[#8b4513] text-2xl"></i><span class="font-bold text-xs">संग्रह</span></div>
+                    <div onclick="showPage(3)" class="glass-card flex flex-col items-center gap-2 cursor-pointer"><i class="fa-solid fa-address-book text-[#8b4513] text-2xl"></i><span class="font-bold text-xs">ग्राहक</span></div>
+                </div>
+
+                <div onclick="showPage(4)" class="mt-4 glass-card flex items-center gap-4 cursor-pointer border-dashed">
+                    <div class="w-10 h-10 bg-[#fdf5f0] border-2 border-[#8b4513] rounded-xl flex items-center justify-center text-[#8b4513]"><i class="fa-solid fa-gears"></i></div>
+                    <div class="flex-1">
+                        <h4 class="font-black text-sm text-[#3e2723]">वर्कशॉप आईडी</h4>
+                        <p class="text-[10px] text-[#8d6e63] uppercase font-bold tracking-tighter">प्रोफ़ाइल और भुगतान जानकारी</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[#8b4513]"></i>
+                </div>
+
+                <!-- EXISTING WORK HOURS BUTTON -->
+                <div onclick="window.location.href='working-hours.html'" class="hours-card mt-4">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#fdf5f0;border:2px solid #c4956a;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--wood-border);font-size:16px;"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--wood-border);letter-spacing:0.5px;">काम के घंटे ⏱️</div>
+                        <div style="font-size:9px;color:var(--text-muted);font-weight:600;margin-top:2px;">समय रिकॉर्ड और टाइम ट्रैकर</div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--wood-border);font-size:11px;flex-shrink:0;"></i>
+                </div>
+
+                <!-- NEW ALL TOOLS BUTTON -->
+                <div onclick="window.location.href='herramientas.html'" class="hours-card mt-4">
+                    <div style="width:40px;height:40px;border-radius:12px;background:#fdf5f0;border:2px solid #c4956a;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fa-solid fa-toolbox" style="color:var(--wood-border);font-size:16px;"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--wood-border);letter-spacing:0.5px;">सभी टूल्स 🛠️</div>
+                        <div style="font-size:9px;color:var(--text-muted);font-weight:600;margin-top:2px;">अन्य सभी उपयोगी उपकरण देखें</div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--wood-border);font-size:11px;flex-shrink:0;"></i>
+                </div>
+
+                <div class="seo-blog mt-8 rounded-2xl">
+                    <h2>📄 हिंदी में पेशेवर चालान (इनवॉइस) कैसे बनाएं?</h2>
+                    <p>Invoice Luxe एक मुफ़्त और आसान मोबाइल ऐप है जो आपको सेकंडों में पेशेवर PDF चालान बनाने की सुविधा देता है — बिना किसी अकाउंट या सब्सक्रिप्शन के। साथ ही, काम के घंटे ट्रैक करें और अपने कारोबार को स्मार्ट तरीके से चलाएं।</p>
+
+                    <h3>✅ Invoice Luxe की खासियतें</h3>
+                    <ul>
+                        <li>मोबाइल से सीधे PDF चालान बनाएं और डाउनलोड करें</li>
+                        <li>ग्राहकों की जानकारी सहेजें और दोबारा इस्तेमाल करें</li>
+                        <li>GST / VAT दरें आसानी से सेट करें (0%, 5%, 12%, 18%, 28%)</li>
+                        <li>बैंक विवरण, IBAN और टैक्स नंबर शामिल करें</li>
+                        <li>हिंदी सहित 13 से अधिक भाषाओं में उपलब्ध</li>
+                        <li>सभी डेटा आपके फोन में — कोई क्लाउड नहीं, पूरी प्राइवेसी</li>
+                        <li>⏱️ काम के घंटे ट्रैक करें — घंटेवार बिलिंग के लिए परफेक्ट</li>
+                        <li>🏷️ छूट कैलकुलेटर, PDF जनरेटर और HTML एडिटर भी उपलब्ध</li>
+                    </ul>
+
+                    <h3>⏱️ काम के घंटे ट्रैकर क्यों जरूरी है?</h3>
+                    <p>अगर आप एक फ्रीलांसर, मजदूर, या सेवा प्रदाता हैं तो काम के घंटे रिकॉर्ड करना बेहद जरूरी है। हमारा <strong>Work Hours Tracker</strong> आपको हर प्रोजेक्ट का समय नोट करने और सटीक चालान बनाने में मदद करता है।</p>
+
+                    <h3>🛠️ अन्य उपयोगी टूल्स</h3>
+                    <ul>
+                        <li><strong>छूट इंजन</strong> — तुरंत डिस्काउंट कैलकुलेट करें</li>
+                        <li><strong>PDF इंजन</strong> — किसी भी दस्तावेज़ को PDF बनाएं</li>
+                        <li><strong>HTML संपादक</strong> — लाइव कोड एडिटिंग करें</li>
+                        <li><strong>कैलेंडर</strong> — अपने कार्यक्रम और मीटिंग मैनेज करें</li>
+                    </ul>
+
+                    <h3>🙋 अक्सर पूछे जाने वाले सवाल</h3>
+                    <dl>
+                        <div class="seo-faq">
+                            <dt>क्या Invoice Luxe बिल्कुल मुफ़्त है?</dt>
+                            <dd>हाँ, Invoice Luxe पूरी तरह मुफ़्त है। कोई छुपी हुई फीस या सब्सक्रिप्शन नहीं है।</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>क्या मैं GST के साथ चालान बना सकता हूँ?</dt>
+                            <dd>बिल्कुल! आप कस्टम VAT/GST दर (जैसे 18% या 28%) सेट करके GST-सहित चालान तैयार कर सकते हैं।</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>काम के घंटे ट्रैकर कैसे काम करता है?</dt>
+                            <dd>बस काम शुरू करते समय टाइमर चालू करें और खत्म होने पर बंद करें। सभी घंटे रिकॉर्ड हो जाते हैं और आप उन्हें सीधे चालान में जोड़ सकते हैं।</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>क्या मेरा डेटा सुरक्षित है?</dt>
+                            <dd>हाँ। सभी जानकारी केवल आपके डिवाइस पर सेव होती है — कोई सर्वर या क्लाउड नहीं।</dd>
+                        </div>
+                        <div class="seo-faq">
+                            <dt>क्या यह ऐप Android और iOS पर काम करता है?</dt>
+                            <dd>हाँ, यह एक PWA (Progressive Web App) है जो हर स्मार्टफोन के ब्राउज़र में चलता है और होम स्क्रीन पर इंस्टॉल किया जा सकता है।</dd>
+                        </div>
+                    </dl>
+
+                    <p class="text-[11px] text-[#a1887f] mt-4 leading-relaxed">Invoice Luxe एक <strong>invoiceluxe.com</strong> उत्पाद है — फ्रीलांसर्स, दुकानदारों और छोटे व्यवसायों के लिए तैयार किया गया सबसे आसान चालान और समय प्रबंधन समाधान।</p>
+                </div>
+            </div>
+
+            <!-- PAGE 1: EDITOR -->
+            <div class="page px-6 pt-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <button onclick="showPage(0)" class="text-[#8b4513] bg-white border-2 border-[#8b4513] w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-arrow-left"></i></button>
+                    <h2 class="text-xl font-black uppercase text-[#3e2723]">चालान संपादक ✍️</h2>
+                </div>
+                <div class="glass-card mb-6">
+                    <label for="inv-cust-select">बिल प्राप्तकर्ता ग्राहक 👤</label>
+                    <select id="inv-cust-select" class="input-pro mb-4" onchange="calcTotal()"></select>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div><label for="inv-no">चालान संख्या</label><input type="text" id="inv-no" class="input-pro"></div>
+                        <div><label for="inv-date">दस्तावेज़ तिथि</label><input type="date" id="inv-date" class="input-pro"></div>
+                    </div>
+                    <label>भुगतान की देय तिथि 🗓️</label>
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <div class="badge-select" id="due-0" onclick="setDue(0)">नकद</div>
+                        <div class="badge-select active" id="due-14" onclick="setDue(14)">14 दिन</div>
+                        <div class="badge-select" id="due-30" onclick="setDue(30)">30 दिन</div>
+                        <div class="badge-select" id="due-60" onclick="setDue(60)">60 दिन</div>
+                    </div>
+                    <input type="hidden" id="inv-due-days" value="14">
+                    <label>वैट/GST दर (%)</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div class="badge-select active" id="vat-20" onclick="setVat(20, this)">20</div>
+                        <div class="badge-select" id="vat-10" onclick="setVat(10, this)">10</div>
+                        <div class="badge-select" id="vat-0" onclick="setVat(0, this)">0</div>
+                        <div class="badge-select" id="custom-vat-btn" onclick="promptVat(this)">...</div>
+                    </div>
+                    <input type="hidden" id="selected-vat" value="20">
+                </div>
+                <div id="items-list" class="space-y-4"></div>
+                <button onclick="addRow()" class="w-full bg-[#fdf5f0] border-2 border-[#8b4513] border-dashed p-4 rounded-xl text-[11px] font-black text-[#8b4513] my-6 cursor-pointer">+ नई पंक्ति जोड़ें</button>
+                <div class="p-6 bg-white border-4 border-[#8b4513] rounded-3xl shadow-lg flex justify-between items-center mb-8">
+                    <span class="text-[#8d6e63] text-[11px] font-black uppercase">कुल योग</span>
+                    <span id="grand-total" class="text-2xl font-black text-[#3e2723]">0.00</span>
+                </div>
+                <button onclick="generatePreviewFromCurrent()" class="w-full btn-wood mb-10">पूर्वावलोकन देखें 🚀</button>
+            </div>
+
+            <!-- PAGE 2: ARCHIVE -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">चालान संग्रह 📂</h2>
+                <div id="archiv-list" class="space-y-3"></div>
+            </div>
+
+            <!-- PAGE 3: CUSTOMERS -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">ग्राहक निर्देशिका 👥</h2>
+                <div class="glass-card mb-6">
+                    <input type="hidden" id="edit-cust-idx" value="-1">
+                    <label for="c-name">कंपनी का नाम</label><input type="text" id="c-name" class="input-pro mb-3">
+                    <label for="c-adr">पता</label><input type="text" id="c-adr" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="c-pc">पिन कोड</label><input type="text" id="c-pc" class="input-pro"></div>
+                        <div><label for="c-city">शहर</label><input type="text" id="c-city" class="input-pro"></div>
+                    </div>
+                    <label for="c-mob">फ़ोन</label><input type="text" id="c-mob" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div><label for="c-tax">कर संख्या</label><input type="text" id="c-tax" class="input-pro"></div>
+                        <div><label for="c-vat">वैट संख्या</label><input type="text" id="c-vat" class="input-pro"></div>
+                    </div>
+                    <button onclick="saveCustomer()" class="w-full btn-wood py-3 text-sm">ग्राहक सहेजें ✅</button>
+                </div>
+                <div id="customer-list" class="space-y-3"></div>
+            </div>
+
+            <!-- PAGE 4: PROFILE -->
+            <div class="page px-6 pt-12">
+                <h2 class="text-xl font-black mb-6 uppercase text-[#3e2723]">वर्कशॉप जानकारी 🛠️</h2>
+                <div class="glass-card">
+                    <label for="p-name">कंपनी का नाम</label><input type="text" id="p-name" class="input-pro mb-3">
+                    <label for="p-adr">पता</label><input type="text" id="p-adr" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="p-pc">पिन कोड</label><input type="text" id="p-pc" class="input-pro"></div>
+                        <div><label for="p-city">शहर</label><input type="text" id="p-city" class="input-pro"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><label for="p-mail">ईमेल</label><input type="text" id="p-mail" class="input-pro"></div>
+                        <div><label for="p-mob">फ़ोन</label><input type="text" id="p-mob" class="input-pro"></div>
+                    </div>
+                    <div class="h-[2px] bg-[#fdf5f0] border-t-2 border-[#8b4513] my-4"></div>
+                    <label for="p-bank">बैंक का नाम</label><input type="text" id="p-bank" class="input-pro mb-3">
+                    <label for="p-iban">आईबीएएन (IBAN)</label><input type="text" id="p-iban" class="input-pro mb-3">
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div><label for="p-tax">कर संख्या</label><input type="text" id="p-tax" class="input-pro"></div>
+                        <div><label for="p-vat">वैट संख्या</label><input type="text" id="p-vat" class="input-pro"></div>
+                    </div>
+                    <button onclick="saveProfile()" class="w-full btn-wood py-3 text-sm">प्रोफ़ाइल अपडेट करें 💾</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCK NAV with PWA install bar -->
+        <nav class="dock-nav">
+            <button id="pwa-install-btn" class="pwa-install-bar" style="display:none;" onclick="handlePwaInstall()">
+                <div class="pwa-icons">
+                    <img src="logo.png" onerror="this.style.display='none'" style="width:28px; height:28px; border-radius:8px; object-fit:cover;" alt="Logo">
+                    <i class="fa-brands fa-android text-green-400 text-lg"></i>
+                    <i class="fa-brands fa-apple text-gray-300 text-lg"></i>
+                </div>
+                <div class="pwa-text">
+                    <span>होम स्क्रीन में जोड़ें</span>
+                    <small id="pwa-sub-text">ऐप की तरह इस्तेमाल करें · iOS: Share → Add to Home</small>
+                </div>
+                <i class="fa-solid fa-plus text-white text-sm bg-[#8b4513] w-7 h-7 rounded-full flex items-center justify-center" style="display:flex; align-items:center; justify-content:center;"></i>
+            </button>
+            <div class="dock-nav-buttons">
+                <button class="nav-btn active" onclick="showPage(0)" aria-label="होम"><i class="fa-solid fa-house-chimney"></i></button>
+                <button class="nav-btn" onclick="showPage(1)" aria-label="संपादक"><i class="fa-solid fa-file-signature"></i></button>
+                <button class="nav-btn" onclick="showPage(2)" aria-label="संग्रह"><i class="fa-solid fa-box-open"></i></button>
+                <button class="nav-btn" onclick="showPage(3)" aria-label="ग्राहक"><i class="fa-solid fa-users"></i></button>
+                <button class="nav-btn" onclick="showPage(4)" aria-label="सेटिंग्स"><i class="fa-solid fa-toolbox"></i></button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="p-modal">
+        <div class="p-4 flex gap-3 bg-white border-b-4 border-[#8b4513]">
+            <button onclick="closePreview()" class="flex-1 bg-stone-100 text-[#8b4513] border-2 border-[#8b4513] p-3 rounded-xl font-black uppercase text-[10px]">रद्द करें</button>
+            <button id="modal-confirm-btn" onclick="confirmAndArchive()" class="flex-[2] btn-wood p-3 text-[10px]">पुष्टि करें और PDF बनाएँ 🔥</button>
+        </div>
+        <div class="preview-container" id="zoom-area">
+            <div class="a4-preview" id="p-page">
+                <div class="s2-header">
+                    <div class="s2-logo-side">
+                        <div class="s2-logo-title" id="pv-title">कंपनी का नाम</div>
+                        <div style="font-size:10px; color:#64748b; margin-top:4px; font-weight:600;">पेशेवर दस्तावेज़ प्रणाली</div>
+                    </div>
+                    <div style="text-align:left;">
+                        <div class="s2-inv-label">चालान संख्या</div>
+                        <div id="pv-no" class="s2-inv-no">#000</div>
+                    </div>
+                </div>
+                <div style="padding: 50px 60px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:35px; border-bottom:2px solid #f0f4f8; padding-bottom:20px;">
+                        <div><small style="color:#64748b; font-weight:800; font-size:11px;">दस्तावेज़ तिथि</small><div id="pv-date" style="font-weight:800; font-size:15px; margin-top:3px;"></div></div>
+                        <div style="text-align:right;"><small style="color:#ef4444; font-weight:800; font-size:11px;">अंतिम भुगतान (देय)</small><div id="pv-due" style="font-weight:800; color:#ef4444; font-size:15px; margin-top:3px;"></div></div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:35px;">
+                        <div class="info-box"><b>प्रेषक</b><div id="pv-sender"></div></div>
+                        <div class="info-box"><b>प्राप्तकर्ता (ग्राहक)</b><div id="pv-receiver"></div></div>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse; margin-top:50px; font-size:13px;">
+                        <thead><tr style="background:#f1f5f9; text-align:left; color:#475569;"><th style="padding:15px; border-radius:10px 0 0 10px;">विवरण / सेवा</th><th style="text-align:center;">मात्रा</th><th style="text-align:right;">इकाई मूल्य</th><th style="text-align:right; padding-right:15px; border-radius:0 10px 10px 0;">कुल</th></tr></thead>
+                        <tbody id="pv-items"></tbody>
+                    </table>
+                    <div style="margin-top:80px; border-top:3px solid #f1f5f9; padding-top:30px; display:flex; justify-content:space-between; align-items: flex-start;">
+                        <div style="font-size:12px; color:#1e3a8a; background:#f0f9ff; padding:20px; border-radius:15px; width:350px; border:1px solid #dbeafe;"><b>भुगतान / बैंक जानकारी</b><div id="pv-bank" style="margin-top:8px; font-weight:700; line-height:1.6; white-space:pre-line;"></div></div>
+                        <div style="width:250px;">
+                            <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:8px; color:#64748b;"><span>उप-योग:</span><span id="pv-sub">0.00</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:14px; color:#2563eb; margin-bottom:15px;"><span>वैट राशि:</span><span id="pv-tax">0.00</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:28px; font-weight:900; color:#1e293b; border-top:4px solid #1e293b; margin-top:15px; padding-top:15px;"><span>कुल:</span><span id="pv-total">0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Edit Modal -->
+    <div id="text-modal" style="position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 10001; display: none; flex-direction: column;">
+        <div class="p-8 h-full flex flex-col">
+            <h3 class="text-[#8b4513] font-black mb-4">कार्य विवरण संपादित करें</h3>
+            <textarea id="modal-textarea" class="flex-1 w-full bg-white text-[#3e2723] p-6 rounded-3xl text-lg font-bold outline-none border-4 border-[#8b4513]"></textarea>
+            <div class="flex gap-4 mt-6">
+                <button onclick="closeTextModal()" class="flex-1 bg-stone-100 p-5 rounded-2xl font-bold border-2 border-[#8b4513]">रद्द करें</button>
+                <button id="save-text-btn" class="flex-[2] btn-wood">सहेजें ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS PWA Instructions Modal -->
+    <div id="ios-pwa-modal" style="display:none; position:fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: white; border:3px solid #8b4513; border-radius: 20px; padding: 18px; z-index: 10000; width: 90%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        <div class="flex items-center gap-3 mb-3">
+            <img src="logo.png" onerror="this.style.display='none'" style="width:40px; height:40px; border-radius:10px; object-fit:cover;" alt="Invoice Luxe Logo">
+            <div>
+                <p class="text-sm font-black text-[#3e2723]">iPhone / iPad पर इंस्टॉल करें</p>
+                <p class="text-[10px] text-[#8d6e63] font-bold">होम स्क्रीन ऐप की तरह चलाएं</p>
+            </div>
+        </div>
+        <div class="bg-[#fdf5f0] rounded-xl p-3 mb-3">
+            <p class="text-xs text-[#6d4c41] leading-relaxed">
+                <strong>1.</strong> नीचे Safari में <i class="fa-solid fa-arrow-up-from-bracket text-[#8b4513]"></i> <strong>शेयर</strong> बटन दबाएं<br>
+                <strong>2.</strong> "<strong>होम स्क्रीन में जोड़ें</strong>" (Add to Home Screen) चुनें<br>
+                <strong>3.</strong> ऊपर दाईं ओर <strong>जोड़ें</strong> (Add) टैप करें
+            </p>
+        </div>
+        <button onclick="document.getElementById('ios-pwa-modal').style.display='none'" class="w-full bg-[#3e2723] text-white py-2 rounded-xl text-xs font-bold">समझ गया, बंद करें ✓</button>
+    </div>
+
+    <script>
+        function openSideMenu() {
+            document.getElementById('side-menu').classList.add('open');
+            document.getElementById('side-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSideMenu() {
+            document.getElementById('side-menu').classList.remove('open');
+            document.getElementById('side-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        let currentIdx = 0; 
+        let activeTextId = null;
+        const slider = document.getElementById('main-slider');
+        
+        function toggleLangDropdown() {
+            const dd = document.getElementById('lang-dropdown');
+            if (dd) dd.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const btn = document.getElementById('lang-toggle-btn');
+            const dd = document.getElementById('lang-dropdown');
+            if (btn && dd && !btn.contains(e.target) && !dd.contains(e.target)) {
+                dd.classList.remove('open');
+            }
+        });
+
+        function changeLang(code) {
+            window.location.href = '../' + code + '/index.html';
+        }
+
+        let touchstartX = 0; 
+        let touchendX = 0;
+        slider.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, {passive: true});
+        slider.addEventListener('touchend', e => { touchendX = e.changedTouches[0].screenX; handleSwipe(); }, {passive: true});
+        function handleSwipe() {
+            const diff = touchstartX - touchendX;
+            if (diff > 50) { if (currentIdx < 4) showPage(currentIdx + 1); }
+            else if (diff < -50) { if (currentIdx > 0) showPage(currentIdx - 1); }
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('pwa-install-btn');
+        const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        function handlePwaInstall() {
+            if (isIos()) {
+                document.getElementById('ios-pwa-modal').style.display = 'block';
+            } else if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; if (installBtn) installBtn.style.display = 'none'; });
+            } else {
+                alert('कृपया अपने ब्राउज़र मेनू से "होम स्क्रीन में जोड़ें" (Add to Home Screen) विकल्प का उपयोग करें।');
+            }
+        }
+
+        if (!isStandalone && installBtn) {
+            if (isIos()) {
+                installBtn.style.display = 'flex';
+                const subText = document.getElementById('pwa-sub-text');
+                if (subText) subText.textContent = 'iOS: Share बटन → Add to Home Screen';
+            } else {
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    installBtn.style.display = 'flex';
+                    const subText = document.getElementById('pwa-sub-text');
+                    if (subText) subText.textContent = 'Android पर ऐप की तरह इंस्टॉल करें';
+                });
+            }
+        }
+
+        function showPage(idx) {
+            currentIdx = idx; 
+            slider.style.transform = `translateX(-${idx * 20}%)`;
+            document.querySelectorAll('.nav-btn').forEach((n, i) => n.classList.toggle('active', i === idx));
+            if(idx === 2) renderArchiv(); 
+            if(idx === 3) renderCustomers(); 
+            if(idx === 1) updateCustSelect();
+        }
+
+        function resetAndNew() {
+            document.getElementById('items-list').innerHTML = ""; 
+            addRow();
+            setVat(20, document.getElementById('vat-20')); 
+            setDue(14);
+            const archive = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            document.getElementById('inv-no').value = (1000 + archive.length + 1);
+            document.getElementById('inv-date').valueAsDate = new Date(); 
+            showPage(1);
+        }
+
+        function addRow(data = null) {
+            const id = "r-" + Math.random().toString(36).substr(2, 5);
+            const div = document.createElement('div'); 
+            div.className = "item-row"; 
+            div.id = id;
+            div.innerHTML = `
+                <button aria-label="पंक्ति हटाएं" class="absolute -top-3 -right-3 bg-red-600 text-white w-8 h-8 rounded-full border-2 border-[#8b4513] cursor-pointer" onclick="document.getElementById('${id}').remove(); calcTotal();">✕</button>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" class="input-pro d flex-1" placeholder="विवरण / सेवा..." value="${data?data.d:''}">
+                    <button onclick="openTextModal('${id}')" class="bg-white border-2 border-[#8b4513] text-[#8b4513] px-3 rounded-xl cursor-pointer"><i class="fa-solid fa-expand"></i></button>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div><label>मात्रा</label><input type="number" class="input-pro qty" value="${data?data.q:'1'}" oninput="calcTotal()"></div>
+                    <div><label>इकाई</label>
+                        <select class="input-pro u" onchange="calcTotal()">
+                            <option value="टुकड़ा" ${data?.u=='टुकड़ा'?'selected':''}>टुकड़ा</option>
+                            <option value="मीटर" ${data?.u=='मीटर'?'selected':''}>मीटर</option>
+                            <option value="सेमी" ${data?.u=='सेमी'?'selected':''}>सेमी</option>
+                            <option value="किलो" ${data?.u=='किलो'?'selected':''}>किलोग्राम</option>
+                            <option value="किमी" ${data?.u=='किमी'?'selected':''}>किलोमीटर</option>
+                            <option value="घंटा" ${data?.u=='घंटा'?'selected':''}>घंटा</option>
+                            <option value="दैनिक" ${data?.u=='दैनिक'?'selected':''}>दैनिक</option>
+                            <option value="साप्ताहिक" ${data?.u=='साप्ताहिक'?'selected':''}>साप्ताहिक</option>
+                            <option value="मासिक" ${data?.u=='मासिक'?'selected':''}>मासिक</option>
+                        </select>
+                    </div>
+                    <div><label>मूल्य</label><input type="number" class="input-pro p" placeholder="0.00" value="${data?data.p:''}" oninput="calcTotal()"></div>
+                </div>`;
+            document.getElementById('items-list').appendChild(div); 
+            calcTotal();
+        }
+
+        function setVat(val, el) { 
+            document.getElementById('selected-vat').value = val; 
+            document.querySelectorAll('[id^="vat-"], #custom-vat-btn').forEach(b => b.classList.remove('active')); 
+            if(el) el.classList.add('active'); 
+            calcTotal(); 
+        }
+
+        function promptVat(el) { 
+            let v = prompt("कस्टम वैट/GST दर्ज करें:", "18"); 
+            if(v !== null && v.trim() !== "") { 
+                el.innerText = "%" + v; 
+                setVat(parseFloat(v) || 0, el); 
+            } 
+        }
+
+        function setDue(val) { 
+            document.getElementById('inv-due-days').value = val; 
+            document.querySelectorAll('[id^="due-"]').forEach(b => b.classList.remove('active')); 
+            const target = document.getElementById('due-'+val); 
+            if(target) target.classList.add('active'); 
+        }
+
+        function calcTotal() { 
+            let sub = 0; 
+            document.querySelectorAll('.item-row').forEach(r => { 
+                const q = parseFloat(r.querySelector('.qty').value) || 0;
+                const p = parseFloat(r.querySelector('.p').value) || 0;
+                sub += q * p; 
+            }); 
+            let v = parseFloat(document.getElementById('selected-vat').value) || 0; 
+            document.getElementById('grand-total').innerText = (sub * (1 + v/100)).toFixed(2); 
+        }
+
+        function formatInfo(label, text) {
+            if(!text) return "";
+            return `<div class="info-line"><span class="info-label">${label}:</span><span class="info-content">${text}</span></div>`;
+        }
+
+        function generatePreview(prof, cust, invNo, date, items, vRate, dueDays) {
+            document.getElementById('pv-no').innerText = "#" + invNo;
+            document.getElementById('pv-title').innerText = (prof.name || 'कंपनी का नाम').toUpperCase();
+            
+            if(date) {
+                const p = date.split('-'); 
+                document.getElementById('pv-date').innerText = p.length === 3 ? `${p[2]}.${p[1]}.${p[0]}` : date;
+                const dt = new Date(date); 
+                dt.setDate(dt.getDate() + parseInt(dueDays || 0));
+                document.getElementById('pv-due').innerText = dt.toLocaleDateString('hi-IN');
+            }
+
+            document.getElementById('pv-sender').innerHTML = `
+                ${formatInfo('कंपनी', prof.name)}
+                ${formatInfo('पता', (prof.adr || '') + " " + (prof.pc||"") + " " + (prof.city||""))}
+                ${formatInfo('फ़ोन', prof.mob)}
+                ${formatInfo('ईमेल', prof.mail)}
+                ${formatInfo('कर संख्या', prof.tax)}
+                ${formatInfo('वैट संख्या', prof.vat)}`;
+
+            document.getElementById('pv-receiver').innerHTML = `
+                ${formatInfo('कंपनी', cust.name)}
+                ${formatInfo('पता', (cust.adr || '') + " " + (cust.pc||"") + " " + (cust.city||""))}
+                ${formatInfo('फ़ोन', cust.mob)}
+                ${formatInfo('कर संख्या', cust.tax)}
+                ${formatInfo('वैट संख्या', cust.vat)}`;
+
+            document.getElementById('pv-bank').innerText = `${prof.bank || ''}\nIBAN: ${prof.iban || ''}`;
+            
+            let sub = 0;
+            document.getElementById('pv-items').innerHTML = items.map(it => {
+                let q = parseFloat(it.q) || 0;
+                let p = parseFloat(it.p) || 0;
+                let t = q * p; 
+                sub += t;
+                return `<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:15px; font-weight:600;">${it.d}</td><td style="text-align:center;">${it.q} ${it.u}</td><td style="text-align:right;">${p.toFixed(2)}</td><td style="text-align:right; padding-right:15px; font-weight:800;">${t.toFixed(2)}</td></tr>`;
+            }).join('');
+
+            let tax = sub * ((parseFloat(vRate) || 0) / 100);
+            document.getElementById('pv-sub').innerText = sub.toFixed(2);
+            document.getElementById('pv-tax').innerText = tax.toFixed(2) + " (%" + vRate + ")";
+            document.getElementById('pv-total').innerText = (sub + tax).toFixed(2);
+            document.getElementById('p-modal').style.display = 'flex';
+            
+            const container = document.getElementById('zoom-area');
+            if (container) {
+                const scale = Math.min((container.offsetWidth - 40) / 794, (container.offsetHeight - 40) / 1123);
+                document.getElementById('p-page').style.transform = `scale(${scale})`;
+            }
+        }
+
+        function generatePreviewFromCurrent() {
+            const cIdx = document.getElementById('inv-cust-select').value; 
+            if(cIdx === "") return alert("कृपया एक ग्राहक चुनें!");
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const customers = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const cust = customers[cIdx];
+            if(!cust) return alert("अमान्य ग्राहक का चयन किया गया!");
+
+            let items = [];
+            document.querySelectorAll('.item-row').forEach(r => { 
+                items.push({ 
+                    d: r.querySelector('.d').value, 
+                    q: r.querySelector('.qty').value, 
+                    p: r.querySelector('.p').value, 
+                    u: r.querySelector('.u').value 
+                }); 
+            });
+            document.getElementById('modal-confirm-btn').style.display = 'block';
+            generatePreview(prof, cust, document.getElementById('inv-no').value, document.getElementById('inv-date').value, items, document.getElementById('selected-vat').value, document.getElementById('inv-due-days').value);
+        }
+
+        function confirmAndArchive() {
+            const cIdx = document.getElementById('inv-cust-select').value;
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const customers = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const cust = customers[cIdx] || {};
+
+            let items = [];
+            document.querySelectorAll('.item-row').forEach(r => { 
+                items.push({ 
+                    d: r.querySelector('.d').value, 
+                    q: r.querySelector('.qty').value, 
+                    p: r.querySelector('.p').value, 
+                    u: r.querySelector('.u').value 
+                }); 
+            });
+
+            const params = new URLSearchParams();
+            params.set('n', prof.name || ''); 
+            params.set('adr', prof.adr || ''); 
+            params.set('pc', prof.pc || ''); 
+            params.set('ct', prof.city || ''); 
+            params.set('mob', prof.mob || ''); 
+            params.set('mail', prof.mail || ''); 
+            params.set('k', prof.tax || ''); 
+            params.set('vat', prof.vat || ''); 
+            params.set('bnk', prof.bank || ''); 
+            params.set('i', prof.iban || '');
+            
+            params.set('c', cust.name || ''); 
+            params.set('cadr', cust.adr || ''); 
+            params.set('cpc', cust.pc || ''); 
+            params.set('cct', cust.city || ''); 
+            params.set('cmob', cust.mob || ''); 
+            params.set('cx', cust.tax || ''); 
+            params.set('cv', cust.vat || '');
+            
+            params.set('inv', document.getElementById('inv-no').value); 
+            params.set('sym', ''); 
+            params.set('l', 'hi');
+
+            const dateVal = document.getElementById('inv-date').value;
+            if(dateVal) {
+                const [y,m,d] = dateVal.split('-'); 
+                params.set('d', `${d}-${m}-${y}`);
+            }
+
+            params.set('vrate', document.getElementById('selected-vat').value); 
+            params.set('due', document.getElementById('inv-due-days').value);
+            params.set('items', items.map(it => `${encodeURIComponent(it.d)}|${it.q}|${it.p}|${it.u}`).join('!!'));
+
+            let arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            arch.unshift({ 
+                no: document.getElementById('inv-no').value, 
+                date: document.getElementById('inv-date').value, 
+                custName: cust.name || 'अज्ञात', 
+                items, 
+                vrate: document.getElementById('selected-vat').value, 
+                due: document.getElementById('inv-due-days').value, 
+                cIdx 
+            });
+            localStorage.setItem('fatura_arsiv', JSON.stringify(arch));
+            
+            window.open("https://invoiceluxe.com/invoice.html?" + params.toString(), '_blank');
+            closePreview(); 
+            showPage(2);
+        }
+
+        function saveCustomer() {
+            let l = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const c = { 
+                name: document.getElementById('c-name').value, 
+                adr: document.getElementById('c-adr').value, 
+                pc: document.getElementById('c-pc').value, 
+                city: document.getElementById('c-city').value, 
+                mob: document.getElementById('c-mob').value, 
+                tax: document.getElementById('c-tax').value, 
+                vat: document.getElementById('c-vat').value 
+            };
+            let idx = document.getElementById('edit-cust-idx').value;
+            if(idx !== "-1") l[idx] = c; else l.unshift(c);
+            
+            localStorage.setItem('fatura_musteriler', JSON.stringify(l));
+            document.getElementById('edit-cust-idx').value = "-1";
+            ['c-name','c-adr','c-pc','c-city','c-mob','c-tax','c-vat'].forEach(id => document.getElementById(id).value = ""); 
+            renderCustomers();
+        }
+
+        function renderCustomers() {
+            const l = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            document.getElementById('customer-list').innerHTML = l.map((c, i) => `
+                <div class="p-4 glass-card flex justify-between items-center border-l-[8px] border-l-[#8b4513]">
+                    <div>
+                        <div class="text-[14px] font-black uppercase">${c.name}</div>
+                        <div class="text-[10px] text-[#8b4513] font-bold">${c.city || ''} ${c.mob || ''}</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editCust(${i})" aria-label="संपादित करें" class="w-9 h-9 bg-white border-2 border-[#8b4513] text-[#8b4513] rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteCust(${i})" aria-label="हटाएं" class="w-9 h-9 bg-white border-2 border-red-600 text-red-600 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`).join('');
+            updateCustSelect();
+        }
+
+        function editCust(i) { 
+            const list = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            const c = list[i]; 
+            if(!c) return;
+            document.getElementById('c-name').value = c.name || ''; 
+            document.getElementById('c-adr').value = c.adr || ''; 
+            document.getElementById('c-pc').value = c.pc || ''; 
+            document.getElementById('c-city').value = c.city || ''; 
+            document.getElementById('c-mob').value = c.mob || ''; 
+            document.getElementById('c-tax').value = c.tax || ''; 
+            document.getElementById('c-vat').value = c.vat || ''; 
+            document.getElementById('edit-cust-idx').value = i; 
+            showPage(3); 
+        }
+
+        function deleteCust(i) { 
+            if(confirm("क्या आप ग्राहक को हटाना चाहते हैं?")) { 
+                let l = JSON.parse(localStorage.getItem('fatura_musteriler')) || []; 
+                l.splice(i,1); 
+                localStorage.setItem('fatura_musteriler', JSON.stringify(l)); 
+                renderCustomers(); 
+            } 
+        }
+
+        function renderArchiv() {
+            const l = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            document.getElementById('archiv-list').innerHTML = l.map((a, i) => `
+                <div class="p-4 glass-card flex justify-between items-center border-l-[8px] border-l-[#8b4513]">
+                    <div>
+                        <div class="font-black text-sm text-[#8b4513]">चालान #${a.no}</div>
+                        <div class="text-[10px] text-[#3e2723] uppercase font-black">${a.custName}</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="previewArchiv(${i})" aria-label="देखें" class="w-10 h-10 bg-white border-2 border-blue-500 text-blue-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-eye"></i></button>
+                        <button onclick="loadEditArchiv(${i})" aria-label="पुनः लोड करें" class="w-10 h-10 bg-white border-2 border-emerald-500 text-emerald-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-rotate"></i></button>
+                        <button onclick="deleteArchiv(${i})" aria-label="हटाएं" class="w-10 h-10 bg-white border-2 border-red-500 text-red-500 rounded-xl flex items-center justify-center cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`).join('');
+        }
+
+        function previewArchiv(i) {
+            const arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            const a = arch[i];
+            if(!a) return;
+            const prof = JSON.parse(localStorage.getItem('fatura_profil')) || {};
+            const custs = JSON.parse(localStorage.getItem('fatura_musteriler')) || [];
+            document.getElementById('modal-confirm-btn').style.display = 'none';
+            const currentCust = custs[a.cIdx] || { name: a.custName };
+            generatePreview(prof, currentCust, a.no, a.date, a.items, a.vrate, a.due);
+        }
+
+        function loadEditArchiv(i) { 
+            const arch = JSON.parse(localStorage.getItem('fatura_arsiv')) || [];
+            const a = arch[i]; 
+            if(!a) return;
+            document.getElementById('inv-no').value = a.no; 
+            document.getElementById('inv-date').value = a.date; 
+            document.getElementById('inv-cust-select').value = a.cIdx; 
+            setVat(a.vrate, null); 
+            setDue(a.due); 
+            document.getElementById('items-list').innerHTML = ""; 
+            if(a.items && Array.isArray(a.items)) {
+                a.items.forEach(it => addRow(it)); 
+            }
+            showPage(1); 
+        }
+
+        function deleteArchiv(i) { 
+            if(confirm("क्या आप रिकॉर्ड हटाना चाहते हैं?")) { 
+                let l = JSON.parse(localStorage.getItem('fatura_arsiv')) || []; 
+                l.splice(i,1); 
+                localStorage.setItem('fatura_arsiv', JSON.stringify(l)); 
+                renderArchiv(); 
+            } 
+        }
+
+        function saveProfile() {
+            const p = { 
+                name: document.getElementById('p-name').value, 
+                adr: document.getElementById('p-adr').value, 
+                pc: document.getElementById('p-pc').value, 
+                city: document.getElementById('p-city').value, 
+                mail: document.getElementById('p-mail').value, 
+                mob: document.getElementById('p-mob').value, 
+                bank: document.getElementById('p-bank').value, 
+                iban: document.getElementById('p-iban').value, 
+                tax: document.getElementById('p-tax').value, 
+                vat: document.getElementById('p-vat').value 
+            };
+            localStorage.setItem('fatura_profil', JSON.stringify(p));
+            alert("प्रोफ़ाइल अपडेट हो गई 🛠️"); 
+            showPage(0);
+        }
+
+        function updateCustSelect() { 
+            const l = JSON.parse(localStorage.getItem('fatura_musteriler')) || []; 
+            document.getElementById('inv-cust-select').innerHTML = '<option value="">ग्राहक चुनें...</option>' + l.map((c, i) => `<option value="${i}">${c.name}</option>`).join(''); 
+        }
+
+        function openTextModal(rowId) { 
+            activeTextId = rowId; 
+            const rowElem = document.querySelector(`#${rowId} .d`);
+            if(rowElem) document.getElementById('modal-textarea').value = rowElem.value; 
+            document.getElementById('text-modal').style.display = 'flex'; 
+        }
+
+        function closeTextModal() { 
+            document.getElementById('text-modal').style.display = 'none'; 
+        }
+
+        function closePreview() { 
+            document.getElementById('p-modal').style.display = 'none'; 
+        }
+
+        document.getElementById('save-text-btn').onclick = () => { 
+            if(activeTextId) {
+                const rowElem = document.querySelector(`#${activeTextId} .d`);
+                if(rowElem) rowElem.value = document.getElementById('modal-textarea').value; 
+            }
+            closeTextModal(); 
+        };
+
+        window.onload = () => { 
+            const p = JSON.parse(localStorage.getItem('fatura_profil')) || {}; 
+            if(p.name) {
+                Object.keys(p).forEach(k => { 
+                    const elem = document.getElementById('p-'+k);
+                    if(elem) elem.value = p[k]; 
+                }); 
+            }
+            renderCustomers(); 
+            document.getElementById('inv-date').valueAsDate = new Date(); 
+            setVat(20, document.getElementById('vat-20'));
+            addRow(); 
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Etiketleri -->
+    <title>Zip Creator | Invoice Luxe</title>
+    <meta name="description" content="Compress files directly in your browser without uploading to any server. Secure, fast, and 100% private online ZIP maker.">
+    <meta name="keywords" content="zip creator, online zip, zip dosyası oluşturma, file compressor, jszip, invoice luxe tools">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+
+    <!-- Çok Dilli SEO Hreflang Yapısı (InvoiceLuxe.com için) -->
+    <link rel="alternate" hreflang="x-default" href="https://www.invoiceluxe.com/zip-creator" />
+    <link rel="alternate" hreflang="ar" href="https://www.invoiceluxe.com/zip-creator/ar/" />
+    <link rel="alternate" hreflang="de" href="https://www.invoiceluxe.com/zip-creator/de/" />
+    <link rel="alternate" hreflang="en" href="https://www.invoiceluxe.com/zip-creator/en/" />
+    <link rel="alternate" hreflang="es" href="https://www.invoiceluxe.com/zip-creator/es/" />
+    <link rel="alternate" hreflang="fr" href="https://www.invoiceluxe.com/zip-creator/fr/" />
+    <link rel="alternate" hreflang="hi" href="https://www.invoiceluxe.com/zip-creator/hi/" />
+    <link rel="alternate" hreflang="in" href="https://www.invoiceluxe.com/zip-creator/in/" />
+    <link rel="alternate" hreflang="it" href="https://www.invoiceluxe.com/zip-creator/it/" />
+    <link rel="alternate" hreflang="ja" href="https://www.invoiceluxe.com/zip-creator/ja/" />
+    <link rel="alternate" hreflang="nl" href="https://www.invoiceluxe.com/zip-creator/nl/" />
+    <link rel="alternate" hreflang="pt" href="https://www.invoiceluxe.com/zip-creator/pt/" />
+    <link rel="alternate" hreflang="ru" href="https://www.invoiceluxe.com/zip-creator/ru/" />
+    <link rel="alternate" hreflang="tr" href="https://www.invoiceluxe.com/zip-creator/tr/" />
+    <link rel="alternate" hreflang="zh" href="https://www.invoiceluxe.com/zip-creator/zh/" />
+
+    <!-- Google Bot Web Uygulaması Schema İşaretlemesi (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Invoice Luxe ZIP Creator",
+      "url": "https://www.invoiceluxe.com/zip-creator/tr/",
+      "description": "Compress files directly in your browser without uploading to any server. Local-first file compilation.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "softwareVersion": "1.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- JSZip Kütüphanesi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    
+    <style>
+        :root { --bg-oak: #8d6e63; --gold-main: #FFD700; --m-black: #121212; --card-bg: #1a1510; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background-color: var(--bg-oak); background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png'); font-family: 'Segoe UI', sans-serif; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh; padding: 40px 15px; }
+        
+        .main-wrapper { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 20px; }
+        
+        .container { background: var(--card-bg); border: 2.5px solid var(--gold-main); padding: 30px; border-radius: 35px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        h1 { color: var(--gold-main); margin: 0 0 10px 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        input[type="file"] { margin: 20px 0; color: var(--gold-main); width: 100%; font-size: 13px; cursor: pointer; }
+        
+        .action-btn { cursor: pointer; width: 100%; padding: 15px; border-radius: 15px; border: none; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; text-decoration: none; font-size: 13px; text-transform: uppercase; }
+        .action-btn:active { transform: scale(0.97); }
+        
+        .btn-zip { background: var(--gold-main); color: var(--m-black); }
+        .back-btn { background: var(--m-black); color: var(--gold-main); border: 2px solid var(--gold-main); }
+        .back-btn:hover { background: var(--gold-main); color: var(--m-black); }
+        
+        .control-row { display: flex; justify-content: center; margin-bottom: 5px; }
+        select { background: #000; color: var(--gold-main); border: 1px solid var(--gold-main); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; width: auto; font-size: 12px; }
+
+        .manual-card { background: var(--card-bg); border: 1px dashed rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 18px; text-align: left; }
+        .manual-title { font-size: 12px; color: var(--gold-main); font-weight: bold; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .manual-text { font-size: 11.5px; color: #ccc; line-height: 1.5; margin: 0; }
+
+        .seo-section { padding: 20px 15px; background: rgba(0,0,0,0.35); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
+        .seo-section h2 { color: var(--gold-main); font-size: 14px; margin: 0 0 10px 0; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+        .seo-section p { font-size: 12px; color: #bbb; line-height: 1.6; margin: 0 0 12px 0; }
+        .seo-section p:last-child { margin-bottom: 0; }
+        .seo-section p strong { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <!-- Dil Seçim Satırı -->
+        <div class="control-row">
+            <select id="lang-select" onchange="window.location.href = '../' + this.value + '/index.html'">
+                <option value="ar" >العربية</option>
+                <option value="de" >Deutsch</option>
+                <option value="en" >English</option>
+                <option value="es" >Español</option>
+                <option value="fr" >Français</option>
+                <option value="hi" >हिन्दी</option>
+                <option value="in" >Bahasa Indonesia</option>
+                <option value="it" >Italiano</option>
+                <option value="ja" >日本語</option>
+                <option value="nl" >Nederlands</option>
+                <option value="pt" >Português</option>
+                <option value="ru" >Русский</option>
+                <option value="tr" selected>Türkçe</option>
+                <option value="zh" >中文</option>
+            </select>
+        </div>
+
+        <div class="container">
+            <h1 id="L_TITLE">ZIP CREATOR</h1>
+            <p id="L_DESC" style="font-size: 13px; opacity: 0.8; margin: 0;">Select files to compress.</p>
+            
+            <input type="file" id="file-input" multiple>
+            
+            <button class="action-btn btn-zip" onclick="generateZip()">
+                <i class="material-symbols-rounded" style="font-size: 18px;">download</i>
+                <span id="L_DOWN">DOWNLOAD ZIP</span>
+            </button>
+
+            <a href="index.html" class="action-btn back-btn">
+                <i class="material-symbols-rounded" style="font-size: 18px;">arrow_back</i>
+                <span id="L_BACK">BACK TO MENU</span>
+            </a>
+        </div>
+
+        <div class="manual-card">
+            <div class="manual-title">
+                <span class="material-symbols-rounded" style="font-size: 16px;">library_books</span>
+                <span id="L_MANUAL_TITLE">USER MANUAL</span>
+            </div>
+            <p class="manual-text" id="L_MANUAL_TEXT">...</p>
+        </div>
+
+        <div class="seo-section">
+            <h2 id="L_SEO_TITLE">SECURE LOCAL FILE COMPRESSION AND ZIP CREATION</h2>
+            <p id="L_SEO_TEXT_1">...</p>
+            <p id="L_SEO_TEXT_2">...</p>
+        </div>
+    </div>
+
+    <script>
+        const dict = {
+            tr: { 
+                title: "ZIP OLUŞTURUCU", desc: "Dosyaları seçin ve arşivleyin.", down: "ZIP İNDİR", back: "ANA MENÜYE DÖN",
+                metaTitle: "Online ZIP Oluşturucu & Dosya Sıkıştırma | Invoice Luxe",
+                metaDesc: "Dosyalarınızı tarayıcınızda güvenle, hiçbir uzak sunucuya yüklemeden anında ZIP formatında sıkıştırın. %100 gizlilik odaklı dosya arşivleyici.",
+                alertErr: "Lütfen sıkıştırmak için en az bir dosya seçin!",
+                manTitle: "HIZLI KULLANIM KILAVUZU",
+                manText: "1. Dosya seçici alanından arşivlemek istediğiniz bir veya birden fazla dökümanı seçin. 2. 'ZIP İNDİR' butonuna tıklayın. Sıkıştırma motoru cihazınızın işlemcisini kullanarak işlemi milisaniyeler içinde tamamlar; internet kotanız harcanmaz.",
+                seoTitle: "GÜVENLİ VE HIZLI ONLINE ZIP DOSYASI OLUŞTURMA",
+                seoText1: "Toplu doküman gönderimlerinde dosya boyutlarını küçültmek, modern iş akışlarının en önemli parçasıdır. <strong>Invoice Luxe ZIP Oluşturucu</strong> aracı, verilerinizi uzak sunucular yerine doğrudan yerel tarayıcınızda (client-side) işleyerek maksimum koruma sağlar.",
+                seoText2: "Gelişmiş mimarisi sayesinde hassas ticari verileriniz, faturalarınız ve özel belgeleriniz asla internete sızmaz. E-posta ek sınırı limitlerine takılmadan güvenli <strong>zip dosyası oluşturma</strong> rahatlığını tamamen ücretsiz yaşayın."
+            },
+            en: { 
+                title: "ZIP CREATOR", desc: "Select files to compress.", down: "DOWNLOAD ZIP", back: "BACK TO MENU",
+                metaTitle: "Client-Side ZIP Creator & File Compressor | Invoice Luxe",
+                metaDesc: "Compress files directly in your browser without uploading to any server. Secure, fast, and 100% private online ZIP maker.",
+                alertErr: "Please select at least one file to compress!",
+                manTitle: "QUICK USER MANUAL",
+                manText: "1. Click the file input field to batch select the items you wish to pack. 2. Hit the 'DOWNLOAD ZIP' button. The compiler compiles everything locally using pure JavaScript, instantly initiating a package download.",
+                seoTitle: "SECURE LOCAL FILE COMPRESSION AND ZIP CREATION",
+                seoText1: "Distributing loose files triggers network overhead and corporate clutter. The <strong>Invoice Luxe ZIP Creator</strong> allows system administrators and financial operators to consolidate massive invoice logs into a singular archive node.",
+                seoText2: "Because this utility works exclusively inside your localized browser viewport, your confidential corporate entities, reports, and asset assets are safeguarded from backend tracking, boosting your search engine efficiency."
+            },
+            nl: { 
+                title: "ZIP MAKER", desc: "Selecteer bestanden om te comprimeren.", down: "ZIP DOWNLOADEN", back: "TERUG NAAR MENU",
+                metaTitle: "Interactieve ZIP Bestanden Maker | Invoice Luxe",
+                metaDesc: "Comprimeer uw bestanden direct in de browser zonder ze naar een server te uploaden. Veilig, snel en 100% privé.",
+                alertErr: "Selecteer ten minste één bestand om te comprimeren!",
+                manTitle: "GEBRUIKERSHANDLEIDING",
+                manText: "1. Kies de bestanden die u wilt inpakken. 2. Klik op 'ZIP DOWNLOADEN'. De bestanden worden op uw eigen apparaat verwerkt, waardoor er geen dataverbruik naar externe servers plaatsvindt.",
+                seoTitle: "VEILIG ONLINE ZIP-BESTANDEN COMPRIMEREN",
+                seoText1: "Het verkleinen van documenten is essentieel voor soepel zakelijk verkeer. Met de <strong>Invoice Luxe ZIP Maker</strong> converteert u meerdere bestanden direct naar een handig gecomprimeerd formaat.",
+                seoText2: "Dankzij lokale client-side JavaScript verwerking blijven uw privacygevoelige gegevens en zakelijke facturen altijd veilig binnen uw eigen browseromgeving."
+            },
+            de: { 
+                title: "ZIP ERSTELLER", desc: "Dateien zum Sichern auswählen.", down: "ZIP HERUNTERLADEN", back: "ZURÜCK ZUM MENÜ",
+                metaTitle: "Online ZIP-Datei Ersteller & Komprimierung | Invoice Luxe",
+                metaDesc: "Dateien direkt im Browser komprimieren, ohne Upload auf Server. Sicherer, schneller und privater ZIP-Konverter.",
+                alertErr: "Bitte wählen Sie mindestens eine Datei aus!",
+                manTitle: "BEDIENUNGSANLEITUNG",
+                manText: "1. Wählen Sie die gewünschten Quelldateien aus. 2. Klicken Sie auf 'ZIP HERUNTERLADEN'. Das System packt die Dokumente verschlüsselt und lokal auf Ihrem Endgerät zusammen.",
+                seoTitle: "DATENSCHUTZKONFORME DATEIKOMPRIMIERUNG ONLINE",
+                seoText1: "Der Versand großer Datenmengen blockiert Kommunikationswege. Unser <strong>ZIP-Datei Ersteller</strong> bündelt geschäftliche Dokumente im Handumdrehen in ein kompaktes Archivformat.",
+                seoText2: "Da keine Übertragung an fremde Datenbanken stattfindet, ist dieses Tool perfekt für datensensible Branchen geeignet, die absolute Diskretion bei der Rechnungslegung verlangen."
+            },
+            fr: { 
+                title: "CRÉATEUR ZIP", desc: "Sélectionnez les fichiers à compresser.", down: "TÉLÉCHARGER ZIP", back: "RETOUR AU MENU",
+                metaTitle: "Créateur de Fichiers ZIP Sécurisé | Invoice Luxe",
+                metaDesc: "Compressez vos fichiers instantanément dans votre navigateur sans téléversement. Rapide, gratuit ve 100% confidentiel.",
+                alertErr: "Veuillez sélectionner au moins un fichier à compresser !",
+                manTitle: "MANUEL D'UTILISATION",
+                manText: "1. Sélectionnez vos fichiers via le champ dédié. 2. Appuyez sur 'TÉLÉCHARGER ZIP'. Le script assemble l'archive directement au sein de votre système d'exploitation de manière transparente.",
+                seoTitle: "COMPRESSION DE FICHIERS CLIENT-SIDE SANS SERVEUR",
+                seoText1: "Réduire le poids des documents facilite les échanges professionnels. Le <strong>Créateur ZIP Invoice Luxe</strong> résout le problème des limites de taille d'envoi d'e-mails sans aucun intermédiaire.",
+                seoText2: "Vos contrats, images et tableurs comptables profitent d'un traitement local exclusif via JavaScript, vous garantissant une confidentialité absolue face aux robots d'indexation externes."
+            },
+            it: { 
+                title: "CREATORE ZIP", desc: "Seleziona i file da comprimere.", down: "SCARICA ZIP", back: "TORNA AL MENU",
+                metaTitle: "Archiviatore ZIP Online e Sicuro | Invoice Luxe",
+                metaDesc: "Comprimi file direttamente nel browser senza caricamenti su server esterni. Strumento ZIP sicuro, rapido e privato.",
+                alertErr: "Seleziona almeno un file da comprimere!",
+                manTitle: "GUIDA RAPIDA UTENTE",
+                manText: "1. Seleziona i file da archiviare dal tuo dispositivo. 2. Clicca su 'SCARICA ZIP' per compilare ed esportare istantaneamente la cartella compressa salvaguardando la banda internet.",
+                seoTitle: "CREAZIONE ARCHIVI ZIP LOCALI E OTTIMIZZAZIONE DATI",
+                seoText1: "L'ottimizzazione degli allegati aziendali è fondamentale. Il tool <strong>Creatore ZIP Invoice Luxe</strong> permette di condensare file multipli riducendo lo spazio di archiviazione digitale.",
+                seoText2: "Operando esclusivamente in locale (client-side), questo convertitore protegge i dati sensibili da occhi indiscreti, allineandosi perfettamente con i requisiti SEO internazionali."
+            },
+            es: {
+                title: "CREADOR ZIP", desc: "Seleccione archivos para comprimir.", down: "DESCARGAR ZIP", back: "VOLVER AL MENÚ",
+                metaTitle: "Creador de ZIP y Compresor en Línea | Invoice Luxe",
+                metaDesc: "Comprima archivos en su navegador sin subirlos a ningún servidor. Seguro, rápido y privado.",
+                alertErr: "¡Seleccione al menos un archivo!",
+                manTitle: "MANUAL DEL USUARIO", manText: "1. Seleccione archivos. 2. Haga clic en DESCARGAR ZIP. Todo se procesa localmente.",
+                seoTitle: "COMPRESIÓN SEGURA LOCAL", seoText1: "Comprimir documentos ahorra tiempo y datos. <strong>Invoice Luxe</strong> protege su información procesando todo en su dispositivo.", seoText2: "Ideal para empresas que requieren alta privacidad."
+            },
+            pt: {
+                title: "CRIADOR ZIP", desc: "Selecione arquivos para compactar.", down: "BAIXAR ZIP", back: "VOLTAR AO MENU",
+                metaTitle: "Criador ZIP Online e Compactador | Invoice Luxe",
+                metaDesc: "Compacte arquivos no navegador. Seguro, rápido e sem servidor.",
+                alertErr: "Selecione pelo menos um arquivo!",
+                manTitle: "MANUAL DO USUÁRIO", manText: "1. Selecione arquivos. 2. Clique em BAIXAR ZIP. O processamento é local e seguro.",
+                seoTitle: "COMPACTAÇÃO SEGURA DE ARQUIVOS", seoText1: "A ferramenta ZIP do <strong>Invoice Luxe</strong> garante a privacidade de dados corporativos não fazendo upload para servidores.", seoText2: "Rápido e 100% privado."
+            },
+            ru: {
+                title: "СОЗДАТЕЛЬ ZIP", desc: "Выберите файлы для сжатия.", down: "СКАЧАТЬ ZIP", back: "В ГЛАВНОЕ МЕНЮ",
+                metaTitle: "Онлайн создатель ZIP и архиватор | Invoice Luxe",
+                metaDesc: "Сжимайте файлы в браузере без загрузки на сервер. Быстро, безопасно и конфиденциально.",
+                alertErr: "Пожалуйста, выберите хотя бы один файл!",
+                manTitle: "ИНСТРУКЦИЯ", manText: "1. Выберите файлы. 2. Нажмите СКАЧАТЬ ZIP. Обработка локальна.",
+                seoTitle: "ЛОКАЛЬНОЕ СЖАТИЕ ФАЙЛОВ", seoText1: "Защитите корпоративные данные с помощью инструмента <strong>Invoice Luxe</strong>, который работает без серверов.", seoText2: "Идеально подходит для бизнеса."
+            },
+            ar: {
+                title: "منشئ ZIP", desc: "حدد الملفات لضغطها.", down: "تحميل ZIP", back: "العودة للقائمة",
+                metaTitle: "منشئ ZIP على الإنترنت | Invoice Luxe",
+                metaDesc: "اضغط الملفات في متصفحك دون رفعها. آمن وسريع وخاص.",
+                alertErr: "الرجاء تحديد ملف واحد على الأقل!",
+                manTitle: "دليل المستخدم", manText: "1. حدد الملفات. 2. اضغط تحميل. تتم المعالجة محليًا.",
+                seoTitle: "ضغط ملفات آمن", seoText1: "يحمي <strong>Invoice Luxe</strong> بياناتك باستخدام معالجة محلية بالكامل.", seoText2: "مثالي للشركات التي تهتم بالخصوصية."
+            },
+            zh: {
+                title: "ZIP 创建器", desc: "选择要压缩的文件。", down: "下载 ZIP", back: "返回主菜单",
+                metaTitle: "在线 ZIP 创建与文件压缩 | Invoice Luxe",
+                metaDesc: "无需上传至服务器，直接在浏览器中压缩文件。安全、快速、私密。",
+                alertErr: "请至少选择一个文件！",
+                manTitle: "用户手册", manText: "1. 选择文件。 2. 点击下载 ZIP。全本地处理，保证隐私。",
+                seoTitle: "安全本地文件压缩", seoText1: "减少文档体积。<strong>Invoice Luxe</strong> 的 ZIP 创建工具在您的设备上进行所有处理。", seoText2: "非常适合保护商业机密。"
+            },
+            ja: {
+                title: "ZIP クリエイター", desc: "圧縮するファイルを選択してください。", down: "ZIPをダウンロード", back: "メニューに戻る",
+                metaTitle: "オンライン ZIP クリエイター | Invoice Luxe",
+                metaDesc: "サーバーにアップロードせず、ブラウザ上で直接圧縮。安全で高速。",
+                alertErr: "ファイルを選択してください！",
+                manTitle: "使い方", manText: "1. ファイルを選択。 2. 「ZIPをダウンロード」をクリック。処理は完全にローカルです。",
+                seoTitle: "安全なローカル圧縮", seoText1: "ドキュメントの圧縮は不可欠です。<strong>Invoice Luxe</strong>はデータを保護します。", seoText2: "100% プライベートな設計。"
+            },
+            hi: {
+                title: "ज़िप निर्माता", desc: "संपीड़ित करने के लिए फ़ाइलें चुनें।", down: "ज़िप डाउनलोड करें", back: "मेनू पर वापस जाएं",
+                metaTitle: "ऑनलाइन ज़िप निर्माता | Invoice Luxe",
+                metaDesc: "बिना सर्वर अपलोड के ब्राउज़र में सीधे फ़ाइलें संपीड़ित करें। 100% सुरक्षित।",
+                alertErr: "कृपया कम से कम एक फ़ाइल चुनें!",
+                manTitle: "उपयोगकर्ता पुस्तिका", manText: "1. फ़ाइलें चुनें। 2. 'ज़िप डाउनलोड करें' पर क्लिक करें। सब कुछ स्थानीय रूप से होता है।",
+                seoTitle: "सुरक्षित फ़ाइल संपीड़न", seoText1: "दस्तावेज़ों को छोटा करना आसान है। <strong>Invoice Luxe</strong> उपकरण सुरक्षित और तेज़ है।", seoText2: "गोपनीयता के लिए सर्वश्रेष्ठ।"
+            },
+            in: {
+                title: "PEMBUAT ZIP", desc: "Pilih file untuk dikompres.", down: "UNDUH ZIP", back: "KEMBALI KE MENU",
+                metaTitle: "Pembuat ZIP Online | Invoice Luxe",
+                metaDesc: "Kompres file tanpa unggah ke server. Cepat, aman, pribadi.",
+                alertErr: "Pilih minimal satu file!",
+                manTitle: "PANDUAN PENGGUNA", manText: "1. Pilih file. 2. Klik UNDUH ZIP. Proses lokal.",
+                seoTitle: "KOMPRESI FILE AMAN", seoText1: "Gunakan <strong>Invoice Luxe</strong> untuk membuat file ZIP secara lokal.", seoText2: "Aman dari pelacakan pihak ketiga."
+            }
+        };
+
+        let currentLang = 'tr';
+
+        function applyLanguage(lang) {
+            const t = dict[lang] || dict['en'];
+
+            document.title = t.metaTitle;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if(metaDesc) { metaDesc.setAttribute('content', t.metaDesc); }
+            document.documentElement.lang = lang;
+
+            document.getElementById('L_TITLE').innerText = t.title;
+            document.getElementById('L_DESC').innerText = t.desc;
+            document.getElementById('L_DOWN').innerText = t.down;
+            document.getElementById('L_BACK').innerText = t.back;
+
+            document.getElementById('L_MANUAL_TITLE').innerText = t.manTitle;
+            document.getElementById('L_MANUAL_TEXT').innerText = t.manText;
+            document.getElementById('L_SEO_TITLE').innerText = t.seoTitle;
+            document.getElementById('L_SEO_TEXT_1').innerHTML = t.seoText1;
+            document.getElementById('L_SEO_TEXT_2').innerHTML = t.seoText2;
+        }
+
+        async function generateZip() {
+            const fileInput = document.getElementById('file-input');
+            const t = dict[currentLang] || dict['en'];
+            
+            if (fileInput.files.length === 0) {
+                alert(t.alertErr);
+                return;
+            }
+            
+            const zip = new JSZip();
+            for (let i = 0; i < fileInput.files.length; i++) {
+                zip.file(fileInput.files[i].name, fileInput.files[i]);
+            }
+            
+            try {
+                const content = await zip.generateAsync({type: "blob"});
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(content);
+                link.download = "InvoiceLuxe_Archive.zip";
+                link.click();
+            } catch (error) {
+                console.error("ZIP Generation error:", error);
+            }
+        }
+
+        window.onload = () => {
+            applyLanguage(currentLang);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+
+    <title>免费单位转换器 – 距离、重量、温度、速度等 | Invoice Luxe</title>
+    <meta name="description" content="公里 - 英里、公斤 - 磅、摄氏度 - 华氏度、升 - 加仑在线转换。涵盖8大类别的即时免费单位转换器，无需注册。">
+    <meta name="keywords" content="单位转换器, 公里换算英里, 公斤换算磅, 摄氏度换算华氏度, 升换算加仑, 速度转换, 数据换算, 免费转换工具, Invoice Luxe">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/zh/unit-converter">
+
+    <meta property="og:title" content="免费单位转换器 – 距离、重量、温度、速度等 | Invoice Luxe">
+    <meta property="og:description" content="公里 - 英里、公斤 - 磅、摄氏度 - 华氏度、升 - 加仑在线转换。涵盖8大类别的即时免费单位转换器，无需注册。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/zh/unit-converter">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "单位转换器",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "url": "https://invoiceluxe.com/zh/unit-converter",
+      "description": "公里 - 英里、公斤 - 磅、摄氏度 - 华氏度、升 - 加仑在线转换。涵盖8大类别的即时免费单位转换器，无需注册。",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <style>
+        :root { --bg-oak: #8d6e63; --gold: #FFD700; --black: #121212; --card: #1a1510; --border: #2d241c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg-oak); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column; color: #fff; }
+
+        /* TOP BAR */
+        .top-bar { padding: 12px 20px; background: var(--black); display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold); flex-wrap: wrap; gap: 8px; }
+        h1 { margin: 0; color: var(--gold); font-size: 16px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .top-btns { display: flex; gap: 8px; }
+        .back-btn { background: var(--gold); color: var(--black); padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 11px; display: flex; align-items: center; gap: 6px; }
+        .guide-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 14px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+        .guide-btn:hover { background: rgba(255,215,0,0.1); }
+
+        /* MAIN */
+        .main-container { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
+        .converter-box { background: var(--card); border: 2px solid var(--gold); padding: 25px; border-radius: 28px; width: 100%; max-width: 460px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 18px; }
+
+        /* CATEGORY PILLS */
+        .cat-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-pill { flex-shrink: 0; background: rgba(0,0,0,0.4); border: 1px solid var(--border); color: #888; padding: 8px 14px; border-radius: 20px; font-size: 10px; font-weight: 800; cursor: pointer; transition: 0.2s; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+        .cat-pill.active { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,0.08); }
+
+        /* FORM */
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        label { color: var(--gold); font-weight: 800; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        select, input[type="number"] { padding: 13px 14px; background: #000; border: 1.5px solid #333; border-radius: 10px; color: #fff; font-size: 16px; outline: none; width: 100%; transition: 0.2s; }
+        select:focus, input[type="number"]:focus { border-color: var(--gold); }
+
+        .units-row { display: grid; grid-template-columns: 1fr 44px 1fr; gap: 10px; align-items: end; }
+        .swap-btn { background: rgba(255,215,0,0.1); border: 1.5px solid var(--gold); color: var(--gold); border-radius: 10px; height: 46px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .swap-btn:hover { background: rgba(255,215,0,0.2); }
+
+        /* RESULT */
+        .result-card { background: rgba(0,0,0,0.5); border: 1.5px dashed var(--gold); border-radius: 14px; padding: 18px; text-align: center; }
+        .result-label { font-size: 9px; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .result-value { font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+        .result-formula { font-size: 11px; color: #666; margin-top: 6px; font-family: monospace; }
+
+        /* QUICK PRESETS */
+        .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+        .preset-btn { background: #111; border: 1px solid var(--border); color: #aaa; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.1s; }
+        .preset-btn:hover { border-color: var(--gold); color: #fff; }
+
+        /* ===== SEO SYSTEM CONTENT ===== */
+        .seo-content-wrapper { max-width: 600px; margin: 20px auto 50px auto; width: 100%; padding: 0 20px; }
+        .seo-content { background: var(--card); border: 2px solid var(--gold); padding: 25px; border-radius: 24px; color: #bbb; font-size: 13px; line-height: 1.6; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .seo-content h2 { color: var(--gold); font-size: 16px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 800; }
+        .seo-content h3 { color: #fff; font-size: 14px; margin: 22px 0 10px 0; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 700; }
+        .seo-content p { margin-bottom: 12px; }
+        .seo-content strong { color: #fff; }
+        .seo-content ul { margin-left: 20px; margin-right: 20px; margin-bottom: 15px; list-style-type: square; }
+        .seo-content li { margin-bottom: 8px; }
+        .seo-content li strong { color: var(--gold); }
+
+        /* GUIDE MODAL */
+        #guide-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.94); z-index: 9999; overflow-y: auto; padding: 20px; }
+        #guide-modal.open { display: flex; flex-direction: column; align-items: center; }
+        .guide-box { background: #111; border: 1.5px solid var(--gold); border-radius: 16px; max-width: 460px; width: 100%; padding: 24px; margin-top: 20px; }
+        .guide-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #2a2a2a; }
+        .guide-head span { color: var(--gold); font-size: 11px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .guide-close { background: none; border: none; color: #555; font-size: 24px; cursor: pointer; }
+        .guide-close:hover { color: #fff; }
+
+        .guide-step { display: flex; gap: 12px; margin-bottom: 16px; }
+        .step-num { min-width: 26px; height: 26px; background: var(--gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #888; line-height: 1.6; }
+        .step-text b { color: #ddd; display: block; margin-bottom: 2px; }
+
+        .guide-cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+        .guide-cat-tag { background: #1a1510; border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; font-size: 10px; color: #aaa; }
+        .guide-cat-tag b { color: var(--gold); }
+
+        .guide-tip { border-left: 3px solid var(--gold); border-right: 3px solid var(--gold); padding: 10px 12px; background: rgba(255,215,0,0.03); font-size: 11px; color: #888; margin-top: 12px; line-height: 1.7; border-radius: 8px; }
+        .guide-tip b { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <h1 id="L_TITLE"><i class="material-symbols-rounded">calculate</i> 单位转换器</h1>
+    <div class="top-btns">
+        <button class="guide-btn" onclick="openGuide()">
+            <i class="material-symbols-rounded" style="font-size:16px;">help</i>
+            <span id="L_GUIDE">使用指南</span>
+        </button>
+        <a href="index.html" class="back-btn">
+            <i class="material-symbols-rounded" style="font-size:16px;">arrow_back</i>
+            <span id="L_BACK">返回</span>
+        </a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="converter-box">
+
+        <div class="cat-scroll" id="cat-pills"></div>
+
+        <div class="form-group">
+            <label id="L_VAL">转换数值</label>
+            <input type="number" id="from-value" value="1" oninput="calculate()">
+        </div>
+
+        <div class="units-row">
+            <div class="form-group">
+                <label id="L_FROM">从</label>
+                <select id="from-unit" onchange="calculate()"></select>
+            </div>
+            <button class="swap-btn" onclick="swapUnits()" title="Swap">⇄</button>
+            <div class="form-group">
+                <label id="L_TO">转为</label>
+                <select id="to-unit" onchange="calculate()"></select>
+            </div>
+        </div>
+
+        <div class="result-card">
+            <div class="result-label" id="L_RES">转换结果</div>
+            <div class="result-value" id="result-output">—</div>
+            <div class="result-formula" id="result-formula"></div>
+        </div>
+
+        <div class="form-group">
+            <label id="L_QUICK">快捷转换</label>
+            <div class="presets" id="preset-area"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="seo-content-wrapper">
+    <div class="seo-content">
+        
+        <h2>全能计量中心：免费在线单位转换器</h2>
+        <p>欢迎使用网络上高效便捷的转换工具。<strong>Invoice Luxe 免费单位转换器</strong>为您提供涵盖标准计量类别的即时精准数学转换。无论是管理商业物流、处理科学数据、分析IT系统还是跨国旅行，我们的计算引擎都能提供毫秒级精确结果。</p>
+        <p>无需注册、无需邮箱或安装软件。本工具直接在您的浏览器中运行，确保您的数据与计算完全私密安全。</p>
+
+        <h3>涵盖 8 大专业类别的即时转换</h3>
+        <p>我们的界面将八个核心科学维度整合至响应式面板中，化繁为简：</p>
+        <ul>
+            <li><strong>距离与长度：</strong> 支持 <strong>公里 - 英里</strong>、米 - 英尺、码 - 英寸及海里等即时转换。</li>
+            <li><strong>重量与质量：</strong> 在 <strong>公斤 - 磅</strong>、克、盎司、吨与英石之间轻松切换，满足物流与工业计算。</li>
+            <li><strong>温度标度：</strong> 基于精准公式完成 <strong>摄氏度 - 华氏度</strong> 及开尔文换算。</li>
+            <li><strong>体积与液体：</strong> 轻松完成 <strong>升 - 加仑</strong>、毫升、液量盎司、品脱、杯及立方米转换。</li>
+        </ul>
+
+        <h3>数据、速度、面积与压强的高级计算</h3>
+        <p>除了传统计量外，您还可以使用强大的<strong>速度转换器</strong>（km/h, mph, 节, m/s）或涵盖 Byte、KB、MB、GB、TB 的<strong>数据存储转换器</strong>。跨设备轻松评估地理面积（公顷、英亩、平方英里）及流体力学压强（bar, psi, atm, 帕斯卡）。</p>
+        
+    </div>
+</div>
+
+<div id="guide-modal">
+    <div class="guide-box">
+        <div class="guide-head">
+            <span id="g-title">使用指南</span>
+            <button class="guide-close" onclick="closeGuide()">✕</button>
+        </div>
+
+        <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><b id="g-s1t">选择类别</b><span id="g-s1d">点击顶部的类别按钮，选择您需要的转换类型。</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><b id="g-s2t">输入数值</b><span id="g-s2d">在输入框中输入您想要转换的数字。</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><b id="g-s3t">选择单位</b><span id="g-s3d">选择来源单位与目标单位。点击 ⇄ 按钮可即时对调。</span></div>
+        </div>
+        <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-text"><b id="g-s4t">使用快捷预设</b><span id="g-s4d">点击预设按钮，快速应用该类别中最常用的转换。</span></div>
+        </div>
+
+        <div class="guide-cats" id="g-cats"></div>
+
+        <div class="guide-tip">
+            <b id="g-tip-label">💡 提示： </b>
+            <span id="g-tip-text">温度（°C / °F / K）采用专用换算公式 — 转换器会自动完成计算。</span>
+        </div>
+    </div>
+</div>
+
+<script>
+const dict = {
+    title: "单位转换器", back: "返回", guide: "使用指南", val: "转换数值", from: "从", to: "转为", res: "转换结果", quick: "快捷转换",
+    s1t: "选择类别", s1d: "点击顶部的类别按钮，选择您需要的转换类型。", s2t: "输入数值", s2d: "在输入框中输入您想要转换的数字。", s3t: "选择单位", s3d: "选择来源单位与目标单位。点击 ⇄ 按钮可即时对调。", s4t: "使用快捷预设", s4d: "点击预设按钮，快速应用该类别中最常用的转换。",
+    tipLabel: "💡 提示：", tipText: "温度（°C / °F / K）采用专用换算公式 — 转换器会自动完成计算。"
+};
+
+const catNames = {"distance": "距离", "weight": "重量", "temperature": "温度", "volume": "体积", "speed": "速度", "area": "面积", "pressure": "压强", "data": "数据"};
+
+const categories = [
+    { id:"distance",    icon:"🛣️",  name: catNames.distance,
+      units:["km","mile","m","yard","ft","inch","nautical mile","cm"],
+      rates:{ km:1000, mile:1609.344, m:1, yard:0.9144, ft:0.3048, inch:0.0254, "nautical mile":1852, cm:0.01 },
+      presets:[["1 km","mile",1,"km"],["1 mile","km",1,"mile"],["100 m","ft",100,"m"],["1 foot","cm",1,"ft"]] },
+
+    { id:"weight",      icon:"⚖️",  name: catNames.weight,
+      units:["kg","lb","g","oz","ton","stone"],
+      rates:{ kg:1, lb:0.453592, g:0.001, oz:0.0283495, ton:1000, stone:6.35029 },
+      presets:[["1 kg","lb",1,"kg"],["1 lb","kg",1,"lb"],["100 g","oz",100,"g"],["1 ton","kg",1,"ton"]] },
+
+    { id:"temperature", icon:"🌡️",  name: catNames.temperature,
+      units:["°C","°F","K"],
+      special: true,
+      presets:[["0°C","°F",0,"°C"],["100°C","°F",100,"°C"],["37°C","°F",37,"°C"],["32°F","°C",32,"°F"]] },
+
+    { id:"volume",      icon:"🧴",  name: catNames.volume,
+      units:["L","gallon","mL","m³","fl oz","cup","pint"],
+      rates:{ L:1, gallon:3.78541, mL:0.001, "m³":1000, "fl oz":0.0295735, cup:0.236588, pint:0.473176 },
+      presets:[["1 L","gallon",1,"L"],["1 gallon","L",1,"gallon"],["250 mL","fl oz",250,"mL"],["1 cup","mL",1,"cup"]] },
+
+    { id:"speed",       icon:"🚀",  name: catNames.speed,
+      units:["km/h","mph","m/s","knot","ft/s"],
+      rates:{ "km/h":1, mph:1.609344, "m/s":3.6, knot:1.852, "ft/s":1.09728 },
+      presets:[["100 km/h","mph",100,"km/h"],["60 mph","km/h",60,"mph"],["1 m/s","km/h",1,"m/s"],["1 knot","km/h",1,"knot"]] },
+
+    { id:"area",        icon:"📐",  name: catNames.area,
+      units:["m²","km²","ft²","acre","hectare","mi²","cm²","mm²"],
+      rates:{ "m²":1, "km²":1e6, "ft²":0.092903, acre:4046.86, hectare:10000, "mi²":2589988, "cm²":0.0001, "mm²":0.000001 },
+      presets:[["1 hectare","m²",1,"hectare"],["1 acre","m²",1,"acre"],["1 km²","hectare",1,"km²"],["100 ft²","m²",100,"ft²"]] },
+
+    { id:"pressure",    icon:"🔵",  name: catNames.pressure,
+      units:["bar","psi","atm","Pa","kPa","mmHg"],
+      rates:{ bar:100000, psi:6894.76, atm:101325, Pa:1, kPa:1000, mmHg:133.322 },
+      presets:[["1 bar","psi",1,"bar"],["1 atm","bar",1,"atm"],["1 psi","kPa",1,"psi"],["760 mmHg","atm",760,"mmHg"]] },
+
+    { id:"data",        icon:"💾",  name: catNames.data,
+      units:["MB","GB","TB","KB","Byte","bit"],
+      rates:{ Byte:1, bit:0.125, KB:1024, MB:1048576, GB:1073741824, TB:1099511627776 },
+      presets:[["1 GB","MB",1,"GB"],["1 TB","GB",1,"TB"],["100 MB","KB",100,"MB"],["1 GB","KB",1,"GB"]] }
+];
+
+let currentCat = categories[0];
+
+function openGuide() { document.getElementById('guide-modal').classList.add('open'); }
+function closeGuide() { document.getElementById('guide-modal').classList.remove('open'); }
+
+function buildCategoryPills() {
+    const area = document.getElementById('cat-pills');
+    area.innerHTML = '';
+    categories.forEach((cat, i) => {
+        const pill = document.createElement('button');
+        pill.className = 'cat-pill' + (i === 0 ? ' active' : '');
+        pill.innerHTML = `${cat.icon} ${cat.name}`;
+        pill.onclick = () => selectCategory(cat, pill);
+        area.appendChild(pill);
+    });
+}
+
+function buildGuideCats() {
+    const area = document.getElementById('g-cats');
+    area.innerHTML = '';
+    categories.forEach(cat => {
+        const tag = document.createElement('div');
+        tag.className = 'guide-cat-tag';
+        tag.innerHTML = `${cat.icon} <b>${cat.name}</b>`;
+        area.appendChild(tag);
+    });
+}
+
+function selectCategory(cat, pillEl) {
+    currentCat = cat;
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    if (pillEl) pillEl.classList.add('active');
+    updateUnits();
+    buildPresets();
+}
+
+function updateUnits() {
+    const fromSel = document.getElementById('from-unit');
+    const toSel = document.getElementById('to-unit');
+    fromSel.innerHTML = '';
+    toSel.innerHTML = '';
+    currentCat.units.forEach(u => {
+        fromSel.add(new Option(u, u));
+        toSel.add(new Option(u, u));
+    });
+    if (toSel.options.length > 1) toSel.selectedIndex = 1;
+    calculate();
+}
+
+function buildPresets() {
+    const area = document.getElementById('preset-area');
+    area.innerHTML = '';
+    (currentCat.presets || []).forEach(([label, toUnit, val, fromUnit]) => {
+        const btn = document.createElement('button');
+        btn.className = 'preset-btn';
+        btn.innerText = label + ' → ' + toUnit;
+        btn.onclick = () => {
+            document.getElementById('from-value').value = val;
+            document.getElementById('from-unit').value = fromUnit;
+            document.getElementById('to-unit').value = toUnit;
+            calculate();
+        };
+        area.appendChild(btn);
+    });
+}
+
+function swapUnits() {
+    const f = document.getElementById('from-unit');
+    const t = document.getElementById('to-unit');
+    [f.value, t.value] = [t.value, f.value];
+    calculate();
+}
+
+function convertTemperature(val, from, to) {
+    let celsius;
+    if (from === '°C') celsius = val;
+    else if (from === '°F') celsius = (val - 32) * 5/9;
+    else celsius = val - 273.15;
+    if (to === '°C') return celsius;
+    if (to === '°F') return celsius * 9/5 + 32;
+    return celsius + 273.15;
+}
+
+function calculate() {
+    const val = parseFloat(document.getElementById('from-value').value);
+    const from = document.getElementById('from-unit').value;
+    const to = document.getElementById('to-unit').value;
+    const outEl = document.getElementById('result-output');
+    const formulaEl = document.getElementById('result-formula');
+
+    if (isNaN(val)) { outEl.innerText = '—'; formulaEl.innerText = ''; return; }
+    if (from === to) { outEl.innerText = val + ' ' + to; formulaEl.innerText = ''; return; }
+
+    let result;
+    if (currentCat.special) {
+        result = convertTemperature(val, from, to);
+    } else {
+        const rates = currentCat.rates;
+        result = (val * rates[from]) / rates[to];
+    }
+
+    const formatted = Math.abs(result) < 0.0001 ? result.toExponential(4) : (Math.abs(result) >= 10000 ? result.toLocaleString('en-US', {maximumFractionDigits:2}) : result.toFixed(4).replace(/\.?0+$/, ''));
+    outEl.innerText = formatted + ' ' + to;
+    formulaEl.innerText = `${val} ${from} = ${formatted} ${to}`;
+}
+
+function initPage() {
+    buildCategoryPills();
+    buildGuideCats();
+    currentCat = categories[0];
+    updateUnits();
+    buildPresets();
+}
+
+window.onload = initPage;
+</script>
+</body>
+</html>

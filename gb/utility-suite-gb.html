@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-GB" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <title>Free Cargo Desi Calculator, Unit Converter & Water Tracker | InvoiceLuxe Utility Suite</title>
+    <meta name="description" content="Free all-in-one utility suite: volumetric cargo desi calculator, inch to cm converter, offline currency rate simulator and workplace hydration tracker. No signup required.">
+    <meta name="keywords" content="desi calculator, volumetric weight, cargo calculator, unit converter, inch to cm, feet to meter, offline currency simulator, water tracker, caffeine tracker, InvoiceLuxe">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="canonical" href="https://invoiceluxe.com/utility-suite-gb.html" />
+
+    <link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/utility-suite-gb.html" />
+    <link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/utility-suite-gb.html" />
+    <link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/utility-suite-ca.html" />
+    <link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/utility-suite-br.html" />
+    <link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/utility-suite-sv.html" />
+    <link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/utility-suite-ko.html" />
+    <link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/utility-suite-fi.html" />
+    <link rel="alternate" hreflang="no" href="https://invoiceluxe.com/utility-suite-no.html" />
+    <link rel="alternate" hreflang="da" href="https://invoiceluxe.com/utility-suite-da.html" />
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/utility-suite-gb.html" />
+
+    <meta property="og:title" content="Free Cargo Desi Calculator, Unit Converter & Water Tracker | InvoiceLuxe Utility Suite">
+    <meta property="og:description" content="Free all-in-one utility suite: volumetric cargo desi calculator, inch to cm converter, offline currency rate simulator and workplace hydration tracker. No signup required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/utility-suite-gb.html">
+    <meta property="og:locale" content="en_GB">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "InvoiceLuxe Utility Suite",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (Web Browser)",
+      "url": "https://invoiceluxe.com/utility-suite-gb.html",
+      "description": "Free all-in-one utility suite featuring volumetric cargo desi calculator, metric unit converter (inch to cm, feet to meter), offline currency rate simulator and workplace hydration & caffeine tracker.",
+      "inLanguage": "en-GB",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+      "featureList": [
+        "Volumetric cargo desi calculator",
+        "Inch to cm and feet to meter converter",
+        "Offline currency rate simulator",
+        "Water and caffeine intake tracker"
+      ],
+      "provider": { "@type": "Organization", "name": "InvoiceLuxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --wood-dark: #0f0b08; --gold: #c5a059; --border: #2d241c;
+            --neon-blue: #00d2ff; --neon-green: #39FF14; --neon-red: #ef5350;
+            --card-bg: rgba(10, 10, 10, 0.95);
+        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        
+        body { 
+            background: var(--wood-dark); 
+            background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png'); 
+            color: #fff; display: flex; flex-direction: column; min-height: 100dvh; overflow-x: hidden;
+        }
+
+        .nav-header { 
+            width: 100%; background: rgba(15, 11, 8, 0.98); padding: 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 1000;
+        }
+        .btn-back { 
+            background: #1c1c1e; color: #fff; padding: 10px 18px; border-radius: 8px; 
+            text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; 
+            border: 1px solid var(--border); transition: 0.2s; display: flex; align-items: center; gap: 6px;
+        }
+        .btn-back:hover { background: #2d241c; border-color: var(--gold); }
+        .top-tag { color: #666; font-weight: 800; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+
+        .container { flex: 1; width: 100%; max-width: 500px; margin: 0 auto; padding: 15px; display: flex; flex-direction: column; gap: 15px; }
+
+        .tab-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; background: rgba(0,0,0,0.4); padding: 5px; border-radius: 12px; border: 1px solid var(--border); }
+        .tab-btn { background: transparent; border: none; color: #666; padding: 12px 0; border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; transition: 0.2s; }
+        .tab-btn i { font-size: 16px; }
+        .tab-btn.active { background: rgba(197, 160, 89, 0.15); color: var(--gold); border: 1.5px solid var(--gold); }
+
+        .tool-panel { display: none; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .tool-panel.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+
+        .panel-title { font-size: 16px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+        .input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px; }
+        .input-label { font-size: 11px; color: #888; font-weight: 700; text-transform: uppercase; }
+        .inp-field { background: rgba(0,0,0,0.6); border: 1px solid var(--border); color: #fff; border-radius: 8px; height: 48px; padding: 0 15px; font-size: 16px; font-weight: 600; outline: none; transition: 0.2s; }
+        .inp-field:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        .btn-action { background: linear-gradient(135deg, #d4af37, #8e7341); color: #000; border: none; height: 48px; border-radius: 8px; font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-action:active { transform: scale(0.98); }
+        .btn-danger { background: #222; border: 1px solid var(--neon-red); color: var(--neon-red); }
+
+        .result-box { background: linear-gradient(160deg, #0a0a0a 0%, #151515 100%); border: 1px solid var(--border); border-radius: 12px; padding: 15px; text-align: center; margin-top: 15px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.8); }
+        .res-value { font-size: 26px; font-weight: 800; color: var(--neon-green); font-family: monospace; }
+
+        .counter-container { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 10px 0; }
+        .circular-progress { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(var(--neon-blue) 0deg, #1a1512 0deg); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 20px rgba(0, 210, 255, 0.15); }
+        .circular-progress::before { content: ""; position: absolute; width: 110px; height: 110px; border-radius: 50%; background: #0c0806; }
+        .progress-value { position: relative; font-size: 20px; font-weight: 800; color: #fff; text-align: center; font-family: monospace; }
+        .progress-sub { display: block; font-size: 10px; color: #666; font-weight: bold; text-transform: uppercase; margin-top: 2px; }
+
+        /* Kullanım Kılavuzu Özel Stilleri */
+        .manual-card { background: rgba(20, 15, 12, 0.95); border: 1px dashed var(--border); border-radius: 16px; padding: 20px; margin-top: 5px; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
+        .manual-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .manual-item { font-size: 12px; color: #aaa; line-height: 1.6; }
+        .manual-item strong { color: var(--gold); text-transform: uppercase; font-size: 11px; display: inline-block; margin-right: 5px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="index.html" class="btn-back" id="b-back">⬅ BACK</a>
+        <div class="top-tag" id="l-top-tag">UTILITY SUITE</div>
+    </header>
+
+    <main class="container">
+        
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('tab-hydro', this)"><i class="fa-solid fa-droplet"></i><span id="m-t-1">HYDRO</span></button>
+            <button class="tab-btn" onclick="switchTab('tab-desi', this)"><i class="fa-solid fa-box-open"></i><span id="m-t-2">DESI</span></button>
+            <button class="tab-btn" onclick="switchTab('tab-metric', this)"><i class="fa-solid fa-ruler-combined"></i><span id="m-t-3">METRIC</span></button>
+            <button class="tab-btn" onclick="switchTab('tab-rate', this)"><i class="fa-solid fa-money-bill-transfer"></i><span id="m-t-4">FX SIM</span></button>
+        </div>
+
+        <div id="tab-hydro" class="tool-panel active">
+            <div class="panel-title"><i class="fa-solid fa-heartbeat"></i> <span id="h-t-1">HYDRO & CAFFEINE TRACKER</span></div>
+            <div class="counter-container">
+                <div class="circular-progress" id="water-progress">
+                    <div class="progress-value">
+                        <span id="val-water">0</span><span style="font-size:12px;color:var(--neon-blue)">ml</span>
+                        <span class="progress-sub" id="h-sub-1">WATER</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-2" style="margin-top:10px;">
+                <button class="btn-action" onclick="addHydro('water', 250)" style="background:linear-gradient(135deg, #00d2ff, #0086a8); color:#fff;"><i class="fa-solid fa-plus"></i> 250ml</button>
+                <button class="btn-action" onclick="addHydro('water', 500)" style="background:linear-gradient(135deg, #00d2ff, #0086a8); color:#fff;"><i class="fa-solid fa-plus"></i> 500ml</button>
+            </div>
+            <div class="result-box" style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px;">
+                <span class="input-label" id="h-lbl-coffee" style="color:#aaa;">COFFEE INTAKE:</span>
+                <span class="res-value" style="color:var(--gold)" id="val-coffee">0 <span style="font-size:12px;">CUPS</span></span>
+            </div>
+            <div class="grid-2" style="margin-top:10px;">
+                <button class="btn-action" onclick="addHydro('coffee', 1)" style="background:linear-gradient(135deg, #b3995d, #634f24); color:#fff;"><i class="fa-solid fa-coffee"></i> +1 CUP</button>
+                <button class="btn-action btn-danger" onclick="resetHydro()"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        </div>
+
+        <div id="tab-desi" class="tool-panel">
+            <div class="panel-title"><i class="fa-solid fa-box"></i> <span id="h-t-2">CARGO DESI CALCULATOR</span></div>
+            <div class="grid-3">
+                <div class="input-group">
+                    <label class="input-label" id="d-l-1">WIDTH (CM)</label>
+                    <input type="number" id="d-width" class="inp-field" placeholder="0" oninput="calculateDesi()">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" id="d-l-2">LENGTH (CM)</label>
+                    <input type="number" id="d-length" class="inp-field" placeholder="0" oninput="calculateDesi()">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" id="d-l-3">HEIGHT (CM)</label>
+                    <input type="number" id="d-height" class="inp-field" placeholder="0" oninput="calculateDesi()">
+                </div>
+            </div>
+            <div class="result-box">
+                <div class="input-label" id="d-lbl-res">VOLUMETRIC WEIGHT (DESI)</div>
+                <div class="res-value" id="res-desi">0.00</div>
+            </div>
+        </div>
+
+        <div id="tab-metric" class="tool-panel">
+            <div class="panel-title"><i class="fa-solid fa-calculator"></i> <span id="h-t-3">UNIVERSAL METRIC CONVERTER</span></div>
+            <div class="grid-2">
+                <div class="input-group">
+                    <label class="input-label">INCH (in)</label>
+                    <input type="number" id="m-inch" class="inp-field" placeholder="0" oninput="convertMetric('inch')">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">CENTIMETER (cm)</label>
+                    <input type="number" id="m-cm" class="inp-field" placeholder="0" oninput="convertMetric('cm')">
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--border); margin: 10px 0; padding-top: 15px;"></div>
+            <div class="grid-2">
+                <div class="input-group">
+                    <label class="input-label">FEET (ft)</label>
+                    <input type="number" id="m-feet" class="inp-field" placeholder="0" oninput="convertMetric('feet')">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">METER (m)</label>
+                    <input type="number" id="m-meter" class="inp-field" placeholder="0" oninput="convertMetric('meter')">
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-rate" class="tool-panel">
+            <div class="panel-title"><i class="fa-solid fa-coins"></i> <span id="h-t-4">CUSTOM RATE SIMULATOR</span></div>
+            <div class="input-group">
+                <label class="input-label" id="fx-l-base">TARGET EXCHANGE RATE (1 FOREIGN = X LOCAL)</label>
+                <input type="number" id="fx-rate" class="inp-field" value="35.00" step="0.01" oninput="convertFX('rate')">
+            </div>
+            <div class="grid-2">
+                <div class="input-group">
+                    <label class="input-label" id="fx-l-fgn">FOREIGN CURRENCY</label>
+                    <input type="number" id="fx-foreign" class="inp-field" placeholder="0.00" oninput="convertFX('foreign')">
+                </div>
+                <div class="input-group">
+                    <label class="input-label" id="fx-l-loc">LOCAL CURRENCY</label>
+                    <input type="number" id="fx-local" class="inp-field" placeholder="0.00" oninput="convertFX('local') text-transform: uppercase;">
+                </div>
+            </div>
+        </div>
+
+        
+        <section class="manual-card" style="margin-top:10px;">
+            <div class="panel-title" style="font-size: 13px; margin-bottom: 8px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+                <i class="fa-solid fa-circle-info"></i> <span>About this free utility suite</span>
+            </div>
+            <p style="font-size:12px; color:#aaa; line-height:1.6; margin-bottom:10px;">
+                InvoiceLuxe Utility Suite is a free all-in-one tool for cargo professionals, freelancers and office workers. Use the <strong style="color:#c5a059;">desi calculator</strong> to get volumetric weight instantly with the standard (W × L × H) / 5000 formula. Convert <strong style="color:#c5a059;">inch to cm</strong> and feet to meter with the metric converter. Simulate exchange rates offline with the custom FX simulator. Track daily water and coffee intake with the hydration tracker. No signup, works offline after first load.
+            </p>
+        </section>
+
+        <section class="manual-card">
+            <div class="panel-title" style="font-size: 13px; margin-bottom: 5px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+                <i class="fa-solid fa-book"></i> <span id="man-title">USER MANUAL</span>
+            </div>
+            <ul class="manual-list">
+                <li class="manual-item"><strong id="man-lbl-1">HYDRO:</strong><span id="man-txt-1">...</span></li>
+                <li class="manual-item"><strong id="man-lbl-2">DESI:</strong><span id="man-txt-2">...</span></li>
+                <li class="manual-item"><strong id="man-lbl-3">METRIC:</strong><span id="man-txt-3">...</span></li>
+                <li class="manual-item"><strong id="man-lbl-4">FX SIM:</strong><span id="man-txt-4">...</span></li>
+            </ul>
+        </section>
+
+    </main>
+
+<script>
+    const i18n = {
+        "en-US": { 
+            title: "InvoiceLuxe - Multi-Tool Executive Suite & Cargo Station",
+            desc: "Professional all-in-one calculation suite featuring a volumetric cargo calculator, offline currency simulator, structural unit converter, and workplace hydration tracker.",
+            back: "⬅ BACK", top: "UTILITY SUITE", m1: "HYDRO", m2: "DESI", m3: "METRIC", m4: "FX SIM", ht1: "HYDRO & CAFFEINE TRACKER", sub1: "WATER INTAKE", lblC: "COFFEE INTAKE:", cups: "CUPS", ht2: "CARGO DESI CALCULATOR", dl1: "WIDTH (CM)", dl2: "LENGTH (CM)", dl3: "HEIGHT (CM)", dlbl: "VOLUMETRIC WEIGHT (DESI)", ht3: "UNIVERSAL METRIC CONVERTER", ht4: "CUSTOM RATE SIMULATOR", fxb: "TARGET EXCHANGE RATE (1 FOREIGN = X LOCAL)", fxf: "FOREIGN CURRENCY", fxl: "LOCAL CURRENCY",
+            manTitle: "USER MANUAL",
+            man1: "Click +250ml, +500ml, or +1 Cup buttons to track your daily intake. Use the trash icon to completely clear the log for the day.",
+            man2: "Enter package metrics (Width, Length, Height). The calculator instantly computes the volumetric weight utilizing the industry standard formula: (W x L x H) / 5000.",
+            man3: "Type a value into either of the metric input boxes (Inch/Cm or Feet/Meter) to seamlessly receive instantaneous cross-conversions.",
+            man4: "Set your benchmark local conversion rate first. Inputting values into either the Foreign or Local fields will dynamically calculate offline equivalents."
+        },
+        "en-GB": { 
+            title: "InvoiceLuxe - Multi-Tool Executive Suite & Cargo Station",
+            desc: "Professional all-in-one calculation suite featuring a volumetric cargo calculator, offline currency simulator, structural unit converter, and workplace hydration tracker.",
+            back: "⬅ BACK", top: "UTILITY SUITE", m1: "HYDRO", m2: "DESI", m3: "METRIC", m4: "FX SIM", ht1: "HYDRO & CAFFEINE TRACKER", sub1: "WATER INTAKE", lblC: "COFFEE INTAKE:", cups: "CUPS", ht2: "CARGO DESI CALCULATOR", dl1: "WIDTH (CM)", dl2: "LENGTH (CM)", dl3: "HEIGHT (CM)", dlbl: "VOLUMETRIC WEIGHT (DESI)", ht3: "UNIVERSAL METRIC CONVERTER", ht4: "CUSTOM RATE SIMULATOR", fxb: "TARGET EXCHANGE RATE (1 FOREIGN = X LOCAL)", fxf: "FOREIGN CURRENCY", fxl: "LOCAL CURRENCY",
+            manTitle: "USER MANUAL",
+            man1: "Click +250ml, +500ml, or +1 Cup buttons to track your daily intake. Use the trash icon to completely clear the log for the day.",
+            man2: "Enter package metrics (Width, Length, Height). The calculator instantly computes the volumetric weight utilising the industry standard formula: (W x L x H) / 5000.",
+            man3: "Type a value into either of the metric input boxes (Inch/Cm or Feet/Meter) to seamlessly receive instantaneous cross-conversions.",
+            man4: "Set your benchmark local conversion rate first. Inputting values into either the Foreign or Local fields will dynamically calculate offline equivalents."
+        },
+        "en-CA": { 
+            title: "InvoiceLuxe - Multi-Tool Executive Suite & Cargo Station",
+            desc: "Professional all-in-one calculation suite featuring a volumetric cargo calculator, offline currency simulator, structural unit converter, and workplace hydration tracker.",
+            back: "⬅ BACK", top: "UTILITY SUITE", m1: "HYDRO", m2: "DESI", m3: "METRIC", m4: "FX SIM", ht1: "HYDRO & CAFFEINE TRACKER", sub1: "WATER INTAKE", lblC: "COFFEE INTAKE:", cups: "CUPS", ht2: "CARGO DESI CALCULATOR", dl1: "WIDTH (CM)", dl2: "LENGTH (CM)", dl3: "HEIGHT (CM)", dlbl: "VOLUMETRIC WEIGHT (DESI)", ht3: "UNIVERSAL METRIC CONVERTER", ht4: "CUSTOM RATE SIMULATOR", fxb: "TARGET EXCHANGE RATE (1 FOREIGN = X LOCAL)", fxf: "FOREIGN CURRENCY", fxl: "LOCAL CURRENCY",
+            manTitle: "USER MANUAL",
+            man1: "Click +250ml, +500ml, or +1 Cup buttons to track your daily intake. Use the trash icon to completely clear the log for the day.",
+            man2: "Enter package metrics (Width, Length, Height). The calculator instantly computes the volumetric weight utilizing the industry standard formula: (W x L x H) / 5000.",
+            man3: "Type a value into either of the metric input boxes (Inch/Cm or Feet/Meter) to seamlessly receive instantaneous cross-conversions.",
+            man4: "Set your benchmark local conversion rate first. Inputting values into either the Foreign or Local fields will dynamically calculate offline equivalents."
+        },
+        "pt-BR": { 
+            title: "InvoiceLuxe - Suite de Ferramentas Executiva e Calculadora de Carga",
+            desc: "Suite profissional com calculadora de peso volumétrico (desi), conversor de unidades, simulador de câmbio offline e rastreador de hidratação.",
+            back: "⬅ VOLTAR", top: "SUITE DE UTILIDADES", m1: "HIDRO", m2: "DESI", m3: "MÉTRICO", m4: "SIM FX", ht1: "RASTREADOR DE HIDRATAÇÃO E CAFEÍNA", sub1: "INGESTÃO DE ÁGUA", lblC: "INGESTÃO DE CAFÉ:", cups: "XÍCARAS", ht2: "CALCULADORA DESI DE CARGA", dl1: "LARGURA (CM)", dl2: "COMPRIMENTO (CM)", dl3: "ALTURA (CM)", dlbl: "PESO VOLUMÉTRICO (DESI)", ht3: "CONVERSOR MÉTRICO UNIVERSAL", ht4: "SIMULADOR DE TAXA PERSONALIZADA", fxb: "TAXA DE CÂMBIO ALVO (1 ESTRANGEIRA = X LOCAL)", fxf: "MOEDA ESTRANGEIRA", fxl: "MOEDA LOCAL",
+            manTitle: "MANUAL DO USUÁRIO",
+            man1: "Clique em +250ml, +500ml ou +1 Xícara para registrar a ingestão diária. Use o ícone de lixeira para limpar o registro do dia.",
+            man2: "Insira as medidas do pacote (Largura, Comprimento, Altura). O calculador usa a fórmula padrão: (L x C x A) / 5000.",
+            man3: "Digite um valor em qualquer caixa (Polegada/Cm ou Pés/Metro) para conversão cruzada instantânea.",
+            man4: "Defina primeiro a taxa de câmbio de referência. Digite valores em Moeda Estrangeira ou Local para calcular equivalentes offline."
+        },
+        sv: { 
+            title: "InvoiceLuxe - Multifunktionsverktyg & Frakträknare",
+            desc: "Professionell allt-i-ett-svit med volymetrisk desi-kalkylator, offline valutasimulator, måttenhetsomvandlare och hydreringsföljare.",
+            back: "⬅ TILLBAKA", top: "VERKTYGSSVIT", m1: "HYDRO", m2: "DESI", m3: "METRISK", m4: "FX SIM", ht1: "HYDRO- OCH KAFFEINTAGSSPÅRARE", sub1: "VATTENINTAG", lblC: "KAFFEINTAG:", cups: "KOPPAR", ht2: "LAST DESI-KALKYLATOR", dl1: "BREDD (CM)", dl2: "LÄNGD (CM)", dl3: "HÖJD (CM)", dlbl: "VOLYMETRISK VIKT (DESI)", ht3: "UNIVERSAL METRISK OMVANDLARE", ht4: "ANPASSAD KURSSIMULATOR", fxb: "MÅLVALUTAKURS (1 UTLÄNDSK = X LOKAL)", fxf: "UTLÄNDSK VALUTA", fxl: "LOKAL VALUTA",
+            manTitle: "ANVÄNDARMANUAL",
+            man1: "Klicka på +250ml, +500ml eller +1 Kopp för att spåra dagligt intag. Använd papperskorgen för att rensa loggen.",
+            man2: "Ange paketmått (Bredd, Längd, Höjd). Kalkylatorn använder formeln: (B x L x H) / 5000.",
+            man3: "Skriv ett värde i antingen tum/cm eller fot/meter för omedelbar korsomvandling.",
+            man4: "Ställ först in målväxelkursen. Ange värden i Utländsk eller Lokal valuta för offline-beräkningar."
+        },
+        ko: { 
+            title: "InvoiceLuxe - 멀티툴 유틸리티 스위트 & 화물 계산기",
+            desc: "부피 무게(데시) 계산기, 오프라인 환율 시뮬레이터, 단위 변환기, 수분 섭취 추적기를 갖춘 전문 올인원 스위트.",
+            back: "⬅ 뒤로", top: "유틸리티 스위트", m1: "하이드로", m2: "데시", m3: "미터법", m4: "환율 심", ht1: "수분 및 카페인 추적기", sub1: "수분 섭취", lblC: "커피 섭취:", cups: "잔", ht2: "화물 데시 계산기", dl1: "너비 (CM)", dl2: "길이 (CM)", dl3: "높이 (CM)", dlbl: "부피 무게 (데시)", ht3: "범용 미터법 변환기", ht4: "맞춤 환율 시뮬레이터", fxb: "목표 환율 (1 외화 = X 현지)", fxf: "외화", fxl: "현지 통화",
+            manTitle: "사용 설명서",
+            man1: "+250ml, +500ml 또는 +1잔 버튼으로 일일 섭취량을 추적하세요. 휴지통 아이콘으로 기록을 초기화합니다.",
+            man2: "패키지 치수(너비, 길이, 높이)를 입력하세요. 공식: (너비 x 길이 x 높이) / 5000.",
+            man3: "인치/cm 또는 피트/미터 중 하나에 값을 입력하면 즉시 교차 변환됩니다.",
+            man4: "먼저 목표 환율을 설정하세요. 외화 또는 현지 통화에 값을 입력하면 오프라인 계산이 됩니다."
+        },
+        fi: { 
+            title: "InvoiceLuxe - Monitoimityökalu & Rahtilaskuri",
+            desc: "Ammattimainen all-in-one-laskentasarja: tilavuuspainolaskuri, offline-valuuttasimulaattori, mittayksikkömuunnin ja nesteytyksen seuranta.",
+            back: "⬅ TAKAISIN", top: "TYÖKALUPAKKI", m1: "HYDRO", m2: "DESI", m3: "METRINEN", m4: "FX SIM", ht1: "NESTE- JA KOFEIINISEURANTA", sub1: "VEDENSAANTI", lblC: "KAHVINSAANTI:", cups: "KUPPIA", ht2: "RAHTI DESI-LASKURI", dl1: "LEVEYS (CM)", dl2: "PITUUS (CM)", dl3: "KORKEUS (CM)", dlbl: "TILAVUUSPAINO (DESI)", ht3: "YLEINEN METRINEN MUUNNIN", ht4: "MUKAUTETTU KURSSISIMULAATTORI", fxb: "TAVOITEKURSSI (1 ULKOMAINEN = X PAIKALLINEN)", fxf: "ULKOMAINEN VALUUTTA", fxl: "PAIKALLINEN VALUUTTA",
+            manTitle: "KÄYTTÖOHJE",
+            man1: "Napsauta +250ml, +500ml tai +1 Kuppi seurataksesi päivittäistä saantia. Roskakori-kuvakkeella nollaat lokin.",
+            man2: "Syötä paketin mitat (Leveys, Pituus, Korkeus). Laskuri käyttää kaavaa: (L x P x K) / 5000.",
+            man3: "Kirjoita arvo joko tuuma/cm tai jalka/metri -kenttään saadaksesi välittömän ristiinmuunnoksen.",
+            man4: "Aseta ensin tavoitekurssi. Syötä arvot Ulkomaiseen tai Paikalliseen valuuttaan offline-laskentaa varten."
+        },
+        no: { 
+            title: "InvoiceLuxe - Multifunksjonsverktøy & Fraktkalkulator",
+            desc: "Profesjonell alt-i-ett-suite med volumetrisk desi-kalkulator, offline valutasimulator, måleenhetsomregner og hydreringsfølger.",
+            back: "⬅ TILBAKE", top: "VERKTØYSUITE", m1: "HYDRO", m2: "DESI", m3: "METRISK", m4: "FX SIM", ht1: "HYDRO- OG KAFFEINTAKSSPØRER", sub1: "VANNINNTAK", lblC: "KAFFEINTAK:", cups: "KOPPER", ht2: "LAST DESI-KALKULATOR", dl1: "BREDDE (CM)", dl2: "LENGDE (CM)", dl3: "HØYDE (CM)", dlbl: "VOLUMETRISK VEKT (DESI)", ht3: "UNIVERSAL METRISK OMREGNER", ht4: "TILPASSET KURSSIMULATOR", fxb: "MÅLVALUTAKURS (1 UTENLANDSK = X LOKAL)", fxf: "UTENLANDSK VALUTA", fxl: "LOKAL VALUTA",
+            manTitle: "BRUKERMANUAL",
+            man1: "Klikk +250ml, +500ml eller +1 Kopp for å spore daglig inntak. Bruk søppelbøtteikonet for å tømme loggen.",
+            man2: "Skriv inn pakkemål (Bredde, Lengde, Høyde). Kalkulatoren bruker formelen: (B x L x H) / 5000.",
+            man3: "Skriv inn en verdi i enten tomme/cm eller fot/meter for umiddelbar kryssomregning.",
+            man4: "Sett først målvalutakursen. Skriv inn verdier i Utenlandsk eller Lokal valuta for offline-beregninger."
+        },
+        da: { 
+            title: "InvoiceLuxe - Multifunktionsværktøj & Fragtberegner",
+            desc: "Professionel alt-i-en-suite med volumetrisk desi-beregner, offline valutasimulator, måleenhedsomregner og hydreringssporer.",
+            back: "⬅ TILBAGE", top: "VÆRKTØJSSUITE", m1: "HYDRO", m2: "DESI", m3: "METRISK", m4: "FX SIM", ht1: "HYDRO- OG KAFFEINDTAGSSPORER", sub1: "VANDINDTAG", lblC: "KAFFEINDTAG:", cups: "KOPPER", ht2: "LAST DESI-BEREGNER", dl1: "BREDDE (CM)", dl2: "LÆNGDE (CM)", dl3: "HØJDE (CM)", dlbl: "VOLUMETRISK VÆGT (DESI)", ht3: "UNIVERSAL METRISK OMREGNER", ht4: "TILPASSET KURSSIMULATOR", fxb: "MÅLVALUTAKURS (1 UDENLANDSK = X LOKAL)", fxf: "UDENLANDSK VALUTA", fxl: "LOKAL VALUTA",
+            manTitle: "BRUGERMANUAL",
+            man1: "Klik på +250ml, +500ml eller +1 Kop for at spore dagligt indtag. Brug skraldespandsikonet til at rydde loggen.",
+            man2: "Indtast pakkemål (Bredde, Længde, Højde). Beregneren bruger formlen: (B x L x H) / 5000.",
+            man3: "Skriv en værdi i enten tomme/cm eller fod/meter for øjeblikkelig krydsomregning.",
+            man4: "Sæt først målvalutakursen. Indtast værdier i Udenlandsk eller Lokal valuta for offline-beregninger."
+        }
+    };
+
+    // Fixed language for this file (path-based SEO)
+    const lang = "en-GB";
+    const t = i18n[lang] || i18n["en-US"];
+
+
+    window.onload = () => {
+        applyLanguage();
+        loadHydro();
+    };
+
+    function applyLanguage() {
+        // SEO: HTML lang özelliğini ve Meta Başlık/Açıklamalarını dinamik güncelliyoruz
+        document.documentElement.lang = lang;
+        document.title = t.title;
+        
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if(metaDesc) { metaDesc.setAttribute('content', t.desc); }
+
+        document.getElementById('b-back').innerText = t.back;
+        document.getElementById('l-top-tag').innerText = t.top;
+        document.getElementById('m-t-1').innerText = t.m1;
+        document.getElementById('m-t-2').innerText = t.m2;
+        document.getElementById('m-t-3').innerText = t.m3;
+        document.getElementById('m-t-4').innerText = t.m4;
+        document.getElementById('h-t-1').innerText = t.ht1;
+        document.getElementById('h-sub-1').innerText = t.sub1;
+        document.getElementById('h-lbl-coffee').innerText = t.lblC;
+        document.getElementById('h-t-2').innerText = t.ht2;
+        document.getElementById('d-l-1').innerText = t.dl1;
+        document.getElementById('d-l-2').innerText = t.dl2;
+        document.getElementById('d-l-3').innerText = t.dl3;
+        document.getElementById('d-lbl-res').innerText = t.dlbl;
+        document.getElementById('h-t-3').innerText = t.ht3;
+        document.getElementById('h-t-4').innerText = t.ht4;
+        document.getElementById('fx-l-base').innerText = t.fxb;
+        document.getElementById('fx-l-fgn').innerText = t.fxf;
+        document.getElementById('fx-l-loc').innerText = t.fxl;
+
+        // Kullanım Kılavuzu Elemanlarının Güncellenmesi
+        document.getElementById('man-title').innerText = t.manTitle;
+        document.getElementById('man-lbl-1').innerText = `${t.m1}: `;
+        document.getElementById('man-txt-1').innerText = t.man1;
+        document.getElementById('man-lbl-2').innerText = `${t.m2}: `;
+        document.getElementById('man-txt-2').innerText = t.man2;
+        document.getElementById('man-lbl-3').innerText = `${t.m3}: `;
+        document.getElementById('man-txt-3').innerText = t.man3;
+        document.getElementById('man-lbl-4').innerText = `${t.m4}: `;
+        document.getElementById('man-txt-4').innerText = t.man4;
+    }
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    /* 1. SEKME MOTORU: HYDRO & CAFFEINE */
+    let hydroData = { water: 0, coffee: 0, date: new Date().toDateString() };
+
+    function addHydro(type, amt) {
+        if(hydroData.date !== new Date().toDateString()) {
+            hydroData = { water: 0, coffee: 0, date: new Date().toDateString() };
+        }
+        hydroData[type] += amt;
+        saveAndRenderHydro();
+    }
+
+    function resetHydro() {
+        if(confirm("Clear Counter?")) {
+            hydroData.water = 0;
+            hydroData.coffee = 0;
+            saveAndRenderHydro();
+        }
+    }
+
+    function saveAndRenderHydro() {
+        localStorage.setItem('executive_hydro_db', JSON.stringify(hydroData));
+        document.getElementById('val-water').innerText = hydroData.water;
+        document.getElementById('val-coffee').innerHTML = `${hydroData.coffee} <span style="font-size:12px;">${t.cups}</span>`;
+        
+        const progress = document.getElementById('water-progress');
+        let deg = Math.min((hydroData.water / 3000) * 360, 360);
+        progress.style.background = `conic-gradient(var(--neon-blue) ${deg}deg, #1a1512 ${deg}deg)`;
+    }
+
+    function loadHydro() {
+        let saved = JSON.parse(localStorage.getItem('executive_hydro_db'));
+        if(saved && saved.date === new Date().toDateString()) {
+            hydroData = saved;
+        }
+        saveAndRenderHydro();
+    }
+
+    /* 2. SEKME MOTORU: CARGO DESI */
+    function calculateDesi() {
+        const w = parseFloat(document.getElementById('d-width').value) || 0;
+        const l = parseFloat(document.getElementById('d-length').value) || 0;
+        const h = parseFloat(document.getElementById('d-height').value) || 0;
+        const desi = (w * l * h) / 5000;
+        document.getElementById('res-desi').innerText = desi.toFixed(2);
+    }
+
+    /* 3. SEKME MOTORU: METRIC CONVERTER */
+    function convertMetric(source) {
+        if (source === 'inch') {
+            const val = parseFloat(document.getElementById('m-inch').value) || 0;
+            document.getElementById('m-cm').value = (val * 2.54).toFixed(3);
+        } else if (source === 'cm') {
+            const val = parseFloat(document.getElementById('m-cm').value) || 0;
+            document.getElementById('m-inch').value = (val / 2.54).toFixed(3);
+        } else if (source === 'feet') {
+            const val = parseFloat(document.getElementById('m-feet').value) || 0;
+            document.getElementById('m-meter').value = (val * 0.3048).toFixed(3);
+        } else if (source === 'meter') {
+            const val = parseFloat(document.getElementById('m-meter').value) || 0;
+            document.getElementById('m-feet').value = (val / 0.3048).toFixed(3);
+        }
+    }
+
+    /* 4. SEKME MOTORU: CUSTOM RATE SIMULATOR */
+    function convertFX(source) {
+        const rate = parseFloat(document.getElementById('fx-rate').value) || 1;
+        if(source === 'rate' || source === 'foreign') {
+            const fgn = parseFloat(document.getElementById('fx-foreign').value) || 0;
+            document.getElementById('fx-local').value = (fgn * rate).toFixed(2);
+        } else if(source === 'local') {
+            const loc = parseFloat(document.getElementById('fx-local').value) || 0;
+            document.getElementById('fx-foreign').value = (loc / rate).toFixed(2);
+        }
+    }
+</script>
+</body>
+</html>

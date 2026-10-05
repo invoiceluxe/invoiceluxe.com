@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="hi" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <!-- STATIK SEO: Bu dosyaya özel, JS'e gerek yok, bot direkt okur -->
+    <title>InvoiceLuxe | आय, व्यय और कर कैलकुलेटर</title>
+    <meta name="description" content="InvoiceLuxe का मुफ्त आय, व्यय ट्रैकिंग और वैट कैलकुलेटर। शुद्ध लाभ की गणना करें और तुरंत पेशेवर PDF चालान जनरेट करें।">
+    <link rel="canonical" href="https://invoiceluxe.com/vat-calculator-hi.html" />
+
+    <!-- Google Botları İçin 13 Dilde Tam SEO Haritası (Hreflang) -->
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/vat-calculator-de.html" />
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/vat-calculator-tr.html" />
+    <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/vat-calculator-en.html" />
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/vat-calculator-nl.html" />
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/vat-calculator-fr.html" />
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/vat-calculator-it.html" />
+    <link rel="alternate" hreflang="es" href="https://invoiceluxe.com/vat-calculator-es.html" />
+    <link rel="alternate" hreflang="pt" href="https://invoiceluxe.com/vat-calculator-pt.html" />
+    <link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/vat-calculator-ru.html" />
+    <link rel="alternate" hreflang="zh" href="https://invoiceluxe.com/vat-calculator-zh.html" />
+    <link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/vat-calculator-ja.html" />
+    <link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/vat-calculator-hi.html" />
+    <link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/vat-calculator-ar.html" />
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/vat-calculator-en.html" />
+
+    <!-- JSON-LD: Google botlarına bu sayfanın bir web uygulaması olduğunu ve ne yaptığını anlatır -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "InvoiceLuxe",
+    "alternateName": "InvoiceLuxe | आय, व्यय और कर कैलकुलेटर",
+    "url": "https://invoiceluxe.com/vat-calculator-hi.html",
+    "description": "InvoiceLuxe का मुफ्त आय, व्यय ट्रैकिंग और वैट कैलकुलेटर। शुद्ध लाभ की गणना करें और तुरंत पेशेवर PDF चालान जनरेट करें।",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (Web Browser)",
+    "browserRequirements": "Requires JavaScript",
+    "inLanguage": "hi-IN",
+    "isAccessibleForFree": true,
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "InvoiceLuxe",
+        "url": "https://invoiceluxe.com/"
+    }
+}
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        // --- BU DOSYANIN DİLİ SABİT (path-based SEO) ---
+        // Artık ?lang= parametresi veya localStorage'a bakılmıyor.
+        // Google botu bu dosyayı hep aynı dilde görür.
+        const activeLang = "hi";
+
+        document.documentElement.lang = activeLang;
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;900&display=swap');
+
+        :root {
+            --bg-light: #f8f9fc;
+            --card-bg: #ffffff;
+            --blue-gradient-start: #3b82f6;
+            --blue-gradient-end: #1d4ed8;
+            --blue-text: #ffffff;
+            --green-bg: #f0fdf4;
+            --green-text: #16a34a;
+            --green-pill-bg: #dcfce7;
+            --red-bg: #fef2f2;
+            --red-text: #dc2626;
+            --red-pill-bg: #fee2e2;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, sans-serif; }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 16px;
+            padding-bottom: 110px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wrap { width: 100%; max-width: 600px; }
+
+        .ctrl-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%; }
+
+        .lang-wrapper {
+            display: flex; align-items: center; gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 8px 14px;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .lang-wrapper select {
+            background: transparent; color: var(--text-dark); border: none;
+            font-weight: 700; cursor: pointer; font-size: 15px; outline: none;
+            appearance: none; -webkit-appearance: none;
+        }
+
+        .btn-back {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--blue-gradient-start);
+            color: #ffffff !important;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-weight: 700; font-size: 13px;
+            text-decoration: none; text-transform: uppercase;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+            transition: transform 0.2s;
+        }
+        .btn-back:active { transform: scale(0.95); }
+
+        .manual-card { background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 16px; margin-bottom: 20px; box-shadow: var(--shadow-soft); }
+        .manual-head { display: flex; align-items: center; justify-content: space-between; color: var(--text-dark); font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+        .manual-head i.fa-gear { color: var(--blue-gradient-start); font-size: 16px; }
+        .manual-body { display: none; margin-top: 14px; font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 500; border-top: 1px solid var(--border-light); padding-top: 12px; }
+
+        .main-res-card {
+            background: linear-gradient(135deg, var(--blue-gradient-start), var(--blue-gradient-end));
+            padding: 28px 20px; text-align: center; border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.3); margin-bottom: 20px;
+            color: var(--blue-text); position: relative; overflow: hidden;
+        }
+        .icon-circle { width: 54px; height: 54px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; }
+        .icon-circle i { font-size: 22px; color: #ffffff; }
+        .main-res-title { font-size: 12px; letter-spacing: 1.2px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; opacity: 0.9; }
+        .main-res-val { font-size: 44px; font-weight: 900; margin-bottom: 14px; line-height: 1; letter-spacing: -1px; }
+        .tax-summary-pill { display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+
+        .input-section { display: flex; gap: 14px; margin-bottom: 20px; }
+        .column { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+        .entry-group { padding: 18px 12px; border-radius: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-light); background: #ffffff; box-shadow: var(--shadow-soft); transition: border 0.2s; }
+        .entry-group[data-type="income"] { border-top: 4px solid var(--green-text); }
+        .entry-group[data-type="expense"] { border-top: 4px solid var(--red-text); }
+
+        .entry-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+        .entry-group[data-type="income"] .entry-icon { background: var(--green-pill-bg); color: var(--green-text); }
+        .entry-group[data-type="expense"] .entry-icon { background: var(--red-pill-bg); color: var(--red-text); }
+        .entry-icon i { font-size: 18px; }
+
+        .entry-title { font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: var(--text-muted); }
+
+        .entry-group input[type="number"] { width: 100%; background: transparent; border: none; color: var(--text-dark); font-size: 28px; font-weight: 900; text-align: center; outline: none; margin-bottom: 12px; }
+        .entry-group input[type="number"]::placeholder { color: #cbd5e1; }
+
+        .tax-row { display: flex; gap: 4px; width: 100%; justify-content: center; }
+        .tax-btn { flex: 1; padding: 6px 0; font-size: 11px; font-weight: 800; cursor: pointer; text-align: center; border-radius: 8px; border: none; background: #f1f5f9; color: var(--text-muted); transition: all 0.2s; }
+
+        .entry-group[data-type="income"] .tax-btn.active { background: var(--green-text); color: #fff; }
+        .entry-group[data-type="expense"] .tax-btn.active { background: var(--red-text); color: #fff; }
+
+        .custom-tax-input { width: 42px; border-radius: 8px; font-size: 11px; font-weight: 800; text-align: center; outline: none; display: none; border: 1px solid var(--border-light); background: #ffffff; }
+
+        .footer-fixed { position: fixed; bottom: 0; left: 0; width: 100%; padding: 0 14px 16px; z-index: 1000; display: flex; justify-content: center; pointer-events: none; }
+        .action-row { display: flex; align-items: center; gap: 10px; width: 100%; max-width: 600px; pointer-events: auto; }
+        .action-btn { padding: 14px; border-radius: 16px; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border: none; transition: transform 0.2s; box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
+        .action-btn:active { transform: scale(0.94); }
+
+        .btn-clear { flex: 0 0 auto; width: 48px; height: 48px; padding: 0; background: var(--red-pill-bg); color: var(--red-text); }
+        .btn-clear .btn-txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+        .btn-preview { background: #e0f2fe; color: #0284c7; flex: 1; }
+        .btn-send { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; flex: 1.3; box-shadow: 0 10px 20px rgba(22, 163, 74, 0.3); }
+
+        .inv-item { background: #ffffff; margin-bottom: 10px; padding: 14px 16px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-light); box-shadow: var(--shadow-soft); }
+        .inv-left { display: flex; flex-direction: column; }
+        .inv-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; margin-bottom: 2px; }
+
+        .neto-big { font-size: 20px; font-weight: 900; }
+        .neto-income { color: var(--green-text); }
+        .neto-expense { color: var(--red-text); }
+
+        .inv-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+        .brut-tag { font-size: 11px; color: var(--text-dark); background: #f1f5f9; padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+        .btw-tag { font-size: 11px; color: #2563eb; background: #eff6ff; padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+
+        #preview-modal { position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(8px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s ease; }
+        .preview-container { background: #f8f9fc; width: 100%; max-width: 480px; max-height: 90vh; border-radius: 24px; display: flex; flex-direction: column; box-shadow: 0 25px 50px rgba(0,0,0,0.3); overflow: hidden; transform: translateY(20px) scale(0.98); transition: transform 0.3s ease; }
+
+        .preview-header { padding: 22px 20px; background: linear-gradient(135deg, var(--blue-gradient-start), var(--blue-gradient-end)); color: #fff; }
+        .preview-header-top { display: flex; justify-content: space-between; align-items: center; }
+        .preview-header-top h3 { font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
+        .btn-close-modal { background: rgba(255,255,255,0.2); border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 18px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .preview-hero-val { font-size: 36px; font-weight: 900; margin-top: 6px; }
+        .preview-hero-pill { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+        .preview-hero-meta { font-size: 11px; opacity: 0.8; margin-top: 8px; }
+
+        .preview-content-wrap { padding: 16px; overflow-y: auto; flex: 1; }
+        .preview-items-card { background: #fff; border-radius: 16px; border: 1px solid var(--border-light); padding: 8px; }
+        .preview-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; }
+        .preview-row + .preview-row { border-top: 1px solid var(--border-light); }
+        .preview-row-left { display: flex; align-items: center; gap: 10px; }
+        .preview-row-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .preview-row-label { font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .preview-row-net { font-size: 16px; font-weight: 900; color: var(--text-dark); }
+        .preview-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+        .preview-tag { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
+
+        .preview-footer { padding: 14px 16px; background: #fff; border-top: 1px solid var(--border-light); display: flex; gap: 10px; }
+        .btn-download-pdf { flex: 1.4; background: linear-gradient(135deg, var(--blue-gradient-start), var(--blue-gradient-end)); color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-cancel { flex: 1; background: #f1f5f9; color: var(--text-dark); border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; }
+
+        .seo-text-card { background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 18px; margin-top: 8px; box-shadow: var(--shadow-soft); }
+        .seo-text-title { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+        .seo-text-card p { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div class="ctrl-row">
+            <div class="lang-wrapper">
+                <span id="lang-flag" style="font-size: 18px;">🇮🇳</span>
+                <!-- Artık ?lang= yazmıyor, doğrudan ilgili dosyaya yönlendiriyor -->
+                <select id="lang-select" onchange="goToLang(this.value)">
+                    <option value="de">Deutsch</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="en">English</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="es">Español</option>
+                    <option value="pt">Português</option>
+                    <option value="ru">Русский</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="hi" selected>हिन्दी</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+            <a href="index.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i> <span id="t-back">वापस</span></a>
+        </div>
+
+        <div class="manual-card">
+            <div class="manual-head" onclick="toggleManual()">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-gear"></i> <span id="t-man-title">यह कैसे काम करता है?</span>
+                </div>
+                <span id="man-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="manual-body" id="man-body">राशि दर्ज करें और वैट चुनें।</div>
+        </div>
+
+        <div class="main-res-card">
+            <div class="icon-circle"><i class="fa-solid fa-wallet"></i></div>
+            <div class="main-res-title" id="t-net-title">शुद्ध लाभ</div>
+            <div class="main-res-val" id="res-net">0.00 ₹</div>
+            <div class="tax-summary-pill" id="res-tax-summary">भुगतान वैट: 0.00 ₹</div>
+        </div>
+
+        <div class="input-section">
+            <div class="column" id="incomeCol"></div>
+            <div class="column" id="expenseCol"></div>
+        </div>
+
+        <div id="invoice-list"></div>
+
+        <!-- Görünür SEO metni: hem kullanıcı hem Google botu okur, sayfanın ne işe yaradığını anlatır -->
+        <div class="seo-text-card">
+            <h2 class="seo-text-title">InvoiceLuxe टैक्स कैलकुलेटर क्या है?</h2>
+            <p>InvoiceLuxe एक मुफ्त वेब टूल है जो आपको आय और व्यय को ट्रैक करने, स्वचालित रूप से वैट की गणना करने और अपने शुद्ध लाभ को वास्तविक समय में देखने देता है। बस सकल राशि दर्ज करें, लागू वैट दर (0%, 9%, 21% या कस्टम) चुनें, और InvoiceLuxe बाकी काम संभाल लेगा। अंत में, आप एक पेशेवर PDF चालान डाउनलोड कर सकते हैं या सीधे WhatsApp के माध्यम से अपनी रिपोर्ट साझा कर सकते हैं — बिना किसी पंजीकरण के।</p>
+        </div>
+    </div>
+
+    <div class="footer-fixed">
+        <div class="action-row">
+            <button class="action-btn btn-clear" onclick="clearData()" title="Clear">
+                <i class="fa-regular fa-trash-can" style="font-size:16px;"></i> <span class="btn-txt" id="t-clear">साफ़</span>
+            </button>
+            <button class="action-btn btn-preview" onclick="openPreviewModal()">
+                <i class="fa-solid fa-file-invoice" style="font-size:15px;"></i> <span id="t-prev-text">पूर्वावलोकन</span>
+            </button>
+            <button class="action-btn btn-send" onclick="shareWhatsApp()">
+                <i class="fa-brands fa-whatsapp" style="font-size:17px;"></i> <span id="t-send-text">भेजें</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="preview-modal">
+        <div class="preview-container" id="preview-container-box">
+            <div class="preview-header">
+                <div class="preview-header-top">
+                    <h3 id="modal-title-text">पूर्वावलोकन</h3>
+                    <button class="btn-close-modal" onclick="closePreviewModal()">×</button>
+                </div>
+                <div class="preview-hero-val" id="modal-hero-val">0.00 ₹</div>
+                <div class="preview-hero-pill" id="modal-hero-pill">—</div>
+                <div class="preview-hero-meta" id="modal-hero-meta">—</div>
+            </div>
+            <div class="preview-content-wrap">
+                <div class="preview-items-card" id="preview-content"></div>
+            </div>
+            <div class="preview-footer">
+                <button class="btn-cancel" onclick="closePreviewModal()" id="t-close-btn">बंद</button>
+                <button class="btn-download-pdf" onclick="downloadInvoicePdf()">
+                    <i class="fa-solid fa-download"></i> <span id="t-pdf-btn">PDF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Bu dosyanın sabit dil paketi (t objesi doğrudan bu dilde)
+    const t = {
+        back: "वापस", net: "शुद्ध लाभ", inc: "आय", exp: "व्यय",
+        pay: "भुगतान", get: "रिफंड", brut: "सकल", tax: "वैट",
+        clear: "साफ़", send: "भेजें", report: "रिपोर्ट",
+        manTitle: "यह कैसे काम करता है?", manBody: "राशि दर्ज करें और वैट चुनें।", preview: "पूर्वावलोकन",
+        invNo: "चालान", date: "तारीख", netShort: "शुद्ध",
+        pdfBtn: "PDF", desc: "विवरण", invTitle: "चालान", close: "बंद"
+    };
+    const sym = "₹";
+
+    // Dil değiştirme artık dosya yönlendirmesi ile çalışıyor (query param değil)
+    const langToFile = {
+        de: "vat-calculator-de.html",
+        tr: "vat-calculator-tr.html",
+        en: "vat-calculator-en.html",
+        nl: "vat-calculator-nl.html",
+        fr: "vat-calculator-fr.html",
+        it: "vat-calculator-it.html",
+        es: "vat-calculator-es.html",
+        pt: "vat-calculator-pt.html",
+        ru: "vat-calculator-ru.html",
+        zh: "vat-calculator-zh.html",
+        ja: "vat-calculator-ja.html",
+        hi: "vat-calculator-hi.html",
+        ar: "vat-calculator-ar.html"
+    };
+    function goToLang(code) {
+        if (langToFile[code]) window.location.href = langToFile[code];
+    }
+
+    document.documentElement.dir = (activeLang === 'ar') ? 'rtl' : 'ltr';
+
+    if(!sessionStorage.getItem('inv_no')) {
+        sessionStorage.setItem('inv_no', 'NP-' + Math.floor(100000 + Math.random() * 900000));
+    }
+
+    window.onload = () => {
+        document.getElementById('lang-select').value = activeLang;
+        loadSavedData();
+        calculateAll();
+    };
+
+    function toggleManual() {
+        const body = document.getElementById('man-body');
+        const arrow = document.getElementById('man-arrow');
+        const isOpen = body.style.display === 'block';
+        body.style.display = isOpen ? 'none' : 'block';
+        arrow.innerHTML = isOpen ? '<i class="fa-solid fa-chevron-down"></i>' : '<i class="fa-solid fa-chevron-up"></i>';
+    }
+
+    function buildColumn(colId, type, dataArray) {
+        const col = document.getElementById(colId);
+        col.innerHTML = '';
+
+        dataArray.forEach((item) => {
+            const isIncome = type === 'income';
+            const titleText = isIncome ? t.inc : t.exp;
+            const icon = isIncome ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down';
+
+            const b0 = item.b === "0" && item.c === "" ? "active" : "";
+            const b9 = item.b === "9" && item.c === "" ? "active" : "";
+            const b21 = item.b === "21" && item.c === "" ? "active" : "";
+            const bCustom = item.c !== "" || (item.b !== "0" && item.b !== "9" && item.b !== "21" && item.b !== "") ? "active" : "";
+            const customStyle = bCustom ? "display:block;" : "display:none;";
+            const customVal = item.c !== "" ? item.c : (bCustom ? item.b : "");
+
+            const html = `
+            <div class="entry-group" data-type="${type}">
+                <div class="entry-icon"><i class="fa-solid ${icon}"></i></div>
+                <div class="entry-title">${titleText}</div>
+                <input type="number" placeholder="0.00" value="${item.v}" oninput="handleInput(this)">
+                <div class="tax-row">
+                    <button type="button" class="tax-btn ${b0}" onclick="setTax(this, 0)">%0</button>
+                    <button type="button" class="tax-btn ${b9}" onclick="setTax(this, 9)">%9</button>
+                    <button type="button" class="tax-btn ${b21}" onclick="setTax(this, 21)">%21</button>
+                    <button type="button" class="tax-btn ${bCustom}" onclick="toggleCustom(this)">%?</button>
+                    <input type="number" class="custom-tax-input" placeholder="%" value="${customVal}" style="${customStyle}" oninput="calculateAll()">
+                </div>
+            </div>`;
+            col.insertAdjacentHTML('beforeend', html);
+        });
+    }
+
+    function loadSavedData() {
+        const savedState = JSON.parse(localStorage.getItem('invoiceluxe_input_state_' + activeLang));
+
+        if(savedState) {
+            if(savedState.income.length === 0 || savedState.income[savedState.income.length - 1].v !== "") {
+                savedState.income.push({v:"", c:"", b:"0"});
+            }
+            if(savedState.expense.length === 0 || savedState.expense[savedState.expense.length - 1].v !== "") {
+                savedState.expense.push({v:"", c:"", b:"0"});
+            }
+            buildColumn('incomeCol', 'income', savedState.income);
+            buildColumn('expenseCol', 'expense', savedState.expense);
+        } else {
+            buildColumn('incomeCol', 'income', [{v:"", c:"", b:"0"}]);
+            buildColumn('expenseCol', 'expense', [{v:"", c:"", b:"0"}]);
+        }
+    }
+
+    function toggleCustom(btn) {
+        const input = btn.parentElement.querySelector('.custom-tax-input');
+        const btns = btn.parentElement.querySelectorAll('.tax-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        input.style.display = 'block';
+        input.focus();
+    }
+
+    function setTax(btn, val) {
+        const input = btn.parentElement.querySelector('.custom-tax-input');
+        const btns = btn.parentElement.querySelectorAll('.tax-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        input.style.display = 'none';
+        input.value = "";
+        calculateAll();
+    }
+
+    function handleInput(input) {
+        if (input.value !== "") {
+            const col = input.closest('.column');
+            const groups = col.querySelectorAll('.entry-group');
+            if (input === groups[groups.length - 1].querySelector('input[type="number"]:not(.custom-tax-input)')) {
+                const newNode = groups[groups.length - 1].cloneNode(true);
+                newNode.querySelector('input[type="number"]:not(.custom-tax-input)').value = "";
+                newNode.querySelector('.custom-tax-input').style.display = 'none';
+                newNode.querySelector('.custom-tax-input').value = "";
+
+                const btns = newNode.querySelectorAll('.tax-btn');
+                btns.forEach(b => b.classList.remove('active'));
+                btns[0].classList.add('active');
+
+                col.appendChild(newNode);
+            }
+        }
+        calculateAll();
+    }
+
+    function calculateAll() {
+        let ti = 0, te = 0, tp = 0, tg = 0;
+        const listDiv = document.getElementById('invoice-list');
+        listDiv.innerHTML = "";
+
+        let storageData = [];
+        let inputState = { income: [], expense: [] };
+
+        document.querySelectorAll('.entry-group').forEach((g) => {
+            const type = g.dataset.type;
+            const numInput = g.querySelector('input[type="number"]:not(.custom-tax-input)');
+            const customInput = g.querySelector('.custom-tax-input');
+            const activeBtn = g.querySelector('.tax-btn.active');
+
+            const currentValStr = numInput.value;
+            const currentCustomVal = customInput.style.display === 'block' ? customInput.value : "";
+            const currentActiveBtnStr = activeBtn ? activeBtn.innerText.replace('%','') : "0";
+
+            inputState[type].push({ v: currentValStr, c: currentCustomVal, b: currentActiveBtnStr });
+
+            const val = parseFloat(currentValStr) || 0;
+            if(val === 0) return;
+
+            let perc = (currentCustomVal !== "") ? parseFloat(currentCustomVal) : parseFloat(currentActiveBtnStr);
+            if(isNaN(perc)) perc = 0;
+
+            const tax = val - (val / (1 + (perc/100)));
+            const net = val - tax;
+
+            if(type === 'income') { ti += val; tp += tax; } else { te += val; tg += tax; }
+
+            storageData.push({v: val, p: perc, t: type, n: net, tx: tax});
+
+            const netColorClass = type === 'income' ? 'neto-income' : 'neto-expense';
+
+            listDiv.innerHTML += `
+                <div class="inv-item">
+                    <div class="inv-left">
+                        <span class="inv-label">${type === 'income' ? t.inc : t.exp}</span>
+                        <span class="neto-big ${netColorClass}">${net.toFixed(2)} ${sym}</span>
+                    </div>
+                    <div class="inv-right">
+                        <span class="brut-tag">${t.brut}: ${val.toFixed(2)} ${sym}</span>
+                        <span class="btw-tag">${t.tax} %${perc}: ${tax.toFixed(2)} ${sym}</span>
+                    </div>
+                </div>`;
+        });
+
+        const totalTax = tp - tg;
+        const totalNet = (ti - tp) - (te - tg);
+
+        document.getElementById('res-net').innerText = totalNet.toFixed(2) + " " + sym;
+
+        const summary = document.getElementById('res-tax-summary');
+        summary.innerText = `${totalTax >= 0 ? t.pay : t.get} ${t.tax}: ${Math.abs(totalTax).toFixed(2)} ${sym}`;
+
+        localStorage.setItem('invoiceluxe_db_' + activeLang, JSON.stringify(storageData));
+        localStorage.setItem('invoiceluxe_input_state_' + activeLang, JSON.stringify(inputState));
+    }
+
+    function clearData() {
+        if(confirm(t.clear + "?")) {
+            localStorage.removeItem('invoiceluxe_db_' + activeLang);
+            localStorage.removeItem('invoiceluxe_input_state_' + activeLang);
+            window.location.reload();
+        }
+    }
+
+    function shareWhatsApp() {
+        const saved = JSON.parse(localStorage.getItem('invoiceluxe_db_' + activeLang)) || [];
+        if(saved.length === 0) return;
+
+        let msg = `*📊 INVOICELUXE ${t.report}*\n━━━━━━━━━━━━━━━━━\n\n`;
+
+        saved.forEach((item, i) => {
+            const typeEmoji = item.t === 'income' ? '🟢' : '🔴';
+            const typeName = item.t === 'income' ? t.inc : t.exp;
+            msg += `${typeEmoji} *${typeName} #${i+1}*\n🔹 Net: ${item.n.toFixed(2)} ${sym}\n🔸 ${t.tax} (%${item.p}): ${item.tx.toFixed(2)} ${sym}\n▪️ ${t.brut}: ${item.v.toFixed(2)} ${sym}\n\n`;
+        });
+
+        msg += `━━━━━━━━━━━━━━━━━\n✅ *${t.net}: ${document.getElementById('res-net').innerText}*\n🏛️ *${document.getElementById('res-tax-summary').innerText}*`;
+        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(msg), '_blank');
+    }
+
+    function openPreviewModal() {
+        const saved = JSON.parse(localStorage.getItem('invoiceluxe_db_' + activeLang)) || [];
+        if(saved.length === 0) return;
+
+        buildInvoiceHTML(saved);
+
+        const modal = document.getElementById('preview-modal');
+        const box = document.getElementById('preview-container-box');
+        modal.style.display = 'flex';
+        setTimeout(() => { modal.style.opacity = '1'; box.style.transform = 'translateY(0) scale(1)'; }, 10);
+    }
+
+    function closePreviewModal() {
+        const modal = document.getElementById('preview-modal');
+        const box = document.getElementById('preview-container-box');
+        modal.style.opacity = '0';
+        box.style.transform = 'translateY(20px) scale(0.98)';
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
+    }
+
+    function buildInvoiceHTML(saved) {
+        let ti = 0, te = 0, tp = 0, tg = 0;
+        let rows = '';
+        saved.forEach((item, i) => {
+            if(item.t === 'income') { ti += item.v; tp += item.tx; } else { te += item.v; tg += item.tx; }
+            const isIncome = item.t === 'income';
+            const label = isIncome ? t.inc : t.exp;
+            const rowColor = isIncome ? '#16a34a' : '#dc2626';
+            const iconBg = isIncome ? '#dcfce7' : '#fee2e2';
+            const icon = isIncome ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down';
+
+            rows += `<div class="preview-row">
+                <div class="preview-row-left">
+                    <div class="preview-row-icon" style="background:${iconBg}; color:${rowColor};"><i class="fa-solid ${icon}"></i></div>
+                    <div>
+                        <div class="preview-row-label" style="color:${rowColor};">${label} #${i+1}</div>
+                        <div class="preview-row-net">${item.n.toFixed(2)} ${sym}</div>
+                    </div>
+                </div>
+                <div class="preview-row-right">
+                    <span class="preview-tag" style="background:#f1f5f9; color:#64748b;">${t.brut} ${item.v.toFixed(2)} ${sym}</span>
+                    <span class="preview-tag" style="background:#eff6ff; color:#2563eb;">${t.tax} %${item.p}: ${item.tx.toFixed(2)} ${sym}</span>
+                </div>
+            </div>`;
+        });
+
+        const totalTax = tp - tg;
+        const totalNet = (ti - tp) - (te - tg);
+        const taxLabel = totalTax >= 0 ? t.pay : t.get;
+        const dateStr = new Date().toLocaleDateString(activeLang);
+        const invNo = sessionStorage.getItem('inv_no');
+
+        document.getElementById('modal-hero-val').innerText = totalNet.toFixed(2) + " " + sym;
+        document.getElementById('modal-hero-pill').innerText = `${taxLabel} ${t.tax}: ${Math.abs(totalTax).toFixed(2)} ${sym}`;
+        document.getElementById('modal-hero-meta').innerText = `${t.invTitle} #${invNo}  ·  ${t.date}: ${dateStr}`;
+
+        document.getElementById('preview-content').innerHTML = rows;
+
+        window.__invoiceMeta = { totalNet, totalTax, taxLabel, dateStr, invNo };
+    }
+
+    function downloadInvoicePdf() {
+        const meta = window.__invoiceMeta || {};
+        const rowsHtml = document.getElementById('preview-content').innerHTML;
+
+        const sheet = document.createElement('div');
+        sheet.id = 'invoice-sheet-export';
+        sheet.style.cssText = 'background:#fff;padding:30px;border-radius:8px;color:#0f172a;font-family:"Segoe UI",sans-serif;width:640px;position:fixed;left:-9999px;top:0;';
+        sheet.innerHTML = `
+            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #e2e8f0;padding-bottom:20px;margin-bottom:20px;">
+                <div>
+                    <h1 style="font-size:24px;color:#3b82f6;margin:0;font-weight:900;">Invoice<span style="color:#0f172a;">Luxe</span></h1>
+                    <p style="font-size:11px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-top:5px;">${t.desc} & ${t.tax}</p>
+                </div>
+                <div style="text-align:right;">
+                    <h2 style="font-size:18px;color:#0f172a;margin:0;font-weight:900;letter-spacing:2px;">${t.invTitle}</h2>
+                    <p style="font-size:12px;margin-top:5px;"><strong>${t.date}:</strong> ${meta.dateStr}</p>
+                    <p style="font-size:12px;"><strong>${t.invNo}:</strong> #${meta.invNo}</p>
+                </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">${rowsHtml}</div>
+            <div style="display:flex;justify-content:flex-end;">
+                <div style="background:#f8f9fc;padding:20px;border-radius:12px;min-width:250px;border:1px solid #e2e8f0;border-left:5px solid #3b82f6;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px;font-weight:600;color:#64748b;">
+                        <span>${meta.taxLabel} ${t.tax}</span>
+                        <span>${Math.abs(meta.totalTax).toFixed(2)} ${sym}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;border-top:2px solid #e2e8f0;padding-top:10px;font-size:20px;font-weight:900;color:${meta.totalNet >= 0 ? '#16a34a' : '#dc2626'};">
+                        <span>${t.netShort}:</span>
+                        <span>${meta.totalNet.toFixed(2)} ${sym}</span>
+                    </div>
+                </div>
+            </div>`;
+        document.body.appendChild(sheet);
+
+        const opt = {
+            margin: 0.2,
+            filename: 'InvoiceLuxe_' + meta.invNo + '.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 3, useCORS: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(sheet).save().then(() => sheet.remove());
+    }
+</script>
+</body>
+</html>

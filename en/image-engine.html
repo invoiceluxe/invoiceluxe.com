@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="google" content="notranslate">
+
+    <!-- SEO -->
+    <title>Free Image Resizer & PNG Converter – No Upload Required | Invoice Luxe</title>
+    <meta name="description" content="Resize images and convert to PNG instantly in your browser. No server upload, 100% private. Supports JPG, WEBP, BMP. Free image tool by Invoice Luxe.">
+    <meta name="keywords" content="image resizer, png converter, resize image online, free image editor, no upload image tool, local image resizer, JPG to PNG, WEBP to PNG, Invoice Luxe">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Invoice Luxe">
+    <link rel="canonical" href="https://invoiceluxe.com/image-studio">
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/image-studio">
+    <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/image-studio?lang=en">
+    <link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/image-studio?lang=tr">
+    <link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/image-studio?lang=nl">
+    <link rel="alternate" hreflang="de" href="https://invoiceluxe.com/image-studio?lang=de">
+    <link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/image-studio?lang=fr">
+    <link rel="alternate" hreflang="it" href="https://invoiceluxe.com/image-studio?lang=it">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free Image Resizer & PNG Converter | Invoice Luxe">
+    <meta property="og:description" content="Resize and convert images to PNG directly in your browser. No upload, 100% private.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoiceluxe.com/image-studio">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image Resizer & PNG Converter",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "url": "https://invoiceluxe.com/image-studio",
+      "description": "Free browser-based image resizer and PNG converter. No server upload needed, 100% private.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "provider": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --wood-dark: #0f0b08; --gold: #c5a059; --border: #2d241c;
+            --neon-blue: #00d2ff; --neon-green: #39FF14; --neon-red: #ef5350;
+            --card-bg: rgba(10,10,10,0.95);
+        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        body { background: var(--wood-dark); color: #fff; display: flex; flex-direction: column; min-height: 100dvh; overflow-x: hidden; }
+
+        .nav-header { width: 100%; background: rgba(15,11,8,0.98); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .btn-back { background: #1c1c1e; color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid var(--border); transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-back:hover { background: #2d241c; border-color: var(--gold); }
+        .top-tag { color: #666; font-weight: 800; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+
+        .container { flex: 1; width: 100%; max-width: 500px; margin: 0 auto; padding: 15px; display: flex; flex-direction: column; gap: 15px; }
+
+        .studio-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .panel-title { font-size: 16px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+        .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 30px 15px; text-align: center; background: rgba(0,0,0,0.3); cursor: pointer; transition: 0.2s; position: relative; }
+        .upload-zone:hover, .upload-zone.dragover { border-color: var(--gold); background: rgba(197,160,89,0.05); }
+        .upload-zone i { font-size: 36px; color: var(--gold); margin-bottom: 10px; display: block; }
+        .upload-text { font-size: 13px; font-weight: 700; color: #ccc; }
+        .upload-sub { font-size: 10px; color: #666; margin-top: 5px; text-transform: uppercase; font-weight: 800; }
+        #file-input { display: none; }
+
+        .preview-box { display: none; margin-top: 15px; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; background: #000; position: relative; text-align: center; max-height: 200px; }
+        .preview-box img { max-width: 100%; max-height: 200px; object-fit: contain; display: block; margin: 0 auto; }
+        .img-meta { background: rgba(0,0,0,0.8); position: absolute; bottom: 0; left: 0; right: 0; padding: 6px; font-size: 10px; font-family: monospace; color: var(--neon-blue); display: flex; justify-content: space-between; }
+
+        .control-group { margin-top: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .input-group { display: flex; flex-direction: column; gap: 6px; }
+        .input-label { font-size: 11px; color: #888; font-weight: 700; text-transform: uppercase; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .inp-field { background: rgba(0,0,0,0.6); border: 1px solid var(--border); color: #fff; border-radius: 8px; height: 46px; padding: 0 12px; font-size: 14px; font-weight: 600; outline: none; width: 100%; }
+        .inp-field:focus { border-color: var(--gold); }
+
+        .switch-container { display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.2); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); margin-top: 5px; }
+        .switch-label { font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #222; border: 1px solid var(--border); transition: .3s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: #666; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background-color: rgba(197,160,89,0.2); border-color: var(--gold); }
+        input:checked + .slider:before { transform: translateX(20px); background-color: var(--gold); }
+
+        .preset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 5px; }
+        .btn-preset { background: #1a1512; border: 1px solid var(--border); color: #aaa; padding: 8px 0; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.1s; }
+        .btn-preset:hover { border-color: var(--gold); color: #fff; }
+
+        .btn-action { background: linear-gradient(135deg, #d4af37, #8e7341); color: #000; border: none; height: 50px; border-radius: 8px; font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; width: 100%; }
+        .btn-action:active { transform: scale(0.99); }
+        .btn-action:disabled { background: #222 !important; color: #555 !important; border: 1px solid var(--border) !important; cursor: not-allowed; }
+
+        .privacy-badge { background: rgba(57,255,20,0.05); border: 1px solid rgba(57,255,20,0.2); padding: 12px; border-radius: 10px; text-align: center; font-size: 11px; color: var(--neon-green); font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
+
+        /* ===== KULLANIM KILAVUZU ===== */
+        .guide { border: 1px solid var(--border); background: rgba(0,0,0,0.4); border-radius: 12px; overflow: hidden; }
+        .guide-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; background: rgba(0,0,0,0.3); }
+        .guide-header span { font-size: 10px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-transform: uppercase; }
+        .guide-toggle { font-size: 14px; color: var(--gold); transition: transform 0.3s; }
+        .guide-toggle.open { transform: rotate(180deg); }
+        .guide-body { padding: 0 18px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+        .guide-body.open { max-height: 700px; padding: 18px; border-top: 1px solid var(--border); }
+
+        .guide-step { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+        .step-num { min-width: 26px; height: 26px; background: var(--gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+        .step-text { font-size: 12px; color: #888; line-height: 1.6; }
+        .step-text b { color: #ccc; display: block; margin-bottom: 3px; font-size: 12px; }
+
+        .guide-presets { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+        .guide-preset-tag { background: #1a1512; border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; font-size: 10px; color: #aaa; }
+        .guide-preset-tag b { color: var(--gold); }
+
+        .guide-tip { border-left: 3px solid var(--gold); padding: 10px 12px; background: rgba(197,160,89,0.04); font-size: 11px; color: #888; margin-top: 8px; line-height: 1.7; border-radius: 0 8px 8px 0; }
+        .guide-tip b { color: var(--gold); }
+        .guide-privacy { background: rgba(57,255,20,0.04); border: 1px solid rgba(57,255,20,0.15); border-radius: 8px; padding: 10px 12px; font-size: 11px; color: var(--neon-green); margin-top: 12px; display: flex; align-items: center; gap: 8px; }
+
+        /* ===== SEO BLOG CONTENT ===== */
+        .seo-content { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; padding: 20px; color: #999; font-size: 13px; line-height: 1.6; }
+        .seo-content h2 { color: var(--gold); font-size: 16px; margin-bottom: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 8px; }
+        .seo-content h3 { color: #ccc; font-size: 14px; margin: 18px 0 8px 0; font-weight: 700; }
+        .seo-content p { margin-bottom: 12px; }
+        .seo-content strong { color: #ddd; font-weight: 700; }
+        .seo-content ul, .seo-content ol { margin-left: 20px; margin-bottom: 15px; }
+        .seo-content li { margin-bottom: 6px; }
+        .seo-content li strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="index.html" class="btn-back" id="img-back">⬅ BACK</a>
+        <div class="top-tag" id="img-top-tag">SECURE ENGINE</div>
+    </header>
+
+    <main class="container">
+
+        <div class="studio-card">
+            <h1 class="panel-title"><i class="fa-solid fa-images"></i> <span id="img-h1">LOCAL IMAGE STUDIO</span></h1>
+
+            <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <div class="upload-text" id="img-up-txt">DRAG & DROP IMAGE OR CLICK</div>
+                <div class="upload-sub" id="img-up-sub">JPG, WEBP, PNG, BMP SUPPORTED</div>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+
+            <div class="preview-box" id="preview-area">
+                <img id="source-img" src="" alt="Source Preview">
+                <div class="img-meta">
+                    <span id="meta-dims">0 x 0 px</span>
+                    <span id="meta-type">ORIGINAL</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label class="input-label" id="img-lbl-w">TARGET WIDTH (PX)</label>
+                        <input type="number" id="target-w" class="inp-field" placeholder="W" oninput="handleManualInput('w')">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label" id="img-lbl-h">TARGET HEIGHT (PX)</label>
+                        <input type="number" id="target-h" class="inp-field" placeholder="H" oninput="handleManualInput('h')">
+                    </div>
+                </div>
+
+                <div class="switch-container">
+                    <div class="switch-label">
+                        <i class="fa-solid fa-link" id="lock-icon" style="color:var(--gold)"></i>
+                        <span id="img-lbl-lock">KEEP ASPECT RATIO</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="ratio-lock" checked onchange="toggleLockIcon()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" id="img-lbl-pre">QUICK DIMENSION PRESETS</label>
+                    <div class="preset-grid">
+                        <button class="btn-preset" onclick="setPreset(1200,1200)">1200×1200</button>
+                        <button class="btn-preset" onclick="setPreset(800,600)">800×600</button>
+                        <button class="btn-preset" onclick="applyScale(0.5)" id="img-pre-half">HALF SIZE</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-action" id="btn-download" onclick="processAndDownload()" disabled>
+                <i class="fa-solid fa-file-export"></i> <span id="img-btn-txt">CONVERT & DOWNLOAD PNG</span>
+            </button>
+
+            <div class="privacy-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="img-priv">LOCAL PROCESSING: FILES NEVER LEAVE YOUR DEVICE</span>
+            </div>
+        </div>
+
+        <!-- KULLANIM KILAVUZU -->
+        <div class="guide">
+            <div class="guide-header" onclick="toggleGuide()">
+                <span id="l-guide-title">HOW TO USE</span>
+                <span class="guide-toggle" id="guide-arrow">▼</span>
+            </div>
+            <div class="guide-body" id="guide-body">
+
+                <div class="guide-step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <b id="g-s1t">Upload your image</b>
+                        <span id="g-s1d">Drag and drop any image onto the upload area, or tap it to browse your files. JPG, WEBP, PNG and BMP are all supported.</span>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <b id="g-s2t">Set the target size</b>
+                        <span id="g-s2d">Enter the width and height in pixels. With aspect ratio lock ON, the other dimension adjusts automatically.</span>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <b id="g-s3t">Use quick presets</b>
+                        <span id="g-s3d">Tap a preset button for common sizes or use HALF SIZE to reduce the image to 50% instantly.</span>
+                    </div>
+                </div>
+
+                <div class="guide-presets">
+                    <div class="guide-preset-tag"><b>1200×1200</b> — Social / Product</div>
+                    <div class="guide-preset-tag"><b>800×600</b> — Web / Blog</div>
+                    <div class="guide-preset-tag"><b>50%</b> — Quick shrink</div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <b id="g-s4t">Download as PNG</b>
+                        <span id="g-s4d">Tap the gold button to convert and download your resized image as a PNG file instantly.</span>
+                    </div>
+                </div>
+
+                <div class="guide-privacy">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span id="g-priv-text">Your image never leaves your device — all processing happens locally in your browser.</span>
+                </div>
+
+                <div class="guide-tip">
+                    <b id="g-tip-label">💡 Tip: </b>
+                    <span id="g-tip-text">Turn OFF aspect ratio lock to set width and height independently — useful for cropped social media formats.</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- YENİ SEO BLOG İÇERİĞİ -->
+        <div class="seo-content">
+            <h2>Optimize Images Instantly: Free & Private Image Resizer</h2>
+            <p>In today’s fast-paced digital world, optimizing your visual content shouldn't compromise your privacy or waste your time. Whether you are a web designer, a social media manager, or just someone looking to shrink a large photo, the <strong>Invoice Luxe Image Studio</strong> is your ultimate browser-based solution.</p>
+            <p>Our tool functions as a high-speed <strong>free image resizer</strong> and a seamless <strong>PNG converter</strong>—all without requiring you to upload your personal files to an external server.</p>
+
+            <h3>100% Secure: No Server Uploads Required</h3>
+            <p>Most online image editors require you to upload your files to their servers, raising valid privacy concerns. We’ve built our <strong>local image resizer</strong> differently. Thanks to advanced browser technologies, all processing happens entirely on your device.</p>
+            <ul>
+                <li><strong>Total Privacy:</strong> Your images never leave your computer or mobile phone.</li>
+                <li><strong>Zero Waiting Time:</strong> Since there is no server upload or download time, resizing is instant.</li>
+                <li><strong>Offline Capability:</strong> Once the page is loaded, the tool works seamlessly even on unstable connections.</li>
+            </ul>
+
+            <h3>Key Features of Our Free Image Tool</h3>
+            <p>We designed this platform to be lightweight yet powerful. Here is what makes our image studio stand out:</p>
+            <ul>
+                <li><strong>Universal Format Support:</strong> Easily convert <strong>JPG to PNG</strong>, <strong>WEBP to PNG</strong>, or even BMP to PNG with a single click.</li>
+                <li><strong>Smart Aspect Ratio Lock:</strong> Prevent distorted and stretched photos. By keeping the aspect ratio locked, the tool automatically calculates the correct height when you adjust the width (and vice versa).</li>
+                <li><strong>Quick Dimension Presets:</strong> Need standard sizes fast? Use our built-in presets like 1200x1200px for social media, 800x600px for blog posts, or hit the "Half Size" button for instant compression.</li>
+                <li><strong>Drag & Drop Interface:</strong> A frictionless user experience that lets you drag files right from your desktop into the secure engine.</li>
+            </ul>
+
+            <h3>How to Resize and Convert Images Online?</h3>
+            <p>Using our <strong>no upload image tool</strong> is incredibly straightforward:</p>
+            <ol>
+                <li><strong>Drop your file:</strong> Drag your JPG, WEBP, PNG, or BMP image into the upload zone.</li>
+                <li><strong>Set the dimensions:</strong> Type in your desired target width or height.</li>
+                <li><strong>Download:</strong> Click the gold <strong>"Convert & Download PNG"</strong> button to instantly save your optimized file.</li>
+            </ol>
+            <p>Say goodbye to heavy software and invasive online tools. Experience the safest, fastest way to resize and convert your images with <strong>Invoice Luxe</strong>.</p>
+        </div>
+
+    </main>
+
+<script>
+    const i18n = {
+        en: { back:"⬅ BACK", top:"SECURE ENGINE", h1:"LOCAL IMAGE STUDIO", uptxt:"DRAG & DROP IMAGE OR CLICK", upsub:"JPG, WEBP, PNG, BMP SUPPORTED", lblw:"TARGET WIDTH (PX)", lblh:"TARGET HEIGHT (PX)", lbllock:"KEEP ASPECT RATIO", lblpre:"QUICK DIMENSION PRESETS", prehalf:"HALF SIZE", btntxt:"CONVERT & DOWNLOAD PNG", priv:"LOCAL PROCESSING: FILES NEVER LEAVE YOUR DEVICE",
+          guide:"HOW TO USE", s1t:"Upload your image", s1d:"Drag and drop any image onto the upload area, or tap it to browse your files. JPG, WEBP, PNG and BMP are all supported.",
+          s2t:"Set the target size", s2d:"Enter the width and height in pixels. With aspect ratio lock ON, the other dimension adjusts automatically.",
+          s3t:"Use quick presets", s3d:"Tap a preset button for common sizes or use HALF SIZE to reduce the image to 50% instantly.",
+          s4t:"Download as PNG", s4d:"Tap the gold button to convert and download your resized image as a PNG file instantly.",
+          privText:"Your image never leaves your device — all processing happens locally in your browser.",
+          tipLabel:"💡 Tip:", tipText:"Turn OFF aspect ratio lock to set width and height independently — useful for cropped social media formats." },
+        tr: { back:"⬅ GERİ", top:"GÜVENLİ MOTOR", h1:"YEREL RESİM STÜDYOSU", uptxt:"RESMİ SÜRÜKLE BIRAK VEYA TIKLA", upsub:"JPG, WEBP, PNG, BMP DESTEKLENİR", lblw:"HEDEF GENİŞLİK (PX)", lblh:"HEDEF YÜKSEKLİK (PX)", lbllock:"EN-BOY ORANINI KORU", lblpre:"HIZLI BOYUT ŞABLONLARI", prehalf:"%50 KÜÇÜLT", btntxt:"DÖNÜŞTÜR VE PNG İNDİR", priv:"%100 GİZLİ: RESİMLER CİHAZINIZDAN ASLA ÇIKMAZ",
+          guide:"NASIL KULLANILIR", s1t:"Resminizi yükleyin", s1d:"Herhangi bir resmi yükleme alanına sürükleyin veya dosyalarınıza göz atmak için tıklayın. JPG, WEBP, PNG ve BMP desteklenir.",
+          s2t:"Hedef boyutu girin", s2d:"Piksel cinsinden genişlik ve yükseklik girin. En-boy oranı kilidi AÇIK iken diğer boyut otomatik ayarlanır.",
+          s3t:"Hızlı şablonları kullanın", s3d:"Yaygın boyutlar için şablon butonuna basın veya resmi anında %50 küçültmek için %50 KÜÇÜLT'e basın.",
+          s4t:"PNG olarak indirin", s4d:"Altın butona basarak yeniden boyutlandırılmış resminizi PNG olarak anında dönüştürün ve indirin.",
+          privText:"Resminiz cihazınızdan asla çıkmaz — tüm işlemler tarayıcınızda yerel olarak gerçekleşir.",
+          tipLabel:"💡 İpucu:", tipText:"En-boy oranı kilidini KAPATIN ve genişliği ile yüksekliği bağımsız olarak ayarlayın — sosyal medya formatları için idealdir." },
+        nl: { back:"⬅ TERUG", top:"VEILIGE MOTOR", h1:"LOKALE FOTO STUDIO", uptxt:"SLEEP AFBEELDING HIERHEEN OF KLIK", upsub:"JPG, WEBP, PNG, BMP ONDERSTEUND", lblw:"DOELBREEDTE (PX)", lblh:"DOELHOOGTE (PX)", lbllock:"BEHOUD ASPECTRATIO", lblpre:"SNELLE AFMETINGEN", prehalf:"50% KLEINER", btntxt:"CONVERTEER & DOWNLOAD PNG", priv:"LOKALE VERWERKING: BESTANDEN VERLATEN JE APPARAAT NOOIT",
+          guide:"HOE TE GEBRUIKEN", s1t:"Upload uw afbeelding", s1d:"Sleep een afbeelding naar het uploadgebied of tik erop om uw bestanden te bladeren. JPG, WEBP, PNG en BMP worden ondersteund.",
+          s2t:"Stel de doelgrootte in", s2d:"Voer de breedte en hoogte in pixels in. Met aspectratio-vergrendeling AAN past de andere dimensie automatisch aan.",
+          s3t:"Gebruik snelle presets", s3d:"Tik op een presetknop voor veelgebruikte formaten of gebruik 50% KLEINER om de afbeelding direct te halveren.",
+          s4t:"Downloaden als PNG", s4d:"Tik op de gouden knop om uw afbeelding te converteren en als PNG te downloaden.",
+          privText:"Uw afbeelding verlaat uw apparaat nooit — alle verwerking vindt lokaal in uw browser plaats.",
+          tipLabel:"💡 Tip:", tipText:"Schakel de aspectratiokoppeling UIT om breedte en hoogte onafhankelijk in te stellen." },
+        de: { back:"⬅ ZURÜCK", top:"SICHERE ENGINE", h1:"LOKALES BILD-STUDIO", uptxt:"BILD HIERHER ZIEHEN ODER KLICKEN", upsub:"JPG, WEBP, PNG, BMP UNTERSTÜTZT", lblw:"ZIELBREITE (PX)", lblh:"ZIELHÖHE (PX)", lbllock:"SEITENVERHÄLTNIS BEIBEHALTEN", lblpre:"SCHNELLE DIMENSIONEN", prehalf:"50% VERKLEINERN", btntxt:"KONVERTIEREN & PNG HERUNTERLADEN", priv:"LOKALE VERARBEITUNG: DATEIEN VERLASSEN IHR GERÄT NIE",
+          guide:"ANLEITUNG", s1t:"Bild hochladen", s1d:"Ziehen Sie ein Bild in den Upload-Bereich oder tippen Sie darauf. JPG, WEBP, PNG und BMP werden unterstützt.",
+          s2t:"Zielgröße festlegen", s2d:"Breite und Höhe in Pixel eingeben. Bei aktivierter Seitenverhältnissperrung passt sich die andere Dimension automatisch an.",
+          s3t:"Schnelle Voreinstellungen", s3d:"Tippen Sie auf eine Voreinstellung oder verwenden Sie 50% VERKLEINERN, um das Bild sofort zu halbieren.",
+          s4t:"Als PNG herunterladen", s4d:"Tippen Sie auf die goldene Schaltfläche, um Ihr Bild zu konvertieren und als PNG herunterzuladen.",
+          privText:"Ihr Bild verlässt Ihr Gerät nie — alle Verarbeitung erfolgt lokal in Ihrem Browser.",
+          tipLabel:"💡 Tipp:", tipText:"Deaktivieren Sie die Seitenverhältnissperrung, um Breite und Höhe unabhängig festzulegen." },
+        fr: { back:"⬅ RETOUR", top:"MOTEUR SÉCURISÉ", h1:"STUDIO PHOTO LOCAL", uptxt:"GLISSER-DÉPOSER L'IMAGE OU CLIQUER", upsub:"JPG, WEBP, PNG, BMP PRIS EN CHARGE", lblw:"LARGEUR CIBLE (PX)", lblh:"HAUTEUR CIBLE (PX)", lbllock:"CONSERVER LE RATIO", lblpre:"PRÉRÉGLAGES RAPIDES", prehalf:"TAILLE MOITIÉ", btntxt:"CONVERTIR & TÉLÉCHARGER PNG", priv:"TRAITEMENT LOCAL: LES FICHIERS NE QUITTENT JAMAIS VOTRE APPAREIL",
+          guide:"MODE D'EMPLOI", s1t:"Téléchargez votre image", s1d:"Faites glisser une image vers la zone de dépôt ou cliquez dessus. JPG, WEBP, PNG et BMP sont pris en charge.",
+          s2t:"Définir la taille cible", s2d:"Entrez la largeur et la hauteur en pixels. Avec le verrouillage activé, l'autre dimension s'ajuste automatiquement.",
+          s3t:"Utiliser les préréglages", s3d:"Appuyez sur un bouton de préréglage ou utilisez TAILLE MOITIÉ pour réduire l'image de 50%.",
+          s4t:"Télécharger en PNG", s4d:"Appuyez sur le bouton doré pour convertir et télécharger votre image redimensionnée en PNG.",
+          privText:"Votre image ne quitte jamais votre appareil — tout le traitement se fait localement dans votre navigateur.",
+          tipLabel:"💡 Astuce:", tipText:"Désactivez le verrouillage du ratio pour définir la largeur et la hauteur indépendamment." },
+        it: { back:"⬅ ANNULLA", top:"MOTORE PROTETTO", h1:"STUDIO IMMAGINI LOCALE", uptxt:"TRASCINA E RILASCIA O CLICCA", upsub:"JPG, WEBP, PNG, BMP SUPPORTATI", lblw:"LARGHEZZA TARGET (PX)", lblh:"ALTEZZA TARGET (PX)", lbllock:"MANTIENI PROPORZIONI", lblpre:"PRESET DIMENSIONI RAPIDE", prehalf:"METÀ DIMENSIONE", btntxt:"CONVERTI E SCARICA PNG", priv:"ELABORAZIONE LOCALE: I FILE NON LASCIANO MAI IL TUO DISPOSITIVO",
+          guide:"COME SI USA", s1t:"Carica la tua immagine", s1d:"Trascina un'immagine nell'area di caricamento o toccala per sfogliare i file. JPG, WEBP, PNG e BMP sono supportati.",
+          s2t:"Imposta le dimensioni target", s2d:"Inserisci larghezza e altezza in pixel. Con il blocco proporzioni ATTIVO, l'altra dimensione si regola automaticamente.",
+          s3t:"Usa i preset rapidi", s3d:"Tocca un pulsante preset o usa METÀ DIMENSIONE per ridurre l'immagine del 50% istantaneamente.",
+          s4t:"Scarica come PNG", s4d:"Tocca il pulsante dorato per convertire e scaricare l'immagine ridimensionata come PNG.",
+          privText:"La tua immagine non lascia mai il tuo dispositivo — tutta l'elaborazione avviene localmente nel browser.",
+          tipLabel:"💡 Suggerimento:", tipText:"Disattiva il blocco proporzioni per impostare larghezza e altezza in modo indipendente." }
+    };
+
+    const lang = localStorage.getItem('global_lang') || 'en';
+    const t = i18n[lang] || i18n.en;
+
+    let originalWidth = 0, originalHeight = 0, aspectRatio = 1;
+
+    function toggleGuide() {
+        document.getElementById('guide-body').classList.toggle('open');
+        document.getElementById('guide-arrow').classList.toggle('open');
+    }
+
+    window.onload = () => { applyLanguage(); setupDragAndDrop(); };
+
+    function applyLanguage() {
+        document.documentElement.lang = lang;
+        document.getElementById('img-back').innerText = t.back;
+        document.getElementById('img-top-tag').innerText = t.top;
+        document.getElementById('img-h1').innerText = t.h1;
+        document.getElementById('img-up-txt').innerText = t.uptxt;
+        document.getElementById('img-up-sub').innerText = t.upsub;
+        document.getElementById('img-lbl-w').innerText = t.lblw;
+        document.getElementById('img-lbl-h').innerText = t.lblh;
+        document.getElementById('img-lbl-lock').innerText = t.lbllock;
+        document.getElementById('img-lbl-pre').innerText = t.lblpre;
+        document.getElementById('img-pre-half').innerText = t.prehalf;
+        document.getElementById('img-btn-txt').innerText = t.btntxt;
+        document.getElementById('img-priv').innerText = t.priv;
+        document.getElementById('l-guide-title').innerText = t.guide;
+        document.getElementById('g-s1t').innerText = t.s1t;
+        document.getElementById('g-s1d').innerText = t.s1d;
+        document.getElementById('g-s2t').innerText = t.s2t;
+        document.getElementById('g-s2d').innerText = t.s2d;
+        document.getElementById('g-s3t').innerText = t.s3t;
+        document.getElementById('g-s3d').innerText = t.s3d;
+        document.getElementById('g-s4t').innerText = t.s4t;
+        document.getElementById('g-s4d').innerText = t.s4d;
+        document.getElementById('g-priv-text').innerText = t.privText;
+        document.getElementById('g-tip-label').innerText = t.tipLabel;
+        document.getElementById('g-tip-text').innerText = t.tipText;
+    }
+
+    function setupDragAndDrop() {
+        const zone = document.getElementById('drop-zone');
+        const input = document.getElementById('file-input');
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('dragover'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+        zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('dragover'); if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+        input.addEventListener('change', (e) => { if(e.target.files.length) handleFile(e.target.files[0]); });
+    }
+
+    function handleFile(file) {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.getElementById('source-img');
+            img.onload = () => {
+                originalWidth = img.naturalWidth;
+                originalHeight = img.naturalHeight;
+                aspectRatio = originalWidth / originalHeight;
+                document.getElementById('meta-dims').innerText = `${originalWidth} x ${originalHeight} px`;
+                document.getElementById('meta-type').innerText = file.type.toUpperCase().split('/')[1];
+                document.getElementById('target-w').value = originalWidth;
+                document.getElementById('target-h').value = originalHeight;
+                document.getElementById('preview-area').style.display = 'block';
+                document.getElementById('btn-download').disabled = false;
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function handleManualInput(type) {
+        if (!originalWidth) return;
+        if (document.getElementById('ratio-lock').checked) {
+            if (type === 'w') { document.getElementById('target-h').value = Math.round((parseFloat(document.getElementById('target-w').value)||0) / aspectRatio); }
+            else { document.getElementById('target-w').value = Math.round((parseFloat(document.getElementById('target-h').value)||0) * aspectRatio); }
+        }
+    }
+
+    function toggleLockIcon() {
+        const locked = document.getElementById('ratio-lock').checked;
+        const icon = document.getElementById('lock-icon');
+        icon.className = locked ? "fa-solid fa-link" : "fa-solid fa-link-slash";
+        icon.style.color = locked ? "var(--gold)" : "#666";
+        if (locked) handleManualInput('w');
+    }
+
+    function setPreset(w, h) { if(!originalWidth) return; document.getElementById('target-w').value = w; document.getElementById('target-h').value = h; aspectRatio = w/h; }
+    function applyScale(f) { if(!originalWidth) return; document.getElementById('target-w').value = Math.round(originalWidth*f); document.getElementById('target-h').value = Math.round(originalHeight*f); }
+
+    function processAndDownload() {
+        const img = document.getElementById('source-img');
+        const tw = parseInt(document.getElementById('target-w').value) || originalWidth;
+        const th = parseInt(document.getElementById('target-h').value) || originalHeight;
+        const canvas = document.createElement('canvas');
+        canvas.width = tw; canvas.height = th;
+        canvas.getContext('2d').drawImage(img, 0, 0, tw, th);
+        const link = document.createElement('a');
+        link.download = `invoiceluxe_image_${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+</script>
+</body>
+</html>
