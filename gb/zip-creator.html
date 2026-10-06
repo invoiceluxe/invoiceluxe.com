@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-GB" class="notranslate" translate="no">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -23,7 +27,6 @@
     <meta name="description" content="Free secure online ZIP creator web application. Compress multiple files into ZIP archives directly in your browser. No upload, 100% private, client-side JavaScript ZIP maker for invoices and documents.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Invoice Luxe">
-    <link rel="manifest" href="https://www.invoiceluxe.com/manifest.json">
     <link rel="apple-touch-icon" href="https://www.invoiceluxe.com/apple-touch-icon.png">
     <link rel="canonical" href="https://www.invoiceluxe.com/gb/zip-creator.html">
     <link rel="alternate" hreflang="en-US" href="https://www.invoiceluxe.com/zip-creator.html">

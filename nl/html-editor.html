@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl" dir="ltr" class="notranslate" translate="no">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -44,7 +49,6 @@
     <meta property="og:locale" content="nl">
 
     <!-- PWA / Web App signals so search engines index this as a web application -->
-    <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#121212">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">

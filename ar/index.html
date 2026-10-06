@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" translate="no" class="notranslate">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -20,7 +24,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="فاتورة برو">
-    <link rel="manifest" href="#" id="manifest-link">
     <link rel="apple-touch-icon" id="apple-icon" href="">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -705,7 +708,7 @@ function injectManifest() {
         icons: [{ src: iconUrl, sizes: "512x512", type: "image/svg+xml" }]
     };
     const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-    document.getElementById('manifest-link').href = URL.createObjectURL(blob);
+    /* manifest: /manifest.webmanifest */
 }
 
 function updateInstallBtn() {

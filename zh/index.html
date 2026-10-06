@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="notranslate" translate="no">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -20,7 +24,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="发票大师">
-    <link rel="manifest" href="#" id="pwa-manifest">
     <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -863,7 +866,7 @@ function injectManifest() {
     document.getElementById('pwa-apple-icon').href = iconUrl;
     const manifest = { name:"发票大师 - 专业发票", short_name:"发票大师", description:"免费专业发票生成器", start_url:"./", display:"standalone", background_color:"#FDF8F0", theme_color:"#DE2910", icons:[{src:iconUrl,sizes:"512x512",type:"image/svg+xml"}] };
     const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
-    document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+    /* manifest: /manifest.webmanifest */
 }
 function updateInstallBar() {
     const bar = document.getElementById('install-bar');

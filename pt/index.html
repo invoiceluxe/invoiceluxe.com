@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -62,9 +66,7 @@
     <!-- SEO METADATA END -->
   
 
-    <link rel="manifest" href="#" id="pwa-manifest">
 
-    <link rel="manifest" href="#" id="pwa-manifest">
     <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
     <meta name="theme-color" content="#9B1B30">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -862,7 +864,7 @@
                 icons: [ { src: iconUrl, sizes: "192x192", type: "image/svg+xml" }, { src: iconUrl, sizes: "512x512", type: "image/svg+xml" } ]
             };
             const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-            document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+            /* manifest: /manifest.webmanifest */
         }
 
         function updateInstallBar() {

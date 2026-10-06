@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" class="notranslate" translate="no">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -27,7 +31,6 @@
     <meta name="author" content="Invoice Luxe">
     <meta name="geo.region" content="US">
     <meta name="geo.placename" content="United States">
-    <link rel="manifest" href="https://invoiceluxe.com/manifest.json">
     <link rel="apple-touch-icon" href="https://invoiceluxe.com/apple-touch-icon.png">
     <link rel="canonical" href="https://invoiceluxe.com/fr/tools.html">
     <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/tools.html">

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" dir="ltr" class="notranslate" translate="no">
 <head>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
 <script>
@@ -32,7 +37,6 @@
     <link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/html-editor.html">
     <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/us/code-previewer.html">
     <meta property="og:title" content="무료 HTML 편집기 – 실시간 코드 미리보기 (HTML, CSS, JS) – Invoice Luxe"><meta property="og:description" content="실시간 미리보기, 오류 콘솔, 코드 정렬, 다운로드를 지원하는 무료 온라인 HTML·CSS·JavaScript 편집기. 가입 없이 브라우저에서 실행됩니다."><meta property="og:type" content="website"><meta property="og:url" content="https://invoiceluxe.com/ko/html-editor.html"><meta property="og:locale" content="ko">
-    <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#121212">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">

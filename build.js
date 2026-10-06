@@ -144,6 +144,10 @@ const head = (title, desc, url, extra = '', img = '') => `<!DOCTYPE html>
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:site_name" content="${BRAND}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">${img ? `<meta property="og:image" content="${abs(img)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${abs(img)}">` : '<meta name="twitter:card" content="summary">'}
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#08080a">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
 <link rel="alternate" type="application/rss+xml" title="${BRAND} Guides" href="${SITE}/blog/rss.xml">
 <style>${CSS}</style>${extra}</head><body>
 <header class="site"><div><a class="brand" href="/"><i>IL</i>${BRAND}</a><nav><a href="/">Tools</a><a href="/blog/">Guides</a>${hasVideo ? `<a href="${VIDEO}">Video demo</a>` : ''}</nav></div></header>`;
