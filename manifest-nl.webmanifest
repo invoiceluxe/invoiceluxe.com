@@ -1,0 +1,33 @@
+{
+  "id": "/nl/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "Maak gratis PDF-facturen, onderteken PDF’s, zet afbeeldingen om naar PDF en bereken btw. Zonder registratie, 18+ gratis zakelijke tools…",
+  "lang": "nl",
+  "dir": "ltr",
+  "start_url": "/nl/",
+  "scope": "/nl/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

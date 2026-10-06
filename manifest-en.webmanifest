@@ -1,0 +1,33 @@
+{
+  "id": "/en/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "Create free PDF invoices, sign PDF online, convert images to PDF and calculate VAT. No signup, 18+ free business tools for freelancers.…",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/en/",
+  "scope": "/en/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

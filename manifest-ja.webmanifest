@@ -1,0 +1,33 @@
+{
+  "id": "/ja/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "無料でプロの請求書をオンライン作成。PDF請求書、顧客管理、消費税計算。フリーランサー・個人事業主・中小企業向け。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "/ja/",
+  "scope": "/ja/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

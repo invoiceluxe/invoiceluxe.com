@@ -1,0 +1,33 @@
+{
+  "id": "/hi/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "मुफ्त और पेशेवर मोबाइल चालान (इनवॉइस) बनाने वाला ऐप। आसानी से पीडीएफ चालान बनाएं, ग्राहकों को प्रबंधित करें और अपने फोन से ही बिलिंग करें।",
+  "lang": "hi",
+  "dir": "ltr",
+  "start_url": "/hi/",
+  "scope": "/hi/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

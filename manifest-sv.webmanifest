@@ -1,0 +1,33 @@
+{
+  "id": "/sv/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "Gratis svensk fakturamall. Skapa professionella fakturor med momskalkylator, Skatteverket-klar, offline PWA, 21 språk.",
+  "lang": "sv",
+  "dir": "ltr",
+  "start_url": "/sv/",
+  "scope": "/sv/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

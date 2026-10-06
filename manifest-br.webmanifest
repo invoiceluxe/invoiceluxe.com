@@ -1,0 +1,33 @@
+{
+  "id": "/br/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "Modelo de fatura gratuito brasileiro. Crie faturas profissionais com calculadora de impostos, Receita ready, PWA offline, 21 idiomas.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/br/",
+  "scope": "/br/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

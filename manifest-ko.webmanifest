@@ -1,0 +1,33 @@
+{
+  "id": "/ko/",
+  "name": "Invoice Luxe",
+  "short_name": "Invoice Luxe",
+  "description": "무료 한국 인보이스 템플릿. 부가가치세 계산기로 전문 인보이스 작성, 국세청 대응, 오프라인 PWA, 21개 언어.",
+  "lang": "ko",
+  "dir": "ltr",
+  "start_url": "/ko/",
+  "scope": "/ko/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
