@@ -126,6 +126,19 @@ th{background:#f3eedd;color:var(--link);font-weight:700}
 tr:last-child td{border-bottom:0}
 .inline-cta{margin:1.6em 0;padding:14px 18px;border-left:3px solid var(--gold);background:var(--panel);font:400 16px/1.5 system-ui,sans-serif;border-radius:0 10px 10px 0}
 .card img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;border-radius:8px;margin-bottom:14px;border:1px solid var(--line)}
+.read{max-width:1040px}
+.read article>*{max-width:720px;margin-left:auto;margin-right:auto}
+.read article>h1{font:800 clamp(32px,5vw,46px)/1.12 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;letter-spacing:-.025em;margin-top:6px}
+.read article>.lead{font-size:21px}
+.read article>figure,.read article>.cta,.read article>.tablewrap{max-width:1040px}
+.read article>figure img{border-radius:18px;border:0;box-shadow:0 18px 50px rgba(60,50,10,.16)}
+.read figure.cover{margin:6px auto 36px}
+.read article>h2{font-size:28px;margin-top:2.2em}
+.read blockquote{background:#fff8d6;border:1px solid #f0dc7a;border-left:5px solid var(--gold2);border-radius:12px;color:var(--text);padding:14px 20px}
+.toc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 22px;margin-bottom:2em;font:15px/1.5 system-ui,sans-serif}
+.toc b{display:block;margin-bottom:6px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}.toc ol{margin:0;padding-left:1.2em}.toc a{text-decoration:none}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--gold);z-index:50}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:-14px auto 26px}.tags a,.chips a{font:600 13px system-ui,sans-serif;padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);color:var(--text);text-decoration:none}.tags a:hover,.chips a:hover{border-color:var(--gold2);background:#fff8d6}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
 @media(max-width:560px){body{font-size:17px}h2{font-size:23px}}`;
 
 const head = (title, desc, url, extra = '', img = '') => `<!DOCTYPE html>
@@ -186,19 +199,21 @@ function build() {
       if (date > today) { future.push({ f, date }); continue; }
       const r = md(body);
       const words = body.split(/\s+/).filter(Boolean).length;
-      posts.push({ ...meta, date, slug, url: `${SITE}/blog/${slug}/`, r, minutes: Math.max(1, Math.round(words / 220)) });
+      posts.push({ ...meta, tagList: (meta.tags || '').split(',').map(x => x.trim()).filter(Boolean), date, slug, url: `${SITE}/blog/${slug}/`, r, minutes: Math.max(1, Math.round(words / 220)) });
     } catch (e) { console.warn(`! skipped ${f}: ${e.message}`); }
   }
   posts.sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 
   for (const p of posts) {
-    const others = posts.filter(x => x !== p).slice(0, 3);
+    const others = posts.filter(x => x !== p).map(x => ({ x, s: x.tagList.filter(t => p.tagList.includes(t)).length })).sort((a, b) => b.s - a.s || b.x.date.localeCompare(a.x.date)).slice(0, 5).map(o => o.x);
+    const kws = [...p.tagList, ...(p.keywords || '').split(',').map(x => x.trim()).filter(Boolean)];
     const ld = [{
       '@context': 'https://schema.org', '@type': 'Article', headline: p.title, description: p.description,
       datePublished: p.date, dateModified: p.updated || p.date, mainEntityOfPage: p.url,
       author: { '@type': 'Organization', name: BRAND, url: SITE },
       publisher: { '@type': 'Organization', name: BRAND, url: SITE },
-      ...(p.image ? { image: abs(p.image) } : {})
+      ...(p.image ? { image: abs(p.image) } : {}),
+      ...(kws.length ? { keywords: kws.join(', '), articleSection: p.tagList[0] || undefined } : {})
     }];
     if (p.r.faq.length) ld.push({ '@context': 'https://schema.org', '@type': 'FAQPage',
       mainEntity: p.r.faq.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) });
@@ -212,31 +227,47 @@ function build() {
     const secs = p.r.html.split(/(?=<h2 )/);
     if (secs.length >= 4) secs.splice(2, 0, inlineCta);
     const bodyHtml = secs.join('\n');
+    const hs = [...p.r.html.matchAll(/<h2 id="([^"]+)">(.*?)<\/h2>/g)];
+    const toc = hs.length >= 3 ? `<nav class="toc" aria-label="In this guide"><b>In this guide</b><ol>${hs.map(h => `<li><a href="#${h[1]}">${h[2]}</a></li>`).join('')}</ol></nav>` : '';
     const cover = p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" width="1200" height="630" decoding="async" fetchpriority="high"></figure>` : '';
     const page = head(`${p.title} | ${BRAND}`, p.description, p.url,
-      `<script type="application/ld+json">${JSON.stringify(ld)}</script>`, p.image) +
-`<main><article><h1>${esc(p.title)}</h1><p class="lead">${esc(p.description)}</p>
+      (kws.length ? `<meta name="keywords" content="${esc(kws.join(', '))}">` : '') + p.tagList.map(t => `<meta property="article:tag" content="${esc(t)}">`).join('') + `<script type="application/ld+json">${JSON.stringify(ld)}</script>`, p.image) +
+`<div id="bar"></div><main class="read"><article><h1>${esc(p.title)}</h1><p class="lead">${esc(p.description)}</p>
 <div class="meta">${fmtDate(p.date)} &middot; ${p.minutes} min read</div>
+${p.tagList.length ? `<div class="tags">${p.tagList.map(t => `<a href="/blog/tag/${slugify(t)}/">${esc(t)}</a>`).join('')}</div>` : ''}
 ${cover}
+${toc}
 ${bodyHtml}
 ${cta}</article>
-${others.length ? `<section class="more"><h2>More guides</h2><ul>${others.map(o => `<li><a href="/blog/${o.slug}/">${esc(o.title)}</a></li>`).join('')}</ul></section>` : ''}
-</main>` + foot;
+${others.length ? `<section class="more"><h2>Related guides</h2><ul>${others.map(o => `<li><a href="/blog/${o.slug}/">${esc(o.title)}</a></li>`).join('')}</ul></section>` : ''}
+<script>addEventListener('scroll',function(){var d=document.documentElement,h=d.scrollHeight-innerHeight;document.getElementById('bar').style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true})</script></main>` + foot;
     fs.mkdirSync(path.join(OUT, p.slug), { recursive: true });
     fs.writeFileSync(path.join(OUT, p.slug, 'index.html'), page);
   }
 
+  const tagMap = new Map();
+  for (const p of posts) for (const t of p.tagList) { const k = slugify(t); if (!tagMap.has(k)) tagMap.set(k, { name: t, list: [] }); tagMap.get(k).list.push(p); }
+  const tagsSorted = [...tagMap.entries()].sort((a, b) => b[1].list.length - a[1].list.length);
+  const tagChips = tagsSorted.length ? `<div class="chips">${tagsSorted.map(([k, v]) => `<a href="/blog/tag/${k}/">${esc(v.name)} (${v.list.length})</a>`).join('')}</div>` : '';
+  const card = p => `<a class="card" href="/blog/${p.slug}/">${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" width="1200" height="630">` : ''}<h2>${esc(p.title)}</h2><p>${esc(p.description)}</p><small>${fmtDate(p.date)} &middot; ${p.minutes} min read</small></a>`;
+  for (const [k, v] of tagsSorted) {
+    const pg = head(`${v.name} guides | ${BRAND}`, `Guides about ${v.name.toLowerCase()}: step-by-step explanations, formulas and examples.`, `${SITE}/blog/tag/${k}/`, v.list.length < 3 ? '<meta name="robots" content="noindex,follow">' : '') +
+`<main class="wide"><p class="crumbs"><a href="/blog/">Guides</a> / ${esc(v.name)}</p><h1>${esc(v.name)}</h1><p class="lead">${v.list.length} guide${v.list.length > 1 ? 's' : ''} about ${esc(v.name.toLowerCase())}.</p>\n<div class="cards">${v.list.map(card).join('')}</div>\n${tagChips}</main>` + foot;
+    fs.mkdirSync(path.join(OUT, 'tag', k), { recursive: true });
+    fs.writeFileSync(path.join(OUT, 'tag', k, 'index.html'), pg);
+  }
   const idx = head(`Guides for freelancers and small businesses | ${BRAND}`,
     'Practical, step-by-step guides on invoicing, VAT, client management and getting paid on time.', `${SITE}/blog/`) +
 `<main class="wide"><h1>Guides</h1><p class="lead">Practical guides on invoicing, VAT and getting paid on time.</p>
-${posts.length ? `<div class="cards">${posts.map(p => `<a class="card" href="/blog/${p.slug}/">${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" width="1200" height="630">` : ''}<h2>${esc(p.title)}</h2><p>${esc(p.description)}</p><small>${fmtDate(p.date)} &middot; ${p.minutes} min read</small></a>`).join('')}</div>` : '<p>New guides are on the way. Check back soon.</p>'}
+${tagChips}
+${posts.length ? `<div class="cards">${posts.slice(0, 30).map(p => `<a class="card" href="/blog/${p.slug}/">${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" width="1200" height="630">` : ''}<h2>${esc(p.title)}</h2><p>${esc(p.description)}</p><small>${fmtDate(p.date)} &middot; ${p.minutes} min read</small></a>`).join('')}</div>` : '<p>New guides are on the way. Check back soon.</p>'}
 </main>` + foot;
   fs.writeFileSync(path.join(OUT, 'index.html'), idx);
 
   const rssItems = posts.slice(0, 30).map(p => `<item><title>${esc(p.title)}</title><link>${p.url}</link><guid>${p.url}</guid><pubDate>${new Date(p.date + 'T06:00:00Z').toUTCString()}</pubDate><description>${esc(p.description)}</description></item>`).join('');
   fs.writeFileSync(path.join(OUT, 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${BRAND} Guides</title><link>${SITE}/blog/</link><description>Invoicing, VAT and freelancer guides</description><language>en</language>${rssItems}</channel></rss>`);
   fs.writeFileSync(path.join(OUT, 'latest.json'), JSON.stringify(posts.slice(0, 10).map(p => ({ title: p.title, url: `/blog/${p.slug}/`, date: p.date, description: p.description }))));
-  const urls = [{ loc: `${SITE}/blog/`, lm: posts[0] ? posts[0].date : today }, ...(hasVideo ? [{ loc: SITE + VIDEO, lm: today }] : []), ...posts.map(p => ({ loc: p.url, lm: p.updated || p.date }))];
+  const urls = [{ loc: `${SITE}/blog/`, lm: posts[0] ? posts[0].date : today }, ...(hasVideo ? [{ loc: SITE + VIDEO, lm: today }] : []), ...posts.map(p => ({ loc: p.url, lm: p.updated || p.date })), ...tagsSorted.filter(([, v]) => v.list.length >= 3).map(([k, v]) => ({ loc: `${SITE}/blog/tag/${k}/`, lm: v.list[0].date }))];
   fs.writeFileSync(path.join(ROOT, 'sitemap-blog.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${u.lm}</lastmod></url>`).join('')}</urlset>`);
 
   injectGuides(posts);

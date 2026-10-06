@@ -2,6 +2,7 @@
 title: How to Convert Images to PDF (JPG and PNG) Online for Free
 description: Turn photos, scans and screenshots into one PDF in your browser: choose the images, put them in order, straighten scans with a crop, and download the file.
 date: 2026-10-19
+tags: PDF Tools
 toolId: pdf
 image: /images/blog/convert-images-to-pdf.jpg
 imageAlt: Steps to convert images to PDF: choose, order, crop and download

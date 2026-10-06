@@ -2,6 +2,7 @@
 title: Invoice Payment Terms Explained: Net 7, Net 30 and Due on Receipt
 description: Choose the right payment terms for your invoices. Learn what Net 15, Net 30 and 2/10 net 30 mean, with examples, early payment discounts and tips.
 date: 2026-10-18
+tags: Invoicing, Getting Paid
 toolId: invoice
 image: /images/blog/invoice-payment-terms.jpg
 imageAlt: Common payment terms: due on receipt, Net 7, Net 14, Net 30, Net 60

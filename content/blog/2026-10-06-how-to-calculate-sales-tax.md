@@ -2,6 +2,7 @@
 title: How to Calculate Sales Tax: Formula and Examples
 description: Learn how to calculate sales tax in seconds with one simple formula, worked examples at 6%, 7.25% and 8.5%, and a quick reference table.
 date: 2026-10-06
+tags: Sales Tax, Calculations
 toolId: salestax
 image: /images/blog/how-to-calculate-sales-tax.jpg
 imageAlt: Sales tax formula with an example: $80 plus 6% tax equals $84.80

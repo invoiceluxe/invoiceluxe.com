@@ -2,6 +2,7 @@
 title: What Is 10%, 20%, 30% or 50% Off? Quick Discount Chart
 description: A printable-style discount chart showing the sale price after 10% to 70% off on $25, $50, $100 and $200, plus the multiplier for each discount.
 date: 2026-10-12
+tags: Discounts
 toolId: discount
 image: /images/blog/percent-off-chart.jpg
 imageAlt: Discount chart for 10 to 70 percent off $25, $50, $100 and $200

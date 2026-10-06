@@ -2,6 +2,7 @@
 title: How to Create an Invoice in 2 Minutes (Free, Step by Step)
 description: A simple guide to creating a professional invoice as a freelancer or small business: what to include, how tax appears, which payment terms to pick and how to download the PDF.
 date: 2026-10-08
+tags: Invoicing
 toolId: invoice
 image: /images/blog/how-to-create-an-invoice.jpg
 imageAlt: Invoice Luxe dashboard with the Create Invoice button

@@ -2,6 +2,7 @@
 title: How to Find the Original Price Before a Discount
 description: Work backwards from a sale price to the original price with one division. Includes examples at 15%, 20% and 30% off, and why adding the percentage back is wrong.
 date: 2026-10-20
+tags: Discounts, Calculations
 toolId: discount
 image: /images/blog/find-original-price-before-discount.jpg
 imageAlt: Reverse discount: original price equals sale price divided by one minus the rate

@@ -2,6 +2,7 @@
 title: How to Find the Price After a Discount (20%, 30%, 50% Off)
 description: Use a single multiplier to find the price after any discount. Includes a multiplier table, shopping examples and how to add sales tax afterwards.
 date: 2026-10-10
+tags: Discounts, Calculations
 toolId: discount
 image: /images/blog/price-after-discount.jpg
 imageAlt: Multiplier method: 30% off means multiply the price by 0.70

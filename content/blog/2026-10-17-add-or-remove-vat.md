@@ -2,6 +2,7 @@
 title: How to Add or Remove VAT (UK 20%, 5% and 0%)
 description: Add VAT to a net price or take it out of a gross price with two simple formulas. Includes UK 20% and 5% examples and the common mistake to avoid.
 date: 2026-10-17
+tags: VAT, Calculations
 toolId: vat
 image: /images/blog/add-or-remove-vat.jpg
 imageAlt: VAT formulas: add VAT by multiplying by 1.20, remove VAT by dividing by 1.20

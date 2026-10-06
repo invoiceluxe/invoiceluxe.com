@@ -2,6 +2,7 @@
 title: How to Calculate a Discount Percentage (3 Simple Formulas)
 description: Find the sale price, the amount you save and the discount percentage with three easy formulas, worked examples and a quick mental-math guide.
 date: 2026-10-07
+tags: Discounts, Calculations
 toolId: discount
 image: /images/blog/how-to-calculate-discount-percentage.jpg
 imageAlt: Discount formulas: price after discount, amount saved and discount percentage

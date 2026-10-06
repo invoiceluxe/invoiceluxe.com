@@ -2,6 +2,7 @@
 title: How to Calculate the Price Before Sales Tax (Remove Tax From a Total)
 description: Find the pre-tax price from a receipt total with one division. Includes the common mistake that gives the wrong answer, and three worked examples.
 date: 2026-10-11
+tags: Sales Tax, Calculations
 toolId: salestax
 image: /images/blog/remove-sales-tax-from-total.jpg
 imageAlt: Remove tax formula: total divided by 1 plus the rate

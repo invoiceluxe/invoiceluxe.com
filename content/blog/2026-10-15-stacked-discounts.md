@@ -2,6 +2,7 @@
 title: Stacked Discounts: 20% Off Plus 10% Off Is Not 30%
 description: Learn why two percentage discounts do not add up, how to calculate the real total, and why dollar-off coupons change the answer depending on the order.
 date: 2026-10-15
+tags: Discounts, Calculations
 toolId: discount
 image: /images/blog/stacked-discounts.jpg
 imageAlt: Stacked discounts: 20% off then 10% off equals 28% off

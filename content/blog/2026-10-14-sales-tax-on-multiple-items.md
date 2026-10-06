@@ -2,6 +2,7 @@
 title: How to Calculate Sales Tax on Multiple Items (Receipt Example)
 description: Calculate tax on a full receipt: add up the taxable items, apply the rate, and see why the total can differ by a cent from the store's line-by-line method.
 date: 2026-10-14
+tags: Sales Tax, Calculations
 toolId: salestax
 image: /images/blog/sales-tax-on-multiple-items.jpg
 imageAlt: Receipt example: taxable items add up to $88.49, tax at 7% is $6.19

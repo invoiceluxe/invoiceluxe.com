@@ -2,6 +2,7 @@
 title: How to Sign a PDF Online for Free (No Printing, No App)
 description: Sign a PDF on your phone or computer in a minute: upload the file, draw your signature, place it on the page, then download or share the signed copy.
 date: 2026-10-13
+tags: PDF Tools
 toolId: sign
 image: /images/blog/how-to-sign-a-pdf-online.jpg
 imageAlt: Steps to sign a PDF online: upload, draw, place, download

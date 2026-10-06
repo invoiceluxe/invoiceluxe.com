@@ -2,6 +2,7 @@
 title: How to Edit Text in a PDF Online for Free
 description: Change, delete or add text in a PDF straight from your browser: scan the page, tap a line, replace the text, adjust color and size, and save the new file.
 date: 2026-10-16
+tags: PDF Tools
 toolId: pdftext
 image: /images/blog/edit-text-in-a-pdf-online.jpg
 imageAlt: Steps to edit PDF text: upload, scan, tap a line, replace and save

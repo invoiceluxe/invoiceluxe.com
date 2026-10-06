@@ -2,6 +2,7 @@
 title: Sales Tax vs VAT: What Is the Difference?
 description: Sales tax and VAT both tax spending, but they work very differently. See who collects each one, when, and why businesses can reclaim VAT but not sales tax.
 date: 2026-10-09
+tags: VAT, Sales Tax
 toolId: salestax
 image: /images/blog/sales-tax-vs-vat.jpg
 imageAlt: Comparison of sales tax collected once and VAT collected at every stage
