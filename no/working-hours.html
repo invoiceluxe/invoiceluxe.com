@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="nb" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+
+
+<title>Arbeidstidskalkulator og lønnskalkulator – Gratis timeliste-app</title>
+<meta name="description" content="Gratis arbeidstidskalkulator og lønnskalkulator: registrer skift, pauser og overtid, beregn timelønn og eksporter PDF-rapport. Uten registrering, rett i nettleseren.">
+<meta name="application-name" content="Arbeidstidsregistrering">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://www.example.com/no/working-hours.html">
+<link rel="alternate" hreflang="ar" href="https://www.example.com/ar/working-hours.html">
+<link rel="alternate" hreflang="pt-BR" href="https://www.example.com/br/working-hours.html">
+<link rel="alternate" hreflang="ca" href="https://www.example.com/ca/working-hours.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.example.com/gb/working-hours.html">
+<link rel="alternate" hreflang="en" href="https://www.example.com/en/working-hours.html">
+<link rel="alternate" hreflang="en-US" href="https://www.example.com/us/working-hours.html">
+<link rel="alternate" hreflang="da" href="https://www.example.com/da/working-hours.html">
+<link rel="alternate" hreflang="no" href="https://www.example.com/no/working-hours.html">
+<link rel="alternate" hreflang="fi" href="https://www.example.com/fi/working-hours.html">
+<link rel="alternate" hreflang="fr" href="https://www.example.com/fr/working-hours.html">
+<link rel="alternate" hreflang="it" href="https://www.example.com/it/working-hours.html">
+<link rel="alternate" hreflang="de" href="https://www.example.com/de/working-hours.html">
+<link rel="alternate" hreflang="nl" href="https://www.example.com/nl/working-hours.html">
+<link rel="alternate" hreflang="ja" href="https://www.example.com/ja/working-hours.html">
+<link rel="alternate" hreflang="hi" href="https://www.example.com/hi/working-hours.html">
+<link rel="alternate" hreflang="en-IN" href="https://www.example.com/in/working-hours.html">
+<link rel="alternate" hreflang="ko" href="https://www.example.com/ko/working-hours.html">
+<link rel="alternate" hreflang="tr" href="https://www.example.com/tr/working-hours.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://www.example.com/zh/working-hours.html">
+<link rel="alternate" hreflang="sv" href="https://www.example.com/sv/working-hours.html">
+<link rel="alternate" hreflang="ru" href="https://www.example.com/ru/working-hours.html">
+<link rel="alternate" hreflang="pt" href="https://www.example.com/pt/working-hours.html">
+<link rel="alternate" hreflang="es" href="https://www.example.com/es/working-hours.html">
+<link rel="alternate" hreflang="x-default" href="https://www.example.com/en/working-hours.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arbeidstidskalkulator og lønnskalkulator – Gratis timeliste-app">
+<meta property="og:description" content="Gratis arbeidstidskalkulator og lønnskalkulator: registrer skift, pauser og overtid, beregn timelønn og eksporter PDF-rapport. Uten registrering, rett i nettleseren.">
+<meta property="og:url" content="https://www.example.com/no/working-hours.html">
+<meta property="og:locale" content="nb_NO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arbeidstidskalkulator og lønnskalkulator – Gratis timeliste-app">
+<meta name="twitter:description" content="Gratis arbeidstidskalkulator og lønnskalkulator: registrer skift, pauser og overtid, beregn timelønn og eksporter PDF-rapport. Uten registrering, rett i nettleseren.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Arbeidstidsregistrering", "url": "https://www.example.com/no/working-hours.html", "description": "Gratis arbeidstidskalkulator og lønnskalkulator: registrer skift, pauser og overtid, beregn timelønn og eksporter PDF-rapport. Uten registrering, rett i nettleseren.", "applicationCategory": "BusinessApplication", "applicationSubCategory": "Time tracking, working hours and salary calculator", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript and HTML5", "inLanguage": "nb", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["Tidskalkulator", "Overtid", "Kalender", "Rapporter", "Arbeidskontoer", "Månedsfilter og oppsummering"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "nb", "mainEntity": [{"@type": "Question", "name": "Er arbeidstidskalkulatoren gratis?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Den er helt gratis og krever ingen konto."}}, {"@type": "Question", "name": "Kan jeg beregne overtid og nattskift?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Angi normale timer per dag og en overtidsfaktor (1,25×, 1,5× eller 2×). Hvis sluttiden er før starttiden, slutter skiftet neste dag."}}, {"@type": "Question", "name": "Hvor lagres dataene mine?", "acceptedAnswer": {"@type": "Answer", "text": "Bare i din egen nettleser (lokal lagring). Ingenting lastes opp til en server. Last ned en PDF-rapport som sikkerhetskopi."}}]}</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+ --blue:#2563eb;--blue2:#3b82f6;--blue3:#60a5fa;--navy:#0f172a;
+ --green:#16a34a;--green2:#22c55e;--orange:#f59e0b;--red:#ef4444;
+ --bg:#f4f7fb;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e5eaf2;
+ --soft:#eef4ff;--line2:#edf1f6;--field:#f8fafc;--nav:rgba(255,255,255,.92);--handle:#cbd5e1;--radius:22px;--shadow:0 8px 30px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;min-height:100%;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:105px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{width:100%;max-width:520px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative}
+.topbar{
+ position:sticky;top:0;z-index:50;padding:12px 16px 14px;
+ background:linear-gradient(135deg,#1d4ed8,#3b82f6 58%,#60a5fa);
+ color:#fff;border-radius:0 0 28px 28px;box-shadow:0 8px 25px rgba(37,99,235,.22)
+}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-icon{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;font-size:22px;backdrop-filter:blur(8px)}
+.brand h1{font-size:1.05rem;line-height:1.15;font-weight:800}
+.brand p{font-size:.68rem;opacity:.84;margin-top:2px}
+.top-action{width:40px;height:40px;border:0;border-radius:14px;background:rgba(255,255,255,.17);color:#fff;font-size:19px}
+.screen{display:none;padding:16px 14px 20px;animation:fade .22s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 12px}
+.section-head h2{font-size:1.08rem;font-weight:800}
+.section-head span{font-size:.75rem;color:var(--muted)}
+.card{background:var(--card);border:1px solid rgba(15,23,42,.045);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+.hero{
+ padding:18px;color:#fff;border-radius:24px;background:linear-gradient(135deg,#1e40af,#2563eb 58%,#60a5fa);
+ box-shadow:0 12px 28px rgba(37,99,235,.22);margin-bottom:14px
+}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hero small{opacity:.8;font-size:.72rem}
+.hero h2{font-size:1.35rem;margin-top:3px}
+.hero-date{font-size:.78rem;opacity:.86;margin-top:3px}
+.hero-total{text-align:right}
+.hero-total small{display:block}
+.hero-total strong{font-size:1.25rem;display:block;margin-top:2px}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.stat{border-radius:18px;padding:14px;color:#fff;min-height:105px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 6px 18px rgba(15,23,42,.09)}
+.stat .ico{font-size:20px}.stat small{font-size:.68rem;opacity:.82}.stat strong{font-size:1.2rem}
+.s-blue{background:linear-gradient(145deg,#2563eb,#60a5fa)}
+.s-green{background:linear-gradient(145deg,#059669,#34d399)}
+.s-orange{background:linear-gradient(145deg,#ea580c,#f59e0b)}
+.s-purple{background:linear-gradient(145deg,#7c3aed,#a78bfa)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:0;border-radius:16px;padding:13px 12px;font-weight:750;font-size:.84rem;display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 5px 16px rgba(37,99,235,.23)}
+.btn-soft{background:var(--soft);color:var(--blue)}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff}
+.btn-red{background:#fef2f2;color:var(--red)}
+.btn:active{transform:scale(.97)}
+.mini-title{font-size:.82rem;font-weight:800;margin-bottom:10px;color:var(--text)}
+.entry{display:flex;align-items:center;gap:11px;background:var(--field);border-radius:17px;padding:11px;margin-bottom:8px;border:1px solid var(--line2)}
+.entry-date{width:48px;min-width:48px;height:48px;border-radius:14px;background:#e9f7ef;color:var(--green);display:grid;place-items:center;text-align:center;font-weight:800;font-size:.72rem;line-height:1.05}
+.entry-info{min-width:0;flex:1}.entry-info strong{display:block;font-size:.84rem}.entry-info span{display:block;color:var(--muted);font-size:.69rem;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.entry-hours{font-size:.82rem;font-weight:800;color:var(--green);white-space:nowrap}
+.empty{text-align:center;padding:24px 10px;color:var(--muted);font-size:.82rem}.empty b{display:block;font-size:2rem;margin-bottom:7px}
+.info-box{background:linear-gradient(135deg,var(--soft),#f0f9ff);border:1px solid #bfdbfe;border-radius:18px;padding:13px;color:#1e3a8a;font-size:.76rem;line-height:1.5}
+.info-box strong{display:block;margin-bottom:4px;color:#1e40af}
+.calendar-card{padding:14px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-head h2{font-size:1rem}
+.cal-nav{width:38px;height:38px;border:0;border-radius:13px;background:var(--soft);color:var(--blue);font-size:20px;font-weight:800}
+.weekdays,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.weekdays{text-align:center;color:var(--muted);font-size:.62rem;font-weight:800;text-transform:uppercase;margin-bottom:7px}
+.day{aspect-ratio:1;border-radius:14px;background:var(--field);display:flex;align-items:center;justify-content:center;position:relative;font-size:.78rem;font-weight:600;cursor:pointer}
+.day.empty{background:transparent;cursor:default}
+.day.today{box-shadow:inset 0 0 0 2px var(--blue);font-weight:800}
+.day.has-entry{background:#dcfce7;color:#15803d}
+.day.has-entry:after{content:"";position:absolute;bottom:5px;width:5px;height:5px;background:#16a34a;border-radius:50%}
+.day.selected{background:linear-gradient(145deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 5px 13px rgba(37,99,235,.3)}
+.day.selected:after{background:var(--card)}
+.calendar-legend{display:flex;gap:12px;margin-top:12px;font-size:.65rem;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px}.dot-blue{background:var(--blue)}.dot-green{background:var(--green)}
+.form-row{display:flex;gap:9px}.form-row>div{flex:1}
+label{display:block;font-size:.66rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin:0 0 5px}
+input,select{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:14px;background:var(--field);color:var(--text);outline:0;font-size:.92rem}
+input:focus,select:focus{border-color:var(--blue);background:var(--card);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.field{margin-bottom:12px}
+.report-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.report-box{padding:14px;border-radius:17px;background:var(--field);border:1px solid var(--line2)}.report-box small{color:var(--muted);font-size:.66rem}.report-box strong{display:block;margin-top:4px;font-size:1.05rem}
+.report-box.total{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-color:#a7f3d0}.report-box.total strong{color:var(--green)}
+.report-day{padding:14px;border-radius:18px;background:var(--card);border:1px solid var(--line2);margin-bottom:9px;box-shadow:0 3px 12px rgba(15,23,42,.04)}
+.report-day-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.report-day-head strong{font-size:.82rem}.report-day-head b{color:var(--green);font-size:.82rem}
+.report-line{display:flex;justify-content:space-between;font-size:.72rem;margin:4px 0;color:var(--muted)}.report-line b{color:var(--text)}
+.bottom-nav{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(492px,calc(100% - 18px));height:76px;background:var(--nav);backdrop-filter:blur(16px);border:1px solid rgba(15,23,42,.08);border-radius:24px;box-shadow:0 10px 35px rgba(15,23,42,.13);z-index:80;display:grid;grid-template-columns:repeat(4,1fr);padding:7px}
+.nav-item{border:0;background:transparent;border-radius:18px;color:#94a3b8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:.62rem;font-weight:750}.nav-item .nav-icon{font-size:19px;line-height:1}.nav-item.active{color:var(--blue);background:var(--soft)}
+.overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:100;opacity:0;visibility:hidden;transition:.22s;backdrop-filter:blur(4px)}.overlay.open{opacity:1;visibility:visible}
+.sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,100%);width:min(520px,100%);max-height:91vh;overflow:auto;background:var(--card);border-radius:28px 28px 0 0;padding:11px 16px 30px;z-index:101;transition:transform .3s cubic-bezier(.32,.72,0,1);box-shadow:0 -12px 45px rgba(0,0,0,.14)}.sheet.open{transform:translate(-50%,0)}
+.handle{width:42px;height:5px;background:var(--handle);border-radius:4px;margin:0 auto 15px}.sheet h2{text-align:center;font-size:1.05rem;margin-bottom:17px}.break-item{display:flex;gap:8px;align-items:end;background:var(--field);border-radius:15px;padding:9px;margin-bottom:8px}.break-item>div{flex:1}.remove-break{border:0;background:#fef2f2;color:var(--red);border-radius:12px;padding:11px 12px;font-weight:800}.sheet .btn{width:100%;margin-top:8px}
+.toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:300;background:#0f172a;color:#fff;padding:11px 18px;border-radius:30px;font-size:.78rem;font-weight:650;transition:.25s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:.22s;backdrop-filter:blur(4px)}.modal.open{opacity:1;visibility:visible}.modal-content{width:min(520px,100%);max-height:91vh;overflow:auto;background:var(--card);border-radius:28px 28px 0 0;padding:12px 16px 30px;transform:translateY(30px);transition:.25s}.modal.open .modal-content{transform:none}
+.pdf-report{background:var(--field);border-radius:18px;padding:15px;border:1px solid var(--line);margin-bottom:12px}.pdf-head{text-align:center;border-bottom:2px solid var(--blue);padding-bottom:11px;margin-bottom:11px}.pdf-head h3{color:var(--blue);font-size:.95rem}.pdf-head p{font-size:.68rem;color:var(--muted);margin-top:4px}.pdf-day{background:var(--card);border-radius:13px;padding:11px;margin-bottom:8px;border-left:4px solid var(--blue)}.pdf-day .date{font-weight:800;font-size:.78rem;margin-bottom:5px}.pdf-line{display:flex;justify-content:space-between;font-size:.68rem;margin:3px 0;color:var(--muted)}.pdf-line b{color:var(--text)}.pdf-total{background:#dcfce7;border-radius:14px;padding:12px;margin-top:9px}.pdf-total div{display:flex;justify-content:space-between;font-size:.72rem;margin:4px 0}.pdf-total .grand{border-top:1px dashed #86efac;margin-top:7px;padding-top:8px;color:var(--green);font-size:.9rem;font-weight:850}
+.settings-group{margin-bottom:15px}.settings-label{font-size:.7rem;font-weight:800;color:var(--muted);text-transform:uppercase;margin:0 3px 7px}.setting-row{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line2);border-radius:17px;padding:12px;margin-bottom:7px}.setting-icon{width:38px;height:38px;border-radius:12px;background:var(--soft);color:var(--blue);display:grid;place-items:center}.setting-text{flex:1}.setting-text strong{display:block;font-size:.82rem}.setting-text span{font-size:.67rem;color:var(--muted)}.danger-zone{background:#fff1f2;border:1px solid #fecdd3;border-radius:18px;padding:13px}.danger-zone strong{font-size:.8rem;color:#be123c;display:block;margin-bottom:4px}.danger-zone p{font-size:.68rem;color:#9f1239;margin-bottom:9px}
+@media(min-width:700px){body{padding:20px 0 110px}.app{border-radius:30px;overflow:visible}.topbar{border-radius:26px}.bottom-nav{bottom:18px}.screen{padding-left:18px;padding-right:18px}}
+
+html[data-theme=dark]{--bg:#0b1220;--card:#131c2e;--text:#e8eefc;--muted:#8b9ab5;--line:#243049;--line2:#1c2740;--field:#0f1829;--soft:#1b2a4a;--nav:rgba(19,28,46,.92);--handle:#33415c;--shadow:0 8px 30px rgba(0,0,0,.35);color-scheme:dark}
+html[data-theme=dark] .info-box{background:#12233f;border-color:#1e3a6e;color:#bfdbfe}html[data-theme=dark] .info-box strong{color:#93c5fd}
+html[data-theme=dark] .entry-date{background:#10301f}html[data-theme=dark] .day.has-entry{background:#10301f;color:#4ade80}
+html[data-theme=dark] .report-box.total,html[data-theme=dark] .pdf-total{background:#0f2d22;border-color:#14532d}
+html[data-theme=dark] .danger-zone{background:#2a1218;border-color:#5b1b2b}html[data-theme=dark] .danger-zone strong,html[data-theme=dark] .danger-zone p{color:#fda4af}
+html[data-theme=dark] .btn-red,html[data-theme=dark] .remove-break{background:#3a1820}html[data-theme=dark] .toast{background:#e8eefc;color:#0f172a}
+html[data-theme=dark] input:focus,html[data-theme=dark] select:focus{background:var(--field)}
+.top-right{display:flex;gap:8px}.top-action{backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2)}
+.chip{margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;padding:7px 13px;font-size:.74rem;font-weight:700;max-width:100%}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
+.bottom-nav{height:68px;border-radius:28px;padding:6px;gap:4px;border:1px solid var(--line);box-shadow:0 14px 40px rgba(15,23,42,.2)}
+.nav-item{color:var(--muted);transition:.25s}.nav-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{background:linear-gradient(135deg,var(--blue),var(--blue3));color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.35)}
+body{padding-bottom:100px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--field);border:1px solid var(--line2);border-radius:16px;padding:4px}
+.seg button{border:0;background:transparent;color:var(--muted);border-radius:12px;padding:10px 4px;font-weight:700;font-size:.78rem}
+.seg button.on{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff}
+.acct{display:flex;align-items:center;gap:10px;background:var(--field);border:1.5px solid var(--line2);border-radius:16px;padding:11px;margin-bottom:8px}
+.acct.on{border-color:var(--blue);background:var(--soft)}.acct-ic{font-size:20px}.acct-t{flex:1;min-width:0}.acct-t strong{display:block;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.acct-t span{font-size:.68rem;color:var(--muted)}
+.acct-b{border:0;background:var(--card);color:var(--muted);border-radius:11px;width:36px;height:36px}.acct-b.del{color:var(--red)}
+.guide details{background:var(--card);border:1px solid var(--line2);border-radius:16px;margin-bottom:7px;padding:0 13px}
+.guide summary{padding:13px 0;font-size:.82rem;font-weight:750;cursor:pointer;list-style:none}.guide summary::after{content:"+";float:right;color:var(--blue);font-weight:800}.guide details[open] summary::after{content:"–"}
+.guide p,.guide li{font-size:.76rem;line-height:1.6;color:var(--muted)}.guide p{padding-bottom:10px}.guide ol,.guide ul{padding:0 0 10px 18px}.guide b{color:var(--text)}
+.hint{font-size:.68rem;color:var(--muted);margin:-2px 2px 12px;line-height:1.5}
+#welcome{position:fixed;inset:0;z-index:500;background:linear-gradient(160deg,#1e3a8a,#2563eb 55%,#60a5fa);display:flex;align-items:center;justify-content:center;padding:24px}
+.w-card{width:100%;max-width:340px;text-align:center;color:#fff}.w-logo{width:84px;height:84px;margin:0 auto 18px;border-radius:26px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:42px}
+.w-card h1{font-size:1.5rem}.w-card p{opacity:.9;margin:10px 0 18px;font-size:.9rem;line-height:1.5}.w-btn{display:block;width:100%;margin-top:12px;padding:16px;border:0;border-radius:18px;background:#fff;color:#1e3a8a;font-weight:800;font-size:1rem}
+.brand-icon{background-size:cover;background-position:center;overflow:hidden}
+.avatar-big{width:76px;height:76px;min-width:76px;border-radius:24px;background:var(--soft) center/cover;display:grid;place-items:center;font-size:30px;cursor:pointer;border:2px dashed var(--blue3)}
+.sw{display:flex!important;align-items:center;gap:11px;text-transform:none!important;letter-spacing:0!important;font-size:inherit!important;color:var(--text)!important;margin:0 0 7px!important;cursor:pointer}.sw input{width:24px;height:24px;padding:0;accent-color:var(--blue)}
+.calc-d{background:var(--field);border-radius:18px;padding:14px;text-align:right;margin-bottom:12px;min-height:92px}#cExp{font-size:1.25rem;color:var(--muted);min-height:30px;word-break:break-all}#cRes{font-size:2rem;font-weight:800;margin-top:6px}
+.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:6px}.keys button{border:0;border-radius:50%;aspect-ratio:1;font-size:1.15rem;font-weight:700;background:var(--soft);color:var(--text)}.keys button.op{background:#f3d77a;color:#3a2a00}.keys button:active{transform:scale(.93)}
+html[data-theme=dark] .keys button.op{background:#6b5617;color:#fff}
+.calc-d{background:linear-gradient(145deg,#1e3a8a,#2563eb 60%,#3b82f6);color:#fff;border-radius:24px;padding:16px 18px;box-shadow:0 10px 26px rgba(37,99,235,.3)}#cExp{color:rgba(255,255,255,.75)}#cRes{letter-spacing:-1px}#cDec{font-size:.75rem;opacity:.8;margin-top:2px;min-height:1em}
+.keys{grid-template-columns:repeat(4,1fr);gap:10px}.keys button{border-radius:20px;aspect-ratio:auto;height:58px;font-size:1.2rem;background:var(--field);border:1px solid var(--line2);box-shadow:0 3px 0 rgba(15,23,42,.06)}
+.keys button.op,html[data-theme=dark] .keys button.op{background:linear-gradient(135deg,var(--blue),var(--blue3));color:#fff;border:0}.keys button.clr{background:#fee2e2;color:#dc2626;border:0}html[data-theme=dark] .keys button.clr{background:#3a1820}.keys button.eq{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border:0}.keys button.wide{grid-column:span 3}
+.ex{background:var(--field);border:1px solid var(--line2);border-radius:16px;padding:11px 13px;margin-bottom:8px;cursor:pointer}.ex:active{transform:scale(.98)}.ex code{font-size:.95rem;font-weight:700}.ex-r{float:right;color:var(--green);font-size:.95rem}.ex span{display:block;font-size:.7rem;color:var(--muted);margin-top:3px}
+.acct-ic{width:42px;height:42px;min-width:42px;border-radius:13px;background:var(--soft) center/cover;display:grid;place-items:center}
+
+.seo{max-width:520px;margin:0 auto;padding:10px 20px 30px;color:var(--text);font-size:.92rem;line-height:1.7}
+.seo h2{font-size:1.2rem;margin:18px 0 10px;font-weight:800}
+.seo h3{font-size:1.02rem;margin:20px 0 6px;font-weight:800}
+.seo h4{font-size:.95rem;margin:14px 0 2px;font-weight:700}
+.seo ol{padding-inline-start:22px}.seo li{margin:5px 0}
+.seo nav.langs{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:.82rem;line-height:2}
+.seo nav.langs a{display:inline-block;margin-inline-end:12px;color:var(--blue);text-decoration:none}
+[dir=rtl] .hero-total{text-align:left}[dir=rtl] .cal-nav{transform:scaleX(-1)}
+html[lang=ja] body{font-family:-apple-system,"Hiragino Sans","Yu Gothic",Meiryo,"Noto Sans JP",sans-serif}
+html[lang=ko] body{font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+html[lang^=zh] body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
+html[lang=hi] body{font-family:-apple-system,"Noto Sans Devanagari","Nirmala UI","Segoe UI",sans-serif}
+html[lang=ar] body{font-family:-apple-system,"Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+ <div class="topline">
+  <div class="brand"><div class="brand-icon" id="avatar" onclick="go('settings')">⏱</div><div><h1>Arbeidstidsregistrering</h1><p>Registrer • Beregn • Eksporter</p></div></div>
+  <div class="top-right"><button class="top-action" id="themeBtn" onclick="toggleTheme()" aria-label="Mørkt">☾</button><button class="top-action" onclick="go('settings')" aria-label="Innstillinger">⚙</button></div>
+ </div>
+ <button class="chip" onclick="openAccts()">🏢 <span id="acctName">Jobben min</span> ▾</button>
+</header>
+
+<!-- HOME -->
+<section id="home" class="screen active">
+ <div class="hero">
+  <div class="hero-top">
+   <div><small>I dag</small><h2 id="todayLabel">I dag</h2><div class="hero-date" id="todaySub">Din arbeidsoversikt</div></div>
+   <div class="hero-total"><small>Dagens lønn</small><strong id="todayPay">$0.00</strong></div>
+  </div>
+  <div class="quick-grid">
+   <div class="stat s-blue"><span class="ico">📅</span><small>Registrerte dager</small><strong id="homeDays">0</strong></div>
+   <div class="stat s-green"><span class="ico">◷</span><small>Nettotimer</small><strong id="homeHours">0.00 h</strong></div>
+   <div class="stat s-orange"><span class="ico">⏱</span><small>Overtid</small><strong id="homeOT">0.00 h</strong></div>
+   <div class="stat s-purple"><span class="ico">💰</span><small>Total bruttolønn</small><strong id="homePay">$0.00</strong></div>
+  </div>
+ </div>
+ <div class="actions">
+  <button class="btn btn-primary" onclick="addToday()">＋ Legg til arbeidsdag</button>
+  <button class="btn btn-soft" onclick="go('report')">▥ Full rapport</button>
+ </div>
+ <button id="calcBtn" class="btn btn-soft" onclick="openCalc()" style="width:100%;margin-top:10px">🧮 Tidskalkulator</button>
+ <div class="card" style="margin-top:14px">
+  <div class="section-head"><h2>Siste arbeid</h2><span onclick="go('calendar')" style="cursor:pointer;color:var(--blue);font-weight:700">Åpne kalender ›</span></div>
+  <div id="homeRecent"></div>
+ </div>
+ <div class="info-box"><strong>🔒 Personvern fra start</strong>Arbeidstidene og innstillingene dine lagres bare lokalt i nettleseren. Du trenger ingen konto.</div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" class="screen">
+ <div class="section-head"><h2>Kalender</h2><span>Velg en dag for å legge til timer</span></div>
+ <div class="card calendar-card">
+  <div class="cal-head"><button class="cal-nav" onclick="changeMonth(-1)">‹</button><h2 id="monthTitle">October 2026</h2><button class="cal-nav" onclick="changeMonth(1)">›</button></div>
+  <div class="weekdays"><div>Søn</div><div>Man</div><div>Tir</div><div>Ons</div><div>Tor</div><div>Fre</div><div>Lør</div></div>
+  <div class="days" id="calendarDays"></div>
+  <div class="calendar-legend"><span><i class="dot dot-blue"></i>I dag</span><span><i class="dot dot-green"></i>Har registrering</span></div>
+ </div>
+ <button class="btn btn-primary" onclick="addToday()" style="width:100%;margin-bottom:14px">＋ Legg til arbeidsdag</button>
+ <div class="section-head"><h2>Registrerte dager</h2><span id="recordedCount">0 entries</span></div>
+ <div id="calendarEntries"></div>
+</section>
+
+<!-- REPORT -->
+<section id="report" class="screen">
+ <div class="section-head"><h2>Rapporter</h2><span>Oversikt over arbeid og lønn</span></div>
+ <div id="periodBar"><div class="card" style="display:flex;align-items:center;gap:8px;padding:10px"><button class="cal-nav" onclick="shiftP(-1)">‹</button><div id="pLabel" style="flex:1;text-align:center;font-weight:800;font-size:.9rem"></div><button class="cal-nav" onclick="shiftP(1)">›</button><button class="btn btn-soft" id="pMode" onclick="togglePeriod()" style="min-height:38px;padding:6px 10px"></button></div>
+ <button class="btn btn-soft" onclick="openSummary()" style="width:100%;margin-bottom:14px">📋 Oppsummering</button></div>
+ <div class="card">
+  <div class="report-summary">
+   <div class="report-box"><small>Dager totalt</small><strong id="rDays">0</strong></div>
+   <div class="report-box"><small>Nettotimer</small><strong id="rHours">0.00 h</strong></div>
+   <div class="report-box"><small>Overtid</small><strong id="rOT">0.00 h</strong></div>
+   <div class="report-box total"><small>Total bruttolønn</small><strong id="rPay">$0.00</strong></div>
+  </div>
+ </div>
+ <div class="actions" style="margin-bottom:14px">
+  <button class="btn btn-primary" onclick="openPreview()">▣ Forhåndsvisning</button>
+  <button class="btn btn-green" onclick="downloadPDF()">↓ PDF</button>
+ </div>
+ <button class="btn btn-soft" onclick="shareWhatsApp()" style="width:100%;margin-bottom:14px">💬 Del via WhatsApp</button>
+ <div class="section-head"><h2>Detaljerte registreringer</h2></div>
+ <div id="reportEntries"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="screen">
+ <div class="section-head"><h2>Innstillinger</h2><span>Tilpass appen</span></div>
+ <div class="settings-group"><div class="settings-label">Profil</div><div class="card" style="display:flex;gap:14px;align-items:center"><div class="avatar-big" id="avatarBig" onclick="logoFor=null;photoIn.click()">👤</div><div style="flex:1;min-width:0"><div class="field" style="margin-bottom:8px"><label>Navnet ditt (valgfritt)</label><input id="profName" maxlength="24" placeholder="Navn" oninput="saveName()"></div><div class="actions"><button class="btn btn-soft" style="min-height:40px;padding:8px" onclick="logoFor=null;photoIn.click()">📷 Kontologo</button><button class="btn btn-red" style="min-height:40px;padding:8px" onclick="rmPhoto()">✕</button></div></div><input type="file" id="photoIn" accept="image/*" hidden onchange="pickPhoto(this)"></div></div>
+<div class="settings-group"><div class="settings-label">Språk</div><div class="field" style="margin-bottom:0"><select id="langSel" aria-label="Språk" onchange="location.href=this.value"><option value="../ar/working-hours.html">العربية</option><option value="../br/working-hours.html">Português (Brasil)</option><option value="../ca/working-hours.html">Català</option><option value="../gb/working-hours.html">English (UK)</option><option value="../en/working-hours.html">English</option><option value="../us/working-hours.html">English (US)</option><option value="../da/working-hours.html">Dansk</option><option value="../no/working-hours.html" selected>Norsk</option><option value="../fi/working-hours.html">Suomi</option><option value="../fr/working-hours.html">Français</option><option value="../it/working-hours.html">Italiano</option><option value="../de/working-hours.html">Deutsch</option><option value="../nl/working-hours.html">Nederlands</option><option value="../ja/working-hours.html">日本語</option><option value="../hi/working-hours.html">हिन्दी</option><option value="../in/working-hours.html">English (India)</option><option value="../ko/working-hours.html">한국어</option><option value="../tr/working-hours.html">Türkçe</option><option value="../zh/working-hours.html">中文</option><option value="../sv/working-hours.html">Svenska</option><option value="../ru/working-hours.html">Русский</option><option value="../pt/working-hours.html">Português</option><option value="../es/working-hours.html">Español</option></select></div></div>
+<div class="settings-group"><div class="settings-label">Ekstrafunksjoner</div>
+<label class="setting-row sw"><div class="setting-icon">🧮</div><div class="setting-text"><strong>Tidskalkulator</strong><span>Legg sammen, trekk fra, gang og del timer og minutter</span></div><input type="checkbox" id="ftCalc" onchange="saveFt()"></label>
+<label class="setting-row sw"><div class="setting-icon">🗓</div><div class="setting-text"><strong>Månedsfilter og oppsummering</strong><span>Filtrer rapporter etter måned og se en oppsummering</span></div><input type="checkbox" id="ftMonth" onchange="saveFt()"></label></div>
+<div class="settings-group"><div class="settings-label">Arbeidskontoer</div><div class="setting-row" onclick="openAccts()" style="cursor:pointer"><div class="setting-icon">🏢</div><div class="setting-text"><strong>Aktiv: <span id="acctCur"></span></strong><span>Trykk for å bytte, legge til eller gi nytt navn til arbeidssteder</span></div><span style="color:var(--blue);font-weight:800">›</span></div></div>
+<div class="settings-group"><div class="settings-label">Utseende</div><div class="seg" id="themeSeg"><button data-m="light" onclick="setTheme('light')">☀ Lyst</button><button data-m="dark" onclick="setTheme('dark')">☾ Mørkt</button><button data-m="auto" onclick="setTheme('auto')">◐ Auto</button></div></div>
+<div class="settings-group">
+  <div class="settings-label">Timelønn og regler (denne kontoen)</div>
+  <div class="card">
+   <div class="field"><label>Brutto timelønn (USD)</label><input type="number" id="hourlyRate" min="0" step="0.01" value="25" onchange="saveSettings()"></div>
+   <div class="field"><label>Overtidsfaktor</label><select id="otMultiplier" onchange="saveSettings()"><option value="1.5">1,5× (Halvannen gang)</option><option value="2">2× (Dobbelt)</option><option value="1.25">1.25×</option></select></div>
+   <div class="field" style="margin-bottom:0"><label>Normale timer per dag</label><input type="number" id="regularHours" min="1" max="24" step=".5" value="8" onchange="saveSettings()"></div>
+  </div>
+ </div>
+ <div class="settings-group guide"><div class="settings-label">Slik bruker du den</div><div id="guideBox"><details open><summary>1 · Arbeidskontoer (valgfritt)</summary><p>Trykk på <b>🏢 kontoknappen</b> øverst. Lag én konto per arbeidssted (f.eks. «Kafé», «Lager») eller bruk bare standardkontoen. Hver konto lagrer <b>egne dager, timer og lønnsinnstillinger</b> hver for seg. Trykk på en konto for å bytte; ✎ gir nytt navn, ✕ sletter.</p></details>
+<details><summary>2 · Legg til timene dine</summary><ol><li>Åpne <b>Kalender</b> og trykk på en dag (eller <b>Legg til arbeidsdag</b> for i dag).</li><li>Trykk på <b>Starttid</b> og <b>Sluttid</b> og velg time og minutt. På noen telefoner velger du også <b>AM/PM</b>.</li><li>Skriv inn pauser i minutter (30 = en halv time). Bruk <b>＋ Legg til pause</b> for flere; ✕ fjerner en.</li><li>Trykk på <b>Lagre</b>. Trykk på en lagret dag igjen for å redigere.</li></ol><p>Nattskift? Hvis sluttiden er før starttiden (22:00 → 06:00), slutter skiftet neste dag.</p></details>
+<details><summary>3 · Lønn og overtid</summary><p>Angi <b>timelønn</b>, <b>overtidsfaktor</b> og <b>normale timer per dag</b> nedenfor. Opp til normalgrensen betales timelønnen; alt over er overtid til lønn × faktor. Gjelder bare den aktive kontoen.</p></details>
+<details><summary>4 · Rapporter og deling</summary><p>Åpne <b>Rapport</b> for å se totalene for den aktive kontoen. Bruk <b>Forhåndsvisning</b> til å sjekke, <b>PDF</b> til å laste ned eller <b>WhatsApp</b> til å sende som tekst. Kontonavnet følger med.</p></details>
+<details><summary>5 · Mørk modus og personvern</summary><p>Velg Lyst, Mørkt eller Auto øverst, eller trykk på ☾/☀. Alt lagres <b>bare i denne nettleseren</b>. Hvis du sletter nettleserdata, forsvinner alt – last ned en PDF som sikkerhetskopi.</p></details>
+<details><summary>6 · Ekstra</summary><p><b>Profil:</b> legg til navn og bilde øverst i Innstillinger. <b>Tidskalkulator</b> (Hjem): skriv 04:30 + 00:50; x eller / med vanlige tall. <b>Månedsfilter og oppsummering</b> (Rapport): velg en måned eller All tid, og trykk på Oppsummering. Slå ekstrafunksjoner av eller på under <b>Ekstrafunksjoner</b>.</p></details></div></div>
+ <div class="settings-group">
+  <div class="settings-label">App</div>
+  <div class="setting-row"><div class="setting-icon">💵</div><div class="setting-text"><strong>Valuta</strong><span>USD ($) brukes i beregningene</span></div></div>
+  <div class="setting-row"><div class="setting-icon">📱</div><div class="setting-text"><strong>Mobilappmodus</strong><span>Optimalisert for telefoner og Blogger</span></div></div>
+  <div class="setting-row"><div class="setting-icon">🔒</div><div class="setting-text"><strong>Lokal lagring</strong><span>Hver konto lagres separat på denne enheten</span></div></div>
+ </div>
+ <div class="danger-zone"><strong>Slett alle data (alle kontoer)</strong><p>Dette fjerner lagrede registreringer og innstillinger fra denne nettleseren.</p><button class="btn btn-red" onclick="clearAll()">🗑 Slett alle data</button></div>
+</section>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+ <button class="nav-item active" data-tab="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Hjem</button>
+ <button class="nav-item" data-tab="calendar" onclick="go('calendar')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"></rect><path d="M8 2v4M16 2v4M3 10h18"></path></svg>Kalender</button>
+ <button class="nav-item" data-tab="report" onclick="go('report')"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>Rapport</button>
+ <button class="nav-item" data-tab="settings" onclick="go('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>Innstillinger</button>
+</nav>
+</div>
+
+<article class="seo" id="about">
+<h2>Gratis arbeidstids- og lønnskalkulator</h2>
+<p>Arbeidstidsregistrering er en gratis nettapp som beregner arbeidstimer, pauser, overtid og bruttolønn på sekunder. Oppgi start- og sluttid, legg til pauser, sett timelønnen din, så viser appen nettotimer og inntjening per dag, uke eller måned. Den kjører i nettleseren, krever ingen registrering og lagrer dataene dine på din egen enhet.</p>
+<h3>Slik beregner du arbeidstid</h3>
+<ol><li>Oppgi start- og sluttid for skiftet. Nattskift som 22:00 til 06:00 håndteres automatisk.</li><li>Trekk fra ubetalte pauser i minutter. Netto arbeidstid = sluttid − starttid − pauser.</li><li>Legg til alle dagene i måneden for å se totale timer, overtid og en utskriftsvennlig PDF-rapport.</li></ol>
+<h3>Slik beregner du lønn og overtid</h3>
+<p>Bruttolønn = normaltimer × timelønn + overtidstimer × timelønn × overtidsfaktor. Eksempel: 10 nettotimer med normal dag på 8 timer, 25 i timen og faktor 1,5× = 8 × 25 + 2 × 25 × 1,5 = 275.</p>
+<h3>Vanlige spørsmål</h3>
+<h4>Er arbeidstidskalkulatoren gratis?</h4><p>Ja. Den er helt gratis og krever ingen konto.</p>
+<h4>Kan jeg beregne overtid og nattskift?</h4><p>Ja. Angi normale timer per dag og en overtidsfaktor (1,25×, 1,5× eller 2×). Hvis sluttiden er før starttiden, slutter skiftet neste dag.</p>
+<h4>Hvor lagres dataene mine?</h4><p>Bare i din egen nettleser (lokal lagring). Ingenting lastes opp til en server. Last ned en PDF-rapport som sikkerhetskopi.</p>
+<nav class="langs" aria-label="Finnes også på:"><strong>Finnes også på:</strong><br><a href="../ar/working-hours.html" hreflang="ar" lang="ar">العربية</a> <a href="../br/working-hours.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a> <a href="../ca/working-hours.html" hreflang="ca" lang="ca">Català</a> <a href="../gb/working-hours.html" hreflang="en-GB" lang="en-GB">English (UK)</a> <a href="../en/working-hours.html" hreflang="en" lang="en">English</a> <a href="../us/working-hours.html" hreflang="en-US" lang="en-US">English (US)</a> <a href="../da/working-hours.html" hreflang="da" lang="da">Dansk</a> <a href="../fi/working-hours.html" hreflang="fi" lang="fi">Suomi</a> <a href="../fr/working-hours.html" hreflang="fr" lang="fr">Français</a> <a href="../it/working-hours.html" hreflang="it" lang="it">Italiano</a> <a href="../de/working-hours.html" hreflang="de" lang="de">Deutsch</a> <a href="../nl/working-hours.html" hreflang="nl" lang="nl">Nederlands</a> <a href="../ja/working-hours.html" hreflang="ja" lang="ja">日本語</a> <a href="../hi/working-hours.html" hreflang="hi" lang="hi">हिन्दी</a> <a href="../in/working-hours.html" hreflang="en-IN" lang="en-IN">English (India)</a> <a href="../ko/working-hours.html" hreflang="ko" lang="ko">한국어</a> <a href="../tr/working-hours.html" hreflang="tr" lang="tr">Türkçe</a> <a href="../zh/working-hours.html" hreflang="zh-Hans" lang="zh-Hans">中文</a> <a href="../sv/working-hours.html" hreflang="sv" lang="sv">Svenska</a> <a href="../ru/working-hours.html" hreflang="ru" lang="ru">Русский</a> <a href="../pt/working-hours.html" hreflang="pt" lang="pt">Português</a> <a href="../es/working-hours.html" hreflang="es" lang="es">Español</a></nav>
+</article>
+<div id="welcome" style="display:none"></div>
+<div class="sheet" id="calcSheet"><div class="handle"></div><h2>🧮 Tidskalkulator</h2><div class="calc-d"><div id="cExp"></div><div id="cRes">00:00</div><div id="cDec"></div></div><div class="keys" id="keys"></div><div class="mini-title" style="margin-top:14px">Slik regner du</div><div class="hint" style="margin:0 0 8px">Trykk på et eksempel for å prøve</div><div class="ex" onclick="calcSet('08:30+01:45')"><div><code class="ex-e">08:30 + 01:45</code><b class="ex-r">= 10:15</b></div><span>Legg sammen arbeidstider</span></div><div class="ex" onclick="calcSet('18:00-09:30')"><div><code class="ex-e">18:00 − 09:30</code><b class="ex-r">= 08:30</b></div><span>Skiftlengde: slutt minus start</span></div><div class="ex" onclick="calcSet('02:30x4')"><div><code class="ex-e">02:30 × 4</code><b class="ex-r">= 10:00</b></div><span>Gang med et tall (f.eks. 4 dager)</span></div><div class="ex" onclick="calcSet('10:00/4')"><div><code class="ex-e">10:00 ÷ 4</code><b class="ex-r">= 02:30</b></div><span>Del en total likt</span></div><div class="info-box" style="margin:8px 0 12px">Tips: skriv tider med «:», f.eks. 07:45. Et vanlig tall som 2 betyr 2 timer (etter x eller / er det en faktor).</div><button class="btn btn-soft" onclick="closeAll()">Ferdig</button></div>
+<div class="modal" id="sumModal" onclick="if(event.target===this)this.classList.remove('open')"><div class="modal-content"><div class="handle"></div><h2 id="sumTitle" style="text-align:center;font-size:1.05rem;margin-bottom:12px"></h2><div id="sumBody"></div><button class="btn btn-soft" onclick="sumModal.classList.remove('open')" style="width:100%;margin-top:8px">Lukk</button></div></div>
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<div class="sheet" id="acctSheet"><div class="handle"></div><h2>🏢 Arbeidskontoer</h2>
+<div class="hint" style="text-align:center">Valgfritt. Lag én konto per arbeidssted – hver har egne timer og lønnsinnstillinger.</div>
+<div id="acctList"></div><div class="field" style="margin-top:12px"><label>Navn på nytt arbeidssted</label><input id="newAcct" maxlength="30" placeholder="f.eks. Kafé, Lager"></div>
+<button class="btn btn-primary" onclick="addAcct()">＋ Legg til konto</button><button class="btn btn-soft" onclick="closeAccts()">Ferdig</button></div>
+<div class="sheet" id="sheet">
+ <div class="handle"></div><h2 id="sheetTitle">Legg til arbeidstimer</h2>
+ <div class="form-row">
+  <div class="field"><label>Starttid</label><input type="time" id="startTime" value="09:00"></div>
+  <div class="field"><label>Sluttid</label><input type="time" id="endTime" value="18:00"></div>
+ </div>
+ <div class="hint">Trykk på klokkeslettet for å velge time og minutt. Slutt før start = nattskift.</div>
+ <div class="mini-title">☕ Pauser</div>
+ <div id="breaksList"></div>
+ <button class="btn btn-soft" onclick="addBreak()" style="width:100%;margin-bottom:6px">＋ Legg til pause</button>
+ <button class="btn btn-primary" onclick="saveEntry()">✓ Lagre</button>
+ <button class="btn btn-soft" onclick="closeSheet()">Avbryt</button>
+</div>
+
+<div class="modal" id="previewModal">
+ <div class="modal-content">
+  <div class="handle"></div><h2 style="text-align:center;font-size:1.05rem;margin-bottom:15px">📊 Forhåndsvisning av full rapport</h2>
+  <div class="pdf-report" id="previewReport"></div>
+  <button class="btn btn-primary" onclick="downloadPDF()" style="width:100%">↓ Last ned PDF</button>
+  <button class="btn btn-green" onclick="shareWhatsApp()" style="width:100%;margin-top:8px">💬 Del via WhatsApp</button>
+  <button class="btn btn-soft" onclick="closePreview()" style="width:100%;margin-top:8px">Lukk</button>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PAGE_LANG="no",PAGE_HTMLLANG="nb",NONLATIN=false,MYWORK="Jobben min";let PAGE_LOCALE="nb-NO";
+let currentYear,currentMonth,selectedDate=null,breakCounter=0,entries={};
+
+function init(){
+ const now=new Date();currentYear=now.getFullYear();currentMonth=now.getMonth();
+ loadPrefs();loadDB();if(prefs.photo){db.profiles[db.active].logo=prefs.photo;prefs.photo='';savePrefs();saveToStorage()}applyTheme();renderAll();if(!prefs.lang)welcome.style.display='flex';
+ matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyTheme);
+}
+let db;
+function loadDB(){
+ try{db=JSON.parse(localStorage.getItem('workHoursDB')||'null')}catch(e){db=null}
+ if(!db||!db.profiles){let oe={},os=null;
+  try{oe=JSON.parse(localStorage.getItem('workHoursEntries')||'{}')}catch(e){}
+  try{os=JSON.parse(localStorage.getItem('workHoursSettings')||'null')}catch(e){}
+  db={active:'a1',profiles:{a1:{name:MYWORK,entries:oe,settings:os||{rate:25,otMult:1.5,regHours:8}}}}}
+ if(!db.profiles[db.active])db.active=Object.keys(db.profiles)[0];
+ useProfile();
+}
+function useProfile(){const p=db.profiles[db.active];entries=p.entries;const s=p.settings||{};hourlyRate.value=s.rate??25;otMultiplier.value=s.otMult||1.5;regularHours.value=s.regHours||8}
+function curName(){return db.profiles[db.active].name}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function applyTheme(){const m=localStorage.getItem('whtTheme')||'auto',d=m==='dark'||(m==='auto'&&matchMedia('(prefers-color-scheme:dark)').matches);
+ document.documentElement.dataset.theme=d?'dark':'light';document.querySelector('meta[name=theme-color]').content=d?'#0b1220':'#2563eb';
+ document.querySelectorAll('#themeSeg button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));themeBtn.textContent=d?'☀':'☾'}
+function setTheme(m){localStorage.setItem('whtTheme',m);applyTheme()}
+function toggleTheme(){setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark')}
+function openAccts(){renderAccts();overlay.classList.add('open');acctSheet.classList.add('open')}
+function closeAccts(){acctSheet.classList.remove('open');if(!sheet.classList.contains('open'))overlay.classList.remove('open')}
+function closeAll(){closeSheet();closeAccts();calcSheet.classList.remove('open');overlay.classList.remove('open')}
+function renderAccts(){const n=Object.keys(db.profiles).length;
+ acctList.innerHTML=Object.entries(db.profiles).map(([id,p])=>`<div class="acct ${id===db.active?'on':''}" onclick="switchAcct('${id}')">${p.logo?`<div class="acct-ic" style="background-image:url(${p.logo})"></div>`:'<div class="acct-ic">🏢</div>'}<div class="acct-t"><strong>${esc(p.name)}</strong><span>${Object.keys(p.entries).length} ${L('days saved')}${id===db.active?' · '+L('Active'):''}</span></div><button class="acct-b" onclick="event.stopPropagation();logoFor='${id}';photoIn.click()">📷</button><button class="acct-b" onclick="event.stopPropagation();renameAcct('${id}')">✎</button>${n>1?`<button class="acct-b del" onclick="event.stopPropagation();delAcct('${id}')">✕</button>`:''}</div>`).join('')}
+function switchAcct(id){db.active=id;saveToStorage();useProfile();renderAll();renderAccts();showToast(L('Switched to')+' '+curName())}
+function addAcct(){const n=newAcct.value.trim();if(!n){showToast('Type a name first');return}const id='a'+Date.now();db.profiles[id]={name:n.slice(0,30),entries:{},settings:{rate:25,otMult:1.5,regHours:8}};newAcct.value='';switchAcct(id)}
+function renameAcct(id){const n=prompt(L('Account name'),db.profiles[id].name);if(n&&n.trim()){db.profiles[id].name=n.trim().slice(0,30);saveToStorage();renderAll();renderAccts()}}
+function delAcct(id){if(!confirm(L('Delete account and all its hours?')+' ('+db.profiles[id].name+')'))return;delete db.profiles[id];if(db.active===id)db.active=Object.keys(db.profiles)[0];saveToStorage();useProfile();renderAll();renderAccts()}
+
+let logoFor=null,lang='en',prefs={lang:null,name:'',photo:'',calc:true,month:true},period=null,cx='';
+const TX={"no": {"📷 Account logo": "📷 Kontologo", "Track • Calculate • Export": "Registrer • Beregn • Eksporter", "Work Hours Tracker": "Arbeidstidsregistrering", "Today": "I dag", "Today's Pay": "Dagens lønn", "Recorded Days": "Registrerte dager", "Net Hours": "Nettotimer", "Overtime": "Overtid", "Total Gross Pay": "Total bruttolønn", "＋ Add Work Day": "＋ Legg til arbeidsdag", "▥ Full Report": "▥ Full rapport", "Recent Work": "Siste arbeid", "View calendar ›": "Åpne kalender ›", "🔒 Private by design": "🔒 Personvern fra start", "Your work-hour entries and settings are stored locally in your browser. No account is required.": "Arbeidstidene og innstillingene dine lagres bare lokalt i nettleseren. Du trenger ingen konto.", "Calendar": "Kalender", "Select a day to add hours": "Velg en dag for å legge til timer", "Sun": "Søn", "Mon": "Man", "Tue": "Tir", "Wed": "Ons", "Thu": "Tor", "Fri": "Fre", "Sat": "Lør", "Has entry": "Har registrering", "Reports": "Rapporter", "Work & pay overview": "Oversikt over arbeid og lønn", "Total Days": "Dager totalt", "▣ Preview": "▣ Forhåndsvisning", "💬 Share via WhatsApp": "💬 Del via WhatsApp", "Detailed Entries": "Detaljerte registreringer", "Settings": "Innstillinger", "Customize your tracker": "Tilpass appen", "Home": "Hjem", "Report": "Rapport", "No work entries yet.": "Ingen registreringer ennå.", "Tap Add Work Day to start.": "Trykk på «Legg til arbeidsdag» for å starte.", "No entries yet.": "Ingen registreringer ennå.", "No entries yet": "Ingen registreringer ennå", "Tap a day on the calendar.": "Trykk på en dag i kalenderen.", "Profile": "Profil", "Your name (optional)": "Navnet ditt (valgfritt)", "Name": "Navn", "📷 Photo": "📷 Bilde", "Language": "Språk", "Extra Features": "Ekstrafunksjoner", "Time Calculator": "Tidskalkulator", "🧮 Time Calculator": "🧮 Tidskalkulator", "Add, subtract and multiply hours & minutes": "Legg sammen, trekk fra, gang og del timer og minutter", "Month filter & summary": "Månedsfilter og oppsummering", "Filter reports by month and see a summary": "Filtrer rapporter etter måned og se en oppsummering", "Work Accounts": "Arbeidskontoer", "🏢 Work Accounts": "🏢 Arbeidskontoer", "Active:": "Aktiv:", "Tap to switch, add or rename workplaces": "Trykk for å bytte, legge til eller gi nytt navn til arbeidssteder", "Appearance": "Utseende", "☀ Light": "☀ Lyst", "☾ Dark": "☾ Mørkt", "◐ Auto": "◐ Auto", "How to use": "Slik bruker du den", "Hourly Rate & Rules (this account)": "Timelønn og regler (denne kontoen)", "Gross Hourly Rate (USD)": "Brutto timelønn (USD)", "Overtime Multiplier": "Overtidsfaktor", "1.5× (Time & Half)": "1,5× (Halvannen gang)", "2× (Double Time)": "2× (Dobbelt)", "Standard Regular Hours / Day": "Normale timer per dag", "App": "App", "Currency": "Valuta", "USD ($) is used for calculations": "USD ($) brukes i beregningene", "Mobile App Mode": "Mobilappmodus", "Optimized for phones and Blogger embeds": "Optimalisert for telefoner og Blogger", "Local Storage": "Lokal lagring", "Each account is stored separately on this device": "Hver konto lagres separat på denne enheten", "Clear all data (all accounts)": "Slett alle data (alle kontoer)", "This removes saved entries and settings from this browser.": "Dette fjerner lagrede registreringer og innstillinger fra denne nettleseren.", "🗑 Clear All Data": "🗑 Slett alle data", "Start Time": "Starttid", "End Time": "Sluttid", "Tap a time to pick hour & minute. End earlier than start = overnight shift.": "Trykk på klokkeslettet for å velge time og minutt. Slutt før start = nattskift.", "☕ Breaks / Pauses": "☕ Pauser", "＋ Add Break": "＋ Legg til pause", "✓ Save Entry": "✓ Lagre", "Cancel": "Avbryt", "Break minutes": "Pauseminutter", "Optional. Make one account per workplace — each keeps its own hours and pay settings.": "Valgfritt. Lag én konto per arbeidssted – hver har egne timer og lønnsinnstillinger.", "New workplace name": "Navn på nytt arbeidssted", "e.g. Cafe, Warehouse": "f.eks. Kafé, Lager", "＋ Add Account": "＋ Legg til konto", "Done": "Ferdig", "📊 Full Report Preview": "📊 Forhåndsvisning av full rapport", "↓ Download PDF": "↓ Last ned PDF", "Close": "Lukk", "📋 Summary": "📋 Oppsummering", "Summary": "Oppsummering", "This month": "Denne måneden", "Show all": "Vis alle", "All time": "All tid", "Normal hours": "Normaltimer", "Hours": "Timer", "Amount": "Beløp", "Duration": "Varighet", "Records": "Registreringer", "Total records": "Registreringer totalt", "Please enter start and end time": "Oppgi start- og sluttid", "Entry saved ✓": "Registrering lagret ✓", "Entry deleted": "Registrering slettet", "PDF library unavailable": "PDF-biblioteket er utilgjengelig", "PDF downloaded ✓": "PDF lastet ned ✓", "Type a name first": "Skriv inn et navn først", "Switched to": "Byttet til", "days saved": "dager lagret", "Active": "Aktiv", "entry": "registrering", "entries": "registreringer", "min": "min", "Pay": "Lønn", "Clear ALL accounts, entries and settings?": "Slette ALLE kontoer, registreringer og innstillinger?", "Delete account and all its hours?": "Slette kontoen og alle timene?", "Account name": "Kontonavn", "Working time": "Arbeidstid", "Breaks": "Pauser", "Net hours": "Nettotimer", "Regular / OT": "Normal / Overtid", "Working": "Arbeid", "Net Worked": "Netto arbeidet", "Regular": "Normal", "Day Total": "Dagstotal", "Total Net Hours": "Nettotimer totalt", "Total Overtime": "Overtid totalt", "Regular Pay": "Normallønn", "Overtime Pay": "Overtidslønn", "TOTAL GROSS PAY": "TOTAL BRUTTOLØNN", "WORK HOURS & PAY REPORT": "ARBEIDSTIDS- OG LØNNSRAPPORT", "Account": "Konto", "Hourly Rate": "Timelønn", "Standard": "Standard", "day": "dag", "Net": "Netto", "Hi": "Hei", "Photo too large": "Bildet er for stort", "How to calculate": "Slik regner du", "Tap an example to try it": "Trykk på et eksempel for å prøve", "Add worked times": "Legg sammen arbeidstider", "Shift length: end minus start": "Skiftlengde: slutt minus start", "Multiply by a number (e.g. 4 days)": "Gang med et tall (f.eks. 4 dager)", "Divide a total evenly": "Del en total likt", "Tip: type times with \":\" like 07:45. A plain number like 2 means 2 hours (after x or / it is a multiplier).": "Tips: skriv tider med «:», f.eks. 07:45. Et vanlig tall som 2 betyr 2 timer (etter x eller / er det en faktor).", "Your work summary": "Din arbeidsoversikt", "Add Work Hours": "Legg til arbeidstimer"}};
+const GUIDE={"no": "<details open><summary>1 · Arbeidskontoer (valgfritt)</summary><p>Trykk på <b>🏢 kontoknappen</b> øverst. Lag én konto per arbeidssted (f.eks. «Kafé», «Lager») eller bruk bare standardkontoen. Hver konto lagrer <b>egne dager, timer og lønnsinnstillinger</b> hver for seg. Trykk på en konto for å bytte; ✎ gir nytt navn, ✕ sletter.</p></details>\n<details><summary>2 · Legg til timene dine</summary><ol><li>Åpne <b>Kalender</b> og trykk på en dag (eller <b>Legg til arbeidsdag</b> for i dag).</li><li>Trykk på <b>Starttid</b> og <b>Sluttid</b> og velg time og minutt. På noen telefoner velger du også <b>AM/PM</b>.</li><li>Skriv inn pauser i minutter (30 = en halv time). Bruk <b>＋ Legg til pause</b> for flere; ✕ fjerner en.</li><li>Trykk på <b>Lagre</b>. Trykk på en lagret dag igjen for å redigere.</li></ol><p>Nattskift? Hvis sluttiden er før starttiden (22:00 → 06:00), slutter skiftet neste dag.</p></details>\n<details><summary>3 · Lønn og overtid</summary><p>Angi <b>timelønn</b>, <b>overtidsfaktor</b> og <b>normale timer per dag</b> nedenfor. Opp til normalgrensen betales timelønnen; alt over er overtid til lønn × faktor. Gjelder bare den aktive kontoen.</p></details>\n<details><summary>4 · Rapporter og deling</summary><p>Åpne <b>Rapport</b> for å se totalene for den aktive kontoen. Bruk <b>Forhåndsvisning</b> til å sjekke, <b>PDF</b> til å laste ned eller <b>WhatsApp</b> til å sende som tekst. Kontonavnet følger med.</p></details>\n<details><summary>5 · Mørk modus og personvern</summary><p>Velg Lyst, Mørkt eller Auto øverst, eller trykk på ☾/☀. Alt lagres <b>bare i denne nettleseren</b>. Hvis du sletter nettleserdata, forsvinner alt – last ned en PDF som sikkerhetskopi.</p></details>\n<details><summary>6 · Ekstra</summary><p><b>Profil:</b> legg til navn og bilde øverst i Innstillinger. <b>Tidskalkulator</b> (Hjem): skriv 04:30 + 00:50; x eller / med vanlige tall. <b>Månedsfilter og oppsummering</b> (Rapport): velg en måned eller All tid, og trykk på Oppsummering. Slå ekstrafunksjoner av eller på under <b>Ekstrafunksjoner</b>.</p></details>"};
+function L(s){return(TX[lang]||{})[s]||s}
+function LOC(){return PAGE_LOCALE}
+function ascii(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i').replace(/İ/g,'I').replace(/ß/g,'ss').replace(/[→–“”¿¡]/g,'-')}
+function loadPrefs(){try{Object.assign(prefs,JSON.parse(localStorage.getItem('whtPrefs')||'{}'))}catch(e){}prefs.lang=PAGE_LANG;lang=PAGE_LANG}
+function savePrefs(){try{localStorage.setItem('whtPrefs',JSON.stringify(prefs))}catch(e){showToast('Photo too large')}}
+function setLang(l){prefs.lang=l;lang=l;savePrefs();welcome.style.display='none';renderAll()}
+function applyLang(){
+ document.documentElement.lang=PAGE_HTMLLANG;
+ const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+ while(n=w.nextNode()){if(n.parentNode.closest('script,style,#welcome,#guideBox,#keys,#cExp,#cRes,#cDec,.ex-e'))continue;const raw=n.__o??(n.__o=n.nodeValue),k=raw.trim();if(!k)continue;n.nodeValue=L(k)!==k?raw.replace(k,L(k)):raw}
+ document.querySelectorAll('[placeholder]').forEach(e=>{e.__p=e.__p||e.placeholder;e.placeholder=L(e.__p)});
+ guideBox.innerHTML=GUIDE[lang]||GUIDE.en;
+ document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
+ ftCalc.checked=prefs.calc;ftMonth.checked=prefs.month;calcBtn.style.display=prefs.calc?'':'none';periodBar.style.display=prefs.month?'':'none';
+ profName.value=prefs.name||'';
+ const lg=db.profiles[db.active].logo||'',bg=lg?`url(${lg})`:'';[avatar,avatarBig].forEach(el=>{el.style.backgroundImage=bg});avatar.firstChild&&(avatar.textContent=lg?'':'⏱');avatarBig.textContent=lg?'':'👤';
+ document.querySelector('.brand p').textContent=prefs.name?L('Hi')+', '+prefs.name:L('Track • Calculate • Export');
+ pLabel.textContent=period&&prefs.month?new Date(period+'-01T12:00:00').toLocaleDateString(LOC(),{month:'long',year:'numeric'}):L('All time');pMode.textContent=period?L('Show all'):L('This month');
+}
+function saveName(){prefs.name=profName.value.trim();savePrefs();document.querySelector('.brand p').textContent=prefs.name?L('Hi')+', '+prefs.name:L('Track • Calculate • Export')}
+function saveFt(){prefs.calc=ftCalc.checked;prefs.month=ftMonth.checked;if(!prefs.month)period=null;savePrefs();renderAll()}
+function pickPhoto(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=200;const s=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,200,200);const id=logoFor||db.active;logoFor=null;db.profiles[id].logo=c.toDataURL('image/jpeg',.8);try{saveToStorage()}catch(e){showToast('Photo too large')}renderAll();if(acctSheet.classList.contains('open'))renderAccts()};im.src=r.result};r.readAsDataURL(f);inp.value=''}
+function rmPhoto(){delete db.profiles[db.active].logo;saveToStorage();renderAll()}
+function repKeys(){const k=Object.keys(entries).sort();return prefs.month&&period?k.filter(x=>x.startsWith(period)):k}
+function togglePeriod(){period=period?null:new Date().toISOString().slice(0,7);renderAll()}
+function shiftP(d){if(!period)period=new Date().toISOString().slice(0,7);const[y,m]=period.split('-').map(Number),n=new Date(y,m-1+d,1);period=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0');renderAll()}
+function hm(h){let m=Math.round(h*60);const s=m<0?'-':'';m=Math.abs(m);return s+String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
+function openSummary(){let nh=0,np=0,oh=0,op=0,bm=0;const ks=repKeys();ks.forEach(k=>{const c=calcDay(entries[k]);nh+=c.regH;np+=c.regPay;oh+=c.otH;op+=c.otPay;bm+=c.breakMin});
+ const row=(a,b)=>`<div class="report-line"><span>${L(a)}</span><b>${b}</b></div>`,box=(t,r)=>`<div class="report-day"><div class="report-day-head"><strong>${L(t)}</strong></div>${r}</div>`;
+ sumTitle.textContent=L('Summary')+' · '+pLabel.textContent;
+ sumBody.innerHTML=box('Normal hours',row('Hours',hm(nh))+row('Amount','$'+np.toFixed(2)))+box('Overtime',row('Hours',hm(oh))+row('Amount','$'+op.toFixed(2)))+box('Breaks',row('Duration',hm(bm/60)))+box('Records',row('Total records',ks.length))+box('Total Gross Pay',row('Amount','$'+(np+op).toFixed(2)));
+ sumModal.classList.add('open')}
+function openCalc(){cx='';keys.innerHTML=[['AC','AC','clr'],['DEL','⌫','clr'],['x','×','op'],['/','÷','op'],['7'],['8'],['9'],['-','−','op'],['4'],['5'],['6'],['+','+','op'],['1'],['2'],['3'],[':'],['0','0','wide'],['=','=','eq']].map(([k,l,c])=>`<button class="${c||''}" onclick="calcKey('${k}')">${l||k}</button>`).join('');showCalc();overlay.classList.add('open');calcSheet.classList.add('open')}
+let cAcc=null;
+function calcKey(k){if(k==='AC')cx='';else if(k==='DEL')cx=cx.slice(0,-1);else if(k==='=')cx=cAcc===null?cx:hm(cAcc/60);else cx+=k;showCalc()}
+function calcSet(s){cx=s;showCalc();calcSheet.scrollTo({top:0,behavior:'smooth'})}
+function showCalc(){cExp.textContent=cx.replace(/x/g,'×').replace(/\//g,'÷').replace(/-/g,'−');const tk=cx.match(/[\d:]+|[+\-x\/]/g);let acc=null,op='+';
+ (tk||[]).forEach(x=>{if(/^[+\-x\/]$/.test(x)){op=x;return}const pt=x.includes(':')?(([h,m])=>(+h||0)*60+(+m||0))(x.split(':')):(+x||0)*60;
+  if(acc===null)acc=pt;else if(op==='+')acc+=pt;else if(op==='-')acc-=pt;else if(op==='x')acc*=(+x||0);else if(op==='/')acc=(+x)?acc/(+x):acc});
+ cAcc=acc;cRes.textContent=acc===null?'00:00':hm(acc/60);cDec.textContent=acc===null?'':'≈ '+(acc/60).toFixed(2)+' h'}
+function go(tab){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ const el=document.getElementById(tab);if(el)el.classList.add('active');
+ document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));
+ window.scrollTo({top:0,behavior:'smooth'});
+ renderAll();
+}
+function saveSettings(){
+ db.profiles[db.active].settings={rate:parseFloat(hourlyRate.value)||25,otMult:parseFloat(otMultiplier.value)||1.5,regHours:parseFloat(regularHours.value)||8};
+ saveToStorage();renderAll();
+}
+function saveToStorage(){localStorage.setItem('workHoursDB',JSON.stringify(db))}
+function getSettings(){return{rate:parseFloat(hourlyRate.value)||0,otMult:parseFloat(otMultiplier.value)||1.5,std:parseFloat(regularHours.value)||8}}
+function timeToMinutes(t){if(!t)return 0;const [h,m]=t.split(':').map(Number);return h*60+m}
+function calcDay(e){
+ let start=timeToMinutes(e.start),end=timeToMinutes(e.end);if(end<=start)end+=1440;
+ const grossMin=end-start,breakMin=(e.breaks||[]).reduce((a,b)=>a+b,0),netMin=Math.max(0,grossMin-breakMin),netHours=netMin/60;
+ const s=getSettings(),regH=Math.min(netHours,s.std),otH=Math.max(0,netHours-s.std),regPay=regH*s.rate,otPay=otH*s.rate*s.otMult;
+ return{netHours,regH,otH,regPay,otPay,total:regPay+otPay,breakMin,grossMin};
+}
+function totals(ks){
+ let days=0,hours=0,ot=0,pay=0;(ks||Object.keys(entries)).map(k=>entries[k]).forEach(e=>{const c=calcDay(e);days++;hours+=c.netHours;ot+=c.otH;pay+=c.total});return{days,hours,ot,pay}
+}
+function renderAll(){acctName.textContent=curName();acctCur.textContent=curName();renderCalendar();renderHome();renderLists();updateReportSummary();applyLang()}
+function renderHome(){
+ const t=totals(),now=new Date(),today=now.toISOString().slice(0,10),e=entries[today],todayPay=e?calcDay(e).total:0;
+ todayLabel.textContent=now.toLocaleDateString(LOC(),{weekday:'long'});
+ todaySub.textContent=now.toLocaleDateString(LOC(),{month:'short',day:'numeric',year:'numeric'});
+ document.getElementById('todayPay').textContent='$'+todayPay.toFixed(2);
+ homeDays.textContent=t.days;homeHours.textContent=t.hours.toFixed(2)+' h';homeOT.textContent=t.ot.toFixed(2)+' h';homePay.textContent='$'+t.pay.toFixed(2);
+ const keys=Object.keys(entries).sort().reverse().slice(0,4),box=document.getElementById('homeRecent');
+ if(!keys.length){box.innerHTML='<div class="empty"><b>📅</b>No work entries yet.<br>Tap Add Work Day to start.</div>';return}
+ box.innerHTML=keys.map(dateEntryHTML).join('');
+}
+function dateEntryHTML(ds){
+ const e=entries[ds],c=calcDay(e),d=new Date(ds+'T12:00:00');
+ return `<div class="entry" onclick="openSheet('${ds}')">
+ <div class="entry-date">${d.toLocaleDateString(LOC(),{weekday:'short'})}<br>${d.getDate()}</div>
+ <div class="entry-info"><strong>${d.toLocaleDateString(LOC(),{month:'short',day:'numeric',year:'numeric'})}</strong><span>${e.start} – ${e.end} · ${L('Breaks')} ${c.breakMin} ${L('min')} · ${L('Pay')} $${c.total.toFixed(2)}</span></div>
+ <div class="entry-hours">${c.netHours.toFixed(2)}h</div></div>`;
+}
+function changeMonth(delta){currentMonth+=delta;if(currentMonth>11){currentMonth=0;currentYear++}if(currentMonth<0){currentMonth=11;currentYear--}renderCalendar()}
+function renderCalendar(){
+ const title=new Date(currentYear,currentMonth,1).toLocaleDateString(LOC(),{month:'long',year:'numeric'});monthTitle.textContent=title;
+ const first=new Date(currentYear,currentMonth,1).getDay(),count=new Date(currentYear,currentMonth+1,0).getDate(),today=new Date().toISOString().slice(0,10),c=calendarDays;c.innerHTML='';
+ for(let i=0;i<first;i++){const x=document.createElement('div');x.className='day empty';c.appendChild(x)}
+ for(let d=1;d<=count;d++){const ds=`${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,x=document.createElement('div');x.className='day';x.textContent=d;if(ds===today)x.classList.add('today');if(entries[ds])x.classList.add('has-entry');if(ds===selectedDate)x.classList.add('selected');x.onclick=()=>openSheet(ds);c.appendChild(x)}
+}
+function renderLists(){
+ const keys=Object.keys(entries).sort().reverse();recordedCount.textContent=keys.length+' '+L(keys.length===1?'entry':'entries');
+ const empty='<div class="empty"><b>📅</b>No entries yet.<br>Tap a day on the calendar.</div>';
+ calendarEntries.innerHTML=keys.length?keys.map(dateEntryHTML).join(''):empty;
+ const rk=repKeys().reverse();reportEntries.innerHTML=rk.length?rk.map(reportDayHTML).join(''):empty;
+}
+function reportDayHTML(ds){
+ const e=entries[ds],c=calcDay(e),d=new Date(ds+'T12:00:00');
+ return `<div class="report-day"><div class="report-day-head"><strong>${d.toLocaleDateString(LOC(),{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</strong><b>$${c.total.toFixed(2)}</b></div>
+ <div class="report-line"><span>${L('Working time')}</span><b>${e.start} – ${e.end}</b></div>
+ <div class="report-line"><span>${L('Breaks')}</span><b>${c.breakMin} min</b></div>
+ <div class="report-line"><span>${L('Net hours')}</span><b>${c.netHours.toFixed(2)} h</b></div>
+ <div class="report-line"><span>${L('Regular / OT')}</span><b>${c.regH.toFixed(2)} h / ${c.otH.toFixed(2)} h</b></div></div>`;
+}
+function updateReportSummary(){const t=totals(repKeys());rDays.textContent=t.days;rHours.textContent=t.hours.toFixed(2)+' h';rOT.textContent=t.ot.toFixed(2)+' h';rPay.textContent='$'+t.pay.toFixed(2)}
+function addToday(){openSheet(new Date().toISOString().slice(0,10))}
+function openSheet(ds){
+ selectedDate=ds;const d=new Date(ds+'T12:00:00');sheetTitle.textContent=d.toLocaleDateString(LOC(),{weekday:'long',month:'short',day:'numeric',year:'numeric'});
+ const e=entries[ds];startTime.value=e?e.start:'09:00';endTime.value=e?e.end:'18:00';breaksList.innerHTML='';breakCounter=0;
+ if(e&&e.breaks&&e.breaks.length)e.breaks.forEach(m=>addBreak(m));else addBreak(30);
+ overlay.classList.add('open');sheet.classList.add('open');renderCalendar();
+}
+function closeSheet(){overlay.classList.remove('open');sheet.classList.remove('open');selectedDate=null;renderCalendar()}
+function addBreak(minutes=30){breakCounter++;const id='br'+breakCounter,div=document.createElement('div');div.className='break-item';div.id=id;div.innerHTML=`<div><label>${L('Break minutes')}</label><input type="number" min="0" step="5" value="${minutes}" class="break-minutes"></div><button class="remove-break" onclick="document.getElementById('${id}').remove()">✕</button>`;breaksList.appendChild(div)}
+function saveEntry(){
+ if(!selectedDate)return;const s=startTime.value,e=endTime.value;if(!s||!e){showToast('Please enter start and end time');return}
+ const breaks=[...document.querySelectorAll('.break-minutes')].map(x=>parseFloat(x.value)||0).filter(x=>x>0);
+ entries[selectedDate]={start:s,end:e,breaks};saveToStorage();closeSheet();renderAll();showToast('Entry saved ✓')
+}
+function deleteEntry(ds){if(!confirm('Delete this entry?'))return;delete entries[ds];saveToStorage();renderAll();showToast('Entry deleted')}
+function buildReportText(){
+ const s=getSettings(),keys=repKeys();let x=`${L('WORK HOURS & PAY REPORT')}
+==========================
+${L('Account')}: ${curName()}
+${L('Hourly Rate')}: $${s.rate.toFixed(2)} USD
+${L('Overtime')}: ${s.otMult}x | ${L('Standard')}: ${s.std}h/${L('day')}
+
+`;let net=0,ot=0,pay=0;
+ keys.forEach(ds=>{const e=entries[ds],c=calcDay(e),d=new Date(ds+'T12:00:00');x+=`[${d.toLocaleDateString(LOC(),{weekday:'short',month:'short',day:'numeric',year:'numeric'})}]
+${e.start} - ${e.end} | ${L('Breaks')}: ${c.breakMin} ${L('min')}
+${L('Net')}: ${c.netHours.toFixed(2)} h
+${L('Regular')}: ${c.regH.toFixed(2)} h = $${c.regPay.toFixed(2)} | ${L('Overtime')}: ${c.otH.toFixed(2)} h = $${c.otPay.toFixed(2)}
+${L('Day Total')}: $${c.total.toFixed(2)}
+
+`;net+=c.netHours;ot+=c.otH;pay+=c.total});
+ return x+`==========================
+${L('Total Days')}: ${keys.length}
+${L('Total Net Hours')}: ${net.toFixed(2)}
+${L('Total Overtime')}: ${ot.toFixed(2)}
+${L('TOTAL GROSS PAY')}: $${pay.toFixed(2)} USD`}
+function buildReportHTML(){
+ const s=getSettings(),keys=repKeys();let net=0,ot=0,reg=0,otp=0,pay=0,html=`<div class="pdf-head"><h3>${L('WORK HOURS & PAY REPORT')}</h3><p>${esc(curName())} · Rate $${s.rate.toFixed(2)}/hr · OT ${s.otMult}× · Standard ${s.std}h/day · USD ($)</p></div>`;
+ keys.forEach(ds=>{const e=entries[ds],c=calcDay(e),d=new Date(ds+'T12:00:00');html+=`<div class="pdf-day"><div class="date">${d.toLocaleDateString(LOC(),{weekday:'long',month:'short',day:'numeric',year:'numeric'})}</div><div class="pdf-line"><span>${L('Working')}</span><b>${e.start} – ${e.end}</b></div><div class="pdf-line"><span>${L('Breaks')}</span><b>${c.breakMin} min</b></div><div class="pdf-line"><span>${L('Net Worked')}</span><b>${c.netHours.toFixed(2)} hrs</b></div><div class="pdf-line"><span>${L('Regular')}</span><b>${c.regH.toFixed(2)} hrs → $${c.regPay.toFixed(2)}</b></div><div class="pdf-line"><span>${L('Overtime')}</span><b>${c.otH.toFixed(2)} hrs → $${c.otPay.toFixed(2)}</b></div><div class="pdf-line"><span>${L('Day Total')}</span><b>$${c.total.toFixed(2)}</b></div></div>`;net+=c.netHours;ot+=c.otH;reg+=c.regPay;otp+=c.otPay;pay+=c.total});
+ html+=`<div class="pdf-total"><div><span>${L('Total Days')}</span><b>${keys.length}</b></div><div><span>${L('Total Net Hours')}</span><b>${net.toFixed(2)} hrs</b></div><div><span>${L('Total Overtime')}</span><b>${ot.toFixed(2)} hrs</b></div><div><span>${L('Regular Pay')}</span><b>$${reg.toFixed(2)}</b></div><div><span>${L('Overtime Pay')}</span><b>$${otp.toFixed(2)}</b></div><div class="grand"><span>${L('TOTAL GROSS PAY')}</span><span>$${pay.toFixed(2)} USD</span></div></div>`;return html
+}
+function openPreview(){if(!Object.keys(entries).length){showToast('No entries yet');return}previewReport.innerHTML=buildReportHTML();previewModal.classList.add('open')}
+function closePreview(){previewModal.classList.remove('open')}
+function pdfText(){const sl=lang,sp=PAGE_LOCALE;if(NONLATIN){lang='en';PAGE_LOCALE='en-US'}try{return buildReportText()}finally{lang=sl;PAGE_LOCALE=sp}}
+function downloadPDF(){if(!Object.keys(entries).length){showToast('No entries yet');return}if(!window.jspdf){showToast('PDF library unavailable');return}const{jsPDF}=window.jspdf,doc=new jsPDF(),lines=doc.splitTextToSize(ascii(pdfText()),170);doc.setFont('Courier','normal');doc.setFontSize(9);let y=18;lines.forEach(l=>{if(y>282){doc.addPage();y=18}doc.text(l,20,y);y+=4.4});doc.save('Work-Hours-Report.pdf');showToast('PDF downloaded ✓')}
+function shareWhatsApp(){if(!Object.keys(entries).length){showToast('No entries yet');return}window.open('https://wa.me/?text='+encodeURIComponent(buildReportText()),'_blank')}
+function clearAll(){if(!confirm(L('Clear ALL accounts, entries and settings?')))return;['workHoursDB','workHoursEntries','workHoursSettings'].forEach(k=>localStorage.removeItem(k));location.reload()}
+function showToast(msg){msg=L(msg);const t=toast;t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)}
+previewModal.addEventListener('click',e=>{if(e.target===previewModal)closePreview()});
+init();
+</script>
+</body>
+</html>
