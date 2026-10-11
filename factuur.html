@@ -818,6 +818,7 @@
             img.style.width = sizePx + 'px'; img.style.height = sizePx + 'px';
             img.setAttribute('data-shape', ['round','rounded','square'].includes(shape) ? shape : 'round');
             let src = ''; try { src = new URLSearchParams(window.location.search).get('logo') || ''; } catch(e) {}
+            if (!src) { try { src = new URLSearchParams((window.location.hash || '').replace(/^#/, '')).get('logo') || ''; } catch(e) {} }
             const lk = getP('lk');
             if (!src && lk) {
                 try { src = localStorage.getItem('print_logo_' + lk) || ''; } catch(e) {}
