@@ -622,7 +622,6 @@
 
     <div class="no-print-top">
         <div class="top-nav-box">
-            <a href="go:s1" class="btn-back" id="b-back">⬅ BACK TO GENERATOR</a>
             <div style="color: #94a3b8; font-weight: 800; font-size: 12px; letter-spacing: 1px;">SELECT TEMPLATE STYLE</div>
         </div>
         <div class="btn-grid">
@@ -734,6 +733,13 @@
         it: {topInv:"FATTURA N.", totalText:"TOTALE", d:"DATA", from:"MITTENTE", to:"A", sub:"IMPONIBILE", vat:"IVA", pay:"BANCA", due:"SCADENZA", h1:"DESCRIZIONE", q:"QTÀ", p:"PREZZO", t:"TOTALE", stampT:"MARCA TEMPORALE", stampD:"Protetto digitalmente.", dl:"SCARICA", sh:"CONDIVIDI", vlabel:"P.IVA", tlabel:"COD. FISC.", mob:"CELL", fix:"FISSO", dSuffix:"GIORNI PER PAGARE", wait:"SISTEMA IN PREPARAZIONE...", pureInv:"FATTURA", back:"⬅ TORNA AL MOTORE DI FATTURA"}
     };
 
+    function getLang() {
+        var l = '';
+        try { l = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase().trim().slice(0,2); } catch(e) {}
+        if (!l || !dicts[l]) { try { l = (localStorage.getItem('global_lang') || '').toLowerCase().trim().slice(0,2); } catch(e) { l = ''; } }
+        return (l && dicts[l]) ? l : 'en';
+    }
+
     function getP(n) { return decodeURIComponent(new URLSearchParams(window.location.search).get(n) || "").replace(/\+/g, ' '); }
 
     function setStyle(n) {
@@ -743,7 +749,7 @@
     }
 
     async function runPDF(mode) {
-        const globalLang = localStorage.getItem('global_lang') || 'en';
+        const globalLang = getLang();
         const d = dicts[globalLang] || dicts.en;
         const senderName = getP('n') || "Company";
         const invoiceNo = getP('inv') || "---";
@@ -779,11 +785,10 @@
 
     window.onload = function() {
         document.documentElement.style.setProperty('--accent', '#2e8540');
-        const globalLang = localStorage.getItem('global_lang') || 'en';
+        const globalLang = getLang();
         const d = dicts[globalLang] || dicts.en;
 
         Object.keys(d).forEach(k => { if(document.getElementById('l-'+k)) document.getElementById('l-'+k).innerText = d[k]; });
-        if (document.getElementById('b-back')) document.getElementById('b-back').innerText = d.back;
 
         // Bigger button labels (keep spin letter on first char)
         const dlEl = document.getElementById('l-dl-text');
@@ -812,7 +817,7 @@
             const sizePx = ({S:52, M:72, L:96, XL:120})[(getP('lz') || 'M').toUpperCase()] || 72;
             img.style.width = sizePx + 'px'; img.style.height = sizePx + 'px';
             img.setAttribute('data-shape', ['round','rounded','square'].includes(shape) ? shape : 'round');
-            let src = getP('logo');
+            let src = ''; try { src = new URLSearchParams(window.location.search).get('logo') || ''; } catch(e) {}
             const lk = getP('lk');
             if (!src && lk) {
                 try { src = localStorage.getItem('print_logo_' + lk) || ''; } catch(e) {}
@@ -846,12 +851,13 @@
         if(invD && invD.includes('-')){
             const p = invD.split('-');
             const dt = new Date(p[2], p[1]-1, p[0]);
-            const dStr = dt.toLocaleDateString(globalLang === 'tr' ? 'tr-TR' : 'en-US');
+            const LOC = {tr:'tr-TR', nl:'nl-NL', en:'en-GB', de:'de-DE', fr:'fr-FR', it:'it-IT'};
+        const dStr = dt.toLocaleDateString(LOC[globalLang] || 'en-GB');
             document.getElementById('v-date').innerText = dStr;
             document.getElementById('v-seal-date-flat').textContent = dStr;
             const days = parseInt(getP('due')) || 0;
             dt.setDate(dt.getDate() + days);
-            document.getElementById('v-due-date').innerText = dt.toLocaleDateString(globalLang==='tr'?'tr-TR':'en-GB');
+            document.getElementById('v-due-date').innerText = dt.toLocaleDateString(LOC[globalLang] || 'en-GB');
             document.getElementById('v-due-days').innerText = `${days} ${d.dSuffix}`;
         }
         document.getElementById('v-no').innerText = "#" + (getP('inv') || "---");
