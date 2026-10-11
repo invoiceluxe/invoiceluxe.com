@@ -778,6 +778,14 @@
         return lang;
     }
 
+    // Ham okuma: önce ?query, yoksa #hash. '+' karakterini bozmaz (base64 logo için gerekli).
+    function getRaw(n) {
+        try {
+            let x = new URLSearchParams(window.location.search).get(n);
+            if (x == null || x === '') x = new URLSearchParams(window.location.hash.replace(/^#/, '')).get(n);
+            return x || '';
+        } catch (e) { return ''; }
+    }
     function getP(n) { return decodeURIComponent(new URLSearchParams(window.location.search).get(n) || "").replace(/\+/g, ' '); }
 
     function setStyle(n) {
@@ -849,6 +857,18 @@
             shEl.innerHTML = (globalLang === 'ar' || globalLang === 'hi') ? t : ('<span class="spin-letter">' + t.charAt(0) + '</span>' + t.slice(1));
         }
 
+        // Uygulamadan (APK) gelindiyse: geri butonu önceki sayfaya (uygulama → arşiv) döner
+        (function setupBack() {
+            const b = document.getElementById('b-back');
+            if (!b || getRaw('app') !== '1') return;
+            b.setAttribute('href', '#');
+            b.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (history.length > 1) history.back();
+                else window.location.href = getRaw('ret') || 'create-invoice.html';
+            });
+        })();
+
         const corpName = getP('n') || "COMPANY NAME";
         document.getElementById('v-seal-name').textContent = `* ${corpName.toUpperCase()} *`;
         document.getElementById('v-seal-letter').textContent = corpName.substring(0,1).toUpperCase();
@@ -860,10 +880,10 @@
             const wrap = document.getElementById('logo-wrap');
             const img = document.getElementById('user-logo');
             if (!wrap || !img) return;
-            const shape = (getP('ls') || 'round').toLowerCase();
+            const shape = (getRaw('ls') || 'round').toLowerCase();
             img.setAttribute('data-shape', ['round','rounded','square'].includes(shape) ? shape : 'round');
-            let src = getP('logo');
-            const lk = getP('lk');
+            let src = getRaw('logo');
+            const lk = getRaw('lk');
             if (!src && lk) {
                 try { src = localStorage.getItem('print_logo_' + lk) || ''; } catch(e) {}
             }
