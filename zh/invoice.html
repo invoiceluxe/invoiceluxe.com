@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" translate="no" class="notranslate">
+<html lang="en" translate="no">
 <head>
 <!-- PWA -->
-<link rel="manifest" href="/manifest-zh.webmanifest">
+<link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#08080a">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
@@ -18,7 +18,6 @@
 </script>
 
     <meta charset="UTF-8">
-    <meta name="google" content="notranslate">
     <title>Invoice Luxe Pro - Printing & Templates Engine</title>
     <meta content="width=850, initial-scale=0.4" name="viewport"/>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@500;600;800&family=Outfit:wght@300;600;900&family=Space+Grotesk:wght@500;700&family=Playfair+Display:wght@700&family=DM+Serif+Display&family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;600&display=swap" rel="stylesheet"/>
@@ -38,7 +37,23 @@
         .btn-p:hover { transform: translateY(-2px); opacity: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 
         /* ===== ORIGINAL 8 STYLES ===== */
-        .s-1 .header { justify-content: space-between; border-bottom: 6px solid var(--accent); background: #fafafa; }
+        /* ===== STYLE 1 — CORP G-1 (default, was Corp 1) ===== */
+        .s-1 { background: #fff; }
+        .s-1 .header { justify-content: space-between; background: linear-gradient(160deg, #a8eedc 0%, #dcedc1 60%, transparent 60%); padding: 50px 55px 80px; align-items: flex-start; border-bottom: none; }
+        .s-1 .logo-text { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 900; color: #1f2937 !important; border: none; border-left: none; padding-left: 0; }
+        .s-1 .seal-svg-container svg { fill: #1f2937; stroke: #1f2937; }
+        .s-1 .inv-meta { text-align: left !important; }
+        .s-1 .inv-meta small { color: #374151; font-weight: 700; font-size: 14px; }
+        .s-1 .inv-meta div { font-size: 20px; color: #111827; }
+        .s-1 .content > div:first-child { border: none !important; margin-bottom: 30px; }
+        .s-1 .grid { display: flex; flex-direction: column; gap: 10px; margin-top: -20px; }
+        .s-1 .card { background: transparent; border: none; padding: 0; border-left: none; }
+        .s-1 .card b { font-size: 14px; color: #000; margin-bottom: 2px; }
+        .s-1 th { background: transparent; color: #2e8540; border-top: 2px solid #2e8540; border-bottom: 2px solid #2e8540; font-weight: 800; font-size: 11px; }
+        .s-1 td { border-bottom: none; }
+        .s-1 .total-card { background: transparent; border: none; padding: 0; margin-top: 20px; width: 300px; justify-self: end; }
+        .s-1 .t-gr { border-top: 1px solid #ccc; font-size: 18px; border-color: #ccc; color: #000; }
+        .s-1 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; border-top: 1px solid #2e8540 !important; border-radius: 0 !important; }
         .s-2 .header { flex-direction: row-reverse; justify-content: space-between; border-bottom: 6px solid var(--blue); background: #f0f7ff; }
         .s-3 .header { flex-direction: column; border-bottom: 6px solid var(--gold); background: #1e293b; color: #fff; text-align: center; gap: 15px; }
         .s-4 .header { justify-content: space-between; border-bottom: 1px solid #e2e8f0; background: #fff; }
@@ -125,23 +140,19 @@
         .s-12 .bank-card-new { border: 2px dashed #1a1a1a !important; border-radius: 0 !important; background: #fff !important; }
         .s-12 .bank-card-new .iban-text { font-family: 'IBM Plex Mono', monospace !important; color: #1a1a1a !important; }
 
-        /* ===== NEW STYLE 13 — CORP 1 (G-1) ===== */
+        /* ===== STYLE 13 — CLASSIC ACCENT (former Style 1) ===== */
         .s-13 { background: #fff; }
-        .s-13 .header { justify-content: space-between; background: linear-gradient(160deg, #a8eedc 0%, #dcedc1 60%, transparent 60%); padding: 50px 55px 80px; align-items: flex-start; }
-        .s-13 .logo-text { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 900; color: #1f2937 !important; border: none; }
-        .s-13 .seal-svg-container svg { fill: #1f2937; stroke: #1f2937; }
-        .s-13 .inv-meta { text-align: left !important; }
-        .s-13 .inv-meta small { color: #374151; font-weight: 700; font-size: 14px; }
-        .s-13 .inv-meta div { font-size: 20px; color: #111827; }
-        .s-13 .content > div:first-child { border: none !important; margin-bottom: 30px; }
-        .s-13 .grid { display: flex; flex-direction: column; gap: 10px; margin-top: -20px; }
-        .s-13 .card { background: transparent; border: none; padding: 0; }
-        .s-13 .card b { font-size: 14px; color: #000; margin-bottom: 2px; }
-        .s-13 th { background: transparent; color: #2e8540; border-top: 2px solid #2e8540; border-bottom: 2px solid #2e8540; font-weight: 800; font-size: 11px; }
-        .s-13 td { border-bottom: none; }
-        .s-13 .total-card { background: transparent; border: none; padding: 0; margin-top: 20px; width: 300px; justify-self: end; }
-        .s-13 .t-gr { border-top: 1px solid #ccc; font-size: 18px; }
-        .s-13 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; border-top: 1px solid #2e8540 !important; border-radius: 0 !important; }
+        .s-13 .header { justify-content: space-between; border-bottom: 6px solid var(--accent); background: #fafafa; padding: 35px 55px; align-items: center; }
+        .s-13 .logo-text { border-left: 3px solid var(--accent); padding-left: 15px; color: #1e293b !important; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; }
+        .s-13 .seal-svg-container svg { fill: var(--accent); stroke: var(--accent); }
+        .s-13 .inv-meta { text-align: right !important; }
+        .s-13 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .s-13 .card { background: var(--card-bg); border: 1.5px solid #e2e8f0; border-left: 6px solid var(--accent); border-radius: 12px; padding: 15px; }
+        .s-13 th { background: #f8fafc; color: #64748b; border-top: none; border-bottom: 2px solid #edf2f7; }
+        .s-13 td { border-bottom: 1px solid #f1f5f9; }
+        .s-13 .total-card { background: var(--card-bg); border: 2.5px solid var(--accent); border-radius: 15px; padding: 18px; width: auto; }
+        .s-13 .t-gr { border-top: 2.5px solid var(--accent); font-size: 26px; }
+        .s-13 .bank-card-new { background: #fff !important; border: 2.5px solid #000 !important; border-radius: 18px !important; border-top: 2.5px solid #000 !important; }
 
         /* ===== NEW STYLE 14 — CORP 2 (G-2) ===== */
         .s-14 { background: #fff; position: relative; }
@@ -210,14 +221,14 @@
         .s-17 td { border: 1px solid #9ca3af; text-align: center; }
         .s-17 .total-card { background: transparent; border: none; padding: 0; margin-top: 10px; }
         .s-17 .t-gr { background: #e5e7eb; padding: 5px 10px; border: 1px solid #9ca3af; font-size: 16px; margin-top: 5px; }
-        .s-17 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; text-align: left; font-size: 10px; margin-top: 30px; align-self: end; }
+        .s-17 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; text-align: center; font-size: 10px; margin-top: 30px; }
 
         /* ===== NEW STYLE 18 — CORP CLASSIC ===== */
         .s-18 { background: #fff; }
         .s-18 .header { justify-content: space-between; background: transparent; border: none; padding: 50px 55px 10px; }
         .s-18 .logo-text { font-family: 'Montserrat', sans-serif; font-size: 28px; color: #93c5fd !important; border: none; font-weight: 900; }
         .s-18 .seal-svg-container svg { fill: #bfdbfe; stroke: #bfdbfe; }
-        .s-18 .inv-meta { text-align: right !important; }
+        .s-18 .inv-meta { text-align: left !important; flex: 1; }
         .s-18 .inv-meta small { display: none; }
         .s-18 .inv-meta div { font-size: 28px; color: #000; font-weight: 800; }
         .s-18 .content > div:first-child { border: none !important; margin-bottom: 20px; font-size: 11px; }
@@ -229,13 +240,248 @@
         .s-18 .t-gr { background: #2563eb; color: #fff; padding: 8px 10px; border: none; font-size: 15px; margin-top: 5px; }
         .s-18 .bank-card-new { background: #fff !important; border: 2px solid #2563eb !important; border-radius: 0 !important; padding: 15px !important; margin-top: 30px; }
 
+        /* ===== NEW STYLE 19 — INTERIM MINIMAL (GREEN) ===== */
+        .s-19 { background: #fff; }
+        .s-19 .header { flex-direction: column; align-items: center; justify-content: center; background: #fff; border: none; padding: 45px 55px 25px; text-align: center; }
+        .s-19 .logo-wrap { flex-direction: column; align-items: center; gap: 6px; }
+        .s-19 .seal-svg-container { display: none; }
+        .s-19 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 30px; color: #14532d !important; border: none; letter-spacing: 1px; }
+        .s-19 .inv-meta { text-align: center !important; margin-top: 10px; }
+        .s-19 .inv-meta small { color: #4b5563; letter-spacing: 2px; }
+        .s-19 .inv-meta div { font-size: 16px; color: #14532d; font-weight: 700; }
+        .s-19 .content > div:first-child { justify-content: center; gap: 60px; border: none !important; }
+        .s-19 .card { background: transparent; border: none; border-left: 3px solid #14532d; padding-left: 12px; border-radius: 0; }
+        .s-19 th { background: #14532d; color: #fff; font-weight: 700; }
+        .s-19 td { border-bottom: 1px solid #e5e7eb; }
+        .s-19 .total-card { background: transparent; border: none; padding: 0; }
+        .s-19 .t-gr { background: #14532d; color: #fff !important; padding: 10px 15px; border: none; font-size: 16px; }
+        .s-19 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; font-size: 10px; padding: 0 !important; }
+
+        /* ===== NEW STYLE 20 — BOLD YELLOW BRAND ===== */
+        .s-20 { background: #fff; }
+        .s-20 .header { justify-content: space-between; background: #fff; border: none; padding: 45px 70px 15px 55px; position: relative; }
+        .s-20 .header::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 45px; background: #f7c944; }
+        .s-20 .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: #111827 !important; border: none; }
+        .s-20 .seal-svg-container svg { fill: #f7c944; stroke: #111827; }
+        .s-20 .inv-meta { text-align: right !important; }
+        .s-20 .inv-meta div { font-size: 30px; font-weight: 900; color: #111827; letter-spacing: 1px; }
+        .s-20 .content > div:first-child { border: none !important; }
+        .s-20 .card { background: transparent; border: none; border-left: 3px solid #f7c944; }
+        .s-20 th { background: #1f2937; color: #fff; font-weight: 700; }
+        .s-20 td { border-bottom: none; border-top: 1px solid #f1f5f9; }
+        .s-20 .total-card { background: transparent; border: none; padding: 0; }
+        .s-20 .t-gr { background: #f7c944; color: #111827 !important; padding: 10px 15px; border: none; font-size: 16px; }
+        .s-20 .bank-card-new { background: transparent !important; border: none !important; box-shadow: none; font-size: 10px; padding: 0 !important; }
+
+        /* ===== NEW STYLE 21 — NAVY TAX INVOICE ===== */
+        .s-21 { background: #fff; }
+        .s-21 .header { justify-content: space-between; background: #1e3a5f; color: #fff; padding: 30px 55px; border: none; }
+        .s-21 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: #fff !important; border: none; }
+        .s-21 .seal-svg-container svg { fill: #fff; stroke: #fff; }
+        .s-21 .inv-meta { text-align: right !important; }
+        .s-21 .inv-meta small { color: rgba(255,255,255,0.6); }
+        .s-21 .inv-meta div { color: #fff; }
+        .s-21 .content > div:first-child { border: none !important; }
+        .s-21 .card { background: #eaf2fb; border: none; border-radius: 4px; border-left: 4px solid #1e3a5f; }
+        .s-21 th { background: transparent; color: #1e3a5f; border-top: 2px solid #1e3a5f; border-bottom: 2px solid #1e3a5f; font-weight: 800; }
+        .s-21 td { border-bottom: 1px solid #e5e7eb; }
+        .s-21 .total-card { background: #eaf2fb; border: none; border-radius: 4px; }
+        .s-21 .t-gr { border-top: 2px solid #1e3a5f; color: #1e3a5f !important; }
+        .s-21 .bank-card-new { background: #eaf2fb !important; border: none !important; border-radius: 4px !important; }
+
+        /* ===== NEW STYLE 22 — CREATIVE AGENCY BLUE ===== */
+        .s-22 { background: #fff; }
+        .s-22 .header { justify-content: space-between; background: #fff; border-bottom: 3px solid #2563eb; padding: 45px 55px 20px; }
+        .s-22 .logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: #111827 !important; border: none; }
+        .s-22 .seal-svg-container svg { fill: #2563eb; stroke: #2563eb; }
+        .s-22 .inv-meta { text-align: right !important; }
+        .s-22 .inv-meta div { font-size: 28px; color: #2563eb; font-weight: 800; letter-spacing: 1px; }
+        .s-22 .content > div:first-child { border: none !important; }
+        .s-22 .card { background: transparent; border: none; padding: 0; }
+        .s-22 th { background: #2563eb; color: #fff; font-weight: 700; }
+        .s-22 td { border-bottom: 1px solid #e5e7eb; }
+        .s-22 .total-card { background: transparent; border: none; padding: 0; }
+        .s-22 .t-gr { background: #2563eb; color: #fff !important; padding: 10px 15px; border: none; font-size: 16px; }
+        .s-22 .bank-card-new { background: #fff !important; border: 1.5px solid #2563eb !important; border-radius: 4px !important; }
+
+        /* ===== NEW STYLE 23 — MINIMAL RED ACCENT ===== */
+        .s-23 { background: #fff; }
+        .s-23 .header { justify-content: space-between; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 40px 55px; }
+        .s-23 .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: #b91c1c !important; border: none; }
+        .s-23 .seal-svg-container svg { fill: #b91c1c; stroke: #b91c1c; }
+        .s-23 .inv-meta { text-align: right !important; }
+        .s-23 .inv-meta small { color: #6b7280; }
+        .s-23 .inv-meta div { color: #111827; font-weight: 800; }
+        .s-23 .content > div:first-child { border: none !important; }
+        .s-23 .card { background: transparent; border: none; padding: 0; }
+        .s-23 th { background: transparent; color: #111827; border-bottom: 2px solid #111827; font-weight: 700; }
+        .s-23 td { border-bottom: 1px solid #f1f5f9; }
+        .s-23 .total-card { background: transparent; border: none; padding: 0; }
+        .s-23 .t-gr { border-top: 2px solid #111827; color: #111827 !important; }
+        .s-23 .bank-card-new { background: #fef2f2 !important; border: 1.5px solid #b91c1c !important; border-radius: 4px !important; }
+        .s-23 .bank-card-new small { color: #b91c1c !important; }
+
+        /* ===== NEW STYLE 24 — DIAGONAL TEAL ===== */
+        .s-24 { background: #fff; }
+        .s-24 .header { flex-direction: row-reverse; justify-content: space-between; background: linear-gradient(135deg, #6ee7c4 0%, #34a88a 100%); color: #0d3b30; padding: 45px 55px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%); }
+        .s-24 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 22px; color: #0d3b30 !important; border: none; }
+        .s-24 .seal-svg-container svg { fill: #0d3b30; stroke: #0d3b30; }
+        .s-24 .inv-meta { text-align: left !important; }
+        .s-24 .inv-meta small { color: rgba(13,59,48,0.7); }
+        .s-24 .inv-meta div { color: #0d3b30; }
+        .s-24 .content > div:first-child { border: none !important; }
+        .s-24 .card { background: transparent; border: none; padding: 0; }
+        .s-24 th { background: #0d3b30; color: #6ee7c4; font-weight: 700; }
+        .s-24 td { border-bottom: 1px solid #e5e7eb; }
+        .s-24 .total-card { background: transparent; border: none; padding: 0; }
+        .s-24 .t-gr { background: #0d3b30; color: #6ee7c4 !important; padding: 10px 15px; border: none; }
+        .s-24 .bank-card-new { background: #f0fdf9 !important; border: 1.5px solid #34a88a !important; border-radius: 4px !important; }
+
+
+        /* ===== STYLE 25 — WAVE GREEN (ref image 1 left) ===== */
+        .s-25 { background: #fff; }
+        .s-25 .header {
+            justify-content: space-between; align-items: flex-start;
+            background: linear-gradient(160deg, #34d399 0%, #6ee7b7 35%, #ecfdf5 55%, #fff 55%);
+            padding: 40px 55px 70px; border: none; position: relative;
+        }
+        .s-25 .header::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 48px;
+            background: #fff; border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        .s-25 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 22px; color: #065f46 !important; border: none; }
+        .s-25 .seal-svg-container svg { fill: #065f46; stroke: #065f46; }
+        .s-25 .inv-meta { text-align: right !important; z-index: 2; }
+        .s-25 .inv-meta small { color: #047857; font-weight: 700; }
+        .s-25 .inv-meta div { color: #064e3b; }
+        .s-25 th { background: #10b981; color: #fff; border-radius: 20px 20px 0 0; }
+        .s-25 td { border-bottom: 1px solid #d1fae5; }
+        .s-25 tr:nth-child(even) td { background: #ecfdf5; }
+        .s-25 .total-card { background: transparent; border: none; padding: 0; }
+        .s-25 .t-gr { background: #10b981; color: #fff !important; padding: 10px 16px; border: none; border-radius: 8px; }
+        .s-25 .bank-card-new { border: 2px solid #10b981 !important; border-radius: 8px !important; background: #ecfdf5 !important; }
+
+        /* ===== STYLE 26 — WAVE BLUE (ref image 1 right) ===== */
+        .s-26 { background: #fff; }
+        .s-26 .header {
+            justify-content: space-between; align-items: flex-start;
+            background: linear-gradient(160deg, #2563eb 0%, #60a5fa 35%, #eff6ff 55%, #fff 55%);
+            padding: 40px 55px 70px; border: none; position: relative;
+        }
+        .s-26 .header::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 48px;
+            background: #fff; border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        .s-26 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 22px; color: #1e3a8a !important; border: none; }
+        .s-26 .seal-svg-container svg { fill: #1e3a8a; stroke: #1e3a8a; }
+        .s-26 .inv-meta { text-align: right !important; z-index: 2; }
+        .s-26 .inv-meta small { color: #1d4ed8; font-weight: 700; }
+        .s-26 .inv-meta div { color: #1e3a8a; }
+        .s-26 th { background: #2563eb; color: #fff; border-radius: 20px 20px 0 0; }
+        .s-26 td { border-bottom: 1px solid #dbeafe; }
+        .s-26 tr:nth-child(even) td { background: #eff6ff; }
+        .s-26 .total-card { background: transparent; border: none; padding: 0; }
+        .s-26 .t-gr { background: #2563eb; color: #fff !important; padding: 10px 16px; border: none; border-radius: 8px; }
+        .s-26 .bank-card-new { border: 2px solid #2563eb !important; border-radius: 8px !important; background: #eff6ff !important; }
+
+        /* ===== STYLE 27 — DIAGONAL DARK BLUE (ref image 2) ===== */
+        .s-27 { background: #fff; }
+        .s-27 .header {
+            justify-content: space-between; background: #0f172a; color: #fff;
+            padding: 45px 55px; border: none; position: relative; overflow: hidden;
+        }
+        .s-27 .header::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+            background: #1e40af; clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .s-27 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: #fff !important; border: none; z-index: 2; }
+        .s-27 .seal-svg-container svg { fill: #38bdf8; stroke: #38bdf8; }
+        .s-27 .logo-wrap, .s-27 .inv-meta { z-index: 2; position: relative; }
+        .s-27 .inv-meta { text-align: right !important; }
+        .s-27 .inv-meta small { color: rgba(255,255,255,0.7); }
+        .s-27 .inv-meta div { color: #fff; font-size: 26px; }
+        .s-27 th { background: #1e40af; color: #fff; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+        .s-27 td { border-bottom: 1px solid #e2e8f0; }
+        .s-27 .total-card { background: transparent; border: none; padding: 0; }
+        .s-27 .t-gr { background: #1e40af; color: #fff !important; padding: 12px 18px; border: none; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
+        .s-27 .bank-card-new { border: none !important; background: transparent !important; box-shadow: none; padding: 0 !important; }
+
+        /* ===== STYLE 28 — CLEAN AGENCY (ref image 3) ===== */
+        .s-28 { background: #fff; }
+        .s-28 .header {
+            justify-content: space-between; background: #fff; border: none;
+            padding: 45px 55px 15px; border-bottom: 3px solid #2563eb;
+        }
+        .s-28 .logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #0f172a !important; border: none; }
+        .s-28 .seal-svg-container svg { fill: #2563eb; stroke: #2563eb; }
+        .s-28 .inv-meta { text-align: right !important; }
+        .s-28 .inv-meta small { color: #64748b; }
+        .s-28 .inv-meta div { color: #2563eb; font-size: 28px; font-weight: 800; letter-spacing: 1px; }
+        .s-28 .content > div:first-child { border: none !important; }
+        .s-28 .card { background: transparent; border: none; padding: 0; }
+        .s-28 th { background: #2563eb; color: #fff; font-weight: 700; }
+        .s-28 tr:nth-child(even) td { background: #eff6ff; }
+        .s-28 td { border-bottom: 1px solid #e2e8f0; }
+        .s-28 .total-card { background: transparent; border: none; padding: 0; }
+        .s-28 .t-gr { background: #2563eb; color: #fff !important; padding: 10px 16px; border: none; border-radius: 4px; }
+        .s-28 .bank-card-new { border: 1.5px solid #2563eb !important; border-radius: 4px !important; background: #fff !important; }
+
+        /* ===== STYLE 29 — YELLOW NAVY WAVE (ref image 5) ===== */
+        .s-29 { background: #fff; }
+        .s-29 .header {
+            justify-content: space-between; background: #0f172a; color: #fff;
+            padding: 40px 55px 55px; border: none; position: relative; overflow: hidden;
+        }
+        .s-29 .header::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 55px;
+            background: #fbbf24; border-radius: 60% 40% 0 0 / 100% 100% 0 0;
+        }
+        .s-29 .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: #fbbf24 !important; border: none; z-index: 2; }
+        .s-29 .seal-svg-container svg { fill: #fbbf24; stroke: #fbbf24; }
+        .s-29 .logo-wrap, .s-29 .inv-meta { z-index: 2; position: relative; }
+        .s-29 .inv-meta { text-align: right !important; }
+        .s-29 .inv-meta small { color: rgba(255,255,255,0.6); }
+        .s-29 .inv-meta div { color: #fff; }
+        .s-29 th { background: #0f172a; color: #fbbf24; border-radius: 12px 12px 0 0; }
+        .s-29 td { border-bottom: 1px solid #e5e7eb; }
+        .s-29 .total-card { background: transparent; border: none; padding: 0; }
+        .s-29 .t-gr { color: #0f172a !important; border-top: 2px solid #0f172a; }
+        .s-29 .bank-card-new { border: 2px solid #0f172a !important; border-radius: 8px !important; background: #fffbeb !important; }
+        .s-29 .footer { position: relative; }
+        .s-29 .footer::before {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+            background: #0f172a; border-radius: 0 0 0 0;
+            clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+            z-index: 0; pointer-events: none;
+        }
+
+        /* ===== STYLE 30 — MINIMAL CLASSIC LINES (ref image 6) ===== */
+        .s-30 { background: #fff; }
+        .s-30 .header {
+            justify-content: space-between; background: #fff; border: none;
+            padding: 50px 55px 20px; border-bottom: 1px solid #e5e7eb;
+        }
+        .s-30 .logo-text { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 28px; color: #1e293b !important; border: none; letter-spacing: 2px; }
+        .s-30 .seal-svg-container svg { fill: #64748b; stroke: #64748b; }
+        .s-30 .inv-meta { text-align: right !important; }
+        .s-30 .inv-meta small { color: #64748b; letter-spacing: 1px; }
+        .s-30 .inv-meta div { color: #0f172a; font-weight: 700; }
+        .s-30 .card { background: transparent; border: none; padding: 0; border-top: 2px solid #cbd5e1; padding-top: 8px; }
+        .s-30 th { background: #e2e8f0; color: #334155; font-weight: 700; border: none; }
+        .s-30 td { border-bottom: 1px solid #f1f5f9; color: #334155; }
+        .s-30 tr:nth-child(even) td { background: #f8fafc; }
+        .s-30 .total-card { background: transparent; border: none; padding: 0; border-top: 2px solid #0f172a; }
+        .s-30 .t-gr { background: #d1fae5; color: #065f46 !important; padding: 8px 12px; border: none; }
+        .s-30 .bank-card-new { border: none !important; background: transparent !important; box-shadow: none; padding: 0 !important; border-top: 1px solid #e2e8f0 !important; border-radius: 0 !important; }
+
+
         /* ===== SHARED LOGO & COMMON ===== */
         .logo-wrap { display: flex; align-items: center; gap: 15px; z-index: 2; }
         .s-3 .logo-wrap, .s-6 .logo-wrap, .s-7 .logo-wrap { flex-direction: column; gap: 8px; }
         .s-7 .logo-wrap { align-items: flex-end; }
         .s-9 .logo-wrap, .s-11 .logo-wrap { gap: 18px; }
         .seal-svg-container { width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .s-1 .seal-svg-container svg { fill: var(--accent); stroke: var(--accent); }
+        .s-1 .seal-svg-container svg { fill: #1f2937; stroke: #1f2937; }
         .s-2 .seal-svg-container svg { fill: var(--blue); stroke: var(--blue); }
         .s-4 .seal-svg-container svg { fill: var(--nordic); stroke: var(--nordic); }
         .s-5 .seal-svg-container svg { fill: var(--purple); stroke: var(--purple); }
@@ -245,7 +491,7 @@
         .s-3 .seal-svg-container svg { fill: #1e293b; stroke: #1e293b; }
 
         .logo-text { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1; }
-        .s-1 .logo-text { border-left: 3px solid var(--accent); padding-left: 15px; }
+        .s-1 .logo-text { border-left: none; padding-left: 0; }
         .s-2 .logo-text { border-right: 3px solid var(--blue); padding-right: 15px; text-align:right; }
         .s-3 .logo-text { font-family: 'Cinzel', serif; color: var(--gold) !important; border: none; letter-spacing: 2px; }
         .s-4 .logo-text { font-family: 'Outfit', sans-serif; font-weight: 300; letter-spacing: 4px; color: var(--nordic); }
@@ -297,6 +543,76 @@
         .btn-back { background: #475569; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid #64748b; transition: 0.2s; }
         .btn-back:hover { background: #334155; }
 
+
+        /* User uploaded logo */
+        .user-logo {
+            width: 72px; height: 72px; object-fit: cover; flex: none;
+            background: #fff; border: 1px solid #e5e7eb;
+            display: none;
+        }
+        .user-logo[data-shape="round"] { border-radius: 50%; }
+        .user-logo[data-shape="rounded"] { border-radius: 22%; }
+        .user-logo[data-shape="square"] { border-radius: 0; }
+        .logo-wrap.has-user-logo .seal-svg-container { display: none; }
+        .logo-wrap.has-user-logo .user-logo { display: block; }
+
+        /* Bigger action buttons - eye catching */
+        .btn-area {
+            display: flex; flex-direction: column; align-items: center; gap: 18px; margin: 32px 0 44px;
+            position: relative; z-index: 50;
+        }
+        .btn-row { display: flex; justify-content: center; gap: 22px; width: 100%; flex-wrap: wrap; }
+        .btn-action {
+            min-width: 300px; height: 72px; border: 3px solid #fff; border-radius: 18px;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 19px;
+            letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+            color: #fff; position: relative; overflow: hidden; text-decoration: none;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+        .btn-action:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 16px 38px rgba(0,0,0,0.45); }
+        .btn-action:active { transform: translateY(0) scale(0.98); }
+        .btn-dl {
+            background: linear-gradient(135deg, #1d4ed8 0%, #4f46e5 50%, #7c3aed 100%);
+            animation: pulse-glow-blue 2.2s ease-in-out infinite;
+        }
+        .btn-sh {
+            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+            animation: pulse-glow 2.2s ease-in-out infinite;
+        }
+        .btn-home {
+            width: min(100%, 666px); height: 60px; font-size: 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #1a1a1a; text-shadow: none; border-color: #fff;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 10px 28px rgba(16,185,129,0.45); }
+            50% { box-shadow: 0 10px 40px rgba(16,185,129,0.85), 0 0 26px rgba(52,211,153,0.6); }
+        }
+        @keyframes pulse-glow-blue {
+            0%, 100% { box-shadow: 0 10px 28px rgba(79,70,229,0.45); }
+            50% { box-shadow: 0 10px 40px rgba(79,70,229,0.85), 0 0 26px rgba(124,58,237,0.6); }
+        }
+        @media (max-width: 700px) {
+            .btn-row { flex-direction: column; align-items: center; gap: 16px; padding: 0 12px; }
+            .btn-action { min-width: 0; width: calc(100% - 24px); max-width: 420px; }
+            .btn-home { width: calc(100% - 24px); max-width: 420px; }
+        }
+        .btn-action .spin-letter {
+            display: inline-block;
+            animation: letter-spin 3s linear infinite;
+        }
+        @keyframes letter-spin {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        .btn-action .icon { font-size: 26px; line-height: 1; }
+
+
+        /* Style label badges for new styles */
         .new-badge { font-size: 8px; background: #f59e0b; color: #000; padding: 1px 4px; border-radius: 3px; margin-left: 3px; font-weight: 900; vertical-align: middle; }
     </style>
 </head>
@@ -309,11 +625,11 @@
 
     <div class="no-print-top">
         <div class="top-nav-box">
-            
+            <a href="index.html" class="btn-back" id="b-back">⬅ BACK TO GENERATOR</a>
             <div style="color: #94a3b8; font-weight: 800; font-size: 12px; letter-spacing: 1px;">SELECT TEMPLATE STYLE</div>
         </div>
         <div class="btn-grid">
-            <button class="btn-p" onclick="setStyle(1)"  style="background:#10b981;">Style 1</button>
+            <button class="btn-p" onclick="setStyle(1)"  style="background:#2e8540;">Style 1 · G-1</button>
             <button class="btn-p" onclick="setStyle(2)"  style="background:#2563eb;">Style 2</button>
             <button class="btn-p" onclick="setStyle(3)"  style="background:#fbbf24; color:#000;">Style 3</button>
             <button class="btn-p" onclick="setStyle(4)"  style="background:#64748b;">Style 4</button>
@@ -325,19 +641,32 @@
             <button class="btn-p" onclick="setStyle(10)" style="background:#0d0d14; border:1px solid #39ff14; color:#39ff14;">Style 10 ✦</button>
             <button class="btn-p" onclick="setStyle(11)" style="background:#4a7c59;">Style 11 ✦</button>
             <button class="btn-p" onclick="setStyle(12)" style="background:#1a1a1a; border:1px solid #39ff14; color:#39ff14; font-family:monospace;">Style 12 ✦</button>
-            <button class="btn-p" onclick="setStyle(13)" style="background:#10b981;">Corp 1 (G-1)</button>
+            <button class="btn-p" onclick="setStyle(13)" style="background:#10b981;">Classic 1</button>
             <button class="btn-p" onclick="setStyle(14)" style="background:#3b82f6;">Corp 2 (G-2)</button>
             <button class="btn-p" onclick="setStyle(15)" style="background:#65a30d;">Corp 3 (G-3)</button>
             <button class="btn-p" onclick="setStyle(16)" style="background:#84cc16;">Corp Excel</button>
             <button class="btn-p" onclick="setStyle(17)" style="background:#6b7280;">Corp Box</button>
             <button class="btn-p" onclick="setStyle(18)" style="background:#1e3a8a;">Corp Classic</button>
+            <button class="btn-p" onclick="setStyle(19)" style="background:#14532d;">Interim ✦</button>
+            <button class="btn-p" onclick="setStyle(20)" style="background:#f7c944; color:#000;">Yellow Brand ✦</button>
+            <button class="btn-p" onclick="setStyle(21)" style="background:#1e3a5f;">Tax Invoice ✦</button>
+            <button class="btn-p" onclick="setStyle(22)" style="background:#2563eb;">Agency Blue ✦</button>
+            <button class="btn-p" onclick="setStyle(23)" style="background:#b91c1c;">Minimal Red ✦</button>
+            <button class="btn-p" onclick="setStyle(24)" style="background:#34a88a;">Diagonal Teal ✦</button>
+            <button class="btn-p" onclick="setStyle(25)" style="background:#10b981;">Wave Green ✦</button>
+            <button class="btn-p" onclick="setStyle(26)" style="background:#2563eb;">Wave Blue ✦</button>
+            <button class="btn-p" onclick="setStyle(27)" style="background:#0f172a;">Diagonal Dark ✦</button>
+            <button class="btn-p" onclick="setStyle(28)" style="background:#2563eb;">Clean Agency ✦</button>
+            <button class="btn-p" onclick="setStyle(29)" style="background:#fbbf24; color:#000;">Yellow Navy ✦</button>
+            <button class="btn-p" onclick="setStyle(30)" style="background:#64748b;">Minimal Classic ✦</button>
         </div>
     </div>
 
     <div class="master-container" id="pdf-render-area">
         <div class="invoice-box s-1" id="f-core">
             <div class="header">
-                <div class="logo-wrap">
+                <div class="logo-wrap" id="logo-wrap">
+                    <img id="user-logo" class="user-logo" alt="Logo" referrerpolicy="no-referrer" hidden />
                     <div class="seal-svg-container">
                         <svg viewBox="0 0 100 100">
                             <defs><path d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" id="outerPath"/></defs>
@@ -379,9 +708,21 @@
                 </div>
             </div>
         </div>
-        <div class="btn-area" style="display:flex; justify-content:center; gap:15px; margin: 20px 0;">
-            <button class="btn-p" id="l-dl" onclick="runPDF('dl')" style="background:#1e293b; width:200px;">DOWNLOAD</button>
-            <button class="btn-p" id="l-sh" onclick="runPDF('sh')" style="background:var(--accent); width:200px;">SHARE</button>
+        <div class="btn-area">
+            <div class="btn-row">
+                <button type="button" class="btn-action btn-dl" id="l-dl" onclick="runPDF('dl')">
+                    <span class="icon">⬇</span>
+                    <span id="l-dl-text"><span class="spin-letter">D</span>OWNLOAD PDF</span>
+                </button>
+                <button type="button" class="btn-action btn-sh" id="l-sh" onclick="runPDF('sh')">
+                    <span class="icon">↗</span>
+                    <span id="l-sh-text"><span class="spin-letter">S</span>HARE</span>
+                </button>
+            </div>
+            <a href="index.html" class="btn-action btn-home" id="b-home">
+                <span class="icon">⌂</span>
+                <span id="l-home">BACK TO HOME</span>
+            </a>
         </div>
         <div class="invoice-box stamp-box" id="f-stamp" style="display:flex; justify-content:center; align-items:center;">
             <div class="stamp-inner" style="text-align:center">
@@ -394,38 +735,91 @@
 
     <script>
     const dicts = {
-        tr: {topInv:"FATURA NO", totalText:"TOPLAM", d:"TARİH", from:"GÖNDEREN", to:"ALICI", sub:"ARA TOPLAM", vat:"KDV", pay:"BANKA BİLGİLERİ", due:"VADE", h1:"AÇIKLAMA", q:"ADET", p:"FİYAT", t:"TOPLAM", stampT:"ZAMAN MÜHRÜ", stampD:"Doküman dijital mühürle korunmaktadır.", dl:"İNDİR (PDF)", sh:"PAYLAŞ", vlabel:"KDV NO", tlabel:"VERGİ NO", mob:"GSM", fix:"SABİT", dSuffix:"GÜN İÇİNDE ÖDE", wait:"SİSTEM HAZIRLIYOR...", pureInv:"FATURA", back:"⬅ FATURA MOTORUNA DÖN"},
-        nl: {topInv:"FACTUUR NR", totalText:"TOTAAL", d:"DATUM", from:"AFZENDER", to:"NAAR", sub:"SUBTOTAAL", vat:"BTW", pay:"BANKGEGEVENS", due:"VERVALDATUM", h1:"OMSCHRIJVING", q:"AANTAL", p:"PRIJS", t:"TOTAAL", stampT:"TIJDSTEMPEL", stampD:"Document digitaal beveiligd.", dl:"DOWNLOAD", sh:"DELEN", vlabel:"KVK-NUMMER", tlabel:"BTW-NUMMER", mob:"MOBIEL", fix:"VAST", dSuffix:"DAGEN BETALEN", wait:"SYSTEEM BEREIDT VOOR...", pureInv:"FACTUUR", back:"⬅ TERUG NAAR FACTUUR MOTOR"},
-        en: {topInv:"INVOICE NO", totalText:"TOTAL", d:"DATE", from:"SENDER", to:"BILL TO", sub:"SUBTOTAL", vat:"VAT", pay:"BANK DETAILS", due:"DUE DATE", h1:"DESCRIPTION", q:"QTY", p:"PRICE", t:"TOTAL", stampT:"TIMESTAMP", stampD:"Digitally secured document.", dl:"DOWNLOAD", sh:"SHARE", vlabel:"VAT NO", tlabel:"TAX ID", mob:"MOB", fix:"FIXED", dSuffix:"DAYS TO PAY", wait:"SYSTEM PREPARING...", pureInv:"INVOICE", back:"⬅ BACK TO INVOICE MOTOR"},
-        de: {topInv:"RECHNUNG NR", totalText:"GESAMT", d:"DATUM", from:"ABSENDER", to:"EMPFÄNGER", sub:"ZWISCHENSUMME", vat:"MWST", pay:"BANKVERBINDUNG", due:"FÄLLIGKEIT", h1:"BESCHREIBUNG", q:"ANZAHL", p:"PREIS", t:"GESAMT", stampT:"ZEITSTEMPEL", stampD:"Dokument digital gesichert.", dl:"DOWNLOAD", sh:"TEILEN", vlabel:"UST-IDNR", tlabel:"STEUERNR", mob:"MOBIL", fix:"FESTNETZ", dSuffix:"TAGE ZAHLUNGSZIEL", wait:"SYSTEM BEREITET VOR...", pureInv:"RECHNUNG", back:"⬅ ZURÜCK ZUM INVOICE MOTOR"},
-        fr: {topInv:"N° FACTURE", totalText:"TOTAL", d:"DATE", from:"EXPÉDITEUR", to:"DESTINATAIRE", sub:"SOUS-TOTAL", vat:"TVA", pay:"DÉTAILS BANCAIRES", due:"ÉCHÉANCE", h1:"DESCRIPTION", q:"QTÉ", p:"PRIX", t:"TOTAL", stampT:"TIMBRE FISCAL", stampD:"Document sécurisé.", dl:"TÉLÉCHARGER", sh:"PARTAGER", vlabel:"N° TVA", tlabel:"SIRET", mob:"PORTABLE", fix:"FIXE", dSuffix:"JOURS POUR PAYER", wait:"PRÉPARATION DU SYSTÈME...", pureInv:"FACTURE", back:"⬅ RETOUR AU MOTEUR DE FACTURE"},
-        it: {topInv:"FATTURA N.", totalText:"TOTALE", d:"DATA", from:"MITTENTE", to:"A", sub:"IMPONIBILE", vat:"IVA", pay:"BANCA", due:"SCADENZA", h1:"DESCRIZIONE", q:"QTÀ", p:"PREZZO", t:"TOTALE", stampT:"MARCA TEMPORALE", stampD:"Protetto digitalmente.", dl:"SCARICA", sh:"CONDIVIDI", vlabel:"P.IVA", tlabel:"COD. FISC.", mob:"CELL", fix:"FISSO", dSuffix:"GIORNI PER PAGARE", wait:"SISTEMA IN PREPARAZIONE...", pureInv:"FATTURA", back:"⬅ TORNA AL MOTORE DI FATTURA"},
-        es: {topInv:"FACTURA Nº", totalText:"TOTAL", d:"FECHA", from:"EMISOR", to:"FACTURAR A", sub:"SUBTOTAL", vat:"IVA", pay:"DATOS BANCARIOS", due:"VENCIMIENTO", h1:"DESCRIPCIÓN", q:"CANT", p:"PRECIO", t:"TOTAL", stampT:"SELLO DE TIEMPO", stampD:"Documento asegurado digitalmente.", dl:"DESCARGAR", sh:"COMPARTIR", vlabel:"NIF/NIE", tlabel:"CIF", mob:"MÓVIL", fix:"FIJO", dSuffix:"DÍAS PARA PAGAR", wait:"SISTEMA PREPARANDO...", pureInv:"FACTURA", back:"⬅ VOLVER AL MOTOR"},
-        pt: {topInv:"FATURA Nº", totalText:"TOTAL", d:"DATA", from:"REMETENTE", to:"FATURAR A", sub:"SUBTOTAL", vat:"IVA", pay:"DADOS BANCÁRIOS", due:"VENCIMENTO", h1:"DESCRIÇÃO", q:"QTD", p:"PREÇO", t:"TOTAL", stampT:"CARIMBO DE DATA/HORA", stampD:"Documento protegido digitalmente.", dl:"DOWNLOAD", sh:"COMPARTILHAR", vlabel:"NIF", tlabel:"CNPJ/CPF", mob:"TELEMÓVEL", fix:"FIXO", dSuffix:"DIAS PARA PAGAR", wait:"SISTEMA PREPARANDO...", pureInv:"FATURA", back:"⬅ VOLVER AO MOTOR"},
-        zh: {topInv:"发票编号", totalText:"总计", d:"日期", from:"发件人", to:"账单寄至", sub:"小计", vat: "增值税", pay:"银行信息", due:"截止日期", h1:"描述", q:"数量", p:"单价", t:"总额", stampT:"时间戳", stampD:"数字加密文件。", dl:"下载", sh:"分享", vlabel:"纳税人识别号", tlabel:"信用代码", mob:"手机", fix:"固话", dSuffix:"天内付款", wait:"系统准备中...", pureInv:"发票", back:"⬅ 返回发票生成器"},
-        ru: {topInv:"СЧЕТ №", totalText:"ИТОГО", d:"ДАТА", from:"ОТПРАВИТЕЛЬ", to:"ПОЛУЧАТЕЛЬ", sub:"ПРОМЕЖУТОЧНЫЙ ИТОГ", vat:"НДС", pay:"БАНКОВСКИЕ РЕКВИЗИТЫ", due:"СРОК ОПЛАТЫ", h1:"ОПИСАНИЕ", q:"КОЛ-ВО", p:"ЦЕНА", t:"ВСЕГО", stampT:"ВРЕМЕННАЯ МЕТКА", stampD:"Документ защищен цифровой подписью.", dl:"СКАЧАТЬ", sh:"ПОДЕЛИТЬСЯ", vlabel:"ИНН", tlabel:"КПП", mob:"МОБ.", fix:"ТЕЛ.", dSuffix:"ДНЕЙ ДЛЯ ОПЛАТЫ", wait:"СИСТЕМА ГОТОВИТСЯ...", pureInv:"СЧЕТ", back:"⬅ НАЗАД К КОНСТРУКТОРУ"},
-        hi: {topInv:"इनवॉइस संख्या", totalText:"कुल", d:"दिनांक", from:"प्रेषक", to:"प्राप्तकर्ता", sub:"उप-योग", vat:"जीएसटी", pay:"बैंक विवरण", due:"नियत तिथि", h1:"विवरण", q:"मात्रा", p:"मूल्य", t:"कुल मूल्य", stampT:"टाइमस्टैम्प", stampD:"डिजिटली सुरक्षित दस्तावेज़।", dl:"डाउनलोड", sh:"शेयर करें", vlabel:"जीएसटी नंबर", tlabel:"पैन नंबर", mob:"मोबाइल", fix:"लैंडलाइन", dSuffix:"दिनों में भुगतान", wait:"सिस्टम तैयार हो रहा है...", pureInv:"इनवॉइस", back:"⬅ इनवॉइस इंजन पर वापस जाएं"},
-        ja: {topInv:"請求書番号", totalText:"合計", d:"日付", from:"発信者", to:"請求先御中", sub:"小計", vat:"消費税", pay:"振込先口座", due:"支払期日", h1:"品名・内容", q:"数量", p:"単価", t:"金額", stampT:"タイムスタンプ", stampD:"デジタル保護された文書。", dl:"ダウンロード", sh:"共有", vlabel:"登録番号", tlabel:"法人番号", mob:"携帯", fix:"固定電話", dSuffix:"日以内にお支払い", wait:"システム準備中...", pureInv:"請求書", back:"⬅ 請求書ジェネレーターに戻る"},
-        ar: {topInv:"رقم الفاتورة", totalText:"الإجمالي", d:"التاريخ", from:"المُرسِل", to:"فاتورة إلى", sub:"المجموع الفرعي", vat:"الضريبة", pay:"البيانات البنكية", due:"تاريخ الاستحقاق", h1:"البيان", q:"الكمية", p:"السعر", t:"الإجمالي", stampT:"الختم الرقمي", stampD:"مستند مؤمن رقمياً.", dl:"تحميل", sh:"مشاركة", vlabel:"الرقم الضريبي", tlabel:"السجل التجاري", mob:"الجوال", fix:"الهاتف", dSuffix:"أيام للدفع", wait:"جاري تحضير النظام...", pureInv:"فاتورة", back:"⬅ العودة إلى محرك الفواتير"}
+        tr: {topInv:"FATURA NO", totalText:"TOPLAM", d:"TARİH", from:"GÖNDEREN", to:"ALICI", sub:"ARA TOPLAM", vat:"KDV", pay:"BANKA BİLGİLERİ", due:"VADE", h1:"AÇIKLAMA", q:"ADET", p:"FİYAT", t:"TOPLAM", stampT:"ZAMAN MÜHRÜ", stampD:"Doküman dijital mühürle korunmaktadır.", home:"ANA SAYFAYA DÖN", dl:"İNDİR (PDF)", sh:"PAYLAŞ", vlabel:"KDV NO", tlabel:"VERGİ NO", mob:"GSM", fix:"SABİT", dSuffix:"GÜN İÇİNDE ÖDE", wait:"SİSTEM HAZIRLIYOR...", pureInv:"FATURA", back:"⬅ FATURA MOTORUNA DÖN",
+            units:{pcs:"adet", m:"m", cm:"cm", kg:"kg", km:"km", hour:"saat", day:"gün", week:"hafta", month:"ay"}},
+        nl: {topInv:"FACTUUR NR", totalText:"TOTAAL", d:"DATUM", from:"AFZENDER", to:"NAAR", sub:"SUBTOTAAL", vat:"BTW", pay:"BANKGEGEVENS", due:"VERVALDATUM", h1:"OMSCHRIJVING", q:"AANTAL", p:"PRIJS", t:"TOTAAL", stampT:"TIJDSTEMPEL", stampD:"Document digitaal beveiligd.", home:"TERUG NAAR HOME", dl:"DOWNLOAD", sh:"DELEN", vlabel:"KVK-NUMMER", tlabel:"BTW-NUMMER", mob:"MOBIEL", fix:"VAST", dSuffix:"DAGEN BETALEN", wait:"SYSTEEM BEREIDT VOOR...", pureInv:"FACTUUR", back:"⬅ TERUG NAAR FACTUUR MOTOR",
+            units:{pcs:"stuks", m:"m", cm:"cm", kg:"kg", km:"km", hour:"uur", day:"dag", week:"week", month:"maand"}},
+        en: {topInv:"INVOICE NO", totalText:"TOTAL", d:"DATE", from:"SENDER", to:"BILL TO", sub:"SUBTOTAL", vat:"VAT", pay:"BANK DETAILS", due:"DUE DATE", h1:"DESCRIPTION", q:"QTY", p:"PRICE", t:"TOTAL", stampT:"TIMESTAMP", stampD:"Digitally secured document.", home:"BACK TO HOME", dl:"DOWNLOAD", sh:"SHARE", vlabel:"VAT NO", tlabel:"TAX ID", mob:"MOB", fix:"FIXED", dSuffix:"DAYS TO PAY", wait:"SYSTEM PREPARING...", pureInv:"INVOICE", back:"⬅ BACK TO INVOICE MOTOR",
+            units:{pcs:"pcs", m:"m", cm:"cm", kg:"kg", km:"km", hour:"hour", day:"day", week:"week", month:"month"}},
+        in: {topInv:"INVOICE NO", totalText:"TOTAL", d:"DATE", from:"FROM", to:"BILL TO", sub:"SUBTOTAL", vat:"GST", pay:"BANK DETAILS", due:"DUE DATE", h1:"DESCRIPTION", q:"QTY", p:"PRICE", t:"TOTAL", stampT:"TIMESTAMP", stampD:"Digitally secured document.", home:"BACK TO HOME", dl:"DOWNLOAD", sh:"SHARE", vlabel:"GSTIN", tlabel:"PAN / TAX ID", mob:"MOB", fix:"LANDLINE", dSuffix:"DAYS TO PAY", wait:"SYSTEM PREPARING...", pureInv:"INVOICE", back:"⬅ BACK TO INVOICE MOTOR",
+            units:{pcs:"pcs", m:"m", cm:"cm", kg:"kg", km:"km", hour:"hour", day:"day", week:"week", month:"month"}},
+        de: {topInv:"RECHNUNG NR", totalText:"GESAMT", d:"DATUM", from:"ABSENDER", to:"EMPFÄNGER", sub:"ZWISCHENSUMME", vat:"MWST", pay:"BANKVERBINDUNG", due:"FÄLLIGKEIT", h1:"BESCHREIBUNG", q:"ANZAHL", p:"PREIS", t:"GESAMT", stampT:"ZEITSTEMPEL", stampD:"Dokument digital gesichert.", home:"ZURÜCK ZUR STARTSEITE", dl:"DOWNLOAD", sh:"TEILEN", vlabel:"UST-IDNR", tlabel:"STEUERNR", mob:"MOBIL", fix:"FESTNETZ", dSuffix:"TAGE ZAHLUNGSZIEL", wait:"SYSTEM BEREITET VOR...", pureInv:"RECHNUNG", back:"⬅ ZURÜCK ZUM INVOICE MOTOR",
+            units:{pcs:"Stk", m:"m", cm:"cm", kg:"kg", km:"km", hour:"Std", day:"Tag", week:"Woche", month:"Monat"}},
+        fr: {topInv:"N° FACTURE", totalText:"TOTAL", d:"DATE", from:"EXPÉDITEUR", to:"DESTINATAIRE", sub:"SOUS-TOTAL", vat:"TVA", pay:"DÉTAILS BANCAIRES", due:"ÉCHÉANCE", h1:"DESCRIPTION", q:"QTÉ", p:"PRIX", t:"TOTAL", stampT:"TIMBRE FISCAL", stampD:"Document sécurisé.", home:"RETOUR À L'ACCUEIL", dl:"TÉLÉCHARGER", sh:"PARTAGER", vlabel:"N° TVA", tlabel:"SIRET", mob:"PORTABLE", fix:"FIXE", dSuffix:"JOURS POUR PAYER", wait:"PRÉPARATION DU SYSTÈME...", pureInv:"FACTURE", back:"⬅ RETOUR AU MOTEUR DE FACTURE",
+            units:{pcs:"pcs", m:"m", cm:"cm", kg:"kg", km:"km", hour:"heure", day:"jour", week:"semaine", month:"mois"}},
+        it: {topInv:"FATTURA N.", totalText:"TOTALE", d:"DATA", from:"MITTENTE", to:"A", sub:"IMPONIBILE", vat:"IVA", pay:"BANCA", due:"SCADENZA", h1:"DESCRIZIONE", q:"QTÀ", p:"PREZZO", t:"TOTALE", stampT:"MARCA TEMPORALE", stampD:"Protetto digitalmente.", home:"TORNA ALLA HOME", dl:"SCARICA", sh:"CONDIVIDI", vlabel:"P.IVA", tlabel:"COD. FISC.", mob:"CELL", fix:"FISSO", dSuffix:"GIORNI PER PAGARE", wait:"SISTEMA IN PREPARAZIONE...", pureInv:"FATTURA", back:"⬅ TORNA AL MOTORE DI FATTURA",
+            units:{pcs:"pz", m:"m", cm:"cm", kg:"kg", km:"km", hour:"ora", day:"giorno", week:"settimana", month:"mese"}}
+,
+        ru: {topInv:"СЧЁТ №", totalText:"ИТОГО", d:"ДАТА", from:"ОТПРАВИТЕЛЬ", to:"ПОЛУЧАТЕЛЬ", sub:"ПОДЫТОГ", vat:"НДС", pay:"БАНКОВСКИЕ РЕКВИЗИТЫ", due:"СРОК ОПЛАТЫ", h1:"ОПИСАНИЕ", q:"КОЛ-ВО", p:"ЦЕНА", t:"СУММА", stampT:"ВРЕМЕННАЯ МЕТКА", stampD:"Документ защищён цифровой печатью.", home:"НА ГЛАВНУЮ", dl:"СКАЧАТЬ", sh:"ПОДЕЛИТЬСЯ", vlabel:"НОМЕР НДС", tlabel:"ИНН", mob:"МОБ.", fix:"ТЕЛ.", dSuffix:"ДНЕЙ НА ОПЛАТУ", wait:"СИСТЕМА ГОТОВИТСЯ...", pureInv:"СЧЁТ", back:"⬅ НАЗАД К ГЕНЕРАТОРУ СЧЕТОВ",
+            units:{pcs:"шт", m:"м", cm:"см", kg:"кг", km:"км", hour:"час", day:"день", week:"нед.", month:"мес."}},
+        pt: {topInv:"FATURA N.º", totalText:"TOTAL", d:"DATA", from:"REMETENTE", to:"DESTINATÁRIO", sub:"SUBTOTAL", vat:"IVA", pay:"DADOS BANCÁRIOS", due:"VENCIMENTO", h1:"DESCRIÇÃO", q:"QTD", p:"PREÇO", t:"TOTAL", stampT:"CARIMBO DE DATA/HORA", stampD:"Documento protegido por selo digital.", home:"VOLTAR À PÁGINA INICIAL", dl:"DESCARREGAR", sh:"PARTILHAR", vlabel:"N.º IVA", tlabel:"NIF", mob:"TLM", fix:"FIXO", dSuffix:"DIAS PARA PAGAR", wait:"A PREPARAR O SISTEMA...", pureInv:"FATURA", back:"⬅ VOLTAR AO GERADOR DE FATURAS",
+            units:{pcs:"un", m:"m", cm:"cm", kg:"kg", km:"km", hour:"hora", day:"dia", week:"semana", month:"mês"}},
+        br: {topInv:"FATURA Nº", totalText:"TOTAL", d:"DATA", from:"REMETENTE", to:"DESTINATÁRIO", sub:"SUBTOTAL", vat:"IMPOSTO", pay:"DADOS BANCÁRIOS", due:"VENCIMENTO", h1:"DESCRIÇÃO", q:"QTD", p:"PREÇO", t:"TOTAL", stampT:"CARIMBO DE DATA/HORA", stampD:"Documento protegido por selo digital.", home:"VOLTAR PARA A PÁGINA INICIAL", dl:"BAIXAR", sh:"COMPARTILHAR", vlabel:"CNPJ", tlabel:"ID FISCAL", mob:"CEL", fix:"FIXO", dSuffix:"DIAS PARA PAGAR", wait:"PREPARANDO O SISTEMA...", pureInv:"FATURA", back:"⬅ VOLTAR AO GERADOR DE FATURAS",
+            units:{pcs:"un", m:"m", cm:"cm", kg:"kg", km:"km", hour:"hora", day:"dia", week:"semana", month:"mês"}},
+        ja: {topInv:"請求書番号", totalText:"合計", d:"日付", from:"請求元", to:"請求先", sub:"小計", vat:"消費税", pay:"振込先", due:"支払期限", h1:"品目", q:"数量", p:"単価", t:"金額", stampT:"タイムスタンプ", stampD:"本書はデジタル印で保護されています。", home:"ホームに戻る", dl:"ダウンロード", sh:"共有", vlabel:"登録番号", tlabel:"法人番号", mob:"携帯", fix:"固定電話", dSuffix:"日以内にお支払い", wait:"システム準備中...", pureInv:"請求書", back:"⬅ 請求書ジェネレーターに戻る",
+            units:{pcs:"個", m:"m", cm:"cm", kg:"kg", km:"km", hour:"時間", day:"日", week:"週", month:"か月"}},
+        zh: {topInv:"发票号码", totalText:"总计", d:"日期", from:"开票方", to:"收票方", sub:"小计", vat:"增值税", pay:"银行信息", due:"到期日", h1:"描述", q:"数量", p:"单价", t:"金额", stampT:"时间戳", stampD:"本文件受数字印章保护。", home:"返回首页", dl:"下载", sh:"分享", vlabel:"增值税号", tlabel:"税号", mob:"手机", fix:"座机", dSuffix:"天内付款", wait:"系统准备中...", pureInv:"发票", back:"⬅ 返回发票生成器",
+            units:{pcs:"件", m:"m", cm:"cm", kg:"kg", km:"km", hour:"小时", day:"天", week:"周", month:"月"}},
+        es: {topInv:"FACTURA N.º", totalText:"TOTAL", d:"FECHA", from:"REMITENTE", to:"FACTURAR A", sub:"SUBTOTAL", vat:"IVA", pay:"DATOS BANCARIOS", due:"VENCIMIENTO", h1:"DESCRIPCIÓN", q:"CANT.", p:"PRECIO", t:"TOTAL", stampT:"SELLO DE TIEMPO", stampD:"Documento protegido con sello digital.", home:"VOLVER AL INICIO", dl:"DESCARGAR", sh:"COMPARTIR", vlabel:"N.º IVA", tlabel:"NIF", mob:"MÓVIL", fix:"FIJO", dSuffix:"DÍAS PARA PAGAR", wait:"PREPARANDO EL SISTEMA...", pureInv:"FACTURA", back:"⬅ VOLVER AL GENERADOR DE FACTURAS",
+            units:{pcs:"uds", m:"m", cm:"cm", kg:"kg", km:"km", hour:"hora", day:"día", week:"semana", month:"mes"}},
+        ar: {topInv:"رقم الفاتورة", totalText:"الإجمالي", d:"التاريخ", from:"المرسل", to:"إلى", sub:"المجموع الفرعي", vat:"ضريبة القيمة المضافة", pay:"البيانات المصرفية", due:"تاريخ الاستحقاق", h1:"الوصف", q:"الكمية", p:"السعر", t:"المجموع", stampT:"الختم الزمني", stampD:"المستند محمي بختم رقمي.", home:"العودة إلى الصفحة الرئيسية", dl:"تحميل", sh:"مشاركة", vlabel:"الرقم الضريبي", tlabel:"رقم التسجيل", mob:"جوال", fix:"هاتف ثابت", dSuffix:"يومًا للدفع", wait:"جارٍ تجهيز النظام...", pureInv:"فاتورة", back:"⬅ العودة إلى منشئ الفواتير",
+            units:{pcs:"قطعة", m:"م", cm:"سم", kg:"كجم", km:"كم", hour:"ساعة", day:"يوم", week:"أسبوع", month:"شهر"}},
+        ko: {topInv:"청구서 번호", totalText:"합계", d:"날짜", from:"발신", to:"수신", sub:"소계", vat:"부가세", pay:"은행 정보", due:"지급 기한", h1:"내역", q:"수량", p:"단가", t:"금액", stampT:"타임스탬프", stampD:"본 문서는 디지털 인장으로 보호됩니다.", home:"홈으로 돌아가기", dl:"다운로드", sh:"공유", vlabel:"사업자등록번호", tlabel:"세금 번호", mob:"휴대폰", fix:"유선", dSuffix:"일 이내 결제", wait:"시스템 준비 중...", pureInv:"청구서", back:"⬅ 청구서 생성기로 돌아가기",
+            units:{pcs:"개", m:"m", cm:"cm", kg:"kg", km:"km", hour:"시간", day:"일", week:"주", month:"개월"}},
+        hi: {topInv:"चालान संख्या", totalText:"कुल", d:"तारीख", from:"प्रेषक", to:"प्राप्तकर्ता", sub:"उप-योग", vat:"जीएसटी", pay:"बैंक विवरण", due:"देय तिथि", h1:"विवरण", q:"मात्रा", p:"मूल्य", t:"कुल", stampT:"टाइमस्टैम्प", stampD:"दस्तावेज़ डिजिटल मुहर से सुरक्षित है।", home:"होम पर वापस जाएं", dl:"डाउनलोड", sh:"साझा करें", vlabel:"जीएसटीआईएन", tlabel:"पैन / कर आईडी", mob:"मोबाइल", fix:"लैंडलाइन", dSuffix:"दिनों में भुगतान करें", wait:"सिस्टम तैयार हो रहा है...", pureInv:"चालान", back:"⬅ चालान जनरेटर पर वापस जाएँ",
+            units:{pcs:"नग", m:"m", cm:"cm", kg:"kg", km:"km", hour:"घंटा", day:"दिन", week:"सप्ताह", month:"महीना"}},
+        fi: {topInv:"LASKUN NRO", totalText:"YHTEENSÄ", d:"PÄIVÄMÄÄRÄ", from:"LÄHETTÄJÄ", to:"LASKUTETTAVA", sub:"VÄLISUMMA", vat:"ALV", pay:"PANKKITIEDOT", due:"ERÄPÄIVÄ", h1:"KUVAUS", q:"MÄÄRÄ", p:"HINTA", t:"SUMMA", stampT:"AIKALEIMA", stampD:"Asiakirja on suojattu digitaalisella sinetillä.", home:"TAKAISIN ETUSIVULLE", dl:"LATAA", sh:"JAA", vlabel:"ALV-TUNNUS", tlabel:"Y-TUNNUS", mob:"MATKAPUH.", fix:"PUHELIN", dSuffix:"PÄIVÄÄ MAKSUAIKAA", wait:"JÄRJESTELMÄ VALMISTELEE...", pureInv:"LASKU", back:"⬅ TAKAISIN LASKUGENERAATTORIIN",
+            units:{pcs:"kpl", m:"m", cm:"cm", kg:"kg", km:"km", hour:"tunti", day:"päivä", week:"viikko", month:"kuukausi"}},
+        da: {topInv:"FAKTURANR.", totalText:"I ALT", d:"DATO", from:"AFSENDER", to:"MODTAGER", sub:"SUBTOTAL", vat:"MOMS", pay:"BANKOPLYSNINGER", due:"FORFALDSDATO", h1:"BESKRIVELSE", q:"ANTAL", p:"PRIS", t:"BELØB", stampT:"TIDSSTEMPEL", stampD:"Dokumentet er beskyttet med digitalt segl.", home:"TILBAGE TIL FORSIDEN", dl:"DOWNLOAD", sh:"DEL", vlabel:"CVR-NR.", tlabel:"SKATTE-NR.", mob:"MOBIL", fix:"FASTNET", dSuffix:"DAGE TIL BETALING", wait:"SYSTEMET FORBEREDES...", pureInv:"FAKTURA", back:"⬅ TILBAGE TIL FAKTURAGENERATOREN",
+            units:{pcs:"stk", m:"m", cm:"cm", kg:"kg", km:"km", hour:"time", day:"dag", week:"uge", month:"måned"}},
+        no: {topInv:"FAKTURANR.", totalText:"TOTALT", d:"DATO", from:"AVSENDER", to:"MOTTAKER", sub:"DELSUM", vat:"MVA", pay:"BANKOPPLYSNINGER", due:"FORFALLSDATO", h1:"BESKRIVELSE", q:"ANTALL", p:"PRIS", t:"BELØP", stampT:"TIDSSTEMPEL", stampD:"Dokumentet er beskyttet med digitalt segl.", home:"TILBAKE TIL FORSIDEN", dl:"LAST NED", sh:"DEL", vlabel:"MVA-NR.", tlabel:"ORG.NR.", mob:"MOBIL", fix:"FASTLINJE", dSuffix:"DAGER TIL BETALING", wait:"SYSTEMET FORBEREDES...", pureInv:"FAKTURA", back:"⬅ TILBAKE TIL FAKTURAGENERATOREN",
+            units:{pcs:"stk", m:"m", cm:"cm", kg:"kg", km:"km", hour:"time", day:"dag", week:"uke", month:"måned"}},
+        sv: {topInv:"FAKTURANR", totalText:"TOTALT", d:"DATUM", from:"AVSÄNDARE", to:"MOTTAGARE", sub:"DELSUMMA", vat:"MOMS", pay:"BANKUPPGIFTER", due:"FÖRFALLODATUM", h1:"BESKRIVNING", q:"ANTAL", p:"PRIS", t:"BELOPP", stampT:"TIDSSTÄMPEL", stampD:"Dokumentet skyddas av digitalt sigill.", home:"TILLBAKA TILL STARTSIDAN", dl:"LADDA NER", sh:"DELA", vlabel:"MOMSNR", tlabel:"ORG.NR", mob:"MOBIL", fix:"FASTNÄT", dSuffix:"DAGAR TILL BETALNING", wait:"SYSTEMET FÖRBEREDS...", pureInv:"FAKTURA", back:"⬅ TILLBAKA TILL FAKTURAGENERATORN",
+            units:{pcs:"st", m:"m", cm:"cm", kg:"kg", km:"km", hour:"timme", day:"dag", week:"vecka", month:"månad"}}
     };
 
-    /* ===== TARİH FORMAT KODU EŞLEMESİ (13 dil) ===== */
-    const localeMap = {
-        tr:'tr-TR', nl:'nl-NL', en:'en-US', de:'de-DE', fr:'fr-FR', it:'it-IT',
-        es:'es-ES', pt:'pt-PT', zh:'zh-CN', ru:'ru-RU', hi:'hi-IN', ja:'ja-JP', ar:'ar-SA'
-    };
+    // American / Canadian English: based on EN with local tax terms
+    dicts.us = Object.assign({}, dicts.en, {vat:"SALES TAX", vlabel:"TAX ID", tlabel:"EIN", mob:"CELL", fix:"PHONE"});
+    dicts.ca = Object.assign({}, dicts.en, {vat:"GST/HST", vlabel:"GST/HST NO", tlabel:"BUSINESS NO", mob:"CELL", fix:"PHONE"});
 
+    const langAlias = {'pt-br':'br','ptbr':'br','pt_br':'br','en-us':'us','en-ca':'ca','nb':'no','nn':'no','nb-no':'no','zh-cn':'zh','zh-hans':'zh','cn':'zh','jp':'ja','kr':'ko','se':'sv','dk':'da','en-in':'in','hi-in':'hi','pt-pt':'pt','ar-sa':'ar','ar-ae':'ar','ar-eg':'ar'};
+    const localeMap = { tr:'tr-TR', nl:'nl-NL', en:'en-US', in:'en-IN', de:'de-DE', fr:'fr-FR', it:'it-IT',
+        ru:'ru-RU', pt:'pt-PT', br:'pt-BR', ja:'ja-JP', zh:'zh-CN', es:'es-ES', ar:'ar-EG-u-nu-latn', ko:'ko-KR', hi:'hi-IN',
+        us:'en-US', ca:'en-CA', fi:'fi-FI', da:'da-DK', no:'nb-NO', sv:'sv-SE' };
+    const defaultSyms = { br:'R$', us:'$', ca:'$', ja:'¥', zh:'¥', ko:'₩', ru:'₽', hi:'₹', in:'₹' };
+    function normLang(raw) {
+        let l = String(raw || 'en').trim().toLowerCase().replace(/_/g, '-');
+        if (langAlias[l]) l = langAlias[l];
+        if (!dicts[l] && l.indexOf('-') > 0) { l = l.split('-')[0]; if (langAlias[l]) l = langAlias[l]; }
+        return dicts[l] ? l : 'en';
+    }
+    function rupeeFix(lang, sym) {
+        // ₹ symbol switches English variants to Indian English (other languages keep their own text)
+        if (['en','us','ca'].indexOf(lang) > -1 && (sym === '₹' || sym === 'Rs' || sym === 'INR')) return 'in';
+        return lang;
+    }
+
+    // Ham okuma: önce ?query, yoksa #hash. '+' karakterini bozmaz (base64 logo için gerekli).
+    function getRaw(n) {
+        try {
+            let x = new URLSearchParams(window.location.search).get(n);
+            if (x == null || x === '') x = new URLSearchParams(window.location.hash.replace(/^#/, '')).get(n);
+            return x || '';
+        } catch (e) { return ''; }
+    }
     function getP(n) { return decodeURIComponent(new URLSearchParams(window.location.search).get(n) || "").replace(/\+/g, ' '); }
 
     function setStyle(n) {
         document.getElementById('f-core').className = 'invoice-box s-' + n;
-        const colors = {1:'#10b981',2:'#2563eb',3:'#fbbf24',4:'#64748b',5:'#8b5cf6',6:'#e11d48',7:'#1e3a8a',8:'#000',9:'#b45309',10:'#7ee8a2',11:'#4a7c59',12:'#39ff14',13:'#2e8540',14:'#3b82f6',15:'#65a30d',16:'#84cc16',17:'#4b5563',18:'#2563eb'};
+        const colors = {1:'#2e8540',2:'#2563eb',3:'#fbbf24',4:'#64748b',5:'#8b5cf6',6:'#e11d48',7:'#1e3a8a',8:'#000',9:'#b45309',10:'#7ee8a2',11:'#4a7c59',12:'#39ff14',13:'#10b981',14:'#3b82f6',15:'#65a30d',16:'#84cc16',17:'#4b5563',18:'#2563eb',19:'#14532d',20:'#f7c944',21:'#1e3a5f',22:'#2563eb',23:'#b91c1c',24:'#34a88a',25:'#10b981',26:'#2563eb',27:'#1e40af',28:'#2563eb',29:'#fbbf24',30:'#64748b'};
         document.documentElement.style.setProperty('--accent', colors[n]);
     }
 
     async function runPDF(mode) {
-        const globalLang = getP('l') || localStorage.getItem('global_lang') || 'en';
-        const d = dicts[globalLang] || dicts.en;
+        let globalLang = normLang(getP('l') || localStorage.getItem('global_lang') || 'en');
+        const _sym = getP('sym') || '';
+        globalLang = rupeeFix(globalLang, _sym);
+        const d = dicts[globalLang] || dicts.in || dicts.en;
         const senderName = getP('n') || "Company";
         const invoiceNo = getP('inv') || "---";
         const translateInv = d.pureInv || "Invoice";
@@ -454,24 +848,47 @@
     }
 
     window.onload = function() {
-        /* ===== DÜZELTME: Önce URL'deki l= parametresi okunur, yoksa localStorage'a, o da yoksa 'en'e düşülür ===== */
-        const globalLang = getP('l') || localStorage.getItem('global_lang') || 'en';
-        localStorage.setItem('global_lang', globalLang); /* sonraki ziyaretler için hatırlansın */
-        const d = dicts[globalLang] || dicts.en;
-
-        /* ===== ARAPÇA İÇİN AKILLI RTL (SAĞDAN SOLA) DÜZENLEMESİ ===== */
-        if(globalLang === 'ar') {
-            const fCore = document.getElementById('f-core');
-            fCore.setAttribute('dir', 'rtl');
-            fCore.style.textAlign = 'right';
-            document.getElementById('v-no').parentElement.style.textAlign = 'left';
-            document.getElementById('v-due-date').parentElement.style.textAlign = 'left';
-            document.querySelectorAll('th').forEach(el => el.style.textAlign = 'right');
-            document.querySelectorAll('td').forEach(el => { if(el.style.textAlign === 'right') el.style.textAlign = 'left'; });
-        }
+        document.documentElement.style.setProperty('--accent', '#2e8540');
+        let globalLang = normLang(getP('l') || localStorage.getItem('global_lang') || 'en');
+        const symEarly = getP('sym') || '';
+        globalLang = rupeeFix(globalLang, symEarly);
+        try { localStorage.setItem('global_lang', globalLang); } catch(e) {}
+        const isRTL = (globalLang === 'ar');
+        document.documentElement.lang = (localeMap[globalLang] || 'en').split('-')[0];
+        if (isRTL) { ['f-core','f-stamp'].forEach(id => { const el = document.getElementById(id); if (el) el.setAttribute('dir','rtl'); }); }
+        const d = dicts[globalLang] || dicts.in || dicts.en;
 
         Object.keys(d).forEach(k => { if(document.getElementById('l-'+k)) document.getElementById('l-'+k).innerText = d[k]; });
-        
+        // Force GST / totals (id mismatches)
+        if (document.getElementById('l-vat')) document.getElementById('l-vat').innerText = d.vat || (globalLang === 'in' ? 'GST' : 'VAT');
+        if (document.getElementById('l-total-text')) document.getElementById('l-total-text').innerText = d.totalText || 'TOTAL';
+        if (document.getElementById('l-sub')) document.getElementById('l-sub').innerText = d.sub || 'SUBTOTAL';
+        if (document.getElementById('l-pay')) document.getElementById('l-pay').innerText = d.pay || 'BANK DETAILS';
+        if (document.getElementById('b-back')) document.getElementById('b-back').innerText = d.back;
+
+        // Bigger button labels (keep spin letter on first char)
+        const dlEl = document.getElementById('l-dl-text');
+        const shEl = document.getElementById('l-sh-text');
+        if (dlEl) {
+            const t = (d.dl || 'DOWNLOAD').replace(/\s*\(PDF\)/i,'').trim();
+            dlEl.innerHTML = (globalLang === 'ar' || globalLang === 'hi') ? (t + ' PDF') : ('<span class="spin-letter">' + t.charAt(0) + '</span>' + t.slice(1) + ' PDF');
+        }
+        if (shEl) {
+            const t = (d.sh || 'SHARE').trim();
+            shEl.innerHTML = (globalLang === 'ar' || globalLang === 'hi') ? t : ('<span class="spin-letter">' + t.charAt(0) + '</span>' + t.slice(1));
+        }
+
+        // Uygulamadan (APK) gelindiyse: geri butonu önceki sayfaya (uygulama → arşiv) döner
+        (function setupBack() {
+            const b = document.getElementById('b-back');
+            if (!b || getRaw('app') !== '1') return;
+            b.setAttribute('href', '#');
+            b.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (history.length > 1) history.back();
+                else window.location.href = getRaw('ret') || 'create-invoice.html';
+            });
+        })();
 
         const corpName = getP('n') || "COMPANY NAME";
         document.getElementById('v-seal-name').textContent = `* ${corpName.toUpperCase()} *`;
@@ -479,49 +896,95 @@
         document.getElementById('v-logo').innerText = corpName;
         document.getElementById('v-my-n').innerText = corpName;
 
-        /* ===== DÜZELTME: Tarih formatı artık 13 dilin hepsi için doğru locale ile hesaplanıyor ===== */
-        const localeCode = localeMap[globalLang] || 'en-US';
+        // ----- Logo: logo=url | lk=key | fatura_logo | sessionStorage -----
+        (function applyLogo() {
+            const wrap = document.getElementById('logo-wrap');
+            const img = document.getElementById('user-logo');
+            if (!wrap || !img) return;
+            const shape = (getRaw('ls') || 'round').toLowerCase();
+            img.setAttribute('data-shape', ['round','rounded','square'].includes(shape) ? shape : 'round');
+            let src = getRaw('logo');
+            const lk = getRaw('lk');
+            if (!src && lk) {
+                try { src = localStorage.getItem('print_logo_' + lk) || ''; } catch(e) {}
+            }
+            if (!src) {
+                try { src = sessionStorage.getItem('fatura_logo') || localStorage.getItem('fatura_logo') || ''; } catch(e) {}
+            }
+            if (!src) {
+                try { src = localStorage.getItem('print_logo_in') || localStorage.getItem('print_logo_en') || ''; } catch(e) {}
+            }
+            if (!src) {
+                try {
+                    const prof = JSON.parse(localStorage.getItem('pro_profile') || 'null');
+                    if (prof && prof.logo && (prof.n || '') === corpName) src = prof.logo;
+                } catch(e) {}
+            }
+            if (src && (src.startsWith('http') || src.startsWith('data:image'))) {
+                img.onload = function() {
+                    img.hidden = false;
+                    wrap.classList.add('has-user-logo');
+                };
+                img.onerror = function() {
+                    img.hidden = true;
+                    wrap.classList.remove('has-user-logo');
+                };
+                img.src = src;
+            }
+        })();
+
+        const loc = localeMap[globalLang] || 'en-US';
         const invD = getP('d');
         if(invD && invD.includes('-')){
             const p = invD.split('-');
             const dt = new Date(p[2], p[1]-1, p[0]);
-            const dStr = dt.toLocaleDateString(localeCode);
+            const dStr = dt.toLocaleDateString(loc);
             document.getElementById('v-date').innerText = dStr;
             document.getElementById('v-seal-date-flat').textContent = dStr;
             const days = parseInt(getP('due')) || 0;
             dt.setDate(dt.getDate() + days);
-            document.getElementById('v-due-date').innerText = dt.toLocaleDateString(localeCode);
+            document.getElementById('v-due-date').innerText = dt.toLocaleDateString(loc);
             document.getElementById('v-due-days').innerText = `${days} ${d.dSuffix}`;
         }
         document.getElementById('v-no').innerText = "#" + (getP('inv') || "---");
         if(getP('i')) { document.getElementById('v-iban').innerText = (getP('bnk') ? getP('bnk') + "\n" : "") + getP('i'); }
 
-        const buildInfo = (adr, pc, ct, vat, tax, m, f, mail) => {
+        function countryName(code) {
+            code = String(code || '').trim().toUpperCase();
+            if (!/^[A-Z]{2}$/.test(code)) return code || '';
+            try {
+                return new Intl.DisplayNames([loc], { type: 'region' }).of(code) || code;
+            } catch (e) { return code; }
+        }
+
+        const buildInfo = (adr, pc, ct, countryCode, vat, tax, m, f, mail) => {
             let s = [];
-            if(adr) s.push(adr); if(pc || ct) s.push((pc||"") + " " + (ct||""));
-            if(vat) s.push(d.vlabel + ": " + vat); if(tax) s.push(d.tlabel + ": " + tax);
-            if(mail) s.push(mail); if(m) s.push(d.mob + ": " + m); if(f) s.push(d.fix + ": " + f);
+            if (adr) s.push(adr);
+            const pcCity = ((pc || '') + ' ' + (ct || '')).trim();
+            if (pcCity) s.push(pcCity);
+            const co = countryName(countryCode);
+            if (co) s.push(co);
+            if (vat) s.push(d.vlabel + ": " + vat);
+            if (tax) s.push(d.tlabel + ": " + tax);
+            if (mail) s.push(mail);
+            if (m) s.push(d.mob + ": " + m);
+            if (f) s.push(d.fix + ": " + f);
             return s.join("\n");
         };
 
-        document.getElementById('v-my-det').innerText = buildInfo(getP('adr'), getP('pc'), getP('ct'), getP('vat'), getP('k'), getP('mob'), getP('fix'), getP('mail'));
+        document.getElementById('v-my-det').innerText = buildInfo(getP('adr'), getP('pc'), getP('ct'), getP('sco'), getP('vat'), getP('k'), getP('mob'), getP('fix'), getP('mail'));
         document.getElementById('v-c-n').innerText = getP('c');
-        document.getElementById('v-c-det').innerText = buildInfo(getP('cadr'), getP('cpc'), getP('cct'), getP('cv'), getP('cx'), getP('cmob'), null, getP('cmail'));
+        document.getElementById('v-c-det').innerText = buildInfo(getP('cadr'), getP('cpc'), getP('cct'), getP('cco'), getP('cv'), getP('cx'), getP('cmob'), null, getP('cmail'));
 
-        const sym = getP('sym') || "€", rawItems = getP('items').split('!!');
-
-        /* ===== JAPON YENİ (¥) İÇİN ONDALIK KONTROLÜ (Yen kuruş barındırmaz) ===== */
-        const formatMoney = (val) => {
-            return (sym === '¥' || sym === '円') ? Math.round(val).toString() : val.toFixed(2);
-        };
-
+        const defaultSym = defaultSyms[globalLang] || '€';
+        const sym = getP('sym') || defaultSym, rawItems = getP('items').split('!!');
         let sub = 0, h = "";
-        rawItems.forEach(it => { if(it.includes('|')) { const b = it.split('|'); const q = parseFloat(b[1])||0, p = parseFloat(b[2])||0, u = b[3]||""; const t = q*p; sub += t; h += `<tr><td>${b[0]}</td><td style='text-align:right'>${q} ${u}</td><td style='text-align:right'>${formatMoney(p)}${sym}</td><td style='text-align:right'>${formatMoney(t)}${sym}</td></tr>`; } });
+        rawItems.forEach(it => { if(it.includes('|')) { const b = it.split('|'); const q = parseFloat(b[1])||0, p = parseFloat(b[2])||0, uKey = b[3]||""; const u = (d.units && d.units[uKey]) ? d.units[uKey] : uKey; const t = q*p; sub += t; h += `<tr><td>${b[0]}</td><td style='text-align:right'>${q} ${u}</td><td style='text-align:right'>${p.toFixed(2)}${sym}</td><td style='text-align:right'>${t.toFixed(2)}${sym}</td></tr>`; } });
         document.getElementById('v-list').innerHTML = h;
         const vr = parseFloat(getP('vrate'))||0, tx = sub * (vr/100);
-        document.getElementById('v-sub').innerText = formatMoney(sub) + sym;
-        document.getElementById('v-tax').innerText = formatMoney(tx) + sym + " (%" + vr + ")";
-        document.getElementById('v-total').innerText = formatMoney(sub+tx) + sym;
+        document.getElementById('v-sub').innerText = sub.toFixed(2) + sym;
+        document.getElementById('v-tax').innerText = tx.toFixed(2) + sym + " (%" + vr + ")";
+        document.getElementById('v-total').innerText = (sub+tx).toFixed(2) + sym;
         document.getElementById('v-hash').innerText = "SEC_ID: " + btoa(getP('inv') + Date.now()).toUpperCase().substring(0,30);
     };
     </script>
