@@ -904,8 +904,8 @@
 
         // Geri butonu: kullanicinin geldigi sayfaya doner (ret param > referrer > son kullanilan uygulama sayfasi)
         (function setupBack() {
-            const b = document.getElementById('b-back');
-            if (!b) return;
+            const btns = ['b-back', 'b-home'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+            if (!btns.length) return;
             function safe(u) {
                 try {
                     if (!u) return '';
@@ -919,12 +919,14 @@
             if (!target) target = safe(document.referrer);
             if (!target) { try { target = safe(localStorage.getItem('il_last_app')); } catch (e) {} }
             if (!target) target = safe(getRaw('lang_home')) || 'index.html';
-            b.setAttribute('href', target);
-            b.addEventListener('click', function (e) {
-                // same-tab visit from the app: browser history is the most exact way back
-                if (getRaw('app') === '1' && history.length > 1 && !getRaw('ret')) { e.preventDefault(); history.back(); return; }
-                e.preventDefault();
-                window.location.href = target;
+            btns.forEach(function (b) {
+                b.setAttribute('href', target);
+                b.addEventListener('click', function (e) {
+                    // same-tab visit from the app: browser history is the most exact way back
+                    if (getRaw('app') === '1' && history.length > 1 && !getRaw('ret')) { e.preventDefault(); history.back(); return; }
+                    e.preventDefault();
+                    window.location.href = target;
+                });
             });
         })();
 
