@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hourly Rate Calculator for Freelancers | InvoiceLuxe</title>
 <meta name="description" content="Free freelance hourly rate calculator. Turn your income goal, expenses, taxes and billable hours into the hourly and day rate you should charge.">
-<link rel="canonical" href="https://invoiceluxe.com/hourly-rate-calculator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Hourly Rate Calculator for Freelancers | InvoiceLuxe"><meta property="og:description" content="Free freelance hourly rate calculator. Turn your income goal, expenses, taxes and billable hours into the hourly and day rate you should charge.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#f3f6fc;--ink:#0c1a33;--mute:#52617d;--line:#d6e0f2;--gold:#60a5fa;--link:#1d4ed8;--tile:#e6efff;--tileb:#b3cdf7;--hd:#0f2347;--hdt:#b9cdf0;--fbg:#0f2347;--fcl:#93c5fd;--th:#e2ebfa;--onacc:#06152f;--r:22px}</style>
+<link rel="canonical" href="https://invoiceluxe.com/hourly-rate-calculator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="split">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -76,5 +77,6 @@ document.querySelectorAll('input,select').forEach(function(e){e.addEventListener
 function calc(){var t=num('tax')/100,h=num('hrs')*Math.max(52-num('off'),0),rev=t<1?(num('inc')+num('exp'))/(1-t):NaN,rate=rev/h;
 set('o_rate',fmt(rate));set('o_day',fmt(rate*8));set('o_rev',fmt(rev));set('o_hours',isFinite(h)?Math.round(h).toLocaleString('en-US'):'-')}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

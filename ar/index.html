@@ -147,6 +147,32 @@
 
         .gold-frame { border: 1.5px solid #e6b98033; border-radius: 28px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     </style>
+<link rel="canonical" href="https://invoiceluxe.com/ar/">
+<link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/">
+<link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/">
+<link rel="alternate" hreflang="en" href="https://invoiceluxe.com/">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/">
+<link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/">
+<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/">
+<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/">
+<link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/">
+<link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/">
+<link rel="alternate" hreflang="hi-IN" href="https://invoiceluxe.com/in/">
+<link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/">
+<link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/">
+<link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/">
+<link rel="alternate" hreflang="pt-PT" href="https://invoiceluxe.com/pt/">
+<link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/sv/">
+<link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tr/">
+<link rel="alternate" hreflang="zh-CN" href="https://invoiceluxe.com/zh/">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="flex justify-center">
 
@@ -1322,10 +1348,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- pass logo size to the PDF page ---------- */
   var _open = window.open;
+  try { localStorage.setItem('il_last_app', location.pathname + location.search); } catch (e) {}
   window.open = function (u) {
     try {
-      if (typeof u === 'string' && u.indexOf('invoice.html?') > -1 && getLogo()) {
-        u += '&logo=1&logosz=' + getSize() + '&logoh=' + SIZES[getSize()];
+      if (typeof u === 'string' && u.indexOf('invoice.html?') > -1) {
+        if (getLogo()) u += '&logosz=' + getSize() + '&logoh=' + SIZES[getSize()];
+        if (u.indexOf('&ret=') < 0 && u.indexOf('?ret=') < 0) u += '&ret=' + encodeURIComponent(location.pathname + location.search);
         arguments[0] = u;
       }
     } catch (e) {}

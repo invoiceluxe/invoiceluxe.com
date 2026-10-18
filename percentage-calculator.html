@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Percentage Calculator: % Of, % Change, Increase | InvoiceLuxe</title>
 <meta name="description" content="Free percentage calculator. Find X% of a number, what percent one number is of another, percentage change, and increase or decrease by a percent.">
-<link rel="canonical" href="https://invoiceluxe.com/percentage-calculator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Percentage Calculator: % Of, % Change, Increase | InvoiceLuxe"><meta property="og:description" content="Free percentage calculator. Find X% of a number, what percent one number is of another, percentage change, and increase or decrease by a percent.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#f7f4fd;--ink:#1c1235;--mute:#62578a;--line:#e1d7f5;--gold:#a78bfa;--link:#6d28d9;--tile:#efe9fd;--tileb:#cdbcf6;--hd:#2a1458;--hdt:#d3c5f7;--fbg:#2a1458;--fcl:#c4b5fd;--th:#ebe3fb;--onacc:#1c0a45;--r:28px;--hf:Georgia,'Times New Roman',serif}</style>
+<link rel="canonical" href="https://invoiceluxe.com/percentage-calculator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="hc">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -82,5 +83,6 @@ set('s2',n(num('a2'))+' is '+(num('b2')?n(num('a2')/num('b2')*100)+'%':'-')+' of
 var c=num('a3')?(num('b3')-num('a3'))/Math.abs(num('a3'))*100:NaN;set('s3',isFinite(c)?(c>=0?'Increase':'Decrease')+' of '+n(Math.abs(c))+'%':'-');
 var d=parseInt($('d4').value);set('s4',n(num('b4'))+(d>0?' increased by ':' decreased by ')+n(num('a4'))+'% = '+n(num('b4')*(1+d*num('a4')/100)))}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

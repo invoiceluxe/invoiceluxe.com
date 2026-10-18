@@ -1,5 +1,5 @@
 /* Invoice Luxe service worker: network-first, falls back to cache when offline (per-language home as fallback). */
-const CACHE = 'invoiceluxe-v2';
+const CACHE = 'invoiceluxe-v3';
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));

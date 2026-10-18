@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free Receipt Generator: Create &amp; Print Receipts | InvoiceLuxe</title>
 <meta name="description" content="Free online receipt generator. Add your business, items and tax, then print or save a clean receipt as PDF. No signup, works offline.">
-<link rel="canonical" href="https://invoiceluxe.com/receipt-generator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Free Receipt Generator: Create &amp; Print Receipts | InvoiceLuxe"><meta property="og:description" content="Free online receipt generator. Add your business, items and tax, then print or save a clean receipt as PDF. No signup, works offline.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#ece8dc;--card:#fffefa;--ink:#1f1f1f;--mute:#6b6b6b;--line:#d8d2c2;--gold:#e5dfcc;--link:#444;--tile:#f7f4ea;--tileb:#d8d2c2;--hd:#222;--hdt:#ddd;--fbg:#222;--fcl:#e5dfcc;--th:#eee9da;--onacc:#111;--r:4px;--hf:'Courier New',ui-monospace,monospace}</style>
+<link rel="canonical" href="https://invoiceluxe.com/receipt-generator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -87,5 +88,6 @@ var TH='<table><thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Price
 function calc(){var L=lines(),t=L.sub*num('tax')/100;
 $('doc').innerHTML='<h3>'+esc($('biz').value||'Your business')+'</h3><div>'+esc($('bizinfo').value)+'</div><hr><b>RECEIPT</b> #'+esc($('num').value)+' &middot; '+esc($('date').value)+'<br>Received from: '+esc($('cust').value||'Customer')+'<br>Payment: '+esc($('pay').value)+'<hr>'+TH+L.b+'</tbody></table><hr><div class="r">Subtotal: '+fmt(L.sub)+'<br>Tax ('+num('tax')+'%): '+fmt(t)+'<br><b style="font-size:18px">Total paid: '+fmt(L.sub+t)+'</b></div>'+($('notes').value?'<hr>'+esc($('notes').value):'')+'<hr><div style="text-align:center">Thank you!</div>'}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

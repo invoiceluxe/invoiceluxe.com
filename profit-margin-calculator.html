@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Profit Margin Calculator: Margin, Markup &amp; Price | InvoiceLuxe</title>
 <meta name="description" content="Free profit margin calculator. Work out gross margin, markup, profit and selling price from your cost. Instant results, no signup, works offline.">
-<link rel="canonical" href="https://invoiceluxe.com/profit-margin-calculator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Profit Margin Calculator: Margin, Markup &amp; Price | InvoiceLuxe"><meta property="og:description" content="Free profit margin calculator. Work out gross margin, markup, profit and selling price from your cost. Instant results, no signup, works offline.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#f1f8f4;--ink:#0b1f14;--mute:#4b6355;--line:#cfe5d6;--gold:#4ade80;--link:#15803d;--tile:#e7f7ee;--tileb:#a7dfbd;--hd:#0b2a1a;--hdt:#b9e4c9;--fbg:#0b2a1a;--fcl:#86efac;--th:#dff1e5;--onacc:#042f14;--r:10px}</style>
+<link rel="canonical" href="https://invoiceluxe.com/profit-margin-calculator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="split">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -78,5 +79,6 @@ $('g_price').classList.toggle('hide',m!='price');$('g_margin').classList.toggle(
 if(m=='price')p=num('price');else if(m=='margin')p=num('tm')<100?c/(1-num('tm')/100):NaN;else p=c*(1+num('tk')/100);
 var pr=p-c;set('o_price',fmt(p));set('o_profit',fmt(pr));set('o_margin',pc(pr/p*100));set('o_markup',pc(pr/c*100))}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

@@ -89,3 +89,44 @@ Sonra blog/index.html dosyasını tarayıcıda aç.
 ## Araç sayfalarından makaleye link (statik)
 Her araç sayfasının altına, ilgili makaleye normal <a href="/blog/slug/"> linki koy.
 blog/latest.json son 10 makaleyi verir (isteğe bağlı "Latest Guides" kutusu için).
+
+
+---
+# 2026-10-16 GÜNCELLEMESİ
+
+## 1) Makale sayacı (kaç kişi okudu / kaç kez açıldı)
+Kod hazır (`api/view.js`, `api/stats.js`, `blog-stats.html`). Çalışması için **bir kez** şunları yap:
+
+1. Vercel → projen → **Storage** → **Create Database** → **Upstash Redis** (ücretsiz plan yeter) → projeye bağla. `KV_REST_API_URL` ve `KV_REST_API_TOKEN` otomatik eklenir.
+2. Vercel → **Settings → Environment Variables** → `STATS_TOKEN` ekle (uzun, tahmin edilemez bir şifre; paneli açmak için kullanacaksın). İstersen `STATS_SALT` de ekle (rastgele bir metin).
+3. **Redeploy** yap.
+4. Paneli aç: `https://invoiceluxe.com/blog-stats.html` → STATS_TOKEN'ı gir.
+
+Panelde her makale için: toplam açılma, tekil okuyucu, bugün / 7 gün / 30 gün, son 14 günün mini grafiği ve ülkeler görünür.
+
+- Açılma: aynı kişinin 30 dk içindeki yenilemeleri sayılmaz. Botlar (Googlebot dahil) sayılmaz.
+- Çerez yok, IP saklanmaz (tuzlanmış hash). Kişilerin kimliği tutulmaz; bu GDPR açısından da güvenli.
+- Makalede herkese görünen "N readers" satırı, okuyucu sayısı **20**'ye ulaşınca görünür. Eşik: `build.js` içinde `COUNTER_MIN_PUBLIC`.
+- Redis bağlı değilse site normal çalışır, sayaç sessizce kapalı kalır.
+
+## 2) Yeni makaleler (zamanlanmış)
+`content/blog/` içinde 15 yeni makale: **2 Kasım → 16 Kasım 2026** (günde 1). Kapak görselleri `images/blog/`.
+Build, tarihi bugünden ileri olan makaleleri üretmez; yani Google o güne kadar sayfayı, sitemap'i, RSS'i ve blog listesini göremez. Her gün 05:10 UTC'deki otomatik deploy yeni günün makalesini yayına alır.
+Yeni kapak üretmek için: `python3 make_covers.py` (listeye satır ekle).
+
+## 3) Logo
+Yeni logo tüm ikonlara uygulandı: `apple-touch-icon.png`, `icon-192/512.png`, `icon-maskable-512.png`, `favicon.ico`, `favicon-32.png`, `logo.png`, `logo-mark.png` (şeffaf amblem), `og-image.jpg`. Sayfalardaki eski SVG amblem (30 sayfa) ve blog başlığı yeni amblemle değişti. Service worker önbelleği v3'e yükseltildi.
+
+## 4) Sitemap / Search Console düzeltmeleri
+- **404 sebebi**: Sitemap temizdi; hatalar sayfaların içindeki eski `hreflang` ve `canonical` etiketlerinden geliyordu (eski kök URL'ler, `?lang=` URL'leri, yabancı alan adları). 838 sayfanın canonical + hreflang etiketleri yeniden yazıldı; ölü hreflang kalmadı.
+- `sitemap.xml` yeniden üretildi: yalnızca var olan, kendi kendine canonical olan, indekslenebilir 748 URL + hreflang karşılıkları.
+- `vercel.json`: eski URL'ler için 261 kalıcı yönlendirme, `/xx/index.html → /xx/`, `/?lang=xx → /xx/`, uzantısız `/xx/sayfa → /xx/sayfa.html`.
+- Taslak/çöp dosyalar (`kopie`, `tools6`, `toolsr`, `herramientas1`, `customers1`, `Online ALV-laskuri #U2013…`) ve eski `blogsys/` klasörü `_removed-drafts/` içine taşındı (yayında 404 verir).
+- Boş "React Artifact" başlıklı 8 sayfaya başlık + açıklama eklendi.
+
+### Deploy sonrası Search Console'da yapılacaklar
+1. `sitemap.xml` ve `sitemap-blog.xml` dosyalarını tekrar gönder.
+2. "Niet gevonden (404)" raporunda **Validatie starten** (yeni doğrulama) → Google 1-2 hafta içinde eski URL'leri düşürür.
+3. "Pagina met omleiding" (yönlendirme) hata değildir: http→https, www, `index.html`, `?lang=` URL'lerinin yönlendirmesi normal. Doğrulama "mislukt" görünmesi beklenen bir durum; düzeltilecek bir şey yok.
+4. Vercel → Domains: `www.invoiceluxe.com` → `invoiceluxe.com` yönlendirmesinin (308) açık olduğunu kontrol et.
+5. "Gecrawld, momenteel niet geïndexeerd" 3 URL (`no/pdf-verktoy`, `sv/pdf-verktyg`, `nl/online-vat-calculator`): teknik hata değil, içerik/iç link gücü meselesi; bu sayfalara ana sayfadan/araçlar sayfasından iç link ver.

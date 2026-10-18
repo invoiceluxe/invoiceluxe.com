@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Makale İstatistikleri · Invoice Luxe</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{--bg:#060b17;--panel:#0d1424;--line:#1c2740;--text:#f3efe2;--mute:#9aa3b8;--gold:#e2b857;--gold2:#c99a3a;--ok:#4cd08a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+header img{width:34px;height:34px;object-fit:contain}
+header h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
+header small{color:var(--mute);margin-left:auto}
+main{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.card b{display:block;font-size:26px;color:var(--gold);font-weight:800}
+.card span{color:var(--mute);font-size:13px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+input,button{font:inherit;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 12px}
+button{cursor:pointer;background:var(--gold);color:#000;border:0;font-weight:700}
+button.ghost{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:260px}
+th{background:var(--panel);color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;position:sticky;top:0}
+th.on{color:var(--gold)}
+tr:last-child td{border-bottom:0}
+td a{color:var(--text);text-decoration:none;font-weight:600}td a:hover{color:var(--gold)}
+td small{display:block;color:var(--mute);font-weight:400}
+.spark{display:inline-flex;align-items:flex-end;gap:2px;height:22px;vertical-align:middle}
+.spark i{display:block;width:5px;background:var(--gold2);border-radius:1px;min-height:2px}
+.msg{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--mute)}
+.msg.err{border-color:#7a2d2d;color:#ffb4b4}
+.hint{color:var(--mute);font-size:13px;margin-top:14px}
+</style>
+</head>
+<body>
+<header><img src="/logo-mark.png" alt=""><h1>Makale İstatistikleri</h1><small id="gen"></small></header>
+<main>
+  <div id="login" class="bar" hidden>
+    <input id="tok" type="password" placeholder="STATS_TOKEN (Vercel'de belirlediğin gizli kod)" size="38" autocomplete="off">
+    <button id="go">Giriş</button>
+  </div>
+  <div id="msg"></div>
+  <div id="app" hidden>
+    <div class="cards">
+      <div class="card"><b id="tViews">0</b><span>Toplam açılma</span></div>
+      <div class="card"><b id="tReaders">0</b><span>Toplam okuyucu (tekil)</span></div>
+      <div class="card"><b id="tToday">0</b><span>Bugün</span></div>
+      <div class="card"><b id="t7">0</b><span>Son 7 gün</span></div>
+      <div class="card"><b id="t30">0</b><span>Son 30 gün</span></div>
+    </div>
+    <div class="bar"><button id="refresh" class="ghost">Yenile</button><button id="out" class="ghost">Çıkış</button></div>
+    <div class="wrap"><table>
+      <thead><tr><th data-k="title">Makale</th><th data-k="views">Açılma</th><th data-k="readers">Okuyucu</th><th data-k="today">Bugün</th><th data-k="last7">7 gün</th><th data-k="last30">30 gün</th><th>Son 14 gün</th><th>Ülkeler</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+    <p class="hint"><b>Açılma</b> = makalenin açılma sayısı (aynı kişinin 30 dk içindeki yenilemeleri sayılmaz). <b>Okuyucu</b> = tekil ziyaretçi (kişisel veri tutulmaz, çerez yok). Botlar (Googlebot dahil) sayılmaz. Kişilerin kimliği toplanmaz; sadece sayı ve ülke görürsün.</p>
+  </div>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},S='ilstats',rows=[],titles={},sortK='views',dir=-1;
+var nf=new Intl.NumberFormat('tr-TR');
+function show(t,err){var m=$('msg');m.className='msg'+(err?' err':'');m.textContent=t;m.hidden=!t}
+function tok(){try{return sessionStorage.getItem(S)||''}catch(e){return ''}}
+function load(){
+  var t=tok(); if(!t){$('login').hidden=false;$('app').hidden=true;show('');return}
+  show('Yükleniyor…');
+  Promise.all([
+    fetch('/api/stats',{headers:{Authorization:'Bearer '+t},cache:'no-store'}).then(function(r){return r.json().then(function(j){return{s:r.status,j:j}})}),
+    fetch('/blog/titles.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}})
+  ]).then(function(a){
+    if(a[0].s===401){try{sessionStorage.removeItem(S)}catch(e){}$('login').hidden=false;$('app').hidden=true;show('Kod yanlış.',1);return}
+    if(a[0].s!==200){show(a[0].j.error||'Hata',1);return}
+    titles=a[1];rows=a[0].j.rows;$('gen').textContent=new Date(a[0].j.generated).toLocaleString('tr-TR');
+    $('login').hidden=true;$('app').hidden=false;show('');render();
+  }).catch(function(){show('Sunucuya ulaşılamadı.',1)});
+}
+function render(){
+  var sum=function(k){return rows.reduce(function(t,r){return t+(r[k]||0)},0)};
+  $('tViews').textContent=nf.format(sum('views'));$('tReaders').textContent=nf.format(sum('readers'));
+  $('tToday').textContent=nf.format(sum('today'));$('t7').textContent=nf.format(sum('last7'));$('t30').textContent=nf.format(sum('last30'));
+  var data=rows.map(function(r){var m=titles[r.slug]||{};return Object.assign({title:m.title||r.slug,date:m.date||''},r)});
+  data.sort(function(a,b){var x=a[sortK],y=b[sortK];return (typeof x==='string'?x.localeCompare(y):x-y)*dir});
+  Array.prototype.forEach.call(document.querySelectorAll('th[data-k]'),function(th){th.className=th.dataset.k===sortK?'on':''});
+  $('rows').innerHTML=data.length?data.map(function(r){
+    var vals=Object.keys(r.daily||{}).map(function(k){return r.daily[k]}),mx=Math.max.apply(null,vals.concat([1]));
+    var sp='<span class="spark">'+vals.map(function(v){return '<i style="height:'+Math.max(2,Math.round(v/mx*22))+'px" title="'+v+'"></i>'}).join('')+'</span>';
+    var c=(r.countries||[]).map(function(x){return x[0]+' '+x[1]}).join(' · ');
+    return '<tr><td><a href="/blog/'+r.slug+'/" target="_blank" rel="noopener">'+esc(r.title)+'</a><small>'+r.date+'</small></td><td>'+nf.format(r.views)+'</td><td>'+nf.format(r.readers)+'</td><td>'+r.today+'</td><td>'+r.last7+'</td><td>'+r.last30+'</td><td>'+sp+'</td><td>'+c+'</td></tr>'
+  }).join(''):'<tr><td colspan="8" style="text-align:center;color:var(--mute)">Henüz kayıtlı açılma yok. Bir makaleyi aç, 3 saniye bekle, sonra Yenile.</td></tr>';
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+$('go').onclick=function(){var v=$('tok').value.trim();if(!v)return;try{sessionStorage.setItem(S,v)}catch(e){}load()};
+$('tok').addEventListener('keydown',function(e){if(e.key==='Enter')$('go').click()});
+$('refresh').onclick=load;$('out').onclick=function(){try{sessionStorage.removeItem(S)}catch(e){}location.reload()};
+document.querySelectorAll('th[data-k]').forEach(function(th){th.onclick=function(){var k=th.dataset.k;dir=(k===sortK)?-dir:-1;sortK=k;render()}});
+load();
+})();
+</script>
+</body>
+</html>

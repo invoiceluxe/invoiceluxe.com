@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Late Payment Interest Calculator for Invoices | InvoiceLuxe</title>
 <meta name="description" content="Free late payment interest calculator. Work out the interest and total owed on an overdue invoice from the amount, due date, payment date and rate.">
-<link rel="canonical" href="https://invoiceluxe.com/late-payment-interest-calculator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Late Payment Interest Calculator for Invoices | InvoiceLuxe"><meta property="og:description" content="Free late payment interest calculator. Work out the interest and total owed on an overdue invoice from the amount, due date, payment date and rate.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#fdf4f2;--ink:#2b0f0a;--mute:#7a524b;--line:#f2d4cd;--gold:#fb7185;--link:#be123c;--tile:#fde6e2;--tileb:#f6b6ac;--hd:#3b0d12;--hdt:#f3c4c0;--fbg:#3b0d12;--fcl:#fda4af;--th:#fbe3df;--onacc:#3b0710;--r:14px}</style>
+<link rel="canonical" href="https://invoiceluxe.com/late-payment-interest-calculator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -79,5 +80,6 @@ function calc(){var a=num('amt'),days=Math.max(Math.round((new Date($('paid').va
 per=parseInt($('per').value),day=a*num('rate')/100/per,ii=day*days;
 set('o_days',days);set('o_int',fmt(ii));set('o_day',fmt(day));set('o_tot',fmt(a+ii+num('fee')))}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

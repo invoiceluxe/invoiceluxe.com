@@ -3,24 +3,1554 @@
   "buildCommand": "node build.js",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/demo", "destination": "/video-create-invoice.html", "permanent": false },
-    { "source": "/video-demo", "destination": "/video-create-invoice.html", "permanent": false },
-    { "source": "/video/create-invoice", "destination": "/video-create-invoice.html", "permanent": false },
-    { "source": "/video/create-invoice/", "destination": "/video-create-invoice.html", "permanent": false }
+    {
+      "source": "/demo",
+      "destination": "/video-create-invoice.html",
+      "permanent": false
+    },
+    {
+      "source": "/video-demo",
+      "destination": "/video-create-invoice.html",
+      "permanent": false
+    },
+    {
+      "source": "/video/create-invoice",
+      "destination": "/video-create-invoice.html",
+      "permanent": false
+    },
+    {
+      "source": "/video/create-invoice/",
+      "destination": "/video-create-invoice.html",
+      "permanent": false
+    },
+    {
+      "source": "/about-br.html",
+      "destination": "/br/about-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-ca.html",
+      "destination": "/ca/about-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-da.html",
+      "destination": "/da/about-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-fi.html",
+      "destination": "/fi/about-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-gb.html",
+      "destination": "/gb/about-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-ko.html",
+      "destination": "/ko/about-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-no.html",
+      "destination": "/no/about-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-sv.html",
+      "destination": "/sv/about-sv.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-us.html",
+      "destination": "/us/about-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/ar/code-previewer.html",
+      "destination": "/ar/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/ar/tools.html",
+      "destination": "/ar/herramientas.html",
+      "permanent": true
+    },
+    {
+      "source": "/ar/unit-converter",
+      "destination": "/ar/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-da.html",
+      "destination": "/da/archive-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-de.html",
+      "destination": "/de/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-en-ca.html",
+      "destination": "/ca/archive-en-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-en-us.html",
+      "destination": "/us/archive-en-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-en.html",
+      "destination": "/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-fi.html",
+      "destination": "/fi/archive-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-fr.html",
+      "destination": "/fr/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-it.html",
+      "destination": "/it/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-ko.html",
+      "destination": "/ko/archive-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-nl.html",
+      "destination": "/nl/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-no.html",
+      "destination": "/no/archive-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-pt-br.html",
+      "destination": "/br/archive-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-se.html",
+      "destination": "/sv/archive-se.html",
+      "permanent": true
+    },
+    {
+      "source": "/archive-tr.html",
+      "destination": "/tr/archive.html",
+      "permanent": true
+    },
+    {
+      "source": "/br/create-invoice",
+      "destination": "/br/create-invoice-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/br/customers",
+      "destination": "/br/customers-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/br/settings",
+      "destination": "/br/settings-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/br/smart-calendar.html",
+      "destination": "/br/smart-calendar-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/ca/create-invoice",
+      "destination": "/ca/create-invoice-en-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/ca/customers",
+      "destination": "/ca/customers-en-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/ca/settings",
+      "destination": "/ca/settings-en-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/ca/smart-calendar.html",
+      "destination": "/ca/smart-calendar-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/calcolo-sconto.html",
+      "destination": "/it/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculadora-de-desconto.html",
+      "destination": "/pt/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculadora-de-descuentos.html",
+      "destination": "/es/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculateur-de-remise.html",
+      "destination": "/fr/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator",
+      "destination": "/in/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-da.html",
+      "destination": "/da/calculator-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-de.html",
+      "destination": "/de/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-en-ca.html",
+      "destination": "/ca/calculator-en-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-en-us.html",
+      "destination": "/us/calculator-en-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-es.html",
+      "destination": "/es/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-fi.html",
+      "destination": "/fi/calculator-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-fr.html",
+      "destination": "/fr/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-it.html",
+      "destination": "/it/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-ko.html",
+      "destination": "/ko/calculator-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-nl.html",
+      "destination": "/nl/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-no.html",
+      "destination": "/no/calculator-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-pt-br.html",
+      "destination": "/br/calculator-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-se.html",
+      "destination": "/sv/calculator-se.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator-tr.html",
+      "destination": "/tr/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/code-previewer",
+      "destination": "/in/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/code-previewer.html",
+      "destination": "/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice",
+      "destination": "/gb/create-invoice-en-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-de.html",
+      "destination": "/de/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-en.html",
+      "destination": "/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-fr.html",
+      "destination": "/fr/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-it.html",
+      "destination": "/it/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-nl.html",
+      "destination": "/nl/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/create-invoice-tr.html",
+      "destination": "/tr/create-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers",
+      "destination": "/gb/customers-en-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-de.html",
+      "destination": "/de/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-en.html",
+      "destination": "/en/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-fr.html",
+      "destination": "/fr/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-it.html",
+      "destination": "/it/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-nl.html",
+      "destination": "/nl/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/customers-tr.html",
+      "destination": "/tr/customers.html",
+      "permanent": true
+    },
+    {
+      "source": "/da/create-invoice",
+      "destination": "/da/create-invoice-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/da/customers",
+      "destination": "/da/customers-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/da/settings",
+      "destination": "/da/settings-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/da/smart-calendar.html",
+      "destination": "/da/smart-calendar-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/code-previewer.html",
+      "destination": "/de/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/unit-converter",
+      "destination": "/de/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/wallet",
+      "destination": "/de/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount",
+      "destination": "/in/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-ar.html",
+      "destination": "/ar/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-calculator-ar.html",
+      "destination": "/ar/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-calculator-hi.html",
+      "destination": "/hi/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-calculator-ja.html",
+      "destination": "/ja/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-calculator-zh.html",
+      "destination": "/zh/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-calculator.html",
+      "destination": "/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-de.html",
+      "destination": "/de/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-en.html",
+      "destination": "/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-es.html",
+      "destination": "/es/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-fr.html",
+      "destination": "/fr/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-hi.html",
+      "destination": "/hi/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-it.html",
+      "destination": "/it/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-ja.html",
+      "destination": "/ja/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-nl.html",
+      "destination": "/nl/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-pt.html",
+      "destination": "/pt/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-ru.html",
+      "destination": "/ru/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-tr.html",
+      "destination": "/tr/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/discount-zh.html",
+      "destination": "/zh/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/en-us/smart-calendar.html",
+      "destination": "/us/smart-calendar-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/unit-converter",
+      "destination": "/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/wallet",
+      "destination": "/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/es/code-previewer.html",
+      "destination": "/es/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/es/tools.html",
+      "destination": "/es/herramientas.html",
+      "permanent": true
+    },
+    {
+      "source": "/es/unit-converter",
+      "destination": "/es/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/es/wallet",
+      "destination": "/es/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/estimates.html",
+      "destination": "/en/estimates.html",
+      "permanent": true
+    },
+    {
+      "source": "/fi/create-invoice",
+      "destination": "/fi/create-invoice-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/fi/customers",
+      "destination": "/fi/customers-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/fi/settings",
+      "destination": "/fi/settings-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/fi/smart-calendar.html",
+      "destination": "/fi/smart-calendar-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/fr/code-previewer.html",
+      "destination": "/fr/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/fr/unit-converter",
+      "destination": "/fr/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/fr/wallet",
+      "destination": "/fr/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/gb/smart-calendar.html",
+      "destination": "/gb/smart-calendar-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/hi/code-previewer.html",
+      "destination": "/hi/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/hi/tools.html",
+      "destination": "/in/tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/hi/unit-converter",
+      "destination": "/hi/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/image-studio",
+      "destination": "/image-engine.html",
+      "permanent": true
+    },
+    {
+      "source": "/in/wallet",
+      "destination": "/in/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/indirim-hesaplama.html",
+      "destination": "/tr/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/code-previewer.html",
+      "destination": "/it/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/unit-converter",
+      "destination": "/it/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/wallet",
+      "destination": "/it/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/ja/code-previewer.html",
+      "destination": "/ja/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/ja/unit-converter",
+      "destination": "/ja/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/ko/create-invoice",
+      "destination": "/ko/create-invoice-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/ko/customers",
+      "destination": "/ko/customers-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/ko/settings",
+      "destination": "/ko/settings-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/ko/smart-calendar.html",
+      "destination": "/ko/smart-calendar-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/nl/code-previewer.html",
+      "destination": "/nl/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/nl/online-vat-calculator",
+      "destination": "/nl/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/nl/unit-converter",
+      "destination": "/nl/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/no/create-invoice",
+      "destination": "/no/create-invoice-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/no/customers",
+      "destination": "/no/customers-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/no/settings",
+      "destination": "/no/settings-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/no/settings-no",
+      "destination": "/no/settings-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/no/smart-calendar.html",
+      "destination": "/no/smart-calendar-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/index.html",
+      "destination": "/br/",
+      "permanent": true
+    },
+    {
+      "source": "/pt/calculator",
+      "destination": "/pt/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/code-previewer.html",
+      "destination": "/pt/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/month-week-calendar",
+      "destination": "/pt/month-week-calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/smart-calendar",
+      "destination": "/pt/smart-calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/tools.html",
+      "destination": "/pt/herramientas.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/unit-converter",
+      "destination": "/pt/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/pt/wallet",
+      "destination": "/pt/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/rabatt-rechner.html",
+      "destination": "/de/discount.html",
+      "permanent": true
+    },
+    {
+      "source": "/ru/code-previewer.html",
+      "destination": "/ru/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/ru/unit-converter",
+      "destination": "/ru/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/scanner",
+      "destination": "/nl/scanner.html",
+      "permanent": true
+    },
+    {
+      "source": "/se/create-invoice",
+      "destination": "/sv/create-invoice-se.html",
+      "permanent": true
+    },
+    {
+      "source": "/se/customers",
+      "destination": "/sv/customers-se.html",
+      "permanent": true
+    },
+    {
+      "source": "/se/settings",
+      "destination": "/sv/settings-se.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings",
+      "destination": "/gb/settings-en-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-de.html",
+      "destination": "/de/settings.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-en.html",
+      "destination": "/en/settings-en.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-fr.html",
+      "destination": "/fr/settings.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-it.html",
+      "destination": "/it/settings.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-nl.html",
+      "destination": "/nl/settings.html",
+      "permanent": true
+    },
+    {
+      "source": "/settings-tr.html",
+      "destination": "/tr/settings.html",
+      "permanent": true
+    },
+    {
+      "source": "/sv/smart-calendar.html",
+      "destination": "/sv/smart-calendar-sv.html",
+      "permanent": true
+    },
+    {
+      "source": "/tr/code-previewer.html",
+      "destination": "/tr/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/tr/unit-converter",
+      "destination": "/tr/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/tr/wallet",
+      "destination": "/tr/wallet.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter",
+      "destination": "/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-br.html",
+      "destination": "/br/unit-converter-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-ca.html",
+      "destination": "/ca/unit-converter-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-da.html",
+      "destination": "/da/unit-converter-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-fi.html",
+      "destination": "/fi/unit-converter-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-gb.html",
+      "destination": "/gb/unit-converter-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-ko.html",
+      "destination": "/ko/unit-converter-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-no.html",
+      "destination": "/no/unit-converter-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-sv.html",
+      "destination": "/sv/unit-converter-sv.html",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter-us.html",
+      "destination": "/us/unit-converter-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility",
+      "destination": "/de/utility-hub.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-br.html",
+      "destination": "/br/utility-suite-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-ca.html",
+      "destination": "/ca/utility-suite-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-da.html",
+      "destination": "/da/utility-suite-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-fi.html",
+      "destination": "/fi/utility-suite-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-gb.html",
+      "destination": "/gb/utility-suite-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-ko.html",
+      "destination": "/ko/utility-suite-ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-no.html",
+      "destination": "/no/utility-suite-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-sv.html",
+      "destination": "/sv/utility-suite-sv.html",
+      "permanent": true
+    },
+    {
+      "source": "/utility-suite-us.html",
+      "destination": "/us/utility-suite-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-ar.html",
+      "destination": "/ar/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-br.html",
+      "destination": "/br/vat-calculator-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-ca.html",
+      "destination": "/ca/vat-calculator-ca.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-da.html",
+      "destination": "/da/vat-calculator-da.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-de.html",
+      "destination": "/de/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-en.html",
+      "destination": "/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-es.html",
+      "destination": "/es/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-fi.html",
+      "destination": "/fi/vat-calculator-fi.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-fr.html",
+      "destination": "/fr/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-gb.html",
+      "destination": "/gb/vat-calculator-gb.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-hi.html",
+      "destination": "/hi/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-it.html",
+      "destination": "/it/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-ja.html",
+      "destination": "/ja/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-ko.html",
+      "destination": "/ko/Vat-Calculator-Ko.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-nl.html",
+      "destination": "/nl/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-no.html",
+      "destination": "/no/vat-calculator-no.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-pt.html",
+      "destination": "/pt/tax-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-ru.html",
+      "destination": "/ru/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-sv.html",
+      "destination": "/sv/vat-calculator-sv.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-tr.html",
+      "destination": "/tr/kdv-analiz.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-us.html",
+      "destination": "/us/vat-calculator-us.html",
+      "permanent": true
+    },
+    {
+      "source": "/vat-calculator-zh.html",
+      "destination": "/zh/calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/wallet",
+      "destination": "/br/wallet-pt-br.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/br/calculadora-horas-salario.html",
+      "destination": "/br/calculadora-horas-salario.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/canada/work-hours-salary-calculator.html",
+      "destination": "/ca/work-hours-salary-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/da/arbejdstid-lonberegner.html",
+      "destination": "/da/arbejdstid-lonberegner.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/es/calculadora-horas-salario.html",
+      "destination": "/es/calculadora-horas-salario.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/fi/tyoaika-palkkalaskuri.html",
+      "destination": "/fi/tyoaika-palkkalaskuri.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/gb/working-hours-pay-calculator.html",
+      "destination": "/gb/working-hours-pay-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/ko/geunmu-sigan-geubyeo.html",
+      "destination": "/ko/geunmu-sigan-geubyeo.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/no/arbeidstid-lonnsberegner.html",
+      "destination": "/no/arbeidstid-lonnsberegner.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/sv/arbetstid-loneberaknare.html",
+      "destination": "/sv/arbetstid-loneberaknare.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/tr/mesai-maas-hesaplama.html",
+      "destination": "/tr/working-hours.html",
+      "permanent": true
+    },
+    {
+      "source": "/work-calc/us/work-hours-salary-calculator.html",
+      "destination": "/us/work-hours-salary-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh/code-previewer.html",
+      "destination": "/zh/html-editor.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh/smart-calendar",
+      "destination": "/zh/smart-calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/zh/unit-converter",
+      "destination": "/zh/unit-converter.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator",
+      "destination": "/en/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/ar/",
+      "destination": "/ar/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/de/",
+      "destination": "/de/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/es/",
+      "destination": "/es/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/fr/",
+      "destination": "/fr/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/hi/",
+      "destination": "/hi/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/it/",
+      "destination": "/it/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/ja/",
+      "destination": "/ja/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/nl/",
+      "destination": "/nl/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/pt/",
+      "destination": "/pt/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/ru/",
+      "destination": "/ru/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/tr/",
+      "destination": "/tr/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/zip-creator/zh/",
+      "destination": "/zh/zip-creator.html",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ar"
+        }
+      ],
+      "destination": "/ar/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "br"
+        }
+      ],
+      "destination": "/br/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ca"
+        }
+      ],
+      "destination": "/ca/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "da"
+        }
+      ],
+      "destination": "/da/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "de"
+        }
+      ],
+      "destination": "/de/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "es"
+        }
+      ],
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fi"
+        }
+      ],
+      "destination": "/fi/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/fr/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "gb"
+        }
+      ],
+      "destination": "/gb/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "hi"
+        }
+      ],
+      "destination": "/hi/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "in"
+        }
+      ],
+      "destination": "/in/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "it"
+        }
+      ],
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ja"
+        }
+      ],
+      "destination": "/ja/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ko"
+        }
+      ],
+      "destination": "/ko/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "nl"
+        }
+      ],
+      "destination": "/nl/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "no"
+        }
+      ],
+      "destination": "/no/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "pt"
+        }
+      ],
+      "destination": "/pt/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "ru"
+        }
+      ],
+      "destination": "/ru/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "sv"
+        }
+      ],
+      "destination": "/sv/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "tr"
+        }
+      ],
+      "destination": "/tr/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "us"
+        }
+      ],
+      "destination": "/us/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "zh"
+        }
+      ],
+      "destination": "/zh/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "pt-br"
+        }
+      ],
+      "destination": "/br/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/index.html",
+      "destination": "/:path*/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang([a-z]{2})/:page([a-z0-9-]+)",
+      "destination": "/:lang/:page.html",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/content/:path*", "destination": "/404-not-found" },
-    { "source": "/netlify/:path*", "destination": "/404-not-found" },
-    { "source": "/blogsys/:path*", "destination": "/404-not-found" },
-    { "source": "/build.js", "destination": "/404-not-found" },
-    { "source": "/reschedule.js", "destination": "/404-not-found" }
+    {
+      "source": "/content/:path*",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/netlify/:path*",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/blogsys/:path*",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/build.js",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/reschedule.js",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/_removed-drafts/:path*",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/KURULUM.md",
+      "destination": "/404-not-found"
+    },
+    {
+      "source": "/make_covers.py",
+      "destination": "/404-not-found"
+    }
   ],
   "headers": [
-    { "source": "/sw.js", "headers": [
-      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-      { "key": "Service-Worker-Allowed", "value": "/" } ] },
-    { "source": "/manifest.json", "headers": [{ "key": "Content-Type", "value": "application/manifest+json" }] },
-    { "source": "/manifest.webmanifest", "headers": [{ "key": "Content-Type", "value": "application/manifest+json" }] },
-    { "source": "/manifest-:lang.webmanifest", "headers": [{ "key": "Content-Type", "value": "application/manifest+json" }] }
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    },
+    {
+      "source": "/manifest-:lang.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    }
   ]
 }

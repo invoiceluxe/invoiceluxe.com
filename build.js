@@ -12,6 +12,7 @@ const BRAND = 'Invoice Luxe';
 const TZ = 'Europe/Amsterdam';
 const TOOLS = fs.existsSync(path.join(ROOT, 'tools.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'tools.json'), 'utf8')) : {};
 const VIDEO = '/video/create-invoice/';
+const COUNTER_MIN_PUBLIC = 20; // show the public "N readers" line only once an article has at least this many readers
 const hasVideo = fs.existsSync(path.join(ROOT, 'video', 'create-invoice', 'index.html'));
 const today = process.env.BUILD_DATE || new Date().toLocaleDateString('en-CA', { timeZone: TZ });
 
@@ -90,7 +91,7 @@ a{color:var(--link);text-underline-offset:3px}a:hover{color:#000}
 header.site{background:#0d0c09;border-bottom:1px solid #2c2815}
 header.site div{max-width:980px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 header.site a.brand{font:800 18px system-ui,sans-serif;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
-header.site a.brand i{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font:900 13px/28px system-ui;text-align:center;font-style:normal}
+header.site a.brand img{width:30px;height:30px;object-fit:contain}
 header.site nav{display:flex;gap:18px;font:600 15px system-ui,sans-serif}header.site nav a{color:#cfc9b3;text-decoration:none}header.site nav a:hover{color:var(--gold)}
 main{max-width:720px;margin:0 auto;padding:44px 20px 70px}
 .wide{max-width:980px}
@@ -163,7 +164,7 @@ const head = (title, desc, url, extra = '', img = '') => `<!DOCTYPE html>
 <script>if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
 <link rel="alternate" type="application/rss+xml" title="${BRAND} Guides" href="${SITE}/blog/rss.xml">
 <style>${CSS}</style>${extra}</head><body>
-<header class="site"><div><a class="brand" href="/"><i>IL</i>${BRAND}</a><nav><a href="/">Tools</a><a href="/blog/">Guides</a>${hasVideo ? `<a href="${VIDEO}">Video demo</a>` : ''}</nav></div></header>`;
+<header class="site"><div><a class="brand" href="/"><img src="/logo-mark.png" alt="" width="30" height="30">${BRAND}</a><nav><a href="/">Tools</a><a href="/blog/">Guides</a>${hasVideo ? `<a href="${VIDEO}">Video demo</a>` : ''}</nav></div></header>`;
 const foot = `<footer>&copy; ${new Date().getFullYear()} ${BRAND}. Free invoicing tools for freelancers and small businesses.</footer></body></html>`;
 
 function injectGuides(posts) {
@@ -233,13 +234,18 @@ function build() {
     const page = head(`${p.title} | ${BRAND}`, p.description, p.url,
       (kws.length ? `<meta name="keywords" content="${esc(kws.join(', '))}">` : '') + p.tagList.map(t => `<meta property="article:tag" content="${esc(t)}">`).join('') + `<script type="application/ld+json">${JSON.stringify(ld)}</script>`, p.image) +
 `<div id="bar"></div><main class="read"><article><h1>${esc(p.title)}</h1><p class="lead">${esc(p.description)}</p>
-<div class="meta">${fmtDate(p.date)} &middot; ${p.minutes} min read</div>
+<div class="meta">${fmtDate(p.date)} &middot; ${p.minutes} min read<span id="rc" hidden> &middot; <span id="rcn"></span> readers</span></div>
 ${p.tagList.length ? `<div class="tags">${p.tagList.map(t => `<a href="/blog/tag/${slugify(t)}/">${esc(t)}</a>`).join('')}</div>` : ''}
 ${cover}
 ${toc}
 ${bodyHtml}
 ${cta}</article>
 ${others.length ? `<section class="more"><h2>Related guides</h2><ul>${others.map(o => `<li><a href="/blog/${o.slug}/">${esc(o.title)}</a></li>`).join('')}</ul></section>` : ''}
+<script>(function(){var s=${JSON.stringify(p.slug)},MIN=${COUNTER_MIN_PUBLIC};function show(d){try{if(d&&d.readers>=MIN){document.getElementById('rcn').textContent=Number(d.readers).toLocaleString('en-US');document.getElementById('rc').hidden=false}}catch(e){}}
+function get(){fetch('/api/view?slug='+encodeURIComponent(s)).then(function(r){return r.ok?r.json():null}).then(show).catch(function(){})}
+function send(){var k='iv:'+s;try{if(sessionStorage.getItem(k))return get();sessionStorage.setItem(k,'1')}catch(e){}
+fetch('/api/view',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:s}),keepalive:true}).then(function(r){return r.ok?r.json():null}).then(show).catch(function(){})}
+setTimeout(function(){if(document.visibilityState==='visible')send();else document.addEventListener('visibilitychange',function f(){if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',f);send()}})},2500)})()</script>
 <script>addEventListener('scroll',function(){var d=document.documentElement,h=d.scrollHeight-innerHeight;document.getElementById('bar').style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true})</script></main>` + foot;
     fs.mkdirSync(path.join(OUT, p.slug), { recursive: true });
     fs.writeFileSync(path.join(OUT, p.slug, 'index.html'), page);
@@ -266,6 +272,7 @@ ${posts.length ? `<div class="cards">${posts.slice(0, 30).map(p => `<a class="ca
 
   const rssItems = posts.slice(0, 30).map(p => `<item><title>${esc(p.title)}</title><link>${p.url}</link><guid>${p.url}</guid><pubDate>${new Date(p.date + 'T06:00:00Z').toUTCString()}</pubDate><description>${esc(p.description)}</description></item>`).join('');
   fs.writeFileSync(path.join(OUT, 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${BRAND} Guides</title><link>${SITE}/blog/</link><description>Invoicing, VAT and freelancer guides</description><language>en</language>${rssItems}</channel></rss>`);
+  fs.writeFileSync(path.join(OUT, 'titles.json'), JSON.stringify(Object.fromEntries(posts.map(p => [p.slug, { title: p.title, date: p.date }]))));
   fs.writeFileSync(path.join(OUT, 'latest.json'), JSON.stringify(posts.slice(0, 10).map(p => ({ title: p.title, url: `/blog/${p.slug}/`, date: p.date, description: p.description }))));
   const urls = [{ loc: `${SITE}/blog/`, lm: posts[0] ? posts[0].date : today }, ...(hasVideo ? [{ loc: SITE + VIDEO, lm: today }] : []), ...posts.map(p => ({ loc: p.url, lm: p.updated || p.date })), ...tagsSorted.filter(([, v]) => v.list.length >= 3).map(([k, v]) => ({ loc: `${SITE}/blog/tag/${k}/`, lm: v.list[0].date }))];
   fs.writeFileSync(path.join(ROOT, 'sitemap-blog.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${u.lm}</lastmod></url>`).join('')}</urlset>`);

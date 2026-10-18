@@ -544,17 +544,35 @@
         .btn-back:hover { background: #334155; }
 
 
-        /* User uploaded logo */
+        /* User uploaded logo: size comes from the app (logosz / logoh), keeps its own aspect ratio */
         .user-logo {
-            width: 72px; height: 72px; object-fit: cover; flex: none;
-            background: #fff; border: 1px solid #e5e7eb;
+            height: 64px; width: auto; max-width: 260px; object-fit: contain; flex: none;
+            background: transparent; border: none; border-radius: 0;
             display: none;
         }
-        .user-logo[data-shape="round"] { border-radius: 50%; }
+        .user-logo[data-shape="round"] { border-radius: 50%; object-fit: cover; }
         .user-logo[data-shape="rounded"] { border-radius: 22%; }
         .user-logo[data-shape="square"] { border-radius: 0; }
         .logo-wrap.has-user-logo .seal-svg-container { display: none; }
         .logo-wrap.has-user-logo .user-logo { display: block; }
+        .logo-wrap { min-width: 0; max-width: 100%; }
+        .logo-wrap .logo-text { min-width: 0; overflow-wrap: anywhere; }
+        /* big logos: let the company name shrink so the header stays on one line */
+        .logo-wrap[data-logo-size="l"].has-user-logo .logo-text { font-size: 22px !important; letter-spacing: 0 !important; }
+        .logo-wrap[data-logo-size="xl"].has-user-logo .logo-text { font-size: 18px !important; letter-spacing: 0 !important; }
+        /* dark headers: give the logo a white plate so dark logos stay visible */
+        .s-3 .user-logo, .s-6 .user-logo, .s-7 .user-logo, .s-10 .user-logo, .s-12 .user-logo,
+        .s-21 .user-logo, .s-27 .user-logo, .s-29 .user-logo { background: #fff; padding: 6px; border-radius: 12px; box-sizing: content-box; }
+        /* centred / stacked layouts */
+        .s-3 .logo-wrap.has-user-logo, .s-6 .logo-wrap.has-user-logo, .s-7 .logo-wrap.has-user-logo, .s-19 .logo-wrap.has-user-logo { align-items: center; }
+        .s-6 .logo-wrap.has-user-logo { align-items: flex-start; }
+        .s-7 .logo-wrap.has-user-logo { align-items: flex-end; }
+        /* style 16 has no logo area: show it only when a logo exists */
+        .s-16 .header { flex-direction: column; gap: 12px; }
+        .s-16 .logo-wrap.has-user-logo { display: flex; justify-content: center; }
+        .s-16 .logo-wrap.has-user-logo .logo-text { display: none; }
+        /* styles that hide the name block keep the logo centred */
+        .s-14 .logo-wrap.has-user-logo .logo-text { text-align: left; }
 
         /* Bigger action buttons - eye catching */
         .btn-area {
@@ -615,6 +633,19 @@
         /* Style label badges for new styles */
         .new-badge { font-size: 8px; background: #f59e0b; color: #000; padding: 1px 4px; border-radius: 3px; margin-left: 3px; font-weight: 900; vertical-align: middle; }
     </style>
+<link rel="canonical" href="https://invoiceluxe.com/hi/invoice.html">
+<link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/invoice.html">
+<link rel="alternate" hreflang="en" href="https://invoiceluxe.com/en/invoice.html">
+<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/invoice.html">
+<link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/invoice.html">
+<link rel="alternate" hreflang="hi-IN" href="https://invoiceluxe.com/in/invoice.html">
+<link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/invoice.html">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/invoice.html">
+<link rel="alternate" hreflang="pt-PT" href="https://invoiceluxe.com/pt/invoice.html">
+<link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/invoice.html">
+<link rel="alternate" hreflang="zh-CN" href="https://invoiceluxe.com/zh/invoice.html">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/en/invoice.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body>
 
@@ -782,6 +813,10 @@
     dicts.us = Object.assign({}, dicts.en, {vat:"SALES TAX", vlabel:"TAX ID", tlabel:"EIN", mob:"CELL", fix:"PHONE"});
     dicts.ca = Object.assign({}, dicts.en, {vat:"GST/HST", vlabel:"GST/HST NO", tlabel:"BUSINESS NO", mob:"CELL", fix:"PHONE"});
 
+    // "due immediately" text (shown when the payment term is 0 days)
+    (function(){ const now = {ru:"ОПЛАТА СРАЗУ", es:"PAGO INMEDIATO", pt:"PAGAMENTO IMEDIATO", br:"PAGAMENTO IMEDIATO", ja:"即時お支払い", zh:"立即付款", hi:"तुरंत भुगतान", ar:"الدفع فورًا", in:"DUE ON RECEIPT", en:"DUE ON RECEIPT", us:"DUE ON RECEIPT", ca:"DUE ON RECEIPT"};
+        Object.keys(now).forEach(function(k){ if (dicts[k]) dicts[k].dNow = now[k]; }); })();
+
     const langAlias = {'pt-br':'br','ptbr':'br','pt_br':'br','en-us':'us','en-ca':'ca','nb':'no','nn':'no','nb-no':'no','zh-cn':'zh','zh-hans':'zh','cn':'zh','jp':'ja','kr':'ko','se':'sv','dk':'da','en-in':'in','hi-in':'hi','pt-pt':'pt','ar-sa':'ar','ar-ae':'ar','ar-eg':'ar'};
     const localeMap = { tr:'tr-TR', nl:'nl-NL', en:'en-US', in:'en-IN', de:'de-DE', fr:'fr-FR', it:'it-IT',
         ru:'ru-RU', pt:'pt-PT', br:'pt-BR', ja:'ja-JP', zh:'zh-CN', es:'es-ES', ar:'ar-EG-u-nu-latn', ko:'ko-KR', hi:'hi-IN',
@@ -878,15 +913,29 @@
             shEl.innerHTML = (globalLang === 'ar' || globalLang === 'hi') ? t : ('<span class="spin-letter">' + t.charAt(0) + '</span>' + t.slice(1));
         }
 
-        // Uygulamadan (APK) gelindiyse: geri butonu önceki sayfaya (uygulama → arşiv) döner
+        // Geri butonu: kullanicinin geldigi sayfaya doner (ret param > referrer > son kullanilan uygulama sayfasi)
         (function setupBack() {
             const b = document.getElementById('b-back');
-            if (!b || getRaw('app') !== '1') return;
-            b.setAttribute('href', '#');
+            if (!b) return;
+            function safe(u) {
+                try {
+                    if (!u) return '';
+                    const x = new URL(u, window.location.href);
+                    if (x.origin !== window.location.origin) return '';
+                    if (/invoice\.html/i.test(x.pathname)) return '';
+                    return x.pathname + x.search + x.hash;
+                } catch (e) { return ''; }
+            }
+            let target = safe(getRaw('ret'));
+            if (!target) target = safe(document.referrer);
+            if (!target) { try { target = safe(localStorage.getItem('il_last_app')); } catch (e) {} }
+            if (!target) target = safe(getRaw('lang_home')) || 'index.html';
+            b.setAttribute('href', target);
             b.addEventListener('click', function (e) {
+                // same-tab visit from the app: browser history is the most exact way back
+                if (getRaw('app') === '1' && history.length > 1 && !getRaw('ret')) { e.preventDefault(); history.back(); return; }
                 e.preventDefault();
-                if (history.length > 1) history.back();
-                else window.location.href = getRaw('ret') || 'create-invoice.html';
+                window.location.href = target;
             });
         })();
 
@@ -896,14 +945,16 @@
         document.getElementById('v-logo').innerText = corpName;
         document.getElementById('v-my-n').innerText = corpName;
 
-        // ----- Logo: logo=url | lk=key | fatura_logo | sessionStorage -----
+        // ----- Logo: logo=url | lk=key | fatura_logo | sessionStorage ; size: logosz=s|m|l|xl or logoh=px -----
         (function applyLogo() {
             const wrap = document.getElementById('logo-wrap');
             const img = document.getElementById('user-logo');
             if (!wrap || !img) return;
-            const shape = (getRaw('ls') || 'round').toLowerCase();
-            img.setAttribute('data-shape', ['round','rounded','square'].includes(shape) ? shape : 'round');
+            const okSrc = function(x) { return !!x && /^(https?:|data:image)/i.test(x); };
+            const shape = (getRaw('ls') || 'none').toLowerCase();
+            img.setAttribute('data-shape', ['round','rounded','square','none'].includes(shape) ? shape : 'none');
             let src = getRaw('logo');
+            if (!okSrc(src)) src = '';
             const lk = getRaw('lk');
             if (!src && lk) {
                 try { src = localStorage.getItem('print_logo_' + lk) || ''; } catch(e) {}
@@ -912,7 +963,7 @@
                 try { src = sessionStorage.getItem('fatura_logo') || localStorage.getItem('fatura_logo') || ''; } catch(e) {}
             }
             if (!src) {
-                try { src = localStorage.getItem('print_logo_in') || localStorage.getItem('print_logo_en') || ''; } catch(e) {}
+                try { src = localStorage.getItem('print_logo_' + globalLang) || localStorage.getItem('print_logo_in') || localStorage.getItem('print_logo_en') || ''; } catch(e) {}
             }
             if (!src) {
                 try {
@@ -920,8 +971,21 @@
                     if (prof && prof.logo && (prof.n || '') === corpName) src = prof.logo;
                 } catch(e) {}
             }
-            if (src && (src.startsWith('http') || src.startsWith('data:image'))) {
+            const SZ = { s: 44, m: 64, l: 88, xl: 116 };
+            let key = (getRaw('logosz') || '').toLowerCase();
+            if (!SZ[key]) { try { key = (localStorage.getItem('fatura_logo_size') || '').toLowerCase(); } catch(e) {} }
+            if (!SZ[key]) key = 'm';
+            let h = SZ[key];
+            const lh = parseInt(getRaw('logoh'), 10);
+            if (lh >= 24 && lh <= 160) h = lh;
+            wrap.setAttribute('data-logo-size', key);
+            if (okSrc(src)) {
                 img.onload = function() {
+                    const r = (img.naturalWidth || 1) / (img.naturalHeight || 1);
+                    let w = Math.round(h * r), hh = h;
+                    if (w > 260) { w = 260; hh = Math.round(260 / r); }
+                    img.style.width = w + 'px';
+                    img.style.height = hh + 'px';
                     img.hidden = false;
                     wrap.classList.add('has-user-logo');
                 };
@@ -935,16 +999,26 @@
 
         const loc = localeMap[globalLang] || 'en-US';
         const invD = getP('d');
-        if(invD && invD.includes('-')){
-            const p = invD.split('-');
-            const dt = new Date(p[2], p[1]-1, p[0]);
+        if (invD && /[-.\/]/.test(invD)) {
+            const p = invD.split(/[-.\/]/).map(function(x) { return parseInt(x, 10); });
+            // dd-mm-yyyy (the apps send this); also accept yyyy-mm-dd
+            const dt = (p[0] > 31) ? new Date(p[0], p[1]-1, p[2]) : new Date(p[2], p[1]-1, p[0]);
             const dStr = dt.toLocaleDateString(loc);
             document.getElementById('v-date').innerText = dStr;
             document.getElementById('v-seal-date-flat').textContent = dStr;
-            const days = parseInt(getP('due')) || 0;
+            // 'due' = number of days. Some apps sent a due DATE (dd.mm.yyyy) or a word ("Сразу") -> handle both
+            const dueRaw = String(getP('due') || '').trim();
+            let days = 0;
+            const dm = dueRaw.match(/^(\d{1,2})[-.\/](\d{1,2})[-.\/](\d{4})$/);
+            if (dm) {
+                const dd = new Date(+dm[3], +dm[2]-1, +dm[1]);
+                days = Math.max(0, Math.round((dd - dt) / 86400000));
+            } else {
+                days = parseInt(dueRaw, 10) || 0;
+            }
             dt.setDate(dt.getDate() + days);
             document.getElementById('v-due-date').innerText = dt.toLocaleDateString(loc);
-            document.getElementById('v-due-days').innerText = `${days} ${d.dSuffix}`;
+            document.getElementById('v-due-days').innerText = (days === 0 && d.dNow) ? d.dNow : `${days} ${d.dSuffix}`;
         }
         document.getElementById('v-no').innerText = "#" + (getP('inv') || "---");
         if(getP('i')) { document.getElementById('v-iban').innerText = (getP('bnk') ? getP('bnk') + "\n" : "") + getP('i'); }

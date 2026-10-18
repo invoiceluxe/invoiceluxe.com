@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free Quote Generator: Create Professional Quotes | InvoiceLuxe</title>
 <meta name="description" content="Free online quote and estimate generator. Add items, discount, tax and validity date, then print or save your quote as PDF. No signup needed.">
-<link rel="canonical" href="https://invoiceluxe.com/quote-generator.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="InvoiceLuxe">
 <meta property="og:title" content="Free Quote Generator: Create Professional Quotes | InvoiceLuxe"><meta property="og:description" content="Free online quote and estimate generator. Add items, discount, tax and validity date, then print or save your quote as PDF. No signup needed.">
@@ -51,6 +50,8 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 18px;bord
 .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:var(--card)}.fl{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card);font-size:14px}
 @media print{body *{visibility:hidden}#doc,#doc *{visibility:visible}#doc{position:absolute;left:0;top:0;width:100%;border:0}}
 :root{--bg:#fff7ed;--ink:#2a1604;--mute:#7c5a3a;--line:#f3d9bd;--gold:#fb923c;--link:#c2410c;--tile:#ffedd5;--tileb:#fdba74;--hd:#3b1c05;--hdt:#f8d3ae;--fbg:#3b1c05;--fcl:#fdba74;--th:#fde6cf;--onacc:#2a1000;--r:12px}</style>
+<link rel="canonical" href="https://invoiceluxe.com/quote-generator.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body class="hc">
 <header><div><a class="b" href="/"><i>IL</i>InvoiceLuxe</a><a href="/tools.html">All tools</a></div></header>
@@ -88,5 +89,6 @@ var v=new Date(Date.now()+30*864e5);$('valid').value=iso(v);
 function calc(){var L=lines(),d=L.sub*num('disc')/100,tx=(L.sub-d)*num('tax')/100;
 $('doc').innerHTML='<h3>'+esc($('biz').value||'Your business')+'</h3><div>'+esc($('bizinfo').value)+'</div><hr><b>QUOTE</b> #'+esc($('num').value)+' &middot; '+esc($('date').value)+'<br>Prepared for: '+esc($('cust').value||'Client')+'<br>Valid until: '+esc($('valid').value)+'<hr>'+TH+L.b+'</tbody></table><hr><div class="r">Subtotal: '+fmt(L.sub)+'<br>Discount ('+num('disc')+'%): -'+fmt(d)+'<br>Tax ('+num('tax')+'%): '+fmt(tx)+'<br><b style="font-size:18px">Total: '+fmt(L.sub-d+tx)+'</b></div>'+($('notes').value?'<hr><b>Terms:</b> '+esc($('notes').value):'')+'<hr>Accepted by: ______________________ Date: ___________'}
 calc();</script>
+<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>

@@ -39,11 +39,11 @@
 </script>
     
     <!-- PWA / Add to Home Screen Icons -->
-    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Pocket Invoice">
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -223,6 +223,31 @@
             box-shadow: 0 2px 8px rgba(92,61,46,0.08);
         }
     </style>
+<link rel="canonical" href="https://invoiceluxe.com/in/">
+<link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/">
+<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/">
+<link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/">
+<link rel="alternate" hreflang="en" href="https://invoiceluxe.com/">
+<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/">
+<link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/">
+<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/">
+<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/">
+<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/">
+<link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/">
+<link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/">
+<link rel="alternate" hreflang="hi-IN" href="https://invoiceluxe.com/in/">
+<link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/">
+<link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/">
+<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/">
+<link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/">
+<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/">
+<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/">
+<link rel="alternate" hreflang="pt-PT" href="https://invoiceluxe.com/pt/">
+<link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/">
+<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/sv/">
+<link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tr/">
+<link rel="alternate" hreflang="zh-CN" href="https://invoiceluxe.com/zh/">
+<link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/">
 </head>
 <body class="flex justify-center">
 
@@ -1460,5 +1485,349 @@
             });
         };
     </script>
+
+<!-- ILX v4: logo + modern invoice preview -->
+<script>window.ILX_CFG={code:"in",accent:"#c4783a",rtl:false,dateFmt:"dmy",L:{"inv": "INVOICE NO.", "date": "DATE", "due": "DUE DATE", "from": "FROM", "to": "BILL TO", "vat": "GST No.", "tax": "Tax No.", "mob": "MOBILE", "fix": "PHONE", "desc": "DESCRIPTION", "qty": "QTY", "price": "RATE", "total": "AMOUNT", "bank": "BANK DETAILS", "sub": "SUBTOTAL", "grand": "TOTAL", "logo": "Company logo", "upload": "Upload logo", "change": "Change logo", "remove": "Remove logo", "size": "Logo size", "sS": "Small", "sM": "Medium", "sL": "Large", "sXL": "Extra large", "hint": "Shown on the preview and on your PDF invoices.", "preview": "Preview", "badFile": "Please choose an image file.","days":n=>n+' DAYS TO PAY'}};</script>
+<script>
+/* ===== ILX v4: company logo + logo size + modern invoice preview ===== */
+(function () {
+  var CFG = window.ILX_CFG; if (!CFG) return;
+  var L = CFG.L, RTL = !!CFG.rtl;
+  var LOGO_KEY = 'fatura_logo', SIZE_KEY = 'fatura_logo_size';
+  var SIZES = { s: 44, m: 64, l: 88, xl: 116 };
+
+  /* ---------- storage ---------- */
+  function getLogo() { try { var d = localStorage.getItem(LOGO_KEY); return d && d.indexOf('data:image') === 0 ? d : ''; } catch (e) { return ''; } }
+  function getSize() { try { var s = localStorage.getItem(SIZE_KEY); return SIZES[s] ? s : 'm'; } catch (e) { return 'm'; } }
+  function setSize(s) { try { localStorage.setItem(SIZE_KEY, s); } catch (e) {} }
+  function saveLogo(d) {
+    try {
+      localStorage.setItem(LOGO_KEY, d);
+      localStorage.setItem('print_logo_' + CFG.code, d);
+      try { sessionStorage.setItem(LOGO_KEY, d); } catch (e) {}
+    } catch (e) { alert('Logo too large for storage.'); }
+  }
+  function clearLogo() {
+    try {
+      localStorage.removeItem(LOGO_KEY); localStorage.removeItem('print_logo_' + CFG.code); localStorage.removeItem('print_logo_in');
+      try { sessionStorage.removeItem(LOGO_KEY); } catch (e) {}
+    } catch (e) {}
+  }
+
+  /* ---------- fonts + css ---------- */
+  var fl = document.createElement('link'); fl.rel = 'stylesheet';
+  fl.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap';
+  document.head.appendChild(fl);
+
+  var ACC = CFG.accent || '#2f8f4e';
+  var css = '' +
+    '#ilx-logo-box{margin:6px 0 16px;padding:14px;border-radius:18px;border:1.5px dashed rgba(127,127,127,.45);background:rgba(127,127,127,.07);color:inherit}' +
+    '#ilx-logo-box .ilx-t{display:block;font-size:11px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;margin:0 0 10px;color:' + ACC + '}' +
+    '#ilx-logo-box .ilx-row{display:flex;align-items:center;gap:14px}' +
+    '#ilx-logo-box .ilx-thumb{width:72px;height:72px;border-radius:16px;background:#fff;border:1.5px solid rgba(127,127,127,.35);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}' +
+    '#ilx-logo-box .ilx-thumb img{max-width:100%;max-height:100%;object-fit:contain;display:none}' +
+    '#ilx-logo-box .ilx-thumb i{color:#b8bec9;font-size:24px}' +
+    '#ilx-logo-box .ilx-acts{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}' +
+    '#ilx-logo-box .ilx-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 12px;border-radius:12px;border:none;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:' + ACC + '}' +
+    '#ilx-logo-box .ilx-btn.rm{display:none;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;padding:9px 12px;font-size:11px}' +
+    '#ilx-logo-box .ilx-btn:active{transform:scale(.97)}' +
+    '#ilx-logo-box .ilx-st{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin:14px 0 8px;opacity:.75}' +
+    '#ilx-logo-box .ilx-sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}' +
+    '#ilx-logo-box .ilx-sz{padding:9px 2px;border-radius:11px;border:1.5px solid rgba(127,127,127,.4);background:rgba(127,127,127,.06);font-size:10px;font-weight:800;text-align:center;cursor:pointer;font-family:inherit;color:inherit;line-height:1.2}' +
+    '#ilx-logo-box .ilx-sz b{display:block;font-size:14px;font-weight:900;margin-bottom:2px}' +
+    '#ilx-logo-box .ilx-sz.on{border-color:' + ACC + ';background:' + ACC + ';color:#fff}' +
+    '#ilx-logo-box .ilx-demo{margin-top:12px;height:140px;border-radius:14px;background:linear-gradient(135deg,#a9eddf,#e1edc3);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}' +
+    '#ilx-logo-box .ilx-demo img{max-width:70%;object-fit:contain;transition:height .2s}' +
+    '#ilx-logo-box .ilx-demo span{position:absolute;right:10px;bottom:6px;font-size:9px;font-weight:800;color:rgba(0,0,0,.35)}' +
+    '#ilx-logo-box .ilx-hint{font-size:10px;margin:10px 0 0;font-weight:600;opacity:.65;line-height:1.4}' +
+    '#ilx-stage{position:relative;flex-shrink:0;margin:12px auto;box-shadow:0 10px 40px rgba(0,0,0,.35);background:#fff;border-radius:4px;overflow:hidden}' +
+    '#ilx-page{position:absolute;top:0;left:0;width:794px;min-height:1123px;transform-origin:top left;background:#fff;color:#1d2433;display:flex;flex-direction:column;box-sizing:border-box;' +
+      "font-family:'Montserrat','Noto Sans','Noto Sans JP','Noto Sans SC','Noto Sans Arabic','Noto Sans Devanagari',system-ui,-apple-system,'Segoe UI',sans-serif}" +
+    '#ilx-page *{box-sizing:border-box;margin:0}' +
+    '#ilx-page .hd{position:relative;height:200px;flex-shrink:0}' +
+    '#ilx-page .hd-bg{position:absolute;inset:0;background:linear-gradient(100deg,#a8eedd 0%,#d4ebc6 55%,#e0ecbf 100%);clip-path:polygon(0 0,98% 0,35% 100%,0 100%)}' +
+    '#ilx-page.rtl .hd-bg{background:linear-gradient(260deg,#a8eedd 0%,#d4ebc6 55%,#e0ecbf 100%);clip-path:polygon(2% 0,100% 0,100% 100%,65% 100%)}' +
+    '#ilx-page .hd-in{position:relative;display:flex;justify-content:space-between;align-items:flex-start;padding:54px 49px 0}' +
+    '#ilx-page .brand{display:flex;align-items:center;gap:16px;min-width:0;max-width:520px}' +
+    '#ilx-page .brand img{width:auto;max-width:230px;object-fit:contain;display:block}' +
+    '#ilx-page .brand .nm{font-size:32px;font-weight:800;color:#1a2233;letter-spacing:.3px;line-height:1.1;word-break:break-word}' +
+    '#ilx-page .invno{text-align:end;flex-shrink:0;padding-top:2px}' +
+    '#ilx-page .invno .k{font-size:15px;font-weight:700;color:#2a3347;letter-spacing:.3px}' +
+    '#ilx-page .invno .v{font-size:28px;font-weight:800;color:#141b2b;margin-top:2px}' +
+    '#ilx-page .body{padding:0 49px;display:flex;flex-direction:column;flex:1}' +
+    '#ilx-page .dates{display:flex;justify-content:space-between;align-items:flex-start;margin-top:30px}' +
+    '#ilx-page .dates .l{font-size:14px;font-weight:500;color:#1d2433;text-transform:uppercase}' +
+    '#ilx-page .dates .v{font-size:19px;font-weight:800;color:#0e1424;margin-top:1px}' +
+    '#ilx-page .dates .due{text-align:end}' +
+    '#ilx-page .dates .due .v{color:#e04a4a}' +
+    '#ilx-page .dates .days{font-size:10.5px;font-weight:800;color:#2f7d46;margin-top:6px;text-transform:uppercase;letter-spacing:.2px}' +
+    '#ilx-page .party{margin-top:24px}' +
+    '#ilx-page .party+.party{margin-top:20px}' +
+    '#ilx-page .party .h{font-size:15px;font-weight:500;color:#2f7d46;text-transform:uppercase;letter-spacing:.2px}' +
+    '#ilx-page .party .n{font-size:16px;font-weight:800;color:#0e1424;margin-top:1px;word-break:break-word}' +
+    '#ilx-page .party .d{font-size:11.5px;font-weight:500;color:#2d3548;line-height:1.75;margin-top:3px;word-break:break-word}' +
+    '#ilx-page table{width:100%;border-collapse:collapse;margin-top:26px;border-top:2px solid #2f7d46}' +
+    '#ilx-page thead th{font-size:11.5px;font-weight:800;color:#2f7d46;text-transform:uppercase;padding:12px 10px;border-bottom:2px solid #2f7d46;text-align:end;letter-spacing:.2px}' +
+    '#ilx-page thead th:first-child,#ilx-page tbody td:first-child{text-align:start}' +
+    '#ilx-page tbody td{font-size:12.5px;font-weight:700;color:#0e1424;padding:13px 10px;text-align:end;vertical-align:top;border-bottom:1px solid #eef1f4}' +
+    '#ilx-page tbody td:first-child{white-space:pre-wrap;word-break:break-word;font-weight:800}' +
+    '#ilx-page .sp{flex:1;min-height:30px}' +
+    '#ilx-page .ft{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding-bottom:50px}' +
+    '#ilx-page .bank{width:374px;border-top:2px solid #8fbf9d;padding:18px 18px 0;flex-shrink:0}' +
+    '#ilx-page .bank .h{font-size:14px;font-weight:800;color:#5d6f8a;text-transform:uppercase;letter-spacing:.2px}' +
+    "#ilx-page .bank .d{font-family:'Courier New',ui-monospace,monospace;font-size:14px;color:#0e1424;line-height:1.5;margin-top:4px;word-break:break-all}" +
+    '#ilx-page .tot{flex:1;min-width:0}' +
+    '#ilx-page .tot .r{display:flex;justify-content:space-between;gap:12px;font-size:14px;font-weight:500;color:#1d2433;line-height:1.45;text-transform:uppercase}' +
+    '#ilx-page .tot .r span:last-child{text-transform:none;white-space:nowrap}' +
+    '#ilx-page .tot .g{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1.5px solid #d9dde3;margin-top:12px;padding-top:12px}' +
+    '#ilx-page .tot .g span:first-child{font-size:20px;font-weight:900;color:#0a0f1c;text-transform:uppercase}' +
+    '#ilx-page .tot .g span:last-child{font-size:21px;font-weight:900;color:#0a0f1c;white-space:nowrap}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  /* ---------- helpers ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function money(n, sym) { n = (parseFloat(n) || 0).toFixed(2); var sp = (sym && sym.length > 1) ? '\u00A0' : ''; return n + sp + (sym || ''); }
+  function ltr(s) { return RTL ? '<span dir="ltr">' + s + '</span>' : s; }
+  function fmtDate(d) {
+    var y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0');
+    if (CFG.dateFmt === 'ymdcjk') return y + '年' + m + '月' + dd + '日';
+    return dd + '/' + m + '/' + y;
+  }
+  function parseDate(s) {
+    if (s instanceof Date) return s;
+    s = String(s || '');
+    var m = s.match(/^(\d{4})-(\d{2})-(\d{2})/); if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+    m = s.match(/^(\d{2})[.\/-](\d{2})[.\/-](\d{4})/); if (m) return new Date(+m[3], +m[2] - 1, +m[1]);
+    return new Date();
+  }
+  function line(label, val) { return val ? esc(label) + (label ? ': ' : '') + ltr(esc(val)) + '<br>' : ''; }
+  function party(o) {
+    var h = '';
+    h += o.adr ? esc(o.adr) + '<br>' : '';
+    if (o.pc || o.city) h += esc((o.pc || '') + ' ' + (o.city || '')).trim() + '<br>';
+    h += line(L.vat, o.vat) + line(L.tax, o.tax);
+    h += line(L.mob, o.mob) + line(L.fix, o.fix);
+    h += o.mail ? ltr(esc(o.mail)) + '<br>' : '';
+    return h;
+  }
+
+  /* ---------- render ---------- */
+  function build(d) {
+    var logo = getLogo(), sz = SIZES[getSize()];
+    var from = d.prof || {}, to = d.cust || {};
+    var sub = 0, rows = '';
+    (d.items || []).forEach(function (it) {
+      var q = parseFloat(it.q) || 0, p = parseFloat(it.p) || 0, t = q * p; sub += t;
+      rows += '<tr><td>' + esc(it.d) + '</td><td>' + ltr(esc(it.q) + (it.u ? '\u00A0' + esc(it.u) : '')) + '</td><td>' + ltr(money(p, d.sym)) + '</td><td>' + ltr(money(t, d.sym)) + '</td></tr>';
+    });
+    var rate = parseFloat(d.vRate) || 0, tax = sub * rate / 100;
+    var dt = parseDate(d.date), due = new Date(dt.getTime()); due.setDate(due.getDate() + (parseInt(d.dueDays) || 0));
+    var days = parseInt(d.dueDays) || 0;
+    var brand = (logo ? '<img src="' + logo + '" alt="" style="height:' + sz + 'px">' : '') +
+      (from.name ? '<div class="nm">' + esc(from.name) + '</div>' : '');
+    var bank = '';
+    if (d.bank || d.iban) bank = (d.bank ? esc(d.bank) + '<br>' : '') + (d.iban ? ltr(esc(d.iban)) : '');
+    return '' +
+      '<div class="hd"><div class="hd-bg"></div><div class="hd-in"><div class="brand">' + brand + '</div>' +
+      '<div class="invno"><div class="k">' + esc(L.inv) + '</div><div class="v">#' + esc(d.no) + '</div></div></div></div>' +
+      '<div class="body">' +
+      '<div class="dates"><div><div class="l">' + esc(L.date) + '</div><div class="v">' + ltr(fmtDate(dt)) + '</div></div>' +
+      '<div class="due"><div class="l">' + esc(L.due) + '</div><div class="v">' + ltr(fmtDate(due)) + '</div><div class="days">' + esc(L.days(days)) + '</div></div></div>' +
+      '<div class="party"><div class="h">' + esc(L.from) + '</div><div class="n">' + esc(from.name) + '</div><div class="d">' + party(from) + '</div></div>' +
+      '<div class="party"><div class="h">' + esc(L.to) + '</div><div class="n">' + esc(to.name) + '</div><div class="d">' + party(to) + '</div></div>' +
+      '<table><thead><tr><th style="width:46%">' + esc(L.desc) + '</th><th>' + esc(L.qty) + '</th><th>' + esc(L.price) + '</th><th>' + esc(L.total) + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+      '<div class="sp"></div>' +
+      '<div class="ft"><div class="bank"><div class="h">' + esc(L.bank) + '</div><div class="d">' + (bank || '&nbsp;') + '</div></div>' +
+      '<div class="tot"><div class="r"><span>' + esc(L.sub) + '</span><span>' + ltr(money(sub, d.sym)) + '</span></div>' +
+      '<div class="r"><span>' + esc(d.taxLabel || '') + '</span><span>' + ltr(money(tax, d.sym) + ' (' + rate + '%)') + '</span></div>' +
+      '<div class="g"><span>' + esc(L.grand) + '</span><span>' + ltr(money(sub + tax, d.sym)) + '</span></div></div></div>' +
+      '</div>';
+  }
+
+  function ensureStage(host) {
+    var stage = document.getElementById('ilx-stage');
+    if (!stage) {
+      stage = document.createElement('div'); stage.id = 'ilx-stage';
+      stage.innerHTML = '<div id="ilx-page"' + (RTL ? ' class="rtl" dir="rtl"' : '') + '></div>';
+      host.insertBefore(stage, host.firstChild);
+    }
+    return stage;
+  }
+
+  function fit() {
+    var stage = document.getElementById('ilx-stage'), page = document.getElementById('ilx-page'); if (!stage || !page) return;
+    var host = stage.parentElement, avail = (host.clientWidth || window.innerWidth) - 24;
+    var s = Math.min(1, avail / 794); if (!(s > 0)) s = 0.45;
+    page.style.transform = 'scale(' + s + ')';
+    stage.style.width = Math.round(794 * s) + 'px';
+    stage.style.height = Math.round(page.offsetHeight * s) + 'px';
+  }
+
+  window.ILX = {
+    show: function (d) {
+      try {
+        var old = document.getElementById('p-page'); if (!old) return;
+        var host = old.parentElement;
+        var stage = ensureStage(host);
+        old.style.display = 'none';
+        host.style.display = 'flex'; host.style.flexDirection = 'column'; host.style.alignItems = 'center';
+        host.style.justifyContent = 'flex-start'; host.style.overflowY = 'auto'; host.style.overflowX = 'hidden';
+        if (!host.style.paddingBottom) host.style.paddingBottom = '40px';
+        d.dueDays = d.dueDays || 0;
+        document.getElementById('ilx-page').innerHTML = build(d);
+        requestAnimationFrame(function () { fit(); setTimeout(fit, 120); });
+      } catch (e) { console.error('ILX', e); var o = document.getElementById('p-page'); if (o) o.style.display = ''; }
+    },
+    refreshDemo: refreshDemo
+  };
+  window.addEventListener('resize', fit);
+
+  /* ---------- profile UI ---------- */
+  function refreshDemo() {
+    var box = document.getElementById('ilx-logo-box'); if (!box) return;
+    var logo = getLogo(), sz = getSize();
+    var th = box.querySelector('.ilx-thumb img'), ph = box.querySelector('.ilx-thumb i'), rm = box.querySelector('.ilx-btn.rm'),
+      up = box.querySelector('.ilx-btn.up span'), demo = box.querySelector('.ilx-demo'), di = box.querySelector('.ilx-demo img');
+    if (logo) {
+      if (th) { th.src = logo; th.style.display = 'block'; } if (ph) ph.style.display = 'none'; if (rm) rm.style.display = 'flex'; if (up) up.textContent = L.change;
+      if (demo) demo.style.display = 'flex'; if (di) { di.src = logo; di.style.height = (SIZES[sz] * 0.9) + 'px'; }
+    } else {
+      if (th) { th.removeAttribute('src'); th.style.display = 'none'; } if (ph) ph.style.display = 'block'; if (rm) rm.style.display = 'none'; if (up) up.textContent = L.upload;
+      if (demo) demo.style.display = 'none';
+    }
+    box.querySelectorAll('.ilx-sz').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-s') === sz); });
+  }
+
+  function sizesHtml() {
+    var names = { s: L.sS, m: L.sM, l: L.sL, xl: L.sXL }, h = '<div class="ilx-st">' + esc(L.size) + '</div><div class="ilx-sizes">';
+    ['s', 'm', 'l', 'xl'].forEach(function (k) { h += '<button type="button" class="ilx-sz" data-s="' + k + '"><b>' + k.toUpperCase() + '</b>' + esc(names[k]) + '</button>'; });
+    return h + '</div>';
+  }
+
+  function bindSizes(box) {
+    box.querySelectorAll('.ilx-sz').forEach(function (b) {
+      b.addEventListener('click', function () { setSize(b.getAttribute('data-s')); refreshDemo(); });
+    });
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!/^image\//.test(file.type)) { alert(L.badFile); return; }
+    var r = new FileReader();
+    r.onload = function (ev) {
+      var img = new Image();
+      img.onload = function () {
+        var max = 400, w = img.width, h = img.height;
+        if (w > max || h > max) { if (w > h) { h = Math.round(h * max / w); w = max; } else { w = Math.round(w * max / h); h = max; } }
+        var c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h);
+        saveLogo(c.toDataURL('image/png')); refreshDemo();
+        if (typeof window.showLogoPreview === 'function') { try { window.showLogoPreview(getLogo()); } catch (e) {} }
+      };
+      img.src = ev.target.result;
+    };
+    r.readAsDataURL(file);
+  }
+
+  function injectUI() {
+    if (document.getElementById('ilx-logo-box')) return;
+    var name = document.getElementById('p-name'); if (!name) return;
+    var existing = document.getElementById('logo-preview-wrap');
+    if (existing) { /* file already has an upload block (in): only add the size chooser + live demo */
+      var holder = existing.parentElement, wrap = document.createElement('div');
+      wrap.id = 'ilx-logo-box'; wrap.style.cssText = 'margin:-6px 0 16px;padding:0 2px';
+      wrap.innerHTML = sizesHtml() + '<div class="ilx-demo" style="display:none"><img alt=""><span>' + esc(L.preview) + '</span></div>';
+      holder.parentNode.insertBefore(wrap, holder.nextSibling);
+      bindSizes(wrap);
+      var rmb = document.getElementById('logo-remove-btn'), fi = document.getElementById('p-logo');
+      var orig = function () { setTimeout(refreshDemo, 150); };
+      if (rmb) rmb.addEventListener('click', orig); if (fi) fi.addEventListener('change', orig);
+      /* tiny restyle of the demo for this host */
+      var tmpl = document.createElement('style'); tmpl.textContent = '#ilx-logo-box .ilx-st{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin:0 0 8px;opacity:.75}#ilx-logo-box .ilx-sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}#ilx-logo-box .ilx-sz{padding:9px 2px;border-radius:11px;border:1.5px solid rgba(127,127,127,.4);background:rgba(127,127,127,.06);font-size:10px;font-weight:800;text-align:center;cursor:pointer;font-family:inherit;color:inherit;line-height:1.2}#ilx-logo-box .ilx-sz b{display:block;font-size:14px;font-weight:900;margin-bottom:2px}#ilx-logo-box .ilx-sz.on{border-color:' + ACC + ';background:' + ACC + ';color:#fff}#ilx-logo-box .ilx-demo{margin-top:12px;height:140px;border-radius:14px;background:linear-gradient(135deg,#a9eddf,#e1edc3);align-items:center;justify-content:center;overflow:hidden;position:relative}#ilx-logo-box .ilx-demo img{max-width:70%;object-fit:contain}#ilx-logo-box .ilx-demo span{position:absolute;right:10px;bottom:6px;font-size:9px;font-weight:800;color:rgba(0,0,0,.35)}';
+      document.head.appendChild(tmpl);
+      refreshDemo();
+      return;
+    }
+    var anchor = name.previousElementSibling && /^LABEL$/i.test(name.previousElementSibling.tagName) ? name.previousElementSibling : name;
+    var box = document.createElement('div'); box.id = 'ilx-logo-box';
+    box.innerHTML =
+      '<span class="ilx-t">' + esc(L.logo) + '</span>' +
+      '<div class="ilx-row"><div class="ilx-thumb"><img alt=""><i class="fa-solid fa-image"></i></div>' +
+      '<div class="ilx-acts"><input type="file" accept="image/*" style="display:none">' +
+      '<button type="button" class="ilx-btn up"><i class="fa-solid fa-cloud-arrow-up"></i><span>' + esc(L.upload) + '</span></button>' +
+      '<button type="button" class="ilx-btn rm"><i class="fa-solid fa-trash-can"></i> ' + esc(L.remove) + '</button></div></div>' +
+      sizesHtml() +
+      '<div class="ilx-demo" style="display:none"><img alt=""><span>' + esc(L.preview) + '</span></div>' +
+      '<p class="ilx-hint">' + esc(L.hint) + '</p>';
+    anchor.parentNode.insertBefore(box, anchor);
+    var fi2 = box.querySelector('input[type=file]');
+    box.querySelector('.ilx-btn.up').addEventListener('click', function () { fi2.click(); });
+    fi2.addEventListener('change', function () { handleFile(fi2.files && fi2.files[0]); fi2.value = ''; });
+    box.querySelector('.ilx-btn.rm').addEventListener('click', function () { clearLogo(); refreshDemo(); });
+    bindSizes(box); refreshDemo();
+  }
+
+  /* ---------- pass logo size to the PDF page ---------- */
+  var _open = window.open;
+  try { localStorage.setItem('il_last_app', location.pathname + location.search); } catch (e) {}
+  window.open = function (u) {
+    try {
+      if (typeof u === 'string' && u.indexOf('invoice.html?') > -1) {
+        if (getLogo()) u += '&logosz=' + getSize() + '&logoh=' + SIZES[getSize()];
+        if (u.indexOf('&ret=') < 0 && u.indexOf('?ret=') < 0) u += '&ret=' + encodeURIComponent(location.pathname + location.search);
+        arguments[0] = u;
+      }
+    } catch (e) {}
+    return _open.apply(window, arguments);
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectUI); else injectUI();
+  window.addEventListener('load', function () { injectUI(); refreshDemo(); });
+})();
+
+</script>
+<script>
+(function(){function N(o){o=o||{};return{name:o.name,adr:o.adr,pc:o.pc,city:o.city,mob:o.mob||o.tel,fix:o.fix,mail:o.mail,vat:o.vat||o.vat_no,tax:o.tax||o.tax_no};}var o=window.generatePreview;if(typeof o!=='function')return;window.generatePreview=function(prof,cust,invNo,date,items,vRate,dueDays){var r=o.apply(this,arguments);ILX.show({prof:N(prof),cust:N(cust),no:invNo,date:date,items:items,vRate:vRate,dueDays:dueDays,sym:'₹',taxLabel:'GST',bank:(prof||{}).bank,iban:(prof||{}).iban});return r;};})();
+</script>
+<script>
+/* ===== ILX UI v4: colour-coded, modern nav + home tiles ===== */
+(function(){
+  var C={0:['#d97706','245,158,11'],1:['#059669','16,185,129'],2:['#4f46e5','99,102,241'],3:['#0284c7','14,165,233'],4:['#db2777','236,72,153']};
+  var css='';
+  Object.keys(C).forEach(function(k){var c=C[k];
+    css+='[data-ilxc="'+k+'"]{--ac:'+c[0]+';--sf:rgba('+c[1]+',.17);--ring:rgba('+c[1]+',.6)}';});
+  css+='.nav-btn[data-ilxc] i,.nav-link[data-ilxc] i{display:inline-flex!important;align-items:center;justify-content:center;width:46px;height:30px;border-radius:15px;background:var(--sf)!important;color:var(--ac)!important;font-size:16px!important;transition:transform .15s,box-shadow .15s;margin:0 auto}'+
+  '.nav-btn[data-ilxc] svg,.nav-link[data-ilxc] svg{color:var(--ac)!important}'+
+  '.nav-btn[data-ilxc].active i,.nav-link[data-ilxc].active i{box-shadow:0 0 0 1.5px var(--ring) inset,0 4px 10px -4px var(--ac);transform:translateY(-1px)}'+
+  '.nav-btn[data-ilxc]:active i,.nav-link[data-ilxc]:active i{transform:scale(.9)}'+
+  '.nav-btn[data-ilxc].active,.nav-link[data-ilxc].active{color:var(--ac)!important}'+
+  '[data-ilxt]{border:1.5px solid var(--ring)!important;background-image:linear-gradient(155deg,var(--sf),rgba(255,255,255,0) 75%)!important;transition:transform .15s}'+
+  '[data-ilxt]:active{transform:scale(.97)}'+
+  '.ilx-bub{display:inline-flex!important;align-items:center;justify-content:center;width:46px!important;height:46px!important;min-width:46px;border-radius:15px!important;background:var(--sf)!important;box-shadow:0 0 0 1.5px var(--ring) inset;flex-shrink:0}'+
+  '.ilx-bub i,i.ilx-bub{color:var(--ac)!important;font-size:21px!important;margin:0!important}';
+  var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+
+  var SWAP={1:'fa-file-circle-plus',2:'fa-box-archive'};
+  function pageOf(el){var m=(el.getAttribute('onclick')||'').match(/^showPage\((\d)\)/);return m?+m[1]:null;}
+  function swap(i,n){ if(!SWAP[n]||!i)return; var cl=[].slice.call(i.classList).filter(function(c){return /^fa-/.test(c)&&c!=='fa-solid';});cl.forEach(function(c){i.classList.remove(c)});i.classList.add(SWAP[n]); }
+  function run(){
+    /* bottom nav: colour by position */
+    var navs=[].slice.call(document.querySelectorAll('.nav-btn,.nav-link'));
+    var groups=[];navs.forEach(function(b){var p=b.parentElement;var g=groups.filter(function(x){return x.p===p})[0];if(!g){g={p:p,b:[]};groups.push(g)}g.b.push(b)});
+    groups.forEach(function(g){g.b.forEach(function(b,idx){ if(idx>4)return; b.setAttribute('data-ilxc',idx); var n=pageOf(b); if(n===1||n===2) swap(b.querySelector('i'),n); });});
+    /* home tiles: any showPage(2|3|4) card that is not nav / back button */
+    [].slice.call(document.querySelectorAll('[onclick^="showPage("]')).forEach(function(t){
+      var n=pageOf(t); if(n==null||n<1||t.matches('.nav-btn,.nav-link')||t.tagName==='BUTTON'&&t.querySelector('.fa-arrow-left'))return;
+      if(t.querySelector('.fa-arrow-left'))return;
+      if(t.tagName==='BUTTON'&&!/profile-quick-card|action-grid-btn/.test(t.className))return;
+      t.setAttribute('data-ilxc',n); t.setAttribute('data-ilxt','1');
+      var i=t.querySelector('i'); if(!i)return; swap(i,n);
+      var par=i.parentElement; (par&&par!==t&&par.children.length===1?par:i).classList.add('ilx-bub');
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+  window.addEventListener('load',run);
+})();
+
+</script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /blog-stats.html
 
 Sitemap: https://invoiceluxe.com/sitemap.xml
 Sitemap: https://invoiceluxe.com/sitemap-blog.xml
