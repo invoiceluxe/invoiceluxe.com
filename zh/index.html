@@ -42,8 +42,8 @@
         .brand-font { font-family: 'Noto Serif SC', serif; }
 
         /* SLIDER */
-        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1); will-change: transform; }
-        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 220px; scrollbar-width: none; flex-shrink: 0; }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; height: 100dvh; transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1); will-change: transform; }
+        .page { width: 20%; height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); scrollbar-width: none; flex-shrink: 0; box-sizing: border-box; }
         .page::-webkit-scrollbar { display: none; }
 
         /* CARDS */

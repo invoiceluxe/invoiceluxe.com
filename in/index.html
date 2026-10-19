@@ -68,8 +68,8 @@
             overflow: hidden; 
             -webkit-tap-highlight-color: transparent;
         }
-        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 120px; box-sizing: border-box; }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; height: 100dvh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: 20%; height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; }
         .glass-card { background: var(--card-bg); border: none; border-radius: 22px; padding: 18px; box-shadow: 0 4px 20px rgba(92, 61, 46, 0.06); }
         .input-pro { background: #fff !important; color: var(--text-dark) !important; border-radius: 14px; padding: 12px 16px; width: 100%; border: 1.5px solid #e8d9cc; font-size: 15px; transition: all 0.2s ease; outline: none; box-sizing: border-box; }
         .input-pro:focus { background: #fffaf5 !important; box-shadow: 0 0 0 4px rgba(196, 120, 58, 0.15); border-color: var(--accent); }

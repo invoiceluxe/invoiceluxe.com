@@ -90,8 +90,8 @@
         body { background: var(--ja-paper); font-family: 'Inter', sans-serif; color: var(--ja-ink); margin: 0; overflow: hidden; }
         .brand-font { font-family: 'Playfair Display', serif; }
         
-        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
-        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 230px; box-sizing: border-box; }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; height: 100dvh; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
+        .page { width: 20%; height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; }
         .page::-webkit-scrollbar { display: none; }
 
         /* TOP BAR */

@@ -65,8 +65,8 @@
             overflow: hidden; 
             -webkit-tap-highlight-color: transparent;
         }
-        .slider-wrapper { display: flex; width: 500%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .page { width: 20%; height: 100vh; overflow-y: auto; padding-bottom: 130px; box-sizing: border-box; }
+        .slider-wrapper { display: flex; width: 500%; height: 100vh; height: 100dvh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: 20%; height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; }
         .glass-card { background: var(--card-bg); border: 3px solid var(--wood-border); border-radius: 20px; padding: 20px; box-shadow: 6px 6px 0px rgba(139, 69, 19, 0.1); }
         .input-pro { background: #fff !important; color: var(--text-dark) !important; border-radius: 12px; padding: 12px 16px; width: 100%; border: 2px solid var(--wood-border); font-size: 15px; transition: all 0.2s ease; outline: none; box-sizing: border-box; }
         .input-pro:focus { background: #fffaf5 !important; box-shadow: 0 0 0 4px rgba(139, 69, 19, 0.15); }

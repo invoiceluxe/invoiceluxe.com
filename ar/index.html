@@ -48,8 +48,8 @@
         }
         
         /* SLIDER & PAGES */
-        .slider-wrapper { display: flex; width: 600%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .page { width: calc(100%/6); height: 100vh; overflow-y: auto; padding-bottom: 225px; flex-shrink: 0; box-sizing: border-box; }
+        .slider-wrapper { display: flex; width: 600%; height: 100vh; height: 100dvh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: calc(100%/6); height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); flex-shrink: 0; box-sizing: border-box; }
         
         /* BOXES & INPUTS */
         .green-frame { background: #ffffff; border: 1.5px solid var(--primary-green); border-radius: 28px; padding: 18px; position: relative; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }

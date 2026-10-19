@@ -30,8 +30,8 @@
     <style>
         :root { --gold: #e6b980; --bg-dark: #000000; }
         body { background: var(--bg-dark); font-family: 'Inter', sans-serif; color: #fff; margin: 0; overflow: hidden; touch-action: pan-y; }
-        .slider-wrapper { display: flex; width: 600%; height: 100vh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .page { width: calc(100%/6); height: 100vh; overflow-y: auto; padding-bottom: 220px; flex-shrink: 0; box-sizing: border-box; }
+        .slider-wrapper { display: flex; width: 600%; height: 100vh; height: 100dvh; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page { width: calc(100%/6); height: 100vh; height: 100dvh; overflow-y: auto; padding-bottom: calc(300px + env(safe-area-inset-bottom, 0px)); flex-shrink: 0; box-sizing: border-box; }
         .gold-frame { background: #0a0a0a; border: 1.5px solid var(--gold); border-radius: 28px; padding: 18px; position: relative; }
         .bento-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; grid-template-rows: 150px 150px; gap: 12px; }
         .bento-main { grid-row: span 2; background: linear-gradient(165deg, #f3d4a8 0%, #e6b980 60%, #b88a44 100%); color: #000; border: none; border-radius: 32px; display: flex; flex-direction: column; justify-content: flex-end; padding: 22px; }
