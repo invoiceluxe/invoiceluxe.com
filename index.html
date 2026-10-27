@@ -2,7 +2,12 @@
 <html lang="en" class="notranslate" translate="no">
 <head>
 <!-- PWA -->
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="/manifest-en.webmanifest">
+
+<!-- Theme: apply saved choice before paint (no flash) -->
+<script>
+(function(){try{var t=localStorage.getItem('invoiceLuxeTheme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();
+</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ41DBEN71"></script>
@@ -18,29 +23,31 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Free Invoice Generator, Sign PDF &amp; Image to PDF | Invoice Luxe</title>
-    <meta name="description" content="Create free PDF invoices, sign PDF online, convert images to PDF and calculate VAT. No signup, 18+ free business tools for freelancers. Works on phone &amp; desktop.">
-    <meta name="keywords" content="free invoice generator, online invoice maker, create invoice online, sign pdf online free, pdf signature, create pdf online, image to pdf, jpg to pdf, png to pdf, photo to pdf, vat calculator, tax analytics, freelance tools, small business tools, invoice template, pdf editor">
+    <title>Free Invoice Generator (No Sign-Up) – Sign PDF, Image to PDF &amp; VAT Calculator | Invoice Luxe</title>
+    <meta name="description" content="Create unlimited free PDF invoices with no sign-up and no watermark. Sign PDF online, convert JPG/PNG to PDF, calculate VAT (gross to net) and track hours. 18+ free business tools, works offline on phone &amp; desktop.">
+    <meta name="keywords" content="free invoice generator, free invoice generator no sign up, invoice maker no watermark, online invoice maker, create invoice online, invoice template, sign pdf online free, pdf signature, create pdf online, image to pdf, jpg to pdf, png to pdf, photo to pdf, vat calculator, reverse vat calculator, gross to net calculator, tax analytics, freelance tools, small business tools, work time tracker, invoice app offline, free business tools">
     <meta name="application-name" content="Invoice Luxe">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Invoice Luxe">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#08080a">
+    <meta name="author" content="Invoice Luxe">
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-
     <meta property="og:site_name" content="Invoice Luxe">
-    <meta property="og:title" content="Invoice Luxe - Free Invoice Generator, Sign PDF &amp; Image to PDF">
-    <meta property="og:description" content="Create invoices, sign PDF online, convert images to PDF, calculate VAT and track working hours. 100% free, no signup.">
+    <meta property="og:title" content="Invoice Luxe – Free Invoice Generator, Sign PDF, Image to PDF &amp; VAT Calculator">
+    <meta property="og:description" content="Unlimited free PDF invoices, PDF signing, image to PDF, VAT calculator and work-hours tracking. No sign-up, no watermark. Install the app and work offline.">
     <meta property="og:url" content="https://invoiceluxe.com/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Invoice Luxe - Free Invoice Generator &amp; PDF Tools">
-    <meta name="twitter:description" content="Create PDF invoices, sign PDF online, convert images to PDF and calculate VAT. Free, no signup.">
+    <meta property="og:image" content="https://invoiceluxe.com/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Invoice Luxe – Free Invoice Generator &amp; PDF Tools (No Sign-Up)">
+    <meta name="twitter:description" content="Create PDF invoices, sign PDF online, convert images to PDF and calculate VAT. Free, no watermark, works offline.">
+    <meta name="twitter:image" content="https://invoiceluxe.com/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,30 +58,75 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Invoice Luxe",
-      "url": "https://invoiceluxe.com/",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web, iOS, Android",
-      "browserRequirements": "Requires JavaScript",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Free Invoice Generator", "Sign PDF Online", "Create PDF Online", "Image to PDF Converter", "VAT Calculator", "Tax Analytics", "Income & Expense Calculator", "Discount Calculator", "Image Studio", "Zip File Creator", "HTML Editor", "Unit Converter", "Mile-KM Converter", "Weekly Calendar", "Month-Week Calendar", "Smart Calendar", "Work Time Logger", "Password Generator", "QR Code Generator", "Minute-Second Calculator"],
-      "description": "Invoice Luxe is a free progressive web app to create PDF invoices, sign PDF documents, convert images to PDF, calculate VAT and manage daily business tasks. Available in English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic.",
-      "inLanguage": ["en", "tr", "nl", "de", "fr", "it", "es", "pt", "zh", "ru", "hi", "ja", "ar", "br", "ca", "da", "fi", "gb", "ko", "no", "sv", "us"]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Is Invoice Luxe really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Invoice Luxe and all of its business tools are free to use, with no registration and no hidden fees." } },
-        { "@type": "Question", "name": "How do I sign a PDF online for free?", "acceptedAnswer": { "@type": "Answer", "text": "Open the PDF Engine, load or create your PDF, add your signature, place it on the page and download the signed PDF. No account is needed." } },
-        { "@type": "Question", "name": "How can I create a PDF online?", "acceptedAnswer": { "@type": "Answer", "text": "Use the PDF Engine to build a document with text, images and a signature, then export it as a PDF. To make an invoice, open Create Invoice, fill in your details and export the invoice as a PDF." } },
-        { "@type": "Question", "name": "Can I convert an image (JPG, PNG) to PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add your JPG, PNG or photo in the PDF Engine and save it as a PDF. You can crop or compress the picture first in the Image Studio." } },
-        { "@type": "Question", "name": "Does Invoice Luxe work on my phone and offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is a progressive web app: use it in any browser, or tap Get the App to install it on your iPhone, Android phone or computer and keep working offline." } },
-        { "@type": "Question", "name": "How do I calculate VAT from a gross or net amount?", "acceptedAnswer": { "@type": "Answer", "text": "Open the floating calculator, choose Gross (price includes VAT) or Net (price excludes VAT), enter your VAT rate and the amount, and read net, VAT and total instantly." } },
-        { "@type": "Question", "name": "Which languages does Invoice Luxe support?", "acceptedAnswer": { "@type": "Answer", "text": "English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic." } }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://invoiceluxe.com/#website",
+          "name": "Invoice Luxe",
+          "url": "https://invoiceluxe.com/",
+          "inLanguage": "en",
+          "publisher": { "@type": "Organization", "name": "Invoice Luxe", "url": "https://invoiceluxe.com/" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://invoiceluxe.com/#webapp",
+          "name": "Invoice Luxe",
+          "alternateName": "Invoice Luxe Free Invoice Generator & PDF Tools",
+          "url": "https://invoiceluxe.com/",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Invoicing & Accounting Tools",
+          "operatingSystem": "Web, iOS, Android, Windows, macOS",
+          "browserRequirements": "Requires JavaScript",
+          "isAccessibleForFree": true,
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "installUrl": "https://play.google.com/store/apps/details?id=com.invoice.luxepro",
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.invoice.luxepro",
+          "featureList": ["Free Invoice Generator (no sign-up, no watermark)", "Estimate & Quote Maker", "Sign PDF Online", "Create PDF Online", "Image to PDF Converter (JPG, PNG)", "VAT Calculator (gross to net and net to gross)", "Tax Analytics", "Income & Expense Calculator", "Discount Calculator", "Image Studio", "ZIP File Creator", "HTML Editor", "Unit Converter", "Mile-KM Converter", "Weekly Calendar", "Month-Week Calendar", "Smart Calendar", "Work Time Logger", "Password Generator", "QR Code Generator", "Minute-Second Calculator", "Offline mode (PWA)", "Light and dark mode"],
+          "description": "Invoice Luxe is a free progressive web app for freelancers, contractors and small businesses. Create unlimited PDF invoices without signing up, sign PDF documents, convert images to PDF, calculate VAT and track billable hours. Available in 13 languages and installable on iPhone, Android, Windows and Mac.",
+          "inLanguage": ["en", "tr", "nl", "de", "fr", "it", "es", "pt", "zh", "ru", "hi", "ja", "ar"],
+          "image": "https://invoiceluxe.com/apple-touch-icon.png",
+          "audience": { "@type": "Audience", "audienceType": "Freelancers, contractors, sole traders and small businesses" }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://invoiceluxe.com/#android-app",
+          "name": "Invoice Luxe – Invoice Maker & PDF Tools",
+          "operatingSystem": "Android",
+          "applicationCategory": "BusinessApplication",
+          "url": "https://play.google.com/store/apps/details?id=com.invoice.luxepro",
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.invoice.luxepro",
+          "installUrl": "https://play.google.com/store/apps/details?id=com.invoice.luxepro",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "isSimilarTo": { "@id": "https://invoiceluxe.com/#webapp" }
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to create a free invoice online with no sign-up",
+          "description": "Create and download a professional PDF invoice in five steps with Invoice Luxe.",
+          "totalTime": "PT2M",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Add your business details", "text": "Open Create Invoice and enter your business name, logo, address and tax or VAT number." },
+            { "@type": "HowToStep", "position": 2, "name": "Add the client", "text": "Enter your client's billing details or pick them from the client registry." },
+            { "@type": "HowToStep", "position": 3, "name": "List items and tax", "text": "Add each product or service with quantity and price, then set the VAT or sales tax rate. Totals are calculated automatically." },
+            { "@type": "HowToStep", "position": 4, "name": "Set invoice number, dates and payment terms", "text": "Check the invoice number, issue date, due date and payment instructions." },
+            { "@type": "HowToStep", "position": 5, "name": "Download the PDF", "text": "Export the invoice as a PDF. It is saved in your invoice archive for later." }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Is Invoice Luxe really free, with no sign-up and no watermark?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every tool is free, you can create unlimited invoices, and there is no registration, no subscription and no watermark on your PDFs." } },
+            { "@type": "Question", "name": "How do I create a free invoice online?", "acceptedAnswer": { "@type": "Answer", "text": "Open Create Invoice, add your business and client details, list your items with the VAT or sales tax rate, then export the invoice as a PDF. It is saved to your invoice archive." } },
+            { "@type": "Question", "name": "How do I sign a PDF online for free?", "acceptedAnswer": { "@type": "Answer", "text": "Open the PDF Engine, load or create your PDF, add your signature, place it on the page and download the signed PDF. No account is needed." } },
+            { "@type": "Question", "name": "Is a drawn signature on a PDF legally binding?", "acceptedAnswer": { "@type": "Answer", "text": "A drawn signature adds a visible signature to a document, which is enough for many everyday documents. It is not a certified digital signature. For contracts that require certified e-signatures or an audit trail, check the rules that apply in your country." } },
+            { "@type": "Question", "name": "Can I convert JPG or PNG images to PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add your JPG, PNG or photo in the PDF Engine and save it as a PDF. You can crop or compress the picture first in the Image Studio." } },
+            { "@type": "Question", "name": "How do I calculate VAT from a gross amount (reverse VAT)?", "acceptedAnswer": { "@type": "Answer", "text": "Divide the gross amount by 1 plus the VAT rate. For example, 120 gross at 20% VAT is 120 divided by 1.20, which gives 100 net and 20 VAT. The built-in calculator does this automatically in Gross mode." } },
+            { "@type": "Question", "name": "How do I add VAT to a net amount?", "acceptedAnswer": { "@type": "Answer", "text": "Multiply the net amount by 1 plus the VAT rate. For example, 100 net at 20% VAT is 100 times 1.20, which gives 120 gross including 20 VAT." } },
+            { "@type": "Question", "name": "Does Invoice Luxe work offline and on my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is a progressive web app: use it in any browser, install it on your iPhone, Android phone or computer, or download the Android app from Google Play, and keep working offline." } },
+            { "@type": "Question", "name": "Where is my data stored?", "acceptedAnswer": { "@type": "Answer", "text": "Your invoices, clients and settings are stored on your own device. There is no account to create." } },
+            { "@type": "Question", "name": "Which languages does Invoice Luxe support?", "acceptedAnswer": { "@type": "Answer", "text": "English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic." } }
+          ]
+        }
       ]
     }
     </script>
@@ -85,7 +137,33 @@
             --text: #f4f4f6; --muted: #a9a9b8; --card: #0f0f13;
             --line: rgba(255,200,61,.30); --line-soft: rgba(255,200,61,.15);
             --ok: #34d399; --danger: #ff6b6b;
+            --surface: #0c0c10; --surface-2: #0d0d11; --input-bg: #08080b;
+            --ic-bg: linear-gradient(145deg, #2c2411, #15130d);
+            --strong: #fff; --seo-bg: rgba(0,0,0,.35); --seo-text: #d9d9e2; --seo-body: #cfcfd8;
+            --chip-bg: rgba(255,200,61,.07); --tint: rgba(255,255,255,.03);
+            --nav-bg: linear-gradient(180deg, rgba(30,25,14,.93), rgba(12,12,15,.95));
+            --overlay: rgba(0,0,0,.78); --shadow: 0 12px 32px rgba(0,0,0,.45);
+            --bell-border: #0b0b0e; --grid: rgba(255,255,255,.07);
             --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        [data-theme="light"] {
+            --bg: #f5f4f0; --text: #1a1a1e; --muted: #5c5c6a; --card: #ffffff;
+            --line: rgba(184,134,11,.38); --line-soft: rgba(184,134,11,.2);
+            --ok: #0f9d6b; --danger: #d64545;
+            --surface: #ffffff; --surface-2: #ffffff; --input-bg: #f7f5ee;
+            --ic-bg: linear-gradient(145deg, #fff8e7, #f5ecd0);
+            --strong: #14141a; --seo-bg: rgba(255,255,255,.75); --seo-text: #3a3a46; --seo-body: #4a4a58;
+            --chip-bg: rgba(184,134,11,.09); --tint: rgba(0,0,0,.035);
+            --nav-bg: linear-gradient(180deg, rgba(255,252,245,.96), rgba(250,248,240,.98));
+            --overlay: rgba(30,25,10,.55); --shadow: 0 12px 32px rgba(120,90,10,.14);
+            --bell-border: #ffffff; --grid: rgba(0,0,0,.07);
+        }
+        [data-theme="light"] body {
+            background:
+                radial-gradient(120% 42% at 0% 0%, rgba(255,200,61,.24), transparent 58%),
+                radial-gradient(90% 40% at 100% 40%, rgba(255,200,61,.1), transparent 62%),
+                var(--bg);
+            background-attachment: fixed;
         }
         *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -97,6 +175,7 @@
                 radial-gradient(90% 40% at 100% 40%, rgba(184,134,11,.16), transparent 62%),
                 var(--bg);
             background-attachment: fixed;
+            transition: background-color .25s, color .25s;
         }
         body.lock { overflow: hidden; }
         a { color: inherit; text-decoration: none; }
@@ -112,12 +191,14 @@
         .brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
         .brand-mark { width: 42px; height: 42px; flex: none; filter: drop-shadow(0 4px 12px rgba(255,200,61,.35)); }
         .brand-txt { min-width: 0; }
-        .brand h1 { margin: 0; font-size: clamp(14px, 4vw, 19px); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; line-height: 1.1; white-space: nowrap; }
-        .brand h1 b { color: var(--gold); font-weight: 700; }
+        .brand-name { margin: 0; font-size: clamp(14px, 4vw, 19px); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; line-height: 1.1; white-space: nowrap; }
+        .brand-name b { color: var(--gold); font-weight: 700; }
         .brand p { margin: 3px 0 0; font-size: clamp(7px, 2vw, 9px); letter-spacing: .13em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .top-actions { display: flex; align-items: center; gap: 8px; flex: none; }
-        .bell { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; }
-        .bell .dot { position: absolute; top: 5px; right: 6px; width: 10px; height: 10px; border-radius: 50%; background: #ff4d4d; border: 2px solid #0b0b0e; display: none; }
+        .top-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+        .bell, .theme-btn { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; }
+        .theme-btn { border: 1.5px solid var(--line); background: var(--chip-bg); color: var(--gold); }
+        .theme-btn:hover { border-color: var(--gold); }
+        .bell .dot { position: absolute; top: 5px; right: 6px; width: 10px; height: 10px; border-radius: 50%; background: #ff4d4d; border: 2px solid var(--bell-border); display: none; }
         .bell.has .dot { display: block; }
         .vsep { width: 1px; height: 28px; background: var(--line-soft); }
         .lang { position: relative; }
@@ -125,40 +206,49 @@
         .lang-btn .material-symbols-rounded { font-size: 20px; }
         .lang-btn .chev-d { transition: transform .2s; }
         .lang.open .chev-d { transform: rotate(180deg); }
-        .lang-menu { display: none; position: absolute; right: 0; top: calc(100% + 6px); width: 132px; max-height: min(70vh, 420px); overflow-y: auto; -webkit-overflow-scrolling: touch; margin: 0; padding: 6px; list-style: none; border-radius: 16px; border: 1.5px solid var(--gold); background: #0c0c10; box-shadow: 0 20px 50px rgba(0,0,0,.7); z-index: 60; }
+        .lang-menu { display: none; position: absolute; right: 0; top: calc(100% + 6px); width: 132px; max-height: min(70vh, 420px); overflow-y: auto; -webkit-overflow-scrolling: touch; margin: 0; padding: 6px; list-style: none; border-radius: 16px; border: 1.5px solid var(--gold); background: var(--surface); box-shadow: 0 20px 50px rgba(0,0,0,.5); z-index: 60; }
         .lang.open .lang-menu { display: block; }
         .lang-menu a { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 10px; font-size: 14px; font-weight: 500; }
         .lang-menu a:hover { background: rgba(255,200,61,.1); }
         .lang-menu a.active { background: rgba(255,200,61,.16); }
         .lang-menu img { width: 24px; height: 16px; border-radius: 3px; object-fit: cover; }
         .lang-menu .ck { margin-left: auto; color: var(--gold); font-size: 18px; }
-        .pop { display: none; position: absolute; right: 0; top: calc(100% + 8px); width: min(300px, 88vw); padding: 12px; border-radius: 18px; border: 1.5px solid var(--gold); background: #0c0c10; box-shadow: 0 20px 50px rgba(0,0,0,.7); z-index: 60; }
+        .pop { display: none; position: absolute; right: 0; top: calc(100% + 8px); width: min(300px, 88vw); padding: 12px; border-radius: 18px; border: 1.5px solid var(--gold); background: var(--surface); box-shadow: 0 20px 50px rgba(0,0,0,.5); z-index: 60; }
         .pop.open { display: block; }
         .pop-h { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
         .pop-empty { font-size: 12px; color: var(--muted); }
-        .note-item { display: block; width: 100%; text-align: left; padding: 8px 10px; margin-bottom: 6px; border-radius: 10px; border: 1px solid var(--line-soft); background: rgba(255,200,61,.06); font-size: 12px; color: #e6e6ee; }
+        .note-item { display: block; width: 100%; text-align: left; padding: 8px 10px; margin-bottom: 6px; border-radius: 10px; border: 1px solid var(--line-soft); background: rgba(255,200,61,.06); font-size: 12px; color: var(--text); }
         .note-item strong { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
 
         /* Greeting */
-        .greet { display: flex; align-items: center; gap: 14px; margin: 18px 0 16px; }
-        .avatar { width: 64px; height: 64px; border-radius: 50%; flex: none; border: 2px solid var(--gold); background: linear-gradient(145deg, #2a2210, #111); display: grid; place-items: center; overflow: hidden; box-shadow: 0 0 0 3px rgba(255,200,61,.12); color: var(--gold); }
+        .greet { display: flex; align-items: center; gap: 14px; margin: 18px 0 12px; }
+        .avatar { width: 64px; height: 64px; border-radius: 50%; flex: none; border: 2px solid var(--gold); background: var(--ic-bg); display: grid; place-items: center; overflow: hidden; box-shadow: 0 0 0 3px rgba(255,200,61,.12), 0 8px 22px rgba(255,200,61,.22); color: var(--gold); }
         .avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .avatar.has-img img { display: block; }
         .avatar.has-img .material-symbols-rounded { display: none; }
         .greet-txt { flex: 1; min-width: 0; }
         .hello { color: var(--gold); font-size: 13px; font-weight: 500; }
-        .name { font-size: clamp(19px, 5.6vw, 24px); font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; }
+        .name { font-size: clamp(19px, 5.6vw, 24px); font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; background: linear-gradient(90deg, var(--text), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .sub { color: var(--muted); font-size: 12px; margin-top: 3px; }
-        .tools-btn { position: relative; width: 52px; height: 52px; flex: none; border-radius: 16px; border: 1.5px solid var(--gold); background: linear-gradient(145deg, #1d1608, #0f0f13); color: var(--gold); display: grid; place-items: center; box-shadow: 0 8px 20px rgba(0,0,0,.5); animation: pulse 2.6s ease-in-out infinite; }
+        .tools-btn { position: relative; width: 52px; height: 52px; flex: none; border-radius: 16px; border: 1.5px solid var(--gold); background: var(--ic-bg); color: var(--gold); display: grid; place-items: center; box-shadow: var(--shadow); animation: pulse 2.6s ease-in-out infinite; }
         .tools-btn:active { transform: scale(.94); }
-        .tools-btn .badge { position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #ff4d4d; color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; border: 2px solid #0b0b0e; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,.5), 0 0 0 0 rgba(255,200,61,.25); } 50% { box-shadow: 0 8px 20px rgba(0,0,0,.5), 0 0 0 8px rgba(255,200,61,.08); } }
+        .tools-btn .badge { position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #ff4d4d; color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; border: 2px solid var(--bell-border); }
+        @keyframes pulse { 0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(255,200,61,.25); } 50% { box-shadow: var(--shadow), 0 0 0 8px rgba(255,200,61,.08); } }
+
+        /* Page intro (H1) */
+        .intro { margin: 0 0 14px; padding: 12px 14px; border-radius: 16px; border: 1px dashed var(--line); background: var(--chip-bg); }
+        .intro h1 { margin: 0 0 4px; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--gold); letter-spacing: .01em; }
+        .intro p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.55; }
+        .trust { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
+        .trust li { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line-soft); background: var(--tint); font-size: 11px; font-weight: 500; }
+        .trust .material-symbols-rounded { font-size: 15px; color: var(--ok); font-variation-settings: 'FILL' 1, 'wght' 500; }
 
         /* Cards */
-        .card, .tile { background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.012) 60%), var(--card); border: 1.5px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,.45), inset 0 0 40px rgba(255,200,61,.03); }
+        .card, .tile { background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.012) 60%), var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow), inset 0 0 40px rgba(255,200,61,.03); }
+        [data-theme="light"] .card, [data-theme="light"] .tile { background: var(--card); }
         .card { border-radius: 22px; }
-        .hero { padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 92% 18%, rgba(255,200,61,.14), transparent 50%); pointer-events: none; }
+        .hero { padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; border-top: 3px solid var(--gold); }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 92% 18%, rgba(255,200,61,.16), transparent 50%), radial-gradient(circle at 4% 96%, rgba(52,211,153,.10), transparent 46%); pointer-events: none; }
         .hero > * { position: relative; }
         .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
         .hero-left { min-width: 0; padding-bottom: 2px; }
@@ -171,11 +261,13 @@
         .trend .material-symbols-rounded { font-size: 18px; }
         .spark-wrap { flex: 0 0 44%; max-width: 190px; aspect-ratio: 200 / 80; }
         .spark-wrap svg { width: 100%; height: 100%; display: block; overflow: visible; }
-        .spark-glow { filter: drop-shadow(0 0 4px rgba(255,200,61,.7)); }
+        .spark-glow { filter: drop-shadow(0 0 4px rgba(255,200,61,.55)); }
+        .ring { transform-origin: center; transform-box: fill-box; animation: ring 2.4s ease-out infinite; }
+        @keyframes ring { 0% { transform: scale(.6); opacity: .8; } 100% { transform: scale(2.4); opacity: 0; } }
         .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-        .stat { display: flex; align-items: center; gap: 8px; padding: 9px 8px; border-radius: 16px; border: 1px solid var(--line-soft); background: rgba(0,0,0,.3); min-width: 0; }
+        .stat { display: flex; align-items: center; gap: 8px; padding: 9px 8px; border-radius: 16px; border: 1px solid var(--line-soft); background: var(--tint); min-width: 0; }
         .stat.wide { grid-column: 1 / -1; padding: 10px; gap: 10px; }
-        .stat-ic { width: 32px; height: 32px; flex: none; border-radius: 10px; display: grid; place-items: center; color: var(--gold); background: linear-gradient(145deg, #2a2210, #15130d); border: 1px solid var(--line-soft); }
+        .stat-ic { width: 32px; height: 32px; flex: none; border-radius: 10px; display: grid; place-items: center; color: var(--gold); background: var(--ic-bg); border: 1px solid var(--line-soft); }
         .stat.wide .stat-ic { width: 38px; height: 38px; border-radius: 12px; }
         .stat-ic .material-symbols-rounded { font-size: 20px; }
         .stat-tx { display: flex; flex-direction: column; min-width: 0; flex: 1; }
@@ -185,20 +277,23 @@
         .stat .chev { display: none; }
         .stat.wide .chev { display: block; }
         .chev { color: var(--muted); font-size: 20px; flex: none; }
-        .c-danger { color: var(--danger); } .c-gold { color: var(--gold); } .c-ok { color: var(--ok); }
+        .c-danger { color: var(--danger); } .c-gold { color: var(--gold-deep); } .c-ok { color: var(--ok); }
+        :root:not([data-theme="light"]) .c-gold { color: var(--gold); }
 
         /* Tiles */
         .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .tile { display: flex; align-items: center; gap: 10px; padding: 12px 10px; min-height: 76px; border-radius: 18px; min-width: 0; transition: transform .15s, border-color .15s; }
-        .tile:hover { border-color: var(--gold); }
+        .tile { display: flex; align-items: center; gap: 10px; padding: 12px 10px; min-height: 76px; border-radius: 18px; min-width: 0; transition: transform .15s, border-color .15s, box-shadow .15s; position: relative; overflow: hidden; }
+        .tile::after { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 0 3px 3px 0; background: linear-gradient(180deg, var(--gold), var(--gold-2)); opacity: .85; }
+        .tile:hover { border-color: var(--gold); box-shadow: var(--shadow), 0 0 0 3px rgba(255,200,61,.08); }
         a.tile:active { transform: scale(.98); }
-        .tile-ic { width: 42px; height: 42px; flex: none; border-radius: 13px; display: grid; place-items: center; color: var(--gold); background: linear-gradient(145deg, #2c2411, #15130d); border: 1px solid var(--line); }
+        .tile-ic { width: 42px; height: 42px; flex: none; border-radius: 13px; display: grid; place-items: center; color: var(--gold); background: var(--ic-bg); border: 1px solid var(--line); }
+        [data-theme="light"] .tile-ic { color: var(--gold-deep); }
         .tile-tx { display: flex; flex-direction: column; min-width: 0; flex: 1; }
         .tile-tx b { font-size: 13px; font-weight: 600; line-height: 1.25; }
         .tile-tx small { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .tile.full { margin-bottom: 12px; padding: 12px; min-height: 0; }
-        /* Green accent borders for quick-access tiles */
         .tile.tile-green { border-color: var(--ok); }
+        .tile.tile-green::after { background: linear-gradient(180deg, var(--ok), #10b981); }
         .tile.tile-green:hover { border-color: #22c55e; }
         .tile.tile-green .tile-ic { border-color: var(--ok); color: var(--ok); }
         .tile.tile-green .tile-ic .material-symbols-rounded { color: var(--ok); }
@@ -206,7 +301,7 @@
         .pin { justify-content: space-between; }
         .pin-link { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
         .pin-ctrl { display: flex; gap: 6px; flex: none; }
-        .ctrl-btn { width: 32px; height: 32px; border-radius: 9px; border: 1px solid var(--line); background: rgba(255,200,61,.1); color: var(--gold); display: grid; place-items: center; }
+        .ctrl-btn { width: 32px; height: 32px; border-radius: 9px; border: 1px solid var(--line); background: rgba(255,200,61,.1); color: var(--gold-deep); display: grid; place-items: center; }
         .ctrl-btn:hover { background: var(--gold); color: #000; }
         .ctrl-btn .material-symbols-rounded { font-size: 18px; }
 
@@ -214,89 +309,99 @@
         .week { padding: 14px; margin-bottom: 12px; }
         .week-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
         .week-head .tile-ic { width: 38px; height: 38px; border-radius: 12px; }
-        .week-head h3 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+        .week-head h2 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
         .week-head p { margin: 0; font-size: 11px; color: var(--muted); }
         .week-head .all { margin-left: auto; display: flex; align-items: center; font-size: 12px; color: var(--muted); white-space: nowrap; }
         .week-head .all .material-symbols-rounded { font-size: 18px; }
         .week-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-        .week-nav button { width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--line-soft); background: rgba(255,200,61,.08); color: var(--gold); display: grid; place-items: center; }
+        .week-nav button { width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--line-soft); background: rgba(255,200,61,.08); color: var(--gold-deep); display: grid; place-items: center; }
         .week-label { flex: 1; text-align: center; font-size: 12px; font-weight: 600; }
         .week-label small { display: block; color: var(--muted); font-size: 10.5px; font-weight: 400; margin-top: 1px; }
         .week-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-        .wday { padding: 8px 0 6px; border-radius: 12px; border: 1px solid var(--line-soft); background: rgba(255,255,255,.03); text-align: center; color: var(--muted); min-width: 0; }
+        .wday { padding: 8px 0 6px; border-radius: 12px; border: 1px solid var(--line-soft); background: var(--tint); text-align: center; color: var(--muted); min-width: 0; }
         .wday .dn { display: block; font-size: 10.5px; }
         .wday .dd { display: block; font-size: 16px; font-weight: 600; color: var(--text); margin-top: 2px; line-height: 1.2; }
         .wday .pt { display: block; width: 4px; height: 4px; border-radius: 50%; margin: 4px auto 0; background: transparent; }
         .wday.has-note .pt { background: var(--gold); }
         .wday.today { border-color: var(--gold); background: linear-gradient(160deg, rgba(255,200,61,.24), rgba(255,200,61,.06)); }
-        .wday.today .dn, .wday.today .dd { color: var(--gold); }
+        .wday.today .dn, .wday.today .dd { color: var(--gold-deep); }
+        :root:not([data-theme="light"]) .wday.today .dn, :root:not([data-theme="light"]) .wday.today .dd { color: var(--gold); }
         .saved-notes { margin-top: 10px; max-height: 128px; overflow-y: auto; }
         .saved-notes .note-item { margin-bottom: 6px; }
 
-        /* Install card */
-        .install { display: none; align-items: center; gap: 12px; padding: 14px; margin-bottom: 8px; position: relative; overflow: hidden; }
+        /* Install / download card */
+        .install { display: none; flex-direction: column; gap: 12px; padding: 14px; margin-bottom: 8px; position: relative; overflow: hidden; }
         .install.show { display: flex; }
         .install::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 40%, rgba(255,200,61,.1) 60%, transparent 75%); pointer-events: none; }
+        .install-top { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
         .install .tile-ic { width: 48px; height: 48px; }
         .install .tx { flex: 1; min-width: 0; }
         .install .tx b { display: block; font-size: 15px; font-weight: 600; }
         .install .tx small { display: block; font-size: 12px; color: var(--muted); }
-        .btn-gold { height: 42px; padding: 0 12px 0 16px; border-radius: 999px; background: linear-gradient(135deg, #ffd75e, #f2a900); color: #1a1300; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 2px; box-shadow: 0 6px 18px rgba(242,169,0,.35); white-space: nowrap; position: relative; z-index: 1; }
-        .btn-gold .material-symbols-rounded { font-size: 20px; }
+        .install-actions { display: grid; grid-template-columns: 1fr; gap: 8px; position: relative; z-index: 1; }
+        @media (min-width: 440px) { .install-actions { grid-template-columns: 1fr 1fr; } }
+        .btn-gold { height: 46px; padding: 0 14px; border-radius: 14px; background: linear-gradient(135deg, #ffd75e, #f2a900); color: #1a1300; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 8px 22px rgba(242,169,0,.38); white-space: nowrap; }
+        .btn-gold .material-symbols-rounded { font-size: 22px; }
+        .btn-play { height: 46px; padding: 0 14px; border-radius: 14px; background: #000; color: #fff; border: 1.5px solid rgba(255,255,255,.28); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
+        .btn-play:hover { border-color: #fff; }
+        .btn-play svg { width: 22px; height: 22px; flex: none; }
         .pwa-tip { display: none; font-size: 11.5px; color: var(--muted); padding: 0 6px 6px; line-height: 1.5; }
 
         /* Bottom nav + FAB */
-        .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(12px + var(--safe-bottom)); width: min(560px, calc(100% - 24px)); height: 68px; display: flex; justify-content: space-around; align-items: center; border-radius: 26px; border: 1.5px solid var(--line); background: linear-gradient(180deg, rgba(30,25,14,.93), rgba(12,12,15,.95)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 14px 40px rgba(0,0,0,.6); z-index: 40; }
+        .bottom-nav { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(12px + var(--safe-bottom)); width: min(560px, calc(100% - 24px)); height: 68px; display: flex; justify-content: space-around; align-items: center; border-radius: 26px; border: 1.5px solid var(--line); background: var(--nav-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 14px 40px rgba(0,0,0,.45); z-index: 40; }
         .nav-link { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--muted); position: relative; padding: 6px 0 8px; }
-        .nav-link.active { color: var(--gold); font-weight: 600; }
+        .nav-link.active { color: var(--gold-deep); font-weight: 600; }
+        :root:not([data-theme="light"]) .nav-link.active { color: var(--gold); }
         .nav-link.active .material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 400; }
         .nav-link.active::after { content: ''; position: absolute; bottom: 0; width: 40px; height: 3px; border-radius: 3px; background: var(--gold); }
-        .calc-fab { position: fixed; right: max(16px, calc(50% - 280px + 16px)); bottom: calc(92px + var(--safe-bottom)); width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(145deg, #ffd75e, #f2a900); color: #1a1300; box-shadow: 0 10px 26px rgba(0,0,0,.5), 0 0 0 4px rgba(255,200,61,.14); z-index: 41; }
+        .calc-fab { position: fixed; right: max(16px, calc(50% - 280px + 16px)); bottom: calc(92px + var(--safe-bottom)); width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(145deg, #ffd75e, #f2a900); color: #1a1300; box-shadow: 0 10px 26px rgba(0,0,0,.4), 0 0 0 4px rgba(255,200,61,.14); z-index: 41; }
         .calc-fab:active { transform: scale(.94); }
 
         /* Overlays */
-        .overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; }
+        .overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 16px; background: var(--overlay); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; }
         .overlay.open { display: flex; }
         #note-modal { z-index: 110; }
         #onboard-overlay { z-index: 200; background: rgba(0,0,0,.92); }
-        .sheet { width: 100%; max-width: 440px; max-height: 82vh; display: flex; flex-direction: column; padding: 20px 18px; border-radius: 26px; border: 1.5px solid var(--gold); background: #0d0d11; box-shadow: 0 30px 70px rgba(0,0,0,.9); }
+        .sheet { width: 100%; max-width: 440px; max-height: 82vh; display: flex; flex-direction: column; padding: 20px 18px; border-radius: 26px; border: 1.5px solid var(--gold); background: var(--surface-2); box-shadow: 0 30px 70px rgba(0,0,0,.6); }
         .sheet-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line-soft); }
         .sheet-head span { font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-        .sheet-head button { color: var(--gold); width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; }
+        .sheet-head button { color: var(--gold-deep); width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; }
         .pin-links { margin-bottom: 12px; }
         .pin-links a { display: flex; align-items: center; gap: 12px; padding: 11px 12px; margin-bottom: 6px; border-radius: 12px; font-size: 13px; font-weight: 600; background: rgba(255,200,61,.07); border: 1px solid var(--line-soft); }
-        .pin-links a .material-symbols-rounded { color: var(--gold); }
+        .pin-links a .material-symbols-rounded { color: var(--gold-deep); }
         .sheet-scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-right: 2px; }
-        .menu-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 14px; border: 1px solid var(--line-soft); background: rgba(255,255,255,.03); }
+        .menu-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 14px; border: 1px solid var(--line-soft); background: var(--tint); }
         .menu-item-info { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-        .menu-item-info .material-symbols-rounded { color: var(--gold); }
+        .menu-item-info .material-symbols-rounded { color: var(--gold-deep); }
         .menu-item-info span { display: flex; flex-direction: column; min-width: 0; }
         .menu-item-info b { font-size: 13px; font-weight: 600; }
         .menu-item-info small { font-size: 11px; color: var(--muted); }
         .switch { position: relative; width: 46px; height: 26px; flex: none; }
         .switch input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 2; }
-        .switch span { position: absolute; inset: 0; border-radius: 26px; background: #3a3a44; transition: .25s; }
+        .switch span { position: absolute; inset: 0; border-radius: 26px; background: #8a8a96; transition: .25s; }
         .switch span::before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; border-radius: 50%; background: #fff; transition: .25s; }
         .switch input:checked + span { background: var(--ok); }
         .switch input:checked + span::before { transform: translateX(20px); }
         .switch input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
 
         /* Note modal */
-        .note-box { width: 100%; max-width: 380px; padding: 20px; border-radius: 22px; border: 2px solid var(--gold); background: #101015; box-shadow: 0 20px 50px rgba(0,0,0,.6); }
-        .note-box h4 { margin: 0 0 4px; font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
+        .note-box { width: 100%; max-width: 380px; padding: 20px; border-radius: 22px; border: 2px solid var(--gold); background: var(--surface-2); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+        .note-box h4 { margin: 0 0 4px; font-size: 14px; font-weight: 700; color: var(--gold-deep); letter-spacing: .08em; }
         .note-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
-        .note-box textarea { width: 100%; min-height: 110px; padding: 12px; border-radius: 14px; border: 1px solid var(--line); background: #08080b; color: #fff; font: inherit; font-size: 14px; resize: vertical; }
+        .note-box textarea { width: 100%; min-height: 110px; padding: 12px; border-radius: 14px; border: 1px solid var(--line); background: var(--input-bg); color: var(--text); font: inherit; font-size: 14px; resize: vertical; }
         .note-actions { display: flex; gap: 10px; margin-top: 12px; }
         .note-actions button { flex: 1; padding: 12px; border-radius: 12px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
         .note-save { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #1a1300; }
-        .note-cancel { background: #2b2b33; }
-        .note-clear { background: #4a1616; }
+        .note-cancel { background: #2b2b33; color: #fff; }
+        [data-theme="light"] .note-cancel { background: #e6e3da; color: #1a1a1e; }
+        .note-clear { background: #4a1616; color: #fff; }
+        [data-theme="light"] .note-clear { background: #f8d9d9; color: #8a1f1f; }
 
         /* Onboarding */
-        .onboard-card { width: 100%; max-width: 380px; padding: 28px 22px; border-radius: 28px; border: 2px solid var(--gold); background: #0d0d11; text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,.8); }
-        .onboard-card h2 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+        .onboard-card { width: 100%; max-width: 380px; padding: 28px 22px; border-radius: 28px; border: 2px solid var(--gold); background: var(--surface-2); text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,.8); }
+        .onboard-card h2 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-deep); }
         .lang-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; max-height: 240px; overflow-y: auto; padding: 2px; }
-        .flag-box { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 4px; border-radius: 14px; border: 1.5px solid var(--line-soft); background: rgba(255,255,255,.03); font-size: 12px; font-weight: 600; }
+        .flag-box { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 4px; border-radius: 14px; border: 1.5px solid var(--line-soft); background: var(--tint); font-size: 12px; font-weight: 600; }
         .flag-box img { width: 30px; height: 20px; border-radius: 4px; object-fit: cover; }
         .flag-box.active { border-color: var(--gold); background: rgba(255,200,61,.14); }
         .btn-start { width: 100%; padding: 16px; border-radius: 16px; background: linear-gradient(135deg, #ffd75e, #f2a900); color: #1a1300; font-size: 15px; font-weight: 700; letter-spacing: .06em; }
@@ -331,52 +436,54 @@
         .cb.zero { grid-column: span 2; }
 
         /* SEO block */
-        .seo { margin-top: 22px; padding: 18px; border-radius: 22px; background: rgba(0,0,0,.35); border: 1px solid var(--line-soft); color: #d9d9e2; font-size: 13px; line-height: 1.7; }
-        .seo h2 { margin: 22px 0 8px; font-size: 15px; font-weight: 700; color: var(--gold); line-height: 1.35; }
+        .seo { margin-top: 22px; padding: 18px; border-radius: 22px; background: var(--seo-bg); border: 1px solid var(--line-soft); color: var(--seo-text); font-size: 13px; line-height: 1.7; }
+        .seo h2 { margin: 24px 0 8px; font-size: 15px; font-weight: 700; color: var(--gold-deep); line-height: 1.35; }
+        :root:not([data-theme="light"]) .seo h2 { color: var(--gold); }
         .seo h2:first-child { margin-top: 0; }
-        .seo h3 { margin: 16px 0 4px; font-size: 13.5px; font-weight: 600; color: #fff; }
+        .seo h3 { margin: 16px 0 4px; font-size: 13.5px; font-weight: 600; color: var(--strong); }
         .seo p { margin: 0 0 10px; }
-        .seo a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-        .seo strong { color: #fff; font-weight: 600; }
-        .seo ol { margin: 0 0 10px; padding-left: 20px; }
+        .seo a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 2px; }
+        :root:not([data-theme="light"]) .seo a { color: var(--gold); }
+        .seo strong { color: var(--strong); font-weight: 600; }
+        .seo ol, .seo ul { margin: 0 0 10px; padding-left: 20px; }
         .seo li { margin-bottom: 6px; }
         .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
-        .seo .chips a { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,200,61,.07); font-size: 12px; color: var(--text); text-decoration: none; }
-        .seo details { margin: 8px 0; border: 1px solid var(--line-soft); border-radius: 14px; background: rgba(255,255,255,.03); overflow: hidden; }
-        .seo summary { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; cursor: pointer; list-style: none; font-size: 13px; font-weight: 600; color: var(--gold); }
+        .seo .chips a { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--chip-bg); font-size: 12px; color: var(--text); text-decoration: none; }
+        .seo details { margin: 8px 0; border: 1px solid var(--line-soft); border-radius: 14px; background: var(--tint); overflow: hidden; }
+        .seo summary { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; cursor: pointer; list-style: none; font-size: 13px; font-weight: 600; color: var(--gold-deep); }
+        :root:not([data-theme="light"]) .seo summary { color: var(--gold); }
         .seo summary::-webkit-details-marker { display: none; }
         .seo summary::after { content: '+'; font-weight: 700; }
         .seo details[open] summary::after { content: '\2212'; }
-        .seo .body { padding: 0 14px 14px; font-size: 12.5px; color: #cfcfd8; }
+        .seo .body { padding: 0 14px 14px; font-size: 12.5px; color: var(--seo-body); }
+        .tbl-wrap { overflow-x: auto; margin: 8px 0 12px; border: 1px solid var(--line-soft); border-radius: 14px; -webkit-overflow-scrolling: touch; }
+        .seo table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 300px; }
+        .seo th, .seo td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+        .seo th { background: var(--chip-bg); color: var(--strong); font-weight: 600; white-space: nowrap; }
+        .seo tr:last-child td { border-bottom: 0; }
+        .seo .yes { color: var(--ok); font-weight: 600; }
+        .seo .no { color: var(--danger); font-weight: 600; }
+        .formula { margin: 8px 0 12px; padding: 10px 12px; border-radius: 12px; border-left: 3px solid var(--gold); background: var(--chip-bg); font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; color: var(--strong); }
         .foot { margin-top: 16px; text-align: center; font-size: 12px; color: var(--muted); }
-        .foot a { color: var(--gold); margin: 0 6px; }
+        .foot a { color: var(--gold-deep); margin: 0 6px; }
+        :root:not([data-theme="light"]) .foot a { color: var(--gold); }
 
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
     </style>
 <link rel="canonical" href="https://invoiceluxe.com/">
-<link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/">
-<link rel="alternate" hreflang="da" href="https://invoiceluxe.com/da/">
-<link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/">
 <link rel="alternate" hreflang="en" href="https://invoiceluxe.com/">
-<link rel="alternate" hreflang="en-CA" href="https://invoiceluxe.com/ca/">
-<link rel="alternate" hreflang="en-GB" href="https://invoiceluxe.com/gb/">
-<link rel="alternate" hreflang="en-US" href="https://invoiceluxe.com/us/">
-<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/">
-<link rel="alternate" hreflang="fi" href="https://invoiceluxe.com/fi/">
-<link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/">
-<link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/">
-<link rel="alternate" hreflang="hi-IN" href="https://invoiceluxe.com/in/">
-<link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/">
-<link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/">
-<link rel="alternate" hreflang="ko" href="https://invoiceluxe.com/ko/">
-<link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/">
-<link rel="alternate" hreflang="no" href="https://invoiceluxe.com/no/">
-<link rel="alternate" hreflang="pt-BR" href="https://invoiceluxe.com/br/">
-<link rel="alternate" hreflang="pt-PT" href="https://invoiceluxe.com/pt/">
-<link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/">
-<link rel="alternate" hreflang="sv" href="https://invoiceluxe.com/sv/">
-<link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tr/">
-<link rel="alternate" hreflang="zh-CN" href="https://invoiceluxe.com/zh/">
+<link rel="alternate" hreflang="tr" href="https://invoiceluxe.com/tr/index.html">
+<link rel="alternate" hreflang="nl" href="https://invoiceluxe.com/nl/index.html">
+<link rel="alternate" hreflang="de" href="https://invoiceluxe.com/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://invoiceluxe.com/fr/index.html">
+<link rel="alternate" hreflang="it" href="https://invoiceluxe.com/it/index.html">
+<link rel="alternate" hreflang="es" href="https://invoiceluxe.com/es/index.html">
+<link rel="alternate" hreflang="pt-PT" href="https://invoiceluxe.com/pt/index.html">
+<link rel="alternate" hreflang="zh-CN" href="https://invoiceluxe.com/zh/index.html">
+<link rel="alternate" hreflang="ru" href="https://invoiceluxe.com/ru/index.html">
+<link rel="alternate" hreflang="hi" href="https://invoiceluxe.com/hi/index.html">
+<link rel="alternate" hreflang="ja" href="https://invoiceluxe.com/ja/index.html">
+<link rel="alternate" hreflang="ar" href="https://invoiceluxe.com/ar/index.html">
 <link rel="alternate" hreflang="x-default" href="https://invoiceluxe.com/">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
@@ -418,41 +525,42 @@
     <div class="app">
         <header class="top">
             <a class="brand" href="index.html" aria-label="Invoice Luxe home">
-                <img class="brand-mark" src="/logo-mark.png" alt="Invoice Luxe" width="42" height="42" style="object-fit:contain">
+                <img class="brand-mark" src="/logo-mark.png" alt="Invoice Luxe logo" width="42" height="42" style="object-fit:contain">
                 <div class="brand-txt">
-                    <h1>Invoice <b>Luxe</b></h1>
+                    <div class="brand-name">Invoice <b>Luxe</b></div>
                     <p>Your business, our priority</p>
                 </div>
             </a>
             <div class="top-actions">
+                <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch to light mode" aria-pressed="false"><i class="material-symbols-rounded" id="theme-icon">light_mode</i></button>
                 <button type="button" class="bell" id="bell-btn" aria-label="Upcoming notes" aria-expanded="false"><i class="material-symbols-rounded">notifications</i><span class="dot"></span></button>
                 <span class="vsep" aria-hidden="true"></span>
                 <div class="lang" id="lang">
                     <button type="button" class="lang-btn" id="lang-btn" aria-label="Change language" aria-expanded="false"><i class="material-symbols-rounded">language</i><span>EN</span><i class="material-symbols-rounded chev-d">expand_more</i></button>
                     <ul class="lang-menu" id="lang-menu">
                         <li><a href="index.html" class="active" data-lang="en" hreflang="en"><img src="https://flagcdn.com/w40/gb.png" alt="" loading="lazy">EN<i class="material-symbols-rounded ck">check</i></a></li>
-                        <li><a href="tr/index.html" data-lang="tr" hreflang="tr"><img src="https://flagcdn.com/w40/tr.png" alt="" loading="lazy">TR</a></li>
-                        <li><a href="nl/index.html" data-lang="nl" hreflang="nl"><img src="https://flagcdn.com/w40/nl.png" alt="" loading="lazy">NL</a></li>
-                        <li><a href="de/index.html" data-lang="de" hreflang="de"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy">DE</a></li>
-                        <li><a href="fr/index.html" data-lang="fr" hreflang="fr"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy">FR</a></li>
-                        <li><a href="it/index.html" data-lang="it" hreflang="it"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy">IT</a></li>
-                        <li><a href="es/index.html" data-lang="es" hreflang="es"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy">ES</a></li>
-                        <li><a href="pt/index.html" data-lang="pt" hreflang="pt"><img src="https://flagcdn.com/w40/pt.png" alt="" loading="lazy">PT</a></li>
-                        <li><a href="zh/index.html" data-lang="zh" hreflang="zh"><img src="https://flagcdn.com/w40/cn.png" alt="" loading="lazy">ZH</a></li>
-                        <li><a href="ru/index.html" data-lang="ru" hreflang="ru"><img src="https://flagcdn.com/w40/ru.png" alt="" loading="lazy">RU</a></li>
-                        <li><a href="hi/index.html" data-lang="hi" hreflang="hi"><img src="https://flagcdn.com/w40/in.png" alt="" loading="lazy">HI</a></li>
-                        <li><a href="in/index.html" data-lang="in" hreflang="hi-IN"><img src="https://flagcdn.com/w40/in.png" alt="" loading="lazy">IN</a></li>
-                        <li><a href="ja/index.html" data-lang="ja" hreflang="ja"><img src="https://flagcdn.com/w40/jp.png" alt="" loading="lazy">JA</a></li>
-                        <li><a href="ar/index.html" data-lang="ar" hreflang="ar"><img src="https://flagcdn.com/w40/sa.png" alt="" loading="lazy">AR</a></li>
-                        <li><a href="br/index.html" data-lang="br" hreflang="br"><img src="https://flagcdn.com/w40/br.png" alt="" loading="lazy">BR</a></li>
-                        <li><a href="ca/index.html" data-lang="ca" hreflang="ca"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy">CA</a></li>
-                        <li><a href="da/index.html" data-lang="da" hreflang="da"><img src="https://flagcdn.com/w40/dk.png" alt="" loading="lazy">DA</a></li>
-                        <li><a href="fi/index.html" data-lang="fi" hreflang="fi"><img src="https://flagcdn.com/w40/fi.png" alt="" loading="lazy">FI</a></li>
-                        <li><a href="gb/index.html" data-lang="gb" hreflang="gb"><img src="https://flagcdn.com/w40/gb.png" alt="" loading="lazy">GB</a></li>
-                        <li><a href="ko/index.html" data-lang="ko" hreflang="ko"><img src="https://flagcdn.com/w40/kr.png" alt="" loading="lazy">KO</a></li>
-                        <li><a href="no/index.html" data-lang="no" hreflang="no"><img src="https://flagcdn.com/w40/no.png" alt="" loading="lazy">NO</a></li>
-                        <li><a href="sv/index.html" data-lang="sv" hreflang="sv"><img src="https://flagcdn.com/w40/se.png" alt="" loading="lazy">SV</a></li>
-                        <li><a href="us/index.html" data-lang="us" hreflang="us"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy">US</a></li>
+                        <li><a href="../tr/index.html" data-lang="tr" hreflang="tr"><img src="https://flagcdn.com/w40/tr.png" alt="" loading="lazy">TR</a></li>
+                        <li><a href="../nl/index.html" data-lang="nl" hreflang="nl"><img src="https://flagcdn.com/w40/nl.png" alt="" loading="lazy">NL</a></li>
+                        <li><a href="../de/index.html" data-lang="de" hreflang="de"><img src="https://flagcdn.com/w40/de.png" alt="" loading="lazy">DE</a></li>
+                        <li><a href="../fr/index.html" data-lang="fr" hreflang="fr"><img src="https://flagcdn.com/w40/fr.png" alt="" loading="lazy">FR</a></li>
+                        <li><a href="../it/index.html" data-lang="it" hreflang="it"><img src="https://flagcdn.com/w40/it.png" alt="" loading="lazy">IT</a></li>
+                        <li><a href="../es/index.html" data-lang="es" hreflang="es"><img src="https://flagcdn.com/w40/es.png" alt="" loading="lazy">ES</a></li>
+                        <li><a href="../pt/index.html" data-lang="pt" hreflang="pt"><img src="https://flagcdn.com/w40/pt.png" alt="" loading="lazy">PT</a></li>
+                        <li><a href="../zh/index.html" data-lang="zh" hreflang="zh"><img src="https://flagcdn.com/w40/cn.png" alt="" loading="lazy">ZH</a></li>
+                        <li><a href="../ru/index.html" data-lang="ru" hreflang="ru"><img src="https://flagcdn.com/w40/ru.png" alt="" loading="lazy">RU</a></li>
+                        <li><a href="../hi/index.html" data-lang="hi" hreflang="hi"><img src="https://flagcdn.com/w40/in.png" alt="" loading="lazy">HI</a></li>
+                        <li><a href="../in/index.html" data-lang="in" hreflang="hi-IN"><img src="https://flagcdn.com/w40/in.png" alt="" loading="lazy">IN</a></li>
+                        <li><a href="../ja/index.html" data-lang="ja" hreflang="ja"><img src="https://flagcdn.com/w40/jp.png" alt="" loading="lazy">JA</a></li>
+                        <li><a href="../ar/index.html" data-lang="ar" hreflang="ar"><img src="https://flagcdn.com/w40/sa.png" alt="" loading="lazy">AR</a></li>
+                        <li><a href="../br/index.html" data-lang="br" hreflang="pt-BR"><img src="https://flagcdn.com/w40/br.png" alt="" loading="lazy">BR</a></li>
+                        <li><a href="../ca/index.html" data-lang="ca" hreflang="ca"><img src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy">CA</a></li>
+                        <li><a href="../da/index.html" data-lang="da" hreflang="da"><img src="https://flagcdn.com/w40/dk.png" alt="" loading="lazy">DA</a></li>
+                        <li><a href="../fi/index.html" data-lang="fi" hreflang="fi"><img src="https://flagcdn.com/w40/fi.png" alt="" loading="lazy">FI</a></li>
+                        <li><a href="../gb/index.html" data-lang="gb" hreflang="en-GB"><img src="https://flagcdn.com/w40/gb.png" alt="" loading="lazy">GB</a></li>
+                        <li><a href="../ko/index.html" data-lang="ko" hreflang="ko"><img src="https://flagcdn.com/w40/kr.png" alt="" loading="lazy">KO</a></li>
+                        <li><a href="../no/index.html" data-lang="no" hreflang="no"><img src="https://flagcdn.com/w40/no.png" alt="" loading="lazy">NO</a></li>
+                        <li><a href="../sv/index.html" data-lang="sv" hreflang="sv"><img src="https://flagcdn.com/w40/se.png" alt="" loading="lazy">SV</a></li>
+                        <li><a href="../us/index.html" data-lang="us" hreflang="en-US"><img src="https://flagcdn.com/w40/us.png" alt="" loading="lazy">US</a></li>
                     </ul>
                 </div>
             </div>
@@ -473,6 +581,17 @@
                 <button type="button" class="tools-btn" id="tools-btn" aria-label="Open all tools menu"><i class="material-symbols-rounded">apps</i><span class="badge">18</span></button>
             </section>
 
+            <section class="intro" aria-label="About Invoice Luxe">
+                <h1>Free Invoice Generator with No Sign-Up – Plus PDF Signing, Image to PDF &amp; VAT Calculator</h1>
+                <p>Create unlimited PDF invoices with no watermark, sign PDFs, turn photos into PDFs and split VAT in seconds. 18+ free business tools in one app that also works offline.</p>
+            </section>
+            <ul class="trust" aria-label="Key benefits">
+                <li><i class="material-symbols-rounded">check_circle</i>No sign-up</li>
+                <li><i class="material-symbols-rounded">check_circle</i>No watermark</li>
+                <li><i class="material-symbols-rounded">check_circle</i>Unlimited invoices</li>
+                <li><i class="material-symbols-rounded">check_circle</i>Works offline</li>
+            </ul>
+
             <section class="card hero" aria-label="Balance overview">
                 <div class="hero-top">
                     <div class="hero-left">
@@ -486,14 +605,22 @@
                         <svg viewBox="0 0 200 80" class="spark-glow">
                             <defs>
                                 <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="0.4"/>
-                                    <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+                                    <stop offset="0%" stop-color="#FFC83D" stop-opacity="0.38"/>
+                                    <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+                                </linearGradient>
+                                <linearGradient id="sl" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#34d399"/>
+                                    <stop offset="100%" stop-color="#FFC83D"/>
                                 </linearGradient>
                             </defs>
+                            <line x1="0" y1="20" x2="200" y2="20" stroke="var(--grid)" stroke-width="1" stroke-dasharray="3 4"/>
+                            <line x1="0" y1="42" x2="200" y2="42" stroke="var(--grid)" stroke-width="1" stroke-dasharray="3 4"/>
+                            <line x1="0" y1="64" x2="200" y2="64" stroke="var(--grid)" stroke-width="1" stroke-dasharray="3 4"/>
                             <path id="spark-area" fill="url(#sg)" d=""/>
-                            <line id="spark-drop" stroke="#FFD700" stroke-opacity=".25" stroke-width="1" x1="196" y1="10" x2="196" y2="80"/>
-                            <path id="spark-line" fill="none" stroke="#FFC83D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d=""/>
-                            <circle id="spark-dot" cx="196" cy="10" r="4" fill="#FFD75E"/>
+                            <line id="spark-drop" stroke="#FFC83D" stroke-opacity=".3" stroke-width="1" stroke-dasharray="2 3" x1="196" y1="10" x2="196" y2="80"/>
+                            <path id="spark-line" fill="none" stroke="url(#sl)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d=""/>
+                            <circle id="spark-ring" class="ring" cx="196" cy="10" r="4" fill="#FFC83D" fill-opacity=".5"/>
+                            <circle id="spark-dot" cx="196" cy="10" r="4" fill="#FFD75E" stroke="#fff" stroke-width="1.2"/>
                         </svg>
                     </div>
                 </div>
@@ -516,7 +643,7 @@
                 <div class="week-head">
                     <span class="tile-ic"><i class="material-symbols-rounded">calendar_month</i></span>
                     <div>
-                        <h3 id="L_WEEK">Weekly Calendar</h3>
+                        <h2 id="L_WEEK">Weekly Calendar</h2>
                         <p>Your schedule at a glance</p>
                     </div>
                     <a class="all" href="weekly-calendar.html" id="L_WEEK_ALL">View all<i class="material-symbols-rounded">chevron_right</i></a>
@@ -555,35 +682,41 @@
                 <i class="material-symbols-rounded chev">chevron_right</i>
             </a>
 
-            <a href="video-create-invoice.html" class="tile full il-tile">
-                <span class="tile-ic"><i class="material-symbols-rounded">play_circle</i></span>
-                <span class="tile-tx"><b>Watch Demo Video</b><small>Create an invoice step by step</small></span>
-                <i class="material-symbols-rounded chev">chevron_right</i>
-            </a>
-
             <div id="dynamic-shortcuts-container"></div>
 
             <div id="main-pwa-btn" class="card install">
-                <span class="tile-ic"><i class="material-symbols-rounded">install_mobile</i></span>
-                <div class="tx"><b id="L_PWA_MAIN_TITLE">Install the App</b><small id="L_PWA_MAIN_SUB">Work offline &amp; on the go</small></div>
-                <button type="button" class="btn-gold" id="pwa-install-btn">Get the App<i class="material-symbols-rounded">chevron_right</i></button>
+                <div class="install-top">
+                    <span class="tile-ic"><i class="material-symbols-rounded">install_mobile</i></span>
+                    <div class="tx"><b id="L_PWA_MAIN_TITLE">Get the Invoice Luxe App</b><small id="L_PWA_MAIN_SUB">Free · works offline · no account</small></div>
+                </div>
+                <div class="install-actions">
+                    <button type="button" class="btn-gold" id="pwa-install-btn"><i class="material-symbols-rounded">download</i>Install the App</button>
+                    <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.invoice.luxepro" target="_blank" rel="noopener" aria-label="Download the Invoice Luxe Android app on Google Play">
+                        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00d2ff" d="M48 59.5v393c0 9 4.7 16.9 11.7 21.4L283 256 59.7 38.1C52.7 42.6 48 50.5 48 59.5z"/><path fill="#00f076" d="M347.6 189.4L103.5 51.1c-9-5.1-17.7-4.7-25.2-.4L283 256l64.6-66.6z"/><path fill="#ff3a44" d="M347.6 322.6L283 256 78.3 461.3c7.5 4.3 16.2 4.7 25.2-.4l244.1-138.3z"/><path fill="#ffd400" d="M440.4 232.1l-92.8-42.7L283 256l64.6 66.6 92.8-42.7c25.9-14.7 25.9-33.1 0-47.8z"/></svg>
+                        Get it on Google Play
+                    </a>
+                </div>
             </div>
             <p class="pwa-tip" id="pwa-tip"></p>
 
             <section class="seo" aria-labelledby="seo-h">
                 <h2 id="seo-h">Invoice Luxe: Free Online Invoice Generator, PDF Signature &amp; Business Tools</h2>
-                <p id="seo-d">Invoice Luxe is a <strong>free online invoice generator</strong> for freelancers, contractors and small businesses. <a href="create-invoice.html">Create professional PDF invoices</a> in seconds, calculate taxes with the built-in <a href="calculator.html">VAT calculator</a>, <a href="online-pdf-suite.html">sign PDF documents online</a>, create PDFs from scratch or <a href="online-pdf-suite.html">convert images to PDF</a> — with no registration, no hidden fees and nothing to install.</p>
-                <p>Available in English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic. Invoice Luxe is a progressive web app (PWA) that runs on iPhone, Android, Windows and Mac: install it to your home screen and keep working offline.</p>
+                <p id="seo-d">Invoice Luxe is a <strong>free online invoice generator</strong> for freelancers, contractors, sole traders and small businesses. <a href="create-invoice.html">Create professional PDF invoices</a> in about two minutes, split tax with the built-in <a href="calculator.html">VAT calculator</a>, <a href="online-pdf-suite.html">sign PDF documents online</a>, build PDFs from scratch or <a href="online-pdf-suite.html">convert images to PDF</a>. There is <strong>no sign-up, no watermark and no limit</strong> on how many documents you create.</p>
+                <p>Unlike single-purpose tools that do one job and then ask you to upgrade, Invoice Luxe puts invoicing, PDF tools, tax maths, a time tracker and a calendar in one progressive web app (PWA). It runs on iPhone, Android, Windows and Mac, installs to your home screen, and keeps working offline.</p>
 
                 <div class="chips" aria-label="Popular tasks">
+                    <a href="create-invoice.html">Free invoice generator</a>
+                    <a href="create-invoice.html">Invoice maker no sign up</a>
+                    <a href="estimates.html">Estimate &amp; quote maker</a>
                     <a href="online-pdf-suite.html">Sign PDF online</a>
                     <a href="online-pdf-suite.html">Create PDF free</a>
                     <a href="online-pdf-suite.html">Image to PDF</a>
                     <a href="online-pdf-suite.html">JPG to PDF</a>
                     <a href="online-pdf-suite.html">PNG to PDF</a>
-                    <a href="create-invoice.html">Free invoice generator</a>
                     <a href="calculator.html">VAT calculator</a>
+                    <a href="calculator.html">Reverse VAT calculator</a>
                     <a href="discount.html">Discount calculator</a>
+                    <a href="work-logger.html">Work hours tracker</a>
                     <a href="qr-generator.html">QR code generator</a>
                     <a href="password-generator.html">Password generator</a>
                 </div>
@@ -598,36 +731,114 @@
                             <li><strong>Floating VAT terminal:</strong> open the calculator (gold button, bottom-right) for fast tax math with Gross and Net modes.</li>
                             <li><strong>Day notes:</strong> tap any day in the weekly calendar to save a note. The bell shows your upcoming notes.</li>
                             <li><strong>Private balance:</strong> tap the eye icon to hide or show your balance on screen.</li>
+                            <li><strong>Light and dark mode:</strong> use the sun/moon button in the header to switch themes. Your choice is remembered on this device.</li>
                         </ol>
                     </div>
                 </details>
 
-                <h2>How to create a free invoice online</h2>
+                <h2>Why choose Invoice Luxe over other free invoice generators?</h2>
+                <p>Most free invoice makers are a single form. Many ask you to sign up, add a watermark, or limit the number of invoices on the free plan. Invoice Luxe is built around what freelancers and small businesses actually do every week: invoice, get paid, check the tax, and keep records.</p>
+                <ul>
+                    <li><strong>No sign-up, no watermark:</strong> open the app and create an invoice straight away. Your PDF is clean and ready to send.</li>
+                    <li><strong>Unlimited and free:</strong> there is no cap on invoices, clients or PDFs.</li>
+                    <li><strong>Runs in your browser:</strong> your invoices, clients and settings are stored on your own device, so there is no account to manage.</li>
+                    <li><strong>Everything in one place:</strong> invoices, quotes, PDF signing, image to PDF, VAT, tax analytics, income and expenses, time tracking and calendars.</li>
+                    <li><strong>Works offline:</strong> install it as an app and keep invoicing without a connection.</li>
+                    <li><strong>13 languages:</strong> English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic.</li>
+                    <li><strong>Light and dark mode:</strong> comfortable in a bright office or late at night.</li>
+                </ul>
+
+                <h3>Invoice Luxe compared with typical free online tools</h3>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead><tr><th>Feature</th><th>Invoice Luxe</th><th>Typical single-purpose tool</th></tr></thead>
+                        <tbody>
+                            <tr><td>Sign-up required</td><td class="yes">No</td><td>Often</td></tr>
+                            <tr><td>Watermark on PDF</td><td class="yes">No</td><td>Sometimes</td></tr>
+                            <tr><td>Invoice limit</td><td class="yes">Unlimited</td><td>Often capped on free plans</td></tr>
+                            <tr><td>Invoice + PDF signing + VAT in one app</td><td class="yes">Yes</td><td>Usually separate sites</td></tr>
+                            <tr><td>Client registry &amp; invoice archive</td><td class="yes">Yes</td><td>Rarely without an account</td></tr>
+                            <tr><td>Works offline (installable)</td><td class="yes">Yes</td><td>Rarely</td></tr>
+                            <tr><td>Languages</td><td class="yes">13</td><td>Usually 1–2</td></tr>
+                            <tr><td>Light and dark mode</td><td class="yes">Yes</td><td>Rarely</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>How to create a free invoice online (no sign-up)</h2>
                 <ol>
-                    <li>Open <a href="create-invoice.html">Create Invoice</a> and add your business and client details.</li>
-                    <li>Add your line items, choose the VAT rate and check the totals.</li>
-                    <li>Export the invoice as a PDF, then find it later in your <a href="archive.html">invoice archive</a>.</li>
+                    <li>Open <a href="create-invoice.html">Create Invoice</a> and add your business name, logo, address and tax or VAT number.</li>
+                    <li>Add your client, or pick one from the <a href="customers.html">client registry</a>.</li>
+                    <li>List each product or service with quantity and price, then choose the VAT or sales tax rate. Subtotal, tax and total are calculated for you.</li>
+                    <li>Check the invoice number, issue date, due date and payment instructions.</li>
+                    <li>Export the invoice as a PDF and send it. A copy stays in your <a href="archive.html">invoice archive</a>.</li>
                 </ol>
 
-                <h2>Free PDF tools: sign PDF, create PDF and image to PDF</h2>
-                <h3>Sign PDF online for free</h3>
-                <p>Add your signature to a PDF right in the browser with the <a href="online-pdf-suite.html">PDF Engine</a>. Place it on the page, adjust the size and download the signed PDF — no account and no desktop software.</p>
-                <h3>Create PDF online</h3>
-                <p>Build a PDF from scratch with text, images and a signature, or export your invoices as PDF files in one tap. The free PDF generator works on phone and desktop.</p>
-                <h3>Convert image to PDF (JPG to PDF, PNG to PDF)</h3>
-                <p>Turn a photo, scan or screenshot into a PDF in seconds. Add your JPG or PNG to the PDF Engine and save it as a PDF; use the <a href="image-engine.html">Image Studio</a> first if you need to crop or compress the picture.</p>
+                <h3>What a professional invoice should include</h3>
+                <ul>
+                    <li>The word <strong>“Invoice”</strong> and a unique, sequential <strong>invoice number</strong>.</li>
+                    <li><strong>Issue date</strong> and <strong>due date</strong> (or payment terms such as “Net 14”).</li>
+                    <li>Your <strong>business name, address, contact details</strong> and tax/VAT number where required.</li>
+                    <li>Your <strong>client’s name and billing address</strong>.</li>
+                    <li>A clear <strong>description of goods or services</strong>, with quantity, unit price and line totals.</li>
+                    <li>The <strong>tax rate and tax amount</strong>, plus the <strong>net total and gross total</strong>.</li>
+                    <li><strong>Payment details</strong>: bank account, payment link or accepted methods.</li>
+                </ul>
+                <p>Tax and invoicing rules differ by country, so check the requirements that apply to your business. Invoice Luxe works with any currency and any local tax rate you enter.</p>
 
-                <h2>Invoicing, tax and money tools — 100% free, no registration</h2>
+                <h3>Quotes and estimates before the invoice</h3>
+                <p>Win the job first with the <a href="estimates.html">estimate and quote maker</a>. Send a clear PDF quote, then reuse the same details when the work is approved and it is time to invoice.</p>
+
+                <h2>Sign PDF online for free</h2>
+                <ol>
+                    <li>Open the <a href="online-pdf-suite.html">PDF Engine</a> and load your PDF, or create a new one.</li>
+                    <li>Draw or add your signature.</li>
+                    <li>Place it on the page and adjust the size.</li>
+                    <li>Download the signed PDF. No account and no desktop software.</li>
+                </ol>
+                <h3>Visible signature vs certified digital signature</h3>
+                <p>A drawn or uploaded signature places a <strong>visible signature</strong> on the document. That is enough for many everyday documents such as quotes, delivery notes, simple agreements and forms. It is not a certified digital signature with an audit trail. If a contract requires a certified e-signature, check the rules in your country and use a dedicated e-signature service for that document.</p>
+                <h3>Good uses for PDF signing</h3>
+                <p>Sign invoices and quotes, approve timesheets, return signed forms to a client, or add your signature to a delivery or receipt confirmation, all from your phone.</p>
+
+                <h2>Create PDF online and convert images to PDF (JPG to PDF, PNG to PDF)</h2>
+                <p>Build a PDF from scratch with text, images and a signature, or export your invoices as PDF files in one tap. To turn a photo, scan or screenshot into a PDF, add your <strong>JPG</strong>, <strong>PNG</strong> or camera photo to the <a href="online-pdf-suite.html">PDF Engine</a> and save it as a PDF.</p>
+                <ul>
+                    <li><strong>Several photos, one PDF:</strong> add each image as its own page to send receipts or documents as a single file.</li>
+                    <li><strong>Make it smaller:</strong> crop and compress first in the <a href="image-engine.html">Image Studio</a> so the PDF is easy to email.</li>
+                    <li><strong>Phone friendly:</strong> photograph a paper receipt, convert it to PDF and attach it to your records.</li>
+                </ul>
+
+                <h2>VAT calculator: add VAT, remove VAT and reverse VAT (gross to net)</h2>
+                <p>The built-in <a href="calculator.html">business calculator</a> splits any amount into <strong>net, VAT and gross</strong>. Switch between <strong>Gross</strong> (the price already includes VAT) and <strong>Net</strong> (the price is before VAT), type any local rate and read the result instantly.</p>
+                <h3>The formulas</h3>
+                <div class="formula">Add VAT:&nbsp;&nbsp;&nbsp;Gross = Net × (1 + rate ÷ 100)<br>Remove VAT: Net = Gross ÷ (1 + rate ÷ 100)<br>VAT amount: VAT = Gross − Net</div>
+                <h3>Worked examples at 20% VAT</h3>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead><tr><th>Net</th><th>VAT (20%)</th><th>Gross</th></tr></thead>
+                        <tbody>
+                            <tr><td>100.00</td><td>20.00</td><td>120.00</td></tr>
+                            <tr><td>250.00</td><td>50.00</td><td>300.00</td></tr>
+                            <tr><td>500.00</td><td>100.00</td><td>600.00</td></tr>
+                            <tr><td>850.00</td><td>170.00</td><td>1,020.00</td></tr>
+                            <tr><td>1,500.00</td><td>300.00</td><td>1,800.00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Reverse VAT example:</strong> a gross invoice of 1,800 at 20% VAT is 1,800 ÷ 1.20 = <strong>1,500 net</strong>, so the VAT is <strong>300</strong>.</p>
+                <p><strong>Common mistake:</strong> do not subtract 20% from the gross total. At 20%, VAT is one sixth of the gross amount, not one fifth. Removing 20% from 120 would wrongly give 96 instead of the correct 100.</p>
+                <p>The same maths works for other VAT, GST or sales tax rates. Use <strong>0%</strong> for zero-rated sales, a reduced rate where it applies, or your local sales tax percentage.</p>
+
+                <h2>Invoicing, tax and money tools: 100% free, no registration</h2>
                 <h3>Free Invoice Generator</h3>
-                <p>Create, save and reuse invoices with a client registry and a searchable archive. Ideal for freelancers who need a fast, professional invoice template.</p>
-                <h3>VAT Calculator &amp; Advanced Calculator</h3>
-                <p>The <a href="calculator.html">commercial calculator</a> has built-in VAT splitting. Switch between Gross and Net, enter any local tax rate and see net, VAT and total at once.</p>
+                <p>Create, save and reuse invoices with a client registry and a searchable archive. Ideal for freelancers who need a fast, professional invoice template without paying for accounting software.</p>
                 <h3>Tax Analytics</h3>
-                <p>Track VAT to pay, VAT to receive, total sales and net profit with the <a href="tax-analytics.html">tax analytics dashboard</a>, without extra bookkeeping software.</p>
+                <p>Track VAT to pay, VAT to receive, total sales and net profit with the <a href="tax-analytics.html">tax analytics dashboard</a>. It helps you see what to set aside before a tax return is due.</p>
                 <h3>Income &amp; Expense Calculator</h3>
                 <p>Compare incoming revenue with outgoing costs in the <a href="income-expense.html">income and expense calculator</a> and see your net balance instantly.</p>
                 <h3>Discount Calculator</h3>
-                <p>Work out sale prices, percentage savings and volume deductions with the <a href="discount.html">free discount calculator</a>.</p>
+                <p>Work out sale prices, percentage savings and volume deductions with the <a href="discount.html">free discount calculator</a>. Sale price = price × (1 − discount ÷ 100). For example, 80 with 25% off becomes 60.</p>
 
                 <h2>Productivity and utility tools</h2>
                 <h3>Work Time Logger</h3>
@@ -635,13 +846,13 @@
                 <h3>Weekly, Month-Week and Smart Calendar</h3>
                 <p>Plan client meetings and deadlines with the <a href="weekly-calendar.html">weekly calendar</a>, see the big picture in the <a href="month-week-calendar.html">month-week calendar</a> and set payment and tax reminders in the <a href="smart-calendar.html">smart calendar</a>.</p>
                 <h3>Image Studio</h3>
-                <p>Crop, resize and compress photos in your browser. Prepare receipts, delivery proofs and profile pictures — processing stays on your device.</p>
+                <p>Crop, resize and compress photos in your browser. Prepare receipts, delivery proofs and profile pictures.</p>
                 <h3>ZIP File Creator</h3>
-                <p>Bundle invoices, receipts and contracts into one <a href="zip-creator.html">ZIP archive</a> before sending them to clients or accountants.</p>
+                <p>Bundle invoices, receipts and contracts into one <a href="zip-creator.html">ZIP archive</a> before sending them to clients or your accountant.</p>
                 <h3>HTML Editor</h3>
                 <p>Write and preview HTML, CSS and JavaScript in the lightweight <a href="html-editor.html">online HTML editor</a>.</p>
                 <h3>Unit Converter &amp; Mile-KM Converter</h3>
-                <p>Convert length, weight, volume and temperature with the <a href="unit-converter.html">unit converter</a>, or switch distances with the <a href="mile-km-converter.html">mile to km converter</a>.</p>
+                <p>Convert length, weight, volume and temperature with the <a href="unit-converter.html">unit converter</a>, or switch distances with the <a href="mile-km-converter.html">mile to km converter</a>. Handy for mileage claims.</p>
                 <h3>Minute-Second Calculator</h3>
                 <p>Add, subtract and convert durations down to the second with the <a href="minute-second-calculator.html">minute-second calculator</a>.</p>
                 <h3>Password Generator</h3>
@@ -651,13 +862,36 @@
                 <h3>Executive Utility Hub</h3>
                 <p>Open the <a href="utility-hub.html">utility hub</a> to switch between all tools from one place.</p>
 
+                <h2>Who is Invoice Luxe for?</h2>
+                <ul>
+                    <li><strong>Freelancers and consultants</strong> who need a quick invoice after each project.</li>
+                    <li><strong>Contractors and tradespeople</strong> who quote on site and invoice from a phone.</li>
+                    <li><strong>Sole traders and small shops</strong> who track VAT or sales tax and basic income and expenses.</li>
+                    <li><strong>Students and side-hustlers</strong> who want a professional invoice without paying for software.</li>
+                    <li><strong>Anyone</strong> who needs to sign a PDF, merge photos into a PDF or calculate VAT in a hurry.</li>
+                </ul>
+
+                <h2>Install the app: Android, iPhone and desktop</h2>
+                <p>Invoice Luxe is a progressive web app, so there is nothing to download from an app store unless you want to.</p>
+                <ul>
+                    <li><strong>Android:</strong> install the app from <a href="https://play.google.com/store/apps/details?id=com.invoice.luxepro" target="_blank" rel="noopener">Google Play</a>, or open the site in Chrome and choose Install app.</li>
+                    <li><strong>iPhone and iPad:</strong> open the site in Safari, tap Share, then Add to Home Screen.</li>
+                    <li><strong>Windows and Mac:</strong> use the install icon in the address bar of Chrome or Edge.</li>
+                </ul>
+
+                <h2>Privacy and your data</h2>
+                <p>There is no account, so there is no profile to build. Your invoices, clients, notes and settings are stored on your own device. Back up important documents by saving your invoice PDFs, or bundle them in a ZIP file.</p>
+
                 <h2>Frequently asked questions</h2>
-                <details><summary>Is Invoice Luxe really free?</summary><div class="body">Yes. Invoice Luxe and all of its business tools are free to use, with no registration and no hidden fees.</div></details>
+                <details><summary>Is Invoice Luxe really free, with no sign-up and no watermark?</summary><div class="body">Yes. Every tool is free, you can create unlimited invoices, and there is no registration, no subscription and no watermark on your PDFs.</div></details>
+                <details><summary>How do I create a free invoice online?</summary><div class="body">Open Create Invoice, add your business and client details, list your items with the VAT or sales tax rate, then export the invoice as a PDF. It is saved to your invoice archive.</div></details>
                 <details><summary>How do I sign a PDF online for free?</summary><div class="body">Open the PDF Engine, load or create your PDF, add your signature, place it on the page and download the signed PDF. No account is needed.</div></details>
-                <details><summary>How can I create a PDF online?</summary><div class="body">Use the PDF Engine to build a document with text, images and a signature, then export it as a PDF. To make an invoice, open Create Invoice, fill in your details and export the invoice as a PDF.</div></details>
-                <details><summary>Can I convert an image (JPG, PNG) to PDF?</summary><div class="body">Yes. Add your JPG, PNG or photo in the PDF Engine and save it as a PDF. You can crop or compress the picture first in the Image Studio.</div></details>
-                <details><summary>Does Invoice Luxe work on my phone and offline?</summary><div class="body">Yes. It is a progressive web app: use it in any browser, or tap Get the App to install it on your iPhone, Android phone or computer and keep working offline.</div></details>
-                <details><summary>How do I calculate VAT from a gross or net amount?</summary><div class="body">Open the floating calculator, choose Gross (price includes VAT) or Net (price excludes VAT), enter your VAT rate and the amount, and read net, VAT and total instantly.</div></details>
+                <details><summary>Is a drawn signature on a PDF legally binding?</summary><div class="body">A drawn signature adds a visible signature to a document, which is enough for many everyday documents. It is not a certified digital signature. For contracts that require certified e-signatures or an audit trail, check the rules that apply in your country.</div></details>
+                <details><summary>Can I convert JPG or PNG images to PDF?</summary><div class="body">Yes. Add your JPG, PNG or photo in the PDF Engine and save it as a PDF. You can crop or compress the picture first in the Image Studio.</div></details>
+                <details><summary>How do I calculate VAT from a gross amount (reverse VAT)?</summary><div class="body">Divide the gross amount by 1 plus the VAT rate. For example, 120 gross at 20% VAT is 120 divided by 1.20, which gives 100 net and 20 VAT. The built-in calculator does this automatically in Gross mode.</div></details>
+                <details><summary>How do I add VAT to a net amount?</summary><div class="body">Multiply the net amount by 1 plus the VAT rate. For example, 100 net at 20% VAT is 100 times 1.20, which gives 120 gross including 20 VAT.</div></details>
+                <details><summary>Does Invoice Luxe work offline and on my phone?</summary><div class="body">Yes. It is a progressive web app: use it in any browser, install it on your iPhone, Android phone or computer, or download the Android app from Google Play, and keep working offline.</div></details>
+                <details><summary>Where is my data stored?</summary><div class="body">Your invoices, clients and settings are stored on your own device. There is no account to create.</div></details>
                 <details><summary>Which languages does Invoice Luxe support?</summary><div class="body">English, Turkish, Dutch, German, French, Italian, Spanish, Portuguese, Chinese, Russian, Hindi, Japanese and Arabic.</div></details>
             </section>
 
@@ -724,7 +958,6 @@
                 <a href="tools.html"><i class="material-symbols-rounded">apps</i><span id="L_MENU_TOOLS">All Tools</span></a>
                 <a href="about.html"><i class="material-symbols-rounded">info</i><span id="L_MENU_ABOUT">About Us</span></a>
                 <a href="/blog/" class="pin-guides"><i class="material-symbols-rounded">menu_book</i><span>Guides</span></a>
-                <a href="/video/create-invoice/"><i class="material-symbols-rounded">play_circle</i><span>Watch Demo Video</span></a>
             </div>
             <div class="sheet-scroll" id="sidebar-switches-list"></div>
         </div>
@@ -734,7 +967,7 @@
         <a href="index.html" class="nav-link active" aria-current="page"><i class="material-symbols-rounded">home</i><span id="n-pnl">Dashboard</span></a>
         <a href="wallet.html" class="nav-link"><i class="material-symbols-rounded">account_balance_wallet</i><span id="n-wlt">Wallet</span></a>
         <a href="scanner.html" class="nav-link"><i class="material-symbols-rounded">qr_code_scanner</i><span id="n-qr">Scanner</span></a>
-        <a href="settings.html" class="nav-link"><i class="material-symbols-rounded">settings</i><span id="n-set">Business Profile</span></a>
+        <a href="settings-en.html" class="nav-link"><i class="material-symbols-rounded">settings</i><span id="n-set">Business Profile</span></a>
     </nav>
 
     <script>
@@ -756,6 +989,27 @@
         function lockScroll() { document.body.classList.toggle('lock', !!document.querySelector('.overlay.open')); }
         function openOverlay(id) { $(id).classList.add('open'); lockScroll(); }
         function closeOverlay(id) { $(id).classList.remove('open'); lockScroll(); }
+
+        /* ---------- theme (light / dark) ---------- */
+        var THEME_KEY = 'invoiceLuxeTheme';
+        function currentTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+        function applyTheme(t) {
+            if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+            else document.documentElement.removeAttribute('data-theme');
+            var btn = $('theme-btn'), ic = $('theme-icon');
+            if (btn) {
+                btn.setAttribute('aria-pressed', String(t === 'light'));
+                btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+            }
+            if (ic) ic.textContent = t === 'light' ? 'dark_mode' : 'light_mode';
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', t === 'light' ? '#f5f4f0' : '#08080a');
+        }
+        $('theme-btn').addEventListener('click', function () {
+            var next = currentTheme() === 'light' ? 'dark' : 'light';
+            applyTheme(next); store.setRaw(THEME_KEY, next);
+        });
+        applyTheme(currentTheme());
 
         /* ---------- PWA ---------- */
         var deferredPrompt = null;
@@ -1006,6 +1260,7 @@
             $('spark-line').setAttribute('d', d);
             $('spark-area').setAttribute('d', d + ' L' + last[0] + ',80 L0,80 Z');
             $('spark-dot').setAttribute('cx', last[0]); $('spark-dot').setAttribute('cy', last[1]);
+            $('spark-ring').setAttribute('cx', last[0]); $('spark-ring').setAttribute('cy', last[1]);
             var dr = $('spark-drop'); dr.setAttribute('x1', last[0]); dr.setAttribute('x2', last[0]); dr.setAttribute('y1', last[1]);
         }
         function calculateTotals() {
@@ -1014,11 +1269,11 @@
             var prof = store.get('pro_profile', {}) || {};
             var cur = prof.curr || '€';
             var walletOut = 0, walletVatIn = 0;
-var manual = store.get('manual_' + key, []); if (!Array.isArray(manual)) manual = [];
-manual.forEach(function (row) {
-    var a = parseAmount(row.amt), vr = parseFloat(row.tax) || 0;
-    if (row.type === 'gider') { walletOut += a; walletVatIn += a - (a / (1 + vr / 100)); }
-});
+            var manual = store.get('manual_' + key, []); if (!Array.isArray(manual)) manual = [];
+            manual.forEach(function (row) {
+                var a = parseAmount(row.amt), vr = parseFloat(row.tax) || 0;
+                if (row.type === 'gider') { walletOut += a; walletVatIn += a - (a / (1 + vr / 100)); }
+            });
             var income = 0, taxOut = 0, running = [];
             history.forEach(function (inv) {
                 var amt = parseAmount(inv.amount), vr = parseFloat(inv.vrate) || 0;
@@ -1137,6 +1392,5 @@ manual.forEach(function (row) {
         recalc(); checkPWA(); applyProfile(); calculateTotals(); renderWeek(); hideIcons();
     })();
     </script>
-<!--IL-GUIDES--><!--/IL-GUIDES-->
 </body>
 </html>
