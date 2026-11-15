@@ -94,5 +94,29 @@
     "url": "/loan-emi-calculator.html",
     "button": "Open the loan EMI calculator",
     "text": "See your monthly payment and total interest for any loan amount, rate and term."
+  },
+  "timesheet": {
+    "name": "Work Hours & Overtime Calculator",
+    "url": "/us/work-hours-salary-calculator.html",
+    "button": "Open the work hours calculator",
+    "text": "Log start, end and break times, set your hourly rate and see total hours and pay. Export a PDF report. Free, no signup."
+  },
+  "timecalc": {
+    "name": "Time Calculator",
+    "url": "/us/minute-second-calculator.html",
+    "button": "Open the time calculator",
+    "text": "Add or subtract hours and minutes and get decimal hours for timesheets and payroll. Free, no signup."
+  },
+  "merge": {
+    "name": "Merge PDF",
+    "url": "/merge-pdf.html",
+    "button": "Merge your PDFs",
+    "text": "Combine several PDF files into one in your browser. No signup."
+  },
+  "gst": {
+    "name": "GST/HST Calculator (Canada)",
+    "url": "/ca/free-vat-calculator-en-ca.html",
+    "button": "Open the GST/HST calculator",
+    "text": "Add or remove GST or HST from a price in one tap. Free, no signup."
   }
 }
