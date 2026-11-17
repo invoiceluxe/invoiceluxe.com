@@ -7,6 +7,7 @@ tags: VAT, Calculations
 keywords: how to find VAT rate, calculate VAT rate from net and gross, what VAT rate was charged, VAT percentage formula, work out VAT percentage
 image: /images/blog/find-vat-rate-from-net-and-gross.jpg
 imageAlt: VAT rate formula: gross minus net divided by net times 100, example 80 to 96 is 20 percent
+updated: 2026-11-17
 ---
 
 Sometimes you have a receipt or a price list with a net and a gross price, but no VAT rate. You can find the rate with one formula.
@@ -56,6 +57,39 @@ Checking the implied rate helps you spot errors, such as VAT charged at the wron
 
 Enter the net and gross amounts to see the VAT amount and rate at once, or add and remove VAT at any rate.
 
+## Five invoices, five rates
+
+| Net | Gross | VAT | Rate |
+|---|---|---|---|
+| 250.00 | 300.00 | 50.00 | 20% |
+| 80.00 | 84.00 | 4.00 | 5% |
+| 1,250.00 | 1,437.50 | 187.50 | 15% |
+| 64.20 | 77.04 | 12.84 | 20% |
+| 500.00 | 500.00 | 0.00 | 0% |
+
+For each row, divide the VAT by the net amount. For the third row, 187.50 ÷ 1,250 = 0.15, which is 15%.
+
+## Spotting an invoice with mixed rates
+
+If your result is not a standard rate, the invoice may contain lines at different rates. For example, net 300.00 and gross 348.00 gives 48 ÷ 300 = 16%, which is not a standard rate. The invoice could be 240 at 20% (VAT 48) plus 60 at 0%, since 240 × 1.20 + 60 = 348. This is called an effective rate.
+
+## Check small invoices carefully
+
+On small amounts, rounding can move the result slightly. If an invoice shows net 3.33 and VAT 0.67, the calculated rate is 20.1%, which is really 20% rounded. Use a larger invoice to confirm a rate.
+
+## In a spreadsheet
+
+With the net in A2 and the gross in B2, use `=(B2-A2)/A2` and format the result as a percentage. Compare it with the rates you expect, and flag any rows that do not match.
+
+## Why this helps
+
+- Checking a supplier's invoice before you pay
+- Catching a wrong rate before you file a VAT return
+- Finding the rate when only the totals are shown
+- Auditing an old batch of invoices
+
+See [VAT calculation mistakes](/blog/vat-calculation-mistakes/) and [calculate VAT backwards](/blog/calculate-vat-backwards/).
+
 ## FAQ
 
 ### How do I work out the VAT rate from two prices?
@@ -69,6 +103,14 @@ The net price, the price before VAT.
 ### What if the result is not a standard rate?
 
 Check for rounding, a discount or a mix of rates on the same total.
+
+### How do I find the VAT rate from a net and a gross price?
+
+Subtract the net from the gross to get the VAT, divide by the net and multiply by 100.
+
+### What does it mean if the rate is not a standard one?
+
+The invoice may include several rates, or an amount may be wrong. Check each line.
 
 ### Is this tax advice?
 

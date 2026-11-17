@@ -7,6 +7,7 @@ tags: VAT, Calculations
 keywords: how to calculate VAT, VAT formula, calculate 20% VAT, VAT calculator UK, how to work out VAT
 image: /images/blog/how-to-calculate-vat.jpg
 imageAlt: VAT formula: net price times 1.20 gives the gross price, example £80 plus £16 VAT equals £96
+updated: 2026-11-17
 ---
 
 VAT is a tax added to the price of most goods and services. To calculate it, you multiply the price before VAT (the net price) by the VAT rate.
@@ -56,6 +57,39 @@ Add the net prices first, then work out VAT once on the total. This avoids round
 
 A calculator saves time when you have many prices. Enter the net amount and the rate, and see the VAT and the total at once. For a full walkthrough of adding and removing VAT, read [how to add or remove VAT](/blog/add-or-remove-vat/).
 
+## Standard, reduced, zero-rated and exempt
+
+These terms look similar, but they work differently:
+
+| Type | VAT charged to the customer? | Can you reclaim VAT on your costs? |
+|---|---|---|
+| Standard-rated (for example 20%) | Yes | Yes |
+| Reduced-rate (for example 5%) | Yes, at the lower rate | Yes |
+| Zero-rated (0%) | No VAT is added, but the sale is still reported | Yes |
+| Exempt | No | Usually not |
+
+Zero-rated and exempt look the same on the invoice, because no VAT is added, but they are treated differently in your VAT return.
+
+## What you pay to the tax authority
+
+Registered businesses charge VAT on sales (output VAT) and subtract the VAT they paid on purchases (input VAT). The difference is what they pay.
+
+| | Amount |
+|---|---|
+| Output VAT on sales | £4,800.00 |
+| Input VAT on purchases | £1,350.00 |
+| **VAT to pay** | **£3,450.00** |
+
+If the input VAT is bigger than the output VAT, the business can usually claim a refund. The numbers above are examples.
+
+## Do I need to register?
+
+Businesses must register for VAT once their taxable turnover passes a threshold. In the UK, the threshold has been £90,000, but thresholds change, so check the current figure on GOV.UK or with your local tax authority. Some businesses register voluntarily to reclaim VAT on their costs.
+
+## Keep VAT records
+
+Keep copies of all sales and purchase invoices, and keep a record of the VAT rate used for each line. A simple spreadsheet with net, VAT and gross columns makes your return much easier. See [what to include on a VAT invoice](/blog/what-to-include-on-a-vat-invoice/) and [VAT calculation mistakes](/blog/vat-calculation-mistakes/).
+
 ## FAQ
 
 ### How do I calculate 20% VAT on a price?
@@ -69,6 +103,14 @@ At 20% the VAT is £20, so the total is £120. At 5% the VAT is £5.
 ### Is VAT calculated on the net or the gross price?
 
 On the net price, which is the price before VAT is added.
+
+### What is the difference between zero-rated and exempt?
+
+Zero-rated sales are taxable at 0%, and you can reclaim VAT on related costs. Exempt sales are outside VAT charging, and you usually cannot reclaim the related VAT.
+
+### Who pays VAT in the end?
+
+The final consumer. Businesses collect it and pass it on, after subtracting the VAT they paid.
 
 ### Is this tax advice?
 

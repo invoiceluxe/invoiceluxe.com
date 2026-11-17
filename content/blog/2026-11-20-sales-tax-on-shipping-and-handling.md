@@ -57,6 +57,37 @@ Many states use the buyer's delivery address. Read [origin vs destination sales 
 
 If you offer free shipping, there is no shipping charge to tax. But the product is still taxed at the right rate on its own price.
 
+## How to decide, step by step
+
+1. **Is the item taxable?** If the goods are not taxable, the shipping is usually not taxable either.
+2. **Does your state tax delivery charges?** Some states tax shipping on taxable goods, some do not tax it, and some tax it only in certain situations.
+3. **Is the shipping charge separately stated?** In some states, a separately listed shipping charge is not taxable, while a combined price is.
+4. **Is the delivery optional?** Charges for optional delivery can be treated differently from charges that are required to complete the sale.
+
+## The same order, two outcomes
+
+An order of $200 in goods with a $15 shipping charge, at 7% sales tax:
+
+| | Shipping taxable | Shipping not taxable |
+|---|---|---|
+| Taxable amount | $215.00 | $200.00 |
+| Sales tax | $15.05 | $14.00 |
+| Total | $230.05 | $229.00 |
+
+The difference per order is small, but it adds up on hundreds of orders and can become a problem in an audit.
+
+## Mixed carts
+
+If the order has both taxable and non-taxable items, states may expect you to split the shipping between them. A common method is to divide it in proportion to the value of each type of item. Check your state's guidance before you apply any method.
+
+## Marketplaces and drop shipping
+
+If you sell through a marketplace, the platform may calculate and collect the tax for you, including tax on shipping. Check your seller reports so you know what was collected. With drop shipping, the seller of record is usually responsible for collecting tax, and the supplier may need a resale certificate from you.
+
+## Customer pickup
+
+If the customer collects the order, there is no shipping charge. Tax is then based on the location where the sale takes place, which can differ from the shipping address rate.
+
 ## FAQ
 
 ### Do I charge sales tax on shipping?
@@ -70,6 +101,14 @@ In many states a separate line is exempt, and in others it is still taxable. Do 
 ### What about shipping to another state?
 
 The rules of the destination state may apply if you have nexus there. See [what is sales tax nexus](/blog/what-is-sales-tax-nexus/).
+
+### Do I charge sales tax on shipping if my state says it is taxable?
+
+Yes, charge it on the shipping that your state treats as taxable, and show the tax clearly on the invoice.
+
+### Can I avoid tax on shipping by listing it separately?
+
+Only if your state exempts separately stated shipping. Listing it as its own line is good practice, but it does not make it exempt in every state.
 
 ### Is this tax advice?
 

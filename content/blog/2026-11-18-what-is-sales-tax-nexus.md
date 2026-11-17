@@ -61,6 +61,54 @@ If you sell on a platform such as Etsy, Amazon or eBay, the marketplace usually 
 
 Nexus rules mainly affect sellers of goods and taxable services. Whether your service is taxable depends on the state. Read [do freelancers charge sales tax](/blog/do-freelancers-charge-sales-tax/).
 
+## How to check where you have nexus
+
+Nexus is a state-by-state question, so a simple routine helps.
+
+1. **List where you have a physical presence.** Include offices, home offices, employees, contractors who work for you in the state, inventory and warehouses.
+2. **Add up your sales by state.** Use the last 12 months, and check whether the state counts a calendar year or a rolling period.
+3. **Compare each total with that state's threshold.** Count both dollars and, where it applies, the number of transactions.
+4. **Decide what to do.** If you are over, or close, register and begin collecting tax.
+5. **Repeat regularly.** Check at least every quarter, because growth can push you over a line without warning.
+
+## A simple tracking table
+
+A spreadsheet with one row per state is enough:
+
+| State | Sales, last 12 months | Transactions | Threshold | Status |
+|---|---|---|---|---|
+| Texas | $140,000 | 620 | $500,000 | Below |
+| Washington | $82,000 | 310 | Check state rule | Watch |
+| Ohio | $6,500 | 45 | Check state rule | Below |
+
+The sample numbers are made up. Fill in the real thresholds from each state's revenue department.
+
+## Things that can create physical nexus
+
+- Having an employee or independent contractor working in a state
+- Storing inventory in a warehouse, including a marketplace fulfillment center
+- Owning or renting an office, shop or studio
+- Attending trade shows or pop-up events, in some states
+- Delivering goods with your own vehicles
+
+If you use a marketplace's fulfillment program, your products may sit in several states without your choosing, and that can create nexus in each of them.
+
+## Why this changed in 2018
+
+Before 2018, a state generally could not require a seller without a physical presence to collect its sales tax. In *South Dakota v. Wayfair*, the US Supreme Court said states may require remote sellers to collect tax based on economic activity. After that decision, states introduced economic nexus thresholds, and the list kept growing.
+
+## What happens if you ignore nexus
+
+States can ask for tax you should have collected, plus interest and penalties. The back tax can be large because you did not charge your customers, so you may have to pay it from your own money. Many states have programs for businesses that come forward voluntarily, so talk to an accountant if you think you may owe tax.
+
+## When you start collecting
+
+Rules differ on timing. Some states want you to start collecting at the transaction that crosses the threshold, and others give you until the start of the next period. Check the rule in each state, and register before you start charging.
+
+## Keep it simple on your invoices
+
+Once you collect tax in a state, show it clearly on each invoice. See [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/) and [how to calculate sales tax](/blog/how-to-calculate-sales-tax/). If you sell goods and some of your sales are exempt, keep the exemption certificates with your records.
+
 ## FAQ
 
 ### What is the difference between physical and economic nexus?
@@ -74,6 +122,14 @@ Many states use $100,000 in sales, and some also use 200 transactions. A few sta
 ### Do I need to collect sales tax if I sell only a little out of state?
 
 Not until you meet that state's nexus rules, but track your sales by state so you know when you are close.
+
+### Does nexus apply to services?
+
+It can, in states that tax your service. Even when a service is not taxable, you can still have nexus in a state and need to collect tax on any taxable goods you sell there.
+
+### How often should I check my nexus?
+
+Check at least once a quarter, and again whenever you hire in a new state, open an office or begin storing inventory somewhere new.
 
 ### Is this tax advice?
 

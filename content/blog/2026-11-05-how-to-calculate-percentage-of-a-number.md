@@ -7,6 +7,7 @@ tags: Calculations, Percentages
 keywords: how to calculate percentage of a number, percentage formula, what is 15 percent of 240, calculate percent, percentage calculator
 image: /images/blog/how-to-calculate-percentage-of-a-number.jpg
 imageAlt: Percentage formula: part equals whole times percent divided by 100, example 15 percent of 240 is 36
+updated: 2026-11-17
 ---
 
 Percentages appear in prices, discounts, tax, tips and invoices. Once you know three simple formulas, you can solve almost every percentage problem.
@@ -61,6 +62,41 @@ This is exactly how VAT and discounts work. See [how to calculate discount perce
 
 Use the percentage calculator for percent of, percent change and increase or decrease, with no manual maths.
 
+## Everyday examples
+
+| Situation | Calculation | Result |
+|---|---|---|
+| 15% tip on a $64 bill | 64 × 0.15 | $9.60 |
+| 18% tip on a $64 bill | 64 × 0.18 | $11.52 |
+| 20% tip on a $64 bill | 64 × 0.20 | $12.80 |
+| 12% commission on $2,500 | 2,500 × 0.12 | $300.00 |
+| 8.25% sales tax on $40 | 40 × 0.0825 | $3.30 |
+
+For each row, convert the percentage to a decimal and multiply.
+
+## Working backwards
+
+If 30 is 12% of a number, divide 30 by 0.12 to find the number: 30 ÷ 0.12 = **250**. This is how you find the full price when you know a part and its percentage.
+
+## Percentages in a spreadsheet
+
+- A% of B: `=B2*A2`, with A2 formatted as a percentage
+- What percent A is of B: `=A2/B2`
+- Increase a number by a percentage: `=B2*(1+A2)`
+- Decrease a number by a percentage: `=B2*(1-A2)`
+
+## Mental math tricks
+
+1. **10%:** move the decimal point one place to the left.
+2. **5%:** half of 10%.
+3. **1%:** move the decimal point two places to the left.
+4. **15%:** add 10% and 5%.
+5. **Reverse the numbers:** 8% of 50 is the same as 50% of 8. Use the easier one.
+
+## Where you will use it
+
+Pricing, discounts, tax, tips, commission, interest and profit all use the same formula. See [percentage increase and decrease](/blog/percentage-increase-and-decrease/) and [price after discount](/blog/price-after-discount/).
+
 ## FAQ
 
 ### What is 10 percent of a number?
@@ -78,3 +114,11 @@ Divide by 100. For example 7.5% = 0.075.
 ### What is the difference between a percentage and a percentage point?
 
 If a rate goes from 4% to 6%, it rose by 2 percentage points, which is a 50% increase.
+
+### How do I find 15% of a number?
+
+Multiply the number by 0.15, or add 10% and half of 10%.
+
+### How do I find what percent one number is of another?
+
+Divide the first number by the second and multiply by 100.

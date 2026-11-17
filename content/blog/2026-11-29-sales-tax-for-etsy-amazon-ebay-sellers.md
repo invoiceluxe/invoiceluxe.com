@@ -46,6 +46,34 @@ In one year you sell $90,000 on a marketplace to customers in one state and $25,
 
 Packaging, equipment and supplies you buy for the business may be taxable. If a supplier did not charge tax, you may owe use tax. See [sales tax vs use tax](/blog/sales-tax-vs-use-tax/).
 
+## Marketplace sales versus your own site
+
+| Channel | Who usually collects tax | What you still do |
+|---|---|---|
+| Marketplace (Etsy, Amazon, eBay) | The marketplace, in states with a marketplace facilitator law | Keep records, report your sales, check for tax-exempt cases |
+| Your own online shop | You | Register, collect, file and pay |
+| Craft fairs and local events | You | Check local permit and collection rules |
+| Wholesale | Usually nobody at the sale, with a resale certificate | Keep the certificate |
+
+## Example with mixed sales
+
+A seller has $38,000 in marketplace sales and $12,000 from her own shop in one state in a year. The marketplace collected tax on the first $38,000. She must still collect tax on the $12,000 from her own shop if she has nexus. If the state threshold counts all sales including marketplace sales, her total of $50,000 matters for the threshold, so she should check how the state counts it.
+
+## Supplies and equipment
+
+Things you buy to run the shop, such as packaging, a label printer or software, are usually not tax-free. Buy items you will resell, such as materials that become part of the product, with a resale certificate where your state allows. See [sales tax vs use tax](/blog/sales-tax-vs-use-tax/) if a supplier did not charge you tax.
+
+## Profit and pricing
+
+Sales tax collected for the state is not your money. When you set prices, do not count it as revenue. If you sell on your own site, decide whether your prices include tax or show it on top, and be clear at checkout. For layout, see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
+
+## When to ask an accountant
+
+- When you pass a state's threshold
+- When you start storing inventory in a marketplace warehouse
+- When you begin selling wholesale
+- When a marketplace report does not match your own records
+
 ## FAQ
 
 ### Does Etsy collect sales tax for me?
@@ -59,6 +87,14 @@ Possibly. If you also sell outside the marketplace or your state requires regist
 ### Do marketplace sales count toward my threshold?
 
 In some states they do. Track them separately and check each state.
+
+### Do I need to send invoices for marketplace orders?
+
+The marketplace usually provides the order record. You may still send your own invoice for wholesale or direct orders.
+
+### Can I collect tax in a state where I have no permit?
+
+Usually no. Register first, then collect and file. Check your state's rules for registration before you charge tax.
 
 ### Is this tax advice?
 

@@ -61,6 +61,47 @@ If you work more than 40 hours a week, the extra hours may pay more. See [how to
 
 If your hours change every week, a timesheet gives a more accurate picture than a formula. Log your start, end and break time each day and let the calculator total your hours and pay.
 
+## Salary to hourly: more examples
+
+Divide the annual salary by 2,080, the number of hours in a standard full-time year (40 hours × 52 weeks).
+
+| Annual salary | Hourly rate |
+|---|---|
+| $50,000 | $24.04 |
+| $62,000 | $29.81 |
+| $75,000 | $36.06 |
+| $100,000 | $48.08 |
+
+## Compare two job offers
+
+One job pays $32 an hour and another pays a $62,000 salary. The salary equals $62,000 ÷ 2,080 = $29.81 an hour. The hourly job pays more per hour, but check:
+
+- Paid time off
+- Health insurance and retirement contributions
+- Overtime rules
+- Whether the hours are guaranteed
+
+A job that pays less per hour may be worth more once benefits are counted.
+
+## Adjust for unpaid time off
+
+If you are paid by the hour and take three weeks off without pay, you work fewer hours.
+
+| | Weeks | Hours | Pay at $30 an hour |
+|---|---|---|---|
+| Full year | 52 | 2,080 | $62,400 |
+| With 3 unpaid weeks | 49 | 1,960 | $58,800 |
+
+That is $3,600 less than the full-year number. Remember this when you plan a budget.
+
+## For freelancers
+
+Your effective hourly rate is your income divided by all the hours you worked, not just the billed ones. If you spend 10 hours on admin for every 30 billable hours, your real rate is lower than your charge rate. See [freelance hourly rate](/blog/freelance-hourly-rate/).
+
+## Keep it simple
+
+For a quick estimate, multiply the hourly rate by 2,000 to get a rough annual figure. Use 2,080 when you want the exact full-time number.
+
 ## FAQ
 
 ### How do I convert hourly pay to annual salary?
@@ -78,3 +119,11 @@ Divide the annual salary by the number of hours you work in a year, such as 2,08
 ### Is this financial advice?
 
 No. It is a simple conversion. Your real income depends on taxes, deductions and benefits.
+
+### How do I convert an hourly wage to a yearly salary?
+
+Multiply the hourly rate by the hours you work per week and by 52.
+
+### Is the annual figure before or after tax?
+
+Before. It is the gross pay, not the take-home pay.

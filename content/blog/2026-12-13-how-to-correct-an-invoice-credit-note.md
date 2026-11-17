@@ -70,6 +70,38 @@ Refund the difference or apply it as a credit to the next invoice, and put the c
 
 Review the invoice before sending. See [invoice mistakes to avoid](/blog/invoice-mistakes-to-avoid/).
 
+## Apply a credit note to a new invoice
+
+A credit note can reduce the next invoice. Suppose your client has a $321.00 credit from the example above, and you send a new invoice for $1,000.00 plus 7% tax.
+
+| Line | Amount |
+|---|---|
+| New invoice subtotal | $1,000.00 |
+| Sales tax (7%) | $70.00 |
+| Total | $1,070.00 |
+| Credit note CN-2026-003 | −$321.00 |
+| **Balance due** | **$749.00** |
+
+Reference the credit note on the new invoice, so the client can see where the reduction comes from.
+
+## Number credit notes
+
+Use a separate series, such as CN-2026-001, and refer to the original invoice number on each one. This keeps both lists in order and helps your accountant.
+
+## Wording for an email
+
+"Hello, I found an error on invoice 2026-014. The correct amount is $1,500.00, not $1,800.00. I have attached credit note CN-2026-003 for $321.00 including tax. Please let me know if you have any questions."
+
+Keep it short, say what was wrong and attach the documents.
+
+## Keep your records consistent
+
+- Never delete the original invoice.
+- Record the credit note in the same period as the correction, as your accountant advises.
+- Keep copies of both documents together.
+
+See [how to number invoices](/blog/how-to-number-invoices/) and [invoice mistakes to avoid](/blog/invoice-mistakes-to-avoid/).
+
 ## FAQ
 
 ### What is a credit note?
@@ -87,3 +119,11 @@ Yes. If you charged too much tax, the credit should include the tax difference.
 ### Is this accounting advice?
 
 No. It is a general guide. Ask your accountant about your records.
+
+### Should I issue a credit note or a new invoice?
+
+If the original invoice has already been sent and recorded, use a credit note, and then send a new invoice if needed.
+
+### Do credit notes include sales tax?
+
+Yes, if the original invoice had tax. Reverse the tax that you charged in error.

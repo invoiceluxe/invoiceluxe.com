@@ -70,6 +70,48 @@ Decide how you round, and put it in your agreement:
 
 If you are not sure your rate is right, see [how to calculate your freelance hourly rate](/blog/freelance-hourly-rate/).
 
+## A finished example
+
+Using the 32.00 hours from the timesheet above at $65 an hour:
+
+| Description | Hours | Rate | Amount |
+|---|---|---|---|
+| Website development, week of November 9 | 32.00 | $65.00 | $2,080.00 |
+| **Total due** | | | **$2,080.00** |
+
+## Different rates for different work
+
+If you charge a different rate for different tasks, use one line per rate:
+
+| Description | Hours | Rate | Amount |
+|---|---|---|---|
+| Design work | 20.00 | $70.00 | $1,400.00 |
+| Client meetings | 5.00 | $50.00 | $250.00 |
+| **Subtotal** | | | **$1,650.00** |
+
+## Write descriptions that explain the hours
+
+A line that says "Consulting, 12 hours" is thin. A better line is "Homepage redesign: wireframes, two design rounds and revisions, 12 hours". The client can see what they paid for, which reduces questions.
+
+## Agree on the rules first
+
+Before you start, agree with the client on:
+
+- Your rate and any minimum charge
+- How time is rounded
+- How often you invoice, such as weekly or monthly
+- Whether you need approval for extra hours
+
+Put this in writing, such as in your contract or an email.
+
+## Make it easy for the client to approve
+
+Send the invoice with the timesheet attached, and mention the period it covers. If a client needs a PO number, include it. For layout ideas, see [what to include on an invoice](/blog/what-to-include-on-an-invoice/) and [how to create an invoice](/blog/how-to-create-an-invoice/).
+
+## Chase on time
+
+Invoice at a fixed time each week or month, so it becomes a routine. If a payment is late, follow your reminder schedule. See [payment reminder email for an overdue invoice](/blog/payment-reminder-email-overdue-invoice/).
+
 ## FAQ
 
 ### How do I invoice for hours worked?
@@ -87,3 +129,11 @@ Weekly, every two weeks or monthly. Shorter periods mean smaller bills and faste
 ### Is this tax or legal advice?
 
 No. It is a billing guide. Taxes and contract terms depend on your situation.
+
+### How often should I invoice hourly clients?
+
+Weekly or monthly works for most. Weekly is better for new clients or large projects.
+
+### Should I send the timesheet with the invoice?
+
+Yes, if the client pays by the hour. It shows how the total was built.

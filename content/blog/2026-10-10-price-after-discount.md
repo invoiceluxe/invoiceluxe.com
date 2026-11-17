@@ -6,6 +6,7 @@ tags: Discounts, Calculations
 toolId: discount
 image: /images/blog/price-after-discount.jpg
 imageAlt: Multiplier method: 30% off means multiply the price by 0.70
+updated: 2026-11-17
 ---
 
 There is a faster way to find a sale price than working out the discount and subtracting it. Multiply the original price by what is left after the discount, and you have the final price in one step.
@@ -53,6 +54,40 @@ Type the original price and the discount rate, and you see the amount saved and 
 
 ![Invoice Luxe discount calculator with the final price](/images/blog/screen-discount.jpg)
 
+## A discount ladder for one price
+
+Here is a $240 item at common discounts:
+
+| Discount | Multiplier | Price after discount | You save |
+|---|---|---|---|
+| 10% | 0.90 | $216.00 | $24.00 |
+| 15% | 0.85 | $204.00 | $36.00 |
+| 20% | 0.80 | $192.00 | $48.00 |
+| 25% | 0.75 | $180.00 | $60.00 |
+| 30% | 0.70 | $168.00 | $72.00 |
+| 40% | 0.60 | $144.00 | $96.00 |
+| 50% | 0.50 | $120.00 | $120.00 |
+
+The multiplier is 1 minus the discount as a decimal. Multiply the price by it and you have the sale price in one step.
+
+## Odd prices and rounding
+
+A $19.99 item at 15% off is 19.99 × 0.85 = 16.9915, which rounds to **$16.99**. Round at the end, not before. If you round each step, you can end up a cent away from the receipt.
+
+## Spot a misleading sale
+
+- **A higher "was" price.** Check whether the item has actually sold at that price.
+- **A discount on an add-on.** "20% off accessories" does not change the main product's price.
+- **A minimum spend.** If you must spend $100 to get $10 off, the real discount depends on what you buy.
+
+## Price after discount in a spreadsheet
+
+Enter the price in A2 and the discount as a percentage in B2. The sale price is `=ROUND(A2*(1-B2),2)`. Use `$B$2` if you want to apply one discount to a whole column of prices.
+
+## Next step: tax and shipping
+
+Tax is usually added after the discount, and shipping may be added on top. See [stacked discounts](/blog/stacked-discounts/) if you have more than one offer, and [percent off chart](/blog/percent-off-chart/) for a quick look-up.
+
 ## FAQ
 
 ### What is 30% off $129.99?
@@ -70,3 +105,11 @@ Both give the same result. The multiplier is faster because it is one step.
 ### How do I find the discount if I only know the two prices?
 
 Subtract the sale price from the original, divide by the original price and multiply by 100. For a quick lookup of common discounts, use the [discount chart](/blog/percent-off-chart/).
+
+### How do I find the sale price quickly?
+
+Multiply the original price by 1 minus the discount. For 30% off, multiply by 0.70.
+
+### Do I round up or down?
+
+Round to the nearest cent after the last calculation.

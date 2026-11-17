@@ -57,6 +57,36 @@ If you have an EIN, using it instead of your SSN keeps your Social Security numb
 
 Send the W-9 once, then invoice as usual. For a good invoice, follow [what to include on an invoice](/blog/what-to-include-on-an-invoice/) and [how to create an invoice](/blog/how-to-create-an-invoice/). Keep your paid invoices, because you will need them when you compare totals with the 1099 you receive. See [year-end invoicing checklist](/blog/year-end-invoicing-checklist-for-freelancers/).
 
+## Common mistakes on a W-9
+
+- **Wrong name.** Use the name on your tax return. If you use a business name, enter it on the separate line.
+- **Wrong tax classification.** Choose the box that matches how you file your taxes, such as individual or sole proprietor, or LLC with the correct tax class.
+- **Missing signature or date.** An unsigned form can be rejected.
+- **A typo in the number.** Check every digit of your SSN or EIN.
+
+A mistake can delay payment, because the client needs a correct form before they can report what they paid you.
+
+## What if you do not give one?
+
+A client who does not have your taxpayer ID may be required to withhold tax from your payments at a flat rate, known as backup withholding. As of this writing, the rate is 24%. That money goes to the IRS and can be claimed on your tax return, but it reduces what you receive. Check the current rate and rules with the IRS.
+
+## If you are not a US person
+
+Some freelancers outside the US use a different form, such as a W-8BEN, which is for foreign individuals. Ask the client which form they need, because the right form depends on your tax status.
+
+## Keep your records
+
+Keep a copy of every W-9 you send and note the date and client. Update the form if your name, address or business type changes. Keep your invoices, because you will compare them with the totals on the forms you receive after the year ends.
+
+## A simple routine
+
+1. Prepare a completed W-9 with your current details.
+2. Send it securely when a new client asks.
+3. Save the confirmation.
+4. In January, compare the 1099 forms you receive with your own income records.
+
+See [year-end invoicing checklist](/blog/year-end-invoicing-checklist-for-freelancers/) for more steps.
+
 ## FAQ
 
 ### What is a W-9 used for?
@@ -70,6 +100,14 @@ No. You send it to the client who requested it.
 ### Do I need to charge sales tax if I fill out a W-9?
 
 They are unrelated. The W-9 is about reporting your income, and sales tax depends on what you sell. See [do freelancers charge sales tax](/blog/do-freelancers-charge-sales-tax/).
+
+### Do I need a W-9 for every client?
+
+Each client that pays you as a contractor will usually ask for one. You complete the same form for each.
+
+### Can I use my EIN instead of my SSN on a W-9?
+
+Yes, if you have an EIN. It keeps your Social Security number private.
 
 ### Is this tax advice?
 

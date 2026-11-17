@@ -68,6 +68,55 @@ Show the subtotal, the tax name and rate, the tax amount and the total. Show you
 
 If you only have the total, divide by 1 plus the rate. For Ontario, 1,130 ÷ 1.13 = 1,000. See [how to calculate the price before sales tax](/blog/remove-sales-tax-from-total/).
 
+## The small supplier threshold
+
+In Canada, most businesses that sell taxable goods or services must register for GST/HST once they pass the small supplier threshold. That threshold is $30,000 in taxable sales over four consecutive calendar quarters. Below it, registration is optional, and some businesses register voluntarily so that they can claim input tax credits.
+
+## Input tax credits
+
+A registered business can usually claim back the GST/HST it paid on business expenses. These are called input tax credits.
+
+| Item | Amount |
+|---|---|
+| GST/HST collected from customers | $2,600.00 |
+| GST/HST paid on business expenses | $650.00 |
+| **Net tax to send to the government** | **$1,950.00** |
+
+The numbers are examples. Keep your invoices and receipts, because you need them to support the credits.
+
+## A worked example in two provinces
+
+A consultant charges $2,000 for a project.
+
+| Province | Tax | Calculation | Total |
+|---|---|---|---|
+| Alberta | 5% GST | 2,000 × 0.05 = $100 | $2,100.00 |
+| Ontario | 13% HST | 2,000 × 0.13 = $260 | $2,260.00 |
+
+In British Columbia, the GST is 5%, and a separate provincial tax may apply to some goods but not to many services. Check the rule for each province before you invoice.
+
+## What your invoice should show
+
+- Your business name and address
+- The invoice date and number
+- Your GST/HST registration number
+- The amount before tax, the tax charged and the total
+- The customer's name
+
+The registration number is the business number followed by RT and four digits, such as 123456789 RT0001, in the example format. Larger invoices have extra requirements, so check the current rules from the Canada Revenue Agency.
+
+## Filing and paying
+
+Returns are usually filed monthly, quarterly or yearly, depending on your sales. File on time even if you owe nothing. Payments can be made online or through your bank.
+
+## Selling to the United States and other countries
+
+Exports of goods and many services to customers outside Canada are often zero-rated, meaning the tax rate is 0% but you can still claim input tax credits. The rules depend on what you sell and where the customer is, so check the details before you invoice.
+
+## Comparing with the US system
+
+Canada's GST/HST works like a value-added tax, and US sales tax is only charged on the final sale. See [sales tax vs VAT](/blog/sales-tax-vs-vat/) for a side-by-side comparison, and [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/) for a layout you can adapt.
+
 ## FAQ
 
 ### What is the difference between GST and HST?
@@ -81,6 +130,14 @@ In British Columbia, Manitoba and Saskatchewan, PST is charged in addition to GS
 ### Do I need to register for GST/HST?
 
 Generally once revenue passes CAD $30,000 over four consecutive calendar quarters, or earlier if you choose.
+
+### What is the small supplier threshold?
+
+It is $30,000 in taxable sales over four consecutive calendar quarters. Above it, you must register.
+
+### Can I claim GST/HST I paid on my expenses?
+
+If you are registered, usually yes, through input tax credits. Keep the receipts.
 
 ### Is this tax advice?
 

@@ -63,6 +63,46 @@ The layout is in [how to show sales tax on an invoice](/blog/how-to-show-sales-t
 
 Exemptions are narrow and specific. If you are not sure, ask your state's revenue department. It is easier than fixing an audit later.
 
+## Why exemptions differ so much
+
+Each state decides what is taxed. A grocery item that is exempt in one state may be taxable in the next, and "food" can have its own definition. Clothing, medicine and school supplies are common examples where the rules differ or have special tax holidays.
+
+## Categories to check in your state
+
+| Category | What to check |
+|---|---|
+| Groceries | Which foods count, and whether prepared food, candy or soda are taxed |
+| Clothing | Whether there is a price limit or a seasonal holiday |
+| Medicine | Prescription versus over-the-counter |
+| Medical devices | Which devices qualify |
+| Education | Textbooks, school supplies |
+| Farm and manufacturing | Equipment or raw materials used to make goods |
+| Resale | Items bought to sell again, with a certificate |
+
+Use this as a checklist, then read your state's guide to confirm each one.
+
+## A worked example with an exempt line
+
+An invoice for a gift basket business in a state where unprepared food is exempt and gift packaging is taxable, at a 6% rate:
+
+| Line | Amount | Taxable? |
+|---|---|---|
+| Basket and ribbon | $18.00 | Yes |
+| Jam and crackers | $32.00 | No |
+| **Subtotal** | **$50.00** | |
+| Sales tax (6% on $18.00) | $1.08 | |
+| **Total** | **$51.08** | |
+
+If you accidentally taxed the whole $50.00, you would charge $3.00 instead of $1.08 and overcharge the customer by $1.92. Overcharging can lead to complaints and refunds.
+
+## Sales tax holidays
+
+Some states have short periods, often before school starts, when certain items are exempt. Rules include price caps and item lists, so read the official notice. If you sell during a holiday, make sure your invoicing system or register is updated and switch it back after the holiday ends.
+
+## Make your catalog easy to maintain
+
+For a shop with many products, add a "taxable" column to your price list. Mark each item Y or N, and review the list once a year. This lets you build invoices quickly and shows an auditor that you have a clear process. For layout, see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
+
 ## FAQ
 
 ### Is food exempt from sales tax?
@@ -76,6 +116,14 @@ Only in some states, and some limit the exemption by price.
 ### Can a customer simply tell me they are exempt?
 
 No. Ask for an exemption certificate and keep it on file.
+
+### Are services exempt from sales tax?
+
+Many are, but it depends on the state and on the service. See [do freelancers charge sales tax](/blog/do-freelancers-charge-sales-tax/).
+
+### What if I charged tax on an exempt item by mistake?
+
+Issue a credit note that refunds the extra tax and keep it with the original invoice.
 
 ### Is this tax advice?
 

@@ -75,6 +75,42 @@ Save PDF copies of invoices, receipts and contracts in one folder for the year, 
 | Review rates and terms | ☐ |
 | Set invoice numbering for January | ☐ |
 
+## A timeline from December to January
+
+| When | What to do |
+|---|---|
+| Early December | Send all invoices for completed work and ask clients for their year-end deadlines |
+| Mid December | Chase unpaid invoices and confirm payment dates |
+| Late December | Reconcile payments, archive the year's documents |
+| Early January | Collect W-9s and 1099s, update your template and invoice numbers |
+| Mid January | Check the due date for any estimated tax payment with the IRS or your accountant |
+
+Estimated tax dates can change, so confirm them with the IRS or a tax professional.
+
+## Reconcile with a simple table
+
+Make a table with each invoice, its amount, when it was paid and how. Compare the total with your bank statements.
+
+| Invoice | Amount | Paid on | Method | Matches bank? |
+|---|---|---|---|---|
+| 2026-041 | $1,500.00 | Nov 14 | Bank transfer | Yes |
+| 2026-042 | $720.00 | Dec 2 | Card | Yes |
+| 2026-043 | $2,080.00 | Open | | Chase |
+
+Anything marked "Open" needs action before the year ends.
+
+## Review your best and worst clients
+
+Look at who paid on time and who paid late. Decide whether to change terms, ask for deposits or stop working with a client who is always late. See [late payment fees and interest](/blog/late-payment-fees-and-interest/).
+
+## Set goals for next year
+
+- Raise rates for new work
+- Offer recurring packages
+- Reduce the number of unpaid hours
+
+A small review in December pays off all year.
+
 ## FAQ
 
 ### When should I send my last invoices of the year?
@@ -88,6 +124,14 @@ Yes. Keep them as long as your tax authority or accountant advises, which is oft
 ### Should invoice numbers restart in January?
 
 Either is fine. Choose one system and stay consistent.
+
+### Should I send my last invoices before December 31?
+
+Yes, for work you have finished. It keeps your records for the year complete and gives clients time to pay.
+
+### How long should I keep invoices?
+
+As long as your tax authority or accountant advises, often at least several years.
 
 ### Is this tax advice?
 

@@ -66,6 +66,38 @@ A pro forma invoice often shows an estimate of tax. The actual tax is based on t
 2. Using the same number series as final invoices.
 3. Leaving out an expiry date for the price.
 
+## When a pro forma invoice is useful
+
+- A new customer wants to see the total before they pay
+- A buyer needs it for a bank transfer approval or an internal purchase order
+- Goods are crossing a border, and the customs authority wants a document that shows the value
+- A customer asks for prepayment before you ship
+
+## Number it differently
+
+Use a separate number series, such as PF-001, so a pro forma invoice is never confused with a final invoice. When you send the final invoice, it gets a normal number and refers to the pro forma number.
+
+## Add a validity date
+
+State how long the pro forma invoice is valid, for example "valid for 30 days". Prices, availability and shipping costs can change, and the date protects you.
+
+## International shipments
+
+For export, a pro forma invoice often shows:
+
+- The seller and buyer details
+- A description of each item
+- The quantity and unit value
+- The currency
+- The shipping and insurance costs
+- The country of origin
+
+Check the requirements of the customs authority in the destination country.
+
+## A common mistake
+
+Do not use a pro forma invoice as a final sales record. It is not a request for payment in the accounting sense, and it can confuse your records. Issue the final invoice when you ship or complete the work. See [quote vs estimate vs invoice](/blog/quote-vs-estimate-vs-invoice/) and [how to create an invoice](/blog/how-to-create-an-invoice/).
+
 ## FAQ
 
 ### Is a pro forma invoice a legal document?
@@ -83,3 +115,11 @@ Not exactly. It is formatted like an invoice and often used for customs or appro
 ### Is this legal or tax advice?
 
 No. It is a general explanation. Confirm requirements for your situation.
+
+### Is a pro forma invoice legally binding?
+
+Not on its own, but it can form part of an agreement once the buyer accepts it. Add clear terms.
+
+### Can I ask for payment based on a pro forma invoice?
+
+Yes, many sellers ask for prepayment against it. Then issue a final invoice once the sale is complete.

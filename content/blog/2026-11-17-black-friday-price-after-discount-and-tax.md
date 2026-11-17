@@ -7,6 +7,7 @@ toolId: discount
 keywords: black friday discount calculator, how to calculate black friday deals, price after discount and sales tax, cyber monday savings calculator, is this deal really 40 percent off
 image: /images/blog/black-friday-price-after-discount-and-tax.jpg
 imageAlt: Black Friday example: $400 TV at 35% off is $260, plus 8% sales tax is $280.80
+updated: 2026-11-17
 ---
 
 Black Friday and Cyber Monday are full of big percentages, but the number that matters is what leaves your bank account. That is the price after the discount **and** after sales tax. Here is how to work it out before you hit "buy".
@@ -55,6 +56,53 @@ Free shipping thresholds can push you to add items you do not need. Shipping can
 3. Add shipping if it is not free.
 4. Compare the final total with the lowest price you have seen.
 
+## Compare two deals with tax included
+
+The bigger percentage is not always the cheaper product. Here are two laptops at 8% sales tax:
+
+| | Laptop A | Laptop B |
+|---|---|---|
+| List price | $600.00 | $500.00 |
+| Discount | 20% | 10% |
+| Price after discount | $480.00 | $450.00 |
+| Sales tax (8%) | $38.40 | $36.00 |
+| **You pay** | **$518.40** | **$486.00** |
+
+Laptop A has the bigger discount, but Laptop B still costs $32.40 less. Always compare the final price, not the percentage.
+
+## Set a budget that includes tax
+
+If you have $500 to spend and the sales tax rate is 8.25%, you cannot buy a $500 item. Divide the budget by 1.0825 to find the highest pre-tax price: 500 ÷ 1.0825 = **$461.89**. At that price, the tax is $38.11 and the total is $500.00.
+
+## Doorbusters and cart discounts
+
+- **Doorbusters** are very low prices on a few items. They sell out fast, so check the limit per customer.
+- **Cart-level coupons** such as "$20 off $100" lower the total, so a single large item can qualify. Check which items are excluded.
+- **Buy one get one** deals work out to half off only when you want both items. Otherwise, compare the single-item price.
+- **Gift card offers** such as "spend $100, get a $20 gift card" are not a price cut today. You pay full price and get the credit later, and you can only use it where the card is accepted.
+
+## Online orders and shipping
+
+When you shop online, tax is usually based on the delivery address, not on where the seller is located. Shipping can be taxable in some states and not in others. Add it to your comparison, because free shipping can beat a lower price with a delivery fee.
+
+## If you are the seller
+
+Black Friday is also a busy time for small businesses. A few tips:
+
+1. Decide in advance how the discount shows on the invoice, and use a separate line with a minus sign.
+2. Calculate tax on the price after your own discounts. See [discount and sales tax together](/blog/discount-and-sales-tax-together/).
+3. Keep records of the sale price and the original price, in case a customer asks.
+4. Send invoices promptly, because year-end budgets often close early.
+
+## Avoid the common traps
+
+- **Inflated "was" prices.** Check the price history before you trust a discount.
+- **Percent off the wrong base.** A discount applies to the list price, not to the price after other discounts.
+- **Forgetting restocking or return rules.** A deal is not a deal if you cannot return it.
+- **Buying to hit a threshold.** Spending $30 more to save $20 loses you money.
+
+Use the [price after discount](/blog/price-after-discount/) guide for quick math when you are in a store.
+
 ## FAQ
 
 ### How do I calculate a Black Friday discount?
@@ -72,3 +120,11 @@ No. It equals 28% off, because the second discount applies to the reduced price.
 ### Is this financial or tax advice?
 
 No. It shows the math. Check your state's rules and the store's terms for your own purchases.
+
+### How do I work out the final price with tax?
+
+Multiply the sale price by 1 plus the tax rate. A $450 sale price at 8% tax is 450 × 1.08 = $486.00.
+
+### Is tax charged on the shipping?
+
+Sometimes. Some states tax shipping, and others do not. It also depends on whether the shipping is listed separately.

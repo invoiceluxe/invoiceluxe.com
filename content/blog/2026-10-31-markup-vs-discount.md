@@ -7,6 +7,7 @@ tags: Discounts, Pricing, Calculations
 keywords: markup vs discount, markup and discount calculation, discount after markup, selling price after markup and discount
 image: /images/blog/markup-vs-discount.jpg
 imageAlt: Cost $100, 20% markup gives $120, 20% discount gives $96, which is $4 below cost
+updated: 2026-11-17
 ---
 
 Add 20% to a price, then take 20% off. Do you get back to where you started? No, and the gap can cost you money.
@@ -48,6 +49,39 @@ So after a 20% markup, a discount of 16.67% brings the price back to $100.
 
 Use the discount calculator to see the price after a percentage off. For margins and markup, try the [profit margin calculator](/profit-margin-calculator.html). To go deeper on percentages, read [how to calculate a discount percentage](/blog/how-to-calculate-discount-percentage/).
 
+## Markup and margin are not the same
+
+Markup is profit as a percentage of cost. Margin is profit as a percentage of the selling price.
+
+| Cost | Markup | Selling price | Profit | Margin |
+|---|---|---|---|---|
+| $60 | 25% | $75.00 | $15.00 | 20% |
+| $60 | 50% | $90.00 | $30.00 | 33.3% |
+| $60 | 100% | $120.00 | $60.00 | 50% |
+
+A 100% markup is a 50% margin, which surprises many people. When you plan a discount, margin is the number that tells you how much room you have.
+
+## What a discount does to your profit
+
+An item costs you $60 and sells for $100, a $40 profit. See what a discount does:
+
+| Discount | New price | Profit | Change in profit | Extra units needed to earn the same total |
+|---|---|---|---|---|
+| 10% | $90.00 | $30.00 | −25% | 33% more |
+| 20% | $80.00 | $20.00 | −50% | 100% more |
+
+A 20% discount cuts the profit in half, so you must sell twice as many units to earn the same total profit. Before you offer a sale, ask whether your customers will really buy that many more.
+
+## Set a floor price
+
+Decide the lowest price you will accept. Add your cost, your overheads and a minimum profit. Do not discount below it. For margin formulas, see [profit margin formula](/blog/profit-margin-formula/).
+
+## Better ways to give value
+
+- Add a free item or service, instead of cutting the price.
+- Offer a discount only on a bigger order. See [bulk discount pricing](/blog/bulk-discount-pricing/).
+- Offer an early payment discount to improve cash flow. See [early payment discount 2/10 net 30](/blog/early-payment-discount-2-10-net-30/).
+
 ## FAQ
 
 ### Does a 20% discount cancel a 20% markup?
@@ -65,3 +99,11 @@ Markup is profit as a percentage of cost. Margin is profit as a percentage of th
 ### Is this financial advice?
 
 No. It explains the calculation. Check your own costs before setting prices.
+
+### Is a 50% markup the same as a 50% margin?
+
+No. A 50% markup on a $60 cost gives a $90 price, which is a 33.3% margin.
+
+### How much can I discount without losing money?
+
+Up to the point where the price equals your cost, but that earns no profit. Keep a margin above your costs and overheads.

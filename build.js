@@ -83,6 +83,48 @@ function md(body) {
   return { html: html.join('\n'), faq, toc };
 }
 
+/* ---- mini calculators (shown in articles; each links to the full free tool) ---- */
+const MINI = {
+  salestax: { cur: '$', title: 'Quick sales tax calculator', f: [['price', 'Price', 100], ['rate', 'Sales tax rate (%)', 8.25], ['mode', 'What to do', ['Add tax to a price', 'Remove tax from a total']]],
+    run: (v, m) => { const r = v.rate / 100; if (v.mode == 0) { const t = v.price * r; return [['Sales tax', m(t)], ['Total with tax', m(v.price + t)]]; } const net = v.price / (1 + r); return [['Price before tax', m(net)], ['Tax included', m(v.price - net)]]; } },
+  discount: { cur: '$', title: 'Quick discount calculator', f: [['price', 'Original price', 80], ['off', 'Discount (%)', 25], ['tax', 'Sales tax (%) optional', 0]],
+    run: (v, m) => { const s = v.price * v.off / 100, d = v.price - s, t = d * v.tax / 100; const o = [['You save', m(s)], ['Price after discount', m(d)]]; if (v.tax > 0) o.push(['Sales tax on sale price', m(t)], ['Final total', m(d + t)]); return o; } },
+  vat: { cur: '', title: 'Quick VAT calculator', f: [['amt', 'Amount', 100], ['rate', 'VAT rate (%)', 20], ['mode', 'What to do', ['Add VAT to a net price', 'Remove VAT from a gross price']]],
+    run: (v, m) => { const r = v.rate / 100; if (v.mode == 0) { const t = v.amt * r; return [['VAT', m(t)], ['Gross price', m(v.amt + t)]]; } const net = v.amt / (1 + r); return [['Net price', m(net)], ['VAT included', m(v.amt - net)]]; } },
+  percent: { cur: '', title: 'Quick percentage calculator', f: [['a', 'First number', 15], ['b', 'Second number', 200], ['mode', 'What to find', ['A% of B', 'A is what % of B', '% change from A to B']]],
+    run: (v, m, n) => { if (v.mode == 0) return [[n(v.a) + '% of ' + n(v.b), n(v.a * v.b / 100)]]; if (v.mode == 1) return v.b ? [[n(v.a) + ' is what % of ' + n(v.b), n(v.a / v.b * 100) + '%']] : [['Enter a second number above 0', '']]; return v.a ? [['Change from ' + n(v.a) + ' to ' + n(v.b), n((v.b - v.a) / v.a * 100) + '%']] : [['Enter a first number above 0', '']]; } },
+  margin: { cur: '$', title: 'Quick margin and markup calculator', f: [['cost', 'Your cost', 60], ['price', 'Selling price', 100]],
+    run: (v, m, n) => { const p = v.price - v.cost; return [['Profit', m(p)], ['Profit margin', v.price ? n(p / v.price * 100) + '%' : '-'], ['Markup on cost', v.cost ? n(p / v.cost * 100) + '%' : '-']]; } },
+  overtime: { cur: '$', title: 'Quick overtime pay calculator', f: [['rate', 'Hourly rate', 20], ['reg', 'Regular hours', 40], ['ot', 'Overtime hours', 6], ['mult', 'Overtime multiplier', 1.5]],
+    run: (v, m) => { const a = v.rate * v.reg, b = v.rate * v.mult * v.ot; return [['Regular pay', m(a)], ['Overtime pay', m(b)], ['Total pay', m(a + b)]]; } },
+  decimal: { cur: '', title: 'Quick time-to-decimal converter', f: [['h', 'Hours', 7], ['mi', 'Minutes', 45]],
+    run: (v, m, n) => { const d = v.h + v.mi / 60; return [['Decimal hours', (Math.round(d * 100) / 100).toFixed(2)], ['Total minutes', n(v.h * 60 + v.mi)]]; } },
+  miles: { cur: '', title: 'Quick miles and kilometers converter', f: [['x', 'Value', 10], ['mode', 'Convert', ['Miles to kilometers', 'Kilometers to miles']]],
+    run: (v, m, n) => v.mode == 0 ? [['Kilometers', n(v.x * 1.609344)]] : [['Miles', n(v.x / 1.609344)]] },
+  loan: { cur: '$', title: 'Quick loan payment calculator', f: [['amt', 'Loan amount', 10000], ['rate', 'Yearly interest rate (%)', 7], ['yrs', 'Term (years)', 3]],
+    run: (v, m) => { const i = v.rate / 1200, k = Math.round(v.yrs * 12); if (!k) return [['Enter a term above 0', '']]; const pay = i ? v.amt * i / (1 - Math.pow(1 + i, -k)) : v.amt / k; return [['Monthly payment', m(pay)], ['Total paid', m(pay * k)], ['Total interest', m(pay * k - v.amt)]]; } },
+  invoicetotal: { cur: '$', title: 'Quick invoice total calculator', f: [['sub', 'Subtotal', 500], ['off', 'Discount (%)', 0], ['tax', 'Sales tax (%)', 8]],
+    run: (v, m) => { const d = v.sub * (1 - v.off / 100), t = d * v.tax / 100; return [['After discount', m(d)], ['Tax', m(t)], ['Invoice total', m(d + t)]]; } },
+  latefee: { cur: '$', title: 'Quick late fee calculator', f: [['amt', 'Invoice amount', 1000], ['rate', 'Late fee per month (%)', 1.5], ['days', 'Days overdue', 45]],
+    run: (v, m) => { const f = v.amt * v.rate / 100 * v.days / 30; return [['Late fee (simple)', m(f)], ['Amount now due', m(v.amt + f)]]; } },
+  hourly: { cur: '$', title: 'Quick freelance hourly rate calculator', f: [['inc', 'Income you want per year', 60000], ['exp', 'Business costs per year', 6000], ['hrs', 'Billable hours per week', 25], ['wks', 'Weeks worked per year', 46]],
+    run: (v, m) => { const h = v.hrs * v.wks; return h ? [['Hourly rate needed', m((v.inc + v.exp) / h)], ['Billable hours per year', String(Math.round(h))]] : [['Enter hours above 0', '']]; } }
+};
+const MINI_BY_TOOL = { salestax: 'salestax', discount: 'discount', vat: 'vat', percentage: 'percent', profit: 'margin', timesheet: 'overtime', timecalc: 'decimal', units: 'miles', loan: 'loan', invoice: 'invoicetotal', quote: 'invoicetotal', receipt: 'invoicetotal', latefee: 'latefee', hourly: 'hourly', gst: 'salestax' };
+function miniCalc(key, toolUrl, toolName) {
+  const c = MINI[key]; if (!c) return '';
+  const fields = c.f.map(([id, label, def]) => Array.isArray(def)
+    ? `<label>${esc(label)}<select data-k="${id}">${def.map((o, i) => `<option value="${i}">${esc(o)}</option>`).join('')}</select></label>`
+    : `<label>${esc(label)}<input data-k="${id}" type="number" inputmode="decimal" step="any" min="0" value="${def}"></label>`).join('');
+  const js = `(function(){var root=document.currentScript.parentNode,run=${c.run.toString()},cur=${JSON.stringify(c.cur)};
+function n(x){return (Math.round(x*100)/100).toLocaleString('en-US')}
+function m(x){return cur+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function go(){var v={};root.querySelectorAll('[data-k]').forEach(function(e){v[e.dataset.k]=e.tagName==='SELECT'?+e.value:(parseFloat(e.value)||0)});
+var o=run(v,m,n),h='';o.forEach(function(r){h+='<div><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'});root.querySelector('.mini-out').innerHTML=h}
+root.addEventListener('input',go);go()})();`;
+  return `<section class="mini" aria-label="${esc(c.title)}"><div class="mini-t">${esc(c.title)}</div><div class="mini-grid">${fields}</div><div class="mini-out" aria-live="polite"></div><p class="mini-link">Need more? <a href="${esc(toolUrl)}">Open the full free ${esc(toolName)}</a>. No signup needed.</p><script>${js}</script></section>`;
+}
+
 const CSS = `:root{--bg:#faf8f3;--panel:#ffffff;--line:#e4ddc9;--text:#27241c;--mute:#6a6555;--head:#14120c;--link:#8a6200;--gold:#ffd23f;--gold2:#c99a00}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:18px/1.75 Georgia,'Iowan Old Style','Palatino Linotype',serif}
@@ -140,6 +182,15 @@ tr:last-child td{border-bottom:0}
 .toc b{display:block;margin-bottom:6px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}.toc ol{margin:0;padding-left:1.2em}.toc a{text-decoration:none}
 #bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--gold);z-index:50}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:-14px auto 26px}.tags a,.chips a{font:600 13px system-ui,sans-serif;padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);color:var(--text);text-decoration:none}.tags a:hover,.chips a:hover{border-color:var(--gold2);background:#fff8d6}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.mini{margin:2em auto;padding:18px 20px;border:1px solid var(--gold2);border-radius:14px;background:#fffbea;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.mini-t{font-weight:800;font-size:18px;color:var(--head);margin-bottom:12px}
+.mini-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.mini label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--mute)}
+.mini input,.mini select{font:600 16px system-ui,sans-serif;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--text);width:100%}
+.mini-out{margin-top:14px;display:grid;gap:6px}
+.mini-out div{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:15px}
+.mini-out b{color:var(--head)}
+.mini-link{margin:12px 0 0;font-size:14px;color:var(--mute)}
 @media(max-width:560px){body{font-size:17px}h2{font-size:23px}}`;
 
 const head = (title, desc, url, extra = '', img = '') => `<!DOCTYPE html>
@@ -204,6 +255,9 @@ function build() {
     } catch (e) { console.warn(`! skipped ${f}: ${e.message}`); }
   }
   posts.sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
+  // links to guides that are not published yet are shown as plain text; the link appears automatically on the day the guide goes live
+  const live = new Set(posts.map(x => x.slug));
+  for (const p of posts) p.r.html = p.r.html.replace(/<a href="\/blog\/([a-z0-9-]+)\/">([\s\S]*?)<\/a>/g, (m, s, t) => live.has(s) ? m : t);
 
   for (const p of posts) {
     const others = posts.filter(x => x !== p).map(x => ({ x, s: x.tagList.filter(t => p.tagList.includes(t)).length })).sort((a, b) => b.s - a.s || b.x.date.localeCompare(a.x.date)).slice(0, 5).map(o => o.x);
@@ -227,6 +281,9 @@ function build() {
     const inlineCta = `<p class="inline-cta">Want to try it right away? <a href="${esc(toolUrl)}">${esc(toolName)}</a> is free and needs no signup.</p>`;
     const secs = p.r.html.split(/(?=<h2 )/);
     if (secs.length >= 4) secs.splice(2, 0, inlineCta);
+    const miniKey = /^(none|off|no)$/i.test(p.calc || '') ? '' : (p.calc || MINI_BY_TOOL[p.toolId] || '');
+    const mini = miniKey ? miniCalc(miniKey, toolUrl, toolName) : '';
+    if (mini) secs.splice(1, 0, mini);
     const bodyHtml = secs.join('\n');
     const hs = [...p.r.html.matchAll(/<h2 id="([^"]+)">(.*?)<\/h2>/g)];
     const toc = hs.length >= 3 ? `<nav class="toc" aria-label="In this guide"><b>In this guide</b><ol>${hs.map(h => `<li><a href="#${h[1]}">${h[2]}</a></li>`).join('')}</ol></nav>` : '';

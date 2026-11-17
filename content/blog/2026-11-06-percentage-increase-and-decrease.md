@@ -7,6 +7,7 @@ tags: Calculations, Percentages
 keywords: percentage increase formula, percentage decrease formula, percent change, how to calculate percentage change, percentage difference
 image: /images/blog/percentage-increase-and-decrease.jpg
 imageAlt: Percent change formula: new minus old divided by old times 100, example 80 to 100 is plus 25 percent
+updated: 2026-11-17
 ---
 
 Percent change tells you how much a number went up or down compared with where it started. You use it for price rises, sales growth, discounts and savings.
@@ -67,6 +68,39 @@ If a rate moves from 4% to 6%, it rose by **2 percentage points**, which is a **
 
 The percentage calculator handles increase, decrease and percent difference in one place.
 
+## Business examples
+
+| Situation | Calculation | Result |
+|---|---|---|
+| Revenue grows 15%, from $18,500 | 18,500 × 1.15 | $21,275 |
+| Revenue falls back from $21,275 to $18,500 | (18,500 − 21,275) ÷ 21,275 | −13.04% |
+| Price rises from $40 to $46 | (46 − 40) ÷ 40 | +15% |
+
+The second row is the same change in dollars as the first, but a different percentage, because the starting number is different. This is why +15% followed by −15% does not return you to where you started.
+
+## Compound growth
+
+If something grows 5% each month, the growth builds on itself. After 12 months, it is not 60% higher. It is 1.05 to the power of 12, which is about 1.796, so it is **79.6% higher**.
+
+| Months | Total growth at 5% per month |
+|---|---|
+| 1 | 5.00% |
+| 3 | 15.76% |
+| 6 | 34.01% |
+| 12 | 79.59% |
+
+## Percentage change in a spreadsheet
+
+With the old value in A2 and the new value in B2, use `=(B2-A2)/A2` and format the result as a percentage. Use a negative number for a decrease.
+
+## Avoid these traps
+
+- **Mixing up the base.** Always divide by the starting number.
+- **Confusing percent with percentage points.** Moving from 4% to 6% is a 2-point rise, but a 50% increase.
+- **Starting from zero.** You cannot calculate a percentage change from 0, so show the change as an amount.
+
+See [how to calculate a percentage of a number](/blog/how-to-calculate-percentage-of-a-number/) for the basics.
+
 ## FAQ
 
 ### What is the formula for percentage increase?
@@ -84,3 +118,11 @@ Multiply the number by 0.90.
 ### What if the old value is zero?
 
 Percent change cannot be calculated from zero because you cannot divide by zero. Use the absolute change instead.
+
+### How do I calculate percentage increase?
+
+Subtract the old value from the new value, divide by the old value and multiply by 100.
+
+### Why is a 50% drop followed by a 50% rise not a return to the start?
+
+After a 50% drop, you are at half of the original. A 50% rise on that half brings you to 75% of the original, not 100%.

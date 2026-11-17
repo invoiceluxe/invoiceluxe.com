@@ -7,6 +7,7 @@ tags: Receipts, Invoicing
 keywords: how to write a receipt, receipt template, what to include on a receipt, receipt vs invoice, make a receipt for payment
 image: /images/blog/how-to-write-a-receipt.jpg
 imageAlt: A receipt with seller details, date, items, amount paid and payment method
+updated: 2026-11-17
 ---
 
 A receipt is proof that a payment was made. It protects both the seller and the buyer, and it is often needed for accounting, returns and tax records.
@@ -57,6 +58,40 @@ Not always. A paid invoice can serve as proof, but many customers still like a r
 
 Fill in the details, add tax if needed and download or print a clean receipt.
 
+## A cash sale example
+
+| Field | Example |
+|---|---|
+| Receipt number | R-0231 |
+| Date | November 17, 2026 |
+| Received from | Jordan Lee |
+| For | Two hours of tutoring |
+| Amount received | $120.00 |
+| Payment method | Cash |
+| Balance due | $0.00 |
+| Received by | Your name or signature |
+
+A receipt like this is enough for a simple sale. Add tax if it applies.
+
+## Why receipts matter
+
+- They prove payment, for the customer and for you.
+- They support refunds and returns.
+- They help with bookkeeping and tax records.
+- They settle questions about what was paid and when.
+
+## Partial payments
+
+If a customer pays part of an invoice, write the receipt for the amount received and show the balance left. For example, "Received $500.00 toward invoice 2026-014. Balance due: $302.50."
+
+## Digital receipts
+
+Email a PDF receipt after an online payment. Save a copy in the same folder as your invoice. For a business with many sales, a receipt generator saves time and keeps numbers in order.
+
+## Keep your records
+
+Keep your receipts for the period your tax authority recommends, often several years. Store them by date and number. See [quote vs estimate vs invoice](/blog/quote-vs-estimate-vs-invoice/) to understand how receipts fit with other documents.
+
 ## FAQ
 
 ### Is a receipt legally required?
@@ -74,3 +109,11 @@ If you charge tax, show it separately so the buyer can see the net amount and th
 ### How long should I keep receipts?
 
 Record keeping periods vary by country, often several years. Ask your tax authority or accountant.
+
+### Do I need to give a receipt for every payment?
+
+It is good practice, and many customers expect one. For some sales, the law may require it.
+
+### Can a receipt be handwritten?
+
+Yes, if it includes the date, amount, what was paid for and who received it.

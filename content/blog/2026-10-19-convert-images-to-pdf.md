@@ -6,6 +6,7 @@ tags: PDF Tools
 toolId: pdf
 image: /images/blog/convert-images-to-pdf.jpg
 imageAlt: Steps to convert images to PDF: choose, order, crop and download
+updated: 2026-11-17
 ---
 
 A single PDF is easier to email, print and upload than a pile of photos. You can combine JPG and PNG images into one PDF right in your browser, without installing an app.
@@ -44,6 +45,37 @@ A photo taken at an angle makes the page look like a trapezoid. A perspective cr
 
 Receipts for an expense report, a signed form, ID documents for an application, homework pages, and pictures of products for a catalog all work well as a single PDF.
 
+## Choose the right size
+
+A document with many photos can become very large. Use these guidelines:
+
+| Use | Suggested quality |
+|---|---|
+| Email attachment | Medium, so the file stays under about 10 MB |
+| Printing | High, around 200 to 300 dpi |
+| Online form upload | Check the site's file size limit |
+
+If the file is too large, reduce the image size before converting, or choose a lower quality setting.
+
+## Order matters
+
+Place the images in the right order before you convert. For a multi-page document, the first image becomes page one. If you need to rearrange, do it before you save the PDF.
+
+## Receipts and expense claims
+
+For expense claims, make one PDF per trip or per month. Name the file with the date and the purpose, such as "Receipts-2026-11-Austin-trip.pdf". See [how to merge PDF files](/blog/how-to-merge-pdf-files/) to combine PDFs you have already made.
+
+## Common problems
+
+- **Sideways pages:** rotate the image before converting.
+- **Dark or shadowed scans:** take the photo in even light, and avoid shadows from your phone.
+- **Cut-off edges:** leave a small margin around the page.
+- **Large file size:** compress the images first.
+
+## Check the result
+
+Open the PDF and scroll through every page. Check that text is readable and that nothing is missing. Then send or upload it. For a document that needs a signature, see [how to sign a PDF online](/blog/how-to-sign-a-pdf-online/).
+
 ## FAQ
 
 ### Can I combine JPG and PNG in one PDF?
@@ -61,3 +93,11 @@ Use smaller images or compress the PDF after you create it.
 ### Can I sign the PDF after I create it?
 
 Yes. Use the sign tool to add your signature, then download the signed file. See [how to sign a PDF online](/blog/how-to-sign-a-pdf-online/).
+
+### Can I convert a photo from my phone?
+
+Yes. Select the photo, convert it and download the PDF.
+
+### Is the quality reduced when I convert an image to PDF?
+
+Not normally. The image is placed in the PDF at its original resolution unless you choose to compress it.

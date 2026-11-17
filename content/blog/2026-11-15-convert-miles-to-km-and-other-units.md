@@ -7,6 +7,7 @@ tags: Calculations, Conversions
 keywords: miles to km, kg to lbs, celsius to fahrenheit, inches to cm, unit conversion formulas, unit converter
 image: /images/blog/convert-miles-to-km-and-other-units.jpg
 imageAlt: Unit conversion formulas: miles times 1.609 gives km, kg times 2.205 gives pounds, Celsius times 9/5 plus 32 gives Fahrenheit
+updated: 2026-11-17
 ---
 
 Unit conversions come up in travel, shipping, cooking, fitness and work. These are the four most common ones, with the exact formula and a quick example.
@@ -67,6 +68,36 @@ If you also convert prices or work with percentages, see [how to calculate a per
 
 Use the unit converter for distance, weight, temperature, speed and more.
 
+## Running distances
+
+| Distance | Kilometers | Miles |
+|---|---|---|
+| 5K | 5.00 | 3.11 |
+| 10K | 10.00 | 6.21 |
+| Half marathon | 21.08 | 13.1 |
+| Marathon | 42.16 | 26.2 |
+
+The exact factor is 1 mile = 1.609344 kilometers. For quick estimates, multiply miles by 1.6, or by 1.5 and add 10%.
+
+## Speed
+
+Speed limits use the same factor. 60 miles per hour is 60 × 1.609344 = **96.56 kilometers per hour**. A limit of 100 km/h is about 62 mph.
+
+## Business uses
+
+- **Mileage claims.** Convert your trip distance to the unit your tax authority or client uses.
+- **Shipping.** Carriers and customs forms may need metric or imperial units.
+- **Product listings.** Online shops sell to buyers in many countries, so list both.
+- **Recipes and manuals.** Units matter in instructions.
+
+## Round carefully
+
+Use the full factor for a final figure, and round at the end. For an invoice, state the unit clearly, for example "42.2 km (26.2 mi)".
+
+## Convert in a spreadsheet
+
+Use `=A2*1.609344` for miles to kilometers and `=A2/1.609344` for kilometers to miles. For other units, keep a small table of factors on a separate sheet.
+
 ## FAQ
 
 ### How many kilometres is 1 mile?
@@ -84,3 +115,11 @@ Yes. Water freezes at 0 °C, which is 32 °F.
 ### How many pounds are in a kilogram?
 
 About 2.205 pounds.
+
+### How many kilometers are in a mile?
+
+One mile is 1.609344 kilometers.
+
+### Is there a quick way to estimate miles to km in my head?
+
+Multiply by 1.6. For 30 miles, 30 × 1.6 = 48 km, which is close to the exact 48.28.

@@ -6,6 +6,7 @@ tags: Invoicing, Getting Paid
 toolId: invoice
 image: /images/blog/invoice-payment-terms.jpg
 imageAlt: Common payment terms: due on receipt, Net 7, Net 14, Net 30, Net 60
+updated: 2026-11-17
 ---
 
 Payment terms tell your client when and how they have to pay. Clear terms get you paid on time. Unclear ones lead to late payments and awkward emails.
@@ -59,6 +60,41 @@ If you want to charge a late fee or interest, state it on the invoice or in your
 
 Invoice Luxe lets you pick a payment term when you create an invoice and prints the due date on it automatically, so the client sees exactly when to pay.
 
+## Due dates for an invoice dated November 3
+
+| Terms | Due date |
+|---|---|
+| Due on receipt | November 3 |
+| Net 7 | November 10 |
+| Net 14 | November 17 |
+| Net 30 | December 3 |
+| Net 60 | January 2 |
+
+Longer terms help your client's cash flow and hurt yours. For a small business, shorter terms are usually better.
+
+## Matching terms to the client
+
+- **New clients:** shorter terms, or a deposit. See [quote vs estimate vs invoice](/blog/quote-vs-estimate-vs-invoice/).
+- **Regular clients:** the terms you have agreed, written in your contract.
+- **Large companies:** they often have fixed payment cycles, such as Net 30 or Net 45. Ask about them before you send the first invoice.
+- **Project work:** split into milestones, for example 50% at the start and 50% on delivery.
+
+## Wording that works
+
+Put the terms in two places: near the due date and at the bottom of the invoice. A clear example:
+
+"Payment due within 14 days of the invoice date (by December 1, 2026). A late fee of 1.5% per month applies to overdue balances."
+
+Do not write "pay promptly". Write the actual date.
+
+## Combine terms with incentives
+
+An early payment discount, such as 2% if paid within 10 days, gives clients a reason to pay sooner. See [early payment discount 2/10 net 30](/blog/early-payment-discount-2-10-net-30/). A late fee gives a reason not to pay late. See [late payment fees and interest](/blog/late-payment-fees-and-interest/).
+
+## Put the terms in writing before work starts
+
+Terms in a contract, quote or email are easier to enforce than terms that first appear on the invoice. Confirm them before you begin.
+
 ## FAQ
 
 ### What does Net 30 mean?
@@ -76,3 +112,11 @@ The client gets 2% off if they pay within 10 days. Otherwise the full amount is 
 ### Can I charge interest on late payments?
 
 Often yes, if you agreed it in advance. Check your local rules and put it in writing.
+
+### What are the most common payment terms?
+
+Net 15, Net 30 and due on receipt are common. Net 30 is the most widely used for business clients.
+
+### Can I change payment terms after sending an invoice?
+
+Only by agreement. Terms you stated on the invoice or in the contract apply.

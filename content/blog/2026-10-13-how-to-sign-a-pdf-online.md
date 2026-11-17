@@ -6,6 +6,7 @@ tags: PDF Tools
 toolId: sign
 image: /images/blog/how-to-sign-a-pdf-online.jpg
 imageAlt: Steps to sign a PDF online: upload, draw, place, download
+updated: 2026-11-17
 ---
 
 You do not need to print, sign and scan a document anymore. You can sign a PDF in your browser, on a phone or a computer, in about a minute.
@@ -40,6 +41,33 @@ It helps to know the difference between two things:
 
 Contracts, rental agreements, forms, permission slips, invoices, delivery notes and quotes are common examples. If a document needs a witness, a notary or a certificate-based signature, a simple online signature may not be enough.
 
+## Sign before or after other edits
+
+Finish all the edits to the document first, then sign. A signature added before a change can look misleading. If a contract needs changes after signing, create a new version and sign again.
+
+## Keep a record
+
+After you sign, save two copies: the signed PDF and the original. Name them clearly, such as "Contract-Acme-signed.pdf". Keep the email where you sent it, because it shows the date and who received it.
+
+## Sending a signed document
+
+1. Check that the signature is visible on every page that needs it.
+2. Check that the file size is reasonable for email.
+3. Send it to the right person.
+4. Ask for confirmation of receipt.
+
+If you have several files to send, you can combine them into one. See [how to merge PDF files](/blog/how-to-merge-pdf-files/).
+
+## Protect your signature
+
+- Do not share an image of your signature in public places.
+- Use a tool that processes files in your browser when you can.
+- Be careful with documents from people you do not know.
+
+## Contracts and invoices
+
+For an invoice, a signature is often not required. For a contract or a form, check what the other party accepts. See [how to create an invoice](/blog/how-to-create-an-invoice/).
+
 ## FAQ
 
 ### Is it free to sign a PDF here?
@@ -57,3 +85,11 @@ Yes. Check each page in the preview to make sure the signature is where it shoul
 ### Can I send the signed PDF straight away?
 
 Yes. After you preview it, you can download the PDF or share it.
+
+### Can I sign a PDF on my phone?
+
+Yes. Open the PDF in a browser tool, draw or type your signature and place it on the page.
+
+### Should I flatten the PDF after signing?
+
+Flattening makes the signature part of the page, which prevents accidental changes. Keep an unflattened copy if you need to edit later.

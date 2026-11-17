@@ -70,6 +70,42 @@ If your work is taxable, rules about when to collect tax on a deposit vary by st
 
 Offer a smaller deposit or milestone payments rather than dropping the idea. If someone refuses any upfront payment for a large job, treat it as a signal to take more care.
 
+## Show the deposit on the final invoice
+
+When you send the final invoice, show the full price and subtract what the client already paid:
+
+| Line | Amount |
+|---|---|
+| Project total | $4,000.00 |
+| Deposit paid (October 20) | −$1,200.00 |
+| **Balance due** | **$2,800.00** |
+
+Showing the deposit as a credit makes the invoice easy to understand and prevents double payment.
+
+## Write a refund policy
+
+Be clear about what happens if the client cancels. For example:
+
+"The deposit is non-refundable once work begins. If the client cancels before work starts, the deposit is refunded minus any costs already incurred."
+
+Put the policy in your contract or quote, and confirm it before you take the payment. Rules about refunds differ by place, so ask a lawyer if you are unsure.
+
+## Ways to take a deposit
+
+- A bank transfer or payment link in the first invoice
+- A signed quote with a payment request
+- A card payment, if you accept them, keeping in mind any fees
+
+Send the deposit invoice right after the client accepts your quote, while their interest is high.
+
+## When you might waive it
+
+You may skip a deposit for a long-standing client who always pays on time, or for a very small job. If you do, shorten your payment terms instead. See [invoice payment terms](/blog/invoice-payment-terms/).
+
+## Keep your records tidy
+
+Record deposits separately from final payments, and note which invoice or project they belong to. At the end of the job, check that the deposit has been applied correctly. See [quote vs estimate vs invoice](/blog/quote-vs-estimate-vs-invoice/).
+
 ## FAQ
 
 ### How much deposit should a freelancer ask for?
@@ -87,3 +123,11 @@ A written agreement or accepted quote is strongly recommended.
 ### Is this legal advice?
 
 No. For legal terms, ask a lawyer or use a template reviewed for your state.
+
+### Is a deposit taxable?
+
+It can be, depending on your state and what you sell. Check the rules, and see the sales tax section above.
+
+### Can I charge a deposit for a small project?
+
+Yes. A 50% deposit is common for small, fast projects.

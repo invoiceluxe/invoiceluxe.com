@@ -56,6 +56,40 @@ It can. If you buy a computer, software or office furniture online without tax, 
 
 For the formula behind both, see [how to calculate sales tax](/blog/how-to-calculate-sales-tax/).
 
+## Common situations
+
+- Buying equipment or supplies from an out-of-state seller that did not charge tax
+- Items you bought tax-free for resale and then used yourself, such as inventory you took home or gave away
+- Software, subscriptions or services your state treats as taxable, when the vendor did not charge tax
+- Items bought in a state with a lower rate and brought home for use
+
+## Why states have use tax
+
+Use tax closes a gap. Without it, buying from a seller that does not collect tax would be a way to avoid sales tax. States set the use tax rate to match the sales tax rate, so the buyer pays about the same either way.
+
+## What you owe when you already paid some tax
+
+If you paid sales tax to another state, many states give a credit for it. Suppose you bought an item and paid 4% elsewhere, and your home rate is 6%. You may owe the 2% difference. Check your state's credit rules.
+
+## Keep a use tax record
+
+A simple log makes filing easy:
+
+| Date | Vendor | Item | Cost | Tax paid | Use tax due |
+|---|---|---|---|---|---|
+| Mar 4 | Online store | Monitor | $320.00 | $0.00 | $19.20 at 6% |
+| Jun 12 | Supplier | Printer | $210.00 | $0.00 | $12.60 at 6% |
+
+The amounts are examples. Sum the use tax due each period and report it on your sales and use tax return, or on your state income tax return if you are an individual.
+
+## How states notice
+
+Some states compare purchase records, vendor reports and audit results. A business may be asked about large equipment purchases. Keeping receipts and your log makes an audit simpler.
+
+## For sellers
+
+If you sell taxable items, you collect sales tax from your customers. Use tax is about what you buy for yourself. Keep both in mind when you prepare your tax filings. For more on when you must collect, see [what is sales tax nexus](/blog/what-is-sales-tax-nexus/), and for invoice layout, see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
+
 ## FAQ
 
 ### Do I owe use tax on online purchases?
@@ -69,6 +103,14 @@ Usually it matches your state and local sales tax rate.
 ### What happens if I never pay use tax?
 
 States can audit and charge the tax plus interest and penalties. Use tax on business purchases is a common audit item.
+
+### Do individuals owe use tax?
+
+In many states, yes. You are expected to report use tax on taxable online purchases when the seller did not charge sales tax, though many individuals are not aware of it.
+
+### Is use tax a separate tax I can avoid?
+
+It is a legal obligation in states that have one. Check with your state tax agency or an accountant about how to report it.
 
 ### Is this tax advice?
 

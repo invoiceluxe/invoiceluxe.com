@@ -59,6 +59,51 @@ For digital goods, the buyer's location usually matters, not the seller's. If yo
 
 If you buy software or digital tools for your business without tax being charged, you may owe use tax. See [sales tax vs use tax](/blog/sales-tax-vs-use-tax/).
 
+## A checklist for creators and software sellers
+
+1. **Describe what you sell.** Is it a download, a streaming service, a subscription to software, a course or a custom file?
+2. **List the states where you have customers.** Use your sales reports.
+3. **Check each state's rules** on that kind of product. Look for terms such as "digital goods", "software as a service", "prewritten software" and "electronic delivery".
+4. **Check your thresholds.** See [what is sales tax nexus](/blog/what-is-sales-tax-nexus/).
+5. **Decide how to collect.** Use a platform that handles tax if you can.
+
+## Examples of products and how they are often treated
+
+| Product | Common treatment |
+|---|---|
+| E-book or music download | Taxable in some states, exempt in others |
+| Streaming video or audio | Taxable in some states |
+| Software license downloaded | Often taxable as prewritten software |
+| Cloud software subscription (SaaS) | Taxable in a number of states, exempt in many |
+| Online course | Depends on the state and the type of delivery |
+| Custom work delivered as a file | Often treated as a service |
+
+This table shows patterns, not a list of rules. Rules change often, so check each state.
+
+## Worked example: three customers, three totals
+
+You sell a $29 template pack online. Customers in State A pay 6% tax on digital goods, State B does not tax digital goods, and State C taxes them at 7%.
+
+| Customer's state | Tax rate | Tax | Total |
+|---|---|---|---|
+| State A | 6% | $1.74 | $30.74 |
+| State B | 0% | $0.00 | $29.00 |
+| State C | 7% | $2.03 | $31.03 |
+
+Your checkout must show the right total for each customer, and your records must keep the tax separate.
+
+## Platforms that handle it
+
+Some sales platforms for digital goods act as the seller of record. They collect and send tax for you. Others only calculate the tax and leave filing to you. Read the platform terms, so you know which duties remain with you.
+
+## Selling to businesses
+
+Some states treat sales to business customers differently, such as when a business buys software that it will use to make a taxable product. Ask for an exemption certificate when a customer claims to be exempt. See [resale certificate explained](/blog/resale-certificate-explained/).
+
+## Show the tax on invoices
+
+When you invoice a client for a taxable digital product, show the product, the tax rate and the tax amount. See [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/) for a simple layout, and [do freelancers charge sales tax](/blog/do-freelancers-charge-sales-tax/) for service work.
+
 ## FAQ
 
 ### Is SaaS taxable?
@@ -72,6 +117,14 @@ It depends on the buyer's state and how it defines digital goods.
 ### What about custom design or writing delivered as a file?
 
 Many states treat it as a service, but some tax it as a digital product. Confirm with the state.
+
+### Do I charge tax on a subscription?
+
+It depends on the state and on what the subscription provides. Check each state where you have customers.
+
+### Is a PDF guide taxable?
+
+In some states, yes, as a digital good. In others, no. Check your state's guidance.
 
 ### Is this tax advice?
 

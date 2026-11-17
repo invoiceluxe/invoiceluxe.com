@@ -58,6 +58,39 @@ Enter the combined percentage as a single rate on your invoice and show it on th
 
 If you want to confirm what rate a store charged, read [how to find the sales tax rate from a receipt](/blog/find-sales-tax-rate-from-receipt/).
 
+## Why the same state has many rates
+
+The state rate is the same everywhere in the state, but local layers change from one place to another. Two stores ten miles apart can charge different totals. Special districts can even cover only part of a city, so a rate can change from one street to the next.
+
+## Three customers, three rates
+
+A seller with a $100 item ships to three buyers in the same state:
+
+| Customer location | Combined rate | Tax | Total |
+|---|---|---|---|
+| Town A | 6.00% | $6.00 | $106.00 |
+| Town B | 7.25% | $7.25 | $107.25 |
+| Town C | 8.50% | $8.50 | $108.50 |
+
+The rates here are examples. The point is that a single rate for a whole state is often wrong. If you sell in a destination-based state, use the rate at the buyer's address.
+
+## When rates change
+
+Rates can change at the start of a quarter or a year, and some change in the middle of a period. Add a calendar reminder to check your rates in January and July. Check your state's revenue department for announcements, and keep a note of the date you last checked.
+
+## Ways to find the right rate
+
+- **State lookup tools.** Many state revenue departments offer an address-based rate finder.
+- **Tax rate tables.** Some states publish a list of rates by jurisdiction.
+- **Accounting or invoicing software.** Some tools update rates for you, and others need manual updates.
+- **Your accountant.** Useful when your sales cross state lines.
+
+## Record the rate you used
+
+Always show the rate on the invoice, for example "Sales tax (7.25%)". If a customer or auditor asks why you charged that rate, you can point to the address and the date. This is one of the simplest ways to protect yourself.
+
+For the calculation steps, see [how to calculate sales tax](/blog/how-to-calculate-sales-tax/), and for the invoice layout see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
+
 ## FAQ
 
 ### What is a combined sales tax rate?
@@ -71,6 +104,14 @@ Often not. Local taxes can add several percentage points on top of the state rat
 ### How do I find my local rate?
 
 Use your state revenue department's rate lookup with the exact address of the sale.
+
+### Why do I see different rates for the same city?
+
+Because boundaries for special districts and local taxes do not always match city limits. An address-based lookup gives the most accurate rate.
+
+### How often should I check my sales tax rates?
+
+At least twice a year, and whenever your state announces a change.
 
 ### Is this tax advice?
 

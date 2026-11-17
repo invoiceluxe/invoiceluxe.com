@@ -7,6 +7,7 @@ tags: VAT, Invoicing
 keywords: VAT invoice requirements, what must a VAT invoice include, VAT invoice example UK, VAT number on invoice, full VAT invoice
 image: /images/blog/what-to-include-on-a-vat-invoice.jpg
 imageAlt: UK VAT invoice checklist: sequential number, VAT number, date, customer details, VAT rate, net, VAT and gross totals
+updated: 2026-11-17
 ---
 
 If you are VAT registered, your invoices must carry certain details so your customer can reclaim the VAT. This guide covers the usual items on a UK VAT invoice.
@@ -53,6 +54,41 @@ If an invoice has items at different rates, show the VAT for each rate.
 
 An invoice generator with a VAT field fills in the totals for you. To check the maths, see [how to calculate VAT](/blog/how-to-calculate-vat/), and read [what to include on an invoice](/blog/what-to-include-on-an-invoice/) for the general checklist.
 
+## A sample VAT invoice layout
+
+| Description | Net | VAT rate | VAT | Gross |
+|---|---|---|---|---|
+| Consulting, 8 hours at £75 | £600.00 | 20% | £120.00 | £720.00 |
+| Printed report | £50.00 | 5% | £2.50 | £52.50 |
+| **Total** | **£650.00** | | **£122.50** | **£772.50** |
+
+Add above the table: your business name and address, your VAT registration number, the customer's name and address, the invoice number, the invoice date and the date of supply if it differs.
+
+## Simplified invoices
+
+Some countries allow a simplified invoice for small sales, with fewer details. In the UK, for example, a less detailed VAT invoice is allowed for sales under a set amount, which has been £250. The rules change, so confirm them on your tax authority's website before you use a simplified invoice.
+
+## Timing
+
+Tax authorities often set a deadline for issuing a VAT invoice after the sale. In the UK, it is normally within 30 days of the supply. Issue invoices promptly and keep them in order. See [how to number invoices](/blog/how-to-number-invoices/).
+
+## Credit notes
+
+When you cancel or reduce an invoice, issue a credit note that refers to the original invoice. It should show the VAT you are reversing, so both parties can correct their VAT returns.
+
+## Keep records
+
+Keep copies of every VAT invoice you issue and receive. Many tax authorities ask for records to be kept for several years. In the UK, the usual period is six years. Check the rule for your country.
+
+## Common checks
+
+- Is the VAT number correct and visible?
+- Does each line show the rate?
+- Do the totals match?
+- Is the currency clear?
+
+See [what to include on an invoice](/blog/what-to-include-on-an-invoice/) for the basics, and [VAT calculation mistakes](/blog/vat-calculation-mistakes/) for errors to avoid.
+
 ## FAQ
 
 ### Is a VAT number required on an invoice?
@@ -66,6 +102,14 @@ Yes. It should have a unique number, and HMRC expects it to be sequential.
 ### Can I send a VAT invoice as a PDF?
 
 Yes. Electronic invoices are accepted as long as they contain the required details.
+
+### Is a VAT number required on every invoice?
+
+If you are VAT-registered, yes. Your invoices to other businesses usually need it.
+
+### Can I use a simplified invoice for any sale?
+
+Only where your tax rules allow it, usually for lower amounts. Check your local rules.
 
 ### Is this tax advice?
 

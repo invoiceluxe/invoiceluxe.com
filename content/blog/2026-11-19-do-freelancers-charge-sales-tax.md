@@ -55,6 +55,53 @@ Selling services to clients in other states can create nexus questions if the se
 
 Keep copies of your invoices, the rate you charged and why a line was exempt. If you sell to a business that claims an exemption, ask for the exemption certificate and keep it on file.
 
+## How to find out if your service is taxable
+
+Do not guess, because the answer changes by state and sometimes by the type of work. A reliable routine:
+
+1. **Search your state's revenue department site** for "taxability of services" or a "sales and use tax guide".
+2. **Look for your exact work** in the list: consulting, design, web development, printing, repair, installation and so on.
+3. **Check how the deliverable is handed over.** A printed brochure is tangible goods. A PDF sent by email may be treated differently.
+4. **Ask the department or an accountant** when the answer is unclear. Keep their reply.
+
+## Four typical situations
+
+**A consultant who gives advice.** In many states, pure advice or coaching is not taxable. The invoice can show hours and rate without tax.
+
+**A designer who delivers files.** Some states tax digital products or "custom software", and others do not. The rule can depend on whether the work is custom or off the shelf.
+
+**A freelancer who also sells goods.** If you sell printed materials or products along with your service, the goods are usually taxable even if the service is not. Separate the lines clearly.
+
+**A contractor who installs or repairs.** Repair and installation work is taxable in some states, and in others only the parts are taxable.
+
+## How to word a mixed invoice
+
+| Line | Amount | Taxable? |
+|---|---|---|
+| Brand strategy workshop (6 hours at $120) | $720.00 | No |
+| Printed brochures (250 copies) | $310.00 | Yes |
+| **Subtotal** | **$1,030.00** | |
+| Sales tax on $310.00 at 7% | $21.70 | |
+| **Total due** | **$1,051.70** | |
+
+Separating taxable and non-taxable lines protects you in an audit and makes it clear to the client what the tax covers.
+
+## Clients with an exemption
+
+Some clients, such as non-profits, schools, government bodies and resellers, can buy without paying sales tax. They should give you an exemption or resale certificate. Keep it on file, because without it you may have to pay the tax yourself. See [what is sales tax nexus](/blog/what-is-sales-tax-nexus/) for how out-of-state clients affect your obligations.
+
+## Registering and filing
+
+If your work is taxable, you usually need a sales tax permit before you start collecting. Then you file returns, usually monthly, quarterly or yearly, depending on your volume. Even when you collected no tax in a period, many states still want a return.
+
+## Sales tax is not income tax
+
+Sales tax is money you collect for the state. It is not income, and it does not reduce what you owe in income tax. Keep it separate in your records so you do not spend it by accident. A freelancer's income tax and self-employment tax are separate topics, so ask a tax professional about them.
+
+## Set up your invoice once
+
+Create a template with separate lines for taxable and non-taxable work, and a tax line with the rate. For layout ideas, see [what to include on an invoice](/blog/what-to-include-on-an-invoice/) and [how to create an invoice](/blog/how-to-create-an-invoice/).
+
 ## FAQ
 
 ### Do independent contractors charge sales tax?
@@ -68,6 +115,14 @@ It depends on the state. Some tax digital goods and others do not. See [are digi
 ### What if I charge tax by mistake?
 
 Tell the client, issue a corrected invoice or a credit note, and refund the tax. See [how to correct an invoice](/blog/how-to-correct-an-invoice-credit-note/).
+
+### Do I have to register for a sales tax permit as a freelancer?
+
+Only if you sell taxable goods or services. If your state does not tax your service and you sell no goods, you usually do not need to collect sales tax, but check your state's rule.
+
+### Should I charge tax to out-of-state clients?
+
+It depends on whether you have nexus in the client's state and whether that state taxes your service. Many freelancers with only services do not collect tax out of state, but the rules are changing, so review them each year.
 
 ### Is this tax advice?
 

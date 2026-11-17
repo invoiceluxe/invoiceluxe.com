@@ -62,6 +62,40 @@ Convert each day to decimal hours, then add them. Or add hours and minutes first
 
 Decimal hours make invoices easier to read: "32.00 hours × $65.00". See [how to invoice hourly clients from a timesheet](/blog/how-to-invoice-hourly-clients-from-a-timesheet/). For overtime calculations, see [how to calculate overtime pay](/blog/how-to-calculate-overtime-pay/).
 
+## Adding times from different days
+
+Suppose you worked 3 hours 50 minutes on one job and 2 hours 25 minutes on another.
+
+1. Add the hours: 3 + 2 = 5.
+2. Add the minutes: 50 + 25 = 75, which is 1 hour 15 minutes.
+3. Total: 6 hours 15 minutes.
+4. Convert: 15 ÷ 60 = 0.25, so the total is **6.25 hours**.
+
+Add the time first, then convert. If you convert each piece first and round, small errors can add up.
+
+## A common mistake
+
+7.30 hours is not 7 hours 30 minutes. It is 7 hours and 18 minutes, because 0.30 × 60 = 18. Always check which format a timesheet uses.
+
+## Rounding to the nearest quarter hour
+
+Some employers and clients round time to 15-minute blocks.
+
+| Time worked | Decimal | Rounded to quarter hour |
+|---|---|---|
+| 7:37 | 7.62 | 7.50 |
+| 7:53 | 7.88 | 8.00 |
+
+Round the same way every time, and agree on the rule with your client or employer.
+
+## In a spreadsheet
+
+If a cell holds a time such as 7:45, multiply by 24 to get decimal hours: `=A2*24`. Format the result as a number. If you have hours in A2 and minutes in B2, use `=A2+B2/60`.
+
+## Use it for pay and invoices
+
+Multiply the decimal hours by your rate to find the amount. 6.25 hours at $60 an hour is $375.00. See [how to invoice hourly clients from a timesheet](/blog/how-to-invoice-hourly-clients-from-a-timesheet/) and [how to calculate overtime pay](/blog/how-to-calculate-overtime-pay/).
+
 ## FAQ
 
 ### How do I convert minutes to decimal hours?
@@ -79,3 +113,11 @@ Divide the minutes by 60 and add the result to the whole hours.
 ### Do I round decimal hours?
 
 Usually to two decimals. Use the same rule every time.
+
+### How do I convert 45 minutes to decimal hours?
+
+Divide 45 by 60 to get 0.75 hours.
+
+### What is 1 hour 20 minutes in decimal?
+
+1 plus 20 ÷ 60, which is 1.33 hours.

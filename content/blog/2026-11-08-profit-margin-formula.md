@@ -7,6 +7,7 @@ tags: Pricing, Calculations
 keywords: profit margin formula, how to calculate profit margin, margin vs markup, gross margin calculation, how to price for profit
 image: /images/blog/profit-margin-formula.jpg
 imageAlt: Profit margin formula: profit divided by revenue times 100, example cost 60 price 100 gives 40 percent margin
+updated: 2026-11-17
 ---
 
 Profit margin shows how much of each sale you keep as profit. Knowing your margin helps you price jobs, judge discounts and understand whether your business is healthy.
@@ -63,6 +64,42 @@ A discount comes straight out of profit. On a price of 100 with a cost of 70, a 
 
 Use the profit margin calculator to find margin, markup or the price you need, without doing the formulas by hand.
 
+## Price for a target margin
+
+If your cost is $42 and you want a 35% margin, divide the cost by 1 minus the margin:
+
+42 ÷ (1 − 0.35) = 42 ÷ 0.65 = **$64.62**
+
+Check it: profit is $22.62, and 22.62 ÷ 64.62 is 35%.
+
+## Gross margin and net margin in numbers
+
+| Item | Amount |
+|---|---|
+| Revenue | $10,000 |
+| Cost of goods sold | $6,000 |
+| **Gross profit** | **$4,000** |
+| Operating expenses | $2,500 |
+| **Net profit** | **$1,500** |
+
+Gross margin is 4,000 ÷ 10,000 = 40%. Net margin is 1,500 ÷ 10,000 = 15%. Gross margin shows how much each sale leaves after direct costs. Net margin shows what is left after all costs.
+
+## Use margin to set a discount limit
+
+If your margin is 40%, a 20% discount leaves you with a much smaller profit. See [markup vs discount](/blog/markup-vs-discount/) for the effect.
+
+## Check your numbers regularly
+
+Costs change. Review your margins each quarter, and raise prices when your costs go up. A small increase protects your profit more than you expect.
+
+## In a spreadsheet
+
+With the price in A2 and the cost in B2:
+
+- Profit: `=A2-B2`
+- Margin: `=(A2-B2)/A2`
+- Markup: `=(A2-B2)/B2`
+
 ## FAQ
 
 ### What is a good profit margin?
@@ -80,3 +117,11 @@ Markup = margin ÷ (1 − margin). A 40% margin is 0.40 ÷ 0.60 = 66.7% markup.
 ### Is this financial advice?
 
 No. It explains the calculations. For decisions about your business, talk to an accountant.
+
+### What is a good profit margin?
+
+It depends on the industry. Compare with similar businesses, and make sure your margin covers your overheads.
+
+### How do I raise my margin?
+
+Raise prices, lower costs, or sell more of the products with higher margins.

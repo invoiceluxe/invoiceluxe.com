@@ -56,6 +56,60 @@ For the layout, see [how to show sales tax on an invoice](/blog/how-to-show-sale
 
 To compare two offers, work out the final price for each, including tax. The [price after a discount](/blog/price-after-discount/) guide shows the quick method, and [stacked discounts](/blog/stacked-discounts/) covers coupons used together.
 
+## Four common promotions and how tax is usually treated
+
+| Promotion | Usual treatment | Why |
+|---|---|---|
+| Store sale price | Tax on the lower price | The store lowered the price |
+| Store coupon | Tax on the lower price | The store funds the discount |
+| Manufacturer coupon | Often tax on the full price | The manufacturer pays the store back |
+| Mail-in rebate | Tax on the price you paid | The rebate is paid after the sale |
+
+Treat this as a pattern, not a rule. Each state has its own wording, and some treat store and manufacturer coupons the same way.
+
+## A second example: percent-off coupon
+
+A $120 pair of shoes, a 25% store coupon and a combined sales tax rate of 7%:
+
+| Step | Amount |
+|---|---|
+| Price | $120.00 |
+| Coupon (25%) | −$30.00 |
+| Taxable price | $90.00 |
+| Sales tax (7%) | $6.30 |
+| **You pay** | **$96.30** |
+
+If a state treated the coupon as payment instead of a discount, the tax would be 120 × 0.07 = $8.40, and you would pay $98.40. The difference is $2.10.
+
+## Combining coupons
+
+Some stores allow a store coupon and a manufacturer coupon on the same item. The store coupon usually lowers the taxable price first, and the manufacturer coupon is treated as payment. The result can look confusing on a receipt, so check the tax line against the price you expect to be taxed.
+
+## Loyalty points and gift cards
+
+- **Points redeemed for a discount** may reduce the taxable price in some programs.
+- **Gift cards** are payment, and the tax is calculated on the price of the items you buy.
+- **Store credit from a return** is payment, not a discount.
+
+When in doubt, ask the store how it treats a promotion.
+
+## Checking a receipt
+
+1. Write down the price after the store discounts.
+2. Multiply it by the tax rate.
+3. Compare it with the tax line on the receipt.
+
+If it matches, the tax was on the discounted price. If the tax matches the full price instead, the promotion was treated as payment. See [find the sales tax rate from a receipt](/blog/find-sales-tax-rate-from-receipt/) for the method.
+
+## If you sell with promotions
+
+- Decide how each promotion is recorded, as a discount or as a payment.
+- Keep copies of the coupon terms.
+- Be consistent, so your invoices match your tax returns.
+- Show the discount as its own line, so the taxable amount is visible.
+
+For more ideas, see [discount mistakes to avoid](/blog/discount-mistakes-to-avoid/) and the [Black Friday price after discount and tax](/blog/black-friday-price-after-discount-and-tax/) guide.
+
 ## FAQ
 
 ### Do coupons reduce sales tax?
@@ -69,6 +123,14 @@ For store discounts, usually after the discount. For manufacturer coupons, often
 ### Do rebates reduce sales tax?
 
 Usually not. The tax is charged at the register on the price you paid.
+
+### Are digital coupons treated like paper coupons?
+
+Usually yes. What matters is who pays for the discount, the store or the manufacturer.
+
+### Does a cash-back reward reduce sales tax?
+
+Usually not. Cash back is paid after the purchase, so tax is charged on the price you paid.
 
 ### Is this tax advice?
 

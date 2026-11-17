@@ -50,6 +50,40 @@ Be careful with tools that upload your files to a server. Invoices and receipts 
 
 A merged PDF is useful at invoice time and at year-end. See [how to send an invoice to a customer](/blog/how-to-send-an-invoice-to-a-customer/) and the [year-end invoicing checklist](/blog/year-end-invoicing-checklist-for-freelancers/).
 
+## Examples of the right order
+
+| Purpose | Suggested order |
+|---|---|
+| Invoice package | Invoice, timesheet, receipts |
+| Expense claim | Summary page, receipts in date order |
+| Job application | Cover letter, resume, references |
+| Contract | Main agreement, schedules, signed pages |
+
+Put the most important document first, because many readers only open the first page.
+
+## Problems and fixes
+
+- **A password-protected file will not merge.** Remove the password first, if you have the right to do so.
+- **The result is too large.** Compress the images, or merge fewer files.
+- **A page is upside down.** Rotate it in the original file, then merge again.
+- **Pages have different sizes.** Use the same paper size when you scan or export.
+
+## Name the merged file
+
+Choose a name that explains what is inside and when it was made, such as "Expense-claim-2026-11.pdf". If you send it to several people, include a version or date.
+
+## Keep the originals
+
+Merging creates a new file. Keep the original files in case you need to change one of them later. Store the merged file next to them.
+
+## When not to merge
+
+Do not merge files that need different permissions or different recipients. For example, keep a confidential contract separate from a public brochure. Send each person only what they need.
+
+## Next steps
+
+If a document needs a signature, merge first and sign last, or sign each part and then merge. See [how to sign a PDF online](/blog/how-to-sign-a-pdf-online/) and [convert images to PDF](/blog/convert-images-to-pdf/).
+
 ## FAQ
 
 ### How do I combine PDF files for free?
@@ -67,3 +101,11 @@ Merging normally keeps the original quality. Compressing is a separate step.
 ### Is it safe to merge confidential documents online?
 
 It is safer with a tool that works locally in your browser. Avoid uploading sensitive files to unknown sites.
+
+### Is there a limit to how many PDFs I can merge?
+
+Browser-based tools can handle many files, but very large files may slow your device. Merge in smaller batches if needed.
+
+### Will merging remove my signature?
+
+Merging usually keeps the pages as they are, but digital signature features may not survive. Sign after merging if you need a valid digital signature.

@@ -7,6 +7,7 @@ tags: Calculations, Finance
 keywords: EMI formula, how to calculate loan payment, monthly loan payment, loan interest calculation, EMI calculator
 image: /images/blog/loan-payment-emi-formula.jpg
 imageAlt: Loan EMI formula with example: 10,000 at 12 percent for 12 months is about 888.49 per month
+updated: 2026-11-17
 ---
 
 An EMI (equated monthly instalment) is the fixed amount you pay each month to repay a loan with interest. Knowing the formula helps you compare loans before you sign.
@@ -53,6 +54,42 @@ If you finance equipment or cover a cash gap, add the monthly payment to your co
 
 Enter the amount, rate and term in the loan EMI calculator to see the monthly payment and total interest.
 
+## Comparing terms and rates
+
+For a $20,000 loan, here is how the monthly payment and total interest change:
+
+| Rate | Term | Monthly payment | Total paid | Total interest |
+|---|---|---|---|---|
+| 6% | 3 years | $608.44 | $21,903.79 | $1,903.79 |
+| 6% | 5 years | $386.66 | $23,199.36 | $3,199.36 |
+| 6% | 7 years | $292.17 | $24,542.37 | $4,542.37 |
+| 8% | 5 years | $405.53 | $24,331.67 | $4,331.67 |
+
+A longer term lowers the monthly payment but raises the interest you pay. A higher rate raises both. Which loan is best depends on your budget and your goals.
+
+## What the numbers mean
+
+Going from 3 years to 7 years cuts the monthly payment by about $316, but adds about $2,639 in interest. If you can afford the higher payment, a shorter term usually saves money.
+
+## Compare the true cost
+
+When you compare loans, look at:
+
+1. The total amount you will repay
+2. Fees, such as an origination fee
+3. Whether there is a penalty for paying early
+4. Whether the rate is fixed or variable
+
+A low monthly payment can hide a high total cost.
+
+## Extra payments
+
+If a loan allows extra payments toward the principal, even a small extra amount each month shortens the term and lowers the interest. Check that the lender applies extra payments to the principal.
+
+## Business planning
+
+For a business loan, make sure the monthly payment fits your cash flow, with room for slow months. See [freelance hourly rate](/blog/freelance-hourly-rate/) to think about how much you need to earn to cover your costs.
+
 ## FAQ
 
 ### What does EMI stand for?
@@ -70,3 +107,11 @@ Many fixed-rate instalment loans do, but lenders can have different rules and fe
 ### Is this financial advice?
 
 No. It explains the calculation. For borrowing decisions, speak to a qualified adviser.
+
+### What does EMI stand for?
+
+Equated monthly installment, the fixed amount you pay each month on a loan.
+
+### Does a longer term always cost more?
+
+Usually yes in total interest, even though each payment is smaller.

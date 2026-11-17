@@ -7,6 +7,7 @@ tags: Quotes, Invoicing
 keywords: quote vs estimate, estimate vs invoice, quote vs invoice, difference between quote and estimate, what is a quote
 image: /images/blog/quote-vs-estimate-vs-invoice.jpg
 imageAlt: Quote, estimate and invoice compared: fixed price offer, approximate price, request for payment
+updated: 2026-11-17
 ---
 
 These three documents are often mixed up, but each has a different job. Using the right one avoids disputes and gets you paid faster.
@@ -54,6 +55,38 @@ Keep the numbers consistent. If the invoice total differs from the quote, explai
 
 Build a quote, then turn the details into an invoice and send it.
 
+## One job, three documents
+
+A homeowner asks for a bathroom remodel.
+
+| Document | When | What it says | Amount |
+|---|---|---|---|
+| Estimate | First visit | A rough range based on what you know | $4,500 to $5,500 |
+| Quote | After measuring and choosing materials | A fixed price for a defined scope | $5,000 |
+| Invoice | After the work | What the client must pay | $5,350 |
+
+The invoice is higher than the quote because the client added a $350 change, such as a better faucet. Because it was a change order, it goes on the invoice as its own line.
+
+## Why the difference matters
+
+- An estimate is not a promise. The final price can move.
+- A quote is an offer to do the work at a set price. Once accepted, it is usually binding.
+- An invoice is a request for payment for work done.
+
+Using the wrong word can cause an argument. If a client expects a fixed price and you gave an estimate, you need to explain the difference before the work starts.
+
+## Change orders
+
+When the client asks for something extra, write it down, give the price and get approval before you do the work. Then add it to the invoice. This protects both sides.
+
+## Choose the right document
+
+1. Not sure about the scope? Send an estimate.
+2. Scope and price are clear? Send a quote.
+3. Work is done or a milestone is reached? Send an invoice.
+
+See [how to send a quote or estimate](/blog/how-to-send-a-quote-or-estimate/) and [how to create an invoice](/blog/how-to-create-an-invoice/).
+
 ## FAQ
 
 ### Is an estimate legally binding?
@@ -71,3 +104,11 @@ No, but it prevents disagreements about price.
 ### Is this legal advice?
 
 No. For contracts and disputes, check the rules for your country or ask a professional.
+
+### Can an estimate become an invoice?
+
+You can use it as a base, but the invoice should show the final amounts for the work actually done.
+
+### Is a quote legally binding?
+
+Often yes, once the client accepts it. Rules differ, so write clear terms and ask a lawyer if the job is large.

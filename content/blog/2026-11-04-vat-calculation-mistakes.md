@@ -7,6 +7,7 @@ tags: VAT, Calculations
 keywords: VAT mistakes, common VAT errors, VAT calculation errors, how not to calculate VAT, VAT on invoice mistakes
 image: /images/blog/vat-calculation-mistakes.jpg
 imageAlt: Wrong way to remove 20% VAT: 120 minus 20% gives 96, the correct way is 120 divided by 1.20 gives 100
+updated: 2026-11-17
 ---
 
 VAT mistakes are easy to make and easy to miss, because the numbers often look almost right. These seven are the most common. Check your own invoices against them.
@@ -50,6 +51,39 @@ Rules for cross-border sales, exemptions and registration thresholds vary. If yo
 
 A VAT calculator adds or removes VAT correctly and shows the net, VAT and gross at once, so you can double-check your invoices.
 
+## Wrong and right side by side
+
+| Situation | Wrong way | Wrong result | Right way | Right result |
+|---|---|---|---|---|
+| Remove 20% VAT from 240 | 240 − 20% | 192.00 | 240 ÷ 1.20 | 200.00 |
+| Add 20% VAT to 250 | 250 × 0.20 | 50.00 | 250 × 1.20 | 300.00 |
+| VAT in a total of 120 at 20% | 120 × 0.20 | 24.00 | 120 − (120 ÷ 1.20) | 20.00 |
+
+The first mistake understates the net price by 8, and the third overstates the VAT by 4. Over many invoices, these differences become real money.
+
+## A rounding example
+
+An invoice has three lines at £3.33 net each, with 20% VAT.
+
+| Method | Calculation | VAT |
+|---|---|---|
+| VAT on each line | 0.666 rounds to 0.67, times 3 | £2.01 |
+| VAT on the total | 9.99 × 0.20 = 1.998, rounds to | £2.00 |
+
+Both are reasonable, but you should use one method and apply it to every invoice. Many tax authorities accept calculating VAT on the invoice total, so check what applies to you.
+
+## A month-end review
+
+1. Compare the VAT on your sales invoices with your sales ledger.
+2. Look for VAT amounts that do not match the rate. A quick check is the VAT divided by the net amount.
+3. Check purchase invoices to make sure you reclaimed the right amount.
+4. Check that credit notes reduce your VAT correctly.
+5. Reconcile the VAT account to your VAT return before you file.
+
+## Use the right rate
+
+A line with the wrong rate affects both the invoice and your return. Keep a table of the rates you use, and review it whenever the law changes. See [how to calculate VAT](/blog/how-to-calculate-vat/) and [find the VAT rate from net and gross](/blog/find-vat-rate-from-net-and-gross/).
+
 ## FAQ
 
 ### What is the most common VAT mistake?
@@ -63,6 +97,14 @@ Net × 0.20 is the VAT, and net × 1.20 is the gross price.
 ### Is VAT calculated before or after a discount?
 
 Normally after the discount, on the reduced net price. Check the rules that apply to your situation.
+
+### What is the quickest way to check a VAT amount?
+
+Divide the VAT by the net amount. At 20% it should come to 0.20.
+
+### Should I round VAT on each line or on the total?
+
+Choose one method, apply it consistently and follow your tax authority's guidance.
 
 ### Is this tax advice?
 

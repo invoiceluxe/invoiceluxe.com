@@ -60,6 +60,48 @@ A small rounding difference on every shift adds up. Log start time, end time and
 
 Contractors usually set their own rates, and they are not paid overtime by default. If you bill by the hour, see [how to invoice hourly clients from a timesheet](/blog/how-to-invoice-hourly-clients-from-a-timesheet/) and [how to calculate your freelance hourly rate](/blog/freelance-hourly-rate/).
 
+## Another example with a higher rate
+
+An employee earns $24 an hour and works 52 hours in a week.
+
+| Part | Calculation | Pay |
+|---|---|---|
+| Regular hours | 40 × $24 | $960.00 |
+| Overtime hours | 12 × ($24 × 1.5 = $36) | $432.00 |
+| **Total** | | **$1,392.00** |
+
+## Bonuses and the regular rate
+
+Under federal rules, overtime is based on the regular rate of pay, which can include some bonuses. Suppose an employee earns $18 an hour, works 45 hours and receives a $90 non-discretionary bonus for the week.
+
+1. Total straight-time pay: 45 × $18 = $810, plus the $90 bonus, which is $900.
+2. Regular rate: $900 ÷ 45 = **$20.00**.
+3. Overtime premium for the 5 extra hours: 5 × ($20 × 0.5) = **$50.00**.
+4. Total pay for the week: $900 + $50 = **$950.00**.
+
+Rules for bonuses are detailed, so check current guidance from the US Department of Labor or ask a payroll professional.
+
+## State rules can be stricter
+
+Some states require overtime after 8 hours in a day, not only after 40 hours in a week, and some states have extra rules for double time. If your state has stricter rules than the federal rule, follow the stricter one.
+
+## Use a spreadsheet
+
+With the rate in A2 and the weekly hours in B2:
+
+- Regular pay: `=MIN(B2,40)*A2`
+- Overtime pay: `=MAX(B2-40,0)*A2*1.5`
+- Total: add the two cells
+
+## Avoid common mistakes
+
+- Paying 1.5 times the rate for all hours instead of only the hours above 40
+- Forgetting breaks and unpaid time that do not count as work hours
+- Rounding time in a way that always favors the employer
+- Ignoring unpaid work that an employee does before or after a shift
+
+See [convert minutes to decimal hours](/blog/convert-minutes-to-decimal-hours/) when you convert time into pay.
+
 ## FAQ
 
 ### How do you calculate time and a half?
@@ -77,3 +119,11 @@ Not always. It depends on whether the job is exempt, which depends on duties and
 ### Is this legal or payroll advice?
 
 No. It explains the calculation. Check your state's labor department or a payroll professional.
+
+### Is overtime calculated per day or per week?
+
+Federal rules use the work week. Some states also use daily limits.
+
+### Do salaried employees get overtime?
+
+Some do. It depends on whether they are exempt or non-exempt, which turns on their salary level and duties.

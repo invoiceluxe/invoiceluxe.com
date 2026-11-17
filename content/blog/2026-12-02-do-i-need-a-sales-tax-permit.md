@@ -62,6 +62,45 @@ Many states do not charge a fee, and some charge a small fee or require a deposi
 
 You may need a separate permit for each state where you have nexus. Register as soon as you cross a threshold, and not after.
 
+## A quick decision guide
+
+Ask yourself these questions:
+
+1. **Do I sell goods?** Most states require a permit for selling taxable goods.
+2. **Do I sell taxable services?** Some states tax certain services. See [do freelancers charge sales tax](/blog/do-freelancers-charge-sales-tax/).
+3. **Do I sell only online?** You still need a permit in a state where you have nexus. See [what is sales tax nexus](/blog/what-is-sales-tax-nexus/).
+4. **Do I sell at events or pop-ups?** Some states require a temporary permit.
+5. **Do I only sell through a marketplace that collects the tax?** You may not need to collect, but check whether you must still register.
+
+If the answer to any of them is yes, look up your state's registration rules.
+
+## What you need to register
+
+Typical information includes:
+
+- Your legal name and business structure
+- Your business address and contact details
+- A federal tax ID (EIN) or Social Security number, depending on your business type
+- A description of what you sell
+- Your expected sales
+- The date you will start selling in the state
+
+Have these ready before you start the online form, so you can finish in one sitting.
+
+## Display the permit and use it correctly
+
+Some states ask you to display the permit at your place of business. Keep the permit number handy, because suppliers may ask for it when you buy items for resale. See [resale certificate explained](/blog/resale-certificate-explained/) if you are not sure what to do with it.
+
+## After you register
+
+1. Set up the tax rate on your invoices or store.
+2. Create a simple routine to track tax collected.
+3. File returns on the schedule you are given. See [how to file and pay sales tax](/blog/how-to-file-and-pay-sales-tax/).
+
+## If you closed or paused the business
+
+Do not just stop filing. Tell the state, and close the account properly, or you may keep receiving notices and penalties.
+
 ## FAQ
 
 ### Do I need a sales tax permit to sell online?
@@ -75,6 +114,14 @@ No. A business license allows you to operate. A sales tax permit allows you to c
 ### How long does it take to get a sales tax permit?
 
 It depends on the state, from immediate online approval to a few weeks.
+
+### Do I need a permit if I only sell a few items?
+
+Possibly. Many states have no minimum for regular sellers. Occasional sales rules vary, so check.
+
+### Can I charge sales tax before I get my permit?
+
+No. Collecting tax without a permit is a problem in most states. Register first.
 
 ### Is this tax advice?
 

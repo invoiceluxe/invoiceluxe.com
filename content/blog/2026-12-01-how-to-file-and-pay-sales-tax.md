@@ -64,6 +64,50 @@ Each state has its own return, due date and portal. Track sales by state, so you
 - Using the wrong rate or the wrong period
 - Forgetting use tax on purchases. See [sales tax vs use tax](/blog/sales-tax-vs-use-tax/).
 
+## A monthly routine that avoids deadline stress
+
+1. **Run a report of taxable sales** at the end of each month.
+2. **Add up the tax collected** from your invoices or point-of-sale reports.
+3. **Reconcile it with your bank deposits.** The tax should match what customers paid.
+4. **Set aside the tax** in a separate account, so you do not spend it.
+5. **File and pay** before the deadline, even if you file quarterly. Mark the date in your calendar a week early.
+
+## A sample return in numbers
+
+A small shop had these sales in a month, with a combined rate of 7%:
+
+| Item | Amount |
+|---|---|
+| Gross sales | $18,400.00 |
+| Non-taxable sales (services, exempt items) | $2,900.00 |
+| Taxable sales | $15,500.00 |
+| Tax due at 7% | $1,085.00 |
+
+The shop sends $1,085.00 to the state and keeps the report. If the invoices show a different amount of tax, the difference must be explained, so compare them before you file.
+
+## What a return usually asks for
+
+- Total sales for the period
+- Taxable and non-taxable sales
+- Exempt sales, with a reason such as resale or tax-exempt customer
+- Tax collected, sometimes split between state and local
+- Any credits or adjustments, such as returns
+
+Fill in the fields carefully, and use the same figures as your accounting records.
+
+## What if you are late?
+
+States charge penalties and interest for late filing and late payment. If you are going to miss a deadline, file as soon as possible. Filing on time and paying late usually costs less than not filing at all, so submit the return even if you cannot pay everything at once. Contact the revenue department about payment arrangements.
+
+## Keep your records
+
+Save these for the period your state requires:
+
+- Copies of invoices and receipts
+- Sales reports and bank statements
+- Exemption and resale certificates
+- Copies of filed returns and payment confirmations
+
 ## FAQ
 
 ### How often do I file sales tax?
@@ -77,6 +121,14 @@ Usually yes, with a zero return. Check your state's rule.
 ### How do I pay sales tax?
 
 Most states let you file and pay online through their revenue department's website.
+
+### What happens if I file late?
+
+You may owe a late fee and interest. File as soon as possible and contact the state about options.
+
+### Can I file and pay online?
+
+Most states have an online portal. Use it for a confirmation you can save.
 
 ### Is this tax advice?
 

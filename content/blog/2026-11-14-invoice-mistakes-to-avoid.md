@@ -7,6 +7,7 @@ tags: Invoicing, Getting Paid
 keywords: invoice mistakes, common invoice errors, why invoice not paid, invoice checklist, how to avoid invoice errors
 image: /images/blog/invoice-mistakes-to-avoid.jpg
 imageAlt: Checklist of invoice mistakes: missing number, no due date, wrong total, wrong recipient
+updated: 2026-11-17
 ---
 
 An invoice that is unclear or incomplete gives the customer an easy reason to wait. Fixing these ten mistakes will make your invoices faster to approve and faster to pay.
@@ -69,6 +70,30 @@ Most late payments are simply forgotten invoices. Send a polite reminder before 
 
 Use an invoice generator that calculates totals and tax for you, so the numbers are right every time.
 
+## What these mistakes cost
+
+Every mistake adds days to your payment time. A wrong address can mean a resend. A missing PO number can mean the invoice sits in a queue. A total that does not add up can mean a call, a corrected invoice and a restart of the payment clock. Because many companies pay on a fixed cycle, missing one cycle can delay payment by a month.
+
+## A five-minute pre-send review
+
+1. **Read it as the client.** Would an accountant who has never met you understand every line?
+2. **Check the numbers.** Add the lines, apply tax, compare with the total.
+3. **Check the dates.** The due date should be after the invoice date and match your terms.
+4. **Check the contact.** Make sure it goes to the right person and email.
+5. **Check the attachments.** If you need to include a timesheet or receipts, add them. See [how to send an invoice to a customer](/blog/how-to-send-an-invoice-to-a-customer/) for sending.
+
+## Mistakes that look small but cause trouble
+
+- **Typos in the client's name.** The legal name matters for accounting.
+- **Different names on contract and invoice.** Use the same name in both.
+- **Rounded amounts.** Show cents, and make the total exact.
+- **Missing currency.** Say USD, CAD or GBP when you work across borders.
+- **Old template details.** Update the bank details, address and logo when they change.
+
+## How to fix a mistake
+
+If you have not sent the invoice, correct it. If you have sent it, issue a corrected invoice or a credit note, and explain the change in a short email. Keep both documents. See [how to number invoices](/blog/how-to-number-invoices/).
+
 ## FAQ
 
 ### What is the most common invoice mistake?
@@ -86,3 +111,11 @@ It depends on your agreed terms, commonly 14 to 30 days.
 ### Is this legal advice?
 
 No. It is a practical checklist. Check local requirements for your invoices.
+
+### What is the most common invoice mistake?
+
+A missing or unclear due date, followed by wrong client details.
+
+### Should I delete an invoice with a mistake?
+
+No. Void it or issue a credit note so your records stay complete.

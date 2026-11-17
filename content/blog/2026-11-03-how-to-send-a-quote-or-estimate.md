@@ -7,6 +7,7 @@ tags: Quotes, Invoicing
 keywords: how to send a quote to a customer, how to write a quote, quote email template, how to send an estimate, price quote example
 image: /images/blog/how-to-send-a-quote-or-estimate.jpg
 imageAlt: A price quote with line items, total, validity date and an accept button
+updated: 2026-11-17
 ---
 
 A good quote does two jobs: it shows the customer exactly what they get for the price, and it makes saying yes easy. A vague or late quote is one of the quickest ways to lose a job.
@@ -63,6 +64,41 @@ Not exactly. A quote is a fixed price offer, while an estimate is an approximati
 
 Fill in your items, add tax and download a clean PDF in minutes.
 
+## Offer options
+
+Instead of one price, offer two or three clear options. For example:
+
+| Option | What is included | Price |
+|---|---|---|
+| Basic | Core service | $1,200 |
+| Standard | Core service plus revisions | $1,800 |
+| Premium | Everything, with priority delivery | $2,500 |
+
+Options help the client choose without asking you to lower the price.
+
+## Make the scope clear
+
+A quote works best when it lists what is included and what is not. Add:
+
+- The deliverables
+- The timeline
+- The number of revisions
+- Anything that costs extra
+
+Clear limits prevent arguments later.
+
+## Quote validity
+
+State how long the quote is valid, for example "valid for 30 days". Prices can change, and you do not want to be held to an old price. Put the date on the quote.
+
+## Turn it into an invoice
+
+When the client accepts, keep the quote number and refer to it on your invoice. This links the work to the agreed price. See [quote vs estimate vs invoice](/blog/quote-vs-estimate-vs-invoice/) and [how to create an invoice](/blog/how-to-create-an-invoice/).
+
+## Ask for a deposit
+
+For larger jobs, ask for part of the payment up front. It confirms that the client is serious and covers your early costs.
+
 ## FAQ
 
 ### Is a quote legally binding?
@@ -80,3 +116,11 @@ Yes, but send a new version with a new date or version number so there is no con
 ### What if the customer says my price is too high?
 
 Offer options instead of only a discount, for example a smaller scope, phased delivery or a different package.
+
+### Should I include a deadline for the client's reply?
+
+Yes. A validity date encourages a decision and protects your price.
+
+### What if the client asks for a discount?
+
+Offer to reduce the scope instead of the price, or offer a smaller package.

@@ -48,6 +48,45 @@ With a destination-based system, one state can have hundreds of different local 
 3. **Show the rate** on every invoice. See [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
 4. **Keep records** of which rate you used and why.
 
+## Three buyers, one item
+
+A seller is located in Town X, and the states have these combined rates. The item costs $200.
+
+| Buyer | Rate at seller | Rate at buyer | Origin-based tax | Destination-based tax |
+|---|---|---|---|---|
+| Customer 1, same town | 6.5% | 6.5% | $13.00 | $13.00 |
+| Customer 2, other town in the same state | 6.5% | 7.5% | $13.00 | $15.00 |
+| Customer 3, other town in the same state | 6.5% | 5.5% | $13.00 | $11.00 |
+
+In an origin-based state, the seller charges the same local rate to every buyer in the state. In a destination-based state, the seller must find the rate at each delivery address. The totals above are examples, not real rates.
+
+## Who benefits from each method
+
+- **Origin-based** is easier for the seller, because there is one rate for the state.
+- **Destination-based** is more accurate for the state and local governments, because tax goes to the area where the buyer lives.
+
+Most states use destination-based rules, and a minority use origin-based rules for sales within the state. Rules can also have exceptions, such as home-rule cities, so check your state.
+
+## Steps for a seller
+
+1. **Find out what rule your state uses** for sales within the state.
+2. **Find out the rule for the states you ship to.** For sales to other states, you usually need the rule of the buyer's state.
+3. **Collect the delivery address** at checkout, including the ZIP code.
+4. **Look up the rate for that address.** An address lookup is more accurate than a ZIP code alone, because ZIP codes can cross boundaries.
+5. **Save the rate and the address** with the invoice.
+
+## When software helps
+
+If you sell in many places, manually looking up each rate gets slow. Some e-commerce platforms and tax tools calculate it for you. Even then, check a few orders against your state's lookup, because you remain responsible for the tax you collect.
+
+## Sales to other states
+
+When you sell across state lines, the nexus rules decide whether you must collect tax at all. See [what is sales tax nexus](/blog/what-is-sales-tax-nexus/). After that, the destination state's rate is usually used for the tax.
+
+## Showing the rate on an invoice
+
+Always show which rate you used, for example "Sales tax (7.5%)", and keep the delivery address on the invoice. This is helpful if the customer asks why the rate differs from a previous order. For the layout, see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/) and [combined sales tax rate explained](/blog/combined-sales-tax-rate-explained/).
+
 ## FAQ
 
 ### What is the difference between origin-based and destination-based sales tax?
@@ -61,6 +100,14 @@ Check your state's revenue department. Most states are destination-based, and ab
 ### Does the buyer's state matter if I sell online?
 
 Often yes, if you have nexus in that state.
+
+### Why is my tax different from my friend's in the same state?
+
+Local rates and boundaries differ. If your state is destination-based, the rate depends on where you live.
+
+### Do I need to charge different rates to different customers?
+
+In destination-based states, yes. Use the rate for each delivery address.
 
 ### Is this tax advice?
 

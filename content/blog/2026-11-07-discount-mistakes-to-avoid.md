@@ -7,6 +7,7 @@ tags: Discounts, Calculations
 keywords: discount mistakes, discount calculation errors, how to calculate discount correctly, stacked discount mistake, sale price mistakes
 image: /images/blog/discount-mistakes-to-avoid.jpg
 imageAlt: Stacking 20 percent and 10 percent discounts gives 28 percent off, not 30 percent
+updated: 2026-11-17
 ---
 
 Discounts look simple, but small errors can cost a business money or confuse customers. Here are six mistakes to check for, with the correct method for each.
@@ -57,6 +58,41 @@ Rounding each step can leave you a cent or two off, which adds up on large order
 
 A discount calculator shows the sale price and the amount saved at once, so you can verify a price before you publish it.
 
+## A costly example
+
+A store owner wants to give customers 35% off by stacking three offers: 20%, 10% and 5%. They add the percentages and quote $130 on a $200 item. The real price is:
+
+| Step | Calculation | Price |
+|---|---|---|
+| Start | | $200.00 |
+| 20% off | 200 × 0.80 | $160.00 |
+| 10% off | 160 × 0.90 | $144.00 |
+| 5% off | 144 × 0.95 | $136.80 |
+
+The real total discount is 31.6%, not 35%. The store would lose $6.80 on every sale it quoted at $130, or the customer would be told the wrong price. See [stacked discounts](/blog/stacked-discounts/).
+
+## Mistakes on invoices
+
+- **Putting the discount after tax.** Tax is normally calculated on the price after the discount. See [discount and sales tax together](/blog/discount-and-sales-tax-together/).
+- **Hiding the discount in the unit price.** Show it as a separate line so the client can see the saving.
+- **Different discounts on different invoices.** Keep a written policy, so every client is treated the same way.
+- **Forgetting to mention the end date.** A promotion without an end date can be hard to stop.
+
+## A short audit checklist
+
+1. Is the percentage applied to the right base?
+2. Are stacked discounts multiplied, not added?
+3. Is tax calculated after the discount?
+4. Is rounding done at the end?
+5. Is the final price above your minimum margin?
+6. Is the discount clearly shown on the document?
+
+Run through this list before you send a promotion to customers.
+
+## Talking about discounts
+
+Say "save $50" or "25% off", not both in a confusing way. Always show the final price, because customers care about what they pay. For quick checks, use [price after discount](/blog/price-after-discount/) and [markup vs discount](/blog/markup-vs-discount/).
+
 ## FAQ
 
 ### How do I calculate 20% off a price?
@@ -74,3 +110,11 @@ Usually before. The tax is then calculated on the reduced price. Check the rules
 ### How do I find the discount percentage from two prices?
 
 (Original − sale) ÷ original × 100. For 100 and 75, that is 25%.
+
+### What is the most common discount mistake?
+
+Adding stacked percentages instead of multiplying them.
+
+### Should the discount be shown on the invoice?
+
+Yes, as its own line. It makes the invoice clear and supports your tax calculation.

@@ -7,6 +7,7 @@ tags: Discounts, Sales Tax, Calculations
 keywords: discount and sales tax calculation, price after discount and tax, does sales tax apply before or after discount, calculate sale price with tax
 image: /images/blog/discount-and-sales-tax-together.jpg
 imageAlt: Store discount: $80 minus 25% is $60, plus 8% tax is $64.80. Coupon taxed on full price: $66.40
+updated: 2026-11-17
 ---
 
 You find a jacket for $80 with 25% off, and your state charges 8% sales tax. What do you pay at the till?
@@ -54,6 +55,57 @@ That is $1.60 more than with a store discount. Rules vary by state and by type o
 
 Work out the discounted price first with the discount calculator, then add tax. If you only need the first step, read [how to find the price after a discount](/blog/price-after-discount/). To add or remove tax, see [how to calculate sales tax](/blog/how-to-calculate-sales-tax/).
 
+## A full example, step by step
+
+A jacket is priced at $149.99. The store takes 30% off, and the combined sales tax rate is 8.875%.
+
+| Step | Calculation | Result |
+|---|---|---|
+| Discount amount | 149.99 × 0.30 | $45.00 |
+| Price after discount | 149.99 − 45.00 | $104.99 |
+| Sales tax | 104.99 × 0.08875 | $9.32 |
+| **Total** | 104.99 + 9.32 | **$114.31** |
+
+If tax were charged on the full $149.99 instead, it would be $13.31. That is $3.99 more, and the total would be $118.30. When a store takes a discount at the register, you normally pay tax only on the lower price.
+
+## The three common cases
+
+1. **Store discount or sale price.** Tax is usually calculated on the lower price.
+2. **Manufacturer coupon.** In many states the tax is calculated on the full price because the manufacturer pays the store back.
+3. **Gift cards and store credit.** These are payment, not a discount, so tax is calculated before they are applied.
+
+These are general patterns, and states differ. Check your state's rules if you sell.
+
+## How to show it on an invoice
+
+A clean layout avoids questions from your client:
+
+| Line | Amount |
+|---|---|
+| Services or products | $1,000.00 |
+| Discount (10%) | −$100.00 |
+| Subtotal after discount | $900.00 |
+| Sales tax (8%) | $72.00 |
+| **Total due** | **$972.00** |
+
+Showing the discount as its own line with a minus sign makes the tax base obvious.
+
+## Multiple discounts
+
+If you stack discounts, apply them one after another, not by adding the percentages. A 20% discount and then a further 10% is not 30%. It is 0.8 × 0.9 = 0.72, so you pay 72% of the original price, a 28% total discount. See [stacked discounts](/blog/stacked-discounts/) for the detail. Calculate sales tax only after all discounts are applied.
+
+## Black Friday and sale season
+
+Big sales are when mistakes are most common. Compare two offers by working out the final price with tax, not just the percentage. The [Black Friday price after discount and tax](/blog/black-friday-price-after-discount-and-tax/) guide gives a checklist for the season.
+
+## Checking a receipt
+
+1. Find the price after discount on the receipt.
+2. Multiply it by the tax rate.
+3. Compare it with the tax line.
+
+If the tax matches the discounted price, the store taxed the lower amount. If it matches the full price, the discount may have been a manufacturer coupon, or the store made a mistake.
+
 ## FAQ
 
 ### Is sales tax calculated before or after a discount?
@@ -67,6 +119,14 @@ Multiply the price by (1 − discount) and then by (1 + tax rate). For $80, 25% 
 ### Why was I charged tax on the original price?
 
 Some manufacturer coupons do not reduce the taxable price in certain states. Check the receipt and your state rules.
+
+### Is sales tax charged on the original price or the sale price?
+
+Usually on the sale price, because the store has already lowered the price. Manufacturer coupons and some other offers may be taxed on the full price.
+
+### How do I add discount and tax in a spreadsheet?
+
+With the price in B2, the discount in C2 and the tax rate in D2, use `=ROUND(B2*(1-C2)*(1+D2),2)` for the final total.
 
 ### Is this tax advice?
 

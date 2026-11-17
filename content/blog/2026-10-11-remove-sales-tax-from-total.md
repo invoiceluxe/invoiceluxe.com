@@ -6,6 +6,7 @@ tags: Sales Tax, Calculations
 toolId: salestax
 image: /images/blog/remove-sales-tax-from-total.jpg
 imageAlt: Remove tax formula: total divided by 1 plus the rate
+updated: 2026-11-17
 ---
 
 You have a receipt total and want to know the price before tax, for an expense report, a refund or your bookkeeping. The fix is a division, not a subtraction.
@@ -50,6 +51,56 @@ The wrong method is off by 68 cents, and the gap grows with bigger amounts and h
 
 A calculator that adds or removes tax saves you from typing these divisions by hand. Enter the amount and the rate and choose "remove tax".
 
+## A realistic example with receipts
+
+You paid $326.40 for a work trip expense, and the receipt says tax was included at 7.5%. To record the expense and the tax separately:
+
+1. Add 1 to the rate: 1 + 0.075 = 1.075.
+2. Divide the total by 1.075: 326.40 ÷ 1.075 = 303.627907, which rounds to **$303.63**.
+3. Subtract to find the tax: 326.40 − 303.63 = **$22.77**.
+
+Check it: 303.63 × 1.075 = 326.40.
+
+If the rate is a round number, it is even easier. A $52.00 total at 4% divides by 1.04 to give exactly $50.00 before tax.
+
+## How much of a total is tax?
+
+The tax is not the rate times the total, because the rate applies to the price before tax. The share of a total that is tax is the rate divided by 1 plus the rate.
+
+| Tax rate | Share of the total that is tax | Tax inside a $100 total |
+|---|---|---|
+| 6% | 5.66% | $5.66 |
+| 7% | 6.54% | $6.54 |
+| 8% | 7.41% | $7.41 |
+| 8.25% | 7.62% | $7.62 |
+| 9% | 8.26% | $8.26 |
+
+So if a total is $100 and the rate is 8%, the tax is $7.41, not $8.00.
+
+## Remove tax in a spreadsheet
+
+With the total in B2 and the rate in C2 (for example 8.25%):
+
+- Price before tax: `=ROUND(B2/(1+C2),2)`
+- Tax included: `=B2-ROUND(B2/(1+C2),2)`
+
+Fill the formulas down the column to process a whole list of receipts.
+
+## Why this matters
+
+- **Expense reports.** Many companies want the amount before tax and the tax on separate lines.
+- **Bookkeeping.** Sales tax you collect is not your income, so you need to separate it.
+- **Price checks.** You can confirm that a shop charged the correct rate.
+- **Pricing.** If you sell tax-included prices, you need to know how much you actually keep.
+
+## Rounding
+
+Your result may be a cent off from a receipt because stores round tax per item or per receipt. If a single item is involved, trust the receipt. If you are working from a total, the reverse method gives the best estimate. See [sales tax on multiple items](/blog/sales-tax-on-multiple-items/) for why one cent differences happen.
+
+## Quick check
+
+Take your price before tax, multiply by 1 plus the rate, and make sure you get the original total. If you do, the work is right. Use the [discount and sales tax](/blog/discount-and-sales-tax-together/) guide when a discount is also involved.
+
 ## FAQ
 
 ### How do I remove 7% tax from a total?
@@ -67,3 +118,11 @@ Subtract the pre-tax price from the total, or multiply the total by the rate div
 ### Does this work for VAT too?
 
 Yes. VAT-inclusive prices work the same way. For 20% VAT, divide by 1.20.
+
+### How much tax is in a $100 total at 8%?
+
+$7.41. Divide 100 by 1.08 to get $92.59 before tax, then subtract it from $100.
+
+### How do I get the sales tax rate from a receipt?
+
+Divide the tax by the price before tax and multiply by 100. If the tax is $7.41 on a $92.59 price, 7.41 ÷ 92.59 = 0.08, so the rate is 8%.

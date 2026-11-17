@@ -7,6 +7,7 @@ tags: Invoicing, Getting Paid
 keywords: how to send an invoice to a customer, send invoice by email, invoice email template, how to email an invoice, send invoice to client
 image: /images/blog/how-to-send-an-invoice-to-a-customer.jpg
 imageAlt: Checklist for sending an invoice to a customer: PDF, clear email, due date and follow-up
+updated: 2026-11-17
 ---
 
 Sending an invoice sounds simple, but small details decide how fast you get paid. A clear email, a correct PDF and a visible due date can save you weeks of waiting.
@@ -66,6 +67,37 @@ Pick a rhythm and stick to it. A friendly reminder a few days before the due dat
 
 Create the invoice in minutes, download the PDF and send it. No signup is needed.
 
+## A pre-send checklist
+
+1. The customer's name, address and email are correct.
+2. The invoice number is unique.
+3. The amounts, tax and total are right.
+4. The due date and payment methods are clear.
+5. The PDF opens correctly and has a clear file name.
+6. You have a copy saved.
+
+## Email subject lines
+
+- "Invoice 2026-014 from Your Business, due December 1"
+- "Your invoice for the November project"
+
+Include the number, your name and the due date, so the recipient can find it later.
+
+## Sending to a company
+
+Large companies often have a separate accounts payable address. Ask who should receive invoices, and whether they need a PO number. Sending to the wrong person can delay payment by weeks. See [what to include on an invoice](/blog/what-to-include-on-an-invoice/).
+
+## International clients
+
+- State the currency clearly, for example USD or CAD.
+- Agree on who pays bank transfer fees.
+- Mention the tax treatment, such as VAT or GST, if it applies.
+- Allow extra time for payment to arrive.
+
+## After you send it
+
+Mark the invoice as sent in your register, and add the due date to your calendar. If the client confirms receipt, note it. If there is no reply and the due date approaches, send a short reminder. See [payment reminder email for an overdue invoice](/blog/payment-reminder-email-overdue-invoice/).
+
 ## FAQ
 
 ### Can I email an invoice as a PDF?
@@ -83,3 +115,11 @@ Ask for a short confirmation in your email, or request a read receipt. If you he
 ### Is this legal advice?
 
 No. Invoice rules differ between countries. Check the requirements that apply to you.
+
+### Should I attach the invoice or include a link?
+
+Attach a PDF, and add a payment link too if you have one. Attachments are easier to save and forward.
+
+### What if the client says they never received it?
+
+Resend it and ask for a confirmation. Check that you used the right address.

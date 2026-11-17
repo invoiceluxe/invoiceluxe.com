@@ -54,6 +54,34 @@ When a customer says they are buying for resale, ask for the certificate **befor
 
 Mark the line as exempt, write "Resale" and add the certificate number. The layout is in [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
 
+## A paperwork routine for resellers
+
+1. **Get your sales tax permit first.** Most states need it before you can issue a certificate.
+2. **Fill in the certificate** with your business name, permit number and the type of goods you resell.
+3. **Give it to your supplier once**, or as often as they ask. Some suppliers keep one on file for repeat orders.
+4. **Keep your own copy** and a list of suppliers who have it.
+5. **Check the expiry date.** Some states require renewal.
+
+## When it goes wrong
+
+- **Using it for personal items.** If you buy something for your own use and claim it is for resale, you may owe the tax plus penalties.
+- **Using an expired or wrong certificate.** The seller can be held responsible for tax they did not collect.
+- **Not keeping a copy.** In an audit, the seller needs the certificate on file to justify a tax-free sale.
+- **Buying items that are not resold.** Supplies, such as shipping boxes, may be exempt as part of the product in some states and taxable in others.
+
+## Sellers: protect yourself
+
+If you accept resale certificates from customers:
+
+- Ask for the certificate before you make the tax-free sale.
+- Check that it is complete, signed and dated.
+- Keep it for the period your state requires.
+- Note the certificate on the invoice, for example "Exempt, resale certificate on file".
+
+## Multistate buyers
+
+Some states accept a standardized multistate certificate, and others need their own form. Check the rules of the state where the goods are delivered. For more on where you must collect, see [what is sales tax nexus](/blog/what-is-sales-tax-nexus/), and for the invoice wording, see [how to show sales tax on an invoice](/blog/how-to-show-sales-tax-on-an-invoice/).
+
 ## FAQ
 
 ### What is a resale certificate?
@@ -67,6 +95,14 @@ No. The permit registers you to collect tax. The certificate is the paper you gi
 ### Can I use a resale certificate for supplies?
 
 Generally no. Only for items you resell or that become part of what you sell.
+
+### Does a resale certificate expire?
+
+It can. Some states set an expiry date or require renewal, and others do not. Check the rules where you use it.
+
+### Can I use a resale certificate for items I use in my business?
+
+Usually no. It is for items you resell or that become part of a product you sell, not for your own supplies.
 
 ### Is this tax advice?
 
